@@ -65,6 +65,7 @@ import { normalizeDagNode } from './node-normalize';
 import { addIssue, addIssues, validateSelectedMode } from './node-validation';
 import { waitConfigKeys, waitConfigSchema, type WaitNode } from './wait-node';
 import { fanOutConfigSchema, type WorkflowNode } from './workflow-node';
+import { DECIDE_MODE_SHAPE, EXTRACT_MODE_SHAPE } from './model-node-modes';
 // Importers outside this package read these through this module.
 export {
   ATTENTION_OUTPUT_FORMATS,
@@ -190,6 +191,9 @@ const NODE_MODE_SHAPES = {
     fan_out: fanOutConfigSchema,
     with: z.unknown(),
   },
+  // Fork-only model-node modes (model-node-modes.ts).
+  extract: EXTRACT_MODE_SHAPE,
+  decide: DECIDE_MODE_SHAPE,
 } as const satisfies Record<string, z.ZodRawShape>;
 
 export type NodeMode = keyof typeof NODE_MODE_SHAPES;
@@ -268,6 +272,8 @@ export const dagNodeFlatSchema = dagNodeBaseSchema.extend({
   ...z.object(NODE_MODE_SHAPES.script).partial().shape,
   ...z.object(NODE_MODE_SHAPES.include).partial().shape,
   ...z.object(NODE_MODE_SHAPES.workflow).partial().shape,
+  ...z.object(NODE_MODE_SHAPES.extract).partial().shape,
+  ...z.object(NODE_MODE_SHAPES.decide).partial().shape,
 });
 
 // ---------------------------------------------------------------------------

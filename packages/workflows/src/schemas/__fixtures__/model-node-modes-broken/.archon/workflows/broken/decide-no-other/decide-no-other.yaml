@@ -1,0 +1,8 @@
+name: decide-no-other
+description: A decide node whose enum lacks other.
+nodes:
+  - id: classify
+    decide:
+      question: What does this email ask for?
+      enum: [reply, code_change, ignore]
+      input: $ARGUMENTS

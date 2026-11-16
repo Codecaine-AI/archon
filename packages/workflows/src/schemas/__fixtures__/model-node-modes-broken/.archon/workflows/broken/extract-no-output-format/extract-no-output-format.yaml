@@ -1,0 +1,7 @@
+name: extract-no-output-format
+description: An extract node without output_format.
+nodes:
+  - id: extract
+    extract:
+      function: ExtractSupportEmail
+      input: $ARGUMENTS

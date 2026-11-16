@@ -21,6 +21,7 @@ import {
   includeDirectiveSchema,
 } from './include-node';
 import { loopAiAuthoringSchema, type LoopNode } from './loop-node';
+import { buildDecideNode, buildExtractNode } from './model-node-modes';
 import { nodeBindingsSchema } from './node-bindings';
 import type { NodeMcp } from './provider-options';
 import { loopRetryConfigSchema } from './retry';
@@ -255,6 +256,10 @@ const NODE_BUILDERS: Record<NodeMode, NodeBuilder> = {
       loop: selectedField(data.loop, 'loop'),
       ...definedFields(data, ['timeout']),
     }) satisfies LoopNode,
+  extract: data =>
+    buildExtractNode(data, { ...executableFields(data), ...definedFields(data, ['retry']) }),
+  decide: data =>
+    buildDecideNode(data, { ...executableFields(data), ...definedFields(data, ['retry']) }),
 };
 
 /**

@@ -1,0 +1,11 @@
+name: extract-schema-only
+description: An extract node that sets only schema, which version 1 refuses.
+nodes:
+  - id: extract
+    extract:
+      schema: support-email.schema.json
+      input: $ARGUMENTS
+    output_format:
+      type: object
+      properties: { sender: { type: string } }
+      required: [sender]

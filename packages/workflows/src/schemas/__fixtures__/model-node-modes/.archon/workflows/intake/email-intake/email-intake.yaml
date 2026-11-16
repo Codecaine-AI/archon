@@ -1,0 +1,43 @@
+name: email-intake
+description: Route, extract, classify, then reply or change code.
+inputs:
+  message_id: { required: true }
+  raw: { required: true }
+
+nodes:
+  - id: route
+    bash: |
+      echo "$INPUTS_RAW" | jq -c '{lane: (if .to == "support@acme.dev" then "support" else "other" end)}'
+
+  - id: extract
+    depends_on: [route]
+    when: "$route.output.lane == 'support'"
+    extract:
+      function: ExtractSupportEmail
+      input: $INPUTS.raw
+    tier: fast
+    retries: 2
+    output_format:
+      type: object
+      properties: { sender: { type: string }, ask: { type: string } }
+      required: [sender, ask]
+
+  - id: classify
+    depends_on: [extract]
+    decide:
+      question: What does this email ask for?
+      enum: [reply, code_change, ignore, other]
+      input: $extract.output
+
+  - id: draft-reply
+    depends_on: [classify]
+    when: "$classify.output.choice == 'reply'"
+    provider: agent-kernel
+    model: email-reply-drafter
+    prompt: $extract.output
+
+  - id: code-change
+    depends_on: [classify]
+    when: "$classify.output.choice == 'code_change'"
+    provider: claude
+    prompt: Make the change this email asks for. $extract.output

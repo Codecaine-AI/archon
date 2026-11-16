@@ -196,6 +196,11 @@ describe('dagNodeSchema — ExecNode', () => {
     script: { script: 'console.log("hi")', runtime: 'bun' },
     include: { include: 'child' },
     workflow: { workflow: 'child' },
+    extract: {
+      extract: { function: 'ExtractTicket', input: '$INPUTS.raw' },
+      output_format: { type: 'object' },
+    },
+    decide: { decide: { question: 'Which lane?', enum: ['reply', 'other'], input: 'x' } },
   };
   const SAMPLE_VALUE: Record<string, unknown> = {
     with: { topic: 'x' },
@@ -206,6 +211,8 @@ describe('dagNodeSchema — ExecNode', () => {
     fan_out: { items: '$list.output', as: 'item' },
     input: 'do the thing',
     isolation: 'worktree',
+    tier: 'fast',
+    retries: 1,
   };
   const modes = [...NODE_MODE_KEYS.keys()];
   // Another mode's selector is the mutual-exclusion error, covered elsewhere.

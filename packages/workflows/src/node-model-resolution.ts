@@ -21,6 +21,7 @@ import type {
 } from './model-validation';
 import type { DagNode, EffortLevel } from './schemas';
 import { readComposedMeta } from './compiled-command';
+import { isModelNode, MODEL_NODE_RESOLUTION } from './schemas/model-node-modes';
 
 /**
  * Where a resolved value came from, most specific first.
@@ -99,6 +100,9 @@ export function resolveNodeModelScope(
   assistantModels: Readonly<Record<string, string | undefined>>,
   aiProfile?: ResolvedAiProfile
 ): Omit<NodeModelResolution, 'provider'> & { provider: string | undefined } {
+  // Fork-only: an extract or decide node always runs on agent-kernel and inherits nothing.
+  if (isModelNode(node))
+    return { ...MODEL_NODE_RESOLUTION, authoredIn: readComposedMeta(node)?.origin };
   // A preference list collapses to the one ref it selects against this run's config.
   const nodeModel = selectModelRef(node.model, aiProfile);
   const declared: ProviderChoice = {

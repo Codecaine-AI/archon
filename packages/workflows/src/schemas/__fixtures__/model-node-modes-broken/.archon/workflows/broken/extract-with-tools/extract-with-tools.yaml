@@ -1,0 +1,12 @@
+name: extract-with-tools
+description: An extract node that sets a tool key.
+nodes:
+  - id: extract
+    extract:
+      function: ExtractSupportEmail
+      input: $ARGUMENTS
+    allowed_tools: [Read]
+    output_format:
+      type: object
+      properties: { sender: { type: string } }
+      required: [sender]

@@ -9,6 +9,7 @@ import type {
 } from '../schemas';
 import { isIncludeDirective, isLoopGroupNode, isPersistableNode } from '../schemas';
 import { cloneNodeWithEngineMetadata } from '../compiled-command';
+import { isModelNode } from '../schemas/model-node-modes';
 
 /**
  * Resolve the logger on every call rather than caching it at module scope.
@@ -137,6 +138,8 @@ function workflowFieldTravelsTo(
   node: DagNode,
   insideLoopGroup: boolean
 ): boolean {
+  // Fork-only: an extract or decide node rejects every one of these keys, so none travels.
+  if (isModelNode(node)) return false;
   if (nodeKey === 'model') return workflowModelTravelsTo(scope, node);
   // `persist_session` only means something on a node that takes an AI turn and can
   // resume one, and never inside a loop_group body (see pushWorkflowScopeOntoNodes).

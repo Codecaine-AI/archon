@@ -1,0 +1,12 @@
+name: extract-function-and-schema
+description: An extract node that sets both function and schema.
+nodes:
+  - id: extract
+    extract:
+      function: ExtractSupportEmail
+      schema: support-email.schema.json
+      input: $ARGUMENTS
+    output_format:
+      type: object
+      properties: { sender: { type: string } }
+      required: [sender]

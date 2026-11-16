@@ -464,6 +464,8 @@ function buildNodeConfig(
     systemPrompt,
     fallbackModel,
     settingSources: node.settingSources,
+    // Fork-only: the extract or decide config the agent-kernel provider runs.
+    model_node: node.kind === 'agent' ? node.model_node : undefined,
   };
 }
 

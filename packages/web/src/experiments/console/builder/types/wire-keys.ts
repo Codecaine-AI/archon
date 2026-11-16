@@ -75,6 +75,11 @@ export const WIRE_KEY_ROLES = {
   input: 'opaque',
   isolation: 'opaque',
   fan_out: 'opaque',
+  // Fork-only model-node modes; the builder has no editor for them.
+  extract: 'opaque',
+  tier: 'opaque',
+  retries: 'opaque',
+  decide: 'opaque',
 } as const satisfies Record<keyof WireDagNode, WireKeyRole>;
 
 type WireKeyWithRole<R extends WireKeyRole> = {

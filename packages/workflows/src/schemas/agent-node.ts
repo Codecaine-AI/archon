@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { dagNodeBaseSchema } from './dag-node-base';
 import { nodeBindingsSchema } from './node-bindings';
+import { modelNodeSchema } from './model-node-modes';
 
 /**
  * Where an agent node's prompt text comes from — inline in the YAML, or a named
@@ -35,6 +36,8 @@ export type PromptSource = z.infer<typeof promptSourceSchema>;
 export const agentNodeSchema = dagNodeBaseSchema.extend({
   kind: z.literal('agent'),
   source: promptSourceSchema,
+  // Fork-only: set by the extract and decide builders (model-node-modes.ts).
+  model_node: modelNodeSchema.optional(),
 });
 
 /** DAG node that runs an AI prompt — inline, or loaded from a named command file */

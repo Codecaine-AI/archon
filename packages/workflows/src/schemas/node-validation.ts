@@ -18,6 +18,7 @@ import { bashExecAuthoringSchema, execNodeSchema, scriptExecAuthoringSchema } fr
 import { composeFanOutNodeSchema } from './include-node';
 import { bindingDirectiveSchema, INPUT_NAME_PATTERN, inputEnvKey } from './node-bindings';
 import { loopRetryConfigSchema, stepRetryConfigSchema } from './retry';
+import { validateDecideNode, validateExtractNode } from './model-node-modes';
 
 type NodeIssue = { message: string; path?: readonly PropertyKey[] };
 type ModeValidator = (data: DagNodeFields, ctx: z.RefinementCtx) => void;
@@ -73,6 +74,8 @@ const MODE_VALIDATORS: Partial<Record<NodeMode, ModeValidator>> = {
   wait: validateWaitNode,
   include: validateIncludeNode,
   workflow: validateWorkflowNode,
+  extract: validateExtractNode,
+  decide: validateDecideNode,
 };
 
 function validateCommandNode(data: DagNodeFields, ctx: z.RefinementCtx): void {

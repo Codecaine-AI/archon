@@ -5749,6 +5749,24 @@ export interface components {
       input?: string;
       /** @enum {string} */
       isolation?: 'inherit' | 'worktree';
+      extract?: {
+        function?: string;
+        schema?: string;
+        input: string;
+      };
+      /** @enum {string} */
+      tier?: 'fast' | 'standard' | 'strong';
+      retries?: number;
+      decide?: {
+        question: string;
+        enum: string[];
+        input: string;
+        classifier?: string;
+        threshold?: {
+          minProbability: number;
+          minMargin: number;
+        };
+      };
     } & (
       | {
           /** @enum {string} */

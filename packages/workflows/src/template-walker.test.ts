@@ -193,6 +193,15 @@ const STRING_FIELD_CLASSIFICATIONS = {
   workflow: { kind: 'literal', reason: 'Child target is a workflow resource identifier' },
   input: { kind: 'template', slots: ['workflow.input'] },
   isolation: { kind: 'literal', reason: 'Isolation is a child-run placement policy enum' },
+  // Fork-only model-node modes: each input becomes the agent node's inline prompt.
+  'extract.input': { kind: 'template', slots: ['agent.prompt'] },
+  'extract.function': { kind: 'literal', reason: 'BAML function name in the pack' },
+  'extract.schema': { kind: 'literal', reason: 'Schema file path, refused in version 1' },
+  tier: { kind: 'literal', reason: 'Model tier alias enum' },
+  'decide.input': { kind: 'template', slots: ['agent.prompt'] },
+  'decide.question': { kind: 'literal', reason: 'Sent verbatim to the classifier' },
+  'decide.enum.*': { kind: 'literal', reason: 'Choice values the classifier returns' },
+  'decide.classifier': { kind: 'literal', reason: 'Classifier model id' },
   'fan_out.items': {
     kind: 'template',
     slots: ['workflow.fan_out.items', 'compose_fan_out.fan_out.items'],
