@@ -106,6 +106,8 @@ export function buildAiNodeEnvironment(
     WORKFLOW_ID: execution.runId,
     ARCHON_NODE_EXECUTION: nodeExecutionEnvValue(execution),
     ARCHON_CLI_COMMAND: cliCommand ?? '',
+    // The pack root, as the exec environment delivers it; '' outside a pack.
+    PACK_DIR: packDirEnvValue(currentPackDir()),
     ...Object.fromEntries(tags.map(t => [t.variable, t.value])),
     ANTHROPIC_CUSTOM_HEADERS: [
       ...kept,

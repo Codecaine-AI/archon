@@ -726,6 +726,7 @@ describe('executeDagWorkflow -- env var injection', () => {
         'ANTHROPIC_CUSTOM_HEADERS',
         'ARCHON_CLI_COMMAND',
         'ARCHON_NODE_EXECUTION',
+        'PACK_DIR',
         'TRACE_ATTEMPT',
         'TRACE_ENGINE',
         'TRACE_INVOCATION',

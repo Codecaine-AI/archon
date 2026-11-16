@@ -1,6 +1,8 @@
 import { describe, expect, test } from 'bun:test';
+import { join } from 'path';
 import { buildProviderSubprocessEnv } from '@archon/provider-contract';
 import { buildAiNodeEnvironment, type NodeExecutionIdentity } from './exec-environment';
+import { runWithPackDir } from './workflow-variables';
 
 const execution = (
   loopPath: NodeExecutionIdentity['invocation']['loopPath']
@@ -81,5 +83,27 @@ describe('buildAiNodeEnvironment trace tags', () => {
     expect(env.ANTHROPIC_CUSTOM_HEADERS).not.toContain('Loop-Path');
     expect(env.ANTHROPIC_CUSTOM_HEADERS).not.toContain('old-loop');
     expect(env.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
+  });
+});
+
+describe('buildAiNodeEnvironment PACK_DIR', () => {
+  const intakePackRoot = join(
+    import.meta.dir,
+    'schemas/__fixtures__/model-node-modes/.archon/workflows/intake'
+  );
+
+  test('an AI node of the intake fixture pack gets the pack root', async () => {
+    const env = await runWithPackDir({ kind: 'dir', dir: intakePackRoot }, async () =>
+      buildAiNodeEnvironment(execution([]), undefined, undefined)
+    );
+    expect(env.PACK_DIR).toBe(intakePackRoot);
+    expect(env.PACK_DIR?.endsWith('/.archon/workflows/intake')).toBe(true);
+  });
+
+  test('an AI node outside a pack gets an empty PACK_DIR', async () => {
+    const env = await runWithPackDir({ kind: 'none' }, async () =>
+      buildAiNodeEnvironment(execution([]), undefined, undefined)
+    );
+    expect(env.PACK_DIR).toBe('');
   });
 });
