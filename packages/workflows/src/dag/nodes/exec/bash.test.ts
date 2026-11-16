@@ -723,8 +723,15 @@ describe('executeDagWorkflow -- env var injection', () => {
         {}
       );
       expect(Object.keys(env).sort()).toEqual([
+        'ANTHROPIC_CUSTOM_HEADERS',
         'ARCHON_CLI_COMMAND',
         'ARCHON_NODE_EXECUTION',
+        'TRACE_ATTEMPT',
+        'TRACE_ENGINE',
+        'TRACE_INVOCATION',
+        'TRACE_LOOP_PATH',
+        'TRACE_NODE_PATH',
+        'TRACE_RUN',
         'WORKFLOW_ID',
       ]);
       expect(env.WORKFLOW_ID).toBe('identity-run');
@@ -743,6 +750,17 @@ describe('executeDagWorkflow -- env var injection', () => {
       expect(env.WORKFLOW_ID).toBe('identity-run');
       expect(env.ARCHON_CLI_COMMAND).toBe(cliCommand);
       expect(execution).toMatchObject({ runId: 'identity-run', path: 'notes' });
+    });
+
+    it('project env custom headers stay beside the trace headers of a prompt: node', async () => {
+      const { env } = await runIdentityEnv(
+        { id: 'notes', kind: 'agent', source: { kind: 'inline', prompt: 'Keep notes.' } },
+        { ANTHROPIC_CUSTOM_HEADERS: 'X-Team: core\nX-Trace-Run: project-run' }
+      );
+      const lines = env.ANTHROPIC_CUSTOM_HEADERS?.split('\n');
+      expect(lines?.[0]).toBe('X-Team: core');
+      expect(lines).toContain('X-Trace-Run: identity-run');
+      expect(lines).not.toContain('X-Trace-Run: project-run');
     });
 
     it("a loop node's iterations carry the loop's run and node", async () => {

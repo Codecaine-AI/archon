@@ -316,11 +316,14 @@ export function observeNodeCheckout(ctx: RunLayersContext): Promise<CheckoutObse
 
 export function aiNodeEnvironment(
   ctx: RunLayersContext,
-  execution: NodeExecutionRecord
+  execution: NodeExecutionRecord,
+  configEnv: Record<string, string> | undefined
 ): Record<string, string> {
+  const host = ctx.execContext.kind === 'host';
   return buildAiNodeEnvironment(
     execution,
-    ctx.execContext.kind === 'host' ? process.env.ARCHON_CLI_COMMAND : undefined
+    host ? process.env.ARCHON_CLI_COMMAND : undefined,
+    configEnv?.ANTHROPIC_CUSTOM_HEADERS ?? (host ? process.env.ANTHROPIC_CUSTOM_HEADERS : undefined)
   );
 }
 

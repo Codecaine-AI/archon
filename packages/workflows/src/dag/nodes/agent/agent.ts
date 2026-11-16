@@ -268,7 +268,7 @@ function attemptQueryOptions(
   const shouldForkSession = resumeSessionId !== undefined && resumeIntent !== 'owner-continuation';
   return {
     ...nodeOptions,
-    env: { ...nodeOptions?.env, ...aiNodeEnvironment(ctx, execution) },
+    env: { ...nodeOptions?.env, ...aiNodeEnvironment(ctx, execution, nodeOptions?.env) },
     ...(nodeMcp.kind === 'load' || nodeMcp.kind === 'missing'
       ? { nodeConfig: { ...nodeOptions?.nodeConfig, mcp: nodeMcp.path } }
       : {}),

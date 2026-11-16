@@ -79,6 +79,17 @@ for (const selector of cloudSelectors) {
     );
   }
 }
+test('delivered credential drops custom headers except trace tag lines', () => {
+  const env = buildRequestSubprocessEnv({
+    env: {
+      ANTHROPIC_CUSTOM_HEADERS:
+        'Authorization: Bearer host\nX-Trace-Api-Key: secret\nX-Trace-Run: run-1',
+      ANTHROPIC_API_KEY: 'user-credential',
+    },
+    userCredentialEnvKeys: ['ANTHROPIC_API_KEY'],
+  });
+  expect(env.ANTHROPIC_CUSTOM_HEADERS).toBe('X-Trace-Run: run-1');
+});
 test('unrelated protection keeps native credential precedence', () => {
   const env = buildRequestSubprocessEnv({
     env: { ANTHROPIC_API_KEY: 'native-key', CLAUDE_CODE_OAUTH_TOKEN: 'native-token' },

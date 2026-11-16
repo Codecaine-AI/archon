@@ -186,7 +186,10 @@ export async function executeLoopNode(
   });
   state.execution = execution;
   ctx.currentExecution = execution;
-  const iterationEnv = { ...resolvedOptions?.env, ...aiNodeEnvironment(ctx, execution) };
+  const iterationEnv = {
+    ...resolvedOptions?.env,
+    ...aiNodeEnvironment(ctx, execution, resolvedOptions?.env),
+  };
   state.stopReason = undefined;
   await recordNodeState(
     { store: deps.store, logDir },

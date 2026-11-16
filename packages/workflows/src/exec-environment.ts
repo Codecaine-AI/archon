@@ -90,13 +90,45 @@ function nodeExecutionEnvValue(execution: NodeExecutionIdentity): string {
  */
 export function buildAiNodeEnvironment(
   execution: NodeExecutionIdentity,
-  cliCommand: string | undefined
+  cliCommand: string | undefined,
+  parentCustomHeaders: string | undefined
 ): Record<string, string> {
+  // Trace contract tags: Claude Code sends ANTHROPIC_CUSTOM_HEADERS, and the
+  // Codex provider's env_http_headers reads the TRACE_* variables. All 6 variables are always
+  // set, so none is inherited from Archon's own environment: outside a loop TRACE_LOOP_PATH
+  // is '' and Codex sends no header for it. The node's configured custom headers (project
+  // env, else the host's) stay, except any X-Trace-* line, which this node's values replace.
+  const tags = traceTags(execution);
+  const kept = (parentCustomHeaders ?? '')
+    .split('\n')
+    .filter(line => line.trim() !== '' && !/^\s*x-trace-/i.test(line));
   return {
     WORKFLOW_ID: execution.runId,
     ARCHON_NODE_EXECUTION: nodeExecutionEnvValue(execution),
     ARCHON_CLI_COMMAND: cliCommand ?? '',
+    ...Object.fromEntries(tags.map(t => [t.variable, t.value])),
+    ANTHROPIC_CUSTOM_HEADERS: [
+      ...kept,
+      ...tags.filter(t => t.value !== '').map(t => `${t.header}: ${t.value}`),
+    ].join('\n'),
   };
+}
+
+/** The trace tags of one AI node attempt. Outside a loop the loop path value is ''. */
+function traceTags(
+  execution: NodeExecutionIdentity
+): { header: string; variable: string; value: string }[] {
+  const loopPath = execution.invocation.loopPath
+    .map(entry => `${entry.groupId}:${entry.iteration}`)
+    .join('/');
+  return [
+    { header: 'X-Trace-Engine', variable: 'TRACE_ENGINE', value: 'archon' },
+    { header: 'X-Trace-Run', variable: 'TRACE_RUN', value: execution.runId },
+    { header: 'X-Trace-Node-Path', variable: 'TRACE_NODE_PATH', value: execution.path },
+    { header: 'X-Trace-Invocation', variable: 'TRACE_INVOCATION', value: execution.invocation.id },
+    { header: 'X-Trace-Attempt', variable: 'TRACE_ATTEMPT', value: execution.attempt.id },
+    { header: 'X-Trace-Loop-Path', variable: 'TRACE_LOOP_PATH', value: loopPath },
+  ];
 }
 
 export const EXEC_NODE_ENVIRONMENT_NAMES: ReadonlySet<string> = new Set(
