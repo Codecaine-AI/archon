@@ -1,8 +1,9 @@
 // @archon-test-isolated
-import { mock, describe, test, expect, beforeEach, afterEach } from 'bun:test';
+import { mock, describe, test, expect, beforeAll, afterAll, beforeEach, afterEach } from 'bun:test';
 import { createMockLogger } from '../test/mocks/logger';
 import { createMockQuery, createQueryResult, mockPostgresDialect } from '../test/mocks/database';
 import type { WorkflowEventRow } from './workflow-events';
+import type { IDatabase, SqlDialect } from './adapters/types';
 import { mergeTokenUsage, type TokenUsage } from '@archon/providers/types';
 import { mkdtemp, writeFile } from 'node:fs/promises';
 import { removeTempTree } from '@archon/paths/test-utils';
@@ -28,13 +29,14 @@ mock.module('@archon/paths', () => ({
 }));
 
 const mockQuery = createMockQuery();
+let dialect: SqlDialect = mockPostgresDialect;
 
 // Mock the connection module before importing the module under test
 mock.module('./connection', () => ({
   pool: {
     query: mockQuery,
   },
-  getDialect: () => mockPostgresDialect,
+  getDialect: () => dialect,
   getDatabaseType: () => 'postgresql',
   getDatabase: () => ({
     withTransaction: async <T>(fn: (query: typeof mockQuery) => Promise<T>): Promise<T> =>
@@ -44,6 +46,7 @@ mock.module('./connection', () => ({
 
 import {
   createWorkflowEvent,
+  insertWorkflowEvent,
   persistWorkflowEvent,
   persistWorkflowEventIfRunning,
   listWorkflowEvents,
@@ -1829,3 +1832,216 @@ describe('TokenUsage axis seam guard', () => {
     expect(tokens).toBeDefined();
   });
 });
+
+interface OpenedBackend {
+  db: IDatabase;
+  /** A second connection to the same database, for concurrent writers. */
+  second: IDatabase;
+  dialect: SqlDialect;
+  close: () => Promise<void>;
+}
+
+const PG_SCRATCH_DB = 'archon_pg_event_ids_test';
+const pgBaseUrl = process.env.ARCHON_TEST_PG_URL;
+
+/**
+ * Event ids against a real database: SQLite always, and Postgres when ARCHON_TEST_PG_URL
+ * names a server. The Postgres run creates and drops its own scratch database.
+ */
+const eventIdBackends: { name: string; skip: boolean; open: () => Promise<OpenedBackend> }[] = [
+  {
+    name: 'SQLite',
+    skip: false,
+    open: async () => {
+      const { SqliteAdapter, sqliteDialect } = await import('./adapters/sqlite');
+      const dir = await mkdtemp(join(tmpdir(), 'archon-event-ids-'));
+      const db = new SqliteAdapter(join(dir, 'archon.db'));
+      const second = new SqliteAdapter(join(dir, 'archon.db'));
+      return {
+        db,
+        second,
+        dialect: sqliteDialect,
+        close: async () => {
+          await second.close();
+          await db.close();
+          await removeTempTree(dir);
+        },
+      };
+    },
+  },
+  {
+    name: 'Postgres',
+    skip: !pgBaseUrl,
+    open: async () => {
+      const { Pool } = await import('pg');
+      const admin = new Pool({ connectionString: pgBaseUrl });
+      // PG_SCRATCH_DB is a compile-time constant, safe to inline as an identifier.
+      await admin.query(`DROP DATABASE IF EXISTS "${PG_SCRATCH_DB}" WITH (FORCE)`);
+      await admin.query(`CREATE DATABASE "${PG_SCRATCH_DB}"`);
+      const scratchUrl = new URL(pgBaseUrl!);
+      scratchUrl.pathname = `/${PG_SCRATCH_DB}`;
+      const { PostgresAdapter, postgresDialect } = await import('./adapters/postgres');
+      const db = new PostgresAdapter(scratchUrl.toString());
+      const second = new PostgresAdapter(scratchUrl.toString());
+      return {
+        db,
+        second,
+        dialect: postgresDialect,
+        close: async () => {
+          await second.close();
+          await db.close();
+          await admin.query(`DROP DATABASE IF EXISTS "${PG_SCRATCH_DB}" WITH (FORCE)`);
+          await admin.end();
+        },
+      };
+    },
+  },
+];
+
+for (const backend of eventIdBackends) {
+  describe.skipIf(backend.skip)(`workflow event ids — ${backend.name}`, () => {
+    let opened: OpenedBackend;
+
+    beforeAll(async () => {
+      opened = await backend.open();
+    });
+    afterAll(async () => {
+      await opened.close();
+    });
+    beforeEach(() => {
+      dialect = opened.dialect;
+      mockQuery.mockImplementation(
+        (sql, params) =>
+          opened.db.query(sql as string, params as unknown[]) as ReturnType<typeof mockQuery>
+      );
+    });
+    afterEach(() => {
+      dialect = mockPostgresDialect;
+      mockQuery.mockImplementation(() => Promise.resolve(createQueryResult([])));
+    });
+
+    async function seedRun(status: string): Promise<string> {
+      const conversationId = crypto.randomUUID();
+      const runId = crypto.randomUUID();
+      await opened.db.query(
+        `INSERT INTO remote_agent_conversations (id, platform_type, platform_conversation_id)
+         VALUES ($1, 'test', $2)`,
+        [conversationId, `event-ids-${conversationId}`]
+      );
+      await opened.db.query(
+        `INSERT INTO remote_agent_workflow_runs (id, workflow_name, conversation_id, user_message, status)
+         VALUES ($1, 'wf', $2, 'msg', $3)`,
+        [runId, conversationId, status]
+      );
+      return runId;
+    }
+
+    async function eventTypes(runId: string): Promise<string[]> {
+      const result = await opened.db.query<{ event_type: string }>(
+        `SELECT event_type FROM remote_agent_workflow_events
+         WHERE workflow_run_id = $1 ORDER BY event_order`,
+        [runId]
+      );
+      return result.rows.map(row => row.event_type);
+    }
+
+    const attemptStart = (runId: string, attemptId: string) => ({
+      workflow_run_id: runId,
+      event_type: 'node_started' as const,
+      step_name: 'build',
+      data: { invocation: { id: 'invocation-1' }, attempt: { id: attemptId } },
+    });
+
+    const providerEvent = (runId: string, seq: number) => ({
+      workflow_run_id: runId,
+      event_type: 'provider_event' as const,
+      step_name: 'build',
+      data: { attemptId: 'attempt-1', seq, event: { type: 'agent_message_chunk', text: 'hi' } },
+    });
+
+    const workUnit = (runId: string) => ({
+      workflow_run_id: runId,
+      event_type: 'run_budget_work_unit' as const,
+      step_name: 'build',
+      data: {},
+    });
+
+    test('one provider event written twice leaves one row', async () => {
+      const runId = await seedRun('running');
+      await createWorkflowEvent(providerEvent(runId, 0));
+      await createWorkflowEvent(providerEvent(runId, 0));
+      expect(await eventTypes(runId)).toEqual(['provider_event']);
+    });
+
+    test('one node attempt event written twice leaves one row', async () => {
+      const runId = await seedRun('running');
+      await persistWorkflowEvent(attemptStart(runId, 'attempt-1'));
+      await persistWorkflowEvent(attemptStart(runId, 'attempt-1'));
+      expect(await eventTypes(runId)).toEqual(['node_started']);
+    });
+
+    test('two attempts of one invocation leave two rows', async () => {
+      const runId = await seedRun('running');
+      await persistWorkflowEvent(attemptStart(runId, 'attempt-1'));
+      await persistWorkflowEvent(attemptStart(runId, 'attempt-2'));
+      expect(await eventTypes(runId)).toEqual(['node_started', 'node_started']);
+    });
+
+    test('two suspensions of one attempt leave two rows', async () => {
+      const runId = await seedRun('running');
+      const suspended = (pauseId: string) => ({
+        ...attemptStart(runId, 'attempt-1'),
+        event_type: 'node_suspended' as const,
+        data: { invocation: { id: 'invocation-1' }, attempt: { id: 'attempt-1' }, pauseId },
+      });
+      await persistWorkflowEvent(suspended('pause-1'));
+      await persistWorkflowEvent(suspended('pause-2'));
+      expect(await eventTypes(runId)).toEqual(['node_suspended', 'node_suspended']);
+    });
+
+    test('two provider events with different seq leave two rows', async () => {
+      const runId = await seedRun('running');
+      await createWorkflowEvent(providerEvent(runId, 0));
+      await createWorkflowEvent(providerEvent(runId, 1));
+      expect(await eventTypes(runId)).toEqual(['provider_event', 'provider_event']);
+    });
+
+    test('an event with no identity of its own keeps both of two equal writes', async () => {
+      const runId = await seedRun('running');
+      await persistWorkflowEvent(workUnit(runId));
+      await persistWorkflowEvent(workUnit(runId));
+      expect(await eventTypes(runId)).toEqual(['run_budget_work_unit', 'run_budget_work_unit']);
+    });
+
+    test('two concurrent writers of an event with no identity leave two rows', async () => {
+      const runId = await seedRun('running');
+      await Promise.all(
+        [opened.db, opened.second].map(conn =>
+          insertWorkflowEvent((sql, params) => conn.query(sql, params), workUnit(runId))
+        )
+      );
+      expect(await eventTypes(runId)).toEqual(['run_budget_work_unit', 'run_budget_work_unit']);
+    });
+
+    test('a repeated instance claim stays claimed on a running run', async () => {
+      const runId = await seedRun('running');
+      const claim = attemptStart(runId, 'attempt-1');
+      expect(await persistWorkflowEventIfRunning(claim)).toEqual({ persisted: true });
+      expect(await persistWorkflowEventIfRunning(claim)).toEqual({ persisted: true });
+      expect(await eventTypes(runId)).toEqual(['node_started']);
+    });
+
+    test('a repeated instance claim stays claimed on a paused run with allowPaused', async () => {
+      const runId = await seedRun('paused');
+      const claim = attemptStart(runId, 'attempt-1');
+      expect(await persistWorkflowEventIfRunning(claim, { allowPaused: true })).toEqual({
+        persisted: true,
+      });
+      expect(await persistWorkflowEventIfRunning(claim, { allowPaused: true })).toEqual({
+        persisted: true,
+      });
+      expect(await persistWorkflowEventIfRunning(claim)).toEqual({ persisted: false });
+      expect(await eventTypes(runId)).toEqual(['node_started']);
+    });
+  });
+}

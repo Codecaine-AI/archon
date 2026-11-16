@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+import { NODE_EXECUTION_EVENT_TYPES } from '@archon/workflows/node-record-serialization';
 import { readProviderEventRows } from '@archon/workflows/provider-event-reader';
 import { WORKFLOW_ORIGIN_ANCHOR_ID } from './workflow-origin-anchor';
 import {
@@ -77,9 +79,45 @@ export type { WorkflowEventInput } from '@archon/workflows/store';
  */
 type EventInsertQuery = (sql: string, params?: unknown[]) => Promise<QueryResult<unknown>>;
 
+// One attempt writes each of these at most once. `node_suspended` is not in the set: a wait
+// node suspends one attempt again for each new question, so it keeps a random id.
+const NODE_ATTEMPT_EVENT_TYPES: ReadonlySet<string> = new Set(
+  Object.values(NODE_EXECUTION_EVENT_TYPES).filter(type => type !== 'node_suspended')
+);
+
+/**
+ * The row id of an event that names its own occurrence: a UUID (version 8) made from the
+ * SHA-256 of that identity, so writing the event twice leaves one row. A provider event is
+ * named by its attempt and `seq`; a node attempt lifecycle event by its type, invocation,
+ * attempt and loop iteration. Any other event returns undefined and keeps a random id.
+ */
+function hashedEventId(data: WorkflowEventInput): string | undefined {
+  const payload = data.data ?? {};
+  const identity: unknown[] = [data.workflow_run_id, data.event_type, data.step_name ?? null];
+  if (data.event_type === 'provider_event') {
+    if (typeof payload.attemptId !== 'string' || !Number.isInteger(payload.seq)) return undefined;
+    identity.push(payload.attemptId, payload.seq);
+  } else if (NODE_ATTEMPT_EVENT_TYPES.has(data.event_type)) {
+    const invocationId = (payload.invocation as { id?: unknown } | undefined)?.id;
+    const attemptId = (payload.attempt as { id?: unknown } | undefined)?.id;
+    if (typeof invocationId !== 'string' || typeof attemptId !== 'string') return undefined;
+    identity.push(invocationId, attemptId, payload.iteration ?? null);
+  } else {
+    return undefined;
+  }
+  const hex = createHash('sha256').update(JSON.stringify(identity)).digest('hex');
+  const variant = ((parseInt(hex[16], 16) & 0x3) | 0x8).toString(16);
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-8${hex.slice(13, 16)}-${variant}${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
+}
+
+/** A hashed id ignores a row that exists; a random id keeps the plain insert. */
+function onIdConflict(hashedId: string | undefined): string {
+  return hashedId === undefined ? '' : ' ON CONFLICT (id) DO NOTHING';
+}
+
 /**
  * Insert one workflow-event row via `query` and THROW on failure. This is the
- * single source of truth for the event columns and dialect UUID; the autocommit
+ * single source of truth for the event columns and row id; the autocommit
  * writers below queue it in run order, while callers that
  * need the write to be atomic with another mutation (the approval-gate CAS in
  * db/workflows.ts, #2146) pass a transaction-scoped query so a failed event
@@ -90,13 +128,12 @@ export async function insertWorkflowEvent(
   query: EventInsertQuery,
   data: WorkflowEventInput
 ): Promise<void> {
-  const dialect = getDialect();
-  const id = dialect.generateUuid();
+  const hashedId = hashedEventId(data);
   await query(
     `INSERT INTO remote_agent_workflow_events (id, workflow_run_id, event_type, step_index, step_name, data)
-     VALUES ($1, $2, $3, $4, $5, $6)`,
+     VALUES ($1, $2, $3, $4, $5, $6)${onIdConflict(hashedId)}`,
     [
-      id,
+      hashedId ?? getDialect().generateUuid(),
       data.workflow_run_id,
       data.event_type,
       data.step_index ?? null,
@@ -173,23 +210,32 @@ export async function persistWorkflowEventIfRunning(
 ): Promise<{ persisted: boolean }> {
   const statusPredicate =
     options?.allowPaused === true ? "status IN ('running', 'paused')" : "status = 'running'";
-  const result = await inRunOrder(data.workflow_run_id, () =>
-    pool.query(
+  const hashedId = hashedEventId(data);
+  return inRunOrder(data.workflow_run_id, async () => {
+    const result = await pool.query(
       `INSERT INTO remote_agent_workflow_events (id, workflow_run_id, event_type, step_index, step_name, data)
      SELECT $1, $2, $3, $4, $5, $6
      FROM remote_agent_workflow_runs
-     WHERE id = $2 AND ${statusPredicate}${getDialect().rowLock()}`,
+     WHERE id = $2 AND ${statusPredicate}${getDialect().rowLock()}${onIdConflict(hashedId)}`,
       [
-        getDialect().generateUuid(),
+        hashedId ?? getDialect().generateUuid(),
         data.workflow_run_id,
         data.event_type,
         data.step_index ?? null,
         data.step_name ?? null,
         JSON.stringify(data.data ?? {}),
       ]
-    )
-  );
-  return { persisted: result.rowCount > 0 };
+    );
+    if (result.rowCount > 0 || hashedId === undefined) return { persisted: result.rowCount > 0 };
+    // A repeated write of a persisted event still holds while the run is in a state this call accepts.
+    const repeated = await pool.query(
+      `SELECT 1 FROM remote_agent_workflow_runs
+       WHERE id = $2 AND ${statusPredicate}
+         AND EXISTS (SELECT 1 FROM remote_agent_workflow_events WHERE id = $1)`,
+      [hashedId, data.workflow_run_id]
+    );
+    return { persisted: repeated.rows.length > 0 };
+  });
 }
 
 /**
