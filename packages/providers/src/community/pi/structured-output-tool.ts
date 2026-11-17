@@ -8,12 +8,13 @@
  * note in ./provider.ts).
  */
 import { createLogger } from '@archon/paths';
-import { Type, validateToolArguments } from '@earendil-works/pi-ai';
+import { validateToolArguments } from '@earendil-works/pi-ai';
 import {
   defineTool,
   type AgentSession,
   type ToolDefinition,
 } from '@earendil-works/pi-coding-agent';
+import { Type } from 'typebox';
 import { ClassifiedProviderError } from '../../shared/failure';
 
 let cachedLog: ReturnType<typeof createLogger> | undefined;

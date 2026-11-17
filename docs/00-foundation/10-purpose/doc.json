@@ -27,6 +27,7 @@
         "pu-same-lead",
         "pu-same-1",
         "pu-same-2",
+        "pu-same-2-pi",
         "pu-same-3",
         "pu-same-4",
         "pu-h-commit",
@@ -601,7 +602,7 @@
           "insert": " "
         },
         {
-          "insert": "^0.0.6",
+          "insert": "^0.0.7",
           "attributes": {
             "code": true
           }
@@ -766,7 +767,7 @@
       },
       "text": [
         {
-          "insert": "The Codex and Pi providers stay upstream code. The Claude provider has one fork change in "
+          "insert": "The Codex provider stays upstream code. The Claude provider has one fork change in "
         },
         {
           "insert": "packages/providers/src/claude/provider.ts",
@@ -794,6 +795,73 @@
         },
         {
           "insert": " through the scrub of per-user credentials."
+        }
+      ],
+      "children": []
+    },
+    "pu-same-2-pi": {
+      "id": "pu-same-2-pi",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The Pi provider has one fork change, because "
+        },
+        {
+          "insert": "@earendil-works/pi-ai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " 1.5 does not export "
+        },
+        {
+          "insert": "Type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "native-tools.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "structured-output-tool.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "packages/providers/src/community/pi/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " import it from the "
+        },
+        {
+          "insert": "typebox",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " package."
         }
       ],
       "children": []

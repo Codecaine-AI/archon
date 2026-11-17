@@ -1,6 +1,7 @@
 import { nativeToolInputParser } from '@archon/provider-contract';
-import { Type, StringEnum, type TSchema } from '@earendil-works/pi-ai';
+import { StringEnum } from '@earendil-works/pi-ai';
 import { defineTool, type ToolDefinition } from '@earendil-works/pi-coding-agent';
+import { Type, type TSchema } from 'typebox';
 import type { NativeTool, NativeToolInputSchema, NativeToolProperty } from '../../types';
 
 type TObject = ReturnType<typeof Type.Object>;
