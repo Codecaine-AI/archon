@@ -216,7 +216,7 @@ Add the server to the agent's MCP configuration as an SSH command. Start it thro
 
 | Tool | Does | Writes |
 | --- | --- | --- |
-| `list_bindings` | Lists each binding file with its schedule and whether its LaunchAgent is installed. A file that fails the schema is listed as invalid, with the reason. | No |
+| `list_bindings` | Lists each binding file with its schedule and whether its LaunchAgent is installed. A file that fails the schema, is a symbolic link, or names another `bindingId` than its file name is listed as invalid, with the reason. | No |
 | `fire_binding` | Starts one run of a binding, as `archon trigger fire` does. Returns the run ID, or the reason the start did not begin. | Starts 1 run |
 | `set_binding` | Validates a whole binding document, writes it to `<bindingId>.json` with mode 600, and installs its schedule. | 1 binding file and its LaunchAgent |
 | `remove_binding` | Removes the binding's LaunchAgent, then its file. | 1 binding file and its LaunchAgent |
@@ -224,7 +224,12 @@ Add the server to the agent's MCP configuration as an SSH command. Start it thro
 | `list_runs` | Lists recent runs across all projects, up to `limit`. | No |
 | `get_run` | Returns one run by its full ID: the run row, node states, terminal record, the end of its transcript, and the end of its executor log. | No |
 
-Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an MCP tool error with a plain message, and the server removes credential values from it.
+Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an MCP tool error with a plain message.
+
+The server redacts every string in a tool result or a tool error before it sends it. Its credential values are the values of env keys that end in `TOKEN`, `KEY`, `SECRET` or `PASSWORD`, and `DATABASE_URL`. It uses 2 rules:
+
+- A structural field loses only those exact values, so a binding ID that looks like a token, such as `ghs_…`, comes back unchanged. Structural fields are IDs, file names and paths, workflow and node names, the launch folder, host IDs, statuses and timestamps.
+- Every other field is free text, such as a user message, a description, an error, node output, inputs and a log tail. It loses those values and also anything that looks like a GitHub App token or a credential in a URL.
 
 ### Binding writes and the launchd session
 
@@ -235,7 +240,16 @@ Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an 
 - A LaunchAgent whose plist changes is removed and installed again.
 - A LaunchAgent whose plist stays the same stays loaded. A change to inputs alone does not fire `runAtLoad`.
 - When the install fails after the write, the tool error names the file on disk, what is installed, and the `launchctl` error.
-- `remove_binding` removes the LaunchAgent first. When `launchd` refuses, the file stays.
+
+A new `sourceInstanceId` names a new LaunchAgent, so `set_binding` removes the old one before the write. When that removal fails, nothing is written. When the write fails after it, the old schedule is installed again from the old document, and the error says whether that worked.
+
+`fire_binding` and `remove_binding` act only on a plain file named `<bindingId>.json` whose document has that `bindingId`. They refuse a symbolic link and a document that names another binding. `remove_binding` removes the LaunchAgent first, and when `launchd` refuses, the file stays.
+
+`set_binding`, `remove_binding` and `fire_binding` hold one lock for each binding, `<bindings folder>/.locks/<bindingId>/lock`. Every server process on the Mac shares it. A refused call returns `Binding '<id>' is busy`, which names another call in the same server or the process ID and host of the lock's owner.
+
+- A call waits at most 5 seconds for the lock, counting the wait behind earlier calls in the same server. A call that gives up never runs later.
+- A lock whose owner process no longer exists on this Mac is broken, and the call goes on. A lock owned by a live process or by another host is never broken, whatever its age.
+- A scheduled `trigger fire` from launchd does not take the lock. A fire that overlaps a `set_binding` reads either the old or the new document, because the write replaces the file with one rename.
 
 Every install and remove targets the launchd domain `gui/<uid>`, which exists only while the user is logged in to the Mac. Over SSH with no login session, `set_binding` refuses before it writes, and `remove_binding` refuses for an installed schedule. Log in at the Mac or through Screen Sharing, then try again. The server never runs a command as root.
 

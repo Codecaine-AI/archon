@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
 import { existsSync } from 'node:fs';
 import {
+  chmod,
   mkdir,
   mkdtemp,
   readdir,
@@ -48,6 +49,8 @@ interface Fixture {
   failLaunchctl: Set<string>;
   /** Request ids the server handed to its executor. */
   dispatched: string[];
+  /** Runs before each faked launchctl call, to stall it or change the disk under it. */
+  hooks: { beforeLaunchctl?: (args: readonly string[]) => Promise<void> };
   client: Client;
 }
 
@@ -76,6 +79,7 @@ beforeEach(async () => {
   const bindingsDir = join(home, 'triggers');
   const launchAgents = join(home, 'LaunchAgents');
   const dispatched: string[] = [];
+  const hooks: Fixture['hooks'] = {};
   const server = createTriggerMcpServer({
     host,
     bindingsDir,
@@ -90,6 +94,7 @@ beforeEach(async () => {
       launchAgentsDirectory: launchAgents,
       runCommand: async (_executable, args) => {
         launchctl.push([...args]);
+        await hooks.beforeLaunchctl?.(args);
         if (failLaunchctl.has(args[0] ?? '')) throw new Error(`launchctl ${args[0]} failed: 125`);
       },
     },
@@ -107,11 +112,14 @@ beforeEach(async () => {
     launchctl,
     failLaunchctl,
     dispatched,
+    hooks,
     client,
   };
 });
 
 afterEach(async () => {
+  // A test can make the bindings folder unwritable; the temp tree must stay removable.
+  if (existsSync(fixture.bindingsDir)) await chmod(fixture.bindingsDir, 0o700);
   await fixture.client.close();
   for (const [key, value] of Object.entries(prior)) {
     if (value === undefined) delete process.env[key];
@@ -663,4 +671,130 @@ describe('set_binding run-as user', () => {
     expect(await bindingFiles()).toEqual([]);
     expect(fixture.launchctl).toEqual([]);
   });
+});
+
+describe('a failed write after the old schedule is removed', () => {
+  /** Changes sourceInstanceId; the removal of the old job succeeds, then the folder refuses the file. */
+  async function failWriteAfterBootout(
+    failReinstall: boolean
+  ): Promise<{ text: string; oldPlist: string }> {
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    const [oldPlist] = await launchAgentFiles();
+    if (!oldPlist) throw new Error('The first set_binding installed no LaunchAgent.');
+    fixture.hooks.beforeLaunchctl = async args => {
+      if (args[0] !== 'bootout') return;
+      await chmod(fixture.bindingsDir, 0o500);
+      if (failReinstall) fixture.failLaunchctl.add('bootstrap');
+    };
+    const result = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ sourceInstanceId: 'hub-refresh-moved' }),
+    });
+    expect(result.isError).toBe(true);
+    expect(JSON.parse(await readFile(join(fixture.bindingsDir, 'refresh.json'), 'utf8'))).toEqual(
+      binding()
+    );
+    return { text: result.text, oldPlist };
+  }
+
+  test('installs the old schedule again and says so', async () => {
+    const { text, oldPlist } = await failWriteAfterBootout(false);
+
+    expect(JSON.parse(text)).toMatchObject({
+      onDisk: 'The previous binding document, unchanged.',
+      installed: "The previous document's schedule is installed again.",
+      error: expect.stringContaining('EACCES'),
+    });
+    expect(await launchAgentFiles()).toEqual([oldPlist]);
+  });
+
+  test('says the old schedule is not installed when that install fails too', async () => {
+    const { text } = await failWriteAfterBootout(true);
+
+    expect(JSON.parse(text)).toMatchObject({
+      onDisk: 'The previous binding document, unchanged.',
+      installed:
+        "The previous document's schedule is NOT installed: launchctl bootstrap failed: 125",
+      error: expect.stringContaining('EACCES'),
+    });
+    expect(await launchAgentFiles()).toEqual([]);
+  });
+});
+
+describe('structural fields and free text', () => {
+  const GHS_SHAPED = 'ghs_ABCDEFGHIJKLMNOPQRSTUVWX';
+
+  test('a ghs_-shaped binding id round-trips through list_bindings and remove_binding', async () => {
+    const written = await callOk('set_binding', {
+      bindingId: GHS_SHAPED,
+      document: binding({ bindingId: GHS_SHAPED }),
+    });
+    expect(written.bindingId).toBe(GHS_SHAPED);
+
+    const listed = await callOk('list_bindings');
+    expect(listed.bindings).toMatchObject([
+      { file: `${GHS_SHAPED}.json`, status: 'valid', bindingId: GHS_SHAPED },
+    ]);
+
+    const removed = await callOk('remove_binding', { bindingId: GHS_SHAPED });
+    expect(removed).toMatchObject({ bindingId: GHS_SHAPED, fileRemoved: true });
+    expect(await bindingFiles()).toEqual([]);
+  });
+
+  test('a free-text field with the same shape is still redacted', async () => {
+    await fixture.host.deps.store.createWorkflowRun({
+      workflow_name: 'bash-only',
+      user_message: `use ${GHS_SHAPED}`,
+      codebase_id: await registerProject(),
+      working_path: fixture.project,
+    });
+
+    const result = await call('list_runs', { limit: 5 });
+
+    expect(result.text).not.toContain(GHS_SHAPED);
+    expect(result.text).toContain('use [REDACTED]');
+  });
+
+  test('a structural field that holds a real credential value is still redacted', async () => {
+    await callOk('set_binding', { bindingId: SECRET, document: binding({ bindingId: SECRET }) });
+
+    const result = await call('list_bindings');
+
+    expect(result.text).not.toContain(SECRET);
+    expect(JSON.parse(result.text)).toMatchObject({
+      bindings: [{ file: '[REDACTED].json', bindingId: '[REDACTED]' }],
+    });
+  });
+});
+
+describe('the in-process wait for the binding lock', () => {
+  test('a call queued behind a hung call is refused at the deadline and never runs', async () => {
+    let release!: () => void;
+    const hung = new Promise<void>(resolveHung => (release = resolveHung));
+    fixture.hooks.beforeLaunchctl = async args => {
+      if (args[0] === 'bootstrap') await hung;
+    };
+    const first = call('set_binding', { bindingId: 'refresh', document: binding() });
+    while (!fixture.launchctl.some(args => args[0] === 'bootstrap')) await Bun.sleep(5);
+
+    const started = Date.now();
+    const second = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ inputs: { late: true } }),
+    });
+    const waitedMs = Date.now() - started;
+
+    expect(second.isError).toBe(true);
+    expect(second.text).toContain("Binding 'refresh' is busy");
+    expect(second.text).toContain('in this server');
+    expect(waitedMs).toBeLessThan(6_000);
+    release();
+    expect((await first).isError).toBe(false);
+    // Let a wrongly queued second call run, if it were still waiting.
+    await Bun.sleep(50);
+    expect(JSON.parse(await readFile(join(fixture.bindingsDir, 'refresh.json'), 'utf8'))).toEqual(
+      binding()
+    );
+    expect(fixture.launchctl.filter(args => args[0] === 'bootstrap')).toHaveLength(1);
+  }, 15_000);
 });

@@ -83,6 +83,9 @@
         "b-60-workflow-triggers-mcp-4",
         "b-60-workflow-triggers-mcp-5",
         "b-60-workflow-triggers-mcp-6",
+        "b-60-workflow-triggers-mcp-17",
+        "b-60-workflow-triggers-mcp-18",
+        "b-60-workflow-triggers-mcp-19",
         "b-60-workflow-triggers-mcp-7",
         "b-60-workflow-triggers-mcp-8",
         "b-60-workflow-triggers-mcp-9",
@@ -90,7 +93,12 @@
         "b-60-workflow-triggers-mcp-16",
         "b-60-workflow-triggers-mcp-11",
         "b-60-workflow-triggers-mcp-12",
-        "b-60-workflow-triggers-mcp-13",
+        "b-60-workflow-triggers-mcp-26",
+        "b-60-workflow-triggers-mcp-21",
+        "b-60-workflow-triggers-mcp-22",
+        "b-60-workflow-triggers-mcp-23",
+        "b-60-workflow-triggers-mcp-24",
+        "b-60-workflow-triggers-mcp-25",
         "b-60-workflow-triggers-mcp-14",
         "b-60-workflow-triggers-mcp-15",
         "b-60-workflow-triggers-drive-the-same-commands-49",
@@ -1559,7 +1567,20 @@
                 }
               }
             ],
-            "Lists each binding file with its schedule and whether its LaunchAgent is installed. A file that fails the schema is listed as invalid, with the reason.",
+            [
+              {
+                "insert": "Lists each binding file with its schedule and whether its LaunchAgent is installed. A file that fails the schema, is a symbolic link, or names another "
+              },
+              {
+                "insert": "bindingId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " than its file name is listed as invalid, with the reason."
+              }
+            ],
             "No"
           ],
           [
@@ -1697,7 +1718,98 @@
       "props": {},
       "text": [
         {
-          "insert": "Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an MCP tool error with a plain message, and the server removes credential values from it."
+          "insert": "Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an MCP tool error with a plain message."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-17": {
+      "id": "b-60-workflow-triggers-mcp-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server redacts every string in a tool result or a tool error before it sends it. Its credential values are the values of env keys that end in "
+        },
+        {
+          "insert": "TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "PASSWORD",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It uses 2 rules:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-18": {
+      "id": "b-60-workflow-triggers-mcp-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A structural field loses only those exact values, so a binding ID that looks like a token, such as "
+        },
+        {
+          "insert": "ghs_…",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", comes back unchanged. Structural fields are IDs, file names and paths, workflow and node names, the launch folder, host IDs, statuses and timestamps."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-19": {
+      "id": "b-60-workflow-triggers-mcp-19",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Every other field is free text, such as a user message, a description, an error, node output, inputs and a log tail. It loses those values and also anything that looks like a GitHub App token or a credential in a URL."
         }
       ],
       "children": []
@@ -1878,13 +1990,49 @@
       ],
       "children": []
     },
-    "b-60-workflow-triggers-mcp-13": {
-      "id": "b-60-workflow-triggers-mcp-13",
-      "type": "list-item",
-      "props": {
-        "ordered": false
-      },
+    "b-60-workflow-triggers-mcp-26": {
+      "id": "b-60-workflow-triggers-mcp-26",
+      "type": "paragraph",
+      "props": {},
       "text": [
+        {
+          "insert": "A new "
+        },
+        {
+          "insert": "sourceInstanceId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names a new LaunchAgent, so "
+        },
+        {
+          "insert": "set_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes the old one before the write. When that removal fails, nothing is written. When the write fails after it, the old schedule is installed again from the old document, and the error says whether that worked."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-21": {
+      "id": "b-60-workflow-triggers-mcp-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "fire_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
         {
           "insert": "remove_binding",
           "attributes": {
@@ -1892,7 +2040,34 @@
           }
         },
         {
-          "insert": " removes the LaunchAgent first. When "
+          "insert": " act only on a plain file named "
+        },
+        {
+          "insert": "<bindingId>.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " whose document has that "
+        },
+        {
+          "insert": "bindingId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". They refuse a symbolic link and a document that names another binding. "
+        },
+        {
+          "insert": "remove_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes the LaunchAgent first, and when "
         },
         {
           "insert": "launchd",
@@ -1902,6 +2077,116 @@
         },
         {
           "insert": " refuses, the file stays."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-22": {
+      "id": "b-60-workflow-triggers-mcp-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "set_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "remove_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "fire_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hold one lock for each binding, "
+        },
+        {
+          "insert": "<bindings folder>/.locks/<bindingId>/lock",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Every server process on the Mac shares it. A refused call returns "
+        },
+        {
+          "insert": "Binding '<id>' is busy",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which names another call in the same server or the process ID and host of the lock's owner."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-23": {
+      "id": "b-60-workflow-triggers-mcp-23",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A call waits at most 5 seconds for the lock, counting the wait behind earlier calls in the same server. A call that gives up never runs later."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-24": {
+      "id": "b-60-workflow-triggers-mcp-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A lock whose owner process no longer exists on this Mac is broken, and the call goes on. A lock owned by a live process or by another host is never broken, whatever its age."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-25": {
+      "id": "b-60-workflow-triggers-mcp-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A scheduled "
+        },
+        {
+          "insert": "trigger fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from launchd does not take the lock. A fire that overlaps a "
+        },
+        {
+          "insert": "set_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads either the old or the new document, because the write replaces the file with one rename."
         }
       ],
       "children": []

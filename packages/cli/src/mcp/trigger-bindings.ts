@@ -110,8 +110,38 @@ async function readBinding(path: string, bindingId: string): Promise<ReadBinding
 const BINDING_LOCK_TIMEOUT_MS = 5_000;
 
 /**
+ * The tail of each binding lock's queue in this process. The file-store lock queues
+ * callers of one process before its timed acquisition, so a deadline there would not
+ * cover the wait behind a slow or hung call. This queue sits in front of it and counts
+ * that wait against the same deadline.
+ */
+const bindingQueues = new Map<string, Promise<void>>();
+
+function busyError(bindingId: string, holder: string, cause?: unknown): Error {
+  return new Error(
+    `Binding '${bindingId}' is busy: another set_binding, remove_binding or fire_binding holds its lock${holder}. Try again shortly.`,
+    cause === undefined ? undefined : { cause }
+  );
+}
+
+/** True when `previous` settles before `deadline`; false when the deadline comes first. */
+async function settlesBefore(previous: Promise<void>, deadline: number): Promise<boolean> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const expired = new Promise<boolean>(resolveExpired => {
+    timer = setTimeout(() => resolveExpired(false), Math.max(0, deadline - Date.now()));
+  });
+  try {
+    return await Promise.race([previous.then(() => true), expired]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/**
  * Run `operation` holding the lock of one binding: `<bindings folder>/.locks/<bindingId>/lock`,
- * shared by every server process on this install. A lock whose owner process is provably
+ * shared by every server process on this install. One deadline covers the wait behind
+ * earlier calls in this process and the acquisition of the lock file. A caller whose
+ * deadline passes is refused and never runs. A lock file whose owner process is provably
  * gone on this host is broken; a live or unprovable owner is waited on, then refused.
  */
 async function withBindingLock<T>(
@@ -120,19 +150,29 @@ async function withBindingLock<T>(
   operation: () => Promise<T>
 ): Promise<T> {
   bindingFilePath(context.bindingsDir, bindingId);
+  const deadline = Date.now() + BINDING_LOCK_TIMEOUT_MS;
   const root = join(context.bindingsDir, '.locks', bindingId);
-  await mkdir(root, { recursive: true, mode: 0o700 });
+  const previous = bindingQueues.get(root) ?? Promise.resolve();
+  let finish!: () => void;
+  const finished = new Promise<void>(resolveFinished => (finish = resolveFinished));
+  // A later caller waits for this one and every caller before it, even when this one gives up.
+  const tail = previous.then(() => finished);
+  bindingQueues.set(root, tail);
   try {
-    return await withFileStoreLock(root, operation, BINDING_LOCK_TIMEOUT_MS);
+    if (!(await settlesBefore(previous, deadline))) throw busyError(bindingId, ' in this server');
+    await mkdir(root, { recursive: true, mode: 0o700 });
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) throw busyError(bindingId, ' in this server');
+    return await withFileStoreLock(root, operation, remaining);
   } catch (error) {
     if (!(error instanceof FileStoreLockHeldError)) throw error;
-    const owner = error.owner
-      ? ` by process ${String(error.owner.pid)} on ${error.owner.host}`
-      : '';
-    throw new Error(
-      `Binding '${bindingId}' is busy: another set_binding, remove_binding or fire_binding holds its lock${owner}. Try again shortly. If no Archon process holds it, remove ${error.path}.`,
-      { cause: error }
-    );
+    const owner = error.owner ? ` (process ${String(error.owner.pid)} on ${error.owner.host})` : '';
+    const busy = busyError(bindingId, owner, error);
+    busy.message += ` If no Archon process holds it, remove ${error.path}.`;
+    throw busy;
+  } finally {
+    finish();
+    if (bindingQueues.get(root) === tail) bindingQueues.delete(root);
   }
 }
 
@@ -349,16 +389,48 @@ async function removeReplacedSchedule(
   context: TriggerToolContext,
   previous: TimerTriggerConfig | undefined,
   config: TimerTriggerConfig
-): Promise<void> {
-  if (!previous || timerScheduleId(previous) === timerScheduleId(config)) return;
+): Promise<boolean> {
+  if (!previous || timerScheduleId(previous) === timerScheduleId(config)) return false;
   try {
-    await removeTimerSchedule(previous, context.nativeSchedule);
+    return await removeTimerSchedule(previous, context.nativeSchedule);
   } catch (error) {
     throw new Error(
       `The schedule of the previous document (sourceInstanceId '${previous.sourceInstanceId}') could not be removed, so nothing was written: ${error instanceof Error ? error.message : String(error)}`,
       { cause: error }
     );
   }
+}
+
+const errorText = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
+
+/**
+ * The write failed after the previous document's schedule was removed. The previous
+ * document is still on disk, since the write replaces the file only by its final rename,
+ * so its schedule is installed again from it. The error says whether that worked.
+ */
+async function restorePreviousSchedule(
+  context: TriggerToolContext,
+  bindingId: string,
+  path: string,
+  previous: TimerTriggerConfig,
+  writeError: unknown
+): Promise<BindingScheduleError> {
+  let installed: string;
+  try {
+    await installTimerSchedule(context.host, previous, path, context.nativeSchedule);
+    installed = "The previous document's schedule is installed again.";
+  } catch (error) {
+    installed = `The previous document's schedule is NOT installed: ${errorText(error)}`;
+  }
+  const message = errorText(writeError);
+  return new BindingScheduleError(`Binding file ${path} was not written: ${message} ${installed}`, {
+    bindingId,
+    file: path,
+    onDisk: 'The previous binding document, unchanged.',
+    installed,
+    error: message,
+  });
 }
 
 async function writeAndSchedule(
@@ -370,9 +442,14 @@ async function writeAndSchedule(
   const path = bindingFilePath(context.bindingsDir, bindingId);
   const before = await readBinding(path, bindingId);
   const previous = before.kind === 'valid' ? before.config : undefined;
-  await removeReplacedSchedule(context, previous, config);
-  await mkdir(context.bindingsDir, { recursive: true, mode: 0o700 });
-  await writeBindingFile(path, document);
+  const removedPrevious = await removeReplacedSchedule(context, previous, config);
+  try {
+    await mkdir(context.bindingsDir, { recursive: true, mode: 0o700 });
+    await writeBindingFile(path, document);
+  } catch (error) {
+    if (!removedPrevious || !previous) throw error;
+    throw await restorePreviousSchedule(context, bindingId, path, previous, error);
+  }
   const changes =
     before.kind === 'valid'
       ? changedPaths(before.config, config)
@@ -381,7 +458,7 @@ async function writeAndSchedule(
   try {
     schedule = await applySchedule(context, config, path);
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+    const message = errorText(error);
     const installed = await installedState(context, config);
     throw new BindingScheduleError(
       `Binding file ${path} was written, but its schedule was not installed: ${message} ${installed}`,
