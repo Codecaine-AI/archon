@@ -1,5 +1,8 @@
 {
+  "id": "ent_01M7NTYBPS17WC5AG0F42JZBSR",
   "name": "Archon",
   "docsRoot": "docs",
-  "products": ["docs"]
+  "products": [
+    "docs"
+  ]
 }
