@@ -1,0 +1,3 @@
+# Local docs-system indexes and edit journals
+.index/
+.changesets/
