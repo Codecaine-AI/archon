@@ -1,0 +1,19 @@
+{
+  "kind": "prompt",
+  "schemaVersion": "prompt-kit/v1",
+  "id": "emailReplyDrafterPrompt",
+  "nodes": [
+    {
+      "type": "section",
+      "tag": "task",
+      "children": [
+        {
+          "type": "paragraph",
+          "content": [
+            "The user's message is one support email as JSON, with the sender and what the sender asks for. Write a short, polite reply to the sender that answers the ask or says what happens next. Reply with the email text only."
+          ]
+        }
+      ]
+    }
+  ]
+}

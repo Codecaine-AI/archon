@@ -1,0 +1,6 @@
+{
+  "name": "email-reply-drafter",
+  "description": "Drafts a short reply to a support email from its sender and ask. The draft-reply bundle of the intake pack.",
+  "model": "standard",
+  "state": { "window": { "strategy": "turns", "maxTurns": 20 } }
+}
