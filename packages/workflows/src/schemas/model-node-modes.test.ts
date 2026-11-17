@@ -126,6 +126,10 @@ describe('extract and decide loading', () => {
         "DAG node validation failed: Node 'extract': 'allowed_tools' is not supported on extract nodes: the node makes one model call and runs no agent turn",
       'extract-function-and-schema':
         "DAG node validation failed: Node 'extract': 'extract' sets both 'extract.function' and 'extract.schema': set one of them",
+      'decide-min-probability-zero':
+        "DAG node validation failed: Node 'classify': 'decide.threshold.minProbability' must be greater than 0 and at most 1",
+      'decide-min-margin-one':
+        "DAG node validation failed: Node 'classify': 'decide.threshold.minMargin' must be at least 0 and less than 1",
       'extract-schema-only':
         "DAG node validation failed: Node 'extract': 'extract.schema' is not supported in version 1 of the extract mode: use 'extract.function' with a BAML function",
     });

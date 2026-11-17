@@ -48,10 +48,17 @@ const decideConfigSchema = z
       .min(2, "'decide.enum' must list at least 2 values"),
     input: templateSchema('decide.input'),
     classifier: z.string().trim().min(1).optional(),
+    // The kernel's choice thresholds: 0 < minTop <= 1 and 0 <= minMargin < 1.
     threshold: z
       .object({
-        minProbability: z.number().min(0).max(1),
-        minMargin: z.number().min(0).max(1),
+        minProbability: z
+          .number()
+          .gt(0, 'must be greater than 0 and at most 1')
+          .max(1, 'must be greater than 0 and at most 1'),
+        minMargin: z
+          .number()
+          .min(0, 'must be at least 0 and less than 1')
+          .lt(1, 'must be at least 0 and less than 1'),
       })
       .strict()
       .optional(),

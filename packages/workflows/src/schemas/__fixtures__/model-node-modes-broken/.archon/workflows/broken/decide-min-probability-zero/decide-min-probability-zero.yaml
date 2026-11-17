@@ -1,0 +1,9 @@
+name: decide-min-probability-zero
+description: A decide node whose minProbability is 0.
+nodes:
+  - id: classify
+    decide:
+      question: What does this email ask for?
+      enum: [reply, other]
+      input: $ARGUMENTS
+      threshold: { minProbability: 0, minMargin: 0.2 }
