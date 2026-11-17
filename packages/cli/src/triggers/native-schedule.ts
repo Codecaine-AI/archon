@@ -230,12 +230,20 @@ export async function installMacosNativeSchedule(
   options: NativeScheduleOptions = {}
 ): Promise<string> {
   const rendered = renderMacosLaunchAgent(config);
-  const runtime = resolveRuntime(options);
+  return await installPlist(rendered.label, rendered.plist, resolveRuntime(options));
+}
+
+/** Write the job's plist when it is absent and bootstrap it; an identical plist is only checked. */
+async function installPlist(
+  label: string,
+  plist: string,
+  runtime: ReturnType<typeof resolveRuntime>
+): Promise<string> {
   await mkdir(runtime.directory, { recursive: true, mode: 0o700 });
-  const path = join(runtime.directory, `${rendered.label}.plist`);
-  const created = await writeOwnedConfiguration(path, rendered.plist);
+  const path = join(runtime.directory, `${label}.plist`);
+  const created = await writeOwnedConfiguration(path, plist);
   if (!created) {
-    await runtime.runCommand('/bin/launchctl', ['print', `${runtime.domain}/${rendered.label}`]);
+    await runtime.runCommand('/bin/launchctl', ['print', `${runtime.domain}/${label}`]);
     return path;
   }
 
@@ -246,6 +254,33 @@ export async function installMacosNativeSchedule(
     throw error;
   }
   return path;
+}
+
+/** The installed plist of schedule `id`, byte for byte, or null when none is installed. */
+export async function readMacosNativeSchedulePlist(
+  id: string,
+  options: NativeScheduleOptions = {}
+): Promise<string | null> {
+  const runtime = resolveRuntime(options);
+  try {
+    return await readFile(join(runtime.directory, `${jobLabel(id)}.plist`), 'utf8');
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+/**
+ * Put back a plist that `readMacosNativeSchedulePlist` read, byte for byte, and bootstrap
+ * it. It keeps the PATH and program arguments of the shell that first installed the job,
+ * which the process restoring it may not share.
+ */
+export async function restoreMacosNativeSchedulePlist(
+  id: string,
+  plist: string,
+  options: NativeScheduleOptions = {}
+): Promise<string> {
+  return await installPlist(jobLabel(id), plist, resolveRuntime(options));
 }
 
 export async function removeMacosNativeSchedule(

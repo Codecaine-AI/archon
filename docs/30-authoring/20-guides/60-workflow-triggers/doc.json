@@ -1796,7 +1796,7 @@
           }
         },
         {
-          "insert": ", comes back unchanged. Structural fields are IDs, file names and paths, workflow and node names, the launch folder, host IDs, statuses and timestamps."
+          "insert": ", comes back unchanged. Structural fields are the IDs, paths, names, statuses and timestamps that a tool builds at fixed places in its result."
         }
       ],
       "children": []
@@ -1809,7 +1809,16 @@
       },
       "text": [
         {
-          "insert": "Every other field is free text, such as a user message, a description, an error, node output, inputs and a log tail. It loses those values and also anything that looks like a GitHub App token or a credential in a URL."
+          "insert": "Every other field is free text, and it also loses anything that looks like a GitHub App token or a credential in a URL. Caller and stored data, such as run "
+        },
+        {
+          "insert": "metadata",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", inputs, node output, user messages, errors and log tails, is always free text, whatever its keys are named."
         }
       ],
       "children": []
@@ -2014,7 +2023,16 @@
           }
         },
         {
-          "insert": " removes the old one before the write. When that removal fails, nothing is written. When the write fails after it, the old schedule is installed again from the old document, and the error says whether that worked."
+          "insert": " removes the old one before it replaces the file. It writes the new document to a temporary file first, so only the final rename can fail after the removal. When the removal fails, nothing is written. When the rename fails, the old plist is put back byte for byte, with the "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " it was installed with, and the error says whether that worked."
         }
       ],
       "children": []

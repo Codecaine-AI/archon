@@ -23,11 +23,11 @@ import {
   type TriggerToolContext,
 } from './trigger-bindings';
 import { getRun, listRuns, listWorkflows } from './trigger-runs';
-import { redactedJson, redactSecrets } from './redact';
+import { redactedJson, redactSecrets, type StructuralPath } from './redact';
 
 /** A successful result: every string in it is redacted before it is serialized. */
-function toolResult(value: unknown): CallToolResult {
-  return { content: [{ type: 'text', text: redactedJson(value) }] };
+function toolResult(value: unknown, structural: readonly StructuralPath[]): CallToolResult {
+  return { content: [{ type: 'text', text: redactedJson(value, structural) }] };
 }
 
 /** A tool's failure as an MCP tool error: a plain, redacted message, plus state when known. */
@@ -45,7 +45,32 @@ interface TriggerTool<Args extends z.ZodObject> {
   description: string;
   annotations: NonNullable<Tool['annotations']>;
   args: Args;
+  /**
+   * The exact places in this tool's result that hold structural references the tool
+   * built (see `StructuralPath`). Every other string, and every subtree of caller or
+   * stored data, gets the full redaction.
+   */
+  structural: readonly StructuralPath[];
   call: (context: TriggerToolContext, args: z.output<Args>) => Promise<unknown>;
+}
+
+/** The id, name, status, timestamp and path columns of a run row at `prefix`. */
+function runRowPaths(prefix: string): StructuralPath[] {
+  return [
+    'id',
+    'workflow_name',
+    'status',
+    'conversation_id',
+    'parent_conversation_id',
+    'codebase_id',
+    'parent_run_id',
+    'adopted_from_run_id',
+    'user_id',
+    'working_path',
+    'started_at',
+    'completed_at',
+    'last_activity_at',
+  ].map(column => `${prefix}.${column}`);
 }
 
 /** Keeps each tool's handler typed by its own argument schema inside one list. */
@@ -72,6 +97,7 @@ export const TRIGGER_TOOLS = [
       'List the workflows of each distinct launch folder (binding.launch.cwd) the valid bindings name, with the folder and binding ids each list came from.',
     annotations: READ_ONLY,
     args: noArgs,
+    structural: ['folders[].cwd', 'folders[].bindingIds[]', 'folders[].workflows[].name'],
     call: context => listWorkflows(context),
   }),
   tool({
@@ -83,6 +109,7 @@ export const TRIGGER_TOOLS = [
         limit: z.number().int().min(1).max(200).default(20).describe('Most runs to return.'),
       })
       .strict(),
+    structural: runRowPaths('runs[]'),
     call: (context, { limit }) => listRuns(context, limit),
   }),
   tool({
@@ -102,6 +129,14 @@ export const TRIGGER_TOOLS = [
           .describe('Most bytes to return from the end of each log.'),
       })
       .strict(),
+    structural: [
+      ...runRowPaths('run'),
+      'nodes[].nodeId',
+      'nodes[].state',
+      'nodes[].startedAt',
+      'transcript.path',
+      'executorLog.path',
+    ],
     call: (context, { runId, maxLogBytes }) => getRun(context, runId, maxLogBytes),
   }),
   tool({
@@ -110,6 +145,15 @@ export const TRIGGER_TOOLS = [
       'List the binding files in the bindings folder: each one with its schedule and whether its LaunchAgent is installed. A file that fails the schema is listed as invalid with the reason.',
     annotations: READ_ONLY,
     args: noArgs,
+    structural: [
+      'bindingsDir',
+      'bindings[].file',
+      'bindings[].status',
+      'bindings[].bindingId',
+      'bindings[].workflowName',
+      'bindings[].cwd',
+      'bindings[].hostId',
+    ],
     call: context => listBindings(context),
   }),
   tool({
@@ -118,6 +162,7 @@ export const TRIGGER_TOOLS = [
       'Start one run of a binding now, as `archon trigger fire --config <file>` does. Returns the run id, or the reason the start did not begin (queued, skipped, or preparation failed).',
     annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
     args: bindingIdArgs,
+    structural: ['bindingId', 'receiptId', 'runId', 'requestId'],
     call: (context, { bindingId }) => fireBinding(context, bindingId),
   }),
   tool({
@@ -130,6 +175,7 @@ export const TRIGGER_TOOLS = [
         .record(z.string(), z.unknown())
         .describe('The whole binding document; binding.bindingId must equal bindingId.'),
     }),
+    structural: ['bindingId', 'file', 'schedule'],
     call: (context, { bindingId, document }) => setBinding(context, bindingId, document),
   }),
   tool({
@@ -138,6 +184,7 @@ export const TRIGGER_TOOLS = [
       "Remove one binding's LaunchAgent, then its file. When the schedule cannot be removed, the file stays. Needs the hub user's launchd GUI session when a schedule is installed.",
     annotations: WRITES,
     args: bindingIdArgs,
+    structural: ['bindingId', 'file'],
     call: (context, { bindingId }) => removeBinding(context, bindingId),
   }),
 ];
@@ -175,7 +222,7 @@ async function callTool(
       )
     );
   try {
-    return toolResult(await definition.call(context, args.data));
+    return toolResult(await definition.call(context, args.data), definition.structural);
   } catch (error) {
     return toolError(error);
   }

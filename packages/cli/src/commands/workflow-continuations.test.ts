@@ -59,6 +59,8 @@ mock.module('../triggers/native-schedule', () => ({
   removeMacosNativeSchedule: remove,
   macosNativeScheduleInstalled: unusedNativeSchedule,
   assertMacosLaunchdSession: unusedNativeSchedule,
+  readMacosNativeSchedulePlist: unusedNativeSchedule,
+  restoreMacosNativeSchedulePlist: unusedNativeSchedule,
   NativeScheduleConflictError: class extends Error {},
 }));
 import { workflowContinuationCommand, workflowWakeScheduleCommand } from './workflow-continuations';

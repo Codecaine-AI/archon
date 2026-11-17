@@ -702,7 +702,7 @@ describe('a failed write after the old schedule is removed', () => {
 
     expect(JSON.parse(text)).toMatchObject({
       onDisk: 'The previous binding document, unchanged.',
-      installed: "The previous document's schedule is installed again.",
+      installed: "The previous document's schedule is installed again, from its saved plist.",
       error: expect.stringContaining('EACCES'),
     });
     expect(await launchAgentFiles()).toEqual([oldPlist]);
@@ -797,4 +797,130 @@ describe('the in-process wait for the binding lock', () => {
     );
     expect(fixture.launchctl.filter(args => args[0] === 'bootstrap')).toHaveLength(1);
   }, 15_000);
+});
+
+describe('the restore keeps the installed plist', () => {
+  const originalPath = process.env.PATH;
+  afterEach(() => {
+    process.env.PATH = originalPath;
+  });
+
+  test('a failed rename puts back the plist bytes of the first install, not this server PATH', async () => {
+    process.env.PATH = '/original-install/bin';
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    const [plistName] = await launchAgentFiles();
+    if (!plistName) throw new Error('The first set_binding installed no LaunchAgent.');
+    const installedBytes = await readFile(join(fixture.launchAgents, plistName), 'utf8');
+    expect(installedBytes).toContain('/original-install/bin');
+    process.env.PATH = '/ssh-server/bin';
+    fixture.hooks.beforeLaunchctl = async args => {
+      if (args[0] === 'bootout') await chmod(fixture.bindingsDir, 0o500);
+    };
+
+    const result = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ sourceInstanceId: 'hub-refresh-moved' }),
+    });
+
+    expect(result.isError).toBe(true);
+    expect(JSON.parse(result.text)).toMatchObject({
+      installed: "The previous document's schedule is installed again, from its saved plist.",
+    });
+    expect(await launchAgentFiles()).toEqual([plistName]);
+    expect(await readFile(join(fixture.launchAgents, plistName), 'utf8')).toBe(installedBytes);
+  });
+
+  test('a document that cannot be prepared leaves the old schedule alone', async () => {
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    const plists = await launchAgentFiles();
+    fixture.launchctl.length = 0;
+    await chmod(fixture.bindingsDir, 0o500);
+
+    const result = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ sourceInstanceId: 'hub-refresh-moved' }),
+    });
+
+    expect(result.isError).toBe(true);
+    expect(result.text).toContain('EACCES');
+    expect(subcommands()).not.toContain('bootout');
+    expect(await launchAgentFiles()).toEqual(plists);
+    expect(JSON.parse(await readFile(join(fixture.bindingsDir, 'refresh.json'), 'utf8'))).toEqual(
+      binding()
+    );
+  });
+});
+
+describe('structural paths only where the tool builds them', () => {
+  const GHS_SHAPED = 'ghs_ABCDEFGHIJKLMNOPQRSTUVWX';
+
+  test('caller data under run metadata is fully redacted whatever its keys are named', async () => {
+    const run = await fixture.host.deps.store.createWorkflowRun({
+      workflow_name: 'bash-only',
+      user_message: '',
+      codebase_id: await registerProject(),
+      working_path: fixture.project,
+      // `run.id` as one key: a stored key that spells a result path is still caller data.
+      metadata: {
+        id: GHS_SHAPED,
+        'run.id': GHS_SHAPED,
+        inputs: { name: GHS_SHAPED, description: GHS_SHAPED },
+      },
+    });
+
+    const result = await call('get_run', { runId: run.id });
+    const listed = await call('list_runs', { limit: 5 });
+
+    expect(result.isError).toBe(false);
+    expect(result.text).not.toContain(GHS_SHAPED);
+    const detail = JSON.parse(result.text) as ToolResults['get_run'];
+    expect(detail.run.id).toBe(run.id);
+    expect(detail.run.metadata).toMatchObject({
+      id: '[REDACTED]',
+      'run.id': '[REDACTED]',
+      inputs: { name: '[REDACTED]', description: '[REDACTED]' },
+    });
+    expect(listed.text).not.toContain(GHS_SHAPED);
+  });
+});
+
+describe('the in-process queue after a caller gave up', () => {
+  test('a third call behind a hung call and a refused one is refused too and never runs', async () => {
+    let release!: () => void;
+    const hung = new Promise<void>(resolveHung => (release = resolveHung));
+    fixture.hooks.beforeLaunchctl = async args => {
+      if (args[0] === 'bootstrap') await hung;
+    };
+    const first = call('set_binding', { bindingId: 'refresh', document: binding() });
+    while (!fixture.launchctl.some(args => args[0] === 'bootstrap')) await Bun.sleep(5);
+    const second = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ inputs: { second: true } }),
+    });
+    expect(second.text).toContain('in this server');
+
+    const started = Date.now();
+    const third = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ inputs: { third: true } }),
+    });
+    const waitedMs = Date.now() - started;
+
+    expect(third.isError).toBe(true);
+    expect(third.text).toContain('in this server');
+    expect(waitedMs).toBeLessThan(6_000);
+    release();
+    expect((await first).isError).toBe(false);
+    await Bun.sleep(50);
+    expect(JSON.parse(await readFile(join(fixture.bindingsDir, 'refresh.json'), 'utf8'))).toEqual(
+      binding()
+    );
+    expect(fixture.launchctl.filter(args => args[0] === 'bootstrap')).toHaveLength(1);
+
+    // Once every caller has settled, the queue is empty and a new call runs at once.
+    fixture.hooks.beforeLaunchctl = undefined;
+    const next = Date.now();
+    await callOk('set_binding', { bindingId: 'refresh', document: binding({ inputs: { d: 1 } }) });
+    expect(Date.now() - next).toBeLessThan(1_000);
+  }, 25_000);
 });

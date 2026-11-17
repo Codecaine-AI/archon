@@ -33,67 +33,54 @@ export function redactSecrets(text: string): string {
 }
 
 /**
- * Keys whose string values are structural references: an agent passes them back to a
- * tool, or needs them exact. A heuristic match would turn a valid id into an unusable
- * `[REDACTED]`, so these get only the exact-value redaction. Every other key is free text
- * (user messages, descriptions, errors, reasons, node output, log tails, inputs) and gets
- * the full redaction, so a new field is redacted by default. An array takes the rule of
- * the key that holds it.
+ * A place in a tool result that holds a structural reference the tool itself built, such
+ * as a binding id, a file path or a run id: `bindings[].file` is the `file` of every entry
+ * of `bindings`. An agent passes these values back to a tool or needs them exact, so a
+ * heuristic match would turn a valid id into an unusable `[REDACTED]`.
  */
-const STRUCTURAL_KEYS = new Set([
-  // Bindings and their files.
-  'bindingId',
-  'bindingIds',
-  'bindingsDir',
-  'file',
-  'path',
-  'cwd',
-  'hostId',
-  'sourceInstanceId',
-  'runAsUserId',
-  'resource',
-  'workflowName',
-  // Runs, receipts, requests and nodes.
-  'id',
-  'runId',
-  'receiptId',
-  'requestId',
-  'nodeId',
-  'workflow_name',
-  'codebase_id',
-  'conversation_id',
-  'parent_run_id',
-  'working_path',
-  'name',
-  'filename',
-  // Status values and timestamps.
-  'status',
-  'state',
-  'kind',
-  'errorType',
-  'started_at',
-  'completed_at',
-  'last_activity_at',
-  'created_at',
-  'updated_at',
-  'startedAt',
-]);
+export type StructuralPath = string;
 
-function redactValue(value: unknown, structural: boolean, redact: SecretRedactor): unknown {
-  if (typeof value === 'string') return structural ? redact.exact(value) : redact.full(value);
-  if (Array.isArray(value)) return value.map(item => redactValue(item, structural, redact));
-  if (value instanceof Date) return redactValue(value.toISOString(), structural, redact);
+/** `bindings[].file` as segments: `["bindings", "[]", "file"]`. */
+function pathSegments(path: StructuralPath): string[] {
+  return path
+    .split('.')
+    .flatMap(segment => (segment.endsWith('[]') ? [segment.slice(0, -2), '[]'] : [segment]));
+}
+
+/**
+ * Segments are compared as a JSON array, so a stored key that contains `.` or `[]` stays
+ * one segment and cannot spell a listed path.
+ */
+const pathKey = (segments: readonly string[]): string => JSON.stringify(segments);
+
+function redactValue(
+  value: unknown,
+  segments: readonly string[],
+  structural: ReadonlySet<string>,
+  redact: SecretRedactor
+): unknown {
+  if (typeof value === 'string')
+    return structural.has(pathKey(segments)) ? redact.exact(value) : redact.full(value);
+  if (value instanceof Date) return redactValue(value.toISOString(), segments, structural, redact);
+  if (Array.isArray(value))
+    return value.map(item => redactValue(item, [...segments, '[]'], structural, redact));
   if (typeof value === 'object' && value !== null)
     return Object.fromEntries(
       Object.entries(value).map(([key, item]) => [
         key,
-        redactValue(item, STRUCTURAL_KEYS.has(key), redact),
+        redactValue(item, [...segments, key], structural, redact),
       ])
     );
   return value;
 }
 
-/** `value` as JSON, each string redacted by the rule of the key that holds it. */
-export function redactedJson(value: unknown): string {
-  return JSON.stringify(redactValue(value, false, secretRedactor()), null, 2);
+/**
+ * `value` as JSON with every string redacted. A string at one of `structuralPaths` gets
+ * only the exact-value redaction. Every other string gets the full redaction, whatever its
+ * key is named: caller and stored data (`metadata`, `inputs`, node output, user messages,
+ * errors, log tails) and any field or subtree a tool adds later without listing it.
+ */
+export function redactedJson(value: unknown, structuralPaths: readonly StructuralPath[]): string {
+  const structural = new Set(structuralPaths.map(path => pathKey(pathSegments(path))));
+  return JSON.stringify(redactValue(value, [], structural, secretRedactor()), null, 2);
 }

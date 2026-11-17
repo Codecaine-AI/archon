@@ -228,8 +228,8 @@ Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an 
 
 The server redacts every string in a tool result or a tool error before it sends it. Its credential values are the values of env keys that end in `TOKEN`, `KEY`, `SECRET` or `PASSWORD`, and `DATABASE_URL`. It uses 2 rules:
 
-- A structural field loses only those exact values, so a binding ID that looks like a token, such as `ghs_…`, comes back unchanged. Structural fields are IDs, file names and paths, workflow and node names, the launch folder, host IDs, statuses and timestamps.
-- Every other field is free text, such as a user message, a description, an error, node output, inputs and a log tail. It loses those values and also anything that looks like a GitHub App token or a credential in a URL.
+- A structural field loses only those exact values, so a binding ID that looks like a token, such as `ghs_…`, comes back unchanged. Structural fields are the IDs, paths, names, statuses and timestamps that a tool builds at fixed places in its result.
+- Every other field is free text, and it also loses anything that looks like a GitHub App token or a credential in a URL. Caller and stored data, such as run `metadata`, inputs, node output, user messages, errors and log tails, is always free text, whatever its keys are named.
 
 ### Binding writes and the launchd session
 
@@ -241,7 +241,7 @@ The server redacts every string in a tool result or a tool error before it sends
 - A LaunchAgent whose plist stays the same stays loaded. A change to inputs alone does not fire `runAtLoad`.
 - When the install fails after the write, the tool error names the file on disk, what is installed, and the `launchctl` error.
 
-A new `sourceInstanceId` names a new LaunchAgent, so `set_binding` removes the old one before the write. When that removal fails, nothing is written. When the write fails after it, the old schedule is installed again from the old document, and the error says whether that worked.
+A new `sourceInstanceId` names a new LaunchAgent, so `set_binding` removes the old one before it replaces the file. It writes the new document to a temporary file first, so only the final rename can fail after the removal. When the removal fails, nothing is written. When the rename fails, the old plist is put back byte for byte, with the `PATH` it was installed with, and the error says whether that worked.
 
 `fire_binding` and `remove_binding` act only on a plain file named `<bindingId>.json` whose document has that `bindingId`. They refuse a symbolic link and a document that names another binding. `remove_binding` removes the LaunchAgent first, and when `launchd` refuses, the file stays.
 

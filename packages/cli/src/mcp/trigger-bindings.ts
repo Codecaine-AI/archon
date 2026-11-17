@@ -26,6 +26,8 @@ import {
   macosNativeScheduleInstalled,
   NativeScheduleConflictError,
   type NativeScheduleOptions,
+  readMacosNativeSchedulePlist,
+  restoreMacosNativeSchedulePlist,
 } from '../triggers/native-schedule';
 
 export interface TriggerToolContext {
@@ -158,6 +160,11 @@ async function withBindingLock<T>(
   // A later caller waits for this one and every caller before it, even when this one gives up.
   const tail = previous.then(() => finished);
   bindingQueues.set(root, tail);
+  // The entry goes only when its whole tail has settled, and only if no later caller
+  // replaced it. A caller that gives up early must not drop a predecessor still running.
+  void tail.then(() => {
+    if (bindingQueues.get(root) === tail) bindingQueues.delete(root);
+  });
   try {
     if (!(await settlesBefore(previous, deadline))) throw busyError(bindingId, ' in this server');
     await mkdir(root, { recursive: true, mode: 0o700 });
@@ -172,7 +179,6 @@ async function withBindingLock<T>(
     throw busy;
   } finally {
     finish();
-    if (bindingQueues.get(root) === tail) bindingQueues.delete(root);
   }
 }
 
@@ -310,20 +316,24 @@ function changedPaths(before: unknown, after: unknown, prefix = ''): string[] {
   );
 }
 
-/** Writes the document as the caller wrote it, not its parsed form with defaults filled in. */
-async function writeBindingFile(path: string, document: unknown): Promise<void> {
+/**
+ * Writes the document, as the caller wrote it and not its parsed form with defaults
+ * filled in, to a new temporary file beside `path`. Only `commit` replaces `path`.
+ */
+async function prepareBindingFile(
+  path: string,
+  document: unknown
+): Promise<{ commit: () => Promise<void>; discard: () => Promise<void> }> {
   const temporary = `${path}.${randomUUID()}.tmp`;
   await writeFile(temporary, `${JSON.stringify(document, null, 2)}\n`, {
     encoding: 'utf8',
     flag: 'wx',
     mode: 0o600,
   });
-  try {
-    await rename(temporary, path);
-  } catch (error) {
-    await unlink(temporary).catch(() => undefined);
-    throw error;
-  }
+  return {
+    commit: () => rename(temporary, path),
+    discard: () => unlink(temporary).catch(() => undefined),
+  };
 }
 
 type ScheduleAction = 'installed' | 'unchanged' | 'replaced';
@@ -385,45 +395,44 @@ async function installedState(
  * firing this file. It is removed before the document is replaced: once the new document
  * is on disk, nothing records the old job, so a retry could not find it.
  */
-async function removeReplacedSchedule(
+/**
+ * A new `sourceInstanceId` names a different LaunchAgent, and the old one would keep
+ * firing this file. Returns the old job's plist, byte for byte, when there is a job to
+ * replace, so a failed commit can put back exactly what was installed.
+ */
+async function readReplacedSchedule(
   context: TriggerToolContext,
   previous: TimerTriggerConfig | undefined,
   config: TimerTriggerConfig
-): Promise<boolean> {
-  if (!previous || timerScheduleId(previous) === timerScheduleId(config)) return false;
-  try {
-    return await removeTimerSchedule(previous, context.nativeSchedule);
-  } catch (error) {
-    throw new Error(
-      `The schedule of the previous document (sourceInstanceId '${previous.sourceInstanceId}') could not be removed, so nothing was written: ${error instanceof Error ? error.message : String(error)}`,
-      { cause: error }
-    );
-  }
+): Promise<string | null> {
+  if (!previous || timerScheduleId(previous) === timerScheduleId(config)) return null;
+  return await readMacosNativeSchedulePlist(timerScheduleId(previous), context.nativeSchedule);
 }
 
 const errorText = (error: unknown): string =>
   error instanceof Error ? error.message : String(error);
 
 /**
- * The write failed after the previous document's schedule was removed. The previous
- * document is still on disk, since the write replaces the file only by its final rename,
- * so its schedule is installed again from it. The error says whether that worked.
+ * The rename onto the binding file failed after the old job was removed. The previous
+ * document is still on disk, so the old plist goes back byte for byte: it keeps the PATH
+ * and program arguments of the shell that installed it. The error says whether it did.
  */
 async function restorePreviousSchedule(
   context: TriggerToolContext,
   bindingId: string,
   path: string,
   previous: TimerTriggerConfig,
-  writeError: unknown
+  plist: string,
+  commitError: unknown
 ): Promise<BindingScheduleError> {
   let installed: string;
   try {
-    await installTimerSchedule(context.host, previous, path, context.nativeSchedule);
-    installed = "The previous document's schedule is installed again.";
+    await restoreMacosNativeSchedulePlist(timerScheduleId(previous), plist, context.nativeSchedule);
+    installed = "The previous document's schedule is installed again, from its saved plist.";
   } catch (error) {
     installed = `The previous document's schedule is NOT installed: ${errorText(error)}`;
   }
-  const message = errorText(writeError);
+  const message = errorText(commitError);
   return new BindingScheduleError(`Binding file ${path} was not written: ${message} ${installed}`, {
     bindingId,
     file: path,
@@ -431,6 +440,44 @@ async function restorePreviousSchedule(
     installed,
     error: message,
   });
+}
+
+/**
+ * Replace the binding file with the prepared document. When the document names a new
+ * LaunchAgent, the old one is removed first; the document is already on disk beside the
+ * file, so only the final rename can fail after that removal.
+ */
+async function commitDocument(
+  context: TriggerToolContext,
+  bindingId: string,
+  path: string,
+  document: unknown,
+  previous: TimerTriggerConfig | undefined,
+  config: TimerTriggerConfig
+): Promise<void> {
+  await mkdir(context.bindingsDir, { recursive: true, mode: 0o700 });
+  const prepared = await prepareBindingFile(path, document);
+  try {
+    const replacedPlist = await readReplacedSchedule(context, previous, config);
+    if (replacedPlist !== null && previous) {
+      try {
+        await removeTimerSchedule(previous, context.nativeSchedule);
+      } catch (error) {
+        throw new Error(
+          `The schedule of the previous document (sourceInstanceId '${previous.sourceInstanceId}') could not be removed, so nothing was written: ${errorText(error)}`,
+          { cause: error }
+        );
+      }
+    }
+    try {
+      await prepared.commit();
+    } catch (error) {
+      if (replacedPlist === null || !previous) throw error;
+      throw await restorePreviousSchedule(context, bindingId, path, previous, replacedPlist, error);
+    }
+  } finally {
+    await prepared.discard();
+  }
 }
 
 async function writeAndSchedule(
@@ -442,14 +489,7 @@ async function writeAndSchedule(
   const path = bindingFilePath(context.bindingsDir, bindingId);
   const before = await readBinding(path, bindingId);
   const previous = before.kind === 'valid' ? before.config : undefined;
-  const removedPrevious = await removeReplacedSchedule(context, previous, config);
-  try {
-    await mkdir(context.bindingsDir, { recursive: true, mode: 0o700 });
-    await writeBindingFile(path, document);
-  } catch (error) {
-    if (!removedPrevious || !previous) throw error;
-    throw await restorePreviousSchedule(context, bindingId, path, previous, error);
-  }
+  await commitDocument(context, bindingId, path, document, previous, config);
   const changes =
     before.kind === 'valid'
       ? changedPaths(before.config, config)
