@@ -25,8 +25,8 @@ export async function registerHostProviders(): Promise<void> {
     }
   }
   registerOpencodeProvider();
-  // Source checkouts only: the fork links @codecaine-ai/agent-kernel from a local checkout,
-  // and a release host keeps inferring its default from its one installed provider.
+  // Source checkouts only: a release host infers its default provider from its one installed
+  // provider, and registering agent-kernel there too would change that default.
   if (!BUNDLED_IS_BINARY) registerAgentKernelProvider();
   registerCopilotProvider();
   for (const registration of await loadProviderPlugins(getPluginsPath(), {
