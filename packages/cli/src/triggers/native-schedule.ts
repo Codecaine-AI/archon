@@ -4,6 +4,7 @@ import { access, link, mkdir, readFile, unlink, writeFile } from 'node:fs/promis
 import { homedir } from 'node:os';
 import { isAbsolute, join } from 'node:path';
 import { promisify } from 'node:util';
+import { type TimerCalendar, timerCalendarSchema } from '@archon/workflows/schemas/resource-start';
 
 export const MACOS_TRIGGER_JOB_LABEL_PREFIX = 'com.archon.trigger.';
 
@@ -14,10 +15,10 @@ export interface NativeScheduleConfig {
   archonHome: string;
   /** The installing shell's PATH; launchd's default PATH lacks bun, gh, and provider CLIs. */
   path: string;
-  schedule: {
-    intervalSeconds: number;
-    runAtLoad: boolean;
-  };
+  /** A fixed interval (`StartInterval`) or local clock times (`StartCalendarInterval`). */
+  schedule:
+    | { intervalSeconds: number; runAtLoad: boolean }
+    | { calendar: TimerCalendar; runAtLoad: boolean };
 }
 
 export interface RenderedMacosLaunchAgent {
@@ -59,6 +60,44 @@ function assertAbsolute(name: string, value: string): void {
   }
 }
 
+function renderIntervalStart(intervalSeconds: number): string {
+  if (!Number.isSafeInteger(intervalSeconds) || intervalSeconds <= 0) {
+    throw new Error('Native schedule intervalSeconds must be a positive integer');
+  }
+  return `    <key>StartInterval</key>
+    <integer>${String(intervalSeconds)}</integer>`;
+}
+
+/** launchd's own key names; an omitted key matches every value. */
+const CALENDAR_KEYS = [
+  ['hour', 'Hour'],
+  ['minute', 'Minute'],
+  ['weekday', 'Weekday'],
+  ['day', 'Day'],
+] as const;
+
+function renderCalendarStart(calendar: TimerCalendar): string {
+  const parsed = timerCalendarSchema.safeParse(calendar);
+  if (!parsed.success) {
+    throw new Error(
+      `Native schedule calendar is invalid: ${parsed.error.issues.map(issue => `${issue.path.join('.')} ${issue.message}`).join('; ')}`
+    );
+  }
+  const entries = parsed.data.map(entry => {
+    const keys = CALENDAR_KEYS.flatMap(([field, key]) => {
+      const value = entry[field];
+      return value === undefined
+        ? []
+        : [`        <key>${key}</key>\n        <integer>${String(value)}</integer>`];
+    });
+    return `      <dict>\n${keys.join('\n')}\n      </dict>`;
+  });
+  return `    <key>StartCalendarInterval</key>
+    <array>
+${entries.join('\n')}
+    </array>`;
+}
+
 export function renderMacosLaunchAgent(config: NativeScheduleConfig): RenderedMacosLaunchAgent {
   const label = jobLabel(config.id);
   const [executable, ...args] = config.programArguments;
@@ -72,12 +111,10 @@ export function renderMacosLaunchAgent(config: NativeScheduleConfig): RenderedMa
   if (config.programArguments.some(argument => argument.length === 0)) {
     throw new Error('Native schedule program arguments must not be empty');
   }
-  if (
-    !Number.isSafeInteger(config.schedule.intervalSeconds) ||
-    config.schedule.intervalSeconds <= 0
-  ) {
-    throw new Error('Native schedule intervalSeconds must be a positive integer');
-  }
+  const start =
+    'calendar' in config.schedule
+      ? renderCalendarStart(config.schedule.calendar)
+      : renderIntervalStart(config.schedule.intervalSeconds);
   if (typeof config.schedule.runAtLoad !== 'boolean') {
     throw new Error('Native schedule runAtLoad must be a boolean');
   }
@@ -107,8 +144,7 @@ ${programArguments}
       <key>PATH</key>
       <string>${escapeXml(config.path)}</string>
     </dict>
-    <key>StartInterval</key>
-    <integer>${String(config.schedule.intervalSeconds)}</integer>
+${start}
     <key>RunAtLoad</key>
     <${config.schedule.runAtLoad ? 'true' : 'false'}/>
   </dict>

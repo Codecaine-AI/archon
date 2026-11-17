@@ -23,6 +23,7 @@ import {
   resourceStartBindingIntentSchema,
   RUN_SOURCE_ACTOR,
   type SourceReceiptInput,
+  timerCalendarSchema,
 } from '@archon/workflows/schemas/resource-start';
 import { readWorkflowSourceState } from '@archon/workflows/schemas/workflow-run';
 import { FileStoreUnsupportedError } from '@archon/workflows/file-store';
@@ -43,9 +44,10 @@ export const timerTriggerConfigSchema = z
     version: z.literal(1),
     sourceInstanceId: z.string().min(1),
     binding: resourceStartBindingIntentSchema.omit({ eventInputs: true }),
-    schedule: z
-      .object({ intervalSeconds: z.number().int().positive(), runAtLoad: z.boolean() })
-      .strict(),
+    schedule: z.union([
+      z.object({ intervalSeconds: z.number().int().positive(), runAtLoad: z.boolean() }).strict(),
+      z.object({ calendar: timerCalendarSchema, runAtLoad: z.boolean() }).strict(),
+    ]),
   })
   .strict();
 

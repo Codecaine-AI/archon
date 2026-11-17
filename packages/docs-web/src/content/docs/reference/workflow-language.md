@@ -2219,7 +2219,7 @@ bindings:
     capacity: 1                       # optional, default 1
     overlap: skip                     # skip | queue
     isolation: { kind: worktree }     # optional, default { kind: default }
-    schedule: { interval_seconds: 1800 }
+    schedule: { interval_seconds: 1800 }   # or { calendar: [{ hour: 4, minute: 0 }] }
     inputs:
       repo_host: { repo: host }       # the host of --repo
       repo_path: { repo: path }       # the owner/name of --repo
@@ -2238,7 +2238,9 @@ bindings:
 
 Each binding sets exactly one of `schedule:` (a timer binding, written as a file
 `archon trigger fire --config` reads) or `event:` (an entry for the GitHub source plugin's
-`bindings` array). `capacity`, `overlap` and `isolation` mean what they mean in a
+`bindings` array). A `schedule:` holds one of `interval_seconds` or `calendar`, the clock
+times of a [native schedule](/guides/workflow-triggers/#configure-a-native-macos-schedule).
+The generated file sets `runAtLoad: false`. `capacity`, `overlap` and `isolation` mean what they mean in a
 [binding](/guides/workflow-triggers/#choose-a-resource-capacity-and-overlap-policy). The
 resource is written as `<pack>:<host>/<owner>/<name>:<resource>`, so bindings that declare the
 same `resource` share its slots. With `resource_scope: host` it is

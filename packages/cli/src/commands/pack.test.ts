@@ -151,6 +151,22 @@ describe('archon pack bindings', () => {
     expect(printed).toContain(`archon trigger schedule install --config '${sweepPath}'`);
   });
 
+  it('writes a calendar timer binding the timer loader accepts', async () => {
+    await writePack(
+      'bindings:\n  nightly:\n    workflow: fixture-sweep\n    resource: nightly\n    overlap: skip\n    schedule:\n      calendar: [{ hour: 4, minute: 0 }, { hour: 10, minute: 0, weekday: 0 }]\n'
+    );
+    await packCommand('bindings', ['fixture'], options());
+
+    const config = timerTriggerConfigSchema.parse(await readJson(await fileFor('nightly')));
+    expect(config.schedule).toEqual({
+      calendar: [
+        { hour: 4, minute: 0 },
+        { hour: 10, minute: 0, weekday: 0 },
+      ],
+      runAtLoad: false,
+    });
+  });
+
   it('writes an event binding the GitHub source plugin accepts', async () => {
     await writePack(DECLARATION);
     await packCommand(

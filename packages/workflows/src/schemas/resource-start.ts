@@ -272,6 +272,26 @@ export const resourceStartBindingIntentSchema = z
   .strict();
 export type ResourceStartBindingIntent = z.infer<typeof resourceStartBindingIntentSchema>;
 
+/**
+ * A timer's clock times, in the host's local time. Each entry is one launchd
+ * `StartCalendarInterval` dictionary: an omitted `weekday` or `day` matches every one.
+ * `weekday` 0 is Sunday. Timer binding files and pack timer bindings share this shape.
+ */
+export const timerCalendarSchema = z
+  .array(
+    z
+      .object({
+        minute: z.number().int().min(0).max(59),
+        hour: z.number().int().min(0).max(23),
+        weekday: z.number().int().min(0).max(6).optional(),
+        day: z.number().int().min(1).max(31).optional(),
+      })
+      .strict()
+  )
+  .min(1)
+  .max(24);
+export type TimerCalendar = z.infer<typeof timerCalendarSchema>;
+
 const sourceReceiptAcceptanceBaseSchema = z
   .object({
     receipt: sourceReceiptInputSchema,
