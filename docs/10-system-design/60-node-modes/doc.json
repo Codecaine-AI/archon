@@ -1,0 +1,944 @@
+{
+  "schemaVersion": 1,
+  "id": "doc-c63e8676e22adf811b28207696399137",
+  "title": "Node Modes: extract and decide",
+  "root": "root",
+  "blocks": {
+    "root": {
+      "id": "root",
+      "type": "paragraph",
+      "props": {},
+      "children": [
+        "nm-lead",
+        "nm-h-shared",
+        "nm-shared-lead",
+        "nm-shared-1",
+        "nm-shared-2",
+        "nm-shared-3",
+        "nm-shared-4",
+        "nm-h-ex",
+        "nm-ex-lead",
+        "nm-ex-shape",
+        "nm-ex-1",
+        "nm-ex-callout",
+        "nm-h-dec",
+        "nm-dec-lead",
+        "nm-dec-shape",
+        "nm-dec-1",
+        "nm-dec-out",
+        "nm-dec-2",
+        "nm-dec-3",
+        "nm-h-map",
+        "nm-map-lead",
+        "nm-map-table",
+        "nm-h-engine",
+        "nm-engine-lead",
+        "nm-engine-1",
+        "nm-engine-2",
+        "nm-h-yaml",
+        "nm-yaml-lead",
+        "nm-yaml"
+      ]
+    },
+    "nm-lead": {
+      "id": "nm-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fork adds two node modes to the Archon DAG grammar. An "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node makes one typed model call, and a "
+        },
+        {
+          "insert": "decide",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node classifies its input into one value of an enum. Neither mode runs an agent turn. Upstream Archon has no typed-extraction node and no classify node."
+        }
+      ],
+      "children": []
+    },
+    "nm-h-shared": {
+      "id": "nm-h-shared",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Rules Both Modes Share"
+        }
+      ],
+      "children": []
+    },
+    "nm-shared-lead": {
+      "id": "nm-shared-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The grammar of both modes lives in "
+        },
+        {
+          "insert": "packages/workflows/src/schemas/model-node-modes.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The loader turns each node into an agent node on provider "
+        },
+        {
+          "insert": "agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that carries a "
+        },
+        {
+          "insert": "model_node",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " config."
+        }
+      ],
+      "children": []
+    },
+    "nm-shared-1": {
+      "id": "nm-shared-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The loader refuses a "
+        },
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " other than "
+        },
+        {
+          "insert": "agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The node runs on "
+        },
+        {
+          "insert": "agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the YAML names no provider."
+        }
+      ],
+      "children": []
+    },
+    "nm-shared-2": {
+      "id": "nm-shared-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The loader refuses each of the 18 agent-turn keys in "
+        },
+        {
+          "insert": "AGENT_TURN_KEYS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", such as "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "skills",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "effort",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-shared-3": {
+      "id": "nm-shared-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No workflow or config default sets the provider, model, tier, preset, or effort of the node. The provider picks the model from "
+        },
+        {
+          "insert": "model_node",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-shared-4": {
+      "id": "nm-shared-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The rendered "
+        },
+        {
+          "insert": "input",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " template reaches the provider as the prompt. The pack root reaches it as "
+        },
+        {
+          "insert": "PACK_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "options.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-h-ex": {
+      "id": "nm-h-ex",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Mode"
+        }
+      ],
+      "children": []
+    },
+    "nm-ex-lead": {
+      "id": "nm-ex-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node runs one BAML function and returns a typed object. The shape below is the "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node of the email intake example."
+        }
+      ],
+      "children": []
+    },
+    "nm-ex-shape": {
+      "id": "nm-ex-shape",
+      "type": "state-shape",
+      "props": {
+        "description": "The YAML keys of one extract node.",
+        "example": "{\"id\":\"extract\",\"depends_on\":[\"route\"],\"when\":\"$route.output.lane == 'support'\",\"extract\":{\"function\":\"ExtractSupportEmail\",\"input\":\"$INPUTS.raw\"},\"tier\":\"fast\",\"retries\":2,\"output_format\":{\"type\":\"object\",\"properties\":{\"sender\":{\"type\":\"string\"},\"ask\":{\"type\":\"string\"}},\"required\":[\"sender\",\"ask\"]}}",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "depends_on",
+            "type": "string[]",
+            "required": false
+          },
+          {
+            "name": "when",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "extract",
+            "type": "object",
+            "fields": [
+              {
+                "name": "function",
+                "type": "string",
+                "description": "The BAML function that the node calls."
+              },
+              {
+                "name": "input",
+                "type": "string",
+                "description": "The template that renders the call input, such as $INPUTS.raw."
+              }
+            ]
+          },
+          {
+            "name": "tier",
+            "type": "\"fast\" | \"standard\" | \"strong\"",
+            "required": false,
+            "description": "The model tier alias. The default is fast."
+          },
+          {
+            "name": "retries",
+            "type": "integer",
+            "required": false,
+            "description": "Zero or more. The default is 2."
+          },
+          {
+            "name": "output_format",
+            "type": "object",
+            "description": "The JSON Schema of the result. The engine checks the result against it."
+          }
+        ],
+        "name": "ExtractNode"
+      },
+      "children": []
+    },
+    "nm-ex-1": {
+      "id": "nm-ex-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The loader refuses an "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node without "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and it refuses an "
+        },
+        {
+          "insert": "extract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block without "
+        },
+        {
+          "insert": "function",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-ex-callout": {
+      "id": "nm-ex-callout",
+      "type": "callout",
+      "props": {
+        "title": "JSON Schema Refs Wait for a Later Version",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "Version 1 of the extract mode supports only "
+        },
+        {
+          "insert": "extract.function",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so the loader refuses a node that sets "
+        },
+        {
+          "insert": "extract.schema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A node that sets both keys gets an error that names the pair."
+        }
+      ],
+      "children": []
+    },
+    "nm-h-dec": {
+      "id": "nm-h-dec",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "decide",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Mode"
+        }
+      ],
+      "children": []
+    },
+    "nm-dec-lead": {
+      "id": "nm-dec-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "decide",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node asks one question about its input and returns one value of its enum. The node runs a pinned classifier, so each answer carries a probability from the model itself. The shape below is the "
+        },
+        {
+          "insert": "classify",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node of the email intake example."
+        }
+      ],
+      "children": []
+    },
+    "nm-dec-shape": {
+      "id": "nm-dec-shape",
+      "type": "state-shape",
+      "props": {
+        "description": "The YAML keys of one decide node.",
+        "example": "{\"id\":\"classify\",\"depends_on\":[\"extract\"],\"decide\":{\"question\":\"What does this email ask for?\",\"enum\":[\"reply\",\"code_change\",\"ignore\",\"other\"],\"input\":\"$extract.output\",\"classifier\":\"typesafe/jev-1.13.0\",\"threshold\":{\"minProbability\":0.7,\"minMargin\":0.2}}}",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "depends_on",
+            "type": "string[]",
+            "required": false
+          },
+          {
+            "name": "when",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "decide",
+            "type": "object",
+            "fields": [
+              {
+                "name": "question",
+                "type": "string"
+              },
+              {
+                "name": "enum",
+                "type": "string[]",
+                "description": "At least 2 values with no repeats. It must include other."
+              },
+              {
+                "name": "input",
+                "type": "string",
+                "description": "The template that renders the call input, such as $extract.output."
+              },
+              {
+                "name": "classifier",
+                "type": "string",
+                "required": false,
+                "description": "The Pi model id. The default is typesafe/jev-1.13.0."
+              },
+              {
+                "name": "threshold",
+                "type": "object",
+                "required": false,
+                "fields": [
+                  {
+                    "name": "minProbability",
+                    "type": "number",
+                    "description": "Greater than 0 and at most 1."
+                  },
+                  {
+                    "name": "minMargin",
+                    "type": "number",
+                    "description": "The lead of the top value over the next value. At least 0 and less than 1."
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "name": "DecideNode"
+      },
+      "children": []
+    },
+    "nm-dec-1": {
+      "id": "nm-dec-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The loader refuses "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a "
+        },
+        {
+          "insert": "decide",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node. The node always outputs the "
+        },
+        {
+          "insert": "DecideOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " object below."
+        }
+      ],
+      "children": []
+    },
+    "nm-dec-out": {
+      "id": "nm-dec-out",
+      "type": "state-shape",
+      "props": {
+        "description": "The node output that later nodes read.",
+        "example": "{\"choice\":\"other\",\"reason\":\"low-confidence\",\"probability\":0.41,\"abstained\":true}",
+        "fields": [
+          {
+            "name": "choice",
+            "type": "string",
+            "description": "One value of decide.enum."
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          },
+          {
+            "name": "probability",
+            "type": "number",
+            "description": "From 0 to 1, from the classifier."
+          },
+          {
+            "name": "abstained",
+            "type": "boolean"
+          }
+        ],
+        "name": "DecideOutput"
+      },
+      "children": []
+    },
+    "nm-dec-2": {
+      "id": "nm-dec-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "When the classifier refuses or abstains for low confidence, "
+        },
+        {
+          "insert": "choice",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "other",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-dec-3": {
+      "id": "nm-dec-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An engine error fails the node."
+        }
+      ],
+      "children": []
+    },
+    "nm-h-map": {
+      "id": "nm-h-map",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Where Each Mode Comes From"
+        }
+      ],
+      "children": []
+    },
+    "nm-map-lead": {
+      "id": "nm-map-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each mode ports one model node of the agent kernel. The kernel paths are in the Codecaine-AI/agent-kernel repo."
+        }
+      ],
+      "children": []
+    },
+    "nm-map-table": {
+      "id": "nm-map-table",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Mode",
+          "Kernel model node",
+          "Kernel source"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "extract",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "kernel.call",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "packages/kernel/src/model-nodes/call",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "decide",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "kernel.decide",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "packages/kernel/src/model-nodes/decide",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ],
+        "title": "Kernel source of each mode"
+      },
+      "children": []
+    },
+    "nm-h-engine": {
+      "id": "nm-h-engine",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Routing and Trace"
+        }
+      ],
+      "children": []
+    },
+    "nm-engine-lead": {
+      "id": "nm-engine-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The engine schedules both modes like any other agent node."
+        }
+      ],
+      "children": []
+    },
+    "nm-engine-1": {
+      "id": "nm-engine-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A later node's "
+        },
+        {
+          "insert": "when",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads the choice, such as "
+        },
+        {
+          "insert": "$classify.output.choice == 'reply'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "nm-engine-2": {
+      "id": "nm-engine-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Each node attempt gets the 6 trace tags as "
+        },
+        {
+          "insert": "TRACE_*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " variables, as "
+        },
+        {
+          "insert": "Purpose",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "00-foundation/10-purpose"
+            }
+          }
+        },
+        {
+          "insert": " describes."
+        }
+      ],
+      "children": []
+    },
+    "nm-h-yaml": {
+      "id": "nm-h-yaml",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Email Intake Example"
+        }
+      ],
+      "children": []
+    },
+    "nm-yaml-lead": {
+      "id": "nm-yaml-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workflow below is the test fixture "
+        },
+        {
+          "insert": "packages/workflows/src/schemas/__fixtures__/model-node-modes/.archon/workflows/intake/email-intake/email-intake.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It routes an email, extracts the ask, classifies it, and then drafts a reply or changes code."
+        }
+      ],
+      "children": []
+    },
+    "nm-yaml": {
+      "id": "nm-yaml",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: email-intake\ndescription: Route, extract, classify, then reply or change code.\ninputs:\n  message_id: { required: true }\n  raw: { required: true }\n\nnodes:\n  - id: route\n    bash: |\n      echo \"$INPUTS_RAW\" | jq -c '{lane: (if .to == \"support@acme.dev\" then \"support\" else \"other\" end)}'\n\n  - id: extract\n    depends_on: [route]\n    when: \"$route.output.lane == 'support'\"\n    extract:\n      function: ExtractSupportEmail\n      input: $INPUTS.raw\n    tier: fast\n    retries: 2\n    output_format:\n      type: object\n      properties: { sender: { type: string }, ask: { type: string } }\n      required: [sender, ask]\n\n  - id: classify\n    depends_on: [extract]\n    decide:\n      question: What does this email ask for?\n      enum: [reply, code_change, ignore, other]\n      input: $extract.output\n\n  - id: draft-reply\n    depends_on: [classify]\n    when: \"$classify.output.choice == 'reply'\"\n    provider: agent-kernel\n    model: email-reply-drafter\n    prompt: $extract.output\n\n  - id: code-change\n    depends_on: [classify]\n    when: \"$classify.output.choice == 'code_change'\"\n    provider: claude\n    prompt: Make the change this email asks for. $extract.output"
+        }
+      ],
+      "children": []
+    }
+  }
+}

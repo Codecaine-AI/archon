@@ -1,0 +1,1073 @@
+{
+  "schemaVersion": 1,
+  "id": "doc-52834b5daebdb205d51faf0ce18b5266",
+  "title": "Purpose",
+  "root": "root",
+  "blocks": {
+    "root": {
+      "id": "root",
+      "type": "paragraph",
+      "props": {},
+      "children": [
+        "pu-lead",
+        "pu-h-what",
+        "pu-what-lead",
+        "pu-what-1",
+        "pu-what-2",
+        "pu-what-3",
+        "pu-what-4",
+        "pu-h-change",
+        "pu-change-lead",
+        "pu-change-table",
+        "pu-change-ids",
+        "pu-change-kernel",
+        "pu-change-trace",
+        "pu-change-modes",
+        "pu-h-same",
+        "pu-same-lead",
+        "pu-same-1",
+        "pu-same-2",
+        "pu-same-3",
+        "pu-same-4",
+        "pu-h-commit",
+        "pu-commit-lead",
+        "pu-commit-1",
+        "pu-commit-2",
+        "pu-h-run",
+        "pu-run-lead",
+        "pu-run-1",
+        "pu-run-2",
+        "pu-h-docs",
+        "pu-docs-lead",
+        "pu-docs-tree",
+        "pu-docs-1",
+        "pu-docs-2"
+      ]
+    },
+    "pu-lead": {
+      "id": "pu-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codecaine-AI/archon is a public fork of coleam00/Archon, the workflow engine and scheduler. The fork adds two model node modes, trace tags on each AI node attempt, and the agent kernel as an in-process provider. Everything else stays upstream code. This page says what the fork is, what it changes, and how its commits and docs work."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-what": {
+      "id": "pu-h-what",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What the Fork Is"
+        }
+      ],
+      "children": []
+    },
+    "pu-what-lead": {
+      "id": "pu-what-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fork tracks upstream Archon, and it moves to a new upstream release only when the maintainers pick that release."
+        }
+      ],
+      "children": []
+    },
+    "pu-what-1": {
+      "id": "pu-what-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The fork starts from coleam00/Archon at one pinned commit, "
+        },
+        {
+          "insert": "e783f20",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "pu-what-2": {
+      "id": "pu-what-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The repo keeps coleam00/Archon as the "
+        },
+        {
+          "insert": "upstream",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remote, and the public fork Codecaine-AI/archon is "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "pu-what-3": {
+      "id": "pu-what-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A rebase moves the fork onto an upstream release. The fork does not take upstream commits between releases."
+        }
+      ],
+      "children": []
+    },
+    "pu-what-4": {
+      "id": "pu-what-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Every fork commit is public, and that includes each fork-only commit. A fork commit holds no key, no token, and no path from a private machine or workspace."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-change": {
+      "id": "pu-h-change",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What the Fork Changes"
+        }
+      ],
+      "children": []
+    },
+    "pu-change-lead": {
+      "id": "pu-change-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fork ports ideas from the agent kernel into Archon. Each row names the Archon file that changes, the tag of its commit, and whether the change is in the code."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-table": {
+      "id": "pu-change-table",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Change",
+          "Archon file",
+          "Tag",
+          "State"
+        ],
+        "rows": [
+          [
+            "Hash ids for events that name their own occurrence",
+            [
+              {
+                "insert": "packages/core/src/db/workflow-events.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fork-only",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Built"
+          ],
+          [
+            [
+              {
+                "insert": "extract",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and "
+              },
+              {
+                "insert": "decide",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node modes"
+              }
+            ],
+            [
+              {
+                "insert": "packages/workflows/src/schemas/model-node-modes.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fork-only",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Built"
+          ],
+          [
+            [
+              {
+                "insert": "agent-kernel",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " provider"
+              }
+            ],
+            [
+              {
+                "insert": "packages/providers/src/community/agent-kernel/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fork-only",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Built"
+          ],
+          [
+            [
+              {
+                "insert": "Trace tags and "
+              },
+              {
+                "insert": "PACK_DIR",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " in the AI node environment"
+              }
+            ],
+            [
+              {
+                "insert": "packages/workflows/src/exec-environment.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fork-only",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Built"
+          ],
+          [
+            "Run, node, attempt, and parent ids on each event",
+            [
+              {
+                "insert": "packages/workflows/src/schemas/workflow-event.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "upstream-candidate",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Planned"
+          ],
+          [
+            "Span events",
+            [
+              {
+                "insert": "packages/workflows/src/store/event-types.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fork-only",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Planned"
+          ],
+          [
+            "Prompt hash on the provider result",
+            [
+              {
+                "insert": "packages/provider-contract/src/agent-provider.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "upstream-candidate",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Planned"
+          ],
+          [
+            "Trace view",
+            [
+              {
+                "insert": "@archon/server",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " route and "
+              },
+              {
+                "insert": "@archon/web",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " console view"
+              }
+            ],
+            [
+              {
+                "insert": "upstream-candidate",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Planned"
+          ]
+        ],
+        "title": "Fork changes"
+      },
+      "children": []
+    },
+    "pu-change-ids": {
+      "id": "pu-change-ids",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Hash Ids",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": [
+        "pu-change-ids-a",
+        "pu-change-ids-b",
+        "pu-change-ids-c"
+      ]
+    },
+    "pu-change-ids-a": {
+      "id": "pu-change-ids-a",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Two kinds of event get an id that is a version 8 UUID made from the SHA-256 of the event identity. The first kind is "
+        },
+        {
+          "insert": "provider_event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with an attempt id and a sequence number."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-ids-b": {
+      "id": "pu-change-ids-b",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The second kind is "
+        },
+        {
+          "insert": "node_started",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "node_completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "node_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "node_skipped",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with an invocation id and an attempt id."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-ids-c": {
+      "id": "pu-change-ids-c",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The insert ignores a row whose id exists, so one such event written twice leaves one row. Every other event keeps a random id, as upstream does."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-kernel": {
+      "id": "pu-change-kernel",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Kernel Provider",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": [
+        "pu-change-kernel-a",
+        "pu-change-kernel-b"
+      ]
+    },
+    "pu-change-kernel-a": {
+      "id": "pu-change-kernel-a",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A node with "
+        },
+        {
+          "insert": "provider: agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs the kernel bundle that its "
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names, in the Archon process."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-kernel-b": {
+      "id": "pu-change-kernel-b",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "registerHostProviders",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " registers the provider on every host that does not run a release binary, such as a source checkout. The fork links "
+        },
+        {
+          "insert": "@codecaine-ai/agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from a local checkout until it pins a published version."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-trace": {
+      "id": "pu-change-trace",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Trace Tags and Pack Root",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": [
+        "pu-change-trace-a",
+        "pu-change-trace-b"
+      ]
+    },
+    "pu-change-trace-a": {
+      "id": "pu-change-trace-a",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "buildAiNodeEnvironment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sets the 6 trace tags of one node attempt as "
+        },
+        {
+          "insert": "TRACE_*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " variables: engine, run, node path, invocation, attempt, and loop path."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-trace-b": {
+      "id": "pu-change-trace-b",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It also sets "
+        },
+        {
+          "insert": "PACK_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the pack root of the node's workflow, or to an empty value for a workflow outside a pack. A provider such as "
+        },
+        {
+          "insert": "agent-kernel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads it to find the files of the pack."
+        }
+      ],
+      "children": []
+    },
+    "pu-change-modes": {
+      "id": "pu-change-modes",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Node Modes: extract and decide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "10-system-design/60-node-modes"
+            }
+          }
+        },
+        {
+          "insert": " defines the two new modes."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-same": {
+      "id": "pu-h-same",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What Stays Upstream Code"
+        }
+      ],
+      "children": []
+    },
+    "pu-same-lead": {
+      "id": "pu-same-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every file that no fork commit changes stays identical to upstream at the pinned commit."
+        }
+      ],
+      "children": []
+    },
+    "pu-same-1": {
+      "id": "pu-same-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Triggers, admission, the run lifecycle, resume, and isolation stay upstream code."
+        }
+      ],
+      "children": []
+    },
+    "pu-same-2": {
+      "id": "pu-same-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The Codex and Pi providers stay upstream code. The Claude provider has one fork change in "
+        },
+        {
+          "insert": "packages/providers/src/claude/provider.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where "
+        },
+        {
+          "insert": "buildRequestSubprocessEnv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps the 6 trace header lines of "
+        },
+        {
+          "insert": "ANTHROPIC_CUSTOM_HEADERS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " through the scrub of per-user credentials."
+        }
+      ],
+      "children": []
+    },
+    "pu-same-3": {
+      "id": "pu-same-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Every existing node mode keeps its YAML keys and behavior. The two new modes add keys and change no existing key."
+        }
+      ],
+      "children": []
+    },
+    "pu-same-4": {
+      "id": "pu-same-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The provider plugin protocol stays upstream code. The kernel provider does not use it."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-commit": {
+      "id": "pu-h-commit",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Commit Rule"
+        }
+      ],
+      "children": []
+    },
+    "pu-commit-lead": {
+      "id": "pu-commit-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each fork commit holds one change, and its subject starts with one of two tags. A rebase replays the commits in order, so a conflict names one change."
+        }
+      ],
+      "children": []
+    },
+    "pu-commit-1": {
+      "id": "pu-commit-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "[upstream-candidate]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " marks a change that can go upstream as it is."
+        }
+      ],
+      "children": []
+    },
+    "pu-commit-2": {
+      "id": "pu-commit-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "[fork-only]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " marks a change that stays in the fork. Each rebase replays it on the new release."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-run": {
+      "id": "pu-h-run",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Build and Run"
+        }
+      ],
+      "children": []
+    },
+    "pu-run-lead": {
+      "id": "pu-run-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fork builds with the same Bun toolchain as upstream, and the Authoring pages on installation apply to it."
+        }
+      ],
+      "children": []
+    },
+    "pu-run-1": {
+      "id": "pu-run-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Version 1 runs Archon as a local daemon through "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", built from a fork checkout. Version 1 has no remote execution."
+        }
+      ],
+      "children": []
+    },
+    "pu-run-2": {
+      "id": "pu-run-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The Archon home "
+        },
+        {
+          "insert": "~/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds "
+        },
+        {
+          "insert": "archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the kernel trace database "
+        },
+        {
+          "insert": ".agent-kernel/trace.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "pu-h-docs": {
+      "id": "pu-h-docs",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Docs"
+        }
+      ],
+      "children": []
+    },
+    "pu-docs-lead": {
+      "id": "pu-docs-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fork's docs start from the upstream Archon docs. The script "
+        },
+        {
+          "insert": "scripts/codecaine/import-upstream-docs.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " converts the 66 upstream pages in "
+        },
+        {
+          "insert": "packages/docs-web/src/content/docs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into this corpus, laid out as the tree shows."
+        }
+      ],
+      "children": []
+    },
+    "pu-docs-tree": {
+      "id": "pu-docs-tree",
+      "type": "file-tree",
+      "props": {
+        "entries": [
+          {
+            "path": "docs/00-foundation/",
+            "note": "purpose, upstream home page, and brand"
+          },
+          {
+            "path": "docs/10-system-design/",
+            "note": "upstream reference and adapters, and the node modes page"
+          },
+          {
+            "path": "docs/20-implementation/",
+            "note": "upstream contributing and deployment pages"
+          },
+          {
+            "path": "docs/30-authoring/",
+            "note": "upstream getting started and guides pages"
+          },
+          {
+            "path": "scripts/codecaine/import-upstream-docs.ts",
+            "note": "the import script"
+          }
+        ]
+      },
+      "children": []
+    },
+    "pu-docs-1": {
+      "id": "pu-docs-1",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Each converted page records its upstream path and commit in "
+        },
+        {
+          "insert": "upstream_path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "upstream_commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A rerun of the script picks up upstream changes and changes nothing when upstream is the same."
+        }
+      ],
+      "children": []
+    },
+    "pu-docs-2": {
+      "id": "pu-docs-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The fork writes each page it changes with typed blocks, through the docs tools. The script never writes over a page that lacks its "
+        },
+        {
+          "insert": "generated_by",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " marker, so these pages stay on a rerun."
+        }
+      ],
+      "children": []
+    }
+  }
+}
