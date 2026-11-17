@@ -120,7 +120,10 @@ function generate(
         version: 1,
         sourceInstanceId: bindingName(target, id),
         binding: { ...intent, bindingRevision: null },
-        schedule: { intervalSeconds: binding.schedule.interval_seconds, runAtLoad: false },
+        schedule:
+          'calendar' in binding.schedule
+            ? { calendar: binding.schedule.calendar, runAtLoad: false }
+            : { intervalSeconds: binding.schedule.interval_seconds, runAtLoad: false },
       },
     };
   }

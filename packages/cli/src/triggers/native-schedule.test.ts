@@ -11,6 +11,7 @@ import {
   renderMacosLaunchAgent,
   type NativeScheduleConfig,
 } from './native-schedule';
+import { timerTriggerConfigSchema } from '../commands/trigger';
 
 const execFileAsync = promisify(execFile);
 const tempRoots: string[] = [];
@@ -85,6 +86,205 @@ describe('renderMacosLaunchAgent', () => {
       });
     }
   );
+});
+
+describe('renderMacosLaunchAgent schedules', () => {
+  /** The schedule keys of a rendered plist, between the environment and `RunAtLoad`. */
+  function startKeys(schedule: NativeScheduleConfig['schedule']): string {
+    const { plist } = renderMacosLaunchAgent(config({ schedule }));
+    return plist.slice(plist.indexOf('    </dict>\n') + 12, plist.indexOf('    <key>RunAtLoad'));
+  }
+
+  it('renders an interval job exactly as installed jobs already on disk', () => {
+    // Installation refuses a plist whose bytes differ, so this text must not drift.
+    expect(renderMacosLaunchAgent(config()).plist).toBe(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.archon.trigger.source-refresh</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/archon/bin/archon</string>
+      <string>trigger</string>
+      <string>fire</string>
+      <string>--config</string>
+      <string>/tmp/a&amp;b.json</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/example/Project &lt;one&gt;</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>ARCHON_HOME</key>
+      <string>/Users/example/.archon</string>
+      <key>PATH</key>
+      <string>/Users/example/.bun/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+    </dict>
+    <key>StartInterval</key>
+    <integer>37</integer>
+    <key>RunAtLoad</key>
+    <false/>
+  </dict>
+</plist>
+`);
+  });
+
+  it('renders one clock time as StartCalendarInterval in place of StartInterval', () => {
+    expect(startKeys({ calendar: [{ hour: 4, minute: 0 }], runAtLoad: true })).toBe(
+      `    <key>StartCalendarInterval</key>
+    <array>
+      <dict>
+        <key>Hour</key>
+        <integer>4</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+      </dict>
+    </array>
+`
+    );
+    expect(
+      renderMacosLaunchAgent(
+        config({ schedule: { calendar: [{ hour: 4, minute: 0 }], runAtLoad: true } })
+      ).plist
+    ).toContain('<key>RunAtLoad</key>\n    <true/>');
+  });
+
+  it('renders several clock times, keeping weekday and day only where given', () => {
+    expect(
+      startKeys({
+        calendar: [
+          { hour: 4, minute: 30 },
+          { hour: 10, minute: 0, weekday: 0, day: 1 },
+        ],
+        runAtLoad: false,
+      })
+    ).toBe(
+      `    <key>StartCalendarInterval</key>
+    <array>
+      <dict>
+        <key>Hour</key>
+        <integer>4</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+      <dict>
+        <key>Hour</key>
+        <integer>10</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+        <key>Weekday</key>
+        <integer>0</integer>
+        <key>Day</key>
+        <integer>1</integer>
+      </dict>
+    </array>
+`
+    );
+  });
+
+  it('rejects a calendar launchd cannot run', () => {
+    expect(() =>
+      renderMacosLaunchAgent(config({ schedule: { calendar: [], runAtLoad: false } }))
+    ).toThrow('calendar is invalid');
+    expect(() =>
+      renderMacosLaunchAgent(
+        config({ schedule: { calendar: [{ hour: 24, minute: 0 }], runAtLoad: false } })
+      )
+    ).toThrow('calendar is invalid: 0.hour');
+  });
+
+  it.skipIf(process.platform !== 'darwin')(
+    'gives the job the calendar as macOS reads it',
+    async () => {
+      const directory = await scratchDirectory();
+      const path = join(directory, 'job.plist');
+      const calendar = [
+        { hour: 4, minute: 0 },
+        { hour: 10, minute: 0, weekday: 0 },
+      ];
+      await writeFile(
+        path,
+        renderMacosLaunchAgent(config({ schedule: { calendar, runAtLoad: false } })).plist
+      );
+
+      const { stdout } = await execFileAsync('/usr/bin/plutil', [
+        '-convert',
+        'json',
+        '-o',
+        '-',
+        path,
+      ]);
+      const job = JSON.parse(stdout) as Record<string, unknown>;
+      expect(job.StartCalendarInterval).toEqual([
+        { Hour: 4, Minute: 0 },
+        { Hour: 10, Minute: 0, Weekday: 0 },
+      ]);
+      expect(job).not.toHaveProperty('StartInterval');
+    }
+  );
+});
+
+describe('timer binding schedule', () => {
+  function parse(schedule: unknown): boolean {
+    return timerTriggerConfigSchema.safeParse({
+      version: 1,
+      sourceInstanceId: 'source-1',
+      binding: {
+        bindingId: 'binding-1',
+        bindingRevision: null,
+        hostId: 'host-1',
+        runAsUserId: 'user-1',
+        resource: 'refresh',
+        overlap: 'skip',
+        launch: {
+          cwd: '/Users/example/project',
+          workflowName: 'refresh',
+          inputs: {},
+          isolation: { kind: 'default' },
+        },
+      },
+      schedule,
+    }).success;
+  }
+
+  it.each([
+    ['an interval', { intervalSeconds: 900, runAtLoad: true }],
+    ['one clock time', { calendar: [{ hour: 4, minute: 0 }], runAtLoad: false }],
+    [
+      'clock times with weekday and day',
+      {
+        calendar: [
+          { hour: 10, minute: 0, weekday: 0 },
+          { hour: 0, minute: 59, day: 31 },
+        ],
+        runAtLoad: false,
+      },
+    ],
+  ])('accepts %s', (_name, schedule) => {
+    expect(parse(schedule)).toBe(true);
+  });
+
+  it.each([
+    ['both forms', { intervalSeconds: 900, calendar: [{ hour: 4, minute: 0 }], runAtLoad: true }],
+    ['neither form', { runAtLoad: true }],
+    ['an empty calendar', { calendar: [], runAtLoad: false }],
+    [
+      'more than 24 clock times',
+      {
+        calendar: Array.from({ length: 25 }, (_, minute) => ({ hour: 1, minute })),
+        runAtLoad: false,
+      },
+    ],
+    ['hour 24', { calendar: [{ hour: 24, minute: 0 }], runAtLoad: false }],
+    ['minute 60', { calendar: [{ hour: 4, minute: 60 }], runAtLoad: false }],
+    ['weekday 7', { calendar: [{ hour: 4, minute: 0, weekday: 7 }], runAtLoad: false }],
+    ['day 0', { calendar: [{ hour: 4, minute: 0, day: 0 }], runAtLoad: false }],
+    ['a fractional minute', { calendar: [{ hour: 4, minute: 0.5 }], runAtLoad: false }],
+    ['a missing hour', { calendar: [{ minute: 0 }], runAtLoad: false }],
+    ['an unknown entry key', { calendar: [{ hour: 4, minute: 0, month: 1 }], runAtLoad: false }],
+  ])('rejects %s', (_name, schedule) => {
+    expect(parse(schedule)).toBe(false);
+  });
 });
 
 describe('native schedule installation', () => {

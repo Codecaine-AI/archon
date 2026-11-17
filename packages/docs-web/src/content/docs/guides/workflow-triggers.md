@@ -129,7 +129,35 @@ nodes:
   # ...
 ```
 
-`intervalSeconds` is required and has no default. `runAtLoad` is also required. Set it to `true` to request one start when launchd loads the job, or `false` to wait for the first interval.
+`schedule` takes exactly one of two forms. A file that has both forms, or neither, is rejected.
+
+- `intervalSeconds` starts the workflow every that many seconds. It has no default. launchd writes it as `StartInterval`.
+- `calendar` starts the workflow at clock times. launchd writes it as `StartCalendarInterval`.
+
+`runAtLoad` is required in both forms. Set it to `true` to request one start when launchd loads the job, or `false` to wait for the first interval or clock time.
+
+To run daily at 04:00 and also on Sundays at 10:00, replace the `schedule` above with:
+
+```json
+"schedule": {
+  "calendar": [
+    { "hour": 4, "minute": 0 },
+    { "hour": 10, "minute": 0, "weekday": 0 }
+  ],
+  "runAtLoad": false
+}
+```
+
+`calendar` holds 1 to 24 entries, and the job starts at each one. Each entry takes integers only:
+
+| Key | Range | Required |
+|---|---|---|
+| `minute` | 0 to 59 | Yes |
+| `hour` | 0 to 23 | Yes |
+| `weekday` | 0 to 6, where 0 is Sunday | No. Omit it to match every day of the week. |
+| `day` | 1 to 31, the day of the month | No. Omit it to match every day of the month. |
+
+Clock times are the Mac's local time, because launchd reads them that way. A change of time zone or daylight saving time moves the run with the local clock.
 
 Test the binding once before installing it:
 
@@ -157,13 +185,13 @@ Remove future firings with the same configuration file:
 archon trigger schedule remove --config /Users/alice/.archon/triggers/repository-refresh.json
 ```
 
-Removing a schedule does not cancel work that Archon already accepted. To change its interval or startup behavior, or to record a changed `PATH`, remove the existing job before installing again. A schedule installed before Archon recorded `PATH` needs the same remove and install once; until then its runs cannot find tools outside launchd's default `PATH`.
+Removing a schedule does not cancel work that Archon already accepted. To change its interval, its clock times, its startup behavior, or to record a changed `PATH`, run `archon trigger schedule remove` and then `archon trigger schedule install`. Install refuses to replace a job whose plist differs. A schedule installed before Archon recorded `PATH` needs the same remove and install once; until then its runs cannot find tools outside launchd's default `PATH`.
 
 ### macOS scheduling limits
 
 The installed LaunchAgent runs in the current user's GUI login domain. The user must be logged in, and logout ends that launchd session. No scheduler runs while the computer is powered off.
 
-`StartInterval` behavior during sleep or while the prior command is still running is native launchd behavior and differs across macOS releases. Archon does not promise replay of missed intervals. `runAtLoad` requests one invocation when the job loads; it is not a missed-run queue.
+`StartInterval` and `StartCalendarInterval` behavior during sleep or while the prior command is still running is native launchd behavior and differs across macOS releases. Archon replays no missed interval or clock time. `runAtLoad` requests one invocation when the job loads; it is not a missed-run queue.
 
 For plain schedules, use the trigger workflow to read the current source state when it runs. To report identified items from an external system, use the [polling recipe](#poll-a-system-that-cannot-send-webhooks). Do not depend on one invocation for every wall-clock interval.
 

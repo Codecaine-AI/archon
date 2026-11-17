@@ -54,6 +54,14 @@
         "b-60-workflow-triggers-the-workflow-declares-th-32",
         "b-60-workflow-triggers-yaml-33",
         "b-60-workflow-triggers-intervalseconds-is-req-34",
+        "b-60-workflow-triggers-schedule-interval-34a",
+        "b-60-workflow-triggers-schedule-calendar-34b",
+        "b-60-workflow-triggers-run-at-load-34c",
+        "b-60-workflow-triggers-calendar-example-lead-34d",
+        "b-60-workflow-triggers-calendar-json-34e",
+        "b-60-workflow-triggers-calendar-keys-lead-34f",
+        "b-60-workflow-triggers-calendar-keys-table-34g",
+        "b-60-workflow-triggers-calendar-time-zone-34h",
         "b-60-workflow-triggers-test-the-binding-once-be-35",
         "b-60-workflow-triggers-bash-36",
         "b-60-workflow-triggers-the-command-returns-a-du-37",
@@ -838,14 +846,78 @@
       "props": {},
       "text": [
         {
+          "insert": "schedule",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes exactly one of two forms. The timer loader rejects a file that has both forms or neither form."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-schedule-interval-34a": {
+      "id": "b-60-workflow-triggers-schedule-interval-34a",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
           "insert": "intervalSeconds",
           "attributes": {
             "code": true
           }
         },
         {
-          "insert": " is required and has no default. "
+          "insert": " starts the workflow every that many seconds. It has no default, and launchd receives it as "
         },
+        {
+          "insert": "StartInterval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-schedule-calendar-34b": {
+      "id": "b-60-workflow-triggers-schedule-calendar-34b",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "calendar",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts the workflow at clock times. launchd receives it as "
+        },
+        {
+          "insert": "StartCalendarInterval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-run-at-load-34c": {
+      "id": "b-60-workflow-triggers-run-at-load-34c",
+      "type": "paragraph",
+      "props": {},
+      "text": [
         {
           "insert": "runAtLoad",
           "attributes": {
@@ -853,7 +925,7 @@
           }
         },
         {
-          "insert": " is also required. Set it to "
+          "insert": " is required in both forms. Set it to "
         },
         {
           "insert": "true",
@@ -862,7 +934,7 @@
           }
         },
         {
-          "insert": " to request one start when launchd loads the job, or "
+          "insert": " to request one start when launchd loads the job. Set it to "
         },
         {
           "insert": "false",
@@ -871,7 +943,131 @@
           }
         },
         {
-          "insert": " to wait for the first interval."
+          "insert": " to wait for the first interval or clock time."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-calendar-example-lead-34d": {
+      "id": "b-60-workflow-triggers-calendar-example-lead-34d",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To run daily at 04:00 and on Sundays at 10:00, replace the "
+        },
+        {
+          "insert": "schedule",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " above with this object:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-calendar-json-34e": {
+      "id": "b-60-workflow-triggers-calendar-json-34e",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "\"schedule\": {\n  \"calendar\": [\n    { \"hour\": 4, \"minute\": 0 },\n    { \"hour\": 10, \"minute\": 0, \"weekday\": 0 }\n  ],\n  \"runAtLoad\": false\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-calendar-keys-lead-34f": {
+      "id": "b-60-workflow-triggers-calendar-keys-lead-34f",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "calendar",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds 1 to 24 entries, and the job starts at each one. Each entry takes integers only, and the loader rejects an unknown key. The table lists the entry keys in the order the plist writes them:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-calendar-keys-table-34g": {
+      "id": "b-60-workflow-triggers-calendar-keys-table-34g",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Key",
+          "Range",
+          "Required"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "hour",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "0 to 23",
+            "Yes"
+          ],
+          [
+            [
+              {
+                "insert": "minute",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "0 to 59",
+            "Yes"
+          ],
+          [
+            [
+              {
+                "insert": "weekday",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "0 to 6, where 0 is Sunday",
+            "No, omitted matches every weekday"
+          ],
+          [
+            [
+              {
+                "insert": "day",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "1 to 31, the day of the month",
+            "No, omitted matches every day"
+          ]
+        ],
+        "title": "Calendar entry keys"
+      },
+      "children": []
+    },
+    "b-60-workflow-triggers-calendar-time-zone-34h": {
+      "id": "b-60-workflow-triggers-calendar-time-zone-34h",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Clock times are the Mac's local time, because launchd reads them that way. A change of time zone or daylight saving time moves the run with the local clock."
         }
       ],
       "children": []
@@ -1079,7 +1275,7 @@
       "props": {},
       "text": [
         {
-          "insert": "Removing a schedule does not cancel work that Archon already accepted. To change its interval or startup behavior, or to record a changed "
+          "insert": "Removing a schedule does not cancel work that Archon already accepted. To change the interval, the clock times, the startup behavior, or the recorded "
         },
         {
           "insert": "PATH",
@@ -1088,7 +1284,25 @@
           }
         },
         {
-          "insert": ", remove the existing job before installing again. A schedule installed before Archon recorded "
+          "insert": ", run "
+        },
+        {
+          "insert": "archon trigger schedule remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and then "
+        },
+        {
+          "insert": "archon trigger schedule install",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Install refuses to replace a job whose plist differs. A schedule installed before Archon recorded "
         },
         {
           "insert": "PATH",
@@ -1097,7 +1311,7 @@
           }
         },
         {
-          "insert": " needs the same remove and install once; until then its runs cannot find tools outside launchd's default "
+          "insert": " needs the same remove and install once. Until then, its runs cannot find tools outside launchd's default "
         },
         {
           "insert": "PATH",
@@ -1147,7 +1361,16 @@
           }
         },
         {
-          "insert": " behavior during sleep or while the prior command is still running is native launchd behavior and differs across macOS releases. Archon does not promise replay of missed intervals. "
+          "insert": " and "
+        },
+        {
+          "insert": "StartCalendarInterval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " behavior during sleep, or while the prior command still runs, is native launchd behavior and differs across macOS releases. Archon replays no missed interval or clock time. "
         },
         {
           "insert": "runAtLoad",
@@ -1156,7 +1379,7 @@
           }
         },
         {
-          "insert": " requests one invocation when the job loads; it is not a missed-run queue."
+          "insert": " requests one start when the job loads. It is not a missed-run queue."
         }
       ],
       "children": []

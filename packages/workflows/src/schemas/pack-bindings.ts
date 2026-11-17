@@ -14,6 +14,7 @@ import {
   resourceSlotCapacitySchema,
   resourceStartBindingIntentSchema,
   resourceStartOverlapSchema,
+  timerCalendarSchema,
 } from './resource-start';
 
 /** A binding id and a resource name both end up in a file name and a resource key. */
@@ -51,7 +52,10 @@ const bindingShape = {
 export const packTimerBindingSchema = z
   .object({
     ...bindingShape,
-    schedule: z.object({ interval_seconds: z.number().int().positive() }).strict(),
+    schedule: z.union([
+      z.object({ interval_seconds: z.number().int().positive() }).strict(),
+      z.object({ calendar: timerCalendarSchema }).strict(),
+    ]),
   })
   .strict();
 
