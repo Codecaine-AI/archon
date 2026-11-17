@@ -3,8 +3,8 @@
  * module and return the exit code. Command modules load lazily so CLI startup
  * stays cheap.
  */
-import { resolve } from 'path';
-import { BUNDLED_VERSION, getPluginsPath } from '@archon/paths';
+import { join, resolve } from 'path';
+import { BUNDLED_VERSION, getArchonHome, getPluginsPath } from '@archon/paths';
 import { attachmentUsage, isAttachmentVerb, publicAttachmentEntries } from '../attachment-commands';
 import { type CliRouteContext, fail, printUsageFor } from './context';
 import { loadRoute, usesDatabaseStore } from './route-loader';
@@ -174,6 +174,37 @@ export async function runTrigger({
     },
     { dispatch: (requestId, hostId) => spawnAdmitted(host, requestId, hostId) }
   );
+  return 0;
+}
+
+/**
+ * `archon mcp serve`: the trigger tools as an MCP server on stdio. It runs until the
+ * client closes stdin. The bindings folder is `--bindings-dir`, else
+ * `ARCHON_TRIGGER_BINDINGS_DIR`, else `<ARCHON_HOME>/triggers`.
+ */
+export async function runMcp({
+  subcommand,
+  positionals,
+  values,
+  json,
+}: CliRouteContext): Promise<number> {
+  if (subcommand !== 'serve' || positionals[2] !== undefined)
+    return await fail(json, 'Usage: archon mcp serve [--bindings-dir <dir>]');
+  const { serveTriggerMcp } = await loadRoute(() => import('../mcp/trigger-mcp-server'), {
+    database: await usesDatabaseStore(),
+  });
+  const { spawnAdmitted } = await import('../commands/trigger');
+  const { createCliWorkflowHost } = await import('../utils/workflow-host');
+  const host = await createCliWorkflowHost(true);
+  const flag = values['bindings-dir'];
+  const configured =
+    typeof flag === 'string' && flag.length > 0 ? flag : process.env.ARCHON_TRIGGER_BINDINGS_DIR;
+  await serveTriggerMcp({
+    host,
+    bindingsDir: resolve(configured || join(getArchonHome(), 'triggers')),
+    dispatch: (requestId, hostId) => spawnAdmitted(host, requestId, hostId),
+    env: process.env,
+  });
   return 0;
 }
 

@@ -51,9 +51,15 @@ const writeStdout = mock(async (value: string) => {
   output.push(JSON.parse(value));
 });
 mock.module('../utils/stdout', () => ({ writeStdout }));
+const unusedNativeSchedule = async (): Promise<never> => {
+  throw new Error('The wake schedule does not use this native-schedule export.');
+};
 mock.module('../triggers/native-schedule', () => ({
   installMacosNativeSchedule: install,
   removeMacosNativeSchedule: remove,
+  macosNativeScheduleInstalled: unusedNativeSchedule,
+  assertMacosLaunchdSession: unusedNativeSchedule,
+  NativeScheduleConflictError: class extends Error {},
 }));
 import { workflowContinuationCommand, workflowWakeScheduleCommand } from './workflow-continuations';
 

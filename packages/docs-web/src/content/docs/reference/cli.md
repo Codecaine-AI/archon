@@ -2174,6 +2174,10 @@ When a binding fails launch preparation, `trigger fire` exits nonzero and prints
 
 Run from inside a workflow node, `trigger fire` records the calling run and node as the receipt's `sourceActor` (`{source: "archon-run", id: <run id>, display: <node path>}`); outside a run it records none. A set `WORKFLOW_ID` makes `fire` act as a call from that node: it then requires a matching `ARCHON_NODE_EXECUTION`, and refuses a run the opened store does not know before a receipt is written, so a shell left with a stale `WORKFLOW_ID` fails instead of firing. `trigger inspect <request-id>` and `workflow get <run-id> --json` always carry the requesting run, as `requestedBy` and `requested_by` (`{runId, nodePath}`, or `null` when no run asked for the start), and the plain `workflow get` view prints a `Requested by` line when there is one. The started run still acts as its binding's `runAsUserId`; the requesting run is provenance only.
 
+### `mcp serve`
+
+`archon mcp serve [--bindings-dir <dir>]` serves seven tools over MCP on stdio until the client closes stdin: `list_bindings`, `fire_binding`, `set_binding`, `remove_binding`, `list_workflows`, `list_runs` and `get_run`. An agent on another machine starts it over SSH, so SSH is the authentication and no port opens. The bindings folder holds one `<bindingId>.json` file per timer binding: `--bindings-dir`, else `ARCHON_TRIGGER_BINDINGS_DIR`, else `<ARCHON_HOME>/triggers`. Stdout carries MCP frames only; logs go to stderr. No tool writes a workflow file. `set_binding` and `remove_binding` install and remove LaunchAgents, so they need the user's launchd GUI session. See [workflow triggers](/guides/workflow-triggers/).
+
 ### `pack bindings`
 
 Write the [trigger bindings a pack declares](/reference/workflow-language/#pack-bindings) as files for one repository. The command registers and schedules nothing; it prints what registers each file.

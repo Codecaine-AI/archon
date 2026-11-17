@@ -217,6 +217,7 @@ Commands:
   project config <id|name>   Show a project's merged config with secrets removed (env key names only)
   trigger <fire|drain|list|inspect|withdraw|recover-preparation|schedule>
                              Start configured workflows and inspect durable resource admission
+  mcp serve                  Serve trigger binding and run tools over MCP on stdio, for an agent over SSH
   pack bindings <pack>       Write a pack's recommended trigger bindings as files for one repository;
                              registers and schedules nothing. Needs --repo, --host, --run-as and --out
   chat <message>             Send a message to the orchestrator

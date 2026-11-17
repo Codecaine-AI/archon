@@ -181,13 +181,20 @@ function resolveRuntime(options: NativeScheduleOptions): {
 }
 
 /** The installed job differs from the one rendered now, often because PATH changed. */
+export class NativeScheduleConflictError extends Error {
+  constructor(readonly path: string) {
+    super(
+      `Refusing to replace an existing native schedule with different configuration: ${path}. ` +
+        "The job records the installing shell's PATH, so a different PATH or an upgrade changes it. " +
+        'Remove it (`archon trigger schedule remove`, or `archon workflow wake schedule remove` for the wake schedule), ' +
+        'then install it again from the shell whose PATH the job should use.'
+    );
+    this.name = 'NativeScheduleConflictError';
+  }
+}
+
 function differentConfiguration(path: string): Error {
-  return new Error(
-    `Refusing to replace an existing native schedule with different configuration: ${path}. ` +
-      "The job records the installing shell's PATH, so a different PATH or an upgrade changes it. " +
-      'Remove it (`archon trigger schedule remove`, or `archon workflow wake schedule remove` for the wake schedule), ' +
-      'then install it again from the shell whose PATH the job should use.'
-  );
+  return new NativeScheduleConflictError(path);
 }
 
 async function writeOwnedConfiguration(path: string, contents: string): Promise<boolean> {
@@ -258,4 +265,40 @@ export async function removeMacosNativeSchedule(
   await runtime.runCommand('/bin/launchctl', ['bootout', runtime.domain, path]);
   await unlink(path);
   return true;
+}
+
+/** Whether the LaunchAgent plist of schedule `id` exists. */
+export async function macosNativeScheduleInstalled(
+  id: string,
+  options: NativeScheduleOptions = {}
+): Promise<boolean> {
+  const runtime = resolveRuntime(options);
+  try {
+    await access(join(runtime.directory, `${jobLabel(id)}.plist`), constants.F_OK);
+    return true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false;
+    throw error;
+  }
+}
+
+/**
+ * Refuse when this user's launchd GUI domain is missing. Every install and remove targets
+ * `gui/<uid>`, which exists only while the user has a login session on the Mac; a process
+ * started over SSH with no one logged in finds no such domain. The check reads launchctl's
+ * exit status, not its text.
+ */
+export async function assertMacosLaunchdSession(
+  options: NativeScheduleOptions = {}
+): Promise<void> {
+  const runtime = resolveRuntime(options);
+  try {
+    await runtime.runCommand('/bin/launchctl', ['print', runtime.domain]);
+  } catch (error) {
+    throw new Error(
+      `The launchd GUI domain ${runtime.domain} is not available, so no schedule can be installed or removed. ` +
+        'It exists only while this user is logged in to the Mac. Log in at the Mac (or through Screen Sharing), then try again.',
+      { cause: error }
+    );
+  }
 }

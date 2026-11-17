@@ -76,6 +76,23 @@
         "b-60-workflow-triggers-the-installed-launchagen-46",
         "b-60-workflow-triggers-startinterval-behavior-47",
         "b-60-workflow-triggers-for-plain-schedules-use-48",
+        "b384e4aa-bfbd-4201-a876-8f2079b464af",
+        "b-60-workflow-triggers-mcp-1",
+        "b-60-workflow-triggers-mcp-2",
+        "b-60-workflow-triggers-mcp-3",
+        "b-60-workflow-triggers-mcp-4",
+        "b-60-workflow-triggers-mcp-5",
+        "b-60-workflow-triggers-mcp-6",
+        "b-60-workflow-triggers-mcp-7",
+        "b-60-workflow-triggers-mcp-8",
+        "b-60-workflow-triggers-mcp-9",
+        "b-60-workflow-triggers-mcp-10",
+        "b-60-workflow-triggers-mcp-16",
+        "b-60-workflow-triggers-mcp-11",
+        "b-60-workflow-triggers-mcp-12",
+        "b-60-workflow-triggers-mcp-13",
+        "b-60-workflow-triggers-mcp-14",
+        "b-60-workflow-triggers-mcp-15",
         "b-60-workflow-triggers-drive-the-same-commands-49",
         "b-60-workflow-triggers-archon-does-not-install-50",
         "b-60-workflow-triggers-text-51",
@@ -1400,6 +1417,540 @@
         },
         {
           "insert": ". Do not depend on one invocation for every wall-clock interval."
+        }
+      ],
+      "children": []
+    },
+    "b384e4aa-bfbd-4201-a876-8f2079b464af": {
+      "id": "b384e4aa-bfbd-4201-a876-8f2079b464af",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Manage Bindings From Another Machine"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-1": {
+      "id": "b-60-workflow-triggers-mcp-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon mcp serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " serves the trigger tools over MCP on stdio. A coding agent on another machine starts it over SSH, so SSH is the authentication and no port opens."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-2": {
+      "id": "b-60-workflow-triggers-mcp-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server reads one folder of binding files, each named "
+        },
+        {
+          "insert": "<bindingId>.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The folder is "
+        },
+        {
+          "insert": "--bindings-dir",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", else "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_BINDINGS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", else "
+        },
+        {
+          "insert": "<ARCHON_HOME>/triggers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-3": {
+      "id": "b-60-workflow-triggers-mcp-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the server to the agent's MCP configuration as an SSH command. Start it through a login shell, so the shell finds "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and a schedule it installs records your login "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-4": {
+      "id": "b-60-workflow-triggers-mcp-4",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"mcpServers\": {\n    \"archon-triggers\": {\n      \"command\": \"ssh\",\n      \"args\": [\n        \"<hub-host>\",\n        \"zsh -lc 'archon mcp serve'\"\n      ]\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-5": {
+      "id": "b-60-workflow-triggers-mcp-5",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Tool",
+          "Does",
+          "Writes"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "list_bindings",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Lists each binding file with its schedule and whether its LaunchAgent is installed. A file that fails the schema is listed as invalid, with the reason.",
+            "No"
+          ],
+          [
+            [
+              {
+                "insert": "fire_binding",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Starts one run of a binding, as "
+              },
+              {
+                "insert": "archon trigger fire",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " does. Returns the run ID, or the reason the start did not begin."
+              }
+            ],
+            "Starts 1 run"
+          ],
+          [
+            [
+              {
+                "insert": "set_binding",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Validates a whole binding document, writes it to "
+              },
+              {
+                "insert": "<bindingId>.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " with mode 600, and installs its schedule."
+              }
+            ],
+            "1 binding file and its LaunchAgent"
+          ],
+          [
+            [
+              {
+                "insert": "remove_binding",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Removes the binding's LaunchAgent, then its file.",
+            "1 binding file and its LaunchAgent"
+          ],
+          [
+            [
+              {
+                "insert": "list_workflows",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Lists the workflows of each distinct "
+              },
+              {
+                "insert": "launch.cwd",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " that a valid binding names, with the folder each list came from."
+              }
+            ],
+            "No"
+          ],
+          [
+            [
+              {
+                "insert": "list_runs",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Lists recent runs across all projects, up to "
+              },
+              {
+                "insert": "limit",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "."
+              }
+            ],
+            "No"
+          ],
+          [
+            [
+              {
+                "insert": "get_run",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Returns one run by its full ID: the run row, node states, terminal record, the end of its transcript, and the end of its executor log.",
+            "No"
+          ]
+        ],
+        "title": "Tools of archon mcp serve"
+      },
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-6": {
+      "id": "b-60-workflow-triggers-mcp-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Stdout carries MCP frames only, and logs go to stderr. A failed tool returns an MCP tool error with a plain message, and the server removes credential values from it."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-7": {
+      "id": "b-60-workflow-triggers-mcp-7",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Binding Writes and the "
+        },
+        {
+          "insert": "launchd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Session"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-8": {
+      "id": "b-60-workflow-triggers-mcp-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "set_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " writes nothing when the document fails the schema, when "
+        },
+        {
+          "insert": "binding.bindingId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " differs from the target ID, or when "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names no known user."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-9": {
+      "id": "b-60-workflow-triggers-mcp-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A binding ID is a plain file name: letters, digits, "
+        },
+        {
+          "insert": "-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": ".",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with no leading dot."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-10": {
+      "id": "b-60-workflow-triggers-mcp-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The write goes to a temporary file, then a rename onto "
+        },
+        {
+          "insert": "<bindingId>.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-16": {
+      "id": "b-60-workflow-triggers-mcp-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A LaunchAgent whose plist changes is removed and installed again."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-11": {
+      "id": "b-60-workflow-triggers-mcp-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A LaunchAgent whose plist stays the same stays loaded. A change to inputs alone does not fire "
+        },
+        {
+          "insert": "runAtLoad",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-12": {
+      "id": "b-60-workflow-triggers-mcp-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "When the install fails after the write, the tool error names the file on disk, what is installed, and the "
+        },
+        {
+          "insert": "launchctl",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " error."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-13": {
+      "id": "b-60-workflow-triggers-mcp-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remove_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes the LaunchAgent first. When "
+        },
+        {
+          "insert": "launchd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " refuses, the file stays."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-14": {
+      "id": "b-60-workflow-triggers-mcp-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every install and remove targets the launchd domain "
+        },
+        {
+          "insert": "gui/<uid>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which exists only while the user is logged in to the Mac. Over SSH with no login session, "
+        },
+        {
+          "insert": "set_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " refuses before it writes, and "
+        },
+        {
+          "insert": "remove_binding",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " refuses for an installed schedule. Log in at the Mac or through Screen Sharing, then try again. The server never runs a command as root."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-mcp-15": {
+      "id": "b-60-workflow-triggers-mcp-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "No tool writes a workflow file. Change a workflow through a pull request to its repository."
         }
       ],
       "children": []
