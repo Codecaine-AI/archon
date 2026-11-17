@@ -580,7 +580,16 @@
           }
         },
         {
-          "insert": " registers the provider on every host that does not run a release binary, such as a source checkout. The fork links "
+          "insert": " registers the provider on every host that does not run a release binary, such as a source checkout. "
+        },
+        {
+          "insert": "packages/providers/package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " depends on the published "
         },
         {
           "insert": "@codecaine-ai/agent-kernel",
@@ -589,7 +598,25 @@
           }
         },
         {
-          "insert": " from a local checkout until it pins a published version."
+          "insert": " "
+        },
+        {
+          "insert": "^0.0.6",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the provider comes from its "
+        },
+        {
+          "insert": "./archon-provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " export."
         }
       ],
       "children": []
