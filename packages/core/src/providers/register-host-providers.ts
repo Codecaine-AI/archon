@@ -1,6 +1,7 @@
 import { BUNDLED_IS_BINARY, getPluginsPath, getSourceProviderEntry } from '@archon/paths';
 import { MAINTAINED_PROVIDER_IDS } from '@archon/provider-contract';
 import { maintainedDescriptors, registerProvider } from '@archon/providers';
+import { registerAgentKernelProvider } from '@archon/providers/community/agent-kernel';
 import { registerCopilotProvider } from '@archon/providers/community/copilot';
 import { registerOpencodeProvider } from '@archon/providers/community/opencode';
 import { getVendorCatalog } from '../credentials/catalog';
@@ -24,6 +25,9 @@ export async function registerHostProviders(): Promise<void> {
     }
   }
   registerOpencodeProvider();
+  // Source checkouts only: the fork links @codecaine-ai/agent-kernel from a local checkout,
+  // and a release host keeps inferring its default from its one installed provider.
+  if (!BUNDLED_IS_BINARY) registerAgentKernelProvider();
   registerCopilotProvider();
   for (const registration of await loadProviderPlugins(getPluginsPath(), {
     maintained: BUNDLED_IS_BINARY ? 'installed' : 'source',
