@@ -4,10 +4,12 @@
  * convention of the operator, so every tool here takes it from the server's context.
  */
 import { randomUUID } from 'node:crypto';
-import { mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
+import { constants } from 'node:fs';
+import { mkdir, open, readdir, rename, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { WorkflowHost } from '@archon/core/workflows/host-store';
 import type { StartBindingInspection } from '@archon/workflows/resource-start-store';
+import { FileStoreLockHeldError, withFileStoreLock } from '@archon/workflows/file-store';
 import {
   assertKnownRunAsUser,
   fireTimerBinding,
@@ -66,18 +68,71 @@ type ReadBinding =
   | { kind: 'invalid'; reason: string }
   | { kind: 'valid'; config: TimerTriggerConfig };
 
-async function readBinding(path: string): Promise<ReadBinding> {
-  let text: string;
+/**
+ * The file's text, read without following a symbolic link: a link could make one id act
+ * on another binding's document and schedule. Null when the file does not exist.
+ */
+async function readBindingText(path: string): Promise<string | null> {
+  let file;
   try {
-    text = await readFile(path, 'utf8');
+    file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return { kind: 'missing' };
+    const { code } = error as NodeJS.ErrnoException;
+    if (code === 'ENOENT') return null;
+    if (code === 'ELOOP') throw new Error('The binding file is a symbolic link.');
     throw error;
   }
   try {
-    return { kind: 'valid', config: validateBindingDocument(JSON.parse(text) as unknown) };
+    if (!(await file.stat()).isFile()) throw new Error('The binding file is not a regular file.');
+    return await file.readFile('utf8');
+  } finally {
+    await file.close();
+  }
+}
+
+/** The binding at `path`, valid only when it is a plain file whose bindingId is `bindingId`. */
+async function readBinding(path: string, bindingId: string): Promise<ReadBinding> {
+  try {
+    const text = await readBindingText(path);
+    if (text === null) return { kind: 'missing' };
+    const config = validateBindingDocument(JSON.parse(text) as unknown);
+    if (config.binding.bindingId !== bindingId)
+      throw new Error(
+        `Its binding.bindingId '${config.binding.bindingId}' differs from its file name '${bindingId}.json'.`
+      );
+    return { kind: 'valid', config };
   } catch (error) {
     return { kind: 'invalid', reason: error instanceof Error ? error.message : String(error) };
+  }
+}
+
+/** How long a tool waits for another call on the same binding before it refuses. */
+const BINDING_LOCK_TIMEOUT_MS = 5_000;
+
+/**
+ * Run `operation` holding the lock of one binding: `<bindings folder>/.locks/<bindingId>/lock`,
+ * shared by every server process on this install. A lock whose owner process is provably
+ * gone on this host is broken; a live or unprovable owner is waited on, then refused.
+ */
+async function withBindingLock<T>(
+  context: TriggerToolContext,
+  bindingId: string,
+  operation: () => Promise<T>
+): Promise<T> {
+  bindingFilePath(context.bindingsDir, bindingId);
+  const root = join(context.bindingsDir, '.locks', bindingId);
+  await mkdir(root, { recursive: true, mode: 0o700 });
+  try {
+    return await withFileStoreLock(root, operation, BINDING_LOCK_TIMEOUT_MS);
+  } catch (error) {
+    if (!(error instanceof FileStoreLockHeldError)) throw error;
+    const owner = error.owner
+      ? ` by process ${String(error.owner.pid)} on ${error.owner.host}`
+      : '';
+    throw new Error(
+      `Binding '${bindingId}' is busy: another set_binding, remove_binding or fire_binding holds its lock${owner}. Try again shortly. If no Archon process holds it, remove ${error.path}.`,
+      { cause: error }
+    );
   }
 }
 
@@ -93,8 +148,6 @@ export type ListedBinding =
       file: string;
       status: 'valid';
       bindingId: string;
-      /** False when the file name is not `<bindingId>.json`; the other tools cannot target it. */
-      fileMatchesBindingId: boolean;
       workflowName: string;
       cwd: string;
       hostId: string;
@@ -108,7 +161,7 @@ async function listedBinding(
   context: TriggerToolContext,
   file: string
 ): Promise<ListedBinding | undefined> {
-  const read = await readBinding(join(context.bindingsDir, file));
+  const read = await readBinding(join(context.bindingsDir, file), file.slice(0, -'.json'.length));
   if (read.kind === 'missing') return undefined;
   if (read.kind === 'invalid') return { file, status: 'invalid', reason: read.reason };
   const { config } = read;
@@ -123,7 +176,6 @@ async function listedBinding(
     file,
     status: 'valid',
     bindingId: config.binding.bindingId,
-    fileMatchesBindingId: file === `${config.binding.bindingId}.json`,
     workflowName: config.binding.launch.workflowName,
     cwd: config.binding.launch.cwd,
     hostId: config.binding.hostId,
@@ -133,7 +185,10 @@ async function listedBinding(
   };
 }
 
-/** Every `*.json` file in the bindings folder; an invalid file is listed with its reason. */
+/**
+ * Every `*.json` file in the bindings folder. A file that fails the schema, is a symbolic
+ * link, or names another bindingId than its file name is listed as invalid with the reason.
+ */
 export async function listBindings(
   context: TriggerToolContext
 ): Promise<{ bindingsDir: string; bindings: ListedBinding[] }> {
@@ -159,7 +214,7 @@ export async function requireBinding(
   bindingId: string
 ): Promise<{ path: string; config: TimerTriggerConfig }> {
   const path = bindingFilePath(context.bindingsDir, bindingId);
-  const read = await readBinding(path);
+  const read = await readBinding(path, bindingId);
   if (read.kind === 'missing')
     throw new Error(`No binding '${bindingId}': ${path} does not exist.`);
   if (read.kind === 'invalid') throw new Error(`Binding file ${path} is invalid: ${read.reason}`);
@@ -189,8 +244,10 @@ function fireOutcome(binding: StartBindingInspection | undefined): {
 
 /** Start one run of a binding now, as `archon trigger fire --config <file>` does. */
 export async function fireBinding(context: TriggerToolContext, bindingId: string) {
-  const { path } = await requireBinding(context, bindingId);
-  const receipt = await fireTimerBinding(context.host, path, context.dispatch, context.env);
+  const receipt = await withBindingLock(context, bindingId, async () => {
+    const { path } = await requireBinding(context, bindingId);
+    return await fireTimerBinding(context.host, path, context.dispatch, context.env);
+  });
   if (!receipt) throw new Error('The start was accepted, but its receipt is not readable.');
   const binding = receipt.bindings.find(entry => entry.bindingId === bindingId);
   return {
@@ -238,14 +295,10 @@ type ScheduleAction = 'installed' | 'unchanged' | 'replaced';
  */
 async function applySchedule(
   context: TriggerToolContext,
-  previous: TimerTriggerConfig | undefined,
   config: TimerTriggerConfig,
   path: string
 ): Promise<ScheduleAction> {
   const options = context.nativeSchedule;
-  // A new source instance names a different job; the old one would keep firing this file.
-  if (previous && timerScheduleId(previous) !== timerScheduleId(config))
-    await removeTimerSchedule(previous, options);
   const wasInstalled = await scheduleInstalled(config, options);
   try {
     await installTimerSchedule(context.host, config, path, options);
@@ -276,42 +329,48 @@ export class BindingScheduleError extends Error {
 
 async function installedState(
   context: TriggerToolContext,
-  previous: TimerTriggerConfig | undefined,
   config: TimerTriggerConfig
 ): Promise<string> {
-  const options = context.nativeSchedule;
   try {
-    if (await scheduleInstalled(config, options))
-      return 'A LaunchAgent for this binding is installed; it may be the old schedule.';
-    if (previous && (await scheduleInstalled(previous, options)))
-      return 'The LaunchAgent of the previous document (another sourceInstanceId) is still installed.';
-    return 'No LaunchAgent for this binding is installed.';
+    return (await scheduleInstalled(config, context.nativeSchedule))
+      ? 'A LaunchAgent for this binding is installed; it may be the old schedule.'
+      : 'No LaunchAgent for this binding is installed.';
   } catch (error) {
     return `Unknown: ${error instanceof Error ? error.message : String(error)}`;
   }
 }
 
 /**
- * Validate and write one binding, then put its schedule in place. Validation, the run-as
- * user and the launchd session are checked before the write, so a refusal writes nothing.
- * A schedule failure after the write is a `BindingScheduleError` that says what is on disk
- * and what is installed.
+ * A new `sourceInstanceId` names a different LaunchAgent, and the old one would keep
+ * firing this file. It is removed before the document is replaced: once the new document
+ * is on disk, nothing records the old job, so a retry could not find it.
  */
-export async function setBinding(
+async function removeReplacedSchedule(
+  context: TriggerToolContext,
+  previous: TimerTriggerConfig | undefined,
+  config: TimerTriggerConfig
+): Promise<void> {
+  if (!previous || timerScheduleId(previous) === timerScheduleId(config)) return;
+  try {
+    await removeTimerSchedule(previous, context.nativeSchedule);
+  } catch (error) {
+    throw new Error(
+      `The schedule of the previous document (sourceInstanceId '${previous.sourceInstanceId}') could not be removed, so nothing was written: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error }
+    );
+  }
+}
+
+async function writeAndSchedule(
   context: TriggerToolContext,
   bindingId: string,
-  document: unknown
+  document: unknown,
+  config: TimerTriggerConfig
 ) {
   const path = bindingFilePath(context.bindingsDir, bindingId);
-  const config = validateBindingDocument(document);
-  if (config.binding.bindingId !== bindingId)
-    throw new Error(
-      `The document's binding.bindingId '${config.binding.bindingId}' differs from the target '${bindingId}'.`
-    );
-  await assertKnownRunAsUser(context.host, config);
-  await assertMacosLaunchdSession(context.nativeSchedule);
-  const before = await readBinding(path);
+  const before = await readBinding(path, bindingId);
   const previous = before.kind === 'valid' ? before.config : undefined;
+  await removeReplacedSchedule(context, previous, config);
   await mkdir(context.bindingsDir, { recursive: true, mode: 0o700 });
   await writeBindingFile(path, document);
   const changes =
@@ -320,10 +379,10 @@ export async function setBinding(
       : [before.kind === 'missing' ? '(new binding)' : '(replaced an invalid file)'];
   let schedule: ScheduleAction;
   try {
-    schedule = await applySchedule(context, previous, config, path);
+    schedule = await applySchedule(context, config, path);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    const installed = await installedState(context, previous, config);
+    const installed = await installedState(context, config);
     throw new BindingScheduleError(
       `Binding file ${path} was written, but its schedule was not installed: ${message} ${installed}`,
       { bindingId, file: path, onDisk: 'The new binding document.', installed, error: message }
@@ -332,12 +391,38 @@ export async function setBinding(
   return { bindingId, file: path, created: before.kind === 'missing', changes, schedule };
 }
 
+/**
+ * Validate and write one binding, then put its schedule in place. Validation, the run-as
+ * user and the launchd session are checked before the write, so a refusal writes nothing.
+ * The read, the write and the schedule change hold the binding's lock. A schedule failure
+ * after the write is a `BindingScheduleError` that says what is on disk and what is installed.
+ */
+export async function setBinding(
+  context: TriggerToolContext,
+  bindingId: string,
+  document: unknown
+) {
+  bindingFilePath(context.bindingsDir, bindingId);
+  const config = validateBindingDocument(document);
+  if (config.binding.bindingId !== bindingId)
+    throw new Error(
+      `The document's binding.bindingId '${config.binding.bindingId}' differs from the target '${bindingId}'.`
+    );
+  await assertKnownRunAsUser(context.host, config);
+  await assertMacosLaunchdSession(context.nativeSchedule);
+  return await withBindingLock(context, bindingId, () =>
+    writeAndSchedule(context, bindingId, document, config)
+  );
+}
+
 /** Remove one binding's LaunchAgent, then its file. A failed removal keeps the file. */
 export async function removeBinding(context: TriggerToolContext, bindingId: string) {
-  const { path, config } = await requireBinding(context, bindingId);
-  if (await scheduleInstalled(config, context.nativeSchedule))
-    await assertMacosLaunchdSession(context.nativeSchedule);
-  const scheduleRemoved = await removeTimerSchedule(config, context.nativeSchedule);
-  await unlink(path);
-  return { bindingId, file: path, scheduleRemoved, fileRemoved: true };
+  return await withBindingLock(context, bindingId, async () => {
+    const { path, config } = await requireBinding(context, bindingId);
+    if (await scheduleInstalled(config, context.nativeSchedule))
+      await assertMacosLaunchdSession(context.nativeSchedule);
+    const scheduleRemoved = await removeTimerSchedule(config, context.nativeSchedule);
+    await unlink(path);
+    return { bindingId, file: path, scheduleRemoved, fileRemoved: true };
+  });
 }

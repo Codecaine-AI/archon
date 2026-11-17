@@ -23,10 +23,11 @@ import {
   type TriggerToolContext,
 } from './trigger-bindings';
 import { getRun, listRuns, listWorkflows } from './trigger-runs';
-import { redactSecrets } from './redact';
+import { redactedJson, redactSecrets } from './redact';
 
+/** A successful result: every string in it is redacted before it is serialized. */
 function toolResult(value: unknown): CallToolResult {
-  return { content: [{ type: 'text', text: JSON.stringify(value, null, 2) }] };
+  return { content: [{ type: 'text', text: redactedJson(value) }] };
 }
 
 /** A tool's failure as an MCP tool error: a plain, redacted message, plus state when known. */

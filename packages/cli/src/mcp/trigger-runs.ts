@@ -14,7 +14,6 @@ import { workflowJsonEntry, workflowLoadErrorsJson } from '../commands/workflow-
 import { buildRunNodes, listRunEvents } from '../commands/workflow-node-summaries';
 import { resolveRunTranscriptPath } from '../commands/workflow-shared';
 import { listBindings, type TriggerToolContext } from './trigger-bindings';
-import { redactSecrets } from './redact';
 
 export type FolderWorkflows =
   | {
@@ -46,7 +45,7 @@ export async function listWorkflows(
         errors: workflowLoadErrorsJson(errors),
       });
     } catch (error) {
-      results.push({ cwd, bindingIds, error: redactSecrets(String(error)) });
+      results.push({ cwd, bindingIds, error: String(error) });
     }
   }
   return { folders: results };
@@ -63,7 +62,7 @@ type LogTail =
   | { path: string; text: string; truncated: boolean }
   | { path: string; text: null; reason: string };
 
-/** The last `maxBytes` of a log, from a line start, with credentials redacted. */
+/** The last `maxBytes` of a log, from a line start. The tool result redacts it. */
 async function readLogTail(path: string, maxBytes: number): Promise<LogTail> {
   let file;
   try {
@@ -82,7 +81,7 @@ async function readLogTail(path: string, maxBytes: number): Promise<LogTail> {
     let text = new TextDecoder().decode(buffer);
     const truncated = length < size;
     if (truncated) text = text.slice(text.indexOf('\n') + 1);
-    return { path, text: redactSecrets(text), truncated };
+    return { path, text, truncated };
   } finally {
     await file.close();
   }

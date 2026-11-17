@@ -1,7 +1,16 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
 import { existsSync } from 'node:fs';
-import { mkdir, mkdtemp, readdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
+import {
+  mkdir,
+  mkdtemp,
+  readdir,
+  readFile,
+  realpath,
+  stat,
+  symlink,
+  writeFile,
+} from 'node:fs/promises';
+import { hostname, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
@@ -15,10 +24,16 @@ import type { listBindings, removeBinding, setBinding } from './trigger-bindings
 import type { getRun, listRuns, listWorkflows } from './trigger-runs';
 
 const roots = trackTempRoots();
+/** A credential-named env key, so the server's redaction treats its value as a secret. */
+const SECRET_ENV_KEY = 'ARCHON_MCP_TEST_TOKEN';
+const SECRET = 'hub-secret-value-4242';
 // Restore the keys in place: assigning a new object to process.env drops Bun's
 // case-insensitive Windows env.
 const prior = Object.fromEntries(
-  ['ARCHON_HOME', 'DATABASE_URL', 'GITHUB_APP_ID'].map(key => [key, process.env[key]])
+  ['ARCHON_HOME', 'DATABASE_URL', 'GITHUB_APP_ID', SECRET_ENV_KEY].map(key => [
+    key,
+    process.env[key],
+  ])
 );
 
 interface Fixture {
@@ -31,16 +46,20 @@ interface Fixture {
   launchctl: string[][];
   /** Make the next matching launchctl subcommand fail, as launchd does without a session. */
   failLaunchctl: Set<string>;
+  /** Request ids the server handed to its executor. */
+  dispatched: string[];
   client: Client;
 }
 
 let fixture: Fixture;
 
 beforeEach(async () => {
-  const home = roots(await mkdtemp(join(tmpdir(), 'archon-trigger-mcp-')));
+  // The real path: preparation canonicalizes the launch folder (/var is /private/var on macOS).
+  const home = await realpath(roots(await mkdtemp(join(tmpdir(), 'archon-trigger-mcp-'))));
   process.env.ARCHON_HOME = home;
   process.env.DATABASE_URL = '';
   process.env.GITHUB_APP_ID = '';
+  process.env[SECRET_ENV_KEY] = SECRET;
   // Workflow discovery reads platform policies, as every CLI route sets them first.
   setPlatformPolicies(defaultPlatformPolicies);
   const project = join(home, 'project');
@@ -56,11 +75,13 @@ beforeEach(async () => {
   const failLaunchctl = new Set<string>();
   const bindingsDir = join(home, 'triggers');
   const launchAgents = join(home, 'LaunchAgents');
+  const dispatched: string[] = [];
   const server = createTriggerMcpServer({
     host,
     bindingsDir,
-    dispatch: async () => {
-      throw new Error('No run is dispatched in these tests.');
+    // Record the hand-off only; the admitted run stays pending and holds its resource.
+    dispatch: async requestId => {
+      dispatched.push(requestId);
     },
     env: {},
     nativeSchedule: {
@@ -85,6 +106,7 @@ beforeEach(async () => {
     userId: user.id,
     launchctl,
     failLaunchctl,
+    dispatched,
     client,
   };
 });
@@ -97,15 +119,23 @@ afterEach(async () => {
   }
 });
 
-function binding(overrides: { schedule?: unknown; inputs?: unknown; bindingId?: string } = {}) {
+function binding(
+  overrides: {
+    schedule?: unknown;
+    inputs?: unknown;
+    bindingId?: string;
+    sourceInstanceId?: string;
+    runAsUserId?: string;
+  } = {}
+) {
   return {
     version: 1,
-    sourceInstanceId: 'hub-refresh',
+    sourceInstanceId: overrides.sourceInstanceId ?? 'hub-refresh',
     binding: {
       bindingId: overrides.bindingId ?? 'refresh',
       bindingRevision: null,
       hostId: 'hub',
-      runAsUserId: fixture.userId,
+      runAsUserId: overrides.runAsUserId ?? fixture.userId,
       resource: 'refresh',
       overlap: 'skip',
       launch: {
@@ -147,8 +177,30 @@ async function callOk<Name extends keyof ToolResults>(
   return JSON.parse(result.text) as ToolResults[Name];
 }
 
+/** The binding files only; the folder also holds the `.locks` folder of binding locks. */
 async function bindingFiles(): Promise<string[]> {
-  return existsSync(fixture.bindingsDir) ? await readdir(fixture.bindingsDir) : [];
+  return existsSync(fixture.bindingsDir)
+    ? (await readdir(fixture.bindingsDir)).filter(name => name.endsWith('.json'))
+    : [];
+}
+
+/** Registers the launch folder as a folder project, so registration reads no git remote. */
+async function registerProject(): Promise<string> {
+  const existing = await fixture.host.records.codebases.findCodebaseByDefaultCwd(fixture.project);
+  if (existing) return existing.id;
+  const codebase = await fixture.host.records.codebases.createCodebase({
+    name: 'project',
+    default_cwd: fixture.project,
+    kind: 'folder',
+  });
+  return codebase.id;
+}
+
+async function writeWorkflow(description = 'Refresh state'): Promise<void> {
+  await writeFile(
+    join(fixture.project, '.archon', 'workflows', 'refresh.yaml'),
+    `name: refresh\ndescription: ${description}\nnodes:\n  - id: run\n    bash: echo ok\n`
+  );
 }
 
 async function launchAgentFiles(): Promise<string[]> {
@@ -175,7 +227,6 @@ describe('list_bindings', () => {
         file: 'refresh.json',
         status: 'valid',
         bindingId: 'refresh',
-        fileMatchesBindingId: true,
         workflowName: 'refresh',
         cwd: fixture.project,
         hostId: 'hub',
@@ -344,17 +395,11 @@ describe('fire_binding', () => {
 });
 
 describe('runs', () => {
-  async function createRun(): Promise<string> {
-    const codebase = await fixture.host.records.codebases.createCodebase({
-      name: 'project',
-      default_cwd: fixture.project,
-      // A folder project, so registration reads no git remote.
-      kind: 'folder',
-    });
+  async function createRun(userMessage = ''): Promise<string> {
     const run = await fixture.host.deps.store.createWorkflowRun({
       workflow_name: 'bash-only',
-      user_message: '',
-      codebase_id: codebase.id,
+      user_message: userMessage,
+      codebase_id: await registerProject(),
       working_path: fixture.project,
     });
     return run.id;
@@ -387,10 +432,7 @@ describe('runs', () => {
   });
 
   test('list_workflows lists the workflows of each binding launch folder', async () => {
-    await writeFile(
-      join(fixture.project, '.archon', 'workflows', 'refresh.yaml'),
-      'name: refresh\ndescription: Refresh state\nnodes:\n  - id: run\n    bash: echo ok\n'
-    );
+    await writeWorkflow();
     await mkdir(fixture.bindingsDir, { recursive: true });
     await writeFile(join(fixture.bindingsDir, 'refresh.json'), JSON.stringify(binding()));
 
@@ -401,5 +443,224 @@ describe('runs', () => {
     expect(folder).toMatchObject({ cwd: fixture.project, bindingIds: ['refresh'], errors: [] });
     const names = folder && 'workflows' in folder ? folder.workflows.map(entry => entry.name) : [];
     expect(names).toContain('refresh');
+  });
+});
+
+describe('redaction of successful results', () => {
+  async function createRun(userMessage: string): Promise<string> {
+    const run = await fixture.host.deps.store.createWorkflowRun({
+      workflow_name: 'bash-only',
+      user_message: userMessage,
+      codebase_id: await registerProject(),
+      working_path: fixture.project,
+    });
+    return run.id;
+  }
+
+  test('list_runs redacts a credential value stored in a run field', async () => {
+    await createRun(`deploy with ${SECRET}`);
+
+    const result = await call('list_runs', { limit: 5 });
+
+    expect(result.isError).toBe(false);
+    expect(result.text).not.toContain(SECRET);
+    expect(result.text).toContain('deploy with [REDACTED]');
+  });
+
+  test('get_run redacts the run row, node event fields and the transcript tail', async () => {
+    const runId = await createRun(`token ${SECRET}`);
+    await fixture.host.deps.store.persistWorkflowEvent({
+      workflow_run_id: runId,
+      event_type: 'node_failed',
+      step_name: 'boom',
+      data: { error: `curl failed with ${SECRET}` },
+    });
+    const first = await callOk('get_run', { runId });
+    const transcriptPath = first.transcript.path;
+    if (!transcriptPath) throw new Error('The run has no transcript path.');
+    await mkdir(join(transcriptPath, '..'), { recursive: true });
+    await writeFile(transcriptPath, `${JSON.stringify({ type: 'assistant', content: SECRET })}\n`);
+
+    const result = await call('get_run', { runId });
+
+    expect(result.isError).toBe(false);
+    expect(result.text).not.toContain(SECRET);
+    const detail = JSON.parse(result.text) as ToolResults['get_run'];
+    expect(detail.run.user_message).toBe('token [REDACTED]');
+    expect(detail.nodes).toMatchObject([
+      { nodeId: 'boom', state: 'failed', error: 'curl failed with [REDACTED]' },
+    ]);
+    expect(detail.transcript.text).toContain('[REDACTED]');
+  });
+
+  test('list_workflows redacts a credential value in a workflow field', async () => {
+    await writeWorkflow(`Uses ${SECRET}`);
+    await mkdir(fixture.bindingsDir, { recursive: true });
+    await writeFile(join(fixture.bindingsDir, 'refresh.json'), JSON.stringify(binding()));
+
+    const result = await call('list_workflows');
+
+    expect(result.isError).toBe(false);
+    expect(result.text).not.toContain(SECRET);
+    expect(result.text).toContain('Uses [REDACTED]');
+  });
+});
+
+describe('a changed sourceInstanceId', () => {
+  test('a failed removal of the old schedule writes nothing, and a retry leaves one schedule', async () => {
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    const [oldPlist] = await launchAgentFiles();
+    const moved = binding({ sourceInstanceId: 'hub-refresh-moved' });
+    fixture.failLaunchctl.add('bootout');
+
+    const refused = await call('set_binding', { bindingId: 'refresh', document: moved });
+
+    expect(refused.isError).toBe(true);
+    expect(refused.text).toContain("sourceInstanceId 'hub-refresh') could not be removed");
+    expect(refused.text).toContain('nothing was written');
+    const path = join(fixture.bindingsDir, 'refresh.json');
+    expect(JSON.parse(await readFile(path, 'utf8'))).toEqual(binding());
+    expect(await launchAgentFiles()).toEqual([oldPlist]);
+
+    fixture.failLaunchctl.delete('bootout');
+    await callOk('set_binding', { bindingId: 'refresh', document: moved });
+
+    const plists = await launchAgentFiles();
+    expect(plists).toHaveLength(1);
+    expect(plists[0]).not.toBe(oldPlist);
+    expect(JSON.parse(await readFile(path, 'utf8'))).toEqual(moved);
+  });
+});
+
+describe('the binding lock', () => {
+  function lockPath(bindingId: string): string {
+    return join(fixture.bindingsDir, '.locks', bindingId, 'lock');
+  }
+
+  test('two set_binding calls at once leave one schedule for the file', async () => {
+    const results = await Promise.all([
+      call('set_binding', { bindingId: 'refresh', document: binding({ sourceInstanceId: 'a' }) }),
+      call('set_binding', { bindingId: 'refresh', document: binding({ sourceInstanceId: 'b' }) }),
+    ]);
+
+    expect(results.map(result => result.isError)).toEqual([false, false]);
+    expect(await launchAgentFiles()).toHaveLength(1);
+    const listed = await callOk('list_bindings');
+    expect(listed.bindings).toMatchObject([{ status: 'valid', scheduleInstalled: true }]);
+    expect(existsSync(lockPath('refresh'))).toBe(false);
+  });
+
+  test('a lock held by another live process is refused with a plain error', async () => {
+    await mkdir(join(lockPath('refresh'), '..'), { recursive: true });
+    // The parent process is alive, so it stands for another server holding the lock.
+    await writeFile(
+      lockPath('refresh'),
+      JSON.stringify({ host: hostname(), pid: process.ppid, instance: crypto.randomUUID() })
+    );
+
+    const result = await call('set_binding', { bindingId: 'refresh', document: binding() });
+
+    expect(result.isError).toBe(true);
+    expect(result.text).toContain("Binding 'refresh' is busy");
+    expect(result.text).toContain(`process ${String(process.ppid)}`);
+    expect(await bindingFiles()).toEqual([]);
+  }, 15_000);
+
+  test('a lock whose owner process is gone is broken and the call proceeds', async () => {
+    const exited = Bun.spawn([process.execPath, '-e', '0']);
+    await exited.exited;
+    await mkdir(join(lockPath('refresh'), '..'), { recursive: true });
+    await writeFile(
+      lockPath('refresh'),
+      JSON.stringify({ host: hostname(), pid: exited.pid, instance: crypto.randomUUID() })
+    );
+
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+
+    expect(await bindingFiles()).toEqual(['refresh.json']);
+    expect(existsSync(lockPath('refresh'))).toBe(false);
+  });
+});
+
+describe('a binding file that names another binding', () => {
+  test('a symbolic link is listed as invalid and cannot remove or fire its target', async () => {
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    await symlink(
+      join(fixture.bindingsDir, 'refresh.json'),
+      join(fixture.bindingsDir, 'alias.json')
+    );
+    fixture.launchctl.length = 0;
+
+    const removed = await call('remove_binding', { bindingId: 'alias' });
+    const fired = await call('fire_binding', { bindingId: 'alias' });
+    const listed = await callOk('list_bindings');
+
+    expect(removed.isError).toBe(true);
+    expect(removed.text).toContain('symbolic link');
+    expect(fired.isError).toBe(true);
+    expect(fired.text).toContain('symbolic link');
+    expect(subcommands()).not.toContain('bootout');
+    expect(await launchAgentFiles()).toHaveLength(1);
+    expect(await fixture.host.deps.store.listStartReceipts()).toEqual([]);
+    expect(listed.bindings).toMatchObject([
+      { file: 'alias.json', status: 'invalid', reason: expect.stringContaining('symbolic link') },
+      { file: 'refresh.json', status: 'valid' },
+    ]);
+  });
+
+  test('a document whose bindingId differs from its file name is invalid', async () => {
+    await callOk('set_binding', { bindingId: 'refresh', document: binding() });
+    await writeFile(join(fixture.bindingsDir, 'copy.json'), JSON.stringify(binding()));
+
+    const removed = await call('remove_binding', { bindingId: 'copy' });
+    const listed = await callOk('list_bindings');
+
+    expect(removed.isError).toBe(true);
+    expect(removed.text).toContain("differs from its file name 'copy.json'");
+    expect(await launchAgentFiles()).toHaveLength(1);
+    expect(listed.bindings).toMatchObject([
+      { file: 'copy.json', status: 'invalid', reason: expect.stringContaining('differs') },
+      { file: 'refresh.json', status: 'valid' },
+    ]);
+  });
+});
+
+describe('fire_binding starts', () => {
+  test('returns the run id of a started run, then the reason for a skipped start', async () => {
+    await writeWorkflow();
+    await registerProject();
+    await mkdir(fixture.bindingsDir, { recursive: true });
+    await writeFile(join(fixture.bindingsDir, 'refresh.json'), JSON.stringify(binding()));
+
+    const started = await call('fire_binding', { bindingId: 'refresh' });
+    expect(started.isError, started.text).toBe(false);
+    const first = JSON.parse(started.text) as { started: boolean; runId: string | null };
+    expect(first).toMatchObject({ started: true, reason: null });
+    expect(first.runId).toEqual(expect.any(String));
+    expect(fixture.dispatched).toHaveLength(1);
+
+    // The first run is still pending, so it holds the resource and `overlap: skip` applies.
+    const skipped = await call('fire_binding', { bindingId: 'refresh' });
+    expect(skipped.isError, skipped.text).toBe(false);
+    expect(JSON.parse(skipped.text)).toMatchObject({
+      started: false,
+      runId: null,
+      reason: `The start was skipped: run ${String(first.runId)} holds the binding's resource.`,
+    });
+    expect(fixture.dispatched).toHaveLength(1);
+  });
+});
+
+describe('set_binding run-as user', () => {
+  test('refuses an unknown run-as user and writes nothing', async () => {
+    const result = await call('set_binding', {
+      bindingId: 'refresh',
+      document: binding({ runAsUserId: crypto.randomUUID() }),
+    });
+
+    expect(result.isError).toBe(true);
+    expect(result.text).toContain('unknown run-as user');
+    expect(await bindingFiles()).toEqual([]);
+    expect(fixture.launchctl).toEqual([]);
   });
 });
