@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-10-architecture",
+  "title": "Architecture",
+  "root": "b-10-architecture-root-15",
+  "blocks": {
+    "b-10-architecture-root-15": {
+      "id": "b-10-architecture-root-15",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "developer"
+        ],
+        "category": "reference",
+        "description": "How Archon's code is organized, and where the maintained architecture map lives.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/architecture.md"
+      },
+      "children": [
+        "b-10-architecture-archon-is-a-bun-and-type-1",
+        "b-10-architecture-contracts-provider-2",
+        "b-10-architecture-engine-workflows-3",
+        "b-10-architecture-isolation-isolatio-4",
+        "b-10-architecture-host-core-owns-th-5",
+        "b-10-architecture-integrations-provi-6",
+        "b-10-architecture-the-maintained-map-with-7",
+        "b-10-architecture-fresh-branch-runs-fi-8",
+        "b-10-architecture-related-9",
+        "b-10-architecture-build-a-community-provi-10",
+        "b-10-architecture-provider-capabilities-11",
+        "b-10-architecture-forge-operations-docs-12",
+        "b-10-architecture-database-docs-10-syst-13",
+        "b-10-architecture-worktrees-docs-30-aut-14"
+      ]
+    },
+    "b-10-architecture-archon-is-a-bun-and-type-1": {
+      "id": "b-10-architecture-archon-is-a-bun-and-type-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon is a Bun and TypeScript monorepo. A small set of packages carries the engine and its contracts; the server, CLI, console and integrations compose around them."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-contracts-provider-2": {
+      "id": "b-10-architecture-contracts-provider-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Contracts.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "provider-contract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "chat-contract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "plugin-manifest",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " define how providers, chat platforms, forges and workflow packs attach. "
+        },
+        {
+          "insert": "forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " owns the forge seam."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-engine-workflows-3": {
+      "id": "b-10-architecture-engine-workflows-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Engine.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " loads, validates and runs workflow graphs, records events through a store contract, and pauses runs durably. It reaches providers and persistence only through injected dependencies."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-isolation-isolatio-4": {
+      "id": "b-10-architecture-isolation-isolatio-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Isolation.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "isolation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " provides git worktrees for repo projects, and in-place and container execution backends."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-host-core-owns-th-5": {
+      "id": "b-10-architecture-host-core-owns-th-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Host.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "core",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " owns the database, conversations, the chat orchestrator and workflow operations. "
+        },
+        {
+          "insert": "server",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " serves the API, webhooks and the console; "
+        },
+        {
+          "insert": "cli",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-integrations-provi-6": {
+      "id": "b-10-architecture-integrations-provi-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Integrations.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "providers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds the maintained Claude, Codex and Pi providers and the deprecated bundled OpenCode and Copilot providers. "
+        },
+        {
+          "insert": "adapters",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds the bundled chat and forge integrations; "
+        },
+        {
+          "insert": "chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the maintained Slack chat plugin, installed with "
+        },
+        {
+          "insert": "archon plugin add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". New integrations ship as "
+        },
+        {
+          "insert": "plugins",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/80-publishing-plugins.md",
+              "label": "plugins"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-the-maintained-map-with-7": {
+      "id": "b-10-architecture-the-maintained-map-with-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The maintained map, with each package's ownership, the main flows, extension points and the checks that enforce each boundary, is "
+        },
+        {
+          "insert": ".archon/architecture.md",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/architecture.md"
+          }
+        },
+        {
+          "insert": " in the repository. It is kept beside the code, and CI checks declared package dependencies against the linked layering policy."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-fresh-branch-runs-fi-8": {
+      "id": "b-10-architecture-fresh-branch-runs-fi-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fresh "
+        },
+        {
+          "insert": "--branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs first reuse a healthy active task worktree registered in Archon for the project and branch, regardless of its path. If no healthy active task registration was reused, the provider can reuse a usable checkout at the configured target path; a holder at another path produces "
+        },
+        {
+          "insert": "branch_checked_out",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", whether or not it is registered in Archon. Before detaching or removing the named holder, check whether a live Archon run still needs it and preserve its changes once it is safe to proceed. Exact-branch continuation can also adopt a Git-registered holder at another path. Reuse emits a "
+        },
+        {
+          "insert": "worktree_adopted",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " warning and records adoption provenance; it does not grant cleanup ownership. The shared "
+        },
+        {
+          "insert": "store recipe",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/isolation/src/store.ts"
+          }
+        },
+        {
+          "insert": " owns registration and guarded adoption. The "
+        },
+        {
+          "insert": "worktree provider",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/isolation/src/providers/worktree.ts"
+          }
+        },
+        {
+          "insert": " creates checkouts. The "
+        },
+        {
+          "insert": "isolation resolver",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/isolation/src/resolver.ts"
+          }
+        },
+        {
+          "insert": " selects worktrees. The resolver and "
+        },
+        {
+          "insert": "launch helper",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/core/src/workflows/registered-worktree.ts"
+          }
+        },
+        {
+          "insert": " call the store recipe."
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-related-9": {
+      "id": "b-10-architecture-related-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Related"
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-build-a-community-provi-10": {
+      "id": "b-10-architecture-build-a-community-provi-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build a community provider",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/50-adding-a-community-provider.md",
+              "label": "Build a community provider"
+            }
+          }
+        },
+        {
+          "insert": ", including how native SDK events map to the provider contract"
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-provider-capabilities-11": {
+      "id": "b-10-architecture-provider-capabilities-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Provider capabilities",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/70-provider-capabilities.md",
+              "label": "Provider capabilities"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-forge-operations-docs-12": {
+      "id": "b-10-architecture-forge-operations-docs-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Forge operations",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "label": "Forge operations"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-database-docs-10-syst-13": {
+      "id": "b-10-architecture-database-docs-10-syst-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Database",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/40-database.md",
+              "label": "Database"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-architecture-worktrees-docs-30-aut-14": {
+      "id": "b-10-architecture-worktrees-docs-30-aut-14",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Worktrees",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/15-worktrees.md",
+              "label": "Worktrees"
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

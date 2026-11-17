@@ -1,0 +1,909 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-40-reverse-proxy",
+  "title": "Running Archon behind your own reverse proxy",
+  "root": "b-40-reverse-proxy-root-25",
+  "blocks": {
+    "b-40-reverse-proxy-root-25": {
+      "id": "b-40-reverse-proxy-root-25",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "The routing, authentication, webhook, and streaming contract for an Archon reverse proxy.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/reverse-proxy.md"
+      },
+      "children": [
+        "b-40-reverse-proxy-you-can-use-your-own-rev-1",
+        "b-40-reverse-proxy-upstream-and-route-contr-2",
+        "b-40-reverse-proxy-forward-to-archon-s-co-3",
+        "b-40-reverse-proxy-keep-the-upstream-privat-4",
+        "table-0-93292956",
+        "b-40-reverse-proxy-health-is-also-regist-6",
+        "b-40-reverse-proxy-internal-credentials-de-7",
+        "b-40-reverse-proxy-in-github-app-mode-pos-8",
+        "b-40-reverse-proxy-the-caddy-reference-deni-9",
+        "b-40-reverse-proxy-webhooks-preserve-the-s-10",
+        "b-40-reverse-proxy-archon-reads-webhook-bod-11",
+        "b-40-reverse-proxy-live-streams-flush-each-12",
+        "b-40-reverse-proxy-both-the-dashboard-strea-13",
+        "b-40-reverse-proxy-the-caddy-reference-uses-14",
+        "b-40-reverse-proxy-authentication-and-heade-15",
+        "b-40-reverse-proxy-with-web-ui-login-doc-16",
+        "b-40-reverse-proxy-the-proxy-does-not-need-17",
+        "b-40-reverse-proxy-without-web-auth-or-wit-18",
+        "b-40-reverse-proxy-archon-s-application-cod-19",
+        "b-40-reverse-proxy-community-example-traef-20",
+        "b-40-reverse-proxy-this-community-example-21",
+        "b-40-reverse-proxy-yaml-22",
+        "b-40-reverse-proxy-the-router-rule-https-23",
+        "b-40-reverse-proxy-keep-the-app-port-privat-24"
+      ]
+    },
+    "b-40-reverse-proxy-you-can-use-your-own-rev-1": {
+      "id": "b-40-reverse-proxy-you-can-use-your-own-rev-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can use your own reverse proxy if it satisfies the contract below. Caddy is Archon's single maintained reference proxy: start with "
+        },
+        {
+          "insert": "Caddyfile.example",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/Caddyfile.example"
+          }
+        },
+        {
+          "insert": " and the "
+        },
+        {
+          "insert": "Cloud deployment guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/30-cloud.md",
+              "label": "Cloud deployment guide"
+            }
+          }
+        },
+        {
+          "insert": ". Other proxies are community examples, not supported Compose profiles."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-upstream-and-route-contr-2": {
+      "id": "b-40-reverse-proxy-upstream-and-route-contr-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Upstream and route contract"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-forward-to-archon-s-co-3": {
+      "id": "b-40-reverse-proxy-forward-to-archon-s-co-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Forward to Archon's "
+        },
+        {
+          "insert": "configured app port",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), preserving the request path. Docker defaults to "
+        },
+        {
+          "insert": "3000",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "; local development defaults to "
+        },
+        {
+          "insert": "3090",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (worktrees may allocate another port). See "
+        },
+        {
+          "insert": "Start the server",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/10-local.md",
+              "section": "start-the-server",
+              "label": "Start the server"
+            }
+          }
+        },
+        {
+          "insert": ". Serve the UI and API at the same public origin."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-keep-the-upstream-privat-4": {
+      "id": "b-40-reverse-proxy-keep-the-upstream-privat-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep the upstream private so clients cannot bypass the proxy. For a proxy on the same host, use "
+        },
+        {
+          "insert": "HOST=127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A container proxy needs a reachable container interface, but the app's host port must not be exposed publicly. The base Compose file publishes the app port; follow the "
+        },
+        {
+          "insert": "GitHub App Docker setup",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/50-github-app-setup.md",
+              "section": "canonical-docker-setup",
+              "label": "GitHub App Docker setup"
+            }
+          }
+        },
+        {
+          "insert": " to replace that mapping with a loopback-only mapping."
+        }
+      ],
+      "children": []
+    },
+    "table-0-93292956": {
+      "id": "table-0-93292956",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Route group",
+          "Proxy behavior"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/internal/*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Never forward",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": ", for any HTTP method. Return a proxy-generated 404 or 403."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "GET /api/health",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Forward without interactive authentication for load-balancer and uptime checks. This is the Docker/production health endpoint."
+          ],
+          [
+            [
+              {
+                "insert": "/webhooks/*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Forward without interactive authentication. Preserve the raw body and the provider's signature, secret, event, and delivery headers."
+          ],
+          [
+            [
+              {
+                "insert": "/api/stream/*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Forward with response buffering off and timeouts that allow long-lived SSE connections. Apply the same access boundary as other protected API routes."
+          ],
+          [
+            [
+              {
+                "insert": "/api/auth/*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Forward login/session requests and cookies to Archon when using web auth; do not put them behind a proxy login that prevents users reaching Archon's login."
+          ],
+          [
+            [
+              {
+                "insert": "Other "
+              },
+              {
+                "insert": "/api/*",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", UI pages, and assets"
+              }
+            ],
+            "Forward normally, with the authentication posture described below."
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-reverse-proxy-health-is-also-regist-6": {
+      "id": "b-40-reverse-proxy-health-is-also-regist-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is also registered by the server and used as a local-development convenience endpoint. Use "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for production checks, matching Docker and the Caddy reference."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-internal-credentials-de-7": {
+      "id": "b-40-reverse-proxy-internal-credentials-de-7",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Internal credentials: deny before forwarding"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-in-github-app-mode-pos-8": {
+      "id": "b-40-reverse-proxy-in-github-app-mode-pos-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In GitHub App mode, "
+        },
+        {
+          "insert": "POST /internal/git-credential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hands out live installation tokens. It is registered only when the GitHub adapter is in App mode. The server refuses a non-loopback bind in App mode unless "
+        },
+        {
+          "insert": "ARCHON_ALLOW_INTERNAL_ON_PUBLIC_BIND=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " explicitly acknowledges it. "
+        },
+        {
+          "insert": "That flag does not protect the endpoint.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Set it only when the topology requires a non-loopback upstream, the upstream is private, and the proxy already denies "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-the-caddy-reference-deni-9": {
+      "id": "b-40-reverse-proxy-the-caddy-reference-deni-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Caddy reference denies "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with a proxy-generated 404 before its catch-all forwards other paths. "
+        },
+        {
+          "insert": "Keep that denial in your deployed configuration.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Follow "
+        },
+        {
+          "insert": "Internal endpoint security",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/50-github-app-setup.md",
+              "section": "internal-endpoint-security--required",
+              "label": "Internal endpoint security"
+            }
+          }
+        },
+        {
+          "insert": " for the Docker port restrictions and external "
+        },
+        {
+          "insert": "POST",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " probe, too. A GET returning 404 does not prove that the credential endpoint is blocked."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-webhooks-preserve-the-s-10": {
+      "id": "b-40-reverse-proxy-webhooks-preserve-the-s-10",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Webhooks: preserve the signed payload"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-archon-reads-webhook-bod-11": {
+      "id": "b-40-reverse-proxy-archon-reads-webhook-bod-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon reads webhook bodies as raw text before verification. Do not parse and reserialize JSON, rewrite the body, or strip verification headers. Proxy login pages and redirects must not intercept webhook deliveries; the configured adapter or webhook source verifies them. Preserve the original "
+        },
+        {
+          "insert": "/webhooks/...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " path."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-live-streams-flush-each-12": {
+      "id": "b-40-reverse-proxy-live-streams-flush-each-12",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Live streams: flush each event"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-both-the-dashboard-strea-13": {
+      "id": "b-40-reverse-proxy-both-the-dashboard-strea-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both the dashboard stream ("
+        },
+        {
+          "insert": "/api/stream/__dashboard__",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and conversation streams ("
+        },
+        {
+          "insert": "/api/stream/:conversationId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") send an initial heartbeat and another every "
+        },
+        {
+          "insert": "30 seconds",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". Disable response buffering and caching for these routes. Set any idle/read timeout in the proxy chain above 30 seconds with margin, for example 60 seconds or longer, and avoid a fixed response-duration limit that cuts off a healthy stream."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-the-caddy-reference-uses-14": {
+      "id": "b-40-reverse-proxy-the-caddy-reference-uses-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Caddy reference uses "
+        },
+        {
+          "insert": "flush_interval -1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for "
+        },
+        {
+          "insert": "/api/stream/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Verify events arrive as they are emitted, rather than appearing in a batch when the connection closes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-authentication-and-heade-15": {
+      "id": "b-40-reverse-proxy-authentication-and-heade-15",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Authentication and headers"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-with-web-ui-login-doc-16": {
+      "id": "b-40-reverse-proxy-with-web-ui-login-doc-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "Web UI login",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "web-ui-login-better-auth-optional",
+              "label": "Web UI login"
+            }
+          }
+        },
+        {
+          "insert": " enabled ("
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "BETTER_AUTH_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), Better Auth handles sessions and Archon's server-side gate protects "
+        },
+        {
+          "insert": "/api/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The gate is on by default; "
+        },
+        {
+          "insert": "ARCHON_WEB_AUTH_REQUIRED=false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " disables it and leaves login as a UI feature only. "
+        },
+        {
+          "insert": "/api/auth/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/api/health*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are public exceptions. Static UI files can be served without proxy authentication; the API gate is the access boundary."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-the-proxy-does-not-need-17": {
+      "id": "b-40-reverse-proxy-the-proxy-does-not-need-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The proxy does not need its own login when that gate is enabled, but "
+        },
+        {
+          "insert": "it must strip client-supplied ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "X-Archon-User",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or the name configured by "
+        },
+        {
+          "insert": "ARCHON_WEB_AUTH_HEADER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Archon accepts this trusted identity header as a fallback even with Better Auth enabled; allowing clients to supply it bypasses the API gate. If you deliberately use proxy authentication and identity attribution, strip incoming values and set the header only from the authenticated identity. Keep the upstream reachable solely through that trusted boundary."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-without-web-auth-or-wit-18": {
+      "id": "b-40-reverse-proxy-without-web-auth-or-wit-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Without web auth, or with its API gate disabled, the proxy must provide the access boundary for a network-accessible UI and API. Use the authentication options in the "
+        },
+        {
+          "insert": "Docker guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "protect-the-web-ui",
+              "label": "Docker guide"
+            }
+          }
+        },
+        {
+          "insert": ", or your proxy's equivalent, while keeping health checks and webhooks reachable. A reverse proxy alone does not add authentication."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-archon-s-application-cod-19": {
+      "id": "b-40-reverse-proxy-archon-s-application-cod-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon's application code does not read "
+        },
+        {
+          "insert": "X-Forwarded-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " headers as an access or identity contract. For Better Auth behind a fixed-origin proxy, set "
+        },
+        {
+          "insert": "BETTER_AUTH_URL=https://archon.example.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the public origin instead of relying on the upstream HTTP URL. Preserve session cookies. "
+        },
+        {
+          "insert": "BETTER_AUTH_TRUSTED_ORIGINS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is for additional allowed origins, not a replacement for the public URL. See the "
+        },
+        {
+          "insert": "configuration reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "web-ui-login-better-auth-optional",
+              "label": "configuration reference"
+            }
+          }
+        },
+        {
+          "insert": " for signup policy and auth settings."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-community-example-traef-20": {
+      "id": "b-40-reverse-proxy-community-example-traef-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Community example: Traefik labels"
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-this-community-example-21": {
+      "id": "b-40-reverse-proxy-this-community-example-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This "
+        },
+        {
+          "insert": "community example is not a supported profile",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". It assumes Traefik v3 with the Docker provider, a "
+        },
+        {
+          "insert": "websecure",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " HTTPS entry point and TLS certificates already configured, and a shared Docker network named "
+        },
+        {
+          "insert": "archon-network",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It uses "
+        },
+        {
+          "insert": "Archon's web auth with the API gate enabled",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "BETTER_AUTH_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set to the public origin, and the default identity header. Add these labels to your app service; adjust the host, network, and port to your deployment."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-yaml-22": {
+      "id": "b-40-reverse-proxy-yaml-22",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "labels:\n  - \"traefik.enable=true\"\n  - \"traefik.docker.network=archon-network\"\n  - \"traefik.http.routers.archon.rule=Host(`archon.example.com`) && !PathPrefix(`/internal`)\"\n  - \"traefik.http.routers.archon.entrypoints=websecure\"\n  - \"traefik.http.routers.archon.tls=true\"\n  - \"traefik.http.routers.archon.service=archon\"\n  - \"traefik.http.routers.archon.middlewares=archon-strip-identity\"\n  - \"traefik.http.middlewares.archon-strip-identity.headers.customrequestheaders.X-Archon-User=\"\n  - \"traefik.http.services.archon.loadbalancer.server.port=3000\"\n  - \"traefik.http.services.archon.loadbalancer.healthcheck.path=/api/health\"\n  - \"traefik.http.services.archon.loadbalancer.responseforwarding.flushinterval=-1ms\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-the-router-rule-https-23": {
+      "id": "b-40-reverse-proxy-the-router-rule-https-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "router rule",
+          "attributes": {
+            "link": "https://doc.traefik.io/traefik/reference/routing-configuration/http/routing/rules-and-priority/"
+          }
+        },
+        {
+          "insert": " excludes the entire "
+        },
+        {
+          "insert": "/internal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prefix. Ensure no other router or fallback forwards it to Archon. The "
+        },
+        {
+          "insert": "headers middleware",
+          "attributes": {
+            "link": "https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/headers/"
+          }
+        },
+        {
+          "insert": " removes the identity header, and the "
+        },
+        {
+          "insert": "service flush setting",
+          "attributes": {
+            "link": "https://doc.traefik.io/traefik/reference/routing-configuration/http/load-balancing/service/"
+          }
+        },
+        {
+          "insert": " flushes responses immediately. Do not add a buffering middleware to the stream routes. Keep the HTTPS entry point's "
+        },
+        {
+          "insert": "transport.respondingTimeouts.writeTimeout",
+          "attributes": {
+            "code": true,
+            "link": "https://doc.traefik.io/traefik/reference/install-configuration/entrypoints/"
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "0s",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (no response-duration limit) for long-lived streams, and check any outer load balancer's idle timeout as well."
+        }
+      ],
+      "children": []
+    },
+    "b-40-reverse-proxy-keep-the-app-port-privat-24": {
+      "id": "b-40-reverse-proxy-keep-the-app-port-privat-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep the app port private as described above. For GitHub App mode, complete the internal-endpoint setup and POST probe before exposing the deployment. Verify "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a real webhook delivery, an unauthenticated API request (401 with the gate enabled, including when a forged identity header is sent), and a live stream through the public proxy."
+        }
+      ],
+      "children": []
+    }
+  }
+}

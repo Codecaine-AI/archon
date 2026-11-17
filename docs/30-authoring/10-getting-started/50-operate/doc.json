@@ -1,0 +1,3658 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-50-operate",
+  "title": "Operate runs",
+  "root": "b-50-operate-root-80",
+  "blocks": {
+    "b-50-operate-root-80": {
+      "id": "b-50-operate-root-80",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Watch runs, answer the ones that need you, resume or stop them, read what they produced, and hand classes of questions to your own handler workflows.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/operate.md"
+      },
+      "children": [
+        "b-50-operate-a-run-ends-in-one-of-thr-1",
+        "b-50-operate-every-run-id-below-a-2",
+        "b-50-operate-see-what-is-running-3",
+        "b-50-operate-bash-4",
+        "b-50-operate-get-reports-two-separa-5",
+        "b-50-operate-to-block-until-one-run-f-6",
+        "b-50-operate-to-browse-runs-in-a-brow-7",
+        "b-50-operate-find-the-runs-that-need-8",
+        "b-50-operate-bash-9",
+        "b-50-operate-each-item-names-the-run-10",
+        "table-0-a43a6460",
+        "b-50-operate-a-usage-limit-wait-ret-12",
+        "b-50-operate-an-unreadable-item-car-13",
+        "b-50-operate-answer-a-run-14",
+        "b-50-operate-copy-the-command-the-ite-15",
+        "b-50-operate-bash-16",
+        "b-50-operate-respond-approve-and-17",
+        "b-50-operate-occurrence-pins-the-18",
+        "b-50-operate-in-a-terminal-an-answer-19",
+        "b-50-operate-resume-cancel-or-abando-20",
+        "b-50-operate-bash-21",
+        "b-50-operate-pick-the-command-by-what-22",
+        "b-50-operate-a-turn-is-stuck-but-t-23",
+        "b-50-operate-the-run-should-stop-24",
+        "b-50-operate-the-run-failed-or-paus-25",
+        "b-50-operate-cancel-works-only-on-a-26",
+        "b-50-operate-abandon-is-for-a-pause-27",
+        "b-50-operate-the-cli-reference-doc-28",
+        "b-50-operate-read-what-a-run-produced-29",
+        "b-50-operate-bash-30",
+        "b-50-operate-stages-hand-each-other-f-31",
+        "b-50-operate-hand-a-class-of-question-32",
+        "b-50-operate-archon-routes-nothing-e-33",
+        "b-50-operate-yaml-34",
+        "b-50-operate-labels-are-a-flat-map-fr-35",
+        "b-50-operate-bash-36",
+        "b-50-operate-this-handler-answers-del-37",
+        "b-50-operate-yaml-38",
+        "b-50-operate-an-answer-command-exits-39",
+        "b-50-operate-a-handler-can-also-class-40",
+        "b-50-operate-bash-41",
+        "b-50-operate-the-write-merges-a-key-42",
+        "b-50-operate-the-queue-contract-43",
+        "b-50-operate-everything-above-is-also-44",
+        "table-1-a43a6460",
+        "b-50-operate-an-unreadable-stored-ori-46",
+        "b-50-operate-with-explicit-chat-scope-47",
+        "b-50-operate-queue-items-48",
+        "b-50-operate-json-49",
+        "b-50-operate-kind-is-one-of-the-50",
+        "b-50-operate-occurrence-identif-51",
+        "b-50-operate-revision-starts-at-52",
+        "b-50-operate-project-is-the-pro-53",
+        "b-50-operate-parentrunid-is-the-54",
+        "b-50-operate-fanout-is-paren-55",
+        "b-50-operate-pausedat-is-when-t-56",
+        "b-50-operate-context-holds-poin-57",
+        "b-50-operate-several-items-from-one-w-58",
+        "b-50-operate-a-workflow-can-fan-out-59",
+        "b-50-operate-bash-60",
+        "b-50-operate-answer-the-children-in-a-61",
+        "b-50-operate-stream-the-queue-62",
+        "b-50-operate-watch-json-turns-t-63",
+        "b-50-operate-a-stream-starts-with-one-64",
+        "table-2-a43a6460",
+        "b-50-operate-keep-an-open-set-keyed-66",
+        "b-50-operate-deliveries-are-at-leas-67",
+        "b-50-operate-reconnect-from-a-curso-68",
+        "b-50-operate-a-silent-stream-is-not-69",
+        "b-50-operate-degraded-means-gaps-70",
+        "b-50-operate-filter-by-parent-ev-71",
+        "b-50-operate-a-failed-run-says-wher-72",
+        "b-50-operate-label-filters-att-73",
+        "b-50-operate-items-report-the-row-w-74",
+        "b-50-operate-the-stream-only-reads-s-75",
+        "b-50-operate-stream-over-http-76",
+        "b-50-operate-get-api-runs-attention-77",
+        "b-50-operate-the-event-id-is-a-curs-78",
+        "b-50-operate-on-an-error-line-the-s-79"
+      ]
+    },
+    "b-50-operate-a-run-ends-in-one-of-thr-1": {
+      "id": "b-50-operate-a-run-ends-in-one-of-thr-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run ends in one of three ways: it finishes, it fails, or it pauses because it needs something from outside. This page covers what you do with each: see what is running, answer the runs that wait for you, resume or stop a run, and read what a finished run left behind. The second half is the JSON contract for scripts and agents that work the queue for you."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-every-run-id-below-a-2": {
+      "id": "b-50-operate-every-run-id-below-a-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every "
+        },
+        {
+          "insert": "<run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " below accepts the short 8-character id that "
+        },
+        {
+          "insert": "workflow runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prints, when you run the command from the project's directory."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-see-what-is-running-3": {
+      "id": "b-50-operate-see-what-is-running-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "See what is running"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-4": {
+      "id": "b-50-operate-bash-4",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow status                         # running and paused runs in this project\narchon workflow status --all                   # the whole install\narchon workflow runs                           # recent runs of every status\narchon workflow runs --status failed --limit 50\narchon workflow get <run-id>                   # one run: status, nodes, outcome\narchon workflow logs <run-id> --follow --format text"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-get-reports-two-separa-5": {
+      "id": "b-50-operate-get-reports-two-separa-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports two separate facts. The status ("
+        },
+        {
+          "insert": "running",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") says how execution went. The outcome ("
+        },
+        {
+          "insert": "succeeded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), when the workflow declares one, is the workflow's verdict on the work. A "
+        },
+        {
+          "insert": "completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run with outcome "
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ran to the end and judged the work unsuccessful."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-to-block-until-one-run-f-6": {
+      "id": "b-50-operate-to-block-until-one-run-f-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To block until one run finishes or needs you, use "
+        },
+        {
+          "insert": "archon workflow wait <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It is the partner of "
+        },
+        {
+          "insert": "archon workflow run ... --detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": take the run id from the launch and wait on it instead of polling "
+        },
+        {
+          "insert": "get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It has no default timeout. It exits 0 when the run finishes or needs you, whatever the run's status; the status is on stdout."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-to-browse-runs-in-a-brow-7": {
+      "id": "b-50-operate-to-browse-runs-in-a-brow-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To browse runs in a browser, start the console with "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-find-the-runs-that-need-8": {
+      "id": "b-50-operate-find-the-runs-that-need-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Find the runs that need you"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-9": {
+      "id": "b-50-operate-bash-9",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention                      # this project\narchon workflow attention --all                # the whole install\narchon workflow attention --all --watch        # stay open and print each change"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-each-item-names-the-run-10": {
+      "id": "b-50-operate-each-item-names-the-run-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each item names the run, its workflow, its project, how long it has waited, the question, and the exact command for each choice. The item's "
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " says what it needs:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-a43a6460": {
+      "id": "table-0-a43a6460",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Kind",
+          "What it is",
+          "What to do"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "attention",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "wait: attention",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node asked a question"
+              }
+            ],
+            "Answer it in its form"
+          ],
+          [
+            [
+              {
+                "insert": "awaiting_response",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "An approval gate",
+            [
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reject",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "respond",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "usage_limit",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A node hit a provider usage limit, or a rate limit that outlasted its retries",
+            [
+              {
+                "insert": "Nothing. It retries at "
+              },
+              {
+                "insert": "resetAt",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". "
+              },
+              {
+                "insert": "resume",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " tries sooner"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "unreadable",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A paused run Archon cannot describe",
+            "Inspect it, then resume or abandon it"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-operate-a-usage-limit-wait-ret-12": {
+      "id": "b-50-operate-a-usage-limit-wait-ret-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "usage_limit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " wait retries from the node that hit the limit, at the provider's reset time or a 5 to 15 minute backoff, and pauses again if the limit is still there. With "
+        },
+        {
+          "insert": "workflows.autoResumeOnQuotaReset: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or for a container run, the run fails instead of waiting."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-an-unreadable-item-car-13": {
+      "id": "b-50-operate-an-unreadable-item-car-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An "
+        },
+        {
+          "insert": "unreadable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " item carries "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "detail",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A container paused with reason "
+        },
+        {
+          "insert": "source_release_not_continued",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " could not read its frozen source on this host. Resume it by hand on a host that can."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-answer-a-run-14": {
+      "id": "b-50-operate-answer-a-run-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Answer a run"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-copy-the-command-the-ite-15": {
+      "id": "b-50-operate-copy-the-command-the-ite-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Copy the command the item prints, or write it yourself:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-16": {
+      "id": "b-50-operate-bash-16",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow respond <run-id> <choice> \"why\"                # any declared choice\narchon workflow approve <run-id> \"Looks good\"\narchon workflow reject <run-id> --reason \"Not this week\"\narchon workflow answer <run-id> --occurrence <id> --choose use-dev\narchon workflow answer <run-id> --occurrence <id> --text \"Rotated the key\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-respond-approve-and-17": {
+      "id": "b-50-operate-respond-approve-and-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "respond",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " work on both gates and attention waits: each verb picks the option with its id. "
+        },
+        {
+          "insert": "answer",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " speaks the attention wait's own form. "
+        },
+        {
+          "insert": "--choose",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names a declared option, repeated for a "
+        },
+        {
+          "insert": "multi_select",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and left out for a "
+        },
+        {
+          "insert": "message",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "--text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records free text with the answer. An undeclared choice is refused and the run stays paused."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-occurrence-pins-the-18": {
+      "id": "b-50-operate-occurrence-pins-the-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "--occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pins the answer to one pause. If the run has moved on to a different pause, the answer is refused and the refusal names the current occurrence. A second answer to the same pause is refused too, so two answerers never both win."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-in-a-terminal-an-answer-19": {
+      "id": "b-50-operate-in-a-terminal-an-answer-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In a terminal, an answer continues the run in place. With "
+        },
+        {
+          "insert": "--json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the answer is recorded and the run waits for a continuation host: "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "archon workflow wake --watch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A container run needs "
+        },
+        {
+          "insert": "archon workflow resume <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-resume-cancel-or-abando-20": {
+      "id": "b-50-operate-resume-cancel-or-abando-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Resume, cancel or abandon a run"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-21": {
+      "id": "b-50-operate-bash-21",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow resume <run-id>       # rerun a failed or paused run, skipping completed nodes\narchon workflow resume <run-id> --detach\narchon workflow end-turn <run-id>     # end a running run's stalled turn\narchon workflow cancel <run-id>       # stop a running run\narchon workflow abandon <run-id>      # give up on a run for good"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-pick-the-command-by-what-22": {
+      "id": "b-50-operate-pick-the-command-by-what-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pick the command by what is wrong:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-turn-is-stuck-but-t-23": {
+      "id": "b-50-operate-a-turn-is-stuck-but-t-23",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A turn is stuck, but the run should go on.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " When "
+        },
+        {
+          "insert": "workflow wait",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports "
+        },
+        {
+          "insert": "stalled_tool_calls",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a tool or reported background work has made no progress. "
+        },
+        {
+          "insert": "end-turn",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records a request to end that turn. Only the run's live owner acts on it: it ends the turn if the same stall is still active, the node fails as "
+        },
+        {
+          "insert": "timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the node's retry policy decides whether to try again. The command itself stops nothing, and it refuses a run that is not "
+        },
+        {
+          "insert": "running",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-run-should-stop-24": {
+      "id": "b-50-operate-the-run-should-stop-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The run should stop.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Use "
+        },
+        {
+          "insert": "cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-run-failed-or-paus-25": {
+      "id": "b-50-operate-the-run-failed-or-paus-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The run failed or paused.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Use "
+        },
+        {
+          "insert": "resume",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to continue it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-cancel-works-only-on-a-26": {
+      "id": "b-50-operate-cancel-works-only-on-a-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " works only on a "
+        },
+        {
+          "insert": "running",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run. It stops the process that owns the run, confirms it stopped, and then records "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". When no owner answers, it refuses and changes nothing, because a database update cannot prove the work on the host stopped. A foreground "
+        },
+        {
+          "insert": "archon workflow run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can't be stopped from another shell: interrupt it in its terminal."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-abandon-is-for-a-pause-27": {
+      "id": "b-50-operate-abandon-is-for-a-pause-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "abandon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is for a paused or failed run, or one whose owner is gone. It stops a live owner on this host first, records "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and attempts to remove the worktree Archon created for the run. When removal proceeds, it is forced: uncommitted and untracked files in that worktree are deleted. A sub-run whose execution owner cannot be accounted for retains its checkout with a cleanup warning; cancellation still succeeds. See the "
+        },
+        {
+          "insert": "abandon reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-abandon",
+              "label": "abandon reference"
+            }
+          }
+        },
+        {
+          "insert": " for retention and recovery guidance. The branch stays, so committed work is recoverable. Archon never decides a run is dead from its age."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-cli-reference-doc-28": {
+      "id": "b-50-operate-the-cli-reference-doc-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "CLI reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-cancel",
+              "label": "CLI reference"
+            }
+          }
+        },
+        {
+          "insert": " covers sub-run trees, containers and the Windows job rules."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-read-what-a-run-produced-29": {
+      "id": "b-50-operate-read-what-a-run-produced-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Read what a run produced"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-30": {
+      "id": "b-50-operate-bash-30",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow get <run-id>                          # status, outcome, per-node summary with --verbose\narchon workflow artifacts <run-id>                    # list the files in $ARTIFACTS_DIR\narchon workflow artifacts <run-id> review/report.md   # print one\narchon workflow logs <run-id> --format text           # the transcript, readable"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-stages-hand-each-other-f-31": {
+      "id": "b-50-operate-stages-hand-each-other-f-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Stages hand each other files in "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so the artifacts are usually where the answer is: a report, a plan, a review. They live under "
+        },
+        {
+          "insert": "~/.archon/workspaces/<project>/artifacts/runs/<run-id>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The transcript is JSONL with every node, tool call and subprocess output. Treat it as sensitive: it holds prompts and command output."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-hand-a-class-of-question-32": {
+      "id": "b-50-operate-hand-a-class-of-question-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Hand a class of questions to a workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-archon-routes-nothing-e-33": {
+      "id": "b-50-operate-archon-routes-nothing-e-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon routes nothing: every answerer sees every item. Labels are how your own handler workflows find the items they own. A "
+        },
+        {
+          "insert": "wait: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node can label its pause, with values that may reference earlier nodes:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-yaml-34": {
+      "id": "b-50-operate-yaml-34",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "  - id: ask\n    depends_on: [classify]\n    wait:\n      attention: \"$classify.output.summary\"\n      form: select\n      options: [{ id: retry }, { id: stop }]\n      labels:\n        ci: \"$classify.output.cause\"     # e.g. \"pr\" or \"other\"\n        area: delivery"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-labels-are-a-flat-map-fr-35": {
+      "id": "b-50-operate-labels-are-a-flat-map-fr-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Labels are a flat map from string to string. A key is one token with no "
+        },
+        {
+          "insert": "=",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or whitespace. Only attention waits carry labels; a gate's item has none. To see which classes recur often enough to deserve a handler, count them:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-36": {
+      "id": "b-50-operate-bash-36",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention --json --all --count-by label:ci"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-this-handler-answers-del-37": {
+      "id": "b-50-operate-this-handler-answers-del-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This handler answers delivery runs whose CI went red for a reason outside the change, labelled "
+        },
+        {
+          "insert": "ci=other",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Start it from a "
+        },
+        {
+          "insert": "schedule",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "label": "schedule"
+            }
+          }
+        },
+        {
+          "insert": " so it polls the queue."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-yaml-38": {
+      "id": "b-50-operate-yaml-38",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: ci-other-handler\ndescription: Retry or stop delivery runs paused on CI failures the change did not cause\nnodes:\n  - id: queue\n    bash: archon workflow attention --json --all --label ci=other\n  - id: decide\n    depends_on: [queue]\n    prompt: |\n      Each item in this queue is a delivery run paused because CI failed for a reason\n      outside the change. For every item, read its transcript (context.transcript) and\n      decide whether retrying can succeed.\n\n      $queue.output\n    output_format:\n      type: object\n      properties:\n        answers:\n          type: array\n          items:\n            type: object\n            properties:\n              runId: { type: string }\n              occurrence: { type: string }\n              option: { type: string, enum: [retry, stop] }\n            required: [runId, occurrence, option]\n      required: [answers]\n  - id: answer\n    depends_on: [decide]\n    bash: |\n      answers=$decide.output.answers\n      items=$(printf '%s' \"$answers\" | jq -c '.[]') || exit 1\n      if [ -z \"$items\" ]; then\n        exit 0\n      fi\n      failed=0\n      while read -r item; do\n        if ! result=$(archon workflow respond \"$(jq -r .runId <<<\"$item\")\" \"$(jq -r .option <<<\"$item\")\" \\\n          --occurrence \"$(jq -r .occurrence <<<\"$item\")\" --json); then\n          printf '%s\\n' \"$result\" >&2\n          failed=1\n          continue\n        fi\n        if ! printf '%s\\n' \"$result\" | jq -e '.ok == true' >/dev/null; then\n          printf '%s\\n' \"$result\" >&2\n          failed=1\n        fi\n      done <<<\"$items\"\n      exit \"$failed\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-an-answer-command-exits-39": {
+      "id": "b-50-operate-an-answer-command-exits-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An answer command exits non-zero when the answer is refused, including with "
+        },
+        {
+          "insert": "--json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "ok: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). An answer accepted while the run's resource is full exits 0: the run keeps its place and a continuation host continues it when a slot frees. If two handlers watch the same class, the occurrence check refuses the second answer."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-handler-can-also-class-40": {
+      "id": "b-50-operate-a-handler-can-also-class-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A handler can also classify instead of answer. A cheap classifier lists the "
+        },
+        {
+          "insert": "kind: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " items with no "
+        },
+        {
+          "insert": "class",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " label, asks a small model for a typed class, urgency and whether an agent can answer, and writes the result back:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-41": {
+      "id": "b-50-operate-bash-41",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention label <run-id> --occurrence <occurrence> \\\n  --set class=ci-other --set urgency=high --set answerable=agent --json"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-write-merges-a-key-42": {
+      "id": "b-50-operate-the-write-merges-a-key-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The write merges: a key it sets replaces that key, a key it unsets is removed, and nothing else changes. A second handler then selects its class with "
+        },
+        {
+          "insert": "--label class=ci-other --label answerable=agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The labels are yours. Archon never reads "
+        },
+        {
+          "insert": "class",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "urgency",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "answerable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and never decides whether a person or an agent answers."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-queue-contract-43": {
+      "id": "b-50-operate-the-queue-contract-43",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The queue contract"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-everything-above-is-also-44": {
+      "id": "b-50-operate-everything-above-is-also-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Everything above is also JSON, for scripts and agents. The list, the single read, the stream and "
+        },
+        {
+          "insert": "workflow wait",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " share the run projection for readable runs. An unreadable stored descendant is an exception: a batch can omit its blocked parent, while a single read or "
+        },
+        {
+          "insert": "workflow wait",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can fail."
+        }
+      ],
+      "children": []
+    },
+    "table-1-a43a6460": {
+      "id": "table-1-a43a6460",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Operation",
+          "CLI",
+          "HTTP"
+        ],
+        "rows": [
+          [
+            "List",
+            [
+              {
+                "insert": "archon workflow attention --json [--project <id|name|key> | --all] [--label k=v]… [--sort age|label:<key>]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GET /api/runs/attention?project=…&label=…&sort=…",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Count",
+            [
+              {
+                "insert": "archon workflow attention --json --count-by project|label:<key>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GET /api/runs/attention?countBy=…",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Stream",
+            [
+              {
+                "insert": "archon workflow attention --watch --json [--project … | --all] [--label k=v]… [--after <cursor>]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GET /api/runs/attention/stream?project=…&label=…",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (SSE)"
+              }
+            ]
+          ],
+          [
+            "Read one",
+            [
+              {
+                "insert": "archon workflow attention <run-id> --json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GET /api/runs/<run-id>/attention",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Label",
+            [
+              {
+                "insert": "archon workflow attention label <run-id> --occurrence <id> [--set k=v]… [--unset k]…",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "POST /api/runs/<run-id>/attention/labels",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Answer",
+            [
+              {
+                "insert": "archon workflow answer <run-id> --occurrence <id> …",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or "
+              },
+              {
+                "insert": "respond",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reject",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "POST /api/workflows/runs/<run-id>/answer",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Give up on the run",
+            [
+              {
+                "insert": "archon workflow abandon <run-id>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "POST /api/workflows/runs/<run-id>/abandon",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-operate-an-unreadable-stored-ori-46": {
+      "id": "b-50-operate-an-unreadable-stored-ori-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An unreadable stored origin cannot become an item. Batch list and count results instead include\nan optional "
+        },
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " array with one "
+        },
+        {
+          "insert": "{ \"type\": \"degraded\", \"reason\": \"run_unreadable\", \"runId\": \"<id>\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nper reported paused run. "
+        },
+        {
+          "insert": "runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " identifies either the unreadable paused row or an affected readable paused parent whose unreadable descendant is not paused. A parent blocked on an unreadable paused descendant can be omitted because the child already has a report. An absent parent does not mean its block has cleared. Independent valid work stays available; counts cover readable matching items only.\nHealthy results omit the array. Project views omit warning IDs because membership cannot be established;\nlabel filters retain the warnings too. The console shows repair advisories beside actionable work,\nand CLI text does the same. These diagnostics offer no resume or answer action and change no run state.\nUse the safe unreadable run ID from operator logs to locate the data to repair; the warning may\nname its readable parent instead. After repair, reload or read again.\nNo warning contains the stored origin, messages or credentials."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-with-explicit-chat-scope-47": {
+      "id": "b-50-operate-with-explicit-chat-scope-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With explicit chat scope ("
+        },
+        {
+          "insert": "--chat-project-id <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), CLI list, count and watch use the selected project regardless of the working directory. Its ID, name or key is accepted by "
+        },
+        {
+          "insert": "--project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; other projects and "
+        },
+        {
+          "insert": "--all",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are rejected. Without explicit chat scope, the CLI defaults to the working directory's project, "
+        },
+        {
+          "insert": "--project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names another project and "
+        },
+        {
+          "insert": "--all",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " covers the install. Every "
+        },
+        {
+          "insert": "workflow attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " form runs from any directory, registered or not. Over HTTP there is no working directory, so the default is the install. "
+        },
+        {
+          "insert": "--label k=v",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is an exact match, and repeated filters must all match. "
+        },
+        {
+          "insert": "age",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sorts the oldest pause first; "
+        },
+        {
+          "insert": "label:<key>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sorts by that label's value as a plain string. A single-run read returns null when the run has no item. The "
+        },
+        {
+          "insert": "CLI reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-attention",
+              "label": "CLI reference"
+            }
+          }
+        },
+        {
+          "insert": " lists every flag."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-queue-items-48": {
+      "id": "b-50-operate-queue-items-48",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Queue items"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-json-49": {
+      "id": "b-50-operate-json-49",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"kind\": \"attention\",\n  \"runId\": \"7c1e…\",\n  \"workflow\": \"deliver\",\n  \"project\": { \"key\": \"acme/web\", \"codebaseId\": \"c41f…\", \"name\": \"acme/web\" },\n  \"parentRunId\": null,\n  \"fanOut\": null,\n  \"revision\": 1,\n  \"labels\": { \"ci\": \"other\" },\n  \"pausedAt\": \"2026-10-14T07:58:02.000Z\",\n  \"context\": {\n    \"artifactsDir\": \"/home/me/.archon/workspaces/acme/web/artifacts/runs/7c1e…\",\n    \"transcript\": \"/home/me/.archon/workspaces/acme/web/logs/7c1e….jsonl\",\n    \"workingPath\": \"/home/me/.archon/workspaces/acme/web/worktrees/fix-ci\",\n    \"branch\": \"fix-ci\"\n  },\n  \"node\": \"base\",\n  \"occurrence\": \"e0f4…\",\n  \"message\": \"CI on windows failed twice with EPERM. Retry, or stop?\",\n  \"form\": \"select\",\n  \"options\": [{ \"id\": \"retry\" }, { \"id\": \"stop\" }]\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-kind-is-one-of-the-50": {
+      "id": "b-50-operate-kind-is-one-of-the-50",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is one of the four kinds above. A "
+        },
+        {
+          "insert": "usage_limit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " item carries "
+        },
+        {
+          "insert": "node",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "resetAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and has no "
+        },
+        {
+          "insert": "occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An "
+        },
+        {
+          "insert": "unreadable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " item carries "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "detail",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; it also covers these structural failures in a parent's sub-run tree: a sub-run with no row, or a tree that revisits a run or exceeds 500 runs."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-occurrence-identif-51": {
+      "id": "b-50-operate-occurrence-identif-51",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " identifies an answerable pause. Pass it back with "
+        },
+        {
+          "insert": "--occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". If a refusal does not name the current occurrence, read the item again before retrying."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-revision-starts-at-52": {
+      "id": "b-50-operate-revision-starts-at-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts at 1 and grows by one with every label write on an attention wait. It stays 1 for other kinds, so it does not identify every change to an item."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-project-is-the-pro-53": {
+      "id": "b-50-operate-project-is-the-pro-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the project the run belongs to, never a label. "
+        },
+        {
+          "insert": "key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the storage key "
+        },
+        {
+          "insert": "state documents",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "state",
+              "label": "state documents"
+            }
+          }
+        },
+        {
+          "insert": " scope by, so "
+        },
+        {
+          "insert": "archon state --project <item.project.key>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reaches the same project. Copy it exactly when you pass "
+        },
+        {
+          "insert": "--project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "codebaseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is null for a project with no codebase row, such as a run in an unregistered directory ("
+        },
+        {
+          "insert": "@cwd/<basename>-<digest>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). A run started before its codebase was renamed keeps the key it started with. "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is null only for a run with no trusted storage root."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-parentrunid-is-the-54": {
+      "id": "b-50-operate-parentrunid-is-the-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "parentRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the run's direct parent for any child run, such as a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sub-run or a fan-out child, and null for a top-level run."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-fanout-is-paren-55": {
+      "id": "b-50-operate-fanout-is-paren-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "fanOut",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "{ parentRunId, nodeId, index }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a child of a "
+        },
+        {
+          "insert": "fan_out:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node, and null otherwise."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-pausedat-is-when-t-56": {
+      "id": "b-50-operate-pausedat-is-when-t-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "pausedAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is when the pause opened. Gates do not record it, so it is null for them and they sort after timed items."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-context-holds-poin-57": {
+      "id": "b-50-operate-context-holds-poin-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "context",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds pointers, never pasted content."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-several-items-from-one-w-58": {
+      "id": "b-50-operate-several-items-from-one-w-58",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Several items from one workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-workflow-can-fan-out-59": {
+      "id": "b-50-operate-a-workflow-can-fan-out-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow can "
+        },
+        {
+          "insert": "fan out one child per question",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "several-independent-questions",
+              "label": "fan out one child per question"
+            }
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "max_parallel: all",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Each child pauses at its own attention wait, with its own question, choices and occurrence. A parent blocked on its children is never an item, and reading the parent returns only its first actionable descendant. To find every question, list the queue and select the items whose "
+        },
+        {
+          "insert": "fanOut.parentRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the parent; "
+        },
+        {
+          "insert": "fanOut.index",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps the original order."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-bash-60": {
+      "id": "b-50-operate-bash-60",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention --json --all\narchon workflow answer <child-run-id> --occurrence <occurrence> --choose accept"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-answer-the-children-in-a-61": {
+      "id": "b-50-operate-answer-the-children-in-a-61",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Answer the children in any order. Each child applies its own answer at once. The parent stays paused until every child finishes, then reads their ordered results."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-stream-the-queue-62": {
+      "id": "b-50-operate-stream-the-queue-62",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Stream the queue"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-watch-json-turns-t-63": {
+      "id": "b-50-operate-watch-json-turns-t-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "--watch --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " turns the list into JSON lines across every run in scope, including runs that start after the stream does. It replaces polling the list and diffing it. It runs until Ctrl-C, SIGTERM, or its reader closes stdout, then exits 0. On Windows a process kill is not a signal, so it ends the stream without that exit."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-stream-starts-with-one-64": {
+      "id": "b-50-operate-a-stream-starts-with-one-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A stream starts with one "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line per readable open item, with "
+        },
+        {
+          "insert": "snapshot: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and one identifier-free "
+        },
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " warning for each batch report of an affected paused run (an unreadable row or a readable parent whose descendant cannot be read), then a "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line. Startup awaits acceptance of each line before "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Without degradation, the snapshot is the complete open set: an item you held that is absent is gone. With degradation, absence alone cannot establish that work is gone. After "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the stream follows every change the store commits, whichever process made it: a detached run, a trigger, the server, another host on the same database."
+        }
+      ],
+      "children": []
+    },
+    "table-2-a43a6460": {
+      "id": "table-2-a43a6460",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          [
+            {
+              "insert": "type",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          "When",
+          "Fields"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "attention",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "An item opened or changed",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "snapshot",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "item",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "resolved",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "An item this stream sent closed or was replaced",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "runId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "occurrence",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reason",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "; with "
+              },
+              {
+                "insert": "reason: \"answered\"",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", also "
+              },
+              {
+                "insert": "answeredVia",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and "
+              },
+              {
+                "insert": "answeredAt",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "unmatched",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "A label write moved an open item outside "
+              },
+              {
+                "insert": "--label",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "runId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "occurrence",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "revision",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "terminal",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A run ended",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "runId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "status",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "outcome",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "cause",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "resumed",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A failed run resumed, an engine-cancelled fan-out child recovered, or a paused or stale-running run resumed and cleared a stored error",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "runId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "status: \"running\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "owner_lost",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A running run's owner process on this host is gone",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "runId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "workflow",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "parentRunId",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "observedStatus",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "ready",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Initial snapshot delivery finished; coverage may be degraded",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "bookmark",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "30 seconds passed with no other line, and the stream read the store up to "
+              },
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "degraded",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "A snapshot item cannot be read or projected, or repeated failure to project a run; coverage may be incomplete. The stream keeps running",
+            [
+              {
+                "insert": "cursor",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reason: \"run_unreadable\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "error",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "--after",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " named a cursor this install did not issue, or the store no longer reads the stream's position. The last line; exit 4"
+              }
+            ],
+            [
+              {
+                "insert": "error: \"cursor_invalid\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-operate-keep-an-open-set-keyed-66": {
+      "id": "b-50-operate-keep-an-open-set-keyed-66",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Keep an open set keyed by ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Each "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line replaces that run's item, including when its kind or "
+        },
+        {
+          "insert": "resetAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " changes while "
+        },
+        {
+          "insert": "revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stays 1. "
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes it. Its "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "answered",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "withdrawn",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the run resumed, ended, was deleted or moved to a different pause. For a fan-out child, remove only that child."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-deliveries-are-at-leas-67": {
+      "id": "b-50-operate-deliveries-are-at-leas-67",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Deliveries are at least once.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Replacing by "
+        },
+        {
+          "insert": "runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is idempotent. Dedupe answerable pauses on "
+        },
+        {
+          "insert": "(runId, occurrence, revision)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "terminal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "resumed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on "
+        },
+        {
+          "insert": "(runId, cursor)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Don't dedupe every kind by occurrence: usage-limit waits have none. "
+        },
+        {
+          "insert": "owner_lost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a live observation and is not replayed. Only a run whose recorded owner is on this host and user can be reported lost."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-reconnect-from-a-curso-68": {
+      "id": "b-50-operate-reconnect-from-a-curso-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Reconnect from a cursor before any event you did not finish.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A cursor names a feed event, and one event can emit two lines with the same cursor ("
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " then "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " then "
+        },
+        {
+          "insert": "terminal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). "
+        },
+        {
+          "insert": "--after <cursor>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " skips the whole event, so checkpoint only on a handled "
+        },
+        {
+          "insert": "bookmark",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or from before the partly handled event. The new stream sends the snapshot and "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then replays readable changes after the cursor. If the cursor is rejected, reconnect without "
+        },
+        {
+          "insert": "--after",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-silent-stream-is-not-69": {
+      "id": "b-50-operate-a-silent-stream-is-not-69",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A silent stream is not reading.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A stream that cannot read the store sends no "
+        },
+        {
+          "insert": "bookmark",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so no line for well over 30 seconds means it is stuck."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-degraded-means-gaps-70": {
+      "id": "b-50-operate-degraded-means-gaps-70",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means gaps.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The operator log names the run that failed to project; the warning does not. Repair the read failure, reconnect to refresh the open set, and replay from a cursor before the gap to recover missed transitions. The stream sends no recovered signal."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-filter-by-parent-ev-71": {
+      "id": "b-50-operate-filter-by-parent-ev-71",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Filter by parent.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Every run line carries the run's "
+        },
+        {
+          "insert": "workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "parentRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the same values as the queue item's. A "
+        },
+        {
+          "insert": "workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " of null means the stream could not read the run's row, because it was deleted, so that line's "
+        },
+        {
+          "insert": "parentRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " says nothing. Keep top-level runs with "
+        },
+        {
+          "insert": "workflow != null and parentRunId == null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or one parent's direct children with "
+        },
+        {
+          "insert": "parentRunId == \"<run-id>\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "bookmark",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " have no "
+        },
+        {
+          "insert": "workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field and must pass through the filter, for example "
+        },
+        {
+          "insert": "jq 'select((has(\"workflow\") | not) or (.workflow != null and .parentRunId == null))'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-a-failed-run-says-wher-72": {
+      "id": "b-50-operate-a-failed-run-says-wher-72",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A failed run says where it failed.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " On a "
+        },
+        {
+          "insert": "terminal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line with "
+        },
+        {
+          "insert": "status: \"failed\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "cause",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "{ node, errorClass }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the first failed node from the run's terminal record, and the failure kind that node's failure recorded, such as "
+        },
+        {
+          "insert": "exec_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "errorClass",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is null when the failure recorded no kind, as older runs did. "
+        },
+        {
+          "insert": "cause",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is null for other statuses, for a run that failed outside a node, and for a run that ended before terminal records existed. A replayed line keeps the cause it had, even after the run resumed and failed again. The line never carries error text; read it with "
+        },
+        {
+          "insert": "archon workflow get <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-label-filters-att-73": {
+      "id": "b-50-operate-label-filters-att-73",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "--label",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " filters ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "terminal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "resumed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "owner_lost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " arrive for every run in scope. A label write that leaves an item outside the filter sends "
+        },
+        {
+          "insert": "unmatched",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-items-report-the-row-w-74": {
+      "id": "b-50-operate-items-report-the-row-w-74",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Items report the row when the stream read it.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The stream reads about once a second, and PostgreSQL wakes it on each commit. A pause opened and answered between two reads may never appear."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-stream-only-reads-s-75": {
+      "id": "b-50-operate-the-stream-only-reads-s-75",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The stream only reads. Stopping it affects no run."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-stream-over-http-76": {
+      "id": "b-50-operate-stream-over-http-76",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Stream over HTTP"
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-get-api-runs-attention-77": {
+      "id": "b-50-operate-get-api-runs-attention-77",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/runs/attention/stream",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the same stream as server-sent events. Each line above is one event, and the event's "
+        },
+        {
+          "insert": "data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the line exactly as "
+        },
+        {
+          "insert": "--watch --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " writes it, so switch on its "
+        },
+        {
+          "insert": "type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Events have no "
+        },
+        {
+          "insert": "event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " name, so one "
+        },
+        {
+          "insert": "onmessage",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " handler receives every line. The scope is the whole install unless "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names one; "
+        },
+        {
+          "insert": "label=k=v",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " repeats as on the list route. It needs the same API access as the list route."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-the-event-id-is-a-curs-78": {
+      "id": "b-50-operate-the-event-id-is-a-curs-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The event "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a cursor to resume from. A browser "
+        },
+        {
+          "insert": "EventSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sends the last one back as "
+        },
+        {
+          "insert": "Last-Event-ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when it reconnects, which works as "
+        },
+        {
+          "insert": "--after",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does: the new stream sends the snapshot and "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then replays readable changes after that cursor. The id is the cursor of the last event whose lines were all sent, so a reconnect can repeat lines of the event in progress but never skips one. Dedupe repeats with the keys above. Some lines carry no "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the client keeps the one it has."
+        }
+      ],
+      "children": []
+    },
+    "b-50-operate-on-an-error-line-the-s-79": {
+      "id": "b-50-operate-on-an-error-line-the-s-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On an "
+        },
+        {
+          "insert": "error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line the server ends the stream. Close the "
+        },
+        {
+          "insert": "EventSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and open a new one without "
+        },
+        {
+          "insert": "Last-Event-ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the lines before "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are the open set. The stream ends when the client disconnects."
+        }
+      ],
+      "children": []
+    }
+  }
+}

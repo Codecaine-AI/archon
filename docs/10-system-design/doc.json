@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design",
+  "title": "System Design",
+  "root": "b-10-system-design-root-8",
+  "blocks": {
+    "b-10-system-design-root-8": {
+      "id": "b-10-system-design-root-8",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts"
+      },
+      "children": [
+        "b-10-system-design-system-design-says-how-a-1",
+        "b-10-system-design-the-node-modes-page-belo-2",
+        "b-10-system-design-the-import-replaces-each-3",
+        "b-10-system-design-contents-4",
+        "b-10-system-design-reference-docs-10-sys-5",
+        "b-10-system-design-platform-adapters-doc-6",
+        "b-10-system-design-node-modes-extract-and-7"
+      ]
+    },
+    "b-10-system-design-system-design-says-how-a-1": {
+      "id": "b-10-system-design-system-design-says-how-a-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "System Design says how Archon behaves: the workflow language, the engine, the adapters and the node modes of the fork."
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-the-node-modes-page-belo-2": {
+      "id": "b-10-system-design-the-node-modes-page-belo-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The node modes page belongs to the fork. The other pages are converted copies of the upstream Archon docs."
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-the-import-replaces-each-3": {
+      "id": "b-10-system-design-the-import-replaces-each-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The import replaces each em dash of the upstream prose with a colon, a comma, parentheses or a hyphen."
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-contents-4": {
+      "id": "b-10-system-design-contents-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-reference-docs-10-sys-5": {
+      "id": "b-10-system-design-reference-docs-10-sys-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference.md",
+              "label": "Reference"
+            }
+          }
+        },
+        {
+          "insert": ": Technical reference for Archon's architecture, CLI, commands, database, configuration, and troubleshooting."
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-platform-adapters-doc-6": {
+      "id": "b-10-system-design-platform-adapters-doc-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Platform Adapters",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters.md",
+              "label": "Platform Adapters"
+            }
+          }
+        },
+        {
+          "insert": ": Overview of all platform adapters available for connecting to Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-10-system-design-node-modes-extract-and-7": {
+      "id": "b-10-system-design-node-modes-extract-and-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Node Modes: extract and decide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/60-node-modes.md",
+              "label": "Node Modes: extract and decide"
+            }
+          }
+        },
+        {
+          "insert": ": The two node modes that the fork adds to the workflow grammar."
+        }
+      ],
+      "children": []
+    }
+  }
+}

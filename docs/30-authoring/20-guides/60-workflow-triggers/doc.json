@@ -1,0 +1,3602 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-60-workflow-triggers",
+  "title": "Start workflows from schedules and signed webhooks",
+  "root": "b-60-workflow-triggers-root-130",
+  "blocks": {
+    "b-60-workflow-triggers-root-130": {
+      "id": "b-60-workflow-triggers-root-130",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Configure governed workflow starts from native schedules, GitHub events, and Standard Webhooks.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/workflow-triggers.md"
+      },
+      "children": [
+        "b-60-workflow-triggers-native-schedules-github-1",
+        "b-60-workflow-triggers-schedules-and-event-bind-2",
+        "b-60-workflow-triggers-every-binding-names-a-h-3",
+        "b-60-workflow-triggers-the-server-when-archon-4",
+        "b-60-workflow-triggers-the-cli-through-archon-5",
+        "b-60-workflow-triggers-both-hosts-use-the-same-6",
+        "b-60-workflow-triggers-find-runs-needing-your-i-7",
+        "b-60-workflow-triggers-the-console-s-needs-yo-8",
+        "b-60-workflow-triggers-if-stored-run-data-canno-9",
+        "b-60-workflow-triggers-keep-the-console-open-to-10",
+        "b-60-workflow-triggers-get-notified-with-the-co-11",
+        "b-60-workflow-triggers-in-settings-alerts-12",
+        "b-60-workflow-triggers-every-opted-in-browser-o-13",
+        "b-60-workflow-triggers-the-first-browser-subscr-14",
+        "b-60-workflow-triggers-disable-the-toggle-to-un-15",
+        "b-60-workflow-triggers-archon-generates-vapid-k-16",
+        "b-60-workflow-triggers-get-notified-in-chat-17",
+        "b-60-workflow-triggers-an-installed-chat-plugin-18",
+        "b-60-workflow-triggers-yaml-19",
+        "b-60-workflow-triggers-destination-is-passed-20",
+        "b-60-workflow-triggers-each-route-receives-one-21",
+        "b-60-workflow-triggers-a-route-records-pauses-t-22",
+        "b-60-workflow-triggers-actions-from-chat-go-thr-23",
+        "b-60-workflow-triggers-find-your-run-as-user-id-24",
+        "b-60-workflow-triggers-every-binding-names-the-25",
+        "b-60-workflow-triggers-bash-26",
+        "b-60-workflow-triggers-it-prints-runasuserid-27",
+        "b-60-workflow-triggers-a-workflow-pack-can-decl-28",
+        "b-60-workflow-triggers-configure-a-native-macos-29",
+        "b-60-workflow-triggers-create-users-alice-ar-30",
+        "b-60-workflow-triggers-json-31",
+        "b-60-workflow-triggers-the-workflow-declares-th-32",
+        "b-60-workflow-triggers-yaml-33",
+        "b-60-workflow-triggers-intervalseconds-is-req-34",
+        "b-60-workflow-triggers-test-the-binding-once-be-35",
+        "b-60-workflow-triggers-bash-36",
+        "b-60-workflow-triggers-the-command-returns-a-du-37",
+        "b-60-workflow-triggers-bash-38",
+        "b-60-workflow-triggers-archon-installs-only-job-39",
+        "b-60-workflow-triggers-use-archon-trigger-list-40",
+        "b-60-workflow-triggers-bash-41",
+        "b-60-workflow-triggers-remove-future-firings-wi-42",
+        "b-60-workflow-triggers-bash-43",
+        "b-60-workflow-triggers-removing-a-schedule-does-44",
+        "b-60-workflow-triggers-macos-scheduling-limits-45",
+        "b-60-workflow-triggers-the-installed-launchagen-46",
+        "b-60-workflow-triggers-startinterval-behavior-47",
+        "b-60-workflow-triggers-for-plain-schedules-use-48",
+        "b-60-workflow-triggers-drive-the-same-commands-49",
+        "b-60-workflow-triggers-archon-does-not-install-50",
+        "b-60-workflow-triggers-text-51",
+        "b-60-workflow-triggers-a-server-with-archon-tr-52",
+        "b-60-workflow-triggers-text-53",
+        "b-60-workflow-triggers-use-the-first-command-as-54",
+        "b-60-workflow-triggers-these-recipes-share-arch-55",
+        "b-60-workflow-triggers-choose-a-resource-capac-56",
+        "b-60-workflow-triggers-resource-names-the-wor-57",
+        "b-60-workflow-triggers-capacity-sets-how-many-58",
+        "b-60-workflow-triggers-the-overlap-setting-co-59",
+        "b-60-workflow-triggers-skip-records-the-block-60",
+        "b-60-workflow-triggers-queue-retains-the-prep-61",
+        "b-60-workflow-triggers-a-queued-request-also-bl-62",
+        "b-60-workflow-triggers-a-paused-run-gives-back-63",
+        "b-60-workflow-triggers-a-run-admitted-on-a-reso-64",
+        "b-60-workflow-triggers-guarded-starts-also-wait-65",
+        "b-60-workflow-triggers-a-drain-processes-untouc-66",
+        "b-60-workflow-triggers-host-listing-retains-fai-67",
+        "b-60-workflow-triggers-in-the-file-store-a-mis-68",
+        "b-60-workflow-triggers-the-server-rechecks-its-69",
+        "b-60-workflow-triggers-a-malformed-stored-check-70",
+        "b-60-workflow-triggers-if-a-known-foreign-admit-71",
+        "b-60-workflow-triggers-the-file-store-records-a-72",
+        "b-60-workflow-triggers-a-run-released-by-an-old-73",
+        "b-60-workflow-triggers-when-independent-slot-me-74",
+        "b-60-workflow-triggers-if-an-older-released-hol-75",
+        "b-60-workflow-triggers-if-a-request-was-admitte-76",
+        "b-60-workflow-triggers-to-stop-a-running-run-th-77",
+        "b-60-workflow-triggers-a-trigger-execute-proc-78",
+        "b-60-workflow-triggers-if-an-admitted-run-has-a-79",
+        "b-60-workflow-triggers-configure-github-event-s-80",
+        "b-60-workflow-triggers-every-webhook-route-w-81",
+        "b-60-workflow-triggers-github-event-starts-use-82",
+        "b-60-workflow-triggers-from-a-source-checkout-83",
+        "b-60-workflow-triggers-set-webhook-secret-for-84",
+        "b-60-workflow-triggers-the-following-configurat-85",
+        "b-60-workflow-triggers-json-86",
+        "b-60-workflow-triggers-the-maintained-github-so-87",
+        "b-60-workflow-triggers-the-plugin-authenticates-88",
+        "b-60-workflow-triggers-on-the-first-verified-de-89",
+        "b-60-workflow-triggers-github-does-not-automati-90",
+        "b-60-workflow-triggers-start-workflows-from-any-91",
+        "b-60-workflow-triggers-the-standard-webhooks-so-92",
+        "b-60-workflow-triggers-from-a-source-checkout-93",
+        "b-60-workflow-triggers-bash-94",
+        "b-60-workflow-triggers-set-order-signing-secre-95",
+        "b-60-workflow-triggers-json-96",
+        "b-60-workflow-triggers-the-workflow-must-declar-97",
+        "b-60-workflow-triggers-sign-a-delivery-from-a-s-98",
+        "b-60-workflow-triggers-this-posix-shell-recipe-99",
+        "b-60-workflow-triggers-bash-100",
+        "b-60-workflow-triggers-macopt-hexkey-suppli-101",
+        "b-60-workflow-triggers-webhook-id-is-the-dura-102",
+        "table-0-0b129bc3",
+        "b-60-workflow-triggers-security-boundary-104",
+        "b-60-workflow-triggers-a-valid-signature-proves-105",
+        "b-60-workflow-triggers-operator-configuration-o-106",
+        "b-60-workflow-triggers-poll-a-system-that-canno-107",
+        "b-60-workflow-triggers-the-host-scheduler-cron-108",
+        "b-60-workflow-triggers-these-posix-shell-recipe-109",
+        "b-60-workflow-triggers-save-this-workflow-as-110",
+        "b-60-workflow-triggers-yaml-111",
+        "b-60-workflow-triggers-replace-the-recording-no-112",
+        "b-60-workflow-triggers-cli-only-host-113",
+        "b-60-workflow-triggers-save-srv-archon-polled-114",
+        "b-60-workflow-triggers-json-115",
+        "b-60-workflow-triggers-the-configuration-still-116",
+        "b-60-workflow-triggers-bash-117",
+        "b-60-workflow-triggers-the-final-drain-also-adv-118",
+        "b-60-workflow-triggers-inputs-reads-a-json-119",
+        "b-60-workflow-triggers-an-identical-key-and-inp-120",
+        "b-60-workflow-triggers-server-host-121",
+        "b-60-workflow-triggers-configure-the-standard-122",
+        "b-60-workflow-triggers-bash-123",
+        "b-60-workflow-triggers-the-server-drains-accept-124",
+        "b-60-workflow-triggers-preparation-and-retained-125",
+        "b-60-workflow-triggers-the-receipt-freezes-the-126",
+        "b-60-workflow-triggers-an-input-mapped-from-the-127",
+        "b-60-workflow-triggers-a-process-that-stops-dur-128",
+        "b-60-workflow-triggers-untouched-queued-work-ca-129"
+      ]
+    },
+    "b-60-workflow-triggers-native-schedules-github-1": {
+      "id": "b-60-workflow-triggers-native-schedules-github-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Native schedules, GitHub events, and Standard Webhooks deliveries start ordinary governed workflow runs through triggers. A trigger binding selects the workflow, execution user, inputs, execution host, shared resource, and overlap policy. The schedule or webhook decides when to request a start; it does not bypass workflow validation, provider configuration, isolation, or resource admission."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-schedules-and-event-bind-2": {
+      "id": "b-60-workflow-triggers-schedules-and-event-bind-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Schedules and event bindings are deployment configuration. They do not belong in workflow YAML."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-every-binding-names-a-h-3": {
+      "id": "b-60-workflow-triggers-every-binding-names-a-h-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every binding names a "
+        },
+        {
+          "insert": "hostId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A host prepares accepted work for its own ID, admits it, and starts the run. Two hosts ship with Archon:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-server-when-archon-4": {
+      "id": "b-60-workflow-triggers-the-server-when-archon-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The server, when "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names its host ID. It prepares and starts work as soon as a webhook receipt commits, and it checks for queued work every few seconds, so a queued start begins shortly after the run blocking it ends. The server never guesses its host ID; without "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " it records webhook receipts but starts nothing."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-cli-through-archon-5": {
+      "id": "b-60-workflow-triggers-the-cli-through-archon-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The CLI, through "
+        },
+        {
+          "insert": "archon trigger fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon trigger drain --host <hostId>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Each admitted run executes in its own detached process."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-both-hosts-use-the-same-6": {
+      "id": "b-60-workflow-triggers-both-hosts-use-the-same-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both hosts use the same admission records, so a server and a scheduled CLI command can serve the same host ID without starting a run twice."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-find-runs-needing-your-i-7": {
+      "id": "b-60-workflow-triggers-find-runs-needing-your-i-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Find runs needing your input"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-console-s-needs-yo-8": {
+      "id": "b-60-workflow-triggers-the-console-s-needs-yo-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The console's "
+        },
+        {
+          "insert": "Needs your input",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " banner lists readable runs that need attention, including triggered runs and runs older than the first page of the feed. Approval gates keep their decision and response controls. A "
+        },
+        {
+          "insert": "wait: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run shows its question with answer controls for its form and an "
+        },
+        {
+          "insert": "Abandon",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " action; a wait paused before attention waits took answers shows "
+        },
+        {
+          "insert": "Resume",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " instead."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-if-stored-run-data-canno-9": {
+      "id": "b-60-workflow-triggers-if-stored-run-data-canno-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If stored run data cannot be read, the console shows a separate repair advisory without answer or abandon controls. These runs receive no browser or chat attention notice. Operator logs identify the unreadable runs without exposing stored origin contents; repair the data and read again. See "
+        },
+        {
+          "insert": "incomplete attention reads",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/50-operate.md",
+              "section": "the-queue-contract",
+              "label": "incomplete attention reads"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-keep-the-console-open-to-10": {
+      "id": "b-60-workflow-triggers-keep-the-console-open-to-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep the console open to receive live updates from runs started by another process. "
+        },
+        {
+          "insert": "Dismiss",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " hides an occurrence for this browser session; reloading or a new pause brings it back. Resuming still requires the server to have access to the run's working path."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-get-notified-with-the-co-11": {
+      "id": "b-60-workflow-triggers-get-notified-with-the-co-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Get notified with the console closed"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-in-settings-alerts-12": {
+      "id": "b-60-workflow-triggers-in-settings-alerts-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In "
+        },
+        {
+          "insert": "Settings → Alerts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", enable "
+        },
+        {
+          "insert": "Also notify this browser when the console is closed",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and allow notifications. Subscription requires a signed-in web user or an identity supplied by your trusted authentication proxy. Push works over HTTPS or localhost in a browser supporting Web Push. On iOS, first install Archon as a home-screen web app."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-every-opted-in-browser-o-13": {
+      "id": "b-60-workflow-triggers-every-opted-in-browser-o-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every opted-in browser on this install receives notices for readable approval gates and "
+        },
+        {
+          "insert": "wait: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pauses, including runs started by the CLI or triggers. Runs already rendered inline by a chat plugin are excluded. A notified run also gets a completion notice. Notifications name the workflow and the kind of attention; messages, outputs and identities stay in Archon. Click the notification to open the run page and act there."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-first-browser-subscr-14": {
+      "id": "b-60-workflow-triggers-the-first-browser-subscr-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The first browser subscription quietly records existing pauses as a baseline. New pause occurrences are delivered once across scans and server restarts. Archon sends before recording delivery, so a crash can cause a duplicate. If only some browsers receive a push, the next scan retries every browser. These duplicates replace the same browser notification because its tag is the run ID. There is no per-browser delivery ledger."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-disable-the-toggle-to-un-15": {
+      "id": "b-60-workflow-triggers-disable-the-toggle-to-un-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Disable the toggle to unsubscribe this browser. Expired subscriptions are removed when the push service returns 404 or 410. With no subscriptions, no pushes or delivery rows are written. In-tab alerts remain an independent setting."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-archon-generates-vapid-k-16": {
+      "id": "b-60-workflow-triggers-archon-generates-vapid-k-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon generates VAPID keys once in "
+        },
+        {
+          "insert": "ARCHON_HOME/web-push-vapid.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with owner-only file permissions. Preserve that file with the install's state: replacing it invalidates existing browser subscriptions. Browser vendors carry the encrypted minimal push payload; Archon needs outbound HTTPS access to their push services."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-get-notified-in-chat-17": {
+      "id": "b-60-workflow-triggers-get-notified-in-chat-17",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Get notified in chat"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-an-installed-chat-plugin-18": {
+      "id": "b-60-workflow-triggers-an-installed-chat-plugin-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An installed chat plugin that declares the "
+        },
+        {
+          "insert": "attentionNotices",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability can post to a\nchannel when a run needs attention. Add a route to "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; repository\nconfig cannot carry routes:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-yaml-19": {
+      "id": "b-60-workflow-triggers-yaml-19",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "attentionNotices:\n  - platform: slack\n    destination: C0123456789"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-destination-is-passed-20": {
+      "id": "b-60-workflow-triggers-destination-is-passed-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "destination",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is passed to the plugin unchanged; its meaning, such as a channel id, belongs\nto the plugin. Restart the server after changing routes. A route whose platform has no\ninstalled plugin, or whose plugin lacks the capability, is logged at startup and shows as\n"
+        },
+        {
+          "insert": "misconfigured",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the server still starts."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-each-route-receives-one-21": {
+      "id": "b-60-workflow-triggers-each-route-receives-one-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each route receives one message per readable approval gate or "
+        },
+        {
+          "insert": "wait: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pause occurrence,\nacross scans and server restarts, including runs started by the CLI or triggers. The message\ncarries the gate's decisions or the wait's form and options, so the plugin can offer them as\nactions. A re-ask of the same gate is a new occurrence and gets a new message. A notified run\ngets one follow-up when it finishes, in the conversation the plugin returned for its notice.\nRuns started from a chat thread whose plugin renders run events are excluded: they already\nshow in that thread. Archon sends before recording delivery, so a crash can cause a duplicate."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-route-records-pauses-t-22": {
+      "id": "b-60-workflow-triggers-a-route-records-pauses-t-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A route records pauses that are already open as a baseline instead of sending them. Until the\nroute has delivered or baselined anything, it baselines again at each startup, so a pause\nthat opens while the server is down is not sent for a route that has never had a pause."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-actions-from-chat-go-thr-23": {
+      "id": "b-60-workflow-triggers-actions-from-chat-go-thr-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Actions from chat go through the plugin's allowlist, its identity resolution and the same\nauthorization as every surface: the run's starter or an admin may act. A chat member acts as\nthe Archon user their platform identity resolves to; link it to your existing user with\n"
+        },
+        {
+          "insert": "archon user link <id> slack:U123",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to act on runs you started elsewhere."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-find-your-run-as-user-id-24": {
+      "id": "b-60-workflow-triggers-find-your-run-as-user-id-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Find your run-as user ID"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-every-binding-names-the-25": {
+      "id": "b-60-workflow-triggers-every-binding-names-the-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every binding names the Archon user whose provider configuration and credentials the run uses, as "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". To use your own CLI identity, run:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-26": {
+      "id": "b-60-workflow-triggers-bash-26",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger whoami"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-it-prints-runasuserid-27": {
+      "id": "b-60-workflow-triggers-it-prints-runasuserid-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "It prints "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the ID to put in the binding, and "
+        },
+        {
+          "insert": "cliIdentity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the name it resolved from "
+        },
+        {
+          "insert": "ARCHON_USER_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "$USER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It creates the Archon user for that identity when none exists yet. Use the same store for this command and the host that executes the binding: the same "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "store: files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or the same "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with database storage. User IDs belong to that installation store."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-workflow-pack-can-decl-28": {
+      "id": "b-60-workflow-triggers-a-workflow-pack-can-decl-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow pack can declare the bindings it recommends. "
+        },
+        {
+          "insert": "archon pack bindings",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "pack-bindings",
+              "label": "`archon pack bindings`"
+            }
+          }
+        },
+        {
+          "insert": " writes them as the files described below for one repository, and you register each as this page describes."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-configure-a-native-macos-29": {
+      "id": "b-60-workflow-triggers-configure-a-native-macos-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure a native macOS schedule"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-create-users-alice-ar-30": {
+      "id": "b-60-workflow-triggers-create-users-alice-ar-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create "
+        },
+        {
+          "insert": "/Users/alice/.archon/triggers/repository-refresh.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-json-31": {
+      "id": "b-60-workflow-triggers-json-31",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"version\": 1,\n  \"sourceInstanceId\": \"macbook-repository-refresh\",\n  \"binding\": {\n    \"bindingId\": \"repository-refresh\",\n    \"bindingRevision\": null,\n    \"hostId\": \"alice-macbook\",\n    \"runAsUserId\": \"2a568f73-e217-40ca-b17d-a784d19fd43a\",\n    \"resource\": \"github:acme/widgets:refresh\",\n    \"overlap\": \"queue\",\n    \"launch\": {\n      \"cwd\": \"/Users/alice/Projects/widgets\",\n      \"workflowName\": \"refresh-repository-state\",\n      \"inputs\": {\n        \"repository\": \"acme/widgets\"\n      },\n      \"isolation\": {\n        \"kind\": \"default\"\n      }\n    }\n  },\n  \"schedule\": {\n    \"intervalSeconds\": 1800,\n    \"runAtLoad\": true\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-workflow-declares-th-32": {
+      "id": "b-60-workflow-triggers-the-workflow-declares-th-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workflow declares the input the binding passes, so a typo in the binding fails preparation instead of reaching the run:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-yaml-33": {
+      "id": "b-60-workflow-triggers-yaml-33",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: refresh-repository-state\ninputs:\n  repository: { required: true }\nnodes:\n  # ..."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-intervalseconds-is-req-34": {
+      "id": "b-60-workflow-triggers-intervalseconds-is-req-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "intervalSeconds",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is required and has no default. "
+        },
+        {
+          "insert": "runAtLoad",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is also required. Set it to "
+        },
+        {
+          "insert": "true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to request one start when launchd loads the job, or "
+        },
+        {
+          "insert": "false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to wait for the first interval."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-test-the-binding-once-be-35": {
+      "id": "b-60-workflow-triggers-test-the-binding-once-be-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Test the binding once before installing it:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-36": {
+      "id": "b-60-workflow-triggers-bash-36",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger fire --config /Users/alice/.archon/triggers/repository-refresh.json"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-command-returns-a-du-37": {
+      "id": "b-60-workflow-triggers-the-command-returns-a-du-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The command returns a durable receipt and disposition, then runs accepted work in the background. Install the per-user LaunchAgent after the one-shot request succeeds:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-38": {
+      "id": "b-60-workflow-triggers-bash-38",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger schedule install --config /Users/alice/.archon/triggers/repository-refresh.json"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-archon-installs-only-job-39": {
+      "id": "b-60-workflow-triggers-archon-installs-only-job-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon installs only jobs in the "
+        },
+        {
+          "insert": "com.archon.trigger.*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " namespace. The plist contains the absolute executable and arguments, working directory, "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " of the shell that ran "
+        },
+        {
+          "insert": "install",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so scheduled runs find "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", git credential helpers, and provider CLIs where your terminal finds them. launchd's default "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is only "
+        },
+        {
+          "insert": "/usr/bin:/bin:/usr/sbin:/sbin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The plist does not copy provider credentials or other environment variables. Scheduled runs use the same native provider configuration and credentials available to the configured user, so a credential that exists only as a variable in your shell is not there: keep it where the provider stores its login, or in Archon's config."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-use-archon-trigger-list-40": {
+      "id": "b-60-workflow-triggers-use-archon-trigger-list-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "archon trigger list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to find recent native or webhook receipts, then inspect a receipt or resource-start request by its UUID:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-41": {
+      "id": "b-60-workflow-triggers-bash-41",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger inspect 1f3be5de-4e63-4da2-b352-20d95ba83b37"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-remove-future-firings-wi-42": {
+      "id": "b-60-workflow-triggers-remove-future-firings-wi-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Remove future firings with the same configuration file:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-43": {
+      "id": "b-60-workflow-triggers-bash-43",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger schedule remove --config /Users/alice/.archon/triggers/repository-refresh.json"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-removing-a-schedule-does-44": {
+      "id": "b-60-workflow-triggers-removing-a-schedule-does-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Removing a schedule does not cancel work that Archon already accepted. To change its interval or startup behavior, or to record a changed "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", remove the existing job before installing again. A schedule installed before Archon recorded "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " needs the same remove and install once; until then its runs cannot find tools outside launchd's default "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-macos-scheduling-limits-45": {
+      "id": "b-60-workflow-triggers-macos-scheduling-limits-45",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "macOS scheduling limits"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-installed-launchagen-46": {
+      "id": "b-60-workflow-triggers-the-installed-launchagen-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The installed LaunchAgent runs in the current user's GUI login domain. The user must be logged in, and logout ends that launchd session. No scheduler runs while the computer is powered off."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-startinterval-behavior-47": {
+      "id": "b-60-workflow-triggers-startinterval-behavior-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "StartInterval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " behavior during sleep or while the prior command is still running is native launchd behavior and differs across macOS releases. Archon does not promise replay of missed intervals. "
+        },
+        {
+          "insert": "runAtLoad",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " requests one invocation when the job loads; it is not a missed-run queue."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-for-plain-schedules-use-48": {
+      "id": "b-60-workflow-triggers-for-plain-schedules-use-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For plain schedules, use the trigger workflow to read the current source state when it runs. To report identified items from an external system, use the "
+        },
+        {
+          "insert": "polling recipe",
+          "attributes": {
+            "link": "#poll-a-system-that-cannot-send-webhooks"
+          }
+        },
+        {
+          "insert": ". Do not depend on one invocation for every wall-clock interval."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-drive-the-same-commands-49": {
+      "id": "b-60-workflow-triggers-drive-the-same-commands-49",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Drive the same commands from Linux or Windows"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-archon-does-not-install-50": {
+      "id": "b-60-workflow-triggers-archon-does-not-install-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon does not install or manage Linux or Windows scheduler definitions. Configure the host scheduler to run the same one-shot command with an absolute executable path, an absolute config path, the configured working directory, "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and a "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that contains the tools your workflows run, such as "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and provider CLIs:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-text-51": {
+      "id": "b-60-workflow-triggers-text-51",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "/opt/archon/bin/archon trigger fire --config /home/alice/.archon/triggers/repository-refresh.json"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-server-with-archon-tr-52": {
+      "id": "b-60-workflow-triggers-a-server-with-archon-tr-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A server with "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set already drains its host. Without a running server, schedule a cold drain for a host that receives webhook starts but has no timer binding:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-text-53": {
+      "id": "b-60-workflow-triggers-text-53",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "/opt/archon/bin/archon trigger drain --host build-host-1"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-use-the-first-command-as-54": {
+      "id": "b-60-workflow-triggers-use-the-first-command-as-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use the first command as a systemd "
+        },
+        {
+          "insert": "ExecStart",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or cron command on Linux. On Windows Task Scheduler, set the absolute Archon executable as the program and pass "
+        },
+        {
+          "insert": "trigger fire --config C:\\Users\\Alice\\.archon\\triggers\\repository-refresh.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as its arguments. Configure the working directory and "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " separately in the scheduler."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-these-recipes-share-arch-55": {
+      "id": "b-60-workflow-triggers-these-recipes-share-arch-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These recipes share Archon's trigger boundary, but the host scheduler owns login, sleep, wake, missed-time, and credential-loading behavior. Test the real scheduled task under its configured user before relying on unattended execution."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-choose-a-resource-capac-56": {
+      "id": "b-60-workflow-triggers-choose-a-resource-capac-56",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Choose a resource, capacity, and overlap policy"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-resource-names-the-wor-57": {
+      "id": "b-60-workflow-triggers-resource-names-the-wor-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "resource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names the work that must not overlap. Use the same sufficiently qualified resource for every schedule or webhook binding that can mutate that work. A trigger ID or workflow name does not imply a resource."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-capacity-sets-how-many-58": {
+      "id": "b-60-workflow-triggers-capacity-sets-how-many-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "capacity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sets how many runs can hold the resource at once. It is optional and defaults to "
+        },
+        {
+          "insert": "1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so by default runs for one resource never overlap. Set it higher for work that tolerates a bounded number of concurrent runs, such as "
+        },
+        {
+          "insert": "\"capacity\": 2",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Every binding that names a resource must declare the same capacity. A start that declares a different capacity is rejected and recorded as "
+        },
+        {
+          "insert": "resource_capacity_conflict",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " instead of silently using either value. To change a resource's capacity, use a new resource name."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-overlap-setting-co-59": {
+      "id": "b-60-workflow-triggers-the-overlap-setting-co-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "overlap",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " setting controls a request that arrives while the resource is full:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-skip-records-the-block-60": {
+      "id": "b-60-workflow-triggers-skip-records-the-block-60",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records the blocking run and retains no promise to execute later."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-queue-retains-the-prep-61": {
+      "id": "b-60-workflow-triggers-queue-retains-the-prep-61",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "queue",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " retains the prepared request in durable FIFO order."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-queued-request-also-bl-62": {
+      "id": "b-60-workflow-triggers-a-queued-request-also-bl-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A queued request also blocks newer requests for the same resource, so a new arrival never passes older queued work, except work held back because another run holds its checkout (below). Different resources can run concurrently. Pending and running root runs hold their resource; a run releases it when it completes, fails, or is cancelled."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-paused-run-gives-back-63": {
+      "id": "b-60-workflow-triggers-a-paused-run-gives-back-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A paused run gives back its resource at a host-continued wait or gate. Once its process stops at a time or event wait, or at an approval gate or attention wait, the run releases its slot and later work can be admitted. Its continuation takes a slot again before it executes, ahead of queued new starts, because the run never lost its admission. When the resource is full, the run stays "
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", keeps any answer it was given, and waits for capacity: "
+        },
+        {
+          "insert": "archon workflow wake",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports it as "
+        },
+        {
+          "insert": "waiting_for_capacity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and a continuation host retries it about once a minute. Paused runs that wait for capacity take free slots in the order they were first refused. A refused resume keeps the run's place once it is ready to continue, its wait due or signaled or its pause answered, whichever surface resumed it. A refused resume of a run that is not ready records no place, so it holds no capacity. A parent blocked on a child workflow, a container write-back, and any container run keep their slot until they continue, because no continuation host retries them. A run paused because its source is unreadable also keeps its slot, even when a continuation host will retry it. Automatic continuation of waits, gates and unreadable-source pauses requires a continuation host: "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "archon workflow wake --watch",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-wake",
+              "label": "`archon workflow wake --watch`"
+            }
+          }
+        },
+        {
+          "insert": ". Runs paused before this behavior existed keep their slot until they continue."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-run-admitted-on-a-reso-64": {
+      "id": "b-60-workflow-triggers-a-run-admitted-on-a-reso-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run admitted on a resource holds its checkout until it completes, fails, or is cancelled, including while it is paused and has given back its slot. Admission therefore passes over a queued request that would run in a checkout another run admitted on the same resource holds: the same "
+        },
+        {
+          "insert": "in-place",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directory, or the same explicit worktree "
+        },
+        {
+          "insert": "branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in that codebase. The request keeps its place in the queue, and the free slot goes to the next request that can run. When that run ends, the request is admitted ahead of later requests for that checkout, one request per checkout at a time. A new request for a held checkout queues, or with "
+        },
+        {
+          "insert": "skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is skipped, with the holding run as its blocker. A worktree lane without a "
+        },
+        {
+          "insert": "branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gets its own checkout and is never held back this way."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-guarded-starts-also-wait-65": {
+      "id": "b-60-workflow-triggers-guarded-starts-also-wait-65",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Guarded starts also wait behind live runs outside the resource, including manual runs and runs on other resources, when they hold the same directory or registered reusable worktree. The holding run is named in inspection. Workflows declaring "
+        },
+        {
+          "insert": "mutates_checkout: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can proceed beside these foreign holders; same-resource checkout serialization still applies. The resolved declaration is captured during preparation, so later workflow edits do not change a queued request. Older stored requests without that declaration are treated as guarded. Admission observes holders without changing their state. Foreign pending runs hold their checkout only during the executor's five-minute dispatch window; running and paused holders keep blocking until they end. Expiry releases only foreign checkout occupancy, leaving the pending run and any resource admission unchanged."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-drain-processes-untouc-66": {
+      "id": "b-60-workflow-triggers-a-drain-processes-untouc-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A drain processes untouched queued requests assigned to one host and admits them while the resource has free capacity."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-host-listing-retains-fai-67": {
+      "id": "b-60-workflow-triggers-host-listing-retains-fai-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Host listing retains failures for damaged requests assigned to the selected host, including malformed launches or a file request that disagrees with its containing slot. The host drains independent resources before reporting those failures together, preserving the request ID and original error (and the document path for file requests). On a damaged resource, drains can admit valid predecessors up to the first malformed request; they never pass that entry. Damaged data stays unchanged for repair. Direct resource drains use the same valid prefix and log the damaged request ID; new admission, resume, and request inspection remain strict. "
+        },
+        {
+          "insert": "trigger fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports failures belonging to its receipt as command failures. Failures belonging to other receipts, or whose receipt cannot be identified, produce warnings while the accepted receipt is printed; "
+        },
+        {
+          "insert": "trigger drain",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " still fails for any reported drain failure."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-in-the-file-store-a-mis-68": {
+      "id": "b-60-workflow-triggers-in-the-file-store-a-mis-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In the file store, a missing or corrupt slot queue or request envelope may hide which host owns a candidate. Listing reports those unclassifiable candidates as unattributed failures with their document paths and original errors. The host attempts independent resources before reporting failure. Unreadable slot membership reports its document error when it could affect admission, drain, or resume. An intact admitted request on a different resource with a provably separate checkout does not prevent independent work from draining. Repair damaged documents before relying on drain to reach their resource or checkout. A request whose host is known is reported as a failure even when it is the resource's only queued member. A start receipt that cannot be read or validated is reported on every host pass as an unattributed failure naming its document path and keeping the original error. Its bindings are not prepared until the document is repaired; the document is left unchanged, and other receipts and queued requests continue."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-server-rechecks-its-69": {
+      "id": "b-60-workflow-triggers-the-server-rechecks-its-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server rechecks its own host about every five seconds, including requests waiting on foreign holders. "
+        },
+        {
+          "insert": "archon trigger drain --host <hostId>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs one drain and can run after every earlier Archon process has exited, because the queue is durable. For CLI-only hosts, schedule this drain to keep queued work advancing after a foreign holder ends. Neither recovers a request that was already admitted to a run."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-malformed-stored-check-70": {
+      "id": "b-60-workflow-triggers-a-malformed-stored-check-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A malformed stored checkout-guard declaration is never admitted. Drains pass over that request and log "
+        },
+        {
+          "insert": "resource_start.invalid_queued_guard",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with its request ID, so valid queued work can continue. The request stays queued and can be inspected and withdrawn with the trigger CLI. New starts with malformed declarations are rejected before storage."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-if-a-known-foreign-admit-71": {
+      "id": "b-60-workflow-triggers-if-a-known-foreign-admit-71",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If a known foreign admitted run has a missing or corrupt stored launch and no recorded working path, admission cannot identify its checkout. Guarded starts targeting an in-place path or explicit branch wait (or skip) with that run named as blocker until its launch is repaired or it ends; read-only starts and branchless worktrees can still proceed. SQL logs "
+        },
+        {
+          "insert": "db.foreign_launch_invalid_checkout_unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "db.foreign_launch_missing_checkout_unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the foreign run ID."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-file-store-records-a-72": {
+      "id": "b-60-workflow-triggers-the-file-store-records-a-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The file store records admitted run membership in its slot independently of the request, retaining it when a paused run gives back capacity. Slot documents written by older versions remain readable; releasing an older holder records its membership before removing the capacity holder. In both stores, surviving local slot membership requires a matching admitted request; admission, drain, and other local resumes fail until that evidence is repaired or the holder ends. Recorded slot membership determines whether a holder is local or foreign, even when its request falsely names another resource. A request that disagrees with its local slot membership is rejected; a proven foreign holder still permits read-only starts."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-run-released-by-an-old-73": {
+      "id": "b-60-workflow-triggers-a-run-released-by-an-old-73",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run released by an older version may have neither retained membership nor a capacity holder. Its request alone cannot establish its resource: a request with readable admitted status, resource, and prepared launch keeps that checkout serialized even for read-only starts, while independent checkouts can proceed. Damaged "
+        },
+        {
+          "insert": "hostId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "overlap",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "blocker",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "position",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fields do not prevent this checkout-only observation. Direct local requests and resume still require a valid complete request. Unreadable checkout projections fail admission and direct drains explicitly. An intact admitted request without contradictory slot membership can resume through normal capacity arbitration, including a paused or failed run released before the upgrade. The checkout remains held while the run is paused."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-when-independent-slot-me-74": {
+      "id": "b-60-workflow-triggers-when-independent-slot-me-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When independent slot membership is absent, a historical resume trusts the surviving structurally valid admitted request's resource association. If that resource field was damaged to name another valid resource, serialization on the original resource is not guaranteed until the admission evidence is repaired or the holder ends. Surviving contradictory membership is still rejected, guarded starts still wait behind foreign checkout holders, and capacity waiters keep their original priority."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-if-an-older-released-hol-75": {
+      "id": "b-60-workflow-triggers-if-an-older-released-hol-75",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If an older released holder also loses its request document, the stored data cannot distinguish it from a manual run. It receives foreign-holder behavior, so read-only starts can pass it even on its former resource. Preserve or repair the request and slot membership before relying on same-resource serialization in that damaged state."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-if-a-request-was-admitte-76": {
+      "id": "b-60-workflow-triggers-if-a-request-was-admitte-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If a request was admitted but its run remains "
+        },
+        {
+          "insert": "pending",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", for example because its host stopped before starting it, inspection supplies an explicit "
+        },
+        {
+          "insert": "trigger execute",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " retry. The engine admits only one execution claimant. A drain does not retry it automatically, and the run keeps holding its resource until it runs or is abandoned. When a server-hosted start fails this way, the server logs "
+        },
+        {
+          "insert": "resource_start.start_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the run ID and the "
+        },
+        {
+          "insert": "archon trigger inspect",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command to run."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-to-stop-a-running-run-th-77": {
+      "id": "b-60-workflow-triggers-to-stop-a-running-run-th-77",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To stop a running run that a "
+        },
+        {
+          "insert": "trigger execute",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process owns, use "
+        },
+        {
+          "insert": "archon workflow cancel <runId>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Cancel stops its safely targetable process groups, then records the run as "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which releases the resource. If node output pipes remain held, cancel warns that an unsignalled process still holds them. POSIX host commands that started or completed also produce a warning about possible untracked background work, including after continuation. Neither a survivor nor cleanup is confirmed. These owner-stop warnings retain owned checkouts; inspect processes with "
+        },
+        {
+          "insert": "lsof",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", verify ownership, and stop leftovers before checkout reuse or removal. The next drain admits queued work for it. A run the server executes has no detached owner process, so "
+        },
+        {
+          "insert": "archon workflow cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " refuses it and leaves it unchanged; cancel it from that server instead (Web UI, API, or chat)."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-trigger-execute-proc-78": {
+      "id": "b-60-workflow-triggers-a-trigger-execute-proc-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "trigger execute",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process stopped with SIGTERM or SIGINT marks its own running run failed before it exits, which also releases the resource. A crash or SIGKILL cannot do that and leaves ownership ambiguous."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-if-an-admitted-run-has-a-79": {
+      "id": "b-60-workflow-triggers-if-an-admitted-run-has-a-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If an admitted run has ambiguous ownership after a crash, inspect the request and its blocking run. "
+        },
+        {
+          "insert": "archon workflow abandon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the explicit escape hatch here. If the run's owner answers on this host, abandon stops its safely targetable process groups before recording the run cancelled. A waiting start can then be admitted, even if an output-holder warning reports that an unsignalled process still holds node output. Abandon retains owned checkouts when owner-stop warnings report held output or possible untracked background work, including descendant checkouts and their root. Use "
+        },
+        {
+          "insert": "lsof",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the retained checkout before reusing or removing it. If no owner answers, abandon records the run cancelled and prints the host and pid the run recorded; an owner on another host cannot be stopped from here, so verify it has stopped before abandoning. Archon does not abandon a run because it is old or unreachable. Automatic queue draining and recovery of ambiguous execution are separate operations."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-configure-github-event-s-80": {
+      "id": "b-60-workflow-triggers-configure-github-event-s-80",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure GitHub event starts"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-every-webhook-route-w-81": {
+      "id": "b-60-workflow-triggers-every-webhook-route-w-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every webhook route ("
+        },
+        {
+          "insert": "/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "/webhooks/gitea",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "/webhooks/sources/:sourceInstanceId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") accepts bodies up to "
+        },
+        {
+          "insert": "32 MiB (33,554,432 bytes)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", inclusive. A larger body receives HTTP "
+        },
+        {
+          "insert": "413",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " before its signature is checked, including a streamed delivery without "
+        },
+        {
+          "insert": "Content-Length",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon stops reading at the limit and creates no receipt or workflow start. Other API routes do not have this limit."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-github-event-starts-use-82": {
+      "id": "b-60-workflow-triggers-github-event-starts-use-82",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub event starts use an installed source plugin. The maintained plugin is temporarily housed in this repository; it has its own module entrypoint and does not require the GitHub chat adapter or an outbound GitHub token."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-from-a-source-checkout-83": {
+      "id": "b-60-workflow-triggers-from-a-source-checkout-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From a source checkout, build the module with "
+        },
+        {
+          "insert": "bun run --cwd packages/adapters build:github-source-plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then copy "
+        },
+        {
+          "insert": "packages/adapters/dist/github-source-plugin.mjs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to an operator-owned plugin directory. The compiled module can load outside the Archon source tree. Installation and module paths are explicit in this release; marketplace installation is separate work."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-set-webhook-secret-for-84": {
+      "id": "b-60-workflow-triggers-set-webhook-secret-for-84",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the server process, set "
+        },
+        {
+          "insert": "ARCHON_WEBHOOK_SOURCES",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the absolute path of the host configuration below, and set "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the "
+        },
+        {
+          "insert": "hostId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " the bindings name ("
+        },
+        {
+          "insert": "build-host-1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " below) so the server starts the runs. Configure GitHub's webhook URL as "
+        },
+        {
+          "insert": "https://your-archon-host/webhooks/sources/github-production",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The existing "
+        },
+        {
+          "insert": "/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " endpoint handles conversation and wait-signaling consumers separately."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-following-configurat-85": {
+      "id": "b-60-workflow-triggers-the-following-configurat-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The following configuration starts "
+        },
+        {
+          "insert": "review-pull-request",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when a pull request is opened against "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "acme/widgets",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-json-86": {
+      "id": "b-60-workflow-triggers-json-86",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"version\": 1,\n  \"sources\": [\n    {\n      \"sourceInstanceId\": \"github-production\",\n      \"module\": \"/opt/archon/plugins/github/source-plugin.mjs\",\n      \"config\": {\n        \"version\": 1,\n        \"host\": \"github.com\",\n        \"bindings\": [\n          {\n            \"bindingId\": \"widgets-pr-review\",\n            \"hostId\": \"build-host-1\",\n            \"runAsUserId\": \"2a568f73-e217-40ca-b17d-a784d19fd43a\",\n            \"resource\": \"github:acme/widgets:review\",\n            \"overlap\": \"queue\",\n            \"launch\": {\n              \"cwd\": \"/srv/archon/widgets\",\n              \"workflowName\": \"review-pull-request\",\n              \"inputs\": {},\n              \"isolation\": {\n                \"kind\": \"default\"\n              }\n            },\n            \"selector\": {\n              \"kind\": \"pr.lifecycle\",\n              \"actions\": [\n                \"opened\"\n              ],\n              \"repository\": {\n                \"host\": \"github.com\",\n                \"path\": \"acme/widgets\"\n              },\n              \"predicates\": [\n                {\n                  \"field\": \"pr.base.branch\",\n                  \"equals\": \"main\"\n                }\n              ]\n            },\n            \"inputMapping\": {\n              \"pull_request_number\": {\n                \"source\": \"field\",\n                \"field\": \"subject.number\"\n              },\n              \"repository\": {\n                \"source\": \"literal\",\n                \"value\": \"acme/widgets\"\n              }\n            }\n          }\n        ],\n        \"webhookSecretEnv\": \"WEBHOOK_SECRET\"\n      }\n    }\n  ]\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-maintained-github-so-87": {
+      "id": "b-60-workflow-triggers-the-maintained-github-so-87",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The maintained GitHub source plugin supports issue and pull-request lifecycle events, issue or pull-request label changes, comments created on an issue or pull request ("
+        },
+        {
+          "insert": "comment.changed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with action "
+        },
+        {
+          "insert": "created",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", from GitHub's "
+        },
+        {
+          "insert": "issue_comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event), check-run changes, and commit-status changes. A label change carries who made it, as the "
+        },
+        {
+          "insert": "label.actor.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "label.actor.login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fields, and a comment carries "
+        },
+        {
+          "insert": "comment.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "comment.author.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "comment.author.login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the comment's text is not part of the event. Selectors match an exact event kind and one of the configured actions. They can also restrict the repository, issue or pull-request number, and the predicates supported for that event kind. Input mappings copy a supported event field or supply a typed JSON literal. A required field that is unavailable rejects that binding instead of inventing a value."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-plugin-authenticates-88": {
+      "id": "b-60-workflow-triggers-the-plugin-authenticates-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The plugin authenticates the raw payload using the configured shared secret. The server validates its resolved receipt, verifies for a new delivery that the configured run-as users exist, and commits the receipt before returning success. Preparing and starting the run happen after the response, so a slow workflow never delays GitHub's delivery. An invalid signature creates no trusted receipt. A signed source event does not select the Archon user who runs the workflow. Every binding must name an authorized "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The optional GitHub event actor remains provenance and never becomes an Archon credential selector."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-on-the-first-verified-de-89": {
+      "id": "b-60-workflow-triggers-on-the-first-verified-de-89",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On the first verified delivery, Archon records the source instance, delivery ID, verified-content digest, selected binding ID and revision, resolved inputs, and launch intent. Replaying the same "
+        },
+        {
+          "insert": "(sourceInstanceId, deliveryId)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reuses the original receipt and binding snapshot; changed or newly added bindings do not create starts for that delivery. Editing a binding does not turn an old delivery into a new start. Reusing a delivery ID with different verified content returns HTTP 409. When GitHub supplies no delivery ID, Archon cannot provide source-level replay deduplication."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-github-does-not-automati-90": {
+      "id": "b-60-workflow-triggers-github-does-not-automati-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub does not automatically redeliver every failed webhook. Check delivery status in GitHub and use GitHub's explicit redelivery or your reconciliation process after a transport or processing failure. Archon retains safe receipt and disposition data for inspection; it does not retain the raw webhook body as a trigger archive."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-start-workflows-from-any-91": {
+      "id": "b-60-workflow-triggers-start-workflows-from-any-91",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Start workflows from any signed webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-standard-webhooks-so-92": {
+      "id": "b-60-workflow-triggers-the-standard-webhooks-so-92",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Standard Webhooks source plugin accepts the published "
+        },
+        {
+          "insert": "Standard Webhooks",
+          "attributes": {
+            "link": "https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md"
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "v1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " HMAC-SHA256 scheme. It requires "
+        },
+        {
+          "insert": "webhook-id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "webhook-timestamp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "webhook-signature",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; vendor-specific signatures, "
+        },
+        {
+          "insert": "svix-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " aliases, and asymmetric signatures are unsupported. Every authenticated delivery with valid JSON evaluates every configured binding. Configure the sender to send only the events you need."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-from-a-source-checkout-93": {
+      "id": "b-60-workflow-triggers-from-a-source-checkout-93",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From a source checkout, bundle the plugin into a standalone module in an operator-owned plugin directory. The module loads outside the Archon source tree:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-94": {
+      "id": "b-60-workflow-triggers-bash-94",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun build packages/adapters/src/sources/standard-webhooks/source-plugin.ts --target=bun \\\n  --outfile=/opt/archon/plugins/standard-webhooks/source-plugin.mjs"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-set-order-signing-secre-95": {
+      "id": "b-60-workflow-triggers-set-order-signing-secre-95",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set "
+        },
+        {
+          "insert": "ORDER_SIGNING_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the server environment to your sender's signing secret ("
+        },
+        {
+          "insert": "whsec_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " followed by base64-encoded key bytes). Missing or invalid secrets fail at server startup. The configuration contains only the environment variable name. Set "
+        },
+        {
+          "insert": "ARCHON_WEBHOOK_SOURCES",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to this configuration's absolute path and "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST=orders-host",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to execute its bindings. Use "
+        },
+        {
+          "insert": "https://your-archon-host/webhooks/sources/orders-production",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as the sender's URL."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-json-96": {
+      "id": "b-60-workflow-triggers-json-96",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"version\": 1,\n  \"sources\": [\n    {\n      \"sourceInstanceId\": \"orders-production\",\n      \"module\": \"/opt/archon/plugins/standard-webhooks/source-plugin.mjs\",\n      \"config\": {\n        \"version\": 1,\n        \"signingSecretEnv\": \"ORDER_SIGNING_SECRET\",\n        \"bindings\": [\n          {\n            \"bindingId\": \"process-order\",\n            \"hostId\": \"orders-host\",\n            \"runAsUserId\": \"2a568f73-e217-40ca-b17d-a784d19fd43a\",\n            \"resource\": \"orders:processing\",\n            \"overlap\": \"queue\",\n            \"launch\": {\n              \"cwd\": \"/srv/archon/orders\",\n              \"workflowName\": \"process-order\",\n              \"inputs\": {},\n              \"isolation\": { \"kind\": \"in-place\" }\n            },\n            \"inputMapping\": { \"order_id\": \"/order/id\" }\n          }\n        ]\n      }\n    }\n  ]\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-workflow-must-declar-97": {
+      "id": "b-60-workflow-triggers-the-workflow-must-declar-97",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workflow must declare "
+        },
+        {
+          "insert": "order_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "inputMapping",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " maps input names to "
+        },
+        {
+          "insert": "RFC 6901 JSON Pointers",
+          "attributes": {
+            "link": "https://www.rfc-editor.org/rfc/rfc6901"
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "/order/id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " selects a nested field, "
+        },
+        {
+          "insert": "/items/0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " selects the first array item, "
+        },
+        {
+          "insert": "~1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " escapes "
+        },
+        {
+          "insert": "/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "~0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " escapes "
+        },
+        {
+          "insert": "~",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The empty pointer "
+        },
+        {
+          "insert": "\"\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " selects the whole JSON document. Mapped values retain their JSON types and override literals in "
+        },
+        {
+          "insert": "launch.inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A missing target rejects that binding with a recorded reason; other bindings still run. Preparation rejects undeclared inputs and missing required inputs. Mapped inputs come from the event, so preparation also rejects the binding when the workflow has no "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declaration."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-sign-a-delivery-from-a-s-98": {
+      "id": "b-60-workflow-triggers-sign-a-delivery-from-a-s-98",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Sign a delivery from a shell"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-this-posix-shell-recipe-99": {
+      "id": "b-60-workflow-triggers-this-posix-shell-recipe-99",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This POSIX shell recipe uses OpenSSL and preserves the exact body bytes. Set "
+        },
+        {
+          "insert": "ORDER_SIGNING_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the sender environment to the same secret as the server, and disable shell tracing when handling secrets. Do not put the secret value in command history."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-100": {
+      "id": "b-60-workflow-triggers-bash-100",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "body='{\"order\":{\"id\":\"order-123\"}}'\ndelivery_id='order-123@1'\ntimestamp=$(date +%s)\nkey_hex=$(printf '%s' \"${ORDER_SIGNING_SECRET#whsec_}\" | openssl base64 -d -A | od -An -v -tx1 | tr -d ' \\n')\nsignature=$(printf '%s' \"$delivery_id.$timestamp.$body\" | openssl dgst -sha256 -mac HMAC -macopt \"hexkey:$key_hex\" -binary | openssl base64 -A)\nunset key_hex\ncurl --fail-with-body 'https://your-archon-host/webhooks/sources/orders-production' \\\n  -H 'Content-Type: application/json' \\\n  -H \"webhook-id: $delivery_id\" \\\n  -H \"webhook-timestamp: $timestamp\" \\\n  -H \"webhook-signature: v1,$signature\" \\\n  --data-binary \"$body\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-macopt-hexkey-suppli-101": {
+      "id": "b-60-workflow-triggers-macopt-hexkey-suppli-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "-macopt hexkey:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " supplies the decoded key bytes; "
+        },
+        {
+          "insert": "-hmac",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cannot represent arbitrary binary keys. OpenSSL receives the key in its process arguments, so run this recipe on a trusted sender host. Send fresh timestamps when retrying, but retain the delivery ID and exact body. Timestamps must be within 300 seconds of receipt, in either direction. During key rotation the signature header can contain space-separated "
+        },
+        {
+          "insert": "v1,<base64>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " entries; any matching entry authenticates the delivery."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-webhook-id-is-the-dura-102": {
+      "id": "b-60-workflow-triggers-webhook-id-is-the-dura-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "webhook-id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the durable dedup key within this source instance. A retry of a valid JSON delivery with the same ID and exact body returns 200 and creates no new receipt or start, even if a binding's run-as user has since been removed. Reusing the ID with different body bytes returns 409, even if the JSON values are equivalent. Binding edits do not change an already accepted delivery."
+        }
+      ],
+      "children": []
+    },
+    "table-0-0b129bc3": {
+      "id": "table-0-0b129bc3",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Status",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "200",
+            "Receipt committed, including unmatched deliveries and replays; execution happens afterward"
+          ],
+          [
+            "400",
+            "Authenticated body is malformed JSON, and its malformed receipt is retained; or the body is not UTF-8, and nothing is persisted"
+          ],
+          [
+            "401",
+            "Missing headers, invalid signature or invalid/stale timestamp; nothing persisted"
+          ],
+          [
+            "404",
+            "Unknown source instance"
+          ],
+          [
+            "409",
+            "Delivery ID reused with different content; no new receipt or start"
+          ],
+          [
+            "413",
+            "Body exceeds 32 MiB (33,554,432 bytes); reading stops before authentication, with no receipt or start"
+          ],
+          [
+            "500",
+            "Processing or persistence failed; investigate and retry"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-60-workflow-triggers-security-boundary-104": {
+      "id": "b-60-workflow-triggers-security-boundary-104",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Security boundary"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-valid-signature-proves-105": {
+      "id": "b-60-workflow-triggers-a-valid-signature-proves-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A valid signature proves possession of the sender's key and integrity of the delivery. It does not make customer text or other event content trustworthy. Mapped inputs reach workflow prompts and scripts as untrusted data; author workflows accordingly. Map only the fields the workflow needs. Resolved inputs are persisted with the receipt's binding, including the whole body if you use "
+        },
+        {
+          "insert": "\"\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and there is no automatic retention policy. Never map credentials into inputs."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-operator-configuration-o-106": {
+      "id": "b-60-workflow-triggers-operator-configuration-o-106",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Operator configuration owns the workflow, cwd, isolation, execution host, resource, and run-as user. The body can only supply configured input values, which preparation checks against the workflow's declarations; a workflow that declares no inputs receives none. It cannot choose any launch authority. The plugin reads secrets from the environment and never logs secrets, bodies, or signature headers. The signature covers the exact received bytes, including a leading byte-order mark. Authentication completes before receipt persistence."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-poll-a-system-that-canno-107": {
+      "id": "b-60-workflow-triggers-poll-a-system-that-canno-107",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Poll a system that cannot send webhooks"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-host-scheduler-cron-108": {
+      "id": "b-60-workflow-triggers-the-host-scheduler-cron-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host scheduler (cron, a systemd timer, launchd, or Task Scheduler) runs an operator-owned poll script. The script lists recent items and reports each with a stable delivery key made from its ID and version, encoded as a base64 JSON pair "
+        },
+        {
+          "insert": "[id, version]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in these recipes. Archon deduplicates within the configured source instance and admits the work. It keeps no poll cursor, runs no resident poller, and promises no catch-up. Choose the API's lookback window to cover scheduler downtime; items outside that window are the script's responsibility."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-these-posix-shell-recipe-109": {
+      "id": "b-60-workflow-triggers-these-posix-shell-recipe-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These POSIX shell recipes require "
+        },
+        {
+          "insert": "curl",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "jq",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The example API at "
+        },
+        {
+          "insert": "$ORDERS_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns a JSON array of objects with string "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "version",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fields. Each version must identify immutable content. Report a new version when an item changes, and keep the same key and input content across retries."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-save-this-workflow-as-110": {
+      "id": "b-60-workflow-triggers-save-this-workflow-as-110",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Save this workflow as "
+        },
+        {
+          "insert": "/srv/archon/orders/.archon/workflows/process-order.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and validate it with "
+        },
+        {
+          "insert": "archon validate workflows process-order --cwd /srv/archon/orders",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-yaml-111": {
+      "id": "b-60-workflow-triggers-yaml-111",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: process-order\ndescription: Record an order reported by a poll script.\nmutates_checkout: false\ninputs:\n  order_id: { type: string, required: true }\nnodes:\n  - id: record\n    bash: printf '%s\\n' \"$INPUTS_ORDER_ID\" > \"$ARTIFACTS_DIR/order.txt\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-replace-the-recording-no-112": {
+      "id": "b-60-workflow-triggers-replace-the-recording-no-112",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Replace the recording node with your order handling. Event values remain untrusted and are persisted with the receipt; pass only the fields the workflow needs."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-cli-only-host-113": {
+      "id": "b-60-workflow-triggers-cli-only-host-113",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "CLI-only host"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-save-srv-archon-polled-114": {
+      "id": "b-60-workflow-triggers-save-srv-archon-polled-114",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Save "
+        },
+        {
+          "insert": "/srv/archon/polled-orders.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " using your own "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "archon trigger whoami",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-json-115": {
+      "id": "b-60-workflow-triggers-json-115",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"version\": 1,\n  \"sourceInstanceId\": \"polled-orders\",\n  \"binding\": {\n    \"bindingId\": \"process-order\",\n    \"bindingRevision\": null,\n    \"hostId\": \"orders-host\",\n    \"runAsUserId\": \"2a568f73-e217-40ca-b17d-a784d19fd43a\",\n    \"resource\": \"orders:processing\",\n    \"overlap\": \"queue\",\n    \"launch\": {\n      \"cwd\": \"/srv/archon/orders\",\n      \"workflowName\": \"process-order\",\n      \"inputs\": {},\n      \"isolation\": { \"kind\": \"in-place\" }\n    }\n  },\n  \"schedule\": { \"intervalSeconds\": 60, \"runAtLoad\": false }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-configuration-still-116": {
+      "id": "b-60-workflow-triggers-the-configuration-still-116",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The configuration still requires "
+        },
+        {
+          "insert": "schedule",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", but "
+        },
+        {
+          "insert": "fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not install or run that schedule. Schedule the poll script itself, rather than "
+        },
+        {
+          "insert": "trigger schedule install",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which fires without event values. Set "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "ORDERS_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and a "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " containing the tools your workflows run for the scheduled user, and use absolute executable paths:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-117": {
+      "id": "b-60-workflow-triggers-bash-117",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "#!/bin/sh\nset -eu\npoll_dir=$(mktemp -d)\ntrap 'rm -rf \"$poll_dir\"' EXIT HUP INT TERM\ncurl --fail --silent --show-error \"$ORDERS_URL\" > \"$poll_dir/response.json\"\njq -c '.[]' \"$poll_dir/response.json\" > \"$poll_dir/items.jsonl\"\nwhile IFS= read -r item; do\n  delivery_id=$(printf '%s' \"$item\" | jq -er '[.id, .version] | @base64')\n  printf '%s' \"$item\" | jq -cS '{order_id: .id}' > \"$poll_dir/inputs.json\"\n  /opt/archon/bin/archon trigger fire --config /srv/archon/polled-orders.json \\\n    --delivery-id \"$delivery_id\" --inputs \"$poll_dir/inputs.json\"\ndone < \"$poll_dir/items.jsonl\"\n/opt/archon/bin/archon trigger drain --host orders-host"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-final-drain-also-adv-118": {
+      "id": "b-60-workflow-triggers-the-final-drain-also-adv-118",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The final drain also advances queued work on ticks with no items. On CLI-only hosts, continue scheduling drains until queued work has started."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-inputs-reads-a-json-119": {
+      "id": "b-60-workflow-triggers-inputs-reads-a-json-119",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "--inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads a JSON object, including from "
+        },
+        {
+          "insert": "/dev/stdin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Unix, and treats its values as event inputs. Each name must be declared by the workflow. Event inputs override "
+        },
+        {
+          "insert": "launch.inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " literals; literals still pass through to workflows without "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The local operator's access to the Archon installation is the trust boundary, so "
+        },
+        {
+          "insert": "fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " needs no signature."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-an-identical-key-and-inp-120": {
+      "id": "b-60-workflow-triggers-an-identical-key-and-inp-120",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An identical key and inputs reuse the original receipt and still drain the retained receipt's host, even if the binding's run-as user has since been removed. Editing the binding does not start that delivery again. The digest covers "
+        },
+        {
+          "insert": "JSON.stringify",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " of the parsed event inputs, or "
+        },
+        {
+          "insert": "{}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when omitted, excluding binding literals. Whitespace differences in the JSON file do not matter; object key order does, so produce stable JSON (the recipe uses "
+        },
+        {
+          "insert": "jq -S",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Reusing a key with different inputs exits non-zero with a delivery conflict. Without "
+        },
+        {
+          "insert": "--delivery-id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", every fire records a new receipt, including when "
+        },
+        {
+          "insert": "--inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is supplied."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-server-host-121": {
+      "id": "b-60-workflow-triggers-server-host-121",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Server host"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-configure-the-standard-122": {
+      "id": "b-60-workflow-triggers-configure-the-standard-122",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Configure the "
+        },
+        {
+          "insert": "Standard Webhooks source",
+          "attributes": {
+            "link": "#start-workflows-from-any-signed-webhook"
+          }
+        },
+        {
+          "insert": " above with its "
+        },
+        {
+          "insert": "order_id: /order/id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mapping, "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_HOST=orders-host",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the same "
+        },
+        {
+          "insert": "process-order",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflow. The poll script can run on a different trusted sender host. Set "
+        },
+        {
+          "insert": "ORDERS_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "ORDER_SIGNING_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "ARCHON_WEBHOOK_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (for example "
+        },
+        {
+          "insert": "https://your-archon-host/webhooks/sources/orders-production",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") in that script's environment. It also needs OpenSSL:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-bash-123": {
+      "id": "b-60-workflow-triggers-bash-123",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "#!/bin/sh\nset -eu\npoll_dir=$(mktemp -d)\ntrap 'rm -rf \"$poll_dir\"' EXIT HUP INT TERM\ncurl --fail --silent --show-error \"$ORDERS_URL\" > \"$poll_dir/response.json\"\njq -c '.[]' \"$poll_dir/response.json\" > \"$poll_dir/items.jsonl\"\nwhile IFS= read -r item; do\n  delivery_id=$(printf '%s' \"$item\" | jq -er '[.id, .version] | @base64')\n  body=$(printf '%s' \"$item\" | jq -cS '{order: {id: .id}}')\n  timestamp=$(date +%s)\n  key_hex=$(printf '%s' \"${ORDER_SIGNING_SECRET#whsec_}\" | openssl base64 -d -A | od -An -v -tx1 | tr -d ' \\n')\n  signature=$(printf '%s' \"$delivery_id.$timestamp.$body\" | openssl dgst -sha256 -mac HMAC -macopt \"hexkey:$key_hex\" -binary | openssl base64 -A)\n  unset key_hex\n  curl --fail-with-body --silent --show-error \"$ARCHON_WEBHOOK_URL\" \\\n    -H 'Content-Type: application/json' \\\n    -H \"webhook-id: $delivery_id\" \\\n    -H \"webhook-timestamp: $timestamp\" \\\n    -H \"webhook-signature: v1,$signature\" \\\n    --data-binary \"$body\"\ndone < \"$poll_dir/items.jsonl\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-server-drains-accept-124": {
+      "id": "b-60-workflow-triggers-the-server-drains-accept-124",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server drains accepted and queued work. Re-polling sends a fresh timestamp but identical body bytes and delivery ID, so the server returns 200 without another run. A changed body under the same key returns 409. Apply the "
+        },
+        {
+          "insert": "signing recipe's security boundary",
+          "attributes": {
+            "link": "#sign-a-delivery-from-a-shell"
+          }
+        },
+        {
+          "insert": ", including running OpenSSL on a trusted host with shell tracing disabled."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-preparation-and-retained-125": {
+      "id": "b-60-workflow-triggers-preparation-and-retained-125",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Preparation and retained records"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-the-receipt-freezes-the-126": {
+      "id": "b-60-workflow-triggers-the-receipt-freezes-the-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The receipt freezes the evaluated bindings and resolved inputs. The execution host later captures the workflow source and reads any "
+        },
+        {
+          "insert": "configSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run configuration. Queue admission freezes that prepared source and configuration; editing live files afterward does not change queued work."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-an-input-mapped-from-the-127": {
+      "id": "b-60-workflow-triggers-an-input-mapped-from-the-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An input mapped from the event, by CLI "
+        },
+        {
+          "insert": "--inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a Standard Webhooks JSON Pointer, or a GitHub "
+        },
+        {
+          "insert": "field",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mapping, reaches only a workflow that declares it under "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Preparation rejects a binding that maps event values into a workflow without that declaration. Literal inputs you write into "
+        },
+        {
+          "insert": "launch.inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or a GitHub "
+        },
+        {
+          "insert": "literal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mapping pass through to a workflow without "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", as they do for a direct run. A workflow that declares "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rejects any undeclared name, literal or mapped."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-a-process-that-stops-dur-128": {
+      "id": "b-60-workflow-triggers-a-process-that-stops-dur-128",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A process that stops during preparation leaves its recorded preparation owner visible. After verifying that exact process has stopped, use "
+        },
+        {
+          "insert": "archon trigger recover-preparation <receipt-id> <binding-id> --owner <recorded-owner-id> --yes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then drain the configured host. A failed validation is recorded as rejected and requires a corrected new request."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-untouched-queued-work-ca-129": {
+      "id": "b-60-workflow-triggers-untouched-queued-work-ca-129",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Untouched queued work can be removed with "
+        },
+        {
+          "insert": "archon trigger withdraw <request-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Receipt and admission records are retained in the installation store (database or file store). This first version has no automatic trigger-record retention policy. Do not map credentials or unnecessary source content into workflow inputs. A run started by a trigger records its receipt and binding IDs in its "
+        },
+        {
+          "insert": "resource_start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " metadata; its request ID is the run ID, so "
+        },
+        {
+          "insert": "archon trigger inspect <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows the request. When a workflow node runs "
+        },
+        {
+          "insert": "archon trigger fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the receipt records that run and node as its source actor, and "
+        },
+        {
+          "insert": "archon trigger inspect <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon workflow get <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " show them as the requesting run. It grants the started run nothing: it still runs as the binding's "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". CLI-hosted execution writes the ordinary run output to "
+        },
+        {
+          "insert": "ARCHON_HOME/logs/trigger-run-<request-id>.log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Fresh trigger runs have no chat conversation or message history. Inspect their output with "
+        },
+        {
+          "insert": "archon workflow get <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon workflow logs <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Previously queued launches that carry a real conversation retain that history destination."
+        }
+      ],
+      "children": []
+    }
+  }
+}

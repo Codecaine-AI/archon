@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-60-community",
+  "title": "Community Adapters",
+  "root": "b-60-community-root-6",
+  "blocks": {
+    "b-60-community-root-6": {
+      "id": "b-60-community-root-6",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/community"
+      },
+      "children": [
+        "b-60-community-this-section-holds-the-c-1",
+        "b-60-community-contents-2",
+        "b-60-community-discord-docs-10-syste-3",
+        "b-60-community-gitea-docs-10-system-4",
+        "b-60-community-gitlab-docs-10-system-5"
+      ]
+    },
+    "b-60-community-this-section-holds-the-c-1": {
+      "id": "b-60-community-this-section-holds-the-c-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This section holds the converted copies of the upstream pages in "
+        },
+        {
+          "insert": "packages/docs-web/src/content/docs/adapters/community",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-community-contents-2": {
+      "id": "b-60-community-contents-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-60-community-discord-docs-10-syste-3": {
+      "id": "b-60-community-discord-docs-10-syste-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Discord",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/60-community/10-discord.md",
+              "label": "Discord"
+            }
+          }
+        },
+        {
+          "insert": ": Connect Archon to Discord for AI coding assistance in servers and DMs."
+        }
+      ],
+      "children": []
+    },
+    "b-60-community-gitea-docs-10-system-4": {
+      "id": "b-60-community-gitea-docs-10-system-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Gitea",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/60-community/20-gitea.md",
+              "label": "Gitea"
+            }
+          }
+        },
+        {
+          "insert": ": Connect Archon to a Gitea instance for issue and PR automation."
+        }
+      ],
+      "children": []
+    },
+    "b-60-community-gitlab-docs-10-system-5": {
+      "id": "b-60-community-gitlab-docs-10-system-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitLab",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/60-community/30-gitlab.md",
+              "label": "GitLab"
+            }
+          }
+        },
+        {
+          "insert": ": Connect Archon to GitLab for AI coding assistance in issues and merge requests."
+        }
+      ],
+      "children": []
+    }
+  }
+}

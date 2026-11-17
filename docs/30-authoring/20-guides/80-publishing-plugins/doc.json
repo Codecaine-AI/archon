@@ -1,0 +1,1644 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-80-publishing-plugins",
+  "title": "Publish a plugin",
+  "root": "b-80-publishing-plugins-root-48",
+  "blocks": {
+    "b-80-publishing-plugins-root-48": {
+      "id": "b-80-publishing-plugins-root-48",
+      "type": "paragraph",
+      "props": {
+        "description": "Publish Archon workflow packs, forge plugins, provider plugins, and chat plugins on GitHub and list them on archon.diy.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/publishing-plugins.md"
+      },
+      "children": [
+        "b-80-publishing-plugins-github-is-the-registry-1",
+        "b-80-publishing-plugins-workflow-packs-2",
+        "b-80-publishing-plugins-place-archon-plugin-jso-3",
+        "b-80-publishing-plugins-json-4",
+        "b-80-publishing-plugins-use-lowercase-words-join-5",
+        "b-80-publishing-plugins-the-manifest-is-strict-6",
+        "b-80-publishing-plugins-tags-and-executable-rele-7",
+        "b-80-publishing-plugins-git-tags-are-versions-f-8",
+        "b-80-publishing-plugins-bash-9",
+        "b-80-publishing-plugins-a-forge-plugin-declares-10",
+        "b-80-publishing-plugins-json-11",
+        "b-80-publishing-plugins-publish-a-github-release-12",
+        "b-80-publishing-plugins-provider-plugins-13",
+        "b-80-publishing-plugins-a-provider-plugin-runs-a-14",
+        "b-80-publishing-plugins-json-15",
+        "b-80-publishing-plugins-the-executable-suffix-is-16",
+        "b-80-publishing-plugins-sh-17",
+        "b-80-publishing-plugins-install-verifies-the-che-18",
+        "b-80-publishing-plugins-provider-plugins-execute-19",
+        "b-80-publishing-plugins-native-tool-specificatio-20",
+        "b-80-publishing-plugins-see-building-a-communit-21",
+        "b-80-publishing-plugins-provider-receipts-are-ad-22",
+        "b-80-publishing-plugins-chat-plugins-23",
+        "b-80-publishing-plugins-slack-is-the-maintained-24",
+        "b-80-publishing-plugins-sh-25",
+        "b-80-publishing-plugins-set-slack-bot-token-an-26",
+        "b-80-publishing-plugins-the-host-reads-slack-al-27",
+        "b-80-publishing-plugins-the-plugin-declares-att-28",
+        "b-80-publishing-plugins-the-package-tests-run-r-29",
+        "b-80-publishing-plugins-a-chat-plugin-declares-a-30",
+        "b-80-publishing-plugins-json-31",
+        "b-80-publishing-plugins-publish-release-assets-a-32",
+        "b-80-publishing-plugins-sh-33",
+        "b-80-publishing-plugins-without-a-tag-install-a-34",
+        "b-80-publishing-plugins-the-wire-uses-newline-de-35",
+        "b-80-publishing-plugins-json-36",
+        "b-80-publishing-plugins-write-the-response-as-on-37",
+        "b-80-publishing-plugins-a-platform-id-cannot-bel-38",
+        "b-80-publishing-plugins-chat-plugins-run-as-your-39",
+        "b-80-publishing-plugins-restart-the-server-after-40",
+        "b-80-publishing-plugins-the-host-enforces-the-de-41",
+        "b-80-publishing-plugins-a-plugin-that-declares-t-42",
+        "b-80-publishing-plugins-crashes-and-retryable-st-43",
+        "b-80-publishing-plugins-listing-and-refresh-44",
+        "b-80-publishing-plugins-add-archon-plugin-unde-45",
+        "b-80-publishing-plugins-invalid-manifests-are-sk-46",
+        "b-80-publishing-plugins-the-build-uses-the-read-47"
+      ]
+    },
+    "b-80-publishing-plugins-github-is-the-registry-1": {
+      "id": "b-80-publishing-plugins-github-is-the-registry-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub is the registry. Publish in your own public repository, then add the "
+        },
+        {
+          "insert": "archon-plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " repository topic to appear in the "
+        },
+        {
+          "insert": "plugin index",
+          "attributes": {
+            "link": "https://archon.diy/plugins/"
+          }
+        },
+        {
+          "insert": ". No Archon pull request, Archon account, or publication service is required. Listing is optional: "
+        },
+        {
+          "insert": "archon plugin add owner/repo[/path][@tag]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " works independently of the index."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-workflow-packs-2": {
+      "id": "b-80-publishing-plugins-workflow-packs-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflow packs"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-place-archon-plugin-jso-3": {
+      "id": "b-80-publishing-plugins-place-archon-plugin-jso-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Place "
+        },
+        {
+          "insert": "archon-plugin.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your plugin root, either the repository root or a subdirectory. A repository can contain several plugins. Each manifest-bearing directory gets its own listing and install ID, such as "
+        },
+        {
+          "insert": "acme/tools/packs/review-kit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-json-4": {
+      "id": "b-80-publishing-plugins-json-4",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"workflow-pack\",\n  \"name\": \"review-kit\",\n  \"description\": \"Review workflows\",\n  \"compatibility\": { \"archon\": \">=0.11.0\" },\n  \"entrypoints\": { \"review\": \"review/review.yaml\" }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-use-lowercase-words-join-5": {
+      "id": "b-80-publishing-plugins-use-lowercase-words-join-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use lowercase words joined by hyphens for "
+        },
+        {
+          "insert": "name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and entrypoint names. Each entrypoint path is "
+        },
+        {
+          "insert": "<workflow folder>/<file>.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": ".yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), relative to the plugin root. Other workflows are support workflows and cannot be dispatched directly. See the "
+        },
+        {
+          "insert": "pack layout and runtime identity",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/50-global-workflows.md",
+              "section": "installed-workflow-packs",
+              "label": "pack layout and runtime identity"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-manifest-is-strict-6": {
+      "id": "b-80-publishing-plugins-the-manifest-is-strict-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The manifest is strict. Do not add version, credentials, install scripts, dependencies, or permission grants. "
+        },
+        {
+          "insert": "compatibility.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is optional; when supplied, installation checks it. Put prerequisites and usage instructions in a "
+        },
+        {
+          "insert": "README.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " alongside the manifest. The index links to the README on GitHub; it does not execute plugin code or embed author-supplied HTML."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-tags-and-executable-rele-7": {
+      "id": "b-80-publishing-plugins-tags-and-executable-rele-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Tags and executable release assets"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-git-tags-are-versions-f-8": {
+      "id": "b-80-publishing-plugins-git-tags-are-versions-f-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Git tags are versions. For workflow packs, an untagged install resolves the default branch head and freezes its commit. Publish a tag to let operators choose a version:"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-bash-9": {
+      "id": "b-80-publishing-plugins-bash-9",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add acme/tools/packs/review-kit@v1.0.0"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-a-forge-plugin-declares-10": {
+      "id": "b-80-publishing-plugins-a-forge-plugin-declares-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A forge plugin declares an executable instead of workflow entrypoints:"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-json-11": {
+      "id": "b-80-publishing-plugins-json-11",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"forge\",\n  \"name\": \"example-forge\",\n  \"description\": \"Example forge integration\",\n  \"executable\": \"archon-forge-example\"\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-publish-a-github-release-12": {
+      "id": "b-80-publishing-plugins-publish-a-github-release-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Publish a GitHub release with "
+        },
+        {
+          "insert": "<executable>-<os>-<arch>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " assets ("
+        },
+        {
+          "insert": ".exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows), and "
+        },
+        {
+          "insert": "checksums.txt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "sha256sum",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " format covering the asset names. Supported platform names are "
+        },
+        {
+          "insert": "linux",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "darwin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "windows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; architectures are "
+        },
+        {
+          "insert": "x64",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "arm64",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Build assets for the platforms you support. An untagged forge install uses the latest GitHub release. A tag without the required platform asset cannot install on that platform. Checksums detect damaged downloads; they do not establish publisher trust."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-provider-plugins-13": {
+      "id": "b-80-publishing-plugins-provider-plugins-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Provider plugins"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-a-provider-plugin-runs-a-14": {
+      "id": "b-80-publishing-plugins-a-provider-plugin-runs-a-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A provider plugin runs agent sessions in a separate process. Publish the implementation\nin your own repository with this manifest at its root or an installable subdirectory:"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-json-15": {
+      "id": "b-80-publishing-plugins-json-15",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"provider\",\n  \"name\": \"example-provider\",\n  \"description\": \"Example agent provider\",\n  \"executable\": \"archon-provider-example\",\n  \"compatibility\": { \"archon\": \">=0.11.1\" }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-executable-suffix-is-16": {
+      "id": "b-80-publishing-plugins-the-executable-suffix-is-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The executable suffix is the provider id: "
+        },
+        {
+          "insert": "archon-provider-example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must return\n"
+        },
+        {
+          "insert": "id: \"example\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in its descriptor. Publish release assets and "
+        },
+        {
+          "insert": "checksums.txt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with\nthe same naming rules as forge plugins, for example "
+        },
+        {
+          "insert": "archon-provider-example-linux-x64",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nand "
+        },
+        {
+          "insert": "archon-provider-example-windows-x64.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Without "
+        },
+        {
+          "insert": "@tag",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", install and update\nselect the latest GitHub release."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-sh-17": {
+      "id": "b-80-publishing-plugins-sh-17",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add owner/repo\narchon plugin list\narchon plugin update owner/repo\narchon plugin remove owner/repo"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-install-verifies-the-che-18": {
+      "id": "b-80-publishing-plugins-install-verifies-the-che-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Install verifies the checksum, starts the staged executable, validates its descriptor,\nand records that descriptor in the receipt. An invalid handshake, id collision,\nunsupported capability, or undeliverable API-key vendor leaves the previous install\nunchanged. Hosts register receipts without starting the executables at boot; each\nsession checks the live descriptor against the installed one. Restart a running server\nafter installing, updating, or removing a provider. A new CLI process sees it immediately.\nA workflow can then name the descriptor id in "
+        },
+        {
+          "insert": "provider:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-provider-plugins-execute-19": {
+      "id": "b-80-publishing-plugins-provider-plugins-execute-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Provider plugins execute code as your operating-system user. On the host they receive\nthe ambient environment plus Archon's per-request environment, just like an in-process\nprovider. For container execution the plugin still inherits the host environment so it\ncan launch the container runtime; the container request environment travels as session\ndata and becomes the provider's "
+        },
+        {
+          "insert": "options.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Credential checks use the plugin process\nenvironment.\nThe process boundary supplies packaging, crash isolation, and cancellation; it is not a\nsecurity sandbox. Archon withholds plugin stderr contents from its logs and errors because\nthey may contain credentials or user messages."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-native-tool-specificatio-20": {
+      "id": "b-80-publishing-plugins-native-tool-specificatio-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Native tool specifications travel with the session; their handlers run in the host\nthrough "
+        },
+        {
+          "insert": "_archon/tool_call",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Calls after settlement or cancellation are rejected.\n"
+        },
+        {
+          "insert": "serveProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " passes a structured log sink to its "
+        },
+        {
+          "insert": "create(log)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " factory. Await that\nsink with "
+        },
+        {
+          "insert": "{ level, msg, bindings }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to send metadata through "
+        },
+        {
+          "insert": "_archon/log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nThe host logs "
+        },
+        {
+          "insert": "provider.plugin.log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at the supplied severity through "
+        },
+        {
+          "insert": "provider.<id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\nusing its own descriptor id. Set "
+        },
+        {
+          "insert": "bindings.failureClass",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to one of the contract's failure\nclasses, or "
+        },
+        {
+          "insert": "bindings.lifecycle",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to one of its lifecycle events\n("
+        },
+        {
+          "insert": "providerLifecycleEventSchema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), on any record the operator should see. With a lifecycle\nevent, a non-negative integer "
+        },
+        {
+          "insert": "bindings.waitedMs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is forwarded too. The host forwards\nthose values and nothing else, and drops a record with neither enum value. "
+        },
+        {
+          "insert": "msg",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plugin module identity, and all\nother bindings remain withheld. Never put credentials, tokens, or message text in log\nrecords. Keep stdout exclusively for RPC; configure other logging to stderr before\nit writes. Stderr remains withheld."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-see-building-a-communit-21": {
+      "id": "b-80-publishing-plugins-see-building-a-communit-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See "
+        },
+        {
+          "insert": "building a community provider",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/50-adding-a-community-provider.md",
+              "label": "building a community provider"
+            }
+          }
+        },
+        {
+          "insert": " for\n"
+        },
+        {
+          "insert": "serveProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", descriptors, wire schemas, and conformance tests."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-provider-receipts-are-ad-22": {
+      "id": "b-80-publishing-plugins-provider-receipts-are-ad-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Provider receipts are additive, but older Archon binaries reject their unknown kind.\nRemove provider plugins before downgrading to a release without provider-plugin support."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-chat-plugins-23": {
+      "id": "b-80-publishing-plugins-chat-plugins-23",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Chat plugins"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-slack-is-the-maintained-24": {
+      "id": "b-80-publishing-plugins-slack-is-the-maintained-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Slack is the maintained in-repository example in\n"
+        },
+        {
+          "insert": "packages/chat-slack",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/tree/dev/packages/chat-slack"
+          }
+        },
+        {
+          "insert": ".\nIt uses "
+        },
+        {
+          "insert": "@archon/chat-contract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and Slack Bolt, without engine types or database access.\nOutside Docker, install it from an Archon release that publishes the Slack asset:"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-sh-25": {
+      "id": "b-80-publishing-plugins-sh-25",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/chat-slack"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-set-slack-bot-token-an-26": {
+      "id": "b-80-publishing-plugins-set-slack-bot-token-an-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "SLACK_APP_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the server environment, then restart\nwith "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The plugin connects through Socket Mode; no webhook ingress is\nneeded. Configure the Slack app with "
+        },
+        {
+          "insert": "/archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/archon-workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "app_mentions:read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "chat:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "reactions:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "commands",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "im:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "users:read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plus the\nhistory scopes for the conversations you use. Subscribe to "
+        },
+        {
+          "insert": "app_mention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "message.im",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The app token needs\n"
+        },
+        {
+          "insert": "connections:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Missing either token fails startup non-retryably."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-host-reads-slack-al-27": {
+      "id": "b-80-publishing-plugins-the-host-reads-slack-al-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host reads "
+        },
+        {
+          "insert": "SLACK_ALLOWED_USER_IDS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "SLACK_STREAMING_MODE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the descriptor.\nIt authorizes inbound traffic and run actions, resolves Archon users, and pushes typed\nrun events. The plugin renders progress, decisions, reactions and cost footers.\n"
+        },
+        {
+          "insert": "/archon connect github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " points to the Web UI or "
+        },
+        {
+          "insert": "archon auth github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; it does not run a\nGitHub device flow. The server has no bundled Slack adapter: without this plugin Slack is\noff, and outside Docker a set "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " makes startup log the install command.\nDocker images provision their shipped Slack release offline when "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is\nconfigured; upgrading needs no manual plugin installation."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-plugin-declares-att-28": {
+      "id": "b-80-publishing-plugins-the-plugin-declares-att-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The plugin declares "
+        },
+        {
+          "insert": "attentionNotices",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A route's "
+        },
+        {
+          "insert": "destination",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a channel id the bot\nhas joined, or "
+        },
+        {
+          "insert": "channel:thread_ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to post inside an existing thread. Each notice offers\nthe gate's decisions or the wait's form as controls: a button per decision or option, a\nmenu and Submit for a multi-select, and an answer modal for a message wait or a reply to an\ninteractive loop, which needs Interactivity enabled in the Slack app. A wait without a\n"
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " offers Resume. A forbidden action is shown only to the member who clicked; a\nrefused one, such as an answer to a pause that is no longer open, is posted in the\nnotice's thread. The run's follow-up posts in that thread and, unless the plugin restarted\nsince the notice, closes its controls."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-package-tests-run-r-29": {
+      "id": "b-80-publishing-plugins-the-package-tests-run-r-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The package tests run "
+        },
+        {
+          "insert": "runChatConformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " against the source process with a stubbed\nSlack client. Linux CI also compiles that entry point with test-only Slack and driver\nmodule substitutions and runs the same suite against the binary. The unmodified release\nbinary is separately smoke-tested for credential-free initialization, non-retryable\nmissing-token failure and shutdown. Compile binaries in CI, not locally on macOS."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-a-chat-plugin-declares-a-30": {
+      "id": "b-80-publishing-plugins-a-chat-plugin-declares-a-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A chat plugin declares an "
+        },
+        {
+          "insert": "archon-chat-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " executable:"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-json-31": {
+      "id": "b-80-publishing-plugins-json-31",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"chat\",\n  \"name\": \"example-chat\",\n  \"description\": \"Example chat integration\",\n  \"executable\": \"archon-chat-example\"\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-publish-release-assets-a-32": {
+      "id": "b-80-publishing-plugins-publish-release-assets-a-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Publish release assets and "
+        },
+        {
+          "insert": "checksums.txt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the same platform naming rules as\nforge and provider plugins, for example "
+        },
+        {
+          "insert": "archon-chat-example-linux-x64",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "archon-chat-example-windows-x64.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Do not put "
+        },
+        {
+          "insert": ".exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the manifest."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-sh-33": {
+      "id": "b-80-publishing-plugins-sh-33",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add owner/repo@v1.0.0\narchon plugin list\narchon plugin update owner/repo\narchon plugin remove owner/repo"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-without-a-tag-install-a-34": {
+      "id": "b-80-publishing-plugins-without-a-tag-install-a-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Without a tag, install and update use the latest GitHub release. After checksum\nverification, Archon starts the staged executable, sends only "
+        },
+        {
+          "insert": "initialize",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", validates\nits "
+        },
+        {
+          "insert": "archon-chat/1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " descriptor, and stops the process before recording the install.\nInitialization has a ten-second deadline and must work without chat credentials or\n"
+        },
+        {
+          "insert": "chat/start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The receipt records the descriptor, release tag, commit, and binary digest.\nThe descriptor's platform id is independent of the manifest name and executable suffix."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-wire-uses-newline-de-35": {
+      "id": "b-80-publishing-plugins-the-wire-uses-newline-de-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The wire uses newline-delimited JSON-RPC 2.0 on stdin/stdout. For an initialize\nrequest such as "
+        },
+        {
+          "insert": "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"initialize\",\"params\":{}}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\nreply with the same request id and a descriptor as "
+        },
+        {
+          "insert": "result",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-json-36": {
+      "id": "b-80-publishing-plugins-json-36",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"result\": {\n    \"protocol\": \"archon-chat/1\",\n    \"id\": \"example-chat\",\n    \"displayName\": \"Example chat integration\",\n    \"version\": \"1.0.0\",\n    \"capabilities\": {\n      \"defaultWorkflowDispatch\": \"foreground\"\n    },\n    \"policy\": {\n      \"workspaceRetention\": \"age-based\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-write-the-response-as-on-37": {
+      "id": "b-80-publishing-plugins-write-the-response-as-on-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Write the response as one JSON line followed by a newline; the example is expanded\nfor readability. Keep stdout for protocol messages. The generated\n"
+        },
+        {
+          "insert": "chat contract schema",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/chat-contract/schema/chat-contract.schema.json"
+          }
+        },
+        {
+          "insert": "\ndefines "
+        },
+        {
+          "insert": "ChatPluginDescriptor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the other wire payloads under "
+        },
+        {
+          "insert": "$defs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including\noptional descriptor fields. TypeScript plugins can use\n"
+        },
+        {
+          "insert": "serveChat",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/tree/dev/packages/chat-contract"
+          }
+        },
+        {
+          "insert": " from ",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/tree/dev/packages/chat-contract"
+          }
+        },
+        {
+          "insert": "@archon/chat-contract",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/tree/dev/packages/chat-contract"
+          }
+        },
+        {
+          "insert": "\nto handle initialization and framing."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-a-platform-id-cannot-bel-38": {
+      "id": "b-80-publishing-plugins-a-platform-id-cannot-bel-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A platform id cannot belong to two chat installs. "
+        },
+        {
+          "insert": "web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "cli",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "gitea",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "gitlab",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are reserved for host surfaces and bundled forge adapters.\nCollisions name both owners. A rejected initialization or collision leaves existing\nfiles unchanged; handled publication failures restore the previous install when the\nfilesystem permits rollback. A rollback failure reports local recovery and backup paths,\nand a backup that stays locked past the retry window is named for you to remove.\nInstallation does not promise crash atomicity across receipt and binary files."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-chat-plugins-run-as-your-39": {
+      "id": "b-80-publishing-plugins-chat-plugins-run-as-your-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Chat plugins run as your operating-system user and inherit the ambient environment.\nPlugin stderr and plugin-controlled error details are withheld because they may contain\ncredentials or user messages. The process boundary is not a security sandbox."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-restart-the-server-after-40": {
+      "id": "b-80-publishing-plugins-restart-the-server-after-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Restart the server after installing, updating, or removing a chat plugin. The server\nstarts one supervised process per usable chat receipt and verifies its live descriptor\nagainst the receipt. A receipt that is unreadable or does not own its executable starts\nno process and registers no platform policy; the server logs its path. Run\n"
+        },
+        {
+          "insert": "archon plugin update <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon plugin remove <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then restart. A matching installed\nplatform supersedes its bundled adapter, and the server logs that replacement. Without a\nmatching receipt, bundled adapters continue to work as before. Slack has no bundled adapter:\nwithout the "
+        },
+        {
+          "insert": "chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " plugin, Slack stays off. In Docker, configured Slack bot tokens\nreinstall the image-provided plugin on restart. To keep Slack removed, clear its tokens\nfrom every effective configuration source as well as removing the plugin."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-host-enforces-the-de-41": {
+      "id": "b-80-publishing-plugins-the-host-enforces-the-de-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host enforces the descriptor's allowlist for messages and run actions before creating\nan Archon identity. Run actions require the run's starter or an admin. Run events go only\nto the plugin that owns the run's conversation, for runs executing in the server process.\nAttention notices go to the chat routes configured in "
+        },
+        {
+          "insert": "attentionNotices",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", for runs from any\nprocess. There is no webhook ingress for chat plugins."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-a-plugin-that-declares-t-42": {
+      "id": "b-80-publishing-plugins-a-plugin-that-declares-t-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A plugin that declares the "
+        },
+        {
+          "insert": "attentionNotices",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability receives "
+        },
+        {
+          "insert": "chat/attention_notice",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nfor each configured route on its platform. The request carries the route's "
+        },
+        {
+          "insert": "destination",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nunchanged and a typed notice: a "
+        },
+        {
+          "insert": "gate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with its decisions, an "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " wait with its form,\nits options (each with an optional "
+        },
+        {
+          "insert": "does",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and an optional recommendation, or a "
+        },
+        {
+          "insert": "terminal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " follow-up for a run the route was told about. Return\n"
+        },
+        {
+          "insert": "{conversationId}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the plugin can thread the follow-up there; the terminal request then\ncarries it back. Answer an "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " notice with the "
+        },
+        {
+          "insert": "answer",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run action, naming the notice's\n"
+        },
+        {
+          "insert": "nodeId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the chosen option ids. A wait without a "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " paused before\nanswers existed; continue it with the "
+        },
+        {
+          "insert": "resume",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run action. The host refuses an answer to an\noccurrence that is no longer open, so a stale button reports the run's current state instead\nof answering a later pause."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-crashes-and-retryable-st-43": {
+      "id": "b-80-publishing-plugins-crashes-and-retryable-st-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Crashes and retryable start failures restart with backoff from one to thirty seconds.\nA non-retryable start failure requires a server restart after correcting the configuration.\nOutbound requests time out after thirty seconds; two consecutive timeouts restart the\nprocess. Shutdown closes stdin and allows ten seconds for exit before terminating the\nrecorded process tree. Plugin stderr and remote failure text are withheld from host logs.\nRemove chat installs before downgrading to an Archon release without chat receipts."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-listing-and-refresh-44": {
+      "id": "b-80-publishing-plugins-listing-and-refresh-44",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Listing and refresh"
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-add-archon-plugin-unde-45": {
+      "id": "b-80-publishing-plugins-add-archon-plugin-unde-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add "
+        },
+        {
+          "insert": "archon-plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " under your repository's About topics. The site searches public repositories with that topic during each build and refreshes daily. It reads manifests from the default branch at one commit, even when the repository also has tags. The displayed latest tag is the first tag returned by GitHub's tags endpoint; it is not a semantic-version ranking or a guarantee that a release asset exists. The install command without a tag follows the installer rules above."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-invalid-manifests-are-sk-46": {
+      "id": "b-80-publishing-plugins-invalid-manifests-are-sk-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Invalid manifests are skipped with their repository, manifest path, and validation reason in the site build log. Archived repositories remain visible with an archived flag. Listing is discovery, not endorsement or a code review. Maintainers can exclude a repository with a commit to "
+        },
+        {
+          "insert": "packages/docs-web/plugin-denylist.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; entries are "
+        },
+        {
+          "insert": "owner/repo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", compared without case, and exclude every plugin in that repository. This affects listing only."
+        }
+      ],
+      "children": []
+    },
+    "b-80-publishing-plugins-the-build-uses-the-read-47": {
+      "id": "b-80-publishing-plugins-the-build-uses-the-read-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The build uses the read-only Actions "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for GitHub API limits. Local site builds can use a token in "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or make unauthenticated requests within GitHub's public API limits. No token is required to publish or install a public plugin. GitHub API failures or incomplete search/tree results fail the build rather than replace the catalog with a partial listing."
+        }
+      ],
+      "children": []
+    }
+  }
+}

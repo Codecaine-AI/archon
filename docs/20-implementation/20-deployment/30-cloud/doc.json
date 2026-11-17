@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-30-cloud",
+  "title": "Cloud Deployment",
+  "root": "b-30-cloud-root-22",
+  "blocks": {
+    "b-30-cloud-root-22": {
+      "id": "b-30-cloud-root-22",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Prepare a cloud VPS for Archon, then run it with Docker Compose and automatic HTTPS.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/cloud.md"
+      },
+      "children": [
+        "b-30-cloud-this-page-prepares-a-vps-1",
+        "b-30-cloud-for-the-fastest-route-u-2",
+        "b-30-cloud-what-you-need-3",
+        "b-30-cloud-a-vps-from-any-provider-4",
+        "b-30-cloud-a-domain-or-subdomain-s-5",
+        "b-30-cloud-an-ssh-key-create-one-b-6",
+        "b-30-cloud-bash-7",
+        "b-30-cloud-when-you-create-the-vps-8",
+        "b-30-cloud-secure-the-server-9",
+        "b-30-cloud-connect-with-the-image-s-10",
+        "b-30-cloud-bash-11",
+        "b-30-cloud-test-ssh-deploy-your-se-12",
+        "b-30-cloud-bash-13",
+        "b-30-cloud-open-the-firewall-14",
+        "b-30-cloud-bash-15",
+        "b-30-cloud-point-your-domain-at-the-16",
+        "b-30-cloud-at-your-dns-provider-cr-17",
+        "b-30-cloud-install-and-run-archon-18",
+        "b-30-cloud-follow-the-docker-guide-19",
+        "b-30-cloud-check-the-deployment-fro-20",
+        "b-30-cloud-bash-21"
+      ]
+    },
+    "b-30-cloud-this-page-prepares-a-vps-1": {
+      "id": "b-30-cloud-this-page-prepares-a-vps-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This page prepares a VPS: a user, SSH, a firewall and DNS. The "
+        },
+        {
+          "insert": "Docker guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "label": "Docker guide"
+            }
+          }
+        },
+        {
+          "insert": " then installs and runs Archon on it with Docker Compose and Caddy for HTTPS. Using your own proxy instead of Caddy? See "
+        },
+        {
+          "insert": "Running Archon behind your own reverse proxy",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/40-reverse-proxy.md",
+              "label": "Running Archon behind your own reverse proxy"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-for-the-fastest-route-u-2": {
+      "id": "b-30-cloud-for-the-fastest-route-u-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For the fastest route, use the "
+        },
+        {
+          "insert": "cloud-init script",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "cloud-init-fastest-setup",
+              "label": "cloud-init script"
+            }
+          }
+        },
+        {
+          "insert": " instead. It creates a user, opens the firewall and installs Docker when the VPS first boots. You still create the "
+        },
+        {
+          "insert": "DNS record",
+          "attributes": {
+            "link": "#point-your-domain-at-the-server"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-what-you-need-3": {
+      "id": "b-30-cloud-what-you-need-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What you need"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-a-vps-from-any-provider-4": {
+      "id": "b-30-cloud-a-vps-from-any-provider-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A VPS from any provider (DigitalOcean, Linode, AWS EC2, Vultr and so on): 1 to 2 vCPUs, 2 GB RAM minimum (4 GB recommended), 20 GB SSD, Ubuntu 22.04 LTS."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-a-domain-or-subdomain-s-5": {
+      "id": "b-30-cloud-a-domain-or-subdomain-s-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A domain or subdomain, such as "
+        },
+        {
+          "insert": "archon.yourdomain.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-an-ssh-key-create-one-b-6": {
+      "id": "b-30-cloud-an-ssh-key-create-one-b-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An SSH key. Create one before the VPS, and add the public key when you create it:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-bash-7": {
+      "id": "b-30-cloud-bash-7",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ssh-keygen -t ed25519 -C \"archon\"\ncat ~/.ssh/id_ed25519.pub"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-when-you-create-the-vps-8": {
+      "id": "b-30-cloud-when-you-create-the-vps-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When you create the VPS, choose the Ubuntu 22.04 image and your SSH key, and allow inbound SSH (22), HTTP (80) and HTTPS (443) if the provider has its own firewall or security group. Note the public IP."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-secure-the-server-9": {
+      "id": "b-30-cloud-secure-the-server-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Secure the server"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-connect-with-the-image-s-10": {
+      "id": "b-30-cloud-connect-with-the-image-s-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect with the image's default account: "
+        },
+        {
+          "insert": "root",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on most VPS providers, "
+        },
+        {
+          "insert": "ubuntu",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on AWS EC2, which disables root login. Create a deploy user with your key, and switch to it:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-bash-11": {
+      "id": "b-30-cloud-bash-11",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ssh root@your-server-ip            # or: ssh ubuntu@your-server-ip on EC2\n\nsudo adduser deploy\nsudo usermod -aG sudo deploy\nsudo mkdir -p /home/deploy/.ssh\nsudo cp ~/.ssh/authorized_keys /home/deploy/.ssh/\nsudo chown -R deploy:deploy /home/deploy/.ssh\nsudo chmod 700 /home/deploy/.ssh\nsudo chmod 600 /home/deploy/.ssh/authorized_keys"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-test-ssh-deploy-your-se-12": {
+      "id": "b-30-cloud-test-ssh-deploy-your-se-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Test "
+        },
+        {
+          "insert": "ssh deploy@your-server-ip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in a second terminal before you go on. Then turn off password logins by setting "
+        },
+        {
+          "insert": "PasswordAuthentication no",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "/etc/ssh/sshd_config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and restart SSH:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-bash-13": {
+      "id": "b-30-cloud-bash-13",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "sudo systemctl restart ssh\nsudo su - deploy"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-open-the-firewall-14": {
+      "id": "b-30-cloud-open-the-firewall-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Open the firewall:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-bash-15": {
+      "id": "b-30-cloud-bash-15",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "sudo ufw allow 22/tcp\nsudo ufw allow 80/tcp\nsudo ufw allow 443\nsudo ufw --force enable"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-point-your-domain-at-the-16": {
+      "id": "b-30-cloud-point-your-domain-at-the-16",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Point your domain at the server"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-at-your-dns-provider-cr-17": {
+      "id": "b-30-cloud-at-your-dns-provider-cr-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "At your DNS provider, create an A record: name "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "@",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the root domain), value the server's public IP. With Cloudflare, set the record to DNS only, not proxied, so Caddy can obtain its certificate. Check it with "
+        },
+        {
+          "insert": "dig archon.yourdomain.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-install-and-run-archon-18": {
+      "id": "b-30-cloud-install-and-run-archon-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Install and run Archon"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-follow-the-docker-guide-19": {
+      "id": "b-30-cloud-follow-the-docker-guide-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Follow the Docker guide's "
+        },
+        {
+          "insert": "manual server setup",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "manual-server-setup",
+              "label": "manual server setup"
+            }
+          }
+        },
+        {
+          "insert": ". It installs Docker, clones the repository, sets up "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the "
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and starts the stack. Before you expose the Web UI, choose a login in "
+        },
+        {
+          "insert": "Protect the Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "protect-the-web-ui",
+              "label": "Protect the Web UI"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-check-the-deployment-fro-20": {
+      "id": "b-30-cloud-check-the-deployment-fro-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check the deployment from your machine:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-cloud-bash-21": {
+      "id": "b-30-cloud-bash-21",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl https://archon.yourdomain.com/api/health"
+        }
+      ],
+      "children": []
+    }
+  }
+}

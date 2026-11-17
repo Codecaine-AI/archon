@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started",
+  "title": "Getting Started",
+  "root": "b-10-getting-started-root-12",
+  "blocks": {
+    "b-10-getting-started-root-12": {
+      "id": "b-10-getting-started-root-12",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started"
+      },
+      "children": [
+        "b-10-getting-started-this-section-holds-the-c-1",
+        "b-10-getting-started-contents-2",
+        "b-10-getting-started-installation-docs-30-3",
+        "b-10-getting-started-updating-archon-docs-4",
+        "b-10-getting-started-why-archon-docs-30-au-5",
+        "b-10-getting-started-quickstart-docs-30-au-6",
+        "b-10-getting-started-build-your-first-workfl-7",
+        "b-10-getting-started-configuration-docs-30-8",
+        "b-10-getting-started-ai-assistants-docs-30-9",
+        "b-10-getting-started-set-up-the-sdlc-factory-10",
+        "b-10-getting-started-operate-runs-docs-30-11"
+      ]
+    },
+    "b-10-getting-started-this-section-holds-the-c-1": {
+      "id": "b-10-getting-started-this-section-holds-the-c-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This section holds the converted copies of the upstream pages in "
+        },
+        {
+          "insert": "packages/docs-web/src/content/docs/getting-started",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-contents-2": {
+      "id": "b-10-getting-started-contents-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-installation-docs-30-3": {
+      "id": "b-10-getting-started-installation-docs-30-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Installation",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/10-installation.md",
+              "label": "Installation"
+            }
+          }
+        },
+        {
+          "insert": ": Install Archon on macOS, Linux, or Windows."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-updating-archon-docs-4": {
+      "id": "b-10-getting-started-updating-archon-docs-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Updating Archon",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/15-updating.md",
+              "label": "Updating Archon"
+            }
+          }
+        },
+        {
+          "insert": ": Update an existing Archon installation."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-why-archon-docs-30-au-5": {
+      "id": "b-10-getting-started-why-archon-docs-30-au-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Why Archon",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/20-why-archon.md",
+              "label": "Why Archon"
+            }
+          }
+        },
+        {
+          "insert": ": Archon is a factory builder. You write how work gets done as YAML workflows, and Archon runs them with agents, scripts and your decisions."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-quickstart-docs-30-au-6": {
+      "id": "b-10-getting-started-quickstart-docs-30-au-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": ": Install the Archon binary, add a provider and run your first workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-build-your-first-workfl-7": {
+      "id": "b-10-getting-started-build-your-first-workfl-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build your first workflow",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/30-first-workflow.md",
+              "label": "Build your first workflow"
+            }
+          }
+        },
+        {
+          "insert": ": Build an agent-first workflow that plans a change, waits for your approval, implements it and fixes failing tests, and check every route before it spends a token."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-configuration-docs-30-8": {
+      "id": "b-10-getting-started-configuration-docs-30-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": ": Configure Archon with API keys, assistants, and project settings."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-ai-assistants-docs-30-9": {
+      "id": "b-10-getting-started-ai-assistants-docs-30-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "AI Assistants",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "label": "AI Assistants"
+            }
+          }
+        },
+        {
+          "insert": ": Install, authenticate and configure Claude Code, Codex, Pi, OpenCode and GitHub Copilot for Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-set-up-the-sdlc-factory-10": {
+      "id": "b-10-getting-started-set-up-the-sdlc-factory-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Set up the SDLC factory",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/45-sdlc-factory.md",
+              "label": "Set up the SDLC factory"
+            }
+          }
+        },
+        {
+          "insert": ": Take a GitHub repository from nothing to an issue built by the build queue and merged by the merge queue, and know everything the pack writes."
+        }
+      ],
+      "children": []
+    },
+    "b-10-getting-started-operate-runs-docs-30-11": {
+      "id": "b-10-getting-started-operate-runs-docs-30-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Operate runs",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/50-operate.md",
+              "label": "Operate runs"
+            }
+          }
+        },
+        {
+          "insert": ": Watch runs, answer the ones that need you, resume or stop them, read what they produced, and hand classes of questions to your own handler workflows."
+        }
+      ],
+      "children": []
+    }
+  }
+}

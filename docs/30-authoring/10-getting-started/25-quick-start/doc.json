@@ -1,0 +1,748 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-25-quick-start",
+  "title": "Quickstart",
+  "root": "b-25-quick-start-root-34",
+  "blocks": {
+    "b-25-quick-start-root-34": {
+      "id": "b-25-quick-start-root-34",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Install the Archon binary, add a provider and run your first workflow.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/quick-start.md"
+      },
+      "children": [
+        "b-25-quick-start-this-page-takes-you-from-1",
+        "b-25-quick-start-1-install-an-agent-2",
+        "b-25-quick-start-archon-runs-agents-you-i-3",
+        "b-25-quick-start-claude-code-curl-4",
+        "b-25-quick-start-codex-install-the-c-5",
+        "b-25-quick-start-archon-finds-claude-code-6",
+        "b-25-quick-start-2-install-archon-7",
+        "b-25-quick-start-bash-8",
+        "b-25-quick-start-the-installer-asks-which-9",
+        "b-25-quick-start-bash-10",
+        "b-25-quick-start-check-the-install-11",
+        "b-25-quick-start-bash-12",
+        "b-25-quick-start-docker-source-installs-13",
+        "b-25-quick-start-3-run-a-workflow-14",
+        "b-25-quick-start-in-any-git-repository-15",
+        "b-25-quick-start-bash-16",
+        "b-25-quick-start-archon-investigate-tra-17",
+        "b-25-quick-start-4-read-the-result-18",
+        "b-25-quick-start-bash-19",
+        "b-25-quick-start-a-run-that-needs-a-decis-20",
+        "b-25-quick-start-to-browse-runs-in-a-brow-21",
+        "b-25-quick-start-the-input-is-the-contrac-22",
+        "b-25-quick-start-the-message-you-pass-to-23",
+        "b-25-quick-start-wherever-the-run-reads-i-24",
+        "table-0-5a129a5e",
+        "b-25-quick-start-solution-steering-is-opt-26",
+        "b-25-quick-start-a-brief-worth-running-27",
+        "b-25-quick-start-bash-28",
+        "b-25-quick-start-archon-ship-takes-an-i-29",
+        "b-25-quick-start-next-steps-30",
+        "b-25-quick-start-build-your-first-workfl-31",
+        "b-25-quick-start-set-up-the-sdlc-factory-32",
+        "b-25-quick-start-configuration-docs-30-33"
+      ]
+    },
+    "b-25-quick-start-this-page-takes-you-from-1": {
+      "id": "b-25-quick-start-this-page-takes-you-from-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This page takes you from nothing to a finished run in any git repository."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-1-install-an-agent-2": {
+      "id": "b-25-quick-start-1-install-an-agent-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "1. Install an agent"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-archon-runs-agents-you-i-3": {
+      "id": "b-25-quick-start-archon-runs-agents-you-i-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon runs agents you install yourself. Install at least one and sign in:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-claude-code-curl-4": {
+      "id": "b-25-quick-start-claude-code-curl-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Claude Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "curl -fsSL https://claude.ai/install.sh | bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on macOS, Linux or WSL, or "
+        },
+        {
+          "insert": "irm https://claude.ai/install.ps1 | iex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Windows PowerShell. Then run "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and sign in with your Claude subscription."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-codex-install-the-c-5": {
+      "id": "b-25-quick-start-codex-install-the-c-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Codex:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " install the Codex CLI and run "
+        },
+        {
+          "insert": "codex login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-archon-finds-claude-code-6": {
+      "id": "b-25-quick-start-archon-finds-claude-code-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon finds Claude Code at the native installer's path ("
+        },
+        {
+          "insert": "~/.local/bin/claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") on its own. Only an npm or other custom install needs a path; see "
+        },
+        {
+          "insert": "Claude Code binary path",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "binary-path-configuration-compiled-binaries-only",
+              "label": "Claude Code binary path"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-2-install-archon-7": {
+      "id": "b-25-quick-start-2-install-archon-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "2. Install Archon"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-8": {
+      "id": "b-25-quick-start-bash-8",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://archon.diy/install | bash        # macOS / Linux\nirm https://archon.diy/install.ps1 | iex             # Windows (PowerShell)"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-the-installer-asks-which-9": {
+      "id": "b-25-quick-start-the-installer-asks-which-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The installer asks which providers to add ("
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and runs "
+        },
+        {
+          "insert": "archon provider add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for them. With Homebrew, install and then add providers yourself:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-10": {
+      "id": "b-25-quick-start-bash-10",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "brew install coleam00/archon/archon\narchon setup        # or: archon provider add claude"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-check-the-install-11": {
+      "id": "b-25-quick-start-check-the-install-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check the install:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-12": {
+      "id": "b-25-quick-start-bash-12",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon version\narchon doctor       # lists installed providers and their diagnostics"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-docker-source-installs-13": {
+      "id": "b-25-quick-start-docker-source-installs-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Docker, source installs and older x64 CPUs without AVX2 are covered in "
+        },
+        {
+          "insert": "Installation",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/10-installation.md",
+              "label": "Installation"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-3-run-a-workflow-14": {
+      "id": "b-25-quick-start-3-run-a-workflow-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "3. Run a workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-in-any-git-repository-15": {
+      "id": "b-25-quick-start-in-any-git-repository-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In any git repository:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-16": {
+      "id": "b-25-quick-start-bash-16",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cd your-project\narchon workflow list\narchon workflow run archon-investigate \"Why does the login test fail?\""
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-archon-investigate-tra-17": {
+      "id": "b-25-quick-start-archon-investigate-tra-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon-investigate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " traces the question through your code until it can prove the answer, and leaves the repository as it found it. The run streams to your terminal and ends with its report."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-4-read-the-result-18": {
+      "id": "b-25-quick-start-4-read-the-result-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "4. Read the result"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-19": {
+      "id": "b-25-quick-start-bash-19",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow runs              # recent runs in this project, with their IDs\narchon workflow get <run-id>      # one run: status, nodes and outcome\narchon workflow attention         # runs paused for your decision"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-a-run-that-needs-a-decis-20": {
+      "id": "b-25-quick-start-a-run-that-needs-a-decis-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run that needs a decision pauses as an attention item. Answer it with "
+        },
+        {
+          "insert": "archon workflow respond <run-id> <decision> \"<reason>\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". See "
+        },
+        {
+          "insert": "Operate runs",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/50-operate.md",
+              "label": "Operate runs"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-to-browse-runs-in-a-brow-21": {
+      "id": "b-25-quick-start-to-browse-runs-in-a-brow-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To browse runs in a browser instead, start the Web UI with "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-the-input-is-the-contrac-22": {
+      "id": "b-25-quick-start-the-input-is-the-contrac-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The input is the contract"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-the-message-you-pass-to-23": {
+      "id": "b-25-quick-start-the-message-you-pass-to-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The message you pass to a run is the specification it is measured against. Archon governs how the work happens: isolation, gates, retries and the audit trail. It cannot supply what you wanted. A vague brief produces a confident answer to a question you didn't ask."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-wherever-the-run-reads-i-24": {
+      "id": "b-25-quick-start-wherever-the-run-reads-i-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Wherever the run reads its input, an issue body, a message or a document, make it state:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-5a129a5e": {
+      "id": "table-0-5a129a5e",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "",
+          ""
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Problem",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "What is wrong today, concretely"
+          ],
+          [
+            [
+              {
+                "insert": "Why it is worth solving",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "The cost of leaving it alone"
+          ],
+          [
+            [
+              {
+                "insert": "Why now",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "What makes this the moment"
+          ],
+          [
+            [
+              {
+                "insert": "Desired outcome",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "What is observably different afterwards"
+          ],
+          [
+            [
+              {
+                "insert": "Invariants",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "What must stay true in any acceptable implementation"
+          ],
+          [
+            [
+              {
+                "insert": "Acceptance",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "How you will know it is done"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-quick-start-solution-steering-is-opt-26": {
+      "id": "b-25-quick-start-solution-steering-is-opt-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Solution steering is optional and goes last. Leave it out and the run chooses its own approach. If you hold a constraint, such as \"reuse this helper\" or \"no new dependency\", say it, because the run can't honor a preference you didn't state."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-a-brief-worth-running-27": {
+      "id": "b-25-quick-start-a-brief-worth-running-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A brief worth running:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-bash-28": {
+      "id": "b-25-quick-start-bash-28",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-ship --branch fix/upload-timeout \"$(cat <<'BRIEF'\nProblem: uploads over ~8 MB fail with a 504 after 30s. The proxy read timeout is\n30s and the upload handler streams to disk before responding.\n\nWhy it matters: this is the top support complaint this month.\n\nWhy now: the export feature ships next week and its files are 20-50 MB.\n\nOutcome: a 50 MB upload completes, and a stuck upload still fails instead of hanging.\n\nInvariants: no change to the storage layout or the public upload API; memory use\nmust not scale with file size.\n\nAcceptance: a 50 MB upload succeeds end to end; a test covers the timeout path.\n\nSteering: prefer streaming straight to storage over raising the timeout.\nBRIEF\n)\" --detach"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-archon-ship-takes-an-i-29": {
+      "id": "b-25-quick-start-archon-ship-takes-an-i-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon-ship",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes an issue or request to a reviewed pull request. It reaches GitHub through the forge plugin, so run "
+        },
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " first; your "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") is the credential it uses. "
+        },
+        {
+          "insert": "--detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts the run in the background and returns at once."
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-next-steps-30": {
+      "id": "b-25-quick-start-next-steps-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Next steps"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-build-your-first-workfl-31": {
+      "id": "b-25-quick-start-build-your-first-workfl-31",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build your first workflow",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/30-first-workflow.md",
+              "label": "Build your first workflow"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-set-up-the-sdlc-factory-32": {
+      "id": "b-25-quick-start-set-up-the-sdlc-factory-32",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Set up the SDLC factory",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/45-sdlc-factory.md",
+              "label": "Set up the SDLC factory"
+            }
+          }
+        },
+        {
+          "insert": ": the bundled software factory, from issue to merge"
+        }
+      ],
+      "children": []
+    },
+    "b-25-quick-start-configuration-docs-30-33": {
+      "id": "b-25-quick-start-configuration-docs-30-33",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": ": project settings and environment variables"
+        }
+      ],
+      "children": []
+    }
+  }
+}

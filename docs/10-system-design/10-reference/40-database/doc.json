@@ -1,0 +1,4497 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-40-database",
+  "title": "Database",
+  "root": "b-40-database-root-166",
+  "blocks": {
+    "b-40-database-root-166": {
+      "id": "b-40-database-root-166",
+      "type": "paragraph",
+      "props": {
+        "area": "database",
+        "audience": [
+          "developer",
+          "operator"
+        ],
+        "category": "reference",
+        "description": "Persistence selection and database setup for files, SQLite, and PostgreSQL.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/database.md"
+      },
+      "children": [
+        "b-40-database-archon-supports-two-data-1",
+        "b-40-database-file-storage-for-cli-wor-2",
+        "b-40-database-database-storage-remains-3",
+        "b-40-database-yaml-4",
+        "b-40-database-use-store-database-or-5",
+        "b-40-database-file-storage-supports-wo-6",
+        "b-40-database-text-7",
+        "b-40-database-every-write-uses-one-sto-8",
+        "b-40-database-run-cleanup-transfers-a-9",
+        "b-40-database-use-a-local-filesystem-t-10",
+        "b-40-database-the-intent-and-file-sync-11",
+        "b-40-database-triggers-work-with-file-12",
+        "b-40-database-the-server-refuses-file-13",
+        "b-40-database-sqlite-default-no-set-14",
+        "b-40-database-with-store-database-15",
+        "b-40-database-create-a-sqlite-database-16",
+        "b-40-database-initialize-the-schema-on-17",
+        "b-40-database-use-this-database-for-op-18",
+        "b-40-database-pros-19",
+        "b-40-database-zero-configuration-requi-20",
+        "b-40-database-no-external-database-nee-21",
+        "b-40-database-perfect-for-single-user-22",
+        "b-40-database-cons-23",
+        "b-40-database-not-suitable-for-multi-c-24",
+        "b-40-database-no-network-access-cli-a-25",
+        "b-40-database-every-archon-process-on-26",
+        "b-40-database-worktree-cleanup-first-c-27",
+        "b-40-database-cleanup-s-claim-holds-re-28",
+        "b-40-database-remote-postgresql-supab-29",
+        "b-40-database-set-your-remote-connecti-30",
+        "b-40-database-ini-31",
+        "b-40-database-no-manual-migration-st-32",
+        "b-40-database-when-postgresql-picks-a-33",
+        "b-40-database-schema-initialization-is-34",
+        "b-40-database-upgrades-are-verified-n-35",
+        "b-40-database-if-schema-application-fa-36",
+        "b-40-database-local-postgresql-via-doc-37",
+        "b-40-database-use-the-with-db-docker-38",
+        "b-40-database-set-in-env-39",
+        "b-40-database-ini-40",
+        "b-40-database-the-app-converges-the-sc-41",
+        "b-40-database-verifying-the-database-42",
+        "b-40-database-health-check-43",
+        "b-40-database-bash-44",
+        "b-40-database-list-tables-postgresq-45",
+        "b-40-database-bash-46",
+        "b-40-database-schema-overview-47",
+        "b-40-database-the-tables-defined-in-m-48",
+        "b-40-database-remote-agent-codebase-49",
+        "b-40-database-remote-agent-conversa-55",
+        "b-40-database-remote-agent-sessions-60",
+        "b-40-database-remote-agent-isolatio-64",
+        "b-40-database-remote-agent-workflow-68",
+        "b-40-database-remote-agent-workflow-75",
+        "b-40-database-remote-agent-workflow-85",
+        "b-40-database-remote-agent-messages-86",
+        "b-40-database-remote-agent-codebase-91",
+        "b-40-database-remote-agent-users-95",
+        "b-40-database-remote-agent-user-ide-100",
+        "b-40-database-remote-agent-workflow-105",
+        "b-40-database-remote-agent-workflow-108",
+        "b-40-database-remote-agent-user-git-113",
+        "b-40-database-remote-agent-user-pro-116",
+        "b-40-database-remote-agent-user-ai-120",
+        "b-40-database-remote-agent-web-push-124",
+        "b-40-database-remote-agent-schema-v-127",
+        "b-40-database-remote-agent-state-re-131",
+        "b-40-database-remote-agent-start-re-135",
+        "b-40-database-remote-agent-start-re-138",
+        "b-40-database-remote-agent-resource-142",
+        "b-40-database-remote-agent-resource-144",
+        "b-40-database-remote-agent-resource-147",
+        "b-40-database-remote-agent-auth-use-151",
+        "b-40-database-schema-initialization-an-154",
+        "b-40-database-the-postgresql-adapter-a-155",
+        "b-40-database-sqlite-first-checks-its-156",
+        "b-40-database-postgresql-takes-the-sch-157",
+        "b-40-database-workflow-origin-compatib-158",
+        "b-40-database-runs-may-have-no-convers-159",
+        "b-40-database-the-sql-adapter-reserves-160",
+        "b-40-database-an-origin-free-run-has-n-161",
+        "b-40-database-schema-upgrades-preserve-162",
+        "b-40-database-store-event-feed-163",
+        "b-40-database-every-workflow-store-exp-164",
+        "b-40-database-start-at-the-head-to-fol-165"
+      ]
+    },
+    "b-40-database-archon-supports-two-data-1": {
+      "id": "b-40-database-archon-supports-two-data-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon supports two database backends: "
+        },
+        {
+          "insert": "SQLite",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (default, zero setup) and "
+        },
+        {
+          "insert": "PostgreSQL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (optional, for cloud/advanced deployments). The database backend is selected automatically based on whether the "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " environment variable is set."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-file-storage-for-cli-wor-2": {
+      "id": "b-40-database-file-storage-for-cli-wor-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "File storage for CLI workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-database-storage-remains-3": {
+      "id": "b-40-database-database-storage-remains-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Database storage remains the default. For a CLI-only install, opt into file storage in\n"
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "$ARCHON_HOME/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "):"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-yaml-4": {
+      "id": "b-40-database-yaml-4",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "store: files"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-use-store-database-or-5": {
+      "id": "b-40-database-use-store-database-or-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or remove the key to return to database storage. "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ntogether with "
+        },
+        {
+          "insert": "store: files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is refused because it selects two stores. Switching stores\nstarts a separate, empty history; Archon does not import existing data. Returning to the\nprevious store reveals its existing history again."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-file-storage-supports-wo-6": {
+      "id": "b-40-database-file-storage-supports-wo-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "File storage supports workflow runs, approval, resume, events, node sessions, codebases\nand isolation records without creating "
+        },
+        {
+          "insert": "archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It stores records under\n"
+        },
+        {
+          "insert": "$ARCHON_HOME/store",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-text-7": {
+      "id": "b-40-database-text-7",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "head.json                format version and commit sequence\nintent.json              pending commit, present during writes or crash recovery\nfeed-index.json          derived latest event commit per run, rebuilt from logs when missing\nruns/<id>/log.jsonl       append-only run records, events and event retractions\nruns/<id>/run.json        derived snapshot, rebuilt when missing or behind the log\narchived-runs/<id>/log.jsonl  retained feed log after run deletion\nruns/<id>/node-sessions.json\nnode-sessions/<hash>.json\nstate/<document-hash>/name.json scope and document name\nstate/<document-hash>/<revision>.json immutable state revisions\nhost/codebases.json       project records with per-project envVars\nhost/isolation.json       isolation records\nhost/users.json           trigger run-as identities\nresource/slots/<hash>.json resource capacity, holders and FIFO request IDs\nresource/requests/<hash>.json prepared start requests\nresource/receipts/<hash>.json receipts and preparation ownership\nresource/deliveries/<hash>.json delivery deduplication identities"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-every-write-uses-one-sto-8": {
+      "id": "b-40-database-every-write-uses-one-sto-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every write uses one store-wide lock and a recoverable intent. The next writer or a\nreader that sees an intent redoes the committed operation exactly once. A torn final\nlog line is ignored by readers and truncated only under the lock by the next writer.\nCommitted lines are never rewritten; cancellation recovery appends event retractions.\nFile-store run IDs are unique for the store's lifetime: creating a run with an ID\nalready held by a live or archived run fails, including caller-reserved IDs."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-run-cleanup-transfers-a-9": {
+      "id": "b-40-database-run-cleanup-transfers-a-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run cleanup transfers a terminal run's log to "
+        },
+        {
+          "insert": "archived-runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before removing its\ncurrent-state directory. The event feed reads its derived index to find changed\nruns, then reads their live or archived logs. Writers update the index\nunder the same lock before publishing the head; a missing or stale index is rebuilt\nfrom the logs."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-use-a-local-filesystem-t-10": {
+      "id": "b-40-database-use-a-local-filesystem-t-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use a local filesystem that supports hard links. Network filesystems are unsupported.\nThe lock records its host, PID and process instance. Archon breaks it only when its owner\nis provably gone. A live or unprovable owner produces "
+        },
+        {
+          "insert": "FileStoreLockHeldError",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the\nowner and path. Inspect the named process before manually removing a lock. A stranded\n"
+        },
+        {
+          "insert": "lock.break",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " needs operator inspection; time alone never proves ownership has ended.\nAn owner record whose PID is not a positive integer, in the lock or in a resource-slot\nholder, fails the operation with "
+        },
+        {
+          "insert": "ProcessOwnerRecordError",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " naming its source; it is never\nread as a dead owner. "
+        },
+        {
+          "insert": "archon ai capacity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists such a provider-attempt holder with the\nerror, and "
+        },
+        {
+          "insert": "archon ai capacity release <attempt-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes it. Each operation under the store lock removes "
+        },
+        {
+          "insert": ".lock-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": ".probe-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " scratch files left by a crashed process once their owner is provably gone.\nNew scratch names carry owner identity, allowing cleanup even when a crash leaves empty\nor torn contents. Older UUID-only scratch files still require readable owner contents;\nunreadable legacy residue stays and logs a warning on each locked operation."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-intent-and-file-sync-11": {
+      "id": "b-40-database-the-intent-and-file-sync-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The intent and file synchronization protect against process crashes. Power-loss durability\nis limited by the platform's "
+        },
+        {
+          "insert": "fsync",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " guarantees; macOS does not force drive caches with\n"
+        },
+        {
+          "insert": "fsync",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and Windows does not support directory "
+        },
+        {
+          "insert": "fsync",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " through this API."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-triggers-work-with-file-12": {
+      "id": "b-40-database-triggers-work-with-file-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Triggers work with file storage: "
+        },
+        {
+          "insert": "archon trigger whoami",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records a local run-as identity,\nand timer fire, admission, queueing, inspection and drain use the file store. Admission\ncommits the run, request and resource holder together. A terminal or missing run releases\nits slot, and so does a run paused at a host-continued wait or gate. A run paused because\nits source is unreadable keeps its slot, including while waiting for a host that can read it.\nA wait or gate resume takes a slot again ahead of queued requests. When a resume of a run whose wait is due or\nsignaled, or whose pause is answered, is refused, the run records "
+        },
+        {
+          "insert": "capacity_wait",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\nwaits; a refused early resume records nothing.\nFailed-run resume respects live holders, those waiting runs and queued requests."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-server-refuses-file-13": {
+      "id": "b-40-database-the-server-refuses-file-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server refuses file storage because its routes read SQL. Provider concurrency caps\n("
+        },
+        {
+          "insert": "concurrency.providers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") require "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and fail at startup.\nPer-user GitHub identity ("
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") fails at startup under\nfile storage, because files hold no user tokens and a run would otherwise use the shared\ntoken. A GitHub App without "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " works. Per-user provider credential\nmode does not prevent selecting file storage. File-store runs never read or deliver stored\nper-user provider credentials. Preflight checks environment credentials and the provider's\nown login, including when the CLI supplies a user identity. State documents ("
+        },
+        {
+          "insert": "archon state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\nuse the selected store. Files keep immutable JSON revisions under "
+        },
+        {
+          "insert": "state/<document-hash>/<revision>.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with a "
+        },
+        {
+          "insert": "name.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " record\ncontaining the scope and name. Writes publish through the store-wide lock and recovery\nintent. "
+        },
+        {
+          "insert": "workflow cleanup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " removes old revisions while keeping each document's latest\nrevision, including tombstones. User and stored credential management still require\ndatabase storage."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-sqlite-default-no-set-14": {
+      "id": "b-40-database-sqlite-default-no-set-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "SQLite (Default - No Setup Required)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-with-store-database-15": {
+      "id": "b-40-database-with-store-database-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the default), "
+        },
+        {
+          "insert": "leave ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " unset",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in your shell and Archon's environment files. The app will automatically:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-create-a-sqlite-database-16": {
+      "id": "b-40-database-create-a-sqlite-database-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Create a SQLite database at "
+        },
+        {
+          "insert": "~/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-initialize-the-schema-on-17": {
+      "id": "b-40-database-initialize-the-schema-on-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Initialize the schema on first run and skip startup writes when its completion proof is current"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-use-this-database-for-op-18": {
+      "id": "b-40-database-use-this-database-for-op-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Use this database for operations with "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-pros-19": {
+      "id": "b-40-database-pros-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pros:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-zero-configuration-requi-20": {
+      "id": "b-40-database-zero-configuration-requi-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Zero configuration required"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-no-external-database-nee-21": {
+      "id": "b-40-database-no-external-database-nee-21",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No external database needed"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-perfect-for-single-user-22": {
+      "id": "b-40-database-perfect-for-single-user-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Perfect for single-user CLI usage"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-cons-23": {
+      "id": "b-40-database-cons-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cons:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-not-suitable-for-multi-c-24": {
+      "id": "b-40-database-not-suitable-for-multi-c-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Not suitable for multi-container deployments"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-no-network-access-cli-a-25": {
+      "id": "b-40-database-no-network-access-cli-a-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No network access (CLI and server can't share database across different hosts)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-every-archon-process-on-26": {
+      "id": "b-40-database-every-archon-process-on-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every Archon process on a machine shares one SQLite file, and SQLite lets one writer at a\ntime hold its lock. When another process holds the lock past the 5-second busy timeout,\nreplayable operations keep waiting instead of failing: a single statement retries, and a\ntransaction rolls back and reruns from the start, with a growing pause of up to 2 seconds between\nattempts. There is no deadline, so a run whose write is waiting stays alive until the lock\nclears. While it waits, Archon logs "
+        },
+        {
+          "insert": "db.sqlite_busy_waiting",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at warn level every 30\nseconds. A repeating warning points at a process that is holding the lock. Other SQLite\nerrors still fail right away. Schema convergence uses the same retry policy during\nsynchronous database open ("
+        },
+        {
+          "insert": "operation: 'open'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "); a needed upgrade waits for the writer\nbefore the constructor returns."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-worktree-cleanup-first-c-27": {
+      "id": "b-40-database-worktree-cleanup-first-c-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Worktree cleanup first claims the registration with a short write that records the\nremoving process in its metadata ("
+        },
+        {
+          "insert": "worktree_removal_owner",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Git and filesystem\nremoval then run with no database transaction open. A second short write retires the\nregistration after success, or releases the claim after a failure, leaving the\nregistration active and the error reported. While a claim is held, a same-workflow\nregistration, adoption, and a run start in that checkout are refused. A claim whose\nprocess has exited on this host is released by the next write that meets it; one from\nanother host stays until an operator removes the key from the environment's metadata."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-cleanup-s-claim-holds-re-28": {
+      "id": "b-40-database-cleanup-s-claim-holds-re-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cleanup's claim holds registration exclusion through local checkout and branch removal.\nCompletion and merged cleanup retain remote branches with a warning, including\nwith force, because registration ownership cannot be proved after the claim\ncommits. Enable GitHub's\n"
+        },
+        {
+          "insert": "Automatically delete head branches",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " setting for merged pull requests, or follow "
+        },
+        {
+          "insert": "manual remote branch recovery",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "recovering-remote-branch-cleanup",
+              "label": "manual remote branch recovery"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-postgresql-supab-29": {
+      "id": "b-40-database-remote-postgresql-supab-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Remote PostgreSQL (Supabase, Neon, etc.)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-set-your-remote-connecti-30": {
+      "id": "b-40-database-set-your-remote-connecti-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set your remote connection string in "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for user-wide settings or "
+        },
+        {
+          "insert": "<cwd>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for project overrides. A target repository's "
+        },
+        {
+          "insert": "<cwd>/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is stripped at startup. See "
+        },
+        {
+          "insert": "environment file locations and load order",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "env-file-locations",
+              "label": "environment file locations and load order"
+            }
+          }
+        },
+        {
+          "insert": " for precedence and the source-server exception. For Docker, use the "
+        },
+        {
+          "insert": "Compose ",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "configure-env",
+              "label": "Compose `.env` file"
+            }
+          }
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "configure-env",
+              "label": "Compose `.env` file"
+            }
+          }
+        },
+        {
+          "insert": " file",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "configure-env",
+              "label": "Compose `.env` file"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-ini-31": {
+      "id": "b-40-database-ini-31",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DATABASE_URL=postgresql://user:password@host:5432/dbname"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-no-manual-migration-st-32": {
+      "id": "b-40-database-no-manual-migration-st-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "No manual migration step is required.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " On startup, the Postgres adapter applies the bundled "
+        },
+        {
+          "insert": "migrations/000_combined.sql",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside an advisory-lock transaction. The SQL is idempotent ("
+        },
+        {
+          "insert": "CREATE TABLE IF NOT EXISTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "ADD COLUMN IF NOT EXISTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "CREATE INDEX IF NOT EXISTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), so both fresh installs and version upgrades converge automatically, including new tables and columns added in later releases. A process that finds the schema already current skips this step; see "
+        },
+        {
+          "insert": "Schema initialization and upgrades",
+          "attributes": {
+            "link": "#schema-initialization-and-upgrades"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-when-postgresql-picks-a-33": {
+      "id": "b-40-database-when-postgresql-picks-a-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When PostgreSQL picks a statement or transaction as a deadlock victim or fails it for serialization (SQLSTATE "
+        },
+        {
+          "insert": "40P01",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "40001",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), the adapter reruns it, up to four attempts in all, with a short growing pause between attempts, and logs "
+        },
+        {
+          "insert": "db.postgres_query_retry",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "db.postgres_transaction_retry",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at warn level. A transaction reruns from its start. Other errors fail right away."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-schema-initialization-is-34": {
+      "id": "b-40-database-schema-initialization-is-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Schema initialization is serialized rather than retried; the former\n"
+        },
+        {
+          "insert": "db.postgres_schema_init_retry",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event is no longer emitted. A schema failure logs\n"
+        },
+        {
+          "insert": "db.postgres_schema_init_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and rejects operations waiting for initialization."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-upgrades-are-verified-n-35": {
+      "id": "b-40-database-upgrades-are-verified-n-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Upgrades are verified, not assumed: CI applies the current schema on top of a database built from\nevery distinct schema Archon has ever released, re-applies it to confirm idempotence, and compares\nthe result against a fresh install (columns, indexes, column comments, constraints and sequences).\nRun the same check yourself against any PostgreSQL with "
+        },
+        {
+          "insert": "bun run check:schema-upgrades",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-if-schema-application-fa-36": {
+      "id": "b-40-database-if-schema-application-fa-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If schema application fails (permissions, syntax error, network), the process aborts at the first DB operation with the underlying Postgres error logged at "
+        },
+        {
+          "insert": "db.postgres_schema_init_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-local-postgresql-via-doc-37": {
+      "id": "b-40-database-local-postgresql-via-doc-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Local PostgreSQL via Docker"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-use-the-with-db-docker-38": {
+      "id": "b-40-database-use-the-with-db-docker-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use the "
+        },
+        {
+          "insert": "with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Docker Compose profile for automatic PostgreSQL setup."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-set-in-env-39": {
+      "id": "b-40-database-set-in-env-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-ini-40": {
+      "id": "b-40-database-ini-40",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DATABASE_URL=postgresql://postgres:postgres@postgres:5432/remote_coding_agent"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-app-converges-the-sc-41": {
+      "id": "b-40-database-the-app-converges-the-sc-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The app converges the schema automatically on startup (see the note above for remote Postgres). Both fresh installs and upgrades are handled by the same path; the "
+        },
+        {
+          "insert": "docker-entrypoint-initdb.d",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mount in "
+        },
+        {
+          "insert": "docker-compose.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is now redundant and is retained only as a no-op on fresh volumes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-verifying-the-database-42": {
+      "id": "b-40-database-verifying-the-database-42",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Verifying the Database"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-health-check-43": {
+      "id": "b-40-database-health-check-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Health check:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-bash-44": {
+      "id": "b-40-database-bash-44",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/health/db\n# Expected: {\"status\":\"ok\",\"database\":\"connected\"}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-list-tables-postgresq-45": {
+      "id": "b-40-database-list-tables-postgresq-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "List tables (PostgreSQL):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-bash-46": {
+      "id": "b-40-database-bash-46",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "psql $DATABASE_URL -c \"\\dt\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-schema-overview-47": {
+      "id": "b-40-database-schema-overview-47",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Schema Overview"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-tables-defined-in-m-48": {
+      "id": "b-40-database-the-tables-defined-in-m-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The tables defined in "
+        },
+        {
+          "insert": "migrations/000_combined.sql",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are prefixed with "
+        },
+        {
+          "insert": "remote_agent_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-codebase-49": {
+      "id": "b-40-database-remote-agent-codebase-49",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_codebases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Repository metadata"
+        }
+      ],
+      "children": [
+        "b-40-database-commands-stored-as-jsonb-50",
+        "b-40-database-optional-explicit-ai-ass-51",
+        "b-40-database-default-working-director-52",
+        "b-40-database-kind-repo-fol-53",
+        "b-40-database-optional-explicit-base-b-54"
+      ]
+    },
+    "b-40-database-commands-stored-as-jsonb-50": {
+      "id": "b-40-database-commands-stored-as-jsonb-50",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Commands stored as JSONB: "
+        },
+        {
+          "insert": "{command_name: {path, description}}",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-optional-explicit-ai-ass-51": {
+      "id": "b-40-database-optional-explicit-ai-ass-51",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Optional explicit AI assistant choice; "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " follows project configuration for new conversations"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-default-working-director-52": {
+      "id": "b-40-database-default-working-director-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Default working directory"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-kind-repo-fol-53": {
+      "id": "b-40-database-kind-repo-fol-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "'repo'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " | "
+        },
+        {
+          "insert": "'folder'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", default "
+        },
+        {
+          "insert": "'repo'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") discriminates repo projects with Archon-managed git from folder projects (which run in place without managed git machinery, whether or not the directory has git)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-optional-explicit-base-b-54": {
+      "id": "b-40-database-optional-explicit-base-b-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Optional explicit base branch; "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " resolves the remote default when needed. Existing stored values remain explicit."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-conversa-55": {
+      "id": "b-40-database-remote-agent-conversa-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_conversations",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Platform conversation tracking"
+        }
+      ],
+      "children": [
+        "b-40-database-platform-type-conversa-56",
+        "b-40-database-linked-to-codebase-via-f-57",
+        "b-40-database-ai-assistant-type-locked-58",
+        "b-40-database-nullable-user-id-recor-59"
+      ]
+    },
+    "b-40-database-platform-type-conversa-56": {
+      "id": "b-40-database-platform-type-conversa-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Platform type + conversation ID (unique constraint)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-linked-to-codebase-via-f-57": {
+      "id": "b-40-database-linked-to-codebase-via-f-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Linked to codebase via foreign key"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-ai-assistant-type-locked-58": {
+      "id": "b-40-database-ai-assistant-type-locked-58",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "AI assistant type locked at creation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-user-id-recor-59": {
+      "id": "b-40-database-nullable-user-id-recor-59",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "user_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records the first user who created the conversation (first-user-wins; later replies in the same thread are attributed on the workflow_run, not here)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-sessions-60": {
+      "id": "b-40-database-remote-agent-sessions-60",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_sessions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - AI session management"
+        }
+      ],
+      "children": [
+        "b-40-database-active-session-flag-one-61",
+        "b-40-database-session-id-for-resume-ca-62",
+        "b-40-database-metadata-jsonb-for-comma-63"
+      ]
+    },
+    "b-40-database-active-session-flag-one-61": {
+      "id": "b-40-database-active-session-flag-one-61",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Active session flag (one per conversation)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-session-id-for-resume-ca-62": {
+      "id": "b-40-database-session-id-for-resume-ca-62",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Session ID for resume capability"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-metadata-jsonb-for-comma-63": {
+      "id": "b-40-database-metadata-jsonb-for-comma-63",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Metadata JSONB for command context"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-isolatio-64": {
+      "id": "b-40-database-remote-agent-isolatio-64",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_isolation_environments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Worktree isolation"
+        }
+      ],
+      "children": [
+        "b-40-database-tracks-git-worktrees-per-65",
+        "b-40-database-enables-worktree-sharing-66",
+        "b-40-database-nullable-created-by-use-67"
+      ]
+    },
+    "b-40-database-tracks-git-worktrees-per-65": {
+      "id": "b-40-database-tracks-git-worktrees-per-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Tracks git worktrees per issue/PR"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-enables-worktree-sharing-66": {
+      "id": "b-40-database-enables-worktree-sharing-66",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Enables worktree sharing between linked issues and PRs"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-created-by-use-67": {
+      "id": "b-40-database-nullable-created-by-use-67",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "created_by_user_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " preserves the original creator across re-activation (the "
+        },
+        {
+          "insert": "ON CONFLICT DO UPDATE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " clause intentionally omits this column)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-workflow-68": {
+      "id": "b-40-database-remote-agent-workflow-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_workflow_runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Workflow execution tracking"
+        }
+      ],
+      "children": [
+        "b-40-database-tracks-active-workflows-69",
+        "b-40-database-guards-concurrent-execut-70",
+        "b-40-database-stores-workflow-state-s-71",
+        "b-40-database-nullable-user-id-recor-72",
+        "b-40-database-nullable-parent-run-id-73",
+        "b-40-database-conversation-id-cascad-74"
+      ]
+    },
+    "b-40-database-tracks-active-workflows-69": {
+      "id": "b-40-database-tracks-active-workflows-69",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Tracks active workflows per conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-guards-concurrent-execut-70": {
+      "id": "b-40-database-guards-concurrent-execut-70",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Guards concurrent execution per "
+        },
+        {
+          "insert": "working_path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": direct executor dispatch on a path with an active run (status "
+        },
+        {
+          "insert": "pending",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "running",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") is auto-cancelled with an actionable message. Workflows declaring "
+        },
+        {
+          "insert": "mutates_checkout: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bypass this executor guard. "
+        },
+        {
+          "insert": "Trigger admission",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "choose-a-resource-capacity-and-overlap-policy",
+              "label": "Trigger admission"
+            }
+          }
+        },
+        {
+          "insert": " queues or skips guarded starts on held paths according to "
+        },
+        {
+          "insert": "overlap",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including paths held by manual runs or other resources. Read-only starts may proceed beside foreign holders; same-resource checkout serialization still applies. Pending rows older than 5 minutes are ignored by the path guard without changing their lifecycle state. A "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sub-run shares its parent's checkout unless the node declares "
+        },
+        {
+          "insert": "isolation: worktree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so the path-lock excludes both the run's ancestor chain and its descendants (via "
+        },
+        {
+          "insert": "parent_run_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "): a child never contends with its own parent. Children of the same "
+        },
+        {
+          "insert": "fan_out",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node share the checkout by design, so the lock also excludes them, their descendants, and the fan-out siblings of each ancestor; each such pair is recorded as "
+        },
+        {
+          "insert": "workflow.checkout_shared",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " events. Other runs on the path, including children of a different node, still contend."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-stores-workflow-state-s-71": {
+      "id": "b-40-database-stores-workflow-state-s-71",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores workflow state, step progress, and parent conversation linkage"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-user-id-recor-72": {
+      "id": "b-40-database-nullable-user-id-recor-72",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "user_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records which user triggered the run"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-parent-run-id-73": {
+      "id": "b-40-database-nullable-parent-run-id-73",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "parent_run_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (#2121 Phase 2): self-referential FK ("
+        },
+        {
+          "insert": "ON DELETE SET NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") linking a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sub-run to the run that spawned it; null for top-level runs. Makes the run tree walkable ("
+        },
+        {
+          "insert": "findChildRuns",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "getRunAncestry",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") for the abandon cascade and cost roll-up."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-conversation-id-cascad-74": {
+      "id": "b-40-database-conversation-id-cascad-74",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "conversation_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cascades on conversation delete: a hard "
+        },
+        {
+          "insert": "DELETE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " of a conversation would erase its run rows and silently drop the live-run cleanup pin for their isolation environments (#2868). Soft delete is the only supported path: a future hard-delete must resolve live runs first."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-workflow-75": {
+      "id": "b-40-database-remote-agent-workflow-75",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_workflow_events",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Step-level workflow event log; see "
+        },
+        {
+          "insert": "node execution records",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/80-node-execution.md",
+              "label": "node execution records"
+            }
+          }
+        },
+        {
+          "insert": " for payloads and resume compatibility"
+        }
+      ],
+      "children": [
+        "b-40-database-records-step-transitions-76",
+        "b-40-database-every-provider-event-a-w-77",
+        "b-40-database-enables-workflow-run-det-78",
+        "b-40-database-on-postgresql-event-or-79",
+        "b-40-database-within-one-process-a-ru-80",
+        "b-40-database-the-dashboard-event-poll-81",
+        "b-40-database-a-before-delete-trigge-82",
+        "b-40-database-the-partial-index-idx-w-83",
+        "b-40-database-idx-workflow-events-run-84"
+      ]
+    },
+    "b-40-database-records-step-transitions-76": {
+      "id": "b-40-database-records-step-transitions-76",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Records step transitions, artifacts, and errors per workflow run"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-every-provider-event-a-w-77": {
+      "id": "b-40-database-every-provider-event-a-w-77",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Every provider event a workflow node streams, as "
+        },
+        {
+          "insert": "provider_event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rows: the engine envelope ("
+        },
+        {
+          "insert": "attemptId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "seq",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "observedAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") in "
+        },
+        {
+          "insert": "data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the node in "
+        },
+        {
+          "insert": "step_name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The same envelope is a "
+        },
+        {
+          "insert": "provider_event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line in the run's JSONL log. "
+        },
+        {
+          "insert": "GET /api/workflows/runs/{runId}/provider-events",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " serves them; the run-detail route leaves them out"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-enables-workflow-run-det-78": {
+      "id": "b-40-database-enables-workflow-run-det-78",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Enables workflow run detail views and debugging"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-on-postgresql-event-or-79": {
+      "id": "b-40-database-on-postgresql-event-or-79",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "On PostgreSQL, "
+        },
+        {
+          "insert": "event_order",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " follows commit order: a row committed later always has a higher value. A deferred constraint trigger ("
+        },
+        {
+          "insert": "archon_workflow_event_order",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") assigns it at commit while holding an advisory lock, so committing event writers draw values one at a time. Both SQL dialects retain the committed head in "
+        },
+        {
+          "insert": "remote_agent_workflow_event_sequence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so event or run deletion never moves it backwards. PostgreSQL draws from its non-reusing sequence; SQLite increments the high-water row under its single writer"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-within-one-process-a-ru-80": {
+      "id": "b-40-database-within-one-process-a-ru-80",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Within one process, a run's standalone event writes (those not part of a larger transaction) go to the database one at a time, in the order they are issued, so they commit and read back in that order. Writes for the same run from two processes (for example the CLI and the server) are not ordered against each other"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-dashboard-event-poll-81": {
+      "id": "b-40-database-the-dashboard-event-poll-81",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The dashboard event poller follows the store's commit-ordered event feed ("
+        },
+        {
+          "insert": "event_order",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") across all runs. On PostgreSQL an "
+        },
+        {
+          "insert": "AFTER INSERT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " trigger ("
+        },
+        {
+          "insert": "archon_workflow_event_notify",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") calls "
+        },
+        {
+          "insert": "pg_notify('archon_dashboard_event', …)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so runs started out of process (the "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI / "
+        },
+        {
+          "insert": "--detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") stream live to the console; on SQLite the poller picks them up within its interval. The trigger is Postgres-only and best-effort (a role without "
+        },
+        {
+          "insert": "CREATE TRIGGER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " degrades to poll-only, not a boot failure)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-a-before-delete-trigge-82": {
+      "id": "b-40-database-a-before-delete-trigge-82",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "BEFORE DELETE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " trigger copies each deleted row into "
+        },
+        {
+          "insert": "remote_agent_workflow_event_archive",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which has the same columns and no run foreign keys, so cursors saved before a deletion can still read the payload. Schema apply adds any column the events table gains to the archive as well"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-partial-index-idx-w-83": {
+      "id": "b-40-database-the-partial-index-idx-w-83",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The partial index "
+        },
+        {
+          "insert": "idx_workflow_events_metrics",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " covers only "
+        },
+        {
+          "insert": "node_completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rows whose "
+        },
+        {
+          "insert": "structured_output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " has a "
+        },
+        {
+          "insert": "metrics",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " key, so "
+        },
+        {
+          "insert": "metric",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/75-metrics.md",
+              "label": "metric"
+            }
+          }
+        },
+        {
+          "insert": " queries skip every other completion. Its predicate is textually the same as the metric records query's, which SQLite needs to use a partial index; SQLite also names it with "
+        },
+        {
+          "insert": "INDEXED BY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", because without "
+        },
+        {
+          "insert": "ANALYZE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " statistics it prefers the "
+        },
+        {
+          "insert": "event_type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " index"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-idx-workflow-events-run-84": {
+      "id": "b-40-database-idx-workflow-events-run-84",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "idx_workflow_events_run_type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on "
+        },
+        {
+          "insert": "(workflow_run_id, event_type)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " serves reads of chosen event types for a list of runs, such as run listings and the steps a metrics report reads. It reads only the requested types of each run, skipping its high-volume "
+        },
+        {
+          "insert": "provider_event",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rows, and gives SQLite a better choice than walking the "
+        },
+        {
+          "insert": "event_type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " index across every run"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-workflow-85": {
+      "id": "b-40-database-remote-agent-workflow-85",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_workflow_event_sequence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Single-row high-water mark of committed "
+        },
+        {
+          "insert": "event_order",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " values; it never moves backwards when events or runs are deleted"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-messages-86": {
+      "id": "b-40-database-remote-agent-messages-86",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_messages",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Conversation message history"
+        }
+      ],
+      "children": [
+        "b-40-database-persists-user-and-assist-87",
+        "b-40-database-stores-tool-call-metadat-88",
+        "b-40-database-enables-message-history-89",
+        "b-40-database-nullable-user-id-on-us-90"
+      ]
+    },
+    "b-40-database-persists-user-and-assist-87": {
+      "id": "b-40-database-persists-user-and-assist-87",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Persists user and assistant messages with timestamps"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-stores-tool-call-metadat-88": {
+      "id": "b-40-database-stores-tool-call-metadat-88",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores tool call metadata (name, input, duration) in JSONB"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-enables-message-history-89": {
+      "id": "b-40-database-enables-message-history-89",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Enables message history in Web UI across page refreshes"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-user-id-on-us-90": {
+      "id": "b-40-database-nullable-user-id-on-us-90",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "user_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on user-role rows (NULL on assistant rows since the AI isn't a user)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-codebase-91": {
+      "id": "b-40-database-remote-agent-codebase-91",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_codebase_env_vars",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-project env vars for workflow execution"
+        }
+      ],
+      "children": [
+        "b-40-database-key-value-pairs-scoped-t-92",
+        "b-40-database-injected-into-claude-sdk-93",
+        "b-40-database-managed-by-opening-env-94"
+      ]
+    },
+    "b-40-database-key-value-pairs-scoped-t-92": {
+      "id": "b-40-database-key-value-pairs-scoped-t-92",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Key-value pairs scoped to a codebase"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-injected-into-claude-sdk-93": {
+      "id": "b-40-database-injected-into-claude-sdk-93",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Injected into Claude SDK subprocess environment at execution time"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-managed-by-opening-env-94": {
+      "id": "b-40-database-managed-by-opening-env-94",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Managed by opening "
+        },
+        {
+          "insert": "Environment variables",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " from the project row in the console project rail; "
+        },
+        {
+          "insert": "env:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for CLI users"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-users-95": {
+      "id": "b-40-database-remote-agent-users-95",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_users",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Archon-internal user identity"
+        }
+      ],
+      "children": [
+        "b-40-database-one-row-per-human-or-bo-96",
+        "b-40-database-created-lazily-on-first-97",
+        "b-40-database-display-name-and-emai-98",
+        "b-40-database-role-varchar-defau-99"
+      ]
+    },
+    "b-40-database-one-row-per-human-or-bo-96": {
+      "id": "b-40-database-one-row-per-human-or-bo-96",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "One row per human (or bot) across all platforms"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-created-lazily-on-first-97": {
+      "id": "b-40-database-created-lazily-on-first-97",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Created lazily on first sight by any chat/forge adapter"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-display-name-and-emai-98": {
+      "id": "b-40-database-display-name-and-emai-98",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "display_name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "email",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are nullable until enrichment succeeds"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-role-varchar-defau-99": {
+      "id": "b-40-database-role-varchar-defau-99",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "role",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "VARCHAR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", default "
+        },
+        {
+          "insert": "'admin'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") stores "
+        },
+        {
+          "insert": "admin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "member",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon explicitly writes "
+        },
+        {
+          "insert": "member",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when creating a user. The database default stays "
+        },
+        {
+          "insert": "admin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for older binaries; upgrading preserves every existing user's role. Operators manage roles with "
+        },
+        {
+          "insert": "archon user",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "user",
+              "label": "`archon user`"
+            }
+          }
+        },
+        {
+          "insert": ". Only a run's starter or an admin can act on it; see "
+        },
+        {
+          "insert": "Who can act on a run",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "who-can-act-on-a-run",
+              "label": "Who can act on a run"
+            }
+          }
+        },
+        {
+          "insert": ". Existing multi-user installs remain unprotected until the operator demotes users who should not be admins"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-user-ide-100": {
+      "id": "b-40-database-remote-agent-user-ide-100",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_user_identities",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Platform-to-Archon user mapping"
+        }
+      ],
+      "children": [
+        "b-40-database-one-row-per-platform-101",
+        "b-40-database-unique-platform-platfo-102",
+        "b-40-database-references-users-id-wi-103",
+        "b-40-database-all-user-id-fks-on-the-f-104"
+      ]
+    },
+    "b-40-database-one-row-per-platform-101": {
+      "id": "b-40-database-one-row-per-platform-101",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "One row per "
+        },
+        {
+          "insert": "(platform, platform_user_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pair: Slack U-id, Telegram chat id, Discord snowflake, GitHub login, the "
+        },
+        {
+          "insert": "web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Better Auth user id, etc."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-unique-platform-platfo-102": {
+      "id": "b-40-database-unique-platform-platfo-102",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "UNIQUE(platform, platform_user_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " enforces deduplication at the DB level"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-references-users-id-wi-103": {
+      "id": "b-40-database-references-users-id-wi-103",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "References "
+        },
+        {
+          "insert": "users.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "ON DELETE CASCADE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (deleting a user removes their identity mappings)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-all-user-id-fks-on-the-f-104": {
+      "id": "b-40-database-all-user-id-fks-on-the-f-104",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "All user_id FKs on the four tables above use "
+        },
+        {
+          "insert": "ON DELETE SET NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so future user deletion never destructively cascades"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-workflow-105": {
+      "id": "b-40-database-remote-agent-workflow-105",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_workflow_run_node_sessions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Private provider session handles within a workflow run"
+        }
+      ],
+      "children": [
+        "b-40-database-keyed-by-workflow-run-106",
+        "b-40-database-stores-the-provider-and-107"
+      ]
+    },
+    "b-40-database-keyed-by-workflow-run-106": {
+      "id": "b-40-database-keyed-by-workflow-run-106",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Keyed by "
+        },
+        {
+          "insert": "(workflow_run_id, node_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; deleted with the owning run"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-stores-the-provider-and-107": {
+      "id": "b-40-database-stores-the-provider-and-107",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores the provider and session ID for same-run session lineage; excluded from run and event APIs"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-workflow-108": {
+      "id": "b-40-database-remote-agent-workflow-108",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_workflow_node_sessions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-node provider session IDs persisted across workflow re-runs"
+        }
+      ],
+      "children": [
+        "b-40-database-opt-in-via-persist-sess-109",
+        "b-40-database-scope-key-is-the-uuid-110",
+        "b-40-database-a-run-reads-its-scope-s-111",
+        "b-40-database-no-fk-on-scope-key-so-112"
+      ]
+    },
+    "b-40-database-opt-in-via-persist-sess-109": {
+      "id": "b-40-database-opt-in-via-persist-sess-109",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Opt-in via "
+        },
+        {
+          "insert": "persist_session",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; keyed by "
+        },
+        {
+          "insert": "(workflow_name, node_id, scope_key, provider)",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-scope-key-is-the-uuid-110": {
+      "id": "b-40-database-scope-key-is-the-uuid-110",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "scope_key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the UUID of the conversation that launched the run ("
+        },
+        {
+          "insert": "parent_conversation_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", else "
+        },
+        {
+          "insert": "conversation_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). A run with neither has no scope, so it reads and writes no rows here"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-a-run-reads-its-scope-s-111": {
+      "id": "b-40-database-a-run-reads-its-scope-s-111",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A run reads its scope's rows once at start, and each node writes its finished session back, so concurrent runs end with the session that finished last"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-no-fk-on-scope-key-so-112": {
+      "id": "b-40-database-no-fk-on-scope-key-so-112",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No FK on "
+        },
+        {
+          "insert": "scope_key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so a conversation delete does not cascade here. Soft delete plus a never-reused UUID makes the leftovers harmless; a future hard-delete must delete by "
+        },
+        {
+          "insert": "scope_key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " itself: the mirror of the cascade caveat on "
+        },
+        {
+          "insert": "remote_agent_workflow_runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " above."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-user-git-113": {
+      "id": "b-40-database-remote-agent-user-git-113",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_user_github_tokens",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-user GitHub device-flow tokens"
+        }
+      ],
+      "children": [
+        "b-40-database-encrypted-at-rest-aes-2-114",
+        "b-40-database-numeric-github-user-id-115"
+      ]
+    },
+    "b-40-database-encrypted-at-rest-aes-2-114": {
+      "id": "b-40-database-encrypted-at-rest-aes-2-114",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Encrypted at rest (AES-256-GCM); one row per Archon user ("
+        },
+        {
+          "insert": "UNIQUE(user_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), cascades on user deletion"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-numeric-github-user-id-115": {
+      "id": "b-40-database-numeric-github-user-id-115",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Numeric "
+        },
+        {
+          "insert": "github_user_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " anchors the commit no-reply email"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-user-pro-116": {
+      "id": "b-40-database-remote-agent-user-pro-116",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_user_provider_keys",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-user AI-provider credentials (API key or OAuth subscription blob)"
+        }
+      ],
+      "children": [
+        "b-40-database-encrypted-at-rest-aes-2-117",
+        "b-40-database-kind-records-api-key-118",
+        "b-40-database-provider-holds-vendo-119"
+      ]
+    },
+    "b-40-database-encrypted-at-rest-aes-2-117": {
+      "id": "b-40-database-encrypted-at-rest-aes-2-117",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Encrypted at rest (AES-256-GCM, same "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "); one row per "
+        },
+        {
+          "insert": "(user_id, provider)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", cascades on user deletion"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-kind-records-api-key-118": {
+      "id": "b-40-database-kind-records-api-key-118",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records "
+        },
+        {
+          "insert": "api_key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " vs "
+        },
+        {
+          "insert": "oauth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; resolved + injected into the user's runs/chat env at execution time"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-provider-holds-vendo-119": {
+      "id": "b-40-database-provider-holds-vendo-119",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds "
+        },
+        {
+          "insert": "vendor-canonical",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " credential ids ("
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plus Pi backend vendors): legacy "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rows are renamed by an idempotent startup data fix (the vendor row wins when both exist)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-user-ai-120": {
+      "id": "b-40-database-remote-agent-user-ai-120",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_user_ai_prefs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-user AI preferences (personal model tiers, "
+        },
+        {
+          "insert": "@custom",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " aliases, default assistant + default chat model)"
+        }
+      ],
+      "children": [
+        "b-40-database-non-encrypted-model-nam-121",
+        "b-40-database-tiers-aliases-are-122",
+        "b-40-database-editable-via-the-console-123"
+      ]
+    },
+    "b-40-database-non-encrypted-model-nam-121": {
+      "id": "b-40-database-non-encrypted-model-nam-121",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "NON-encrypted (model names aren't secrets); one row per user ("
+        },
+        {
+          "insert": "UNIQUE(user_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), cascades on user deletion"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-tiers-aliases-are-122": {
+      "id": "b-40-database-tiers-aliases-are-122",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "tiers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / "
+        },
+        {
+          "insert": "aliases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are JSON-as-TEXT; folded into model resolution as the highest-precedence layer. "
+        },
+        {
+          "insert": "default_model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pins the user's direct-chat model (written atomically with "
+        },
+        {
+          "insert": "default_provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; applied only when the effective chat provider matches: workflows still resolve the "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tier). Resolution follows the "
+        },
+        {
+          "insert": "acting user",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": workflow runs use the run starter; chat turns use the message "
+        },
+        {
+          "insert": "sender",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (the conversation creator's row is only a fallback when no sender identity resolves)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-editable-via-the-console-123": {
+      "id": "b-40-database-editable-via-the-console-123",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Editable via the console \"Just me\" scope, "
+        },
+        {
+          "insert": "archon ai … --scope user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "/api/auth/me/ai-prefs*",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-web-push-124": {
+      "id": "b-40-database-remote-agent-web-push-124",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_web_push_subscriptions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Browsers opted in to run-attention Web Push"
+        }
+      ],
+      "children": [
+        "b-40-database-one-row-per-browser-endp-125",
+        "b-40-database-stores-the-endpoint-and-126"
+      ]
+    },
+    "b-40-database-one-row-per-browser-endp-125": {
+      "id": "b-40-database-one-row-per-browser-endp-125",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "One row per browser endpoint ("
+        },
+        {
+          "insert": "UNIQUE(endpoint)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), owned by the user who enabled it and cascaded on user deletion; only that owner can delete it"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-stores-the-endpoint-and-126": {
+      "id": "b-40-database-stores-the-endpoint-and-126",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores the endpoint and its encryption keys; every row on the install receives notices, and the attention router removes rows the push service reports as expired (404/410)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-schema-v-127": {
+      "id": "b-40-database-remote-agent-schema-v-127",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_schema_version",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Schema vintage and completion metadata"
+        }
+      ],
+      "children": [
+        "b-40-database-records-the-archon-build-128",
+        "b-40-database-a-single-row-id-1-129",
+        "b-40-database-nullable-schema-fingerp-130"
+      ]
+    },
+    "b-40-database-records-the-archon-build-128": {
+      "id": "b-40-database-records-the-archon-build-128",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Records the Archon build that created the database and the build that last applied its schema"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-a-single-row-id-1-129": {
+      "id": "b-40-database-a-single-row-id-1-129",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A single row ("
+        },
+        {
+          "insert": "id = 1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "); databases predating this table retain an unknown creation version"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-nullable-schema-fingerp-130": {
+      "id": "b-40-database-nullable-schema-fingerp-130",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Nullable "
+        },
+        {
+          "insert": "schema_fingerprint",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is separate, adapter-owned completion metadata. Each adapter publishes it only after successful convergence. Older writers can omit it"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-state-re-131": {
+      "id": "b-40-database-remote-agent-state-re-131",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_state_revisions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Durable project and install JSON documents and their audit history"
+        }
+      ],
+      "children": [
+        "b-40-database-primary-key-project-k-132",
+        "b-40-database-full-json-value-up-to-6-133",
+        "b-40-database-sql-null-value-is-a-to-134"
+      ]
+    },
+    "b-40-database-primary-key-project-k-132": {
+      "id": "b-40-database-primary-key-project-k-132",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Primary key: "
+        },
+        {
+          "insert": "(project_key, name, revision)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; optimistic writes append a revision"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-full-json-value-up-to-6-133": {
+      "id": "b-40-database-full-json-value-up-to-6-133",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Full JSON value (up to 64 KiB), operation, writer identity or run/node, and creation time"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-sql-null-value-is-a-to-134": {
+      "id": "b-40-database-sql-null-value-is-a-to-134",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "SQL "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " value is a tombstone; run IDs have no foreign key so run cleanup preserves state"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-start-re-135": {
+      "id": "b-40-database-remote-agent-start-re-135",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_start_receipts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Source delivery receipts"
+        }
+      ],
+      "children": [
+        "b-40-database-records-source-instance-136",
+        "b-40-database-deduplicates-deliveries-137"
+      ]
+    },
+    "b-40-database-records-source-instance-136": {
+      "id": "b-40-database-records-source-instance-136",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Records source instance, delivery ID, content digest, timestamps, and matching outcome"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-deduplicates-deliveries-137": {
+      "id": "b-40-database-deduplicates-deliveries-137",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Deduplicates deliveries by "
+        },
+        {
+          "insert": "(source_instance_id, delivery_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the source supplies a delivery ID; "
+        },
+        {
+          "insert": "delivery_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is nullable, and the unique constraint does not deduplicate receipts without one"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-start-re-138": {
+      "id": "b-40-database-remote-agent-start-re-138",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_start_receipt_bindings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Per-binding preparation state for a source receipt"
+        }
+      ],
+      "children": [
+        "b-40-database-keyed-by-receipt-id-b-139",
+        "b-40-database-tracks-binding-revision-140",
+        "b-40-database-event-input-names-list-141"
+      ]
+    },
+    "b-40-database-keyed-by-receipt-id-b-139": {
+      "id": "b-40-database-keyed-by-receipt-id-b-139",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Keyed by "
+        },
+        {
+          "insert": "(receipt_id, binding_id)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; deleted with the owning receipt"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-tracks-binding-revision-140": {
+      "id": "b-40-database-tracks-binding-revision-140",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Tracks binding revision, host, intent, preparation status, owner, and error"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-event-input-names-list-141": {
+      "id": "b-40-database-event-input-names-list-141",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "event_input_names",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists which of the intent's inputs came from the source event; preparation passes those only to a workflow that declares them"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-resource-142": {
+      "id": "b-40-database-remote-agent-resource-142",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_resource_slots",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Keyed resource capacity"
+        }
+      ],
+      "children": [
+        "b-40-database-stores-capacity-per-res-143"
+      ]
+    },
+    "b-40-database-stores-capacity-per-res-143": {
+      "id": "b-40-database-stores-capacity-per-res-143",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores capacity per "
+        },
+        {
+          "insert": "resource_key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for workflow and provider-attempt admission"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-resource-144": {
+      "id": "b-40-database-remote-agent-resource-144",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_resource_slot_holders",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Resource capacity holders"
+        }
+      ],
+      "children": [
+        "b-40-database-tracks-workflow-runs-and-145",
+        "b-40-database-provider-attempt-holders-146"
+      ]
+    },
+    "b-40-database-tracks-workflow-runs-and-145": {
+      "id": "b-40-database-tracks-workflow-runs-and-145",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Tracks workflow runs and provider attempts occupying a slot"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-provider-attempt-holders-146": {
+      "id": "b-40-database-provider-attempt-holders-146",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Provider-attempt holders record their owner host, PID, and instance"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-resource-147": {
+      "id": "b-40-database-remote-agent-resource-147",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_resource_start_requests",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Durable workflow-start requests"
+        }
+      ],
+      "children": [
+        "b-40-database-stores-prepared-launches-148",
+        "b-40-database-prepared-launches-are-ve-149",
+        "b-40-database-queue-position-orders-150"
+      ]
+    },
+    "b-40-database-stores-prepared-launches-148": {
+      "id": "b-40-database-stores-prepared-launches-148",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stores prepared launches, overlap policy, admission status, and blockers"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-prepared-launches-are-ve-149": {
+      "id": "b-40-database-prepared-launches-are-ve-149",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Prepared launches are versioned. Version 2 carries the run's "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; version 1 launches queued by older binaries are still admitted, with their conversation and user read as the origin. Older binaries cannot read version 2, so before downgrading, drain or withdraw any queued or admitted request whose run has not started"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-queue-position-orders-150": {
+      "id": "b-40-database-queue-position-orders-150",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "queue_position",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " orders waiting requests; optional receipt and binding linkage preserves source provenance"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-remote-agent-auth-use-151": {
+      "id": "b-40-database-remote-agent-auth-use-151",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "remote_agent_auth_user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "remote_agent_auth_session",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "remote_agent_auth_account",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "remote_agent_auth_verification",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Better Auth tables for opt-in web login"
+        }
+      ],
+      "children": [
+        "b-40-database-postgresql-only-alw-152",
+        "b-40-database-owned-and-shaped-by-bett-153"
+      ]
+    },
+    "b-40-database-postgresql-only-alw-152": {
+      "id": "b-40-database-postgresql-only-alw-152",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "PostgreSQL only.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Always created on Postgres via the idempotent schema apply, but populated only when web auth is enabled ("
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + "
+        },
+        {
+          "insert": "BETTER_AUTH_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-owned-and-shaped-by-bett-153": {
+      "id": "b-40-database-owned-and-shaped-by-bett-153",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Owned and shaped by Better Auth (text ids, camelCase columns); Archon never queries them directly: a session maps to the canonical "
+        },
+        {
+          "insert": "users",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " row via "
+        },
+        {
+          "insert": "user_identities('web', <betterAuthUserId>)",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-schema-initialization-an-154": {
+      "id": "b-40-database-schema-initialization-an-154",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Schema initialization and upgrades"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-postgresql-adapter-a-155": {
+      "id": "b-40-database-the-postgresql-adapter-a-155",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The PostgreSQL adapter applies "
+        },
+        {
+          "insert": "migrations/000_combined.sql",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " idempotently on startup\nfor both fresh installs and upgrades, unless the database is already current. SQLite initializes its schema\nin "
+        },
+        {
+          "insert": "packages/core/src/db/adapters/sqlite.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and upgrades it in\n"
+        },
+        {
+          "insert": "packages/core/src/db/adapters/sqlite-migrations.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Neither adapter uses a numbered\nmigration runner or migration ledger."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-sqlite-first-checks-its-156": {
+      "id": "b-40-database-sqlite-first-checks-its-156",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "SQLite first checks its completion fingerprint in a read snapshot. It covers the schema\nDDL and migration steps a convergence executes (comments and layout excluded), the Archon\nbuild, and the SQLite schema counter; pending legacy credentials or\na missing/behind event-sequence head also require repair. A current database opens without\ntaking the writer lock. Otherwise, a single writer transaction rechecks, converges, and\npublishes the fingerprint atomically. Schema changes invalidate the proof; ordinary event\ninserts do not. Failed tolerated migrations leave no completion stamp and are retried on\nthe next open. Diagnostic creation and applied-build vintages keep their existing meanings."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-postgresql-takes-the-sch-157": {
+      "id": "b-40-database-postgresql-takes-the-sch-157",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "PostgreSQL takes the schema advisory lock before reading its completion fingerprint. It covers\nthe bundled schema SQL, the notify trigger, and the Archon build. The database is current when that\nfingerprint is recorded, the recorded applied build is this build (an older released build\nthat converged since stamps its own version), no legacy provider ids remain, and the\nevent-sequence head is not behind. A current database releases the lock without DDL.\nWaiting boots take no table locks before acquiring the advisory lock, then recheck the\nfingerprint, so only the first boot converges. When convergence is needed, the version table\nis locked exclusively before events DDL, preserving the version/events order of live readers.\nCore DDL, notify-trigger installation and\nfingerprint publication commit in one transaction. Missing tables or columns mean convergence\nis needed; other fingerprint-read errors abort initialization rather than trigger DDL.\nA role that cannot install the trigger keeps polling and converges on every start; a\nsavepoint rolls back trigger installation and leaves the completion fingerprint unpublished.\nOnly trigger-install permission errors use this polling fallback. Version-row writes,\nfingerprint writes (including a missing version row), and other trigger errors abort initialization.\nSource checkouts all record the applied build as "
+        },
+        {
+          "insert": "dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so a\ncheckout that predates the PostgreSQL fingerprint can converge against the same database\nwithout invalidating a newer checkout's fingerprint, and the newer checkout keeps the older\nfunction bodies. To force convergence in that case, clear it:\n"
+        },
+        {
+          "insert": "UPDATE remote_agent_schema_version SET schema_fingerprint = NULL WHERE id = 1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-workflow-origin-compatib-158": {
+      "id": "b-40-database-workflow-origin-compatib-158",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Workflow origin compatibility"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-runs-may-have-no-convers-159": {
+      "id": "b-40-database-runs-may-have-no-convers-159",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Runs may have no conversation or user. New writers persist an "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " object;\n"
+        },
+        {
+          "insert": "{}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means no origin, while SQL NULL identifies legacy writers whose conversation,\nparent and user columns supply the origin on read. The public run's "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\nconversation projections are nullable."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-the-sql-adapter-reserves-160": {
+      "id": "b-40-database-the-sql-adapter-reserves-160",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The SQL adapter reserves one hidden conversation, UUID\n"
+        },
+        {
+          "insert": "00000000-0000-4000-8000-000000003640",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with platform "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and platform ID\n"
+        },
+        {
+          "insert": "workflow-store-originless",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", to satisfy the shipped conversation foreign key.\nIt is storage infrastructure: no message history, title, user or isolation state\nbelongs to it. Application conversation edits, deletion and history operations\nreject this identity. Do not edit or delete it directly with SQL: deleting the\nrow would cascade to its runs."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-an-origin-free-run-has-n-161": {
+      "id": "b-40-database-an-origin-free-run-has-n-161",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An origin-free run has no session scope: it reads and writes no\n"
+        },
+        {
+          "insert": "remote_agent_workflow_node_sessions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rows and no scope artifacts. A resume,\nfrom the CLI or the server, runs it headless and records no conversation history."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-schema-upgrades-preserve-162": {
+      "id": "b-40-database-schema-upgrades-preserve-162",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Schema upgrades preserve shipped columns and older writers. Older binaries can\nopen and write the upgraded database, but may display the compatibility anchor\nwhen reading an origin-free run."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-store-event-feed-163": {
+      "id": "b-40-database-store-event-feed-163",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Store event feed"
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-every-workflow-store-exp-164": {
+      "id": "b-40-database-every-workflow-store-exp-164",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every workflow store exposes "
+        },
+        {
+          "insert": "getWorkflowEventHead()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "readWorkflowEventsAfter(cursor, { limit, eventTypes? })",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The feed covers all runs in commit order. A page carries each event with its opaque cursor and a "
+        },
+        {
+          "insert": "next",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cursor that also advances past rows excluded by the type filter. Pass cursors back unchanged; only the issuing store interprets them. A malformed cursor or one from a different store kind throws "
+        },
+        {
+          "insert": "WorkflowEventCursorError",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-database-start-at-the-head-to-fol-165": {
+      "id": "b-40-database-start-at-the-head-to-fol-165",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Start at the head to follow new commits, or resume from a cursor saved by an earlier read. This feed observes committed events; it does not report retractions or undo deliveries when fan-out recovery or cleanup removes events. Earlier cursors can still read those payloads: SQL deletion triggers retain them in a feed archive without run foreign keys, and the file store retains deleted run logs. Feed history has no expiry and is retained for the store's lifetime. "
+        },
+        {
+          "insert": "getWorkflowRun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "listWorkflowEvents",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remain the current state of record. File-store reads at the head are cheap; reads with new commits use the derived feed index to select run logs."
+        }
+      ],
+      "children": []
+    }
+  }
+}

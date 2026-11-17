@@ -1,0 +1,2900 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-10-authoring-commands",
+  "title": "Authoring Commands",
+  "root": "b-10-authoring-commands-root-170",
+  "blocks": {
+    "b-10-authoring-commands-root-170": {
+      "id": "b-10-authoring-commands-root-170",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Write prompt templates that serve as building blocks for AI workflow nodes.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/authoring-commands.md"
+      },
+      "children": [
+        "b-10-authoring-commands-this-guide-explains-how-1",
+        "b-10-authoring-commands-what-is-a-command-2",
+        "b-10-authoring-commands-a-command-is-a-markdow-3",
+        "b-10-authoring-commands-loads-the-command-from-i-4",
+        "b-10-authoring-commands-substitutes-variables-li-5",
+        "b-10-authoring-commands-sends-the-entire-documen-6",
+        "b-10-authoring-commands-the-ai-follows-the-instr-7",
+        "b-10-authoring-commands-commands-are-prompts-8",
+        "b-10-authoring-commands-divider-9",
+        "b-10-authoring-commands-file-format-10",
+        "b-10-authoring-commands-shared-commands-live-in-11",
+        "b-10-authoring-commands-bundled-commands-live-12",
+        "b-10-authoring-commands-cli-vs-server-the-c-13",
+        "b-10-authoring-commands-commands-use-this-struct-14",
+        "b-10-authoring-commands-markdown-15",
+        "b-10-authoring-commands-frontmatter-fields-16",
+        "table-0-66713c67",
+        "b-10-authoring-commands-divider-18",
+        "b-10-authoring-commands-the-golden-rule-artifac-19",
+        "b-10-authoring-commands-the-artifact-you-produ-20",
+        "b-10-authoring-commands-in-multi-step-workflows-21",
+        "b-10-authoring-commands-code-22",
+        "b-10-authoring-commands-why-this-matters-23",
+        "b-10-authoring-commands-no-shared-context-e-24",
+        "b-10-authoring-commands-resumability-if-a-s-25",
+        "b-10-authoring-commands-auditability-artifa-26",
+        "b-10-authoring-commands-handoff-quality-the-27",
+        "b-10-authoring-commands-what-makes-a-good-artifa-28",
+        "b-10-authoring-commands-the-artifact-must-contai-29",
+        "table-1-66713c67",
+        "b-10-authoring-commands-bad-artifact-fix-t-31",
+        "b-10-authoring-commands-good-artifact-32",
+        "b-10-authoring-commands-markdown-33",
+        "b-10-authoring-commands-change-to-34",
+        "b-10-authoring-commands-typescript-35",
+        "b-10-authoring-commands-step-2-add-test-36",
+        "b-10-authoring-commands-file-src-auth-refr-37",
+        "b-10-authoring-commands-typescript-38",
+        "b-10-authoring-commands-validation-39",
+        "b-10-authoring-commands-bash-40",
+        "b-10-authoring-commands-block-41",
+        "b-10-authoring-commands-why-phases-work-42",
+        "b-10-authoring-commands-chunked-reasoning-a-43",
+        "b-10-authoring-commands-self-verification-c-44",
+        "b-10-authoring-commands-debugging-when-some-45",
+        "b-10-authoring-commands-consistency-similar-46",
+        "b-10-authoring-commands-common-phase-patterns-47",
+        "table-2-66713c67",
+        "b-10-authoring-commands-divider-49",
+        "b-10-authoring-commands-checkpoints-50",
+        "b-10-authoring-commands-end-each-phase-with-a-ch-51",
+        "b-10-authoring-commands-markdown-52",
+        "b-10-authoring-commands-why-checkpoints-matter-53",
+        "b-10-authoring-commands-self-regulation-ai-54",
+        "b-10-authoring-commands-quality-gate-preven-55",
+        "b-10-authoring-commands-debugging-aid-shows-56",
+        "b-10-authoring-commands-documentation-recor-57",
+        "b-10-authoring-commands-divider-58",
+        "b-10-authoring-commands-variable-substitution-59",
+        "b-10-authoring-commands-archon-replaces-variable-60",
+        "table-3-66713c67",
+        "b-10-authoring-commands-see-the-variable-refere-62",
+        "b-10-authoring-commands-usage-pattern-63",
+        "b-10-authoring-commands-always-show-the-input-at-64",
+        "b-10-authoring-commands-markdown-65",
+        "b-10-authoring-commands-this-ensures-the-ai-know-66",
+        "b-10-authoring-commands-divider-67",
+        "b-10-authoring-commands-artifact-conventions-68",
+        "b-10-authoring-commands-where-artifacts-live-69",
+        "b-10-authoring-commands-artifacts-are-stored-o-70",
+        "b-10-authoring-commands-code-71",
+        "b-10-authoring-commands-this-keeps-artifacts-out-72",
+        "b-10-authoring-commands-naming-conventions-73",
+        "table-4-66713c67",
+        "b-10-authoring-commands-instructing-the-ai-to-sa-75",
+        "b-10-authoring-commands-be-explicit-about-artifa-76",
+        "b-10-authoring-commands-markdown-77",
+        "b-10-authoring-commands-4-2-write-artifact-78",
+        "b-10-authoring-commands-write-to-artifacts-dir-79",
+        "b-10-authoring-commands-markdown-80",
+        "b-10-authoring-commands-critical-this-artif-81",
+        "b-10-authoring-commands-exact-file-paths-with-li-82",
+        "b-10-authoring-commands-actual-code-snippets-no-83",
+        "b-10-authoring-commands-step-by-step-implementat-84",
+        "b-10-authoring-commands-validation-commands-85",
+        "b-10-authoring-commands-edge-cases-to-handle-86",
+        "b-10-authoring-commands-the-implementing-agent-w-87",
+        "b-10-authoring-commands-code-88",
+        "b-10-authoring-commands-find-all-files-related-t-89",
+        "b-10-authoring-commands-token-handling-90",
+        "b-10-authoring-commands-session-management-91",
+        "b-10-authoring-commands-login-logout-flows-92",
+        "b-10-authoring-commands-code-93",
+        "b-10-authoring-commands-code-94",
+        "b-10-authoring-commands-in-worktree-ye-95",
+        "b-10-authoring-commands-code-96",
+        "b-10-authoring-commands-include-error-handling-97",
+        "b-10-authoring-commands-tell-the-ai-what-to-do-w-98",
+        "b-10-authoring-commands-markdown-99",
+        "b-10-authoring-commands-artifact-not-found-at-a-100",
+        "b-10-authoring-commands-run-investigate-issue-101",
+        "b-10-authoring-commands-code-102",
+        "b-10-authoring-commands-code-has-changed-since-i-103",
+        "b-10-authoring-commands-file-src-x-ts-45-104",
+        "b-10-authoring-commands-artifact-expected-snip-105",
+        "b-10-authoring-commands-actual-code-different-106",
+        "b-10-authoring-commands-options-107",
+        "b-10-authoring-commands-re-run-investigate-issu-108",
+        "b-10-authoring-commands-proceed-with-manual-adju-109",
+        "b-10-authoring-commands-code-110",
+        "b-10-authoring-commands-divider-111",
+        "b-10-authoring-commands-success-criteria-112",
+        "b-10-authoring-commands-end-every-command-with-c-113",
+        "b-10-authoring-commands-markdown-114",
+        "b-10-authoring-commands-these-serve-as-115",
+        "b-10-authoring-commands-final-checklist-for-the-116",
+        "b-10-authoring-commands-definition-of-done-117",
+        "b-10-authoring-commands-quality-bar-for-the-comm-118",
+        "b-10-authoring-commands-divider-119",
+        "b-10-authoring-commands-template-basic-command-120",
+        "b-10-authoring-commands-markdown-121",
+        "b-10-authoring-commands-path-artifacts-di-122",
+        "b-10-authoring-commands-3-2-artifact-content-123",
+        "b-10-authoring-commands-write-this-structure-124",
+        "b-10-authoring-commands-markdown-125",
+        "b-10-authoring-commands-critical-include-ev-126",
+        "b-10-authoring-commands-phase-3-checkpoint-127",
+        "b-10-authoring-commands-artifact-file-created-128",
+        "b-10-authoring-commands-all-sections-populated-129",
+        "b-10-authoring-commands-information-is-actionabl-130",
+        "b-10-authoring-commands-divider-131",
+        "b-10-authoring-commands-phase-4-commit-save-w-132",
+        "b-10-authoring-commands-bash-133",
+        "b-10-authoring-commands-phase-4-checkpoint-134",
+        "b-10-authoring-commands-changes-committed-135",
+        "b-10-authoring-commands-divider-136",
+        "b-10-authoring-commands-phase-5-report-output-137",
+        "b-10-authoring-commands-markdown-138",
+        "b-10-authoring-commands-divider-139",
+        "b-10-authoring-commands-success-criteria-140",
+        "b-10-authoring-commands-context-loaded-requ-141",
+        "b-10-authoring-commands-work-complete-main-142",
+        "b-10-authoring-commands-artifact-saved-outp-143",
+        "b-10-authoring-commands-committed-changes-s-144",
+        "b-10-authoring-commands-code-145",
+        "b-10-authoring-commands-good-146",
+        "b-10-authoring-commands-markdown-147",
+        "b-10-authoring-commands-read-the-file-and-identi-148",
+        "b-10-authoring-commands-bash-149",
+        "b-10-authoring-commands-document-the-call-chain-150",
+        "b-10-authoring-commands-code-151",
+        "b-10-authoring-commands-good-152",
+        "b-10-authoring-commands-markdown-153",
+        "b-10-authoring-commands-3-no-error-handling-154",
+        "b-10-authoring-commands-bad-155",
+        "b-10-authoring-commands-markdown-156",
+        "b-10-authoring-commands-good-157",
+        "b-10-authoring-commands-markdown-158",
+        "b-10-authoring-commands-if-pr-exists-use-ex-159",
+        "b-10-authoring-commands-if-no-pr-create-new-160",
+        "b-10-authoring-commands-bash-161",
+        "b-10-authoring-commands-code-162",
+        "b-10-authoring-commands-good-163",
+        "b-10-authoring-commands-markdown-164",
+        "b-10-authoring-commands-extract-165",
+        "b-10-authoring-commands-file-paths-to-modify-166",
+        "b-10-authoring-commands-line-numbers-for-changes-167",
+        "b-10-authoring-commands-expected-behavior-168",
+        "b-10-authoring-commands-code-169"
+      ]
+    },
+    "b-10-authoring-commands-this-guide-explains-how-1": {
+      "id": "b-10-authoring-commands-this-guide-explains-how-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This guide explains how to write effective commands for Archon's AI workflow system. Commands are the building blocks of workflows - each command is a prompt template that instructs the AI agent what to do."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-what-is-a-command-2": {
+      "id": "b-10-authoring-commands-what-is-a-command-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What is a Command?"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-a-command-is-a-markdow-3": {
+      "id": "b-10-authoring-commands-a-command-is-a-markdow-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A command is a "
+        },
+        {
+          "insert": "markdown file",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " that serves as a detailed instruction set for an AI agent. When a workflow executes a step like "
+        },
+        {
+          "insert": "- command: investigate-issue",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Archon:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-loads-the-command-from-i-4": {
+      "id": "b-10-authoring-commands-loads-the-command-from-i-4",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Loads the command from its workflow package, or from the shared command search path for a legacy workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-substitutes-variables-li-5": {
+      "id": "b-10-authoring-commands-substitutes-variables-li-5",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Substitutes variables like "
+        },
+        {
+          "insert": "$ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with actual values"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-sends-the-entire-documen-6": {
+      "id": "b-10-authoring-commands-sends-the-entire-documen-6",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Sends the entire document as a prompt to the AI"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-the-ai-follows-the-instr-7": {
+      "id": "b-10-authoring-commands-the-ai-follows-the-instr-7",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The AI follows the instructions and produces output"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-commands-are-prompts-8": {
+      "id": "b-10-authoring-commands-commands-are-prompts-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Commands are prompts, not code.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " They guide AI behavior through clear instructions."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-9": {
+      "id": "b-10-authoring-commands-divider-9",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-file-format-10": {
+      "id": "b-10-authoring-commands-file-format-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "File Format"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-shared-commands-live-in-11": {
+      "id": "b-10-authoring-commands-shared-commands-live-in-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Shared commands live in "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " relative to the working directory. Ordinary command nodes load them at runtime. When a workflow is composed through "
+        },
+        {
+          "insert": "include:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Archon resolves and snapshots its command bodies during load-time composition so references and declared inputs can be validated before the nodes join the parent's DAG. A packaged workflow keeps its commands beside the YAML in "
+        },
+        {
+          "insert": "<workflow>/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; those references resolve only inside the owning package and do not fall back to shared commands."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bundled-commands-live-12": {
+      "id": "b-10-authoring-commands-bundled-commands-live-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bundled commands live inside their workflow packages:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Commands shipped with Archon sit beside the workflow that uses them, under "
+        },
+        {
+          "insert": ".archon/workflows/<pack>/<workflow>/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and are embedded into the binary at build time. There is no shared bundled command directory. For your own commands use an owning workflow package's "
+        },
+        {
+          "insert": "commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (project-scoped), or "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (home-scoped)."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-cli-vs-server-the-c-13": {
+      "id": "b-10-authoring-commands-cli-vs-server-the-c-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CLI vs Server:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The CLI reads commands from wherever you run it, including uncommitted changes. The server uses the registered project's saved checkout path. An existing local registration can point to your checkout or a subdirectory of it, so the server reads local files there. A new webhook registration creates a managed clone at "
+        },
+        {
+          "insert": "~/.archon/workspaces/owner/repo/source/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or at a suffixed path such as "
+        },
+        {
+          "insert": "owner/repo-2/source/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when that project name is taken; commit and push changes from another checkout so that clone can receive them when it syncs. Worktree runs use files in their worktree."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-commands-use-this-struct-14": {
+      "id": "b-10-authoring-commands-commands-use-this-struct-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Commands use this structure:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-15": {
+      "id": "b-10-authoring-commands-markdown-15",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "---\ndescription: One-line description shown in /commands list\nargument-hint: <expected-input-format>\n---\n\n# Command Name\n\n**Input**: $ARGUMENTS\n\n---\n\n[Instructions for the AI agent...]"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-frontmatter-fields-16": {
+      "id": "b-10-authoring-commands-frontmatter-fields-16",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Frontmatter Fields"
+        }
+      ],
+      "children": []
+    },
+    "table-0-66713c67": {
+      "id": "table-0-66713c67",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Required",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "description",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Recommended",
+            [
+              {
+                "insert": "Shown in "
+              },
+              {
+                "insert": "/commands",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " list and workflow routing"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "argument-hint",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Optional",
+            "Tells users what input to provide"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-authoring-commands-divider-18": {
+      "id": "b-10-authoring-commands-divider-18",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-the-golden-rule-artifac-19": {
+      "id": "b-10-authoring-commands-the-golden-rule-artifac-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The Golden Rule: Artifacts Are Everything"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-the-artifact-you-produ-20": {
+      "id": "b-10-authoring-commands-the-artifact-you-produ-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The artifact you produce IS the specification for the next step.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-in-multi-step-workflows-21": {
+      "id": "b-10-authoring-commands-in-multi-step-workflows-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In multi-step workflows, agents don't share memory. The ONLY way to pass information between steps is through "
+        },
+        {
+          "insert": "artifacts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " - files saved to disk."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-22": {
+      "id": "b-10-authoring-commands-code-22",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "Step 1: investigate-issue    Step 2: implement-issue\n┌─────────────────────┐      ┌─────────────────────┐\n│ AI Agent A          │      │ AI Agent B          │\n│                     │      │                     │\n│ Analyzes issue      │      │ Reads artifact      │\n│ Produces artifact ──┼──────┼─> Executes plan     │\n│                     │      │                     │\n└─────────────────────┘      └─────────────────────┘\n        │                            │\n        ▼                            │\n  $ARTIFACTS_DIR/                    │\n  issues/issue-123.md ◄──────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-why-this-matters-23": {
+      "id": "b-10-authoring-commands-why-this-matters-23",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Why This Matters"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-no-shared-context-e-24": {
+      "id": "b-10-authoring-commands-no-shared-context-e-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No shared context",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Each workflow node can run with "
+        },
+        {
+          "insert": "context: fresh",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-resumability-if-a-s-25": {
+      "id": "b-10-authoring-commands-resumability-if-a-s-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Resumability",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": If a step fails, the artifact preserves progress"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-auditability-artifa-26": {
+      "id": "b-10-authoring-commands-auditability-artifa-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Auditability",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Artifacts create a paper trail of AI decisions"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-handoff-quality-the-27": {
+      "id": "b-10-authoring-commands-handoff-quality-the-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Handoff quality",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": The artifact determines if the next step succeeds"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-what-makes-a-good-artifa-28": {
+      "id": "b-10-authoring-commands-what-makes-a-good-artifa-28",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "What Makes a Good Artifact"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-the-artifact-must-contai-29": {
+      "id": "b-10-authoring-commands-the-artifact-must-contai-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The artifact must contain "
+        },
+        {
+          "insert": "everything the next agent needs",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "table-1-66713c67": {
+      "id": "table-1-66713c67",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Include",
+          "Why"
+        ],
+        "rows": [
+          [
+            "Problem statement",
+            "Next agent needs context"
+          ],
+          [
+            "Specific file paths + line numbers",
+            "No guessing where to look"
+          ],
+          [
+            "Actual code snippets",
+            "Not summaries - real code"
+          ],
+          [
+            "Step-by-step implementation plan",
+            "Actionable without questions"
+          ],
+          [
+            "Validation commands",
+            "How to verify success"
+          ],
+          [
+            "Edge cases and risks",
+            "What to watch out for"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-authoring-commands-bad-artifact-fix-t-31": {
+      "id": "b-10-authoring-commands-bad-artifact-fix-t-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bad artifact",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": \"Fix the authentication bug in the login handler\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-good-artifact-32": {
+      "id": "b-10-authoring-commands-good-artifact-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good artifact",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-33": {
+      "id": "b-10-authoring-commands-markdown-33",
+      "type": "code",
+      "props": {
+        "language": "`markdown"
+      },
+      "text": [
+        {
+          "insert": "## Problem\nUsers get 401 errors when token refresh races with API calls.\n\n## Root Cause\n`src/auth/refresh.ts:45` - The refresh lock doesn't wait for in-flight requests.\n\n## Implementation Plan\n\n### Step 1: Add request queue\n**File**: `src/auth/refresh.ts`\n**Lines**: 45-60\n\n**Current code:**\n```typescript\nasync function refresh() {\n  // Current problematic code\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-change-to-34": {
+      "id": "b-10-authoring-commands-change-to-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Change to:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-typescript-35": {
+      "id": "b-10-authoring-commands-typescript-35",
+      "type": "code",
+      "props": {
+        "language": "typescript"
+      },
+      "text": [
+        {
+          "insert": "async function refresh() {\n  // Fixed code with queue\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-step-2-add-test-36": {
+      "id": "b-10-authoring-commands-step-2-add-test-36",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Step 2: Add test"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-file-src-auth-refr-37": {
+      "id": "b-10-authoring-commands-file-src-auth-refr-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "File",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "src/auth/refresh.test.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n"
+        },
+        {
+          "insert": "Action",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": CREATE"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-typescript-38": {
+      "id": "b-10-authoring-commands-typescript-38",
+      "type": "code",
+      "props": {
+        "language": "typescript"
+      },
+      "text": [
+        {
+          "insert": "describe('refresh', () => {\n  it('queues requests during refresh', async () => {\n    // Test implementation\n  });\n});"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-validation-39": {
+      "id": "b-10-authoring-commands-validation-39",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Validation"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bash-40": {
+      "id": "b-10-authoring-commands-bash-40",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run type-check\nbun test src/auth/"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-block-41": {
+      "id": "b-10-authoring-commands-block-41",
+      "type": "code",
+      "props": {
+        "language": "`"
+      },
+      "text": [
+        {
+          "insert": "\n---\n\n## Command Structure\n\n### Phase-Based Organization\n\nBreak commands into clear phases. This helps the AI:\n- Know where it is in the process\n- Self-verify before proceeding\n- Recover if something fails\n\n```markdown\n## Phase 1: LOAD - Get Context\n\n### 1.1 First action\n[Instructions...]\n\n### 1.2 Second action\n[Instructions...]\n\n**PHASE_1_CHECKPOINT:**\n- [ ] Data loaded\n- [ ] Context understood\n- [ ] Ready to proceed\n\n---\n\n## Phase 2: ANALYZE - Process Information\n\n[...]"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-why-phases-work-42": {
+      "id": "b-10-authoring-commands-why-phases-work-42",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Why Phases Work"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-chunked-reasoning-a-43": {
+      "id": "b-10-authoring-commands-chunked-reasoning-a-43",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Chunked reasoning",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": AI handles complex tasks better in pieces"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-self-verification-c-44": {
+      "id": "b-10-authoring-commands-self-verification-c-44",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Self-verification",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Checkpoints force the AI to validate progress"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-debugging-when-some-45": {
+      "id": "b-10-authoring-commands-debugging-when-some-45",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Debugging",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": When something fails, you know which phase"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-consistency-similar-46": {
+      "id": "b-10-authoring-commands-consistency-similar-46",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Consistency",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Similar structure across commands = predictable behavior"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-common-phase-patterns-47": {
+      "id": "b-10-authoring-commands-common-phase-patterns-47",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Common Phase Patterns"
+        }
+      ],
+      "children": []
+    },
+    "table-2-66713c67": {
+      "id": "table-2-66713c67",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Phase Name",
+          "Purpose",
+          "Example Actions"
+        ],
+        "rows": [
+          [
+            "LOAD",
+            "Gather inputs and context",
+            "Read files, fetch from GitHub, parse arguments"
+          ],
+          [
+            "EXPLORE",
+            "Understand the codebase",
+            "Search for patterns, trace code flow"
+          ],
+          [
+            "ANALYZE",
+            "Form conclusions",
+            "Root cause analysis, design decisions"
+          ],
+          [
+            "GENERATE",
+            "Produce output",
+            "Write artifact, create files"
+          ],
+          [
+            "VALIDATE",
+            "Verify correctness",
+            "Run tests, check types, review output"
+          ],
+          [
+            "COMMIT",
+            "Save to git",
+            "Stage, commit, push"
+          ],
+          [
+            "REPORT",
+            "Communicate results",
+            "Output summary to user"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-authoring-commands-divider-49": {
+      "id": "b-10-authoring-commands-divider-49",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-checkpoints-50": {
+      "id": "b-10-authoring-commands-checkpoints-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Checkpoints"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-end-each-phase-with-a-ch-51": {
+      "id": "b-10-authoring-commands-end-each-phase-with-a-ch-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "End each phase with a checkpoint:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-52": {
+      "id": "b-10-authoring-commands-markdown-52",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "**PHASE_2_CHECKPOINT:**\n- [ ] Root cause identified with evidence\n- [ ] All affected files listed\n- [ ] Implementation approach determined"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-why-checkpoints-matter-53": {
+      "id": "b-10-authoring-commands-why-checkpoints-matter-53",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Why Checkpoints Matter"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-self-regulation-ai-54": {
+      "id": "b-10-authoring-commands-self-regulation-ai-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Self-regulation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": AI verifies it completed all steps"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-quality-gate-preven-55": {
+      "id": "b-10-authoring-commands-quality-gate-preven-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Quality gate",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Prevents rushing to next phase"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-debugging-aid-shows-56": {
+      "id": "b-10-authoring-commands-debugging-aid-shows-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Debugging aid",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Shows where process broke down"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-documentation-recor-57": {
+      "id": "b-10-authoring-commands-documentation-recor-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Documentation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Records what was accomplished"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-58": {
+      "id": "b-10-authoring-commands-divider-58",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-variable-substitution-59": {
+      "id": "b-10-authoring-commands-variable-substitution-59",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Variable Substitution"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-archon-replaces-variable-60": {
+      "id": "b-10-authoring-commands-archon-replaces-variable-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon replaces variables in command text before sending to the AI. The most commonly used variables in commands:"
+        }
+      ],
+      "children": []
+    },
+    "table-3-66713c67": {
+      "id": "table-3-66713c67",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Variable",
+          "Value"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "$ARGUMENTS",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " / "
+              },
+              {
+                "insert": "$USER_MESSAGE",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "User's whole input message (positional "
+              },
+              {
+                "insert": "$1",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "$2",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "$3",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " are not supported)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "$ARTIFACTS_DIR",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Pre-created artifacts directory for this workflow run"
+          ],
+          [
+            [
+              {
+                "insert": "$BASE_BRANCH",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "The run's resolved or recorded base branch; see "
+              },
+              {
+                "insert": "resolution and child inheritance rules",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/45-variables.md#workflow-variables"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "$DOCS_DIR",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Documentation directory path (default: "
+              },
+              {
+                "insert": "docs/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "$WORKFLOW_ID",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Unique workflow run ID"
+          ],
+          [
+            [
+              {
+                "insert": "$CONTEXT",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "GitHub issue/PR context (if available)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-authoring-commands-see-the-variable-refere-62": {
+      "id": "b-10-authoring-commands-see-the-variable-refere-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the "
+        },
+        {
+          "insert": "Variable Reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/45-variables.md",
+              "label": "Variable Reference"
+            }
+          }
+        },
+        {
+          "insert": " for the complete list, including the deprecated "
+        },
+        {
+          "insert": "$LOOP_USER_INPUT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "$REJECTION_REASON",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", node output references, substitution order, and context variable behavior."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-usage-pattern-63": {
+      "id": "b-10-authoring-commands-usage-pattern-63",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Usage Pattern"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-always-show-the-input-at-64": {
+      "id": "b-10-authoring-commands-always-show-the-input-at-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Always show the input at the top:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-65": {
+      "id": "b-10-authoring-commands-markdown-65",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "# Investigate Issue\n\n**Input**: $ARGUMENTS\n\n---\n\n## Your Mission\n[...]"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-this-ensures-the-ai-know-66": {
+      "id": "b-10-authoring-commands-this-ensures-the-ai-know-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This ensures the AI knows exactly what it's working with."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-67": {
+      "id": "b-10-authoring-commands-divider-67",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-artifact-conventions-68": {
+      "id": "b-10-authoring-commands-artifact-conventions-68",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Artifact Conventions"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-where-artifacts-live-69": {
+      "id": "b-10-authoring-commands-where-artifacts-live-69",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Where Artifacts Live"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-artifacts-are-stored-o-70": {
+      "id": "b-10-authoring-commands-artifacts-are-stored-o-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Artifacts are stored "
+        },
+        {
+          "insert": "outside the repository",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the Archon workspace directory. Use the "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " variable to reference the pre-created artifacts directory for each workflow run:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-71": {
+      "id": "b-10-authoring-commands-code-71",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "~/.archon/workspaces/owner/repo/artifacts/runs/{workflow-id}/"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-this-keeps-artifacts-out-72": {
+      "id": "b-10-authoring-commands-this-keeps-artifacts-out-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This keeps artifacts out of git and avoids polluting the working tree."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-naming-conventions-73": {
+      "id": "b-10-authoring-commands-naming-conventions-73",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Naming Conventions"
+        }
+      ],
+      "children": []
+    },
+    "table-4-66713c67": {
+      "id": "table-4-66713c67",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Artifact Type",
+          "Path Pattern"
+        ],
+        "rows": [
+          [
+            "Issue investigation",
+            [
+              {
+                "insert": "$ARTIFACTS_DIR/issues/issue-{number}.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Free-form investigation",
+            [
+              {
+                "insert": "$ARTIFACTS_DIR/issues/investigation-{timestamp}.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "PR review scope",
+            [
+              {
+                "insert": "$ARTIFACTS_DIR/reviews/pr-{number}/scope.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Code review findings",
+            [
+              {
+                "insert": "$ARTIFACTS_DIR/reviews/pr-{number}/code-review-findings.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-authoring-commands-instructing-the-ai-to-sa-75": {
+      "id": "b-10-authoring-commands-instructing-the-ai-to-sa-75",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Instructing the AI to Save"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-be-explicit-about-artifa-76": {
+      "id": "b-10-authoring-commands-be-explicit-about-artifa-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Be explicit about artifact creation:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-77": {
+      "id": "b-10-authoring-commands-markdown-77",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "## Phase 4: GENERATE - Create Artifact\n\n### 4.1 Create Directory\n\n```bash\nmkdir -p $ARTIFACTS_DIR/issues"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-4-2-write-artifact-78": {
+      "id": "b-10-authoring-commands-4-2-write-artifact-78",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "4.2 Write Artifact"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-write-to-artifacts-dir-79": {
+      "id": "b-10-authoring-commands-write-to-artifacts-dir-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Write to "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR/issues/issue-{number}.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-80": {
+      "id": "b-10-authoring-commands-markdown-80",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "# Investigation: {Title}\n\n**Issue**: #{number}\n**Type**: {BUG|ENHANCEMENT}\n..."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-critical-this-artif-81": {
+      "id": "b-10-authoring-commands-critical-this-artif-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CRITICAL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": This artifact is the ONLY way to pass information to the next\nworkflow step. Include everything needed for implementation:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-exact-file-paths-with-li-82": {
+      "id": "b-10-authoring-commands-exact-file-paths-with-li-82",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Exact file paths with line numbers"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-actual-code-snippets-no-83": {
+      "id": "b-10-authoring-commands-actual-code-snippets-no-83",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Actual code snippets (not summaries)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-step-by-step-implementat-84": {
+      "id": "b-10-authoring-commands-step-by-step-implementat-84",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Step-by-step implementation instructions"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-validation-commands-85": {
+      "id": "b-10-authoring-commands-validation-commands-85",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Validation commands"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-edge-cases-to-handle-86": {
+      "id": "b-10-authoring-commands-edge-cases-to-handle-86",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Edge cases to handle"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-the-implementing-agent-w-87": {
+      "id": "b-10-authoring-commands-the-implementing-agent-w-87",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The implementing agent will work ONLY from this artifact."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-88": {
+      "id": "b-10-authoring-commands-code-88",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n---\n\n## Writing Effective Instructions\n\n### Be Explicit About Tools\n\nTell the AI which tools to use:\n\n```markdown\n### 2.1 Search for Relevant Code\n\nUse Task tool with subagent_type=\"Explore\":\n"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-find-all-files-related-t-89": {
+      "id": "b-10-authoring-commands-find-all-files-related-t-89",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Find all files related to authentication:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-token-handling-90": {
+      "id": "b-10-authoring-commands-token-handling-90",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Token handling"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-session-management-91": {
+      "id": "b-10-authoring-commands-session-management-91",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Session management"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-login-logout-flows-92": {
+      "id": "b-10-authoring-commands-login-logout-flows-92",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Login/logout flows"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-93": {
+      "id": "b-10-authoring-commands-code-93",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n### 2.2 Check Git History\n\n```bash\ngit log --oneline -10 -- {affected-file}\ngit blame -L {start},{end} {affected-file}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-94": {
+      "id": "b-10-authoring-commands-code-94",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n### Provide Decision Trees\n\nHelp the AI handle different scenarios:\n\n```markdown\n### 3.2 Handle Git State\n"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-in-worktree-ye-95": {
+      "id": "b-10-authoring-commands-in-worktree-ye-95",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─ IN WORKTREE?\n│  └─ YES → Use it (assume it's for this work)\n│\n├─ ON MAIN BRANCH?\n│  └─ Clean? → Create branch: fix/issue-{number}\n│  └─ Dirty? → STOP, ask user to commit/stash\n│\n└─ ON FEATURE BRANCH?\n└─ Use it (assume it's for this work)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-96": {
+      "id": "b-10-authoring-commands-code-96",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": ""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-include-error-handling-97": {
+      "id": "b-10-authoring-commands-include-error-handling-97",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Include Error Handling"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-tell-the-ai-what-to-do-w-98": {
+      "id": "b-10-authoring-commands-tell-the-ai-what-to-do-w-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Tell the AI what to do when things go wrong:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-99": {
+      "id": "b-10-authoring-commands-markdown-99",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "## Handling Edge Cases\n\n### Artifact not found"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-artifact-not-found-at-a-100": {
+      "id": "b-10-authoring-commands-artifact-not-found-at-a-100",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Artifact not found at $ARTIFACTS_DIR/issues/issue-{number}.md"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-run-investigate-issue-101": {
+      "id": "b-10-authoring-commands-run-investigate-issue-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run "
+        },
+        {
+          "insert": "/investigate-issue {number}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " first."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-102": {
+      "id": "b-10-authoring-commands-code-102",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n### Code has drifted"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-has-changed-since-i-103": {
+      "id": "b-10-authoring-commands-code-has-changed-since-i-103",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code has changed since investigation:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-file-src-x-ts-45-104": {
+      "id": "b-10-authoring-commands-file-src-x-ts-45-104",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "File: src/x.ts:45"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-artifact-expected-snip-105": {
+      "id": "b-10-authoring-commands-artifact-expected-snip-105",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Artifact expected: {snippet}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-actual-code-different-106": {
+      "id": "b-10-authoring-commands-actual-code-different-106",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Actual code: {different}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-options-107": {
+      "id": "b-10-authoring-commands-options-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Options:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-re-run-investigate-issu-108": {
+      "id": "b-10-authoring-commands-re-run-investigate-issu-108",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Re-run /investigate-issue"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-proceed-with-manual-adju-109": {
+      "id": "b-10-authoring-commands-proceed-with-manual-adju-109",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Proceed with manual adjustments"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-110": {
+      "id": "b-10-authoring-commands-code-110",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": ""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-111": {
+      "id": "b-10-authoring-commands-divider-111",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-success-criteria-112": {
+      "id": "b-10-authoring-commands-success-criteria-112",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Success Criteria"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-end-every-command-with-c-113": {
+      "id": "b-10-authoring-commands-end-every-command-with-c-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "End every command with clear success criteria:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-114": {
+      "id": "b-10-authoring-commands-markdown-114",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "## Success Criteria\n\n- **ARTIFACT_COMPLETE**: All sections filled with specific content\n- **EVIDENCE_BASED**: Every claim has file:line reference\n- **IMPLEMENTABLE**: Next agent can execute without questions\n- **COMMITTED**: Artifact saved in git"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-these-serve-as-115": {
+      "id": "b-10-authoring-commands-these-serve-as-115",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These serve as:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-final-checklist-for-the-116": {
+      "id": "b-10-authoring-commands-final-checklist-for-the-116",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Final checklist for the AI"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-definition-of-done-117": {
+      "id": "b-10-authoring-commands-definition-of-done-117",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Definition of \"done\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-quality-bar-for-the-comm-118": {
+      "id": "b-10-authoring-commands-quality-bar-for-the-comm-118",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Quality bar for the command"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-119": {
+      "id": "b-10-authoring-commands-divider-119",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-template-basic-command-120": {
+      "id": "b-10-authoring-commands-template-basic-command-120",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Template: Basic Command"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-121": {
+      "id": "b-10-authoring-commands-markdown-121",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "---\ndescription: Brief description of what this command does\nargument-hint: <expected-input>\n---\n\n# Command Name\n\n**Input**: $ARGUMENTS\n\n---\n\n## Your Mission\n\n{1-2 sentences explaining the goal and what success looks like}\n\n**Output artifact**: `$ARTIFACTS_DIR/{category}/{name}.md`\n\n---\n\n## Phase 1: LOAD - Gather Context\n\n### 1.1 Parse Input\n\n{Instructions for understanding the input}\n\n### 1.2 Load Dependencies\n\n{Instructions for loading required context}\n\n**PHASE_1_CHECKPOINT:**\n- [ ] Input parsed correctly\n- [ ] Required context loaded\n\n---\n\n## Phase 2: PROCESS - Do the Work\n\n### 2.1 Main Action\n\n{Core instructions}\n\n### 2.2 Secondary Action\n\n{Supporting instructions}\n\n**PHASE_2_CHECKPOINT:**\n- [ ] Main work completed\n- [ ] Results validated\n\n---\n\n## Phase 3: GENERATE - Create Artifact\n\n### 3.1 Artifact Location\n\n```bash\nmkdir -p $ARTIFACTS_DIR/{category}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-path-artifacts-di-122": {
+      "id": "b-10-authoring-commands-path-artifacts-di-122",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Path",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR/{category}/{name}.md",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-3-2-artifact-content-123": {
+      "id": "b-10-authoring-commands-3-2-artifact-content-123",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "3.2 Artifact Content"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-write-this-structure-124": {
+      "id": "b-10-authoring-commands-write-this-structure-124",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Write this structure:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-125": {
+      "id": "b-10-authoring-commands-markdown-125",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "# {Title}\n\n**Created**: {timestamp}\n**Input**: {original input}\n\n## Summary\n\n{Key findings/results}\n\n## Details\n\n{Comprehensive information for next step}\n\n## Next Steps\n\n{What the next agent should do with this}"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-critical-include-ev-126": {
+      "id": "b-10-authoring-commands-critical-include-ev-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CRITICAL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Include everything the next workflow step needs."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-phase-3-checkpoint-127": {
+      "id": "b-10-authoring-commands-phase-3-checkpoint-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "PHASE",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "3",
+          "attributes": {
+            "bold": true,
+            "italic": true
+          }
+        },
+        {
+          "insert": "CHECKPOINT:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-artifact-file-created-128": {
+      "id": "b-10-authoring-commands-artifact-file-created-128",
+      "type": "list-item",
+      "props": {
+        "checked": false,
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Artifact file created"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-all-sections-populated-129": {
+      "id": "b-10-authoring-commands-all-sections-populated-129",
+      "type": "list-item",
+      "props": {
+        "checked": false,
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "All sections populated"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-information-is-actionabl-130": {
+      "id": "b-10-authoring-commands-information-is-actionabl-130",
+      "type": "list-item",
+      "props": {
+        "checked": false,
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Information is actionable"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-131": {
+      "id": "b-10-authoring-commands-divider-131",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-phase-4-commit-save-w-132": {
+      "id": "b-10-authoring-commands-phase-4-commit-save-w-132",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Phase 4: COMMIT - Save Work"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bash-133": {
+      "id": "b-10-authoring-commands-bash-133",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git add .\ngit commit -m \"{Descriptive message}\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-phase-4-checkpoint-134": {
+      "id": "b-10-authoring-commands-phase-4-checkpoint-134",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "PHASE",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "4",
+          "attributes": {
+            "bold": true,
+            "italic": true
+          }
+        },
+        {
+          "insert": "CHECKPOINT:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-changes-committed-135": {
+      "id": "b-10-authoring-commands-changes-committed-135",
+      "type": "list-item",
+      "props": {
+        "checked": false,
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Changes committed"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-136": {
+      "id": "b-10-authoring-commands-divider-136",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-phase-5-report-output-137": {
+      "id": "b-10-authoring-commands-phase-5-report-output-137",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Phase 5: REPORT - Output Results"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-138": {
+      "id": "b-10-authoring-commands-markdown-138",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "## Complete\n\n**Artifact**: `$ARTIFACTS_DIR/{category}/{name}.md`\n\n### Summary\n\n{Brief results}\n\n### Next Step\n\nRun `/{next-command}` to continue."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-divider-139": {
+      "id": "b-10-authoring-commands-divider-139",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-authoring-commands-success-criteria-140": {
+      "id": "b-10-authoring-commands-success-criteria-140",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Success Criteria"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-context-loaded-requ-141": {
+      "id": "b-10-authoring-commands-context-loaded-requ-141",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CONTEXT_LOADED",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Required information gathered"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-work-complete-main-142": {
+      "id": "b-10-authoring-commands-work-complete-main-142",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "WORK_COMPLETE",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Main task accomplished"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-artifact-saved-outp-143": {
+      "id": "b-10-authoring-commands-artifact-saved-outp-143",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "ARTIFACT_SAVED",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Output written to correct location"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-committed-changes-s-144": {
+      "id": "b-10-authoring-commands-committed-changes-s-144",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "COMMITTED",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Changes saved to git"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-145": {
+      "id": "b-10-authoring-commands-code-145",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n---\n\n## Anti-Patterns to Avoid\n\n### 1. Vague Instructions\n\nBad:\n```markdown\nAnalyze the code and find the problem."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-good-146": {
+      "id": "b-10-authoring-commands-good-146",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-147": {
+      "id": "b-10-authoring-commands-markdown-147",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "### 2.1 Trace the Error Path\n\n1. Find where the error originates using grep:\n```bash\ngrep -r \"ErrorType\" src/"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-read-the-file-and-identi-148": {
+      "id": "b-10-authoring-commands-read-the-file-and-identi-148",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Read the file and identify the function:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bash-149": {
+      "id": "b-10-authoring-commands-bash-149",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cat src/handlers/error.ts"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-document-the-call-chain-150": {
+      "id": "b-10-authoring-commands-document-the-call-chain-150",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Document the call chain leading to the error."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-151": {
+      "id": "b-10-authoring-commands-code-151",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n### 2. Missing Artifact Instructions\n\nBad:\n```markdown\n## Results\n\nOutput your findings."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-good-152": {
+      "id": "b-10-authoring-commands-good-152",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-153": {
+      "id": "b-10-authoring-commands-markdown-153",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "## Phase 4: GENERATE - Create Artifact\n\nWrite to `$ARTIFACTS_DIR/issues/issue-{number}.md`:\n\n[Exact template with all required sections]\n\n**CRITICAL**: This artifact is the handoff to the implementing agent."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-3-no-error-handling-154": {
+      "id": "b-10-authoring-commands-3-no-error-handling-154",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "3. No Error Handling"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bad-155": {
+      "id": "b-10-authoring-commands-bad-155",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bad:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-156": {
+      "id": "b-10-authoring-commands-markdown-156",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "Create the PR."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-good-157": {
+      "id": "b-10-authoring-commands-good-157",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-158": {
+      "id": "b-10-authoring-commands-markdown-158",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "### Create PR\n\n**First, check if PR already exists:**\n```bash\ngh pr list --head $(git branch --show-current)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-if-pr-exists-use-ex-159": {
+      "id": "b-10-authoring-commands-if-pr-exists-use-ex-159",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If PR exists",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Use existing PR, skip creation."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-if-no-pr-create-new-160": {
+      "id": "b-10-authoring-commands-if-no-pr-create-new-160",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If no PR",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Create new PR:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-bash-161": {
+      "id": "b-10-authoring-commands-bash-161",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "gh pr create --title \"...\" --body \"...\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-162": {
+      "id": "b-10-authoring-commands-code-162",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n### 4. Assuming Context\n\nBad:\n```markdown\nFix the bug in the file we discussed."
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-good-163": {
+      "id": "b-10-authoring-commands-good-163",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-markdown-164": {
+      "id": "b-10-authoring-commands-markdown-164",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "### 1.1 Load Artifact\n\n```bash\ncat $ARTIFACTS_DIR/issues/issue-{number}.md"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-extract-165": {
+      "id": "b-10-authoring-commands-extract-165",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Extract:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-file-paths-to-modify-166": {
+      "id": "b-10-authoring-commands-file-paths-to-modify-166",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "File paths to modify"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-line-numbers-for-changes-167": {
+      "id": "b-10-authoring-commands-line-numbers-for-changes-167",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Line numbers for changes"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-expected-behavior-168": {
+      "id": "b-10-authoring-commands-expected-behavior-168",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Expected behavior"
+        }
+      ],
+      "children": []
+    },
+    "b-10-authoring-commands-code-169": {
+      "id": "b-10-authoring-commands-code-169",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "\n---\n\n## Testing Your Command\n\n1. **Run it manually**: `bun run cli workflow run {workflow} \"test input\"`\n2. **Check artifact output**: Does it contain everything needed?\n3. **Simulate next step**: Can another agent work from just the artifact?\n4. **Edge cases**: What happens with bad input? Missing files?\n\n---\n\n## Summary\n\n1. **Commands are prompts** - Write clear instructions for AI agents\n2. **Artifacts are the handoff** - The ONLY way to pass data between steps\n3. **Use phases** - Break work into verifiable chunks\n4. **Be explicit** - Tell the AI exactly what to do, where, and how\n5. **Include everything** - The next agent works ONLY from your artifact\n"
+        }
+      ],
+      "children": []
+    }
+  }
+}

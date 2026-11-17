@@ -1,0 +1,1033 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-25-commands",
+  "title": "Commands Reference",
+  "root": "b-25-commands-root-32",
+  "blocks": {
+    "b-25-commands-root-32": {
+      "id": "b-25-commands-root-32",
+      "type": "paragraph",
+      "props": {
+        "area": "handlers",
+        "audience": [
+          "user"
+        ],
+        "category": "reference",
+        "description": "Archon orchestrator commands and how to submit them, including through a bot mention in Slack threads.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/commands.md"
+      },
+      "children": [
+        "b-25-commands-all-orchestrator-command-1",
+        "b-25-commands-divider-2",
+        "b-25-commands-deterministic-commands-3",
+        "b-25-commands-these-commands-are-handl-4",
+        "b-25-commands-project-management-5",
+        "table-0-b8e62447",
+        "b-25-commands-workflows-7",
+        "table-1-b8e62447",
+        "b-25-commands-note-workflows-are-9",
+        "b-25-commands-session-management-10",
+        "table-2-b8e62447",
+        "b-25-commands-divider-12",
+        "b-25-commands-ai-routed-commands-13",
+        "b-25-commands-the-following-commands-e-14",
+        "table-3-b8e62447",
+        "b-25-commands-note-in-practice-y-16",
+        "b-25-commands-divider-17",
+        "b-25-commands-example-workflow-telegr-18",
+        "b-25-commands-ask-questions-directly-19",
+        "b-25-commands-code-20",
+        "b-25-commands-check-status-21",
+        "b-25-commands-code-22",
+        "b-25-commands-reset-session-23",
+        "b-25-commands-code-24",
+        "b-25-commands-divider-25",
+        "b-25-commands-example-workflow-github-26",
+        "b-25-commands-create-an-issue-or-comme-27",
+        "b-25-commands-code-28",
+        "b-25-commands-bot-responds-with-analys-29",
+        "b-25-commands-code-30",
+        "b-25-commands-bot-maintains-context-an-31"
+      ]
+    },
+    "b-25-commands-all-orchestrator-command-1": {
+      "id": "b-25-commands-all-orchestrator-command-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All orchestrator commands available in Archon. Type "
+        },
+        {
+          "insert": "/help",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your conversation to see this list. On Slack, post an @mention carrying the command in the target thread, for example "
+        },
+        {
+          "insert": "@your-bot /help",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "@your-bot /setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Raw orchestrator slash commands are not registered with Slack; "
+        },
+        {
+          "insert": "/archon <message>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts a new thread."
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-divider-2": {
+      "id": "b-25-commands-divider-2",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-25-commands-deterministic-commands-3": {
+      "id": "b-25-commands-deterministic-commands-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Deterministic Commands"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-these-commands-are-handl-4": {
+      "id": "b-25-commands-these-commands-are-handl-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These commands are handled deterministically by the orchestrator: they always execute the same way regardless of AI state:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-project-management-5": {
+      "id": "b-25-commands-project-management-5",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project Management"
+        }
+      ],
+      "children": []
+    },
+    "table-0-b8e62447": {
+      "id": "table-0-b8e62447",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/register-project <name> <path>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Register a local directory as a project"
+          ],
+          [
+            [
+              {
+                "insert": "/update-project <name> <path>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Update a project's directory path"
+          ],
+          [
+            [
+              {
+                "insert": "/remove-project <name>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Remove a project registration"
+          ],
+          [
+            [
+              {
+                "insert": "/setproject <name>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Bind this conversation to a registered project. Clears any working-directory/worktree override and starts a fresh AI session on the next message (chat history stays visible)"
+          ],
+          [
+            [
+              {
+                "insert": "/detach-project \"<current-project-name>\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Make only this conversation neutral; the project stays registered. Requires the exact, unambiguous current name (quote names containing spaces). Refuses pending/running/paused/resumable failed runs and any attached worktree or container. Resolve runs through "
+              },
+              {
+                "insert": "manage_run",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", CLI or Web controls, and clean the environment through existing isolation controls before retrying. Supported on Web, Telegram and independently scoped Slack/Discord conversations; refuses children with bound parents, forge conversations and ephemeral CLI chat"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-commands-workflows-7": {
+      "id": "b-25-commands-workflows-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflows"
+        }
+      ],
+      "children": []
+    },
+    "table-1-b8e62447": {
+      "id": "table-1-b8e62447",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/workflow list",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show available workflows"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow reload",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Reload workflow definitions"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow status",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show active workflows"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow get <id>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show one run, whatever its status"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow cancel [id]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Cancel a running workflow (default: this conversation's). Refuses when no owner answers; check the recorded host and pid, verify the owner has stopped, then use "
+              },
+              {
+                "insert": "/workflow abandon <id>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/workflow resume <id>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Resume a failed or paused run (re-runs, skipping completed nodes)"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow abandon <id>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Discard a run (running, paused, or failed) and attempt removal of the worktree it created, keeping the branch. Owner warnings retain the checkout: inspect it ("
+              },
+              {
+                "insert": "lsof",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " when output is still held), resolve the warning, then run abandon again on the cancelled run to retry removal. A silent descendant also retains its checkout and the selected root's checkout, even if the root's owner stopped; each descendant needs its own owner check. If the selected sub-run has no answering endpoint, cancellation succeeds but its subtree's owned checkouts remain: silence does not prove the enclosing execution stopped. Inspect the owning execution and stop or abandon it only if you intend to stop its whole scope; repeated child-only abandonment may still retain the checkouts."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/workflow approve <id> [comment]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Answer "
+              },
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " to a paused run: an attention wait, or a deprecated approval gate (deprecated interactive-loop gates: no comment on a signal-bearing gate = accept & complete; a comment runs another iteration)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/workflow reject <id> [reason]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Answer "
+              },
+              {
+                "insert": "reject",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " to a paused run (attention wait or deprecated approval gate). Rejecting an attention wait continues the run with "
+              },
+              {
+                "insert": "decision: reject",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/workflow run <name> [args]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Run a workflow directly"
+          ],
+          [
+            [
+              {
+                "insert": "/workflow cleanup [days]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "CLI only -- delete old run records (default: 7 days)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-commands-note-workflows-are-9": {
+      "id": "b-25-commands-note-workflows-are-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Workflows are YAML files in "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-session-management-10": {
+      "id": "b-25-commands-session-management-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Session Management"
+        }
+      ],
+      "children": []
+    },
+    "table-2-b8e62447": {
+      "id": "table-2-b8e62447",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/status",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show conversation state"
+          ],
+          [
+            [
+              {
+                "insert": "/reset",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Start fresh: clears the AI session, releases the execution binding (working-directory override + isolation env), and abandons this conversation's "
+              },
+              {
+                "insert": "resumable",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " run trees ("
+              },
+              {
+                "insert": "paused",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "failed",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") so the next message does not continue one, attempting to remove the worktrees those runs created (their branches are kept). Owner warnings retain affected checkouts: inspect them ("
+              },
+              {
+                "insert": "lsof",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " when output is still held), resolve the warning, then use "
+              },
+              {
+                "insert": "/workflow abandon <id>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " on each cancelled run to retry removal. Runs that are actively executing ("
+              },
+              {
+                "insert": "pending",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "running",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") are never touched -- they may belong to another process entirely. Each cleanup effect still runs if another fails; an incomplete reset tells you to retry and does not promise a fresh next message. The project attachment ("
+              },
+              {
+                "insert": "codebase_id",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") is preserved; use "
+              },
+              {
+                "insert": "/detach-project \"<current-project-name>\"",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " to detach it after resolving blockers. Retention follows the checkout ID: a separate checkout can still release after its owner stops. A sub-run without an answering endpoint retains its checkout, even if this reset stops another run with matching host, PID, and user metadata: those fields cannot identify a process incarnation, and the enclosing execution may still be active. Inspect that execution before stopping or abandoning its whole scope; repeated child-only abandonment may still retain the checkout."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/help",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show all commands"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-commands-divider-12": {
+      "id": "b-25-commands-divider-12",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-25-commands-ai-routed-commands-13": {
+      "id": "b-25-commands-ai-routed-commands-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "AI-Routed Commands"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-the-following-commands-e-14": {
+      "id": "b-25-commands-the-following-commands-e-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The following commands exist in the command handler but are "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " deterministically routed. Instead, they are routed through the AI orchestrator, which decides whether to invoke them based on context. They work when the AI routes a message to them:"
+        }
+      ],
+      "children": []
+    },
+    "table-3-b8e62447": {
+      "id": "table-3-b8e62447",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/clone <repo-url>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Clone repository"
+          ],
+          [
+            [
+              {
+                "insert": "/repos",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List repositories (numbered)"
+          ],
+          [
+            [
+              {
+                "insert": "/repo <#|name> [pull]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Switch repo (auto-loads commands)"
+          ],
+          [
+            [
+              {
+                "insert": "/repo-remove <#|name>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Remove repo and codebase record"
+          ],
+          [
+            [
+              {
+                "insert": "/getcwd",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show working directory"
+          ],
+          [
+            [
+              {
+                "insert": "/setcwd <path>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Set working directory"
+          ],
+          [
+            [
+              {
+                "insert": "/command-set <name> <path> [text]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Register a command from file"
+          ],
+          [
+            [
+              {
+                "insert": "/load-commands <folder>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Bulk load commands (recursive)"
+          ],
+          [
+            [
+              {
+                "insert": "/commands",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List registered commands"
+          ],
+          [
+            [
+              {
+                "insert": "/worktree create <branch>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Create isolated worktree"
+          ],
+          [
+            [
+              {
+                "insert": "/worktree list",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Show worktrees for this repo"
+          ],
+          [
+            [
+              {
+                "insert": "/worktree remove [--force]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Remove current worktree"
+          ],
+          [
+            [
+              {
+                "insert": "/worktree cleanup merged|stale",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Clean up worktrees"
+          ],
+          [
+            [
+              {
+                "insert": "/worktree orphans",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Show secondary local-branch worktrees, including those created externally; use "
+              },
+              {
+                "insert": "git worktree list",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " for the full inventory"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/init",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Create "
+              },
+              {
+                "insert": ".archon",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " structure in current repo"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/reset-context",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Reset AI context, keep worktree"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-commands-note-in-practice-y-16": {
+      "id": "b-25-commands-note-in-practice-y-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " In practice, you rarely need to type these commands directly. Describe what you want in natural language and the AI router will invoke the appropriate command or workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-divider-17": {
+      "id": "b-25-commands-divider-17",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-25-commands-example-workflow-telegr-18": {
+      "id": "b-25-commands-example-workflow-telegr-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Example Workflow (Telegram)"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-ask-questions-directly-19": {
+      "id": "b-25-commands-ask-questions-directly-19",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Ask Questions Directly"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-code-20": {
+      "id": "b-25-commands-code-20",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "You: What's the structure of this repo?\n\nBot: [Claude analyzes and responds...]"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-check-status-21": {
+      "id": "b-25-commands-check-status-21",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Check Status"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-code-22": {
+      "id": "b-25-commands-code-22",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "You: /status\n\nBot: ## Orchestrator Status\n\n     **Platform**: telegram\n     **AI Assistant**: claude\n\n     ## Registered Projects (1)\n     - my-project (github.com)\n\n     ## Conversation Context\n     - Project: my-project @ main\n     - Working Directory: /workspace/my-project\n\n     Worktrees: 0 total"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-reset-session-23": {
+      "id": "b-25-commands-reset-session-23",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Reset Session"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-code-24": {
+      "id": "b-25-commands-code-24",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "You: /reset\n\nBot: Session cleared. Cleared workspace binding (worktree + isolation env).\n     Abandoned 1 resumable run(s). Project attachment preserved — next message\n     starts fresh."
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-divider-25": {
+      "id": "b-25-commands-divider-25",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-25-commands-example-workflow-github-26": {
+      "id": "b-25-commands-example-workflow-github-26",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Example Workflow (GitHub)"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-create-an-issue-or-comme-27": {
+      "id": "b-25-commands-create-an-issue-or-comme-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create an issue or comment on an existing issue/PR:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-code-28": {
+      "id": "b-25-commands-code-28",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@your-bot-name can you help me understand the authentication flow?"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-bot-responds-with-analys-29": {
+      "id": "b-25-commands-bot-responds-with-analys-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bot responds with analysis. Continue the conversation:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-code-30": {
+      "id": "b-25-commands-code-30",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@your-bot-name can you create a sequence diagram for this?"
+        }
+      ],
+      "children": []
+    },
+    "b-25-commands-bot-maintains-context-an-31": {
+      "id": "b-25-commands-bot-maintains-context-an-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bot maintains context and provides the diagram."
+        }
+      ],
+      "children": []
+    }
+  }
+}

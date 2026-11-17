@@ -1,0 +1,2121 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-45-skills",
+  "title": "Per-Node Skills",
+  "root": "b-45-skills-root-89",
+  "blocks": {
+    "b-45-skills-root-89": {
+      "id": "b-45-skills-root-89",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Select specialized knowledge for individual workflow nodes using provider-native skill systems.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/skills.md"
+      },
+      "children": [
+        "b-45-skills-dag-workflow-nodes-suppo-1",
+        "b-45-skills-delivery-is-provider-spe-2",
+        "b-45-skills-quick-start-3",
+        "b-45-skills-install-a-skill-e-g-t-4",
+        "b-45-skills-bash-5",
+        "b-45-skills-this-places-skill-md-fil-6",
+        "b-45-skills-reference-it-in-your-wor-7",
+        "b-45-skills-yaml-8",
+        "b-45-skills-for-codex-leave-out-the-9",
+        "b-45-skills-bash-10",
+        "b-45-skills-then-invoke-it-from-the-11",
+        "b-45-skills-markdown-12",
+        "b-45-skills-codex-then-loads-the-ori-13",
+        "b-45-skills-how-it-works-14",
+        "b-45-skills-claude-workflow-nodes-us-15",
+        "b-45-skills-code-16",
+        "b-45-skills-the-sdk-s-native-selecti-17",
+        "b-45-skills-on-claude-omission-and-18",
+        "b-45-skills-installing-skills-19",
+        "b-45-skills-skills-must-be-installed-20",
+        "b-45-skills-from-skills-sh-marketpl-21",
+        "b-45-skills-bash-22",
+        "b-45-skills-from-github-23",
+        "b-45-skills-bash-24",
+        "b-45-skills-manual-25",
+        "b-45-skills-create-a-directory-in-26",
+        "b-45-skills-code-27",
+        "b-45-skills-skill-md-format-28",
+        "b-45-skills-yaml-29",
+        "b-45-skills-skill-discovery-30",
+        "b-45-skills-skills-are-discovered-fr-31",
+        "table-0-0c7fa63f",
+        "b-45-skills-set-assistants-claude-s-33",
+        "b-45-skills-skills-installed-via-np-34",
+        "b-45-skills-scoping-installed-vs-ac-35",
+        "b-45-skills-installed-the-skil-36",
+        "b-45-skills-active-listed-in-37",
+        "b-45-skills-yaml-38",
+        "b-45-skills-all-three-skills-are-ins-39",
+        "b-45-skills-popular-skills-40",
+        "table-1-0c7fa63f",
+        "b-45-skills-multiple-skills-per-node-42",
+        "b-45-skills-a-node-can-have-multiple-43",
+        "b-45-skills-yaml-44",
+        "b-45-skills-keep-the-list-concise-c-45",
+        "b-45-skills-combining-skills-with-mc-46",
+        "b-45-skills-skills-and-mcp-compose-n-47",
+        "b-45-skills-yaml-48",
+        "b-45-skills-skills-teach-the-proce-49",
+        "b-45-skills-codex-compatibility-50",
+        "b-45-skills-codex-supports-installed-51",
+        "b-45-skills-for-every-codex-backed-w-52",
+        "b-45-skills-explicit-invocation-is-53",
+        "b-45-skills-command-file-or-prompt-54",
+        "b-45-skills-yaml-skills-is-not-55",
+        "b-45-skills-the-automatic-catalog-i-56",
+        "b-45-skills-omission-and-skills-57",
+        "b-45-skills-workflow-nodes-exact-lo-58",
+        "b-45-skills-skill-md-format-cod-59",
+        "b-45-skills-as-claude-code-any-clau-60",
+        "b-45-skills-plugin-skills-a-cod-61",
+        "b-45-skills-names-the-plugin-with-p-62",
+        "b-45-skills-behavioral-boundary-n-63",
+        "b-45-skills-ambient-skill-name-ca-64",
+        "b-45-skills-older-codex-binaries-65",
+        "b-45-skills-a-codex-that-does-not-kn-66",
+        "b-45-skills-normal-repository-instru-67",
+        "b-45-skills-limitations-68",
+        "b-45-skills-pre-installation-requi-69",
+        "b-45-skills-workflow-runs-there-is-70",
+        "b-45-skills-provider-native-paths-71",
+        "b-45-skills-claude-skills-archo-72",
+        "b-45-skills-container-workflows-73",
+        "b-45-skills-isolated-runner-a-host-74",
+        "b-45-skills-provider-semantics-dif-75",
+        "b-45-skills-skill-name-invocation-76",
+        "b-45-skills-how-claude-handles-an-un-77",
+        "b-45-skills-archon-distinguishes-two-78",
+        "table-2-0c7fa63f",
+        "b-45-skills-built-in-and-plugin-skil-80",
+        "b-45-skills-troubleshooting-81",
+        "table-3-0c7fa63f",
+        "b-45-skills-related-83",
+        "b-45-skills-inline-sub-agents-doc-84",
+        "b-45-skills-per-node-mcp-servers-85",
+        "b-45-skills-hooks-docs-30-authori-86",
+        "b-45-skills-skills-sh-https-skil-87",
+        "b-45-skills-agentskills-io-https-88"
+      ]
+    },
+    "b-45-skills-dag-workflow-nodes-suppo-1": {
+      "id": "b-45-skills-dag-workflow-nodes-suppo-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "DAG workflow nodes support a "
+        },
+        {
+          "insert": "skills",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for providers that can load named skills\nfor one node. Each node can receive specialized procedural knowledge (code review\npatterns, Remotion practices, testing conventions) without advertising it to every\nother node."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-delivery-is-provider-spe-2": {
+      "id": "b-45-skills-delivery-is-provider-spe-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Delivery is provider-specific. Claude, Pi, and Copilot consume the per-node list.\nCodex workflow nodes deliberately suppress Codex's automatic filesystem-skill catalog;\nauthors invoke an installed skill explicitly in the command or prompt with\n"
+        },
+        {
+          "insert": "$skill-name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". OpenCode does not currently implement the top-level YAML field. Check\nthe "
+        },
+        {
+          "insert": "provider capability matrix",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/70-provider-capabilities.md",
+              "label": "provider capability matrix"
+            }
+          }
+        },
+        {
+          "insert": " before relying on\nportable behavior."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-quick-start-3": {
+      "id": "b-45-skills-quick-start-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick Start"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-install-a-skill-e-g-t-4": {
+      "id": "b-45-skills-install-a-skill-e-g-t-4",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Install a skill (e.g., the official Remotion skill):"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-bash-5": {
+      "id": "b-45-skills-bash-5",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "npx skills add remotion-dev/skills"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-this-places-skill-md-fil-6": {
+      "id": "b-45-skills-this-places-skill-md-fil-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This places SKILL.md files in "
+        },
+        {
+          "insert": ".claude/skills/remotion-best-practices/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-reference-it-in-your-wor-7": {
+      "id": "b-45-skills-reference-it-in-your-wor-7",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Reference it in your workflow:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-8": {
+      "id": "b-45-skills-yaml-8",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: generate-video\ndescription: Generate a Remotion video\nnodes:\n  - id: generate\n    prompt: \"Create an animated countdown video\"\n    skills:\n      - remotion-best-practices"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-for-codex-leave-out-the-9": {
+      "id": "b-45-skills-for-codex-leave-out-the-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For Codex, leave out the "
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list (a Codex node that names skills fails the run\nbefore any node starts) and invoke the skill explicitly in the node body, preferably in\na named command file. First install it into Codex's native "
+        },
+        {
+          "insert": ".agents/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " root:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-bash-10": {
+      "id": "b-45-skills-bash-10",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "npx skills add remotion-dev/skills --agent codex --skill remotion-best-practices -y"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-then-invoke-it-from-the-11": {
+      "id": "b-45-skills-then-invoke-it-from-the-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then invoke it from the workflow body:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-markdown-12": {
+      "id": "b-45-skills-markdown-12",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "Use $remotion-best-practices to create the requested video."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-codex-then-loads-the-ori-13": {
+      "id": "b-45-skills-codex-then-loads-the-ori-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex then loads the original "
+        },
+        {
+          "insert": "SKILL.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and resolves its relative references,\nscripts, and assets from the installed directory."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-how-it-works-14": {
+      "id": "b-45-skills-how-it-works-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How It Works"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-claude-workflow-nodes-us-15": {
+      "id": "b-45-skills-claude-workflow-nodes-us-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude workflow nodes use the Agent SDK's native skill selector. Archon keeps\nClaude's normal project/user setting sources so "
+        },
+        {
+          "insert": "CLAUDE.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and agents still\nload, while selecting only the skills named by the node."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-code-16": {
+      "id": "b-45-skills-code-16",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "YAML: skills: [remotion-best-practices]\n  ↓\nClaude SDK options:\n  skills: [\"remotion-best-practices\"]\n  strictMcpConfig: true\n  ↓\nSDK loads only the declared skill into the main-session system prompt"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-the-sdk-s-native-selecti-17": {
+      "id": "b-45-skills-the-sdk-s-native-selecti-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The SDK's native selection also uses "
+        },
+        {
+          "insert": "Skill(name)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " permission rules. When a node\nsets "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Archon keeps the "
+        },
+        {
+          "insert": "Skill",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tool enabled automatically so the\ndeclared selection remains usable. You don't need to add it manually."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-on-claude-omission-and-18": {
+      "id": "b-45-skills-on-claude-omission-and-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Claude, omission and "
+        },
+        {
+          "insert": "skills: []",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " both select no skills. A non-empty list is\nan exact allowlist of installed Claude-native skills for that node. The separate\n"
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " default remains "
+        },
+        {
+          "insert": "['project', 'user']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", preserving project/user\ninstructions and agents without making their ambient skills available. A declared\nskill installed on disk must live under an enabled source: project skills require\n"
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and user-global skills require "
+        },
+        {
+          "insert": "user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon checks that before starting\nthe provider, see "
+        },
+        {
+          "insert": "How Claude handles an unresolved name",
+          "attributes": {
+            "link": "#how-claude-handles-an-unresolved-name"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-installing-skills-19": {
+      "id": "b-45-skills-installing-skills-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Installing Skills"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-must-be-installed-20": {
+      "id": "b-45-skills-skills-must-be-installed-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Skills must be installed on the filesystem before they can be referenced."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-from-skills-sh-marketpl-21": {
+      "id": "b-45-skills-from-skills-sh-marketpl-21",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "From skills.sh (marketplace)"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-bash-22": {
+      "id": "b-45-skills-bash-22",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Install to current project\nnpx skills add remotion-dev/skills\n\n# Install globally (all projects)\nnpx skills add remotion-dev/skills -g\n\n# Install a specific skill from a multi-skill repo\nnpx skills add anthropics/skills --skill skill-creator\n\n# Search for skills\nnpx skills find \"database\""
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-from-github-23": {
+      "id": "b-45-skills-from-github-23",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "From GitHub"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-bash-24": {
+      "id": "b-45-skills-bash-24",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Public repo\nnpx skills add owner/repo\n\n# Specific path in repo\nnpx skills add owner/repo/path/to/skill\n\n# Private repo (uses SSH keys or GITHUB_TOKEN)\nnpx skills add git@github.com:org/private-skills.git"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-manual-25": {
+      "id": "b-45-skills-manual-25",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Manual"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-create-a-directory-in-26": {
+      "id": "b-45-skills-create-a-directory-in-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create a directory in "
+        },
+        {
+          "insert": ".claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with a "
+        },
+        {
+          "insert": "SKILL.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-code-27": {
+      "id": "b-45-skills-code-27",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": ".claude/skills/my-skill/\n└── SKILL.md"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skill-md-format-28": {
+      "id": "b-45-skills-skill-md-format-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "SKILL.md format:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-29": {
+      "id": "b-45-skills-yaml-29",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "---\nname: my-skill\ndescription: What this skill does and when to use it\n---\n\n# Instructions\n\nStep-by-step content here. The agent loads this when the skill activates."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skill-discovery-30": {
+      "id": "b-45-skills-skill-discovery-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Skill Discovery"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-are-discovered-fr-31": {
+      "id": "b-45-skills-skills-are-discovered-fr-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Skills are discovered from these locations (via the default\n"
+        },
+        {
+          "insert": "settingSources: ['project', 'user']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set in ClaudeProvider):"
+        }
+      ],
+      "children": []
+    },
+    "table-0-0c7fa63f": {
+      "id": "table-0-0c7fa63f",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Location",
+          "Scope"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": ".claude/skills/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (in cwd)"
+              }
+            ],
+            "Project-level"
+          ],
+          [
+            [
+              {
+                "insert": "~/.claude/skills/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "User-level (all projects)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-skills-set-assistants-claude-s-33": {
+      "id": "b-45-skills-set-assistants-claude-s-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set "
+        },
+        {
+          "insert": "assistants.claude.settingSources: ['project']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nwhen you also want to exclude user-level instructions and agents. Skill selection\nitself remains exact per node, but a user-global declared skill is unavailable when\nthe "
+        },
+        {
+          "insert": "user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " source is disabled."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-installed-via-np-34": {
+      "id": "b-45-skills-skills-installed-via-np-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Skills installed via "
+        },
+        {
+          "insert": "npx skills add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " land in "
+        },
+        {
+          "insert": ".claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " by default.\nUse "
+        },
+        {
+          "insert": "-g",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for global installation to "
+        },
+        {
+          "insert": "~/.claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-scoping-installed-vs-ac-35": {
+      "id": "b-45-skills-scoping-installed-vs-ac-35",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Scoping: Installed vs Active"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-installed-the-skil-36": {
+      "id": "b-45-skills-installed-the-skil-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Installed",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " = the skill exists under a provider-native directory on disk."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-active-listed-in-37": {
+      "id": "b-45-skills-active-listed-in-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Active",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " = listed in "
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a specific DAG node. Only THAT node gets the\nskill content injected into its context."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-38": {
+      "id": "b-45-skills-yaml-38",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: classify\n    prompt: \"Classify this task\"\n    # No skills — fast, cheap, no extra context\n\n  - id: implement\n    prompt: \"Write the code\"\n    skills: [code-conventions, testing-patterns]\n    # Gets both skills injected — deeper domain knowledge\n\n  - id: review\n    prompt: \"Review the code\"\n    skills: [code-review]\n    # Gets a different skill — review-focused expertise"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-all-three-skills-are-ins-39": {
+      "id": "b-45-skills-all-three-skills-are-ins-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All three skills are installed on disk. But each node only advertises and loads\nwhat it declares.\nThis follows the Stripe Minions principle: \"agents perform best when given a\nsmaller box with a tastefully curated set of tools.\""
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-popular-skills-40": {
+      "id": "b-45-skills-popular-skills-40",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Popular Skills"
+        }
+      ],
+      "children": []
+    },
+    "table-1-0c7fa63f": {
+      "id": "table-1-0c7fa63f",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Skill",
+          "Install",
+          "What It Teaches"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "archon-cli",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (bundled)"
+              }
+            ],
+            [
+              {
+                "insert": "archon skill add",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Run, manage, configure, and author Archon workflows through the CLI"
+          ],
+          [
+            [
+              {
+                "insert": "remotion-best-practices",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "npx skills add remotion-dev/skills",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Remotion animation patterns, API usage, gotchas (35 rules)"
+          ],
+          [
+            [
+              {
+                "insert": "skill-creator",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "npx skills add anthropics/skills",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "How to create new SKILL.md files"
+          ],
+          [
+            "Community skills",
+            [
+              {
+                "insert": "Browse "
+              },
+              {
+                "insert": "skills.sh",
+                "attributes": {
+                  "link": "https://skills.sh"
+                }
+              }
+            ],
+            "Search 500K+ skills for any domain"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-skills-multiple-skills-per-node-42": {
+      "id": "b-45-skills-multiple-skills-per-node-42",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Multiple Skills Per Node"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-a-node-can-have-multiple-43": {
+      "id": "b-45-skills-a-node-can-have-multiple-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A node can have multiple skills. All are injected:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-44": {
+      "id": "b-45-skills-yaml-44",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "  - id: implement\n    prompt: \"Build the feature\"\n    skills:\n      - code-conventions\n      - testing-patterns\n      - api-design"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-keep-the-list-concise-c-45": {
+      "id": "b-45-skills-keep-the-list-concise-c-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep the list concise. Claude loads each selected skill into the main-session\nsystem prompt; unlisted installed skills are not exposed to that workflow node."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-combining-skills-with-mc-46": {
+      "id": "b-45-skills-combining-skills-with-mc-46",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Combining Skills with MCP"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-and-mcp-compose-n-47": {
+      "id": "b-45-skills-skills-and-mcp-compose-n-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Skills and MCP compose naturally on the same node:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-48": {
+      "id": "b-45-skills-yaml-48",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "  - id: create-pr\n    prompt: \"Create a PR with the changes\"\n    skills:\n      - pr-conventions      # Teaches HOW to write good PRs\n    mcp: .archon/mcp/github.json  # Provides the GitHub tools"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-teach-the-proce-49": {
+      "id": "b-45-skills-skills-teach-the-proce-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Skills teach the "
+        },
+        {
+          "insert": "process",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". MCP provides the "
+        },
+        {
+          "insert": "capability",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". Together they\nproduce better results than either alone."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-codex-compatibility-50": {
+      "id": "b-45-skills-codex-compatibility-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Codex Compatibility"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-codex-supports-installed-51": {
+      "id": "b-45-skills-codex-supports-installed-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex supports installed skills through native filesystem discovery from\n"
+        },
+        {
+          "insert": "<project>/.agents/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and its user-level Codex roots. It does not natively\ndiscover "
+        },
+        {
+          "insert": ".claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-for-every-codex-backed-w-52": {
+      "id": "b-45-skills-for-every-codex-backed-w-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For every Codex-backed workflow AI node, Archon disables the automatic skill catalog.\nThis prevents description matching from spontaneously selecting an unrelated ambient\nskill. Direct Codex chat and other non-workflow calls keep their normal Codex behavior."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-explicit-invocation-is-53": {
+      "id": "b-45-skills-explicit-invocation-is-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Explicit invocation is required",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": write "
+        },
+        {
+          "insert": "Use $skill-name to ...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-command-file-or-prompt-54": {
+      "id": "b-45-skills-command-file-or-prompt-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "command file or prompt. Codex performs progressive disclosure and loads the\nselected skill from its original directory."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-yaml-skills-is-not-55": {
+      "id": "b-45-skills-yaml-skills-is-not-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "YAML ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is not Codex activation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a non-empty list does not re-enable"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-the-automatic-catalog-i-56": {
+      "id": "b-45-skills-the-automatic-catalog-i-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "the automatic catalog, inject metadata, or create an exclusive allowlist, so a\nnon-empty list on a Codex node fails the run before any node starts. Remove it and\nwrite the explicit "
+        },
+        {
+          "insert": "$skill-name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " invocation instead."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-omission-and-skills-57": {
+      "id": "b-45-skills-omission-and-skills-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Omission and ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "skills: []",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": both keep the automatic catalog off on Codex"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-workflow-nodes-exact-lo-58": {
+      "id": "b-45-skills-workflow-nodes-exact-lo-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workflow nodes. Exact-loading providers interpret "
+        },
+        {
+          "insert": "[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as an empty declared set."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skill-md-format-cod-59": {
+      "id": "b-45-skills-skill-md-format-cod-59",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "SKILL.md format",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Codex parses the same "
+        },
+        {
+          "insert": "name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "description",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " frontmatter"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-as-claude-code-any-clau-60": {
+      "id": "b-45-skills-as-claude-code-any-clau-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "as Claude Code. Any Claude-specific "
+        },
+        {
+          "insert": "!bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " execution lines in a skill body\nare treated as literal text by Codex (no error, no execution)."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-plugin-skills-a-cod-61": {
+      "id": "b-45-skills-plugin-skills-a-cod-61",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Plugin skills",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a Codex plugin's skills are available only when the node"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-names-the-plugin-with-p-62": {
+      "id": "b-45-skills-names-the-plugin-with-p-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "names the plugin with "
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Invoke one as "
+        },
+        {
+          "insert": "$<plugin>:<skill>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Skills of\nplugins the node does not name are unavailable, even on explicit request."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-behavioral-boundary-n-63": {
+      "id": "b-45-skills-behavioral-boundary-n-63",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Behavioral boundary, not filesystem security",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": an explicit request for an"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-ambient-skill-name-ca-64": {
+      "id": "b-45-skills-ambient-skill-name-ca-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "ambient "
+        },
+        {
+          "insert": "$skill-name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can still activate that installed skill. Archon prevents\nautomatic advertisement; it does not hide or move files."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-older-codex-binaries-65": {
+      "id": "b-45-skills-older-codex-binaries-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Older Codex binaries",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Archon always sends "
+        },
+        {
+          "insert": "skills.include_instructions=false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-a-codex-that-does-not-kn-66": {
+      "id": "b-45-skills-a-codex-that-does-not-kn-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A Codex that does not know the key ignores it with a config warning, and Archon\ndoes not warn on top of that, so such a binary may still advertise its catalog."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-normal-repository-instru-67": {
+      "id": "b-45-skills-normal-repository-instru-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Normal repository instructions such as "
+        },
+        {
+          "insert": "AGENTS.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remain active with the catalog off."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-limitations-68": {
+      "id": "b-45-skills-limitations-68",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Limitations"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-pre-installation-requi-69": {
+      "id": "b-45-skills-pre-installation-requi-69",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Pre-installation required",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a skill installed on disk must exist before the"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-workflow-runs-there-is-70": {
+      "id": "b-45-skills-workflow-runs-there-is-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workflow runs. There is no on-demand fetching (yet)."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-provider-native-paths-71": {
+      "id": "b-45-skills-provider-native-paths-71",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Provider-native paths",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Claude declarations resolve only from project/user"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-claude-skills-archo-72": {
+      "id": "b-45-skills-claude-skills-archo-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": ".claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; Archon does not copy "
+        },
+        {
+          "insert": ".agents/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into Claude's roots."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-container-workflows-73": {
+      "id": "b-45-skills-container-workflows-73",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Container workflows",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": only project-local "
+        },
+        {
+          "insert": ".claude/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is visible in the"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-isolated-runner-a-host-74": {
+      "id": "b-45-skills-isolated-runner-a-host-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "isolated runner. A host user-global skill must also be installed in the project\nbefore a container node can declare it; Archon fails before provider spend otherwise."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-provider-semantics-dif-75": {
+      "id": "b-45-skills-provider-semantics-dif-75",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Provider semantics differ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": consult the capability matrix. Codex uses explicit"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skill-name-invocation-76": {
+      "id": "b-45-skills-skill-name-invocation-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "$skill-name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " invocation rather than YAML list injection."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-how-claude-handles-an-un-77": {
+      "id": "b-45-skills-how-claude-handles-an-un-77",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "How Claude handles an unresolved name"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-archon-distinguishes-two-78": {
+      "id": "b-45-skills-archon-distinguishes-two-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon distinguishes two cases, because Claude's skill namespace is larger than the\nfilesystem:"
+        }
+      ],
+      "children": []
+    },
+    "table-2-0c7fa63f": {
+      "id": "table-2-0c7fa63f",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "The declared name",
+          "Archon's response"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Installed, but not in a "
+              },
+              {
+                "insert": ".claude/skills/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " directory an enabled setting source covers: for example it only exists under "
+              },
+              {
+                "insert": ".agents/skills/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or under "
+              },
+              {
+                "insert": "user",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " scope while "
+              },
+              {
+                "insert": "settingSources: ['project']",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Error before spend.",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " Claude provably cannot load it, and the fix is a path change."
+              }
+            ]
+          ],
+          [
+            "Absent from every skills directory",
+            [
+              {
+                "insert": "Warning, and the run continues.",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " Claude's own "
+              },
+              {
+                "insert": "built-in",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " skills and "
+              },
+              {
+                "insert": "plugin-qualified",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " names ("
+              },
+              {
+                "insert": "plugin:skill",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") live outside any skills directory, so Archon lets the SDK resolve them. A misspelled name lands here too: it is reported, and Claude ignores an unknown name rather than loading it."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-skills-built-in-and-plugin-skil-80": {
+      "id": "b-45-skills-built-in-and-plugin-skil-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Built-in and plugin skills are therefore declarable on a Claude node, exactly like an\ninstalled one. A plugin's skill loads only when the node also names that plugin under\n"
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", because a workflow node loads no plugin it does not name (see\n"
+        },
+        {
+          "insert": "Plugins",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "plugins",
+              "label": "Plugins"
+            }
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-troubleshooting-81": {
+      "id": "b-45-skills-troubleshooting-81",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "table-3-0c7fa63f": {
+      "id": "table-3-0c7fa63f",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Problem",
+          "Cause",
+          "Fix"
+        ],
+        "rows": [
+          [
+            "Claude skill not found (error)",
+            [
+              {
+                "insert": "Installed, but outside an enabled "
+              },
+              {
+                "insert": ".claude/skills/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " root"
+              }
+            ],
+            [
+              {
+                "insert": "Move it to "
+              },
+              {
+                "insert": ".claude/skills/<name>/SKILL.md",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or enable the setting source that holds it"
+              }
+            ]
+          ],
+          [
+            "Claude skill not found (warning)",
+            [
+              {
+                "insert": "Absent from disk: normal for built-in and "
+              },
+              {
+                "insert": "plugin:skill",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " names"
+              }
+            ],
+            [
+              {
+                "insert": "Ignore it for those, and name the plugin under "
+              },
+              {
+                "insert": "plugins:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " for a "
+              },
+              {
+                "insert": "plugin:skill",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "; otherwise check the spelling or run "
+              },
+              {
+                "insert": "npx skills add <source>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Codex does not use a skill",
+            "Automatic catalogs are off in workflow nodes",
+            [
+              {
+                "insert": "Invoke it explicitly in the command/prompt with "
+              },
+              {
+                "insert": "$skill-name",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and install it under a Codex-native root such as "
+              },
+              {
+                "insert": ".agents/skills/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Codex run fails on "
+              },
+              {
+                "insert": "skills:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Codex does not implement the YAML list",
+            [
+              {
+                "insert": "Remove the list from Codex nodes; use "
+              },
+              {
+                "insert": "$skill-name",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " in the command or prompt"
+              }
+            ]
+          ],
+          [
+            "Too many skills",
+            "Context budget exceeded",
+            "Reduce to 2-3 most relevant skills per node"
+          ],
+          [
+            "Skill has no effect",
+            "Description too vague",
+            "Rewrite SKILL.md with specific, actionable instructions"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-skills-related-83": {
+      "id": "b-45-skills-related-83",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Related"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-inline-sub-agents-doc-84": {
+      "id": "b-45-skills-inline-sub-agents-doc-84",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Inline sub-agents",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "inline-sub-agents",
+              "label": "Inline sub-agents"
+            }
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "agents:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for workflow-scoped sub-agents (composes independently with native per-node skill selection)"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-per-node-mcp-servers-85": {
+      "id": "b-45-skills-per-node-mcp-servers-85",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node MCP Servers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/40-mcp-servers.md",
+              "label": "Per-Node MCP Servers"
+            }
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for external tool access"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-hooks-docs-30-authori-86": {
+      "id": "b-45-skills-hooks-docs-30-authori-86",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Hooks",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/35-hooks.md",
+              "label": "Hooks"
+            }
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for tool permission control"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-skills-sh-https-skil-87": {
+      "id": "b-45-skills-skills-sh-https-skil-87",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "skills.sh",
+          "attributes": {
+            "link": "https://skills.sh"
+          }
+        },
+        {
+          "insert": ": marketplace for discovering skills"
+        }
+      ],
+      "children": []
+    },
+    "b-45-skills-agentskills-io-https-88": {
+      "id": "b-45-skills-agentskills-io-https-88",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "agentskills.io",
+          "attributes": {
+            "link": "https://agentskills.io"
+          }
+        },
+        {
+          "insert": ": the open SKILL.md standard"
+        }
+      ],
+      "children": []
+    }
+  }
+}

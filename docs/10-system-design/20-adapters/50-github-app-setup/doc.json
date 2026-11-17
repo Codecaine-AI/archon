@@ -1,0 +1,3667 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-50-github-app-setup",
+  "title": "GitHub App Setup",
+  "root": "b-50-github-app-setup-root-143",
+  "blocks": {
+    "b-50-github-app-setup-root-143": {
+      "id": "b-50-github-app-setup-root-143",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Run Archon's bot identity as a registered GitHub App with multi-installation routing.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/github-app-setup.md"
+      },
+      "children": [
+        "b-50-github-app-setup-this-is-the-recommended-1",
+        "b-50-github-app-setup-bot-comments-appear-as-2",
+        "b-50-github-app-setup-installation-access-toke-3",
+        "b-50-github-app-setup-webhooks-centralise-one-4",
+        "b-50-github-app-setup-a-team-s-repos-can-span-5",
+        "b-50-github-app-setup-solo-installs-that-only-6",
+        "b-50-github-app-setup-when-to-use-app-mode-vs-7",
+        "table-0-054eb579",
+        "b-50-github-app-setup-archon-refuses-to-start-9",
+        "b-50-github-app-setup-step-1-register-the-git-10",
+        "b-50-github-app-setup-go-to-https-github-co-11",
+        "b-50-github-app-setup-fill-in-12",
+        "b-50-github-app-setup-webhook-bodies-are-limit-17",
+        "b-50-github-app-setup-uncheck-active-on-th-18",
+        "b-50-github-app-setup-step-2-permissions-fin-19",
+        "b-50-github-app-setup-repository-permissions-20",
+        "table-1-054eb579",
+        "b-50-github-app-setup-github-refuses-pushes-th-22",
+        "b-50-github-app-setup-account-permissions-23",
+        "b-50-github-app-setup-step-3-subscribe-to-web-24",
+        "b-50-github-app-setup-subscribe-to-25",
+        "b-50-github-app-setup-issue-comments-26",
+        "b-50-github-app-setup-check-runs-27",
+        "b-50-github-app-setup-pull-request-review-comm-28",
+        "b-50-github-app-setup-pull-request-29",
+        "b-50-github-app-setup-issues-used-for-closed-30",
+        "b-50-github-app-setup-existing-installations-m-31",
+        "b-50-github-app-setup-step-4-generate-a-priva-32",
+        "b-50-github-app-setup-after-saving-the-app-sc-33",
+        "b-50-github-app-setup-save-the-downloaded-pe-34",
+        "b-50-github-app-setup-step-5-install-the-app-35",
+        "b-50-github-app-setup-install-the-app-on-every-36",
+        "b-50-github-app-setup-from-the-app-settings-pa-37",
+        "b-50-github-app-setup-pick-the-org-grant-acc-38",
+        "b-50-github-app-setup-repeat-for-every-org-acc-39",
+        "b-50-github-app-setup-multi-installation-40",
+        "b-50-github-app-setup-step-6-configure-archon-41",
+        "b-50-github-app-setup-add-the-following-to-42",
+        "b-50-github-app-setup-dotenv-43",
+        "b-50-github-app-setup-cli-workflow-run-det-44",
+        "b-50-github-app-setup-incomplete-app-settings-45",
+        "b-50-github-app-setup-each-workflow-execution-46",
+        "b-50-github-app-setup-inline-private-key-alte-47",
+        "b-50-github-app-setup-if-you-can-t-write-a-fil-48",
+        "b-50-github-app-setup-dotenv-49",
+        "b-50-github-app-setup-archon-normalises-the-li-50",
+        "b-50-github-app-setup-unset-the-pat-51",
+        "b-50-github-app-setup-archon-refuses-to-start-52",
+        "b-50-github-app-setup-step-7-restart-archon-a-53",
+        "b-50-github-app-setup-restart-the-server-54",
+        "b-50-github-app-setup-confirm-the-startup-log-55",
+        "b-50-github-app-setup-trigger-a-webhook-from-a-56",
+        "b-50-github-app-setup-confirm-the-bot-s-reply-57",
+        "b-50-github-app-setup-step-8-optional-enabl-58",
+        "b-50-github-app-setup-by-default-github-api-re-59",
+        "b-50-github-app-setup-enable-the-feature-by-ad-60",
+        "b-50-github-app-setup-bash-61",
+        "b-50-github-app-setup-then-on-the-github-app-62",
+        "b-50-github-app-setup-teammates-connect-once-v-63",
+        "b-50-github-app-setup-cli-archon-auth-gi-64",
+        "b-50-github-app-setup-web-ui-settings-65",
+        "b-50-github-app-setup-once-enabled-66",
+        "b-50-github-app-setup-run-commits-use-the-init-67",
+        "b-50-github-app-setup-workflows-declaring-req-68",
+        "b-50-github-app-setup-an-unconnected-user-s-wo-69",
+        "b-50-github-app-setup-rotating-token-encrypti-70",
+        "b-50-github-app-setup-this-is-fully-backward-c-71",
+        "b-50-github-app-setup-operational-notes-72",
+        "b-50-github-app-setup-token-rotation-is-invisi-73",
+        "b-50-github-app-setup-installation-tokens-are-74",
+        "b-50-github-app-setup-event-installation-id-75",
+        "b-50-github-app-setup-every-webhook-delivery-f-76",
+        "b-50-github-app-setup-401-forces-a-single-retr-77",
+        "b-50-github-app-setup-a-401-from-any-installat-78",
+        "b-50-github-app-setup-long-running-workflow-g-79",
+        "b-50-github-app-setup-workflows-that-span-1h-80",
+        "b-50-github-app-setup-the-helper-is-embedded-i-81",
+        "b-50-github-app-setup-long-running-workflow-g-82",
+        "b-50-github-app-setup-a-run-s-gh-token-and-83",
+        "b-50-github-app-setup-gh-keeps-the-start-tim-84",
+        "b-50-github-app-setup-a-cli-run-without-arc-85",
+        "b-50-github-app-setup-gh-called-by-a-codex-86",
+        "b-50-github-app-setup-windows-the-shim-is-87",
+        "b-50-github-app-setup-run-output-redacts-the-s-88",
+        "b-50-github-app-setup-internal-endpoint-securi-89",
+        "b-50-github-app-setup-the-credential-helper-ba-90",
+        "b-50-github-app-setup-archon-enforces-this-at-91",
+        "b-50-github-app-setup-recommended-bare-meta-92",
+        "b-50-github-app-setup-opt-in-escape-hatch-93",
+        "b-50-github-app-setup-example-caddy-snippet-th-94",
+        "b-50-github-app-setup-txt-95",
+        "b-50-github-app-setup-canonical-docker-setup-96",
+        "b-50-github-app-setup-the-canonical-archon-doc-97",
+        "b-50-github-app-setup-1-in-docker-compose-98",
+        "b-50-github-app-setup-yaml-99",
+        "b-50-github-app-setup-the-override-tag-com-100",
+        "b-50-github-app-setup-2-in-caddyfile-dro-101",
+        "b-50-github-app-setup-the-maintained-caddyfil-102",
+        "b-50-github-app-setup-txt-103",
+        "b-50-github-app-setup-caddy-evaluates-handle-104",
+        "b-50-github-app-setup-3-in-env-opt-out-105",
+        "b-50-github-app-setup-ini-106",
+        "b-50-github-app-setup-without-this-flag-archo-107",
+        "b-50-github-app-setup-apply-verify-108",
+        "b-50-github-app-setup-sh-109",
+        "b-50-github-app-setup-if-the-external-post-pro-110",
+        "b-50-github-app-setup-migration-from-pat-mode-111",
+        "b-50-github-app-setup-register-the-app-and-ins-112",
+        "b-50-github-app-setup-add-github-app-env-v-113",
+        "b-50-github-app-setup-remove-github-token-114",
+        "b-50-github-app-setup-remove-gh-token-if-115",
+        "b-50-github-app-setup-restart-archon-116",
+        "b-50-github-app-setup-webhook-urls-configured-117",
+        "b-50-github-app-setup-in-app-mode-adding-a-pr-118",
+        "b-50-github-app-setup-run-archon-doctor-to-v-119",
+        "b-50-github-app-setup-troubleshooting-120",
+        "b-50-github-app-setup-appprivatekeyerror-pro-121",
+        "b-50-github-app-setup-check-the-file-content-i-122",
+        "b-50-github-app-setup-for-inline-keys-ensure-123",
+        "b-50-github-app-setup-appnotinstallederror-t-124",
+        "b-50-github-app-setup-the-app-is-not-installed-125",
+        "b-50-github-app-setup-401-loop-on-github-api-c-126",
+        "b-50-github-app-setup-repeated-401s-on-outboun-127",
+        "b-50-github-app-setup-verify-the-app-is-instal-128",
+        "b-50-github-app-setup-verify-the-private-key-i-129",
+        "b-50-github-app-setup-verify-github-app-insta-130",
+        "b-50-github-app-setup-github-refuses-a-branch-131",
+        "b-50-github-app-setup-an-installation-token-ne-132",
+        "b-50-github-app-setup-verify-the-app-s-permiss-133",
+        "b-50-github-app-setup-webhook-deliveries-fail-134",
+        "b-50-github-app-setup-a-webhook-secret-mismatc-135",
+        "b-50-github-app-setup-webhook-secret-in-arch-136",
+        "b-50-github-app-setup-bot-comments-still-appea-137",
+        "b-50-github-app-setup-you-re-still-in-pat-mode-138",
+        "b-50-github-app-setup-server-refused-to-start-139",
+        "b-50-github-app-setup-app-mode-is-active-but-t-140",
+        "b-50-github-app-setup-server-log-shows-github-141",
+        "b-50-github-app-setup-you-set-archon-allow-in-142"
+      ]
+    },
+    "b-50-github-app-setup-this-is-the-recommended-1": {
+      "id": "b-50-github-app-setup-this-is-the-recommended-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is the recommended GitHub auth mode for teams sharing one Archon instance. It replaces the shared "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " PAT with a registered GitHub App so that:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-bot-comments-appear-as-2": {
+      "id": "b-50-github-app-setup-bot-comments-appear-as-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Bot comments appear as "
+        },
+        {
+          "insert": "archon[bot]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the App badge, not under an operator's personal account."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-installation-access-toke-3": {
+      "id": "b-50-github-app-setup-installation-access-toke-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Installation access tokens rotate automatically every ~1h (smaller blast radius if leaked)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhooks-centralise-one-4": {
+      "id": "b-50-github-app-setup-webhooks-centralise-one-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Webhooks centralise: one URL per App covers every installation."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-a-team-s-repos-can-span-5": {
+      "id": "b-50-github-app-setup-a-team-s-repos-can-span-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A team's repos can span multiple GitHub orgs (or a mix of orgs and personal accounts): Archon routes per-(owner, repo) to the right installation transparently."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-solo-installs-that-only-6": {
+      "id": "b-50-github-app-setup-solo-installs-that-only-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Solo installs that only need the PAT model can ignore this page; see "
+        },
+        {
+          "insert": "GitHub",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/40-github.md",
+              "label": "GitHub"
+            }
+          }
+        },
+        {
+          "insert": " for the legacy setup."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-when-to-use-app-mode-vs-7": {
+      "id": "b-50-github-app-setup-when-to-use-app-mode-vs-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "When to use App mode vs. PAT mode"
+        }
+      ],
+      "children": []
+    },
+    "table-0-054eb579": {
+      "id": "table-0-054eb579",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Situation",
+          "Recommended mode"
+        ],
+        "rows": [
+          [
+            "Solo developer, single GitHub account",
+            "PAT"
+          ],
+          [
+            "Team of 2+ sharing one Archon instance",
+            "App"
+          ],
+          [
+            "Repos across multiple orgs",
+            "App"
+          ],
+          [
+            [
+              {
+                "insert": "You want bot comments to attribute as "
+              },
+              {
+                "insert": "<slug>[bot]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " with App badge"
+              }
+            ],
+            "App"
+          ],
+          [
+            "You want short-lived (1h) tokens instead of long-lived PAT",
+            "App"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-github-app-setup-archon-refuses-to-start-9": {
+      "id": "b-50-github-app-setup-archon-refuses-to-start-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon refuses to start with "
+        },
+        {
+          "insert": "both",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " modes configured. Pick one set of env vars."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-1-register-the-git-10": {
+      "id": "b-50-github-app-setup-step-1-register-the-git-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 1: Register the GitHub App"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-go-to-https-github-co-11": {
+      "id": "b-50-github-app-setup-go-to-https-github-co-11",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to <https://github.com/settings/apps/new> (or "
+        },
+        {
+          "insert": "https://github.com/organizations/<org>/settings/apps/new",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for an org-owned App)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-fill-in-12": {
+      "id": "b-50-github-app-setup-fill-in-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Fill in:"
+        }
+      ],
+      "children": [
+        "b-50-github-app-setup-github-app-name-e-g-13",
+        "b-50-github-app-setup-homepage-url-your-t-14",
+        "b-50-github-app-setup-webhook-url-https-15",
+        "b-50-github-app-setup-webhook-secret-same-16"
+      ]
+    },
+    "b-50-github-app-setup-github-app-name-e-g-13": {
+      "id": "b-50-github-app-setup-github-app-name-e-g-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitHub App name",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": e.g. "
+        },
+        {
+          "insert": "Archon Bot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The slug derived from this (visible in the App URL) is what you'll later set as "
+        },
+        {
+          "insert": "GITHUB_APP_SLUG",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Self-filter compares against "
+        },
+        {
+          "insert": "<slug>[bot]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-homepage-url-your-t-14": {
+      "id": "b-50-github-app-setup-homepage-url-your-t-14",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Homepage URL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": your team's Archon URL, e.g. "
+        },
+        {
+          "insert": "https://archon.example.com/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-url-https-15": {
+      "id": "b-50-github-app-setup-webhook-url-https-15",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Webhook URL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "https://archon.example.com/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-secret-same-16": {
+      "id": "b-50-github-app-setup-webhook-secret-same-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Webhook secret",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": same value as your "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " env var."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-bodies-are-limit-17": {
+      "id": "b-50-github-app-setup-webhook-bodies-are-limit-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Webhook bodies are limited to "
+        },
+        {
+          "insert": "32 MiB (33,554,432 bytes)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", inclusive. Larger bodies receive HTTP "
+        },
+        {
+          "insert": "413",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " before the signature is checked; Archon stops reading them and creates no receipt or workflow start. This limit applies only to webhook routes."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-uncheck-active-on-th-18": {
+      "id": "b-50-github-app-setup-uncheck-active-on-th-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Uncheck "
+        },
+        {
+          "insert": "Active",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " on the user authorisation callback URL: Archon doesn't use OAuth in PR-B."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-2-permissions-fin-19": {
+      "id": "b-50-github-app-setup-step-2-permissions-fin-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 2: Permissions (fine-grained)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-repository-permissions-20": {
+      "id": "b-50-github-app-setup-repository-permissions-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Repository permissions:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "table-1-054eb579": {
+      "id": "table-1-054eb579",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Permission",
+          "Access",
+          "Used for"
+        ],
+        "rows": [
+          [
+            "Actions",
+            "Read & Write",
+            "Observing GitHub Actions workflow runs and rerunning failed CI"
+          ],
+          [
+            "Checks",
+            "Read",
+            "Waking workflow CI waits when a check concludes"
+          ],
+          [
+            "Contents",
+            "Read & Write",
+            "Cloning, reading repo metadata, pushing branches, and merging pull requests"
+          ],
+          [
+            "Workflows",
+            "Read & Write",
+            [
+              {
+                "insert": "Required only when runs create or change files under "
+              },
+              {
+                "insert": ".github/workflows/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Issues",
+            "Read & Write",
+            [
+              {
+                "insert": "createComment",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " + "
+              },
+              {
+                "insert": "listComments",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Pull requests",
+            "Read & Write",
+            [
+              {
+                "insert": "pulls.get",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " + comment posting"
+              }
+            ]
+          ],
+          [
+            "Metadata",
+            "Read",
+            "Mandatory (auto-included)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-github-app-setup-github-refuses-pushes-th-22": {
+      "id": "b-50-github-app-setup-github-refuses-pushes-th-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub refuses pushes that create or change files under "
+        },
+        {
+          "insert": ".github/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " unless the App has "
+        },
+        {
+          "insert": "Workflows: Read & Write",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", even when "
+        },
+        {
+          "insert": "Contents: Read & Write",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " is granted. See "
+        },
+        {
+          "insert": "GitHub's Git access permissions",
+          "attributes": {
+            "link": "https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/choosing-permissions-for-a-github-app#choosing-permissions-for-git-access"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-account-permissions-23": {
+      "id": "b-50-github-app-setup-account-permissions-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Account permissions:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " none."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-3-subscribe-to-web-24": {
+      "id": "b-50-github-app-setup-step-3-subscribe-to-web-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 3: Subscribe to webhook events"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-subscribe-to-25": {
+      "id": "b-50-github-app-setup-subscribe-to-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subscribe to:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-issue-comments-26": {
+      "id": "b-50-github-app-setup-issue-comments-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Issue comments"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-check-runs-27": {
+      "id": "b-50-github-app-setup-check-runs-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Check runs"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-pull-request-review-comm-28": {
+      "id": "b-50-github-app-setup-pull-request-review-comm-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Pull request review comments"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-pull-request-29": {
+      "id": "b-50-github-app-setup-pull-request-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Pull request"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-issues-used-for-closed-30": {
+      "id": "b-50-github-app-setup-issues-used-for-closed-30",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Issues (used for "
+        },
+        {
+          "insert": "closed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cleanup)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-existing-installations-m-31": {
+      "id": "b-50-github-app-setup-existing-installations-m-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Existing installations must accept the added Checks permission before check-run wake-ups work. If a check-run webhook is unavailable, delivery still progresses after the wait's five-minute deadline and probes CI again."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-4-generate-a-priva-32": {
+      "id": "b-50-github-app-setup-step-4-generate-a-priva-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4: Generate a private key"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-after-saving-the-app-sc-33": {
+      "id": "b-50-github-app-setup-after-saving-the-app-sc-33",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "After saving the App, scroll to "
+        },
+        {
+          "insert": "Private keys",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and click "
+        },
+        {
+          "insert": "Generate a private key",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-save-the-downloaded-pe-34": {
+      "id": "b-50-github-app-setup-save-the-downloaded-pe-34",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Save the downloaded "
+        },
+        {
+          "insert": ".pem",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file in a location only readable by the Archon process, e.g. "
+        },
+        {
+          "insert": "/etc/archon/github-app.pem",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-5-install-the-app-35": {
+      "id": "b-50-github-app-setup-step-5-install-the-app-35",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 5: Install the App"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-install-the-app-on-every-36": {
+      "id": "b-50-github-app-setup-install-the-app-on-every-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Install the App on every org or personal account that holds repos your team operates on:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-from-the-app-settings-pa-37": {
+      "id": "b-50-github-app-setup-from-the-app-settings-pa-37",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "From the App settings page, click "
+        },
+        {
+          "insert": "Install App",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-pick-the-org-grant-acc-38": {
+      "id": "b-50-github-app-setup-pick-the-org-grant-acc-38",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Pick the org → grant access to all repos (or selected repos)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-repeat-for-every-org-acc-39": {
+      "id": "b-50-github-app-setup-repeat-for-every-org-acc-39",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Repeat for every org/account."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-multi-installation-40": {
+      "id": "b-50-github-app-setup-multi-installation-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Multi-installation:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Archon resolves "
+        },
+        {
+          "insert": "owner/repo → installation_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " via "
+        },
+        {
+          "insert": "GET /repos/{owner}/{repo}/installation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " automatically. No per-install config is needed. "
+        },
+        {
+          "insert": "GITHUB_APP_INSTALLATION_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only pins the installation used for adapter API operations, see below."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-6-configure-archon-41": {
+      "id": "b-50-github-app-setup-step-6-configure-archon-41",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 6: Configure Archon"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-add-the-following-to-42": {
+      "id": "b-50-github-app-setup-add-the-following-to-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the following to "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the install or "
+        },
+        {
+          "insert": "<cwd>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the project:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-dotenv-43": {
+      "id": "b-50-github-app-setup-dotenv-43",
+      "type": "code",
+      "props": {
+        "language": "dotenv"
+      },
+      "text": [
+        {
+          "insert": "GITHUB_APP_ID=123456                 # numeric App ID, visible on the App settings page\nGITHUB_APP_PRIVATE_KEY_PATH=/etc/archon/github-app.pem\nWEBHOOK_SECRET=<same value as on the GitHub side>\n\n# Optional:\n# GITHUB_APP_SLUG=archon-bot         # defaults to 'archon'; set this if you named your App\n#                                    # differently. The bot's posted-comment login is `<slug>[bot]`.\n# GITHUB_APP_INSTALLATION_ID=98765   # use a fixed installation for adapter API operations.\n#                                    # Repository tokens still verify the repository installation."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-cli-workflow-run-det-44": {
+      "id": "b-50-github-app-setup-cli-workflow-run-det-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CLI workflow run, "
+        },
+        {
+          "insert": "--detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", resume, wake, and signal use "
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " plus either private-key setting. They do not require "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; that setting is required for the server's webhook adapter. Each detached child initializes its own provider from the inherited configuration."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-incomplete-app-settings-45": {
+      "id": "b-50-github-app-setup-incomplete-app-settings-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Incomplete App settings, malformed App or installation IDs, an unusable RSA private key, and a malformed per-user encryption key fail before workflow execution. App/key correspondence and installation access are checked remotely when resolving the repository token. A resolution failure fails the run before any node executes; it cannot fall back to another credential. With no App settings, CLI behavior is unchanged. CLI runs follow the same per-user policy as server runs: connected user credentials override the bot, and unconnected users have GitHub credentials scrubbed unless org fallback is explicitly enabled."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-each-workflow-execution-46": {
+      "id": "b-50-github-app-setup-each-workflow-execution-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each workflow execution, including a resumed segment, resolves the codebase repository's installation token. The provider caches fresh tokens in memory and refreshes them near expiry; tokens are not cached on disk. A node's environment stays fixed during one execution, so this does not rotate tokens inside a workflow that runs longer than the token lifetime."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-inline-private-key-alte-47": {
+      "id": "b-50-github-app-setup-inline-private-key-alte-47",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inline private key (alternative)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-if-you-can-t-write-a-fil-48": {
+      "id": "b-50-github-app-setup-if-you-can-t-write-a-fil-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you can't write a file (e.g. a managed PaaS), set the PEM contents inline:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-dotenv-49": {
+      "id": "b-50-github-app-setup-dotenv-49",
+      "type": "code",
+      "props": {
+        "language": "dotenv"
+      },
+      "text": [
+        {
+          "insert": "GITHUB_APP_PRIVATE_KEY=\"-----BEGIN RSA PRIVATE KEY-----\\n...\\n-----END RSA PRIVATE KEY-----\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-archon-normalises-the-li-50": {
+      "id": "b-50-github-app-setup-archon-normalises-the-li-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon normalises the literal "
+        },
+        {
+          "insert": "\\n",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sequence in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "-quoted values into real newlines."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-unset-the-pat-51": {
+      "id": "b-50-github-app-setup-unset-the-pat-51",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Unset the PAT"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-archon-refuses-to-start-52": {
+      "id": "b-50-github-app-setup-archon-refuses-to-start-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon refuses to start if both modes are configured. Remove "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from your env when switching to App mode."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-7-restart-archon-a-53": {
+      "id": "b-50-github-app-setup-step-7-restart-archon-a-53",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 7: Restart Archon and verify"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-restart-the-server-54": {
+      "id": "b-50-github-app-setup-restart-the-server-54",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Restart the server."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-confirm-the-startup-log-55": {
+      "id": "b-50-github-app-setup-confirm-the-startup-log-55",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Confirm the startup log shows "
+        },
+        {
+          "insert": "github.adapter_mode_app",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with your slug."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-trigger-a-webhook-from-a-56": {
+      "id": "b-50-github-app-setup-trigger-a-webhook-from-a-56",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Trigger a webhook from a repo where the App is installed (e.g. comment "
+        },
+        {
+          "insert": "@archon ping",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on an issue)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-confirm-the-bot-s-reply-57": {
+      "id": "b-50-github-app-setup-confirm-the-bot-s-reply-57",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Confirm the bot's reply appears as "
+        },
+        {
+          "insert": "<slug>[bot]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the App badge in the GitHub UI."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-step-8-optional-enabl-58": {
+      "id": "b-50-github-app-setup-step-8-optional-enabl-58",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 8 (optional): Enable per-user GitHub identity"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-by-default-github-api-re-59": {
+      "id": "b-50-github-app-setup-by-default-github-api-re-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "By default GitHub API requests and pushes authenticate as the "
+        },
+        {
+          "insert": "bot",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "<slug>[bot]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), while commit authorship uses the checkout's ambient git identity. On a multi-user install teammates can connect their own GitHub identity for authentication and commit authorship."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-enable-the-feature-by-ad-60": {
+      "id": "b-50-github-app-setup-enable-the-feature-by-ad-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Enable the feature by adding two env vars on top of App mode:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-bash-61": {
+      "id": "b-50-github-app-setup-bash-61",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# The App's Client ID (App settings → \"Client ID\", starts with Iv1./Iv23…).\n# Distinct from the numeric GITHUB_APP_ID.\nGITHUB_APP_CLIENT_ID=Iv23xxxxxxxxxxxx\n# 32-byte key used to encrypt stored per-user tokens at rest (AES-256-GCM).\nTOKEN_ENCRYPTION_KEY=$(openssl rand -hex 32)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-then-on-the-github-app-62": {
+      "id": "b-50-github-app-setup-then-on-the-github-app-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then, on the GitHub App settings page, enable "
+        },
+        {
+          "insert": "Device Flow",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (under \"Identifying and authorizing users\"). The feature gate activates when "
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are both set; "
+        },
+        {
+          "insert": "GITHUB_APP_CLIENT_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is required for the connect flow itself."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-teammates-connect-once-v-63": {
+      "id": "b-50-github-app-setup-teammates-connect-once-v-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Teammates connect once via any surface:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-cli-archon-auth-gi-64": {
+      "id": "b-50-github-app-setup-cli-archon-auth-gi-64",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CLI:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "archon auth github",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-web-ui-settings-65": {
+      "id": "b-50-github-app-setup-web-ui-settings-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Web UI:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Settings → "
+        },
+        {
+          "insert": "Connect GitHub",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-once-enabled-66": {
+      "id": "b-50-github-app-setup-once-enabled-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once enabled:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-run-commits-use-the-init-67": {
+      "id": "b-50-github-app-setup-run-commits-use-the-init-67",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Run commits use the initiating connected user's GitHub login as author name and "
+        },
+        {
+          "insert": "<numeric_id>+<login>@users.noreply.github.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as author email. The committer remains the ambient git identity. This applies to new and adopted worktrees, in-place runs, and folder projects without changing repository git config. Unconnected users and runs without an initiating user keep ambient authorship."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-workflows-declaring-req-68": {
+      "id": "b-50-github-app-setup-workflows-declaring-req-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflows declaring "
+        },
+        {
+          "insert": "requires: [github]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "hard-block",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " unconnected users before any worktree/clone/AI cost."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-an-unconnected-user-s-wo-69": {
+      "id": "b-50-github-app-setup-an-unconnected-user-s-wo-69",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An unconnected user's workflow "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " has its GitHub token "
+        },
+        {
+          "insert": "scrubbed",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " by default (rather than silently using the shared org/bot token). The host's "
+        },
+        {
+          "insert": "GH_ENTERPRISE_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "GITHUB_ENTERPRISE_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are cleared for every per-user run. The scrub also hides the host's stored logins: "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gets an empty config directory, so a "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the server is not used, and git's credential helpers (keychain, credential store, "
+        },
+        {
+          "insert": "gh auth git-credential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") are cleared. GitHub commands in such a run fail with an authentication error until the user connects. SSH remotes still use the host's SSH keys. Opt back into the shared token with "
+        },
+        {
+          "insert": "ARCHON_ALLOW_ORG_GITHUB_TOKEN_FALLBACK=true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-rotating-token-encrypti-70": {
+      "id": "b-50-github-app-setup-rotating-token-encrypti-70",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Rotating "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " invalidates all stored user tokens: everyone must reconnect."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-this-is-fully-backward-c-71": {
+      "id": "b-50-github-app-setup-this-is-fully-backward-c-71",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is fully backward compatible: leave the two vars unset and the App keeps working as the bot only. See the "
+        },
+        {
+          "insert": "configuration reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "per-user-github-identity-app-mode-optional",
+              "label": "configuration reference"
+            }
+          }
+        },
+        {
+          "insert": " for the full env var table."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-operational-notes-72": {
+      "id": "b-50-github-app-setup-operational-notes-72",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Operational notes"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-token-rotation-is-invisi-73": {
+      "id": "b-50-github-app-setup-token-rotation-is-invisi-73",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Token rotation is invisible"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-installation-tokens-are-74": {
+      "id": "b-50-github-app-setup-installation-tokens-are-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Installation tokens are valid for 1h. Archon caches each "
+        },
+        {
+          "insert": "installation_id → token",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pair and refreshes ~5 minutes before expiry on the next access. No background timer; no leaked handles."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-event-installation-id-75": {
+      "id": "b-50-github-app-setup-event-installation-id-75",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "event.installation.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " short-circuits the lookup"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-every-webhook-delivery-f-76": {
+      "id": "b-50-github-app-setup-every-webhook-delivery-f-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every webhook delivery from a GitHub App carries "
+        },
+        {
+          "insert": "installation.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon primes its "
+        },
+        {
+          "insert": "owner/repo → installation_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cache from the payload, so the next outbound call to that repo skips the "
+        },
+        {
+          "insert": "GET /repos/{owner}/{repo}/installation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " round trip."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-401-forces-a-single-retr-77": {
+      "id": "b-50-github-app-setup-401-forces-a-single-retr-77",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "401 forces a single retry"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-a-401-from-any-installat-78": {
+      "id": "b-50-github-app-setup-a-401-from-any-installat-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A 401 from any installation Octokit evicts the cached token and the call is retried once with a fresh token. Persistent 401s propagate as the original error."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-long-running-workflow-g-79": {
+      "id": "b-50-github-app-setup-long-running-workflow-g-79",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Long-running workflow "
+        },
+        {
+          "insert": "git push",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-workflows-that-span-1h-80": {
+      "id": "b-50-github-app-setup-workflows-that-span-1h-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflows that span >1h need a fresh token to push from the cloned worktree. In App mode, Archon installs a git credential helper after cloning and refreshes it whenever it sets up an existing repository, including webhook handling and adding a codebase by URL: the worktree's "
+        },
+        {
+          "insert": ".git/config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " points at "
+        },
+        {
+          "insert": "~/.archon/bin/git-credential-archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which talks back to Archon's internal endpoint for a fresh installation token on each operation. Git skips credential helpers when a remote URL carries credentials, so the same setup removes any token embedded in the repository's "
+        },
+        {
+          "insert": "https://github.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remote URLs, such as one left by an older PAT-mode clone. The helper reads the server's port from "
+        },
+        {
+          "insert": "ARCHON_PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which Archon sets for the processes it launches. A "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command run from an independent shell on the Archon host gets no credential unless it exports "
+        },
+        {
+          "insert": "ARCHON_PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the server's port."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-helper-is-embedded-i-81": {
+      "id": "b-50-github-app-setup-the-helper-is-embedded-i-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The helper is embedded in compiled binaries. Each setup replaces an outdated managed script and registers the helper and GitHub path forwarding in the repository's local Git config. Existing repositories are refreshed on their next setup, not swept at server startup. If helper installation or registration fails, repository setup stops before URL registration, sync, or workflow dispatch; a later setup retries registration and repairs partial config."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-long-running-workflow-g-82": {
+      "id": "b-50-github-app-setup-long-running-workflow-g-82",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Long-running workflow "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-a-run-s-gh-token-and-83": {
+      "id": "b-50-github-app-setup-a-run-s-gh-token-and-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run's "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hold the installation token resolved when the run, or a resumed segment, starts. That token can have as little as 5 minutes left. When the run's process has "
+        },
+        {
+          "insert": "ARCHON_PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (every run the server dispatches, and a CLI run that exports the server's port), Archon also puts "
+        },
+        {
+          "insert": "~/.archon/bin/gh-shim",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " first on the run's "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". On each call the shim asks the same internal endpoint for a current token for the run's repository and runs the real "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with it in the environment. If it gets no token, it exits 1 with a "
+        },
+        {
+          "insert": "gh (archon shim):",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " error instead of running "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with a stale token. A "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that is not an installation token, such as one a step sets itself, passes through unchanged. A per-user token or scrubbed token from "
+        },
+        {
+          "insert": "per-user GitHub identity",
+          "attributes": {
+            "link": "#step-8-optional-enable-per-user-github-identity"
+          }
+        },
+        {
+          "insert": " turns the shim off for that run."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-gh-keeps-the-start-tim-84": {
+      "id": "b-50-github-app-setup-gh-keeps-the-start-tim-84",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps the start-time token, and fails once it expires, in these cases:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-a-cli-run-without-arc-85": {
+      "id": "b-50-github-app-setup-a-cli-run-without-arc-85",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A CLI run without ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "ARCHON_PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " No endpoint is reachable, so Archon logs "
+        },
+        {
+          "insert": "workflow.gh_token_refresh_unavailable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " each time it resolves the run's GitHub environment. That happens when the run starts, when it runs worktree setup commands, and when it resumes, so one run can log it several times. The CLI mints its token at start, so it lasts about an hour. Export "
+        },
+        {
+          "insert": "ARCHON_PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with an App-mode server's port to cover longer runs."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-gh-called-by-a-codex-86": {
+      "id": "b-50-github-app-setup-gh-called-by-a-codex-86",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " called by a Codex agent.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Codex's shell snapshot restores a fixed "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so its shell never finds the shim. Archon does not change that Codex setting. Bash, script and loop nodes, and Claude and Pi agents, use the shim."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-windows-the-shim-is-87": {
+      "id": "b-50-github-app-setup-windows-the-shim-is-87",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Windows.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The shim is a POSIX shell script, so a run on Windows logs the same warning and keeps the start-time token."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-run-output-redacts-the-s-88": {
+      "id": "b-50-github-app-setup-run-output-redacts-the-s-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run output redacts the start-time token only. A token the shim fetches later lives in the "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process's environment, so it is not redacted if a step prints it, for example with "
+        },
+        {
+          "insert": "gh auth token",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-internal-endpoint-securi-89": {
+      "id": "b-50-github-app-setup-internal-endpoint-securi-89",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Internal endpoint security: REQUIRED"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-credential-helper-ba-90": {
+      "id": "b-50-github-app-setup-the-credential-helper-ba-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The credential-helper backend is exposed at "
+        },
+        {
+          "insert": "POST /internal/git-credential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and hands out live installation access tokens. "
+        },
+        {
+          "insert": "It MUST NOT be reachable from outside the Archon host.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-archon-enforces-this-at-91": {
+      "id": "b-50-github-app-setup-archon-enforces-this-at-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon enforces this at startup: with App mode active and the server bound to a non-loopback interface (e.g. "
+        },
+        {
+          "insert": "0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), the process "
+        },
+        {
+          "insert": "refuses to start",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and exits with "
+        },
+        {
+          "insert": "github_app.internal_endpoint_public_bind_rejected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Two correct configurations:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-recommended-bare-meta-92": {
+      "id": "b-50-github-app-setup-recommended-bare-meta-92",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Recommended (bare-metal / systemd): bind Archon to ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "HOST=127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and put a reverse proxy in front. Configure the proxy to drop "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " paths."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-opt-in-escape-hatch-93": {
+      "id": "b-50-github-app-setup-opt-in-escape-hatch-93",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Opt-in escape hatch: ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "ARCHON_ALLOW_INTERNAL_ON_PUBLIC_BIND=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " combined with "
+        },
+        {
+          "insert": "HOST=0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or unset). Use ONLY when your reverse proxy already drops "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " AND your deployment topology genuinely requires the upstream to bind non-loopback (e.g. a container network where loopback isn't reachable from the proxy). "
+        },
+        {
+          "insert": "Docker / docker-compose deployments fall here",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the app container "
+        },
+        {
+          "insert": "must",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " bind "
+        },
+        {
+          "insert": "0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside the container for docker-proxy to forward traffic, so option 1 isn't directly usable. See the "
+        },
+        {
+          "insert": "Canonical Docker setup",
+          "attributes": {
+            "link": "#canonical-docker-setup"
+          }
+        },
+        {
+          "insert": " below. Startup logs "
+        },
+        {
+          "insert": "github_app.internal_endpoint_exposed_acknowledged",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so the choice is auditable."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-example-caddy-snippet-th-94": {
+      "id": "b-50-github-app-setup-example-caddy-snippet-th-94",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Example Caddy snippet that drops "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (bare-metal):"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-txt-95": {
+      "id": "b-50-github-app-setup-txt-95",
+      "type": "code",
+      "props": {
+        "language": "txt"
+      },
+      "text": [
+        {
+          "insert": "example.com {\n  @internal path /internal/*\n  respond @internal 404\n  reverse_proxy 127.0.0.1:3090\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-canonical-docker-setup-96": {
+      "id": "b-50-github-app-setup-canonical-docker-setup-96",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Canonical Docker setup"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-canonical-archon-doc-97": {
+      "id": "b-50-github-app-setup-the-canonical-archon-doc-97",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The canonical Archon Docker stack ("
+        },
+        {
+          "insert": "docker-compose.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + "
+        },
+        {
+          "insert": "docker-compose.override.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + Caddy) publishes the app container's port "
+        },
+        {
+          "insert": "3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and runs Caddy as a reverse proxy. Because the app container can't bind "
+        },
+        {
+          "insert": "127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and still have docker-proxy forward traffic to it, option 1 above isn't directly usable. Take option 2 with three layers of defense:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-1-in-docker-compose-98": {
+      "id": "b-50-github-app-setup-1-in-docker-compose-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "1. In ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "docker-compose.override.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": bind the published host port to loopback only.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-yaml-99": {
+      "id": "b-50-github-app-setup-yaml-99",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "services:\n  app:\n    ports: !override\n      - \"127.0.0.1:${PORT:-3000}:${PORT:-3000}\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-override-tag-com-100": {
+      "id": "b-50-github-app-setup-the-override-tag-com-100",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "!override",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tag (compose-spec) replaces the base file's "
+        },
+        {
+          "insert": "ports",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list instead of merging. After this, port "
+        },
+        {
+          "insert": "3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is reachable only via the Docker network (where Caddy lives) or from the host itself, not from the public internet."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-2-in-caddyfile-dro-101": {
+      "id": "b-50-github-app-setup-2-in-caddyfile-dro-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "2. In ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": drop ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " requests.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-maintained-caddyfil-102": {
+      "id": "b-50-github-app-setup-the-maintained-caddyfil-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The maintained "
+        },
+        {
+          "insert": "Caddyfile.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " includes this denial. Keep it in your deployed "
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; if you use an older or custom configuration, insert it before the fallthrough "
+        },
+        {
+          "insert": "handle { }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-txt-103": {
+      "id": "b-50-github-app-setup-txt-103",
+      "type": "code",
+      "props": {
+        "language": "txt"
+      },
+      "text": [
+        {
+          "insert": "handle /internal/* {\n  respond \"Not Found\" 404\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-caddy-evaluates-handle-104": {
+      "id": "b-50-github-app-setup-caddy-evaluates-handle-104",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Caddy evaluates "
+        },
+        {
+          "insert": "handle",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " blocks by path specificity, so "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (more specific) wins over the generic fallthrough regardless of order."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-3-in-env-opt-out-105": {
+      "id": "b-50-github-app-setup-3-in-env-opt-out-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "3. In ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": opt out of the loopback-bind guard.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-ini-106": {
+      "id": "b-50-github-app-setup-ini-106",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "# Safe because:\n#  1. docker-compose binds port 3000 to 127.0.0.1 only (override above)\n#  2. Caddy drops /internal/* (handle block above)\nARCHON_ALLOW_INTERNAL_ON_PUBLIC_BIND=1"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-without-this-flag-archo-107": {
+      "id": "b-50-github-app-setup-without-this-flag-archo-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Without this flag, Archon refuses to start in App mode and exits with "
+        },
+        {
+          "insert": "github_app.internal_endpoint_public_bind_rejected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-apply-verify-108": {
+      "id": "b-50-github-app-setup-apply-verify-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Apply + verify:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-sh-109": {
+      "id": "b-50-github-app-setup-sh-109",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "# Apply the override + Caddyfile + env changes, then restart app + caddy.\ndocker compose up -d --force-recreate app caddy\n\n# From outside the host — must be 404/403 from the proxy.\n# Use POST (the endpoint's actual method) — a GET probe can false-pass when\n# the proxy 404s unmatched GETs while still forwarding the POST upstream.\ncurl -i -X POST https://your-archon/internal/git-credential \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"host\":\"github.com\",\"path\":\"any/repo\"}'\n\n# On the host — port should bind to loopback only\nss -tlnp | grep :3000\n# Expected: 127.0.0.1:3000   (NOT 0.0.0.0:3000)\n\n# Startup log should contain:\ndocker compose logs app --tail 200 | grep \"internal_endpoint_exposed_acknowledged\"\n# This event confirms the opt-out path was taken (audit trail)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-if-the-external-post-pro-110": {
+      "id": "b-50-github-app-setup-if-the-external-post-pro-110",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If the external POST probe returns anything other than "
+        },
+        {
+          "insert": "404",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "403",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the proxy (i.e. anything that suggests the request reached the Archon process), "
+        },
+        {
+          "insert": "stop and fix the proxy config",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " before going live. The endpoint hands out live installation tokens to whoever can reach it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-migration-from-pat-mode-111": {
+      "id": "b-50-github-app-setup-migration-from-pat-mode-111",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Migration from PAT mode"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-register-the-app-and-ins-112": {
+      "id": "b-50-github-app-setup-register-the-app-and-ins-112",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Register the App and install on your orgs (Steps 1–5 above)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-add-github-app-env-v-113": {
+      "id": "b-50-github-app-setup-add-github-app-env-v-113",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Add "
+        },
+        {
+          "insert": "GITHUB_APP_*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " env vars (Step 6). In Docker, put them in the container environment (the compose "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), not "
+        },
+        {
+          "insert": "/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "GitHub CLI authentication",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "github-credentials",
+              "label": "GitHub CLI authentication"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-remove-github-token-114": {
+      "id": "b-50-github-app-setup-remove-github-token-114",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Remove",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from your env (or comment it out). Archon refuses to start if both are set."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-remove-gh-token-if-115": {
+      "id": "b-50-github-app-setup-remove-gh-token-if-115",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Remove",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if you set it to the same PAT. Archon starts with it set, but the GitHub CLI in the container keeps using the old PAT."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-restart-archon-116": {
+      "id": "b-50-github-app-setup-restart-archon-116",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Restart Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-urls-configured-117": {
+      "id": "b-50-github-app-setup-webhook-urls-configured-117",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Webhook URLs configured per-repo against the PAT-mode setup can stay or be removed: the App's single webhook URL covers everything once it's installed. New repos auto-join via App installation. While both webhooks are active, a comment delivered by each is deduplicated at ingest, so the bot still responds once."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-in-app-mode-adding-a-pr-118": {
+      "id": "b-50-github-app-setup-in-app-mode-adding-a-pr-118",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In App mode, adding a private GitHub codebase by URL and inspecting its base branch use the repository's installation token; no PAT is needed. The clone keeps a credential-free remote URL and receives the credential helper before registration completes. If the App is not installed, Archon reports installation guidance. Adding an already-registered URL refreshes the helper without cloning again when the checkout exists. A missing Archon-managed checkout is cloned again at its registered path. A missing operator-owned checkout must be restored or repaired with "
+        },
+        {
+          "insert": "/update-project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-run-archon-doctor-to-v-119": {
+      "id": "b-50-github-app-setup-run-archon-doctor-to-v-119",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to validate local App configuration after migration. A passing App check confirms the ID and RSA key are valid locally; it does not confirm GitHub accepts them or that the App has repository access."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-troubleshooting-120": {
+      "id": "b-50-github-app-setup-troubleshooting-120",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-appprivatekeyerror-pro-121": {
+      "id": "b-50-github-app-setup-appprivatekeyerror-pro-121",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "AppPrivateKeyError: Provided value is not a valid PEM-encoded private key",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-check-the-file-content-i-122": {
+      "id": "b-50-github-app-setup-check-the-file-content-i-122",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Check the file content includes "
+        },
+        {
+          "insert": "-----BEGIN ... PRIVATE KEY-----",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "-----END ... PRIVATE KEY-----",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-for-inline-keys-ensure-123": {
+      "id": "b-50-github-app-setup-for-inline-keys-ensure-123",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "For inline keys, ensure the "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " value preserves newlines (either literal newlines in a multi-line value or the "
+        },
+        {
+          "insert": "\\n",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " escape inside double quotes)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-appnotinstallederror-t-124": {
+      "id": "b-50-github-app-setup-appnotinstallederror-t-124",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "AppNotInstalledError: The Archon GitHub App is not installed on \"<owner>\"",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-the-app-is-not-installed-125": {
+      "id": "b-50-github-app-setup-the-app-is-not-installed-125",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The App is not installed on that owner's org/account. Use the install link in the error message to add it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-401-loop-on-github-api-c-126": {
+      "id": "b-50-github-app-setup-401-loop-on-github-api-c-126",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "401 loop on GitHub API calls"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-repeated-401s-on-outboun-127": {
+      "id": "b-50-github-app-setup-repeated-401s-on-outboun-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Repeated 401s on outbound API calls ("
+        },
+        {
+          "insert": "createComment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "listComments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "repos.get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pulls.get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") point at installation / token issues, not webhook config. Walk through:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-verify-the-app-is-instal-128": {
+      "id": "b-50-github-app-setup-verify-the-app-is-instal-128",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Verify the App is installed on the target "
+        },
+        {
+          "insert": "owner",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and has not been suspended or uninstalled. Visit "
+        },
+        {
+          "insert": "https://github.com/settings/installations",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or the org equivalent) to confirm."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-verify-the-private-key-i-129": {
+      "id": "b-50-github-app-setup-verify-the-private-key-i-129",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Verify the private key in your env ("
+        },
+        {
+          "insert": "GITHUB_APP_PRIVATE_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") matches the same App that "
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " points at. Mismatched key+ID is a common cause of \"401 from JWT\" errors at token-issuance time."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-verify-github-app-insta-130": {
+      "id": "b-50-github-app-setup-verify-github-app-insta-130",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Verify "
+        },
+        {
+          "insert": "GITHUB_APP_INSTALLATION_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (if set) still corresponds to a live installation: uninstall + reinstall assigns a new ID."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-github-refuses-a-branch-131": {
+      "id": "b-50-github-app-setup-github-refuses-a-branch-131",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "GitHub refuses a branch push"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-an-installation-token-ne-132": {
+      "id": "b-50-github-app-setup-an-installation-token-ne-132",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An installation token needs Contents write access to push branches. If the branch creates or changes files under "
+        },
+        {
+          "insert": ".github/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", GitHub also requires Workflows write access. Check the App and installation permissions:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-verify-the-app-s-permiss-133": {
+      "id": "b-50-github-app-setup-verify-the-app-s-permiss-133",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify the App's permissions against the "
+        },
+        {
+          "insert": "permissions table",
+          "attributes": {
+            "link": "#step-2-permissions-fine-grained"
+          }
+        },
+        {
+          "insert": ". Permission changes require operators to "
+        },
+        {
+          "insert": "review and accept",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the new permissions on every installation; until accepted, that installation keeps its old permissions."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-deliveries-fail-134": {
+      "id": "b-50-github-app-setup-webhook-deliveries-fail-134",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Webhook deliveries fail signature verification"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-a-webhook-secret-mismatc-135": {
+      "id": "b-50-github-app-setup-a-webhook-secret-mismatc-135",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A webhook-secret mismatch causes "
+        },
+        {
+          "insert": "github.signature_mismatch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / "
+        },
+        {
+          "insert": "github.signature_length_mismatch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " errors at the "
+        },
+        {
+          "insert": "POST /webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " endpoint: distinct from outbound API 401s. If GitHub's webhook delivery page shows red ❌ next to the delivery (rather than your bot just silently not responding), check:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-webhook-secret-in-arch-136": {
+      "id": "b-50-github-app-setup-webhook-secret-in-arch-136",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Archon's env matches the value entered in the GitHub App's webhook configuration page exactly."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-bot-comments-still-appea-137": {
+      "id": "b-50-github-app-setup-bot-comments-still-appea-137",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Bot comments still appear under your personal account"
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-you-re-still-in-pat-mode-138": {
+      "id": "b-50-github-app-setup-you-re-still-in-pat-mode-138",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "You're still in PAT mode. Check "
+        },
+        {
+          "insert": "process.env.GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is unset and "
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set; restart."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-server-refused-to-start-139": {
+      "id": "b-50-github-app-setup-server-refused-to-start-139",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Server refused to start: "
+        },
+        {
+          "insert": "github_app.internal_endpoint_public_bind_rejected",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-app-mode-is-active-but-t-140": {
+      "id": "b-50-github-app-setup-app-mode-is-active-but-t-140",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "App mode is active but the server is bound to a non-loopback interface. This is a fail-fast guard: the "
+        },
+        {
+          "insert": "/internal/git-credential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " endpoint hands out live installation access tokens and would leak credentials to the network. Either set "
+        },
+        {
+          "insert": "HOST=127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (bare-metal / systemd), or, if you're on Docker, follow the "
+        },
+        {
+          "insert": "Canonical Docker setup",
+          "attributes": {
+            "link": "#canonical-docker-setup"
+          }
+        },
+        {
+          "insert": " above (port→127.0.0.1 binding + Caddy "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " drop + "
+        },
+        {
+          "insert": "ARCHON_ALLOW_INTERNAL_ON_PUBLIC_BIND=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-server-log-shows-github-141": {
+      "id": "b-50-github-app-setup-server-log-shows-github-141",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Server log shows "
+        },
+        {
+          "insert": "github_app.internal_endpoint_exposed_acknowledged",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-github-app-setup-you-set-archon-allow-in-142": {
+      "id": "b-50-github-app-setup-you-set-archon-allow-in-142",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "You set "
+        },
+        {
+          "insert": "ARCHON_ALLOW_INTERNAL_ON_PUBLIC_BIND=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Double-check that your reverse proxy actually drops "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": a "
+        },
+        {
+          "insert": "curl https://your-archon/internal/git-credential -d '{\"host\":\"github.com\",\"path\":\"any/repo\"}'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from outside the host must return 404 or 403 from the proxy (NOT a token from Archon). On the canonical Docker stack, also confirm "
+        },
+        {
+          "insert": "ss -tlnp | grep :3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows "
+        },
+        {
+          "insert": "127.0.0.1:3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (not "
+        },
+        {
+          "insert": "0.0.0.0:3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    }
+  }
+}

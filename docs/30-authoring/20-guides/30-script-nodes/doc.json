@@ -1,0 +1,4222 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-30-script-nodes",
+  "title": "Script Nodes",
+  "root": "b-30-script-nodes-root-136",
+  "blocks": {
+    "b-30-script-nodes-root-136": {
+      "id": "b-30-script-nodes-root-136",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Run TypeScript, JavaScript, or Python code as a DAG node without invoking an AI agent.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/script-nodes.md"
+      },
+      "children": [
+        "b-30-script-nodes-dag-workflow-nodes-suppo-1",
+        "b-30-script-nodes-use-script-nodes-for-det-2",
+        "b-30-script-nodes-quick-start-3",
+        "b-30-script-nodes-inline-typescript-bun-4",
+        "b-30-script-nodes-yaml-5",
+        "b-30-script-nodes-inline-python-uv-6",
+        "b-30-script-nodes-yaml-7",
+        "b-30-script-nodes-named-script-from-arch-8",
+        "b-30-script-nodes-yaml-9",
+        "b-30-script-nodes-the-file-archon-script-10",
+        "b-30-script-nodes-how-it-works-11",
+        "b-30-script-nodes-substitute-variables-12",
+        "b-30-script-nodes-and-upstream-output-refe-13",
+        "b-30-script-nodes-detect-inline-vs-named-14",
+        "b-30-script-nodes-shell-metacharacter-see-15",
+        "b-30-script-nodes-dispatch-16",
+        "b-30-script-nodes-capture-stdout-w-21",
+        "b-30-script-nodes-nodeid-output-on-a-s-22",
+        "b-30-script-nodes-retain-regardless-o-23",
+        "b-30-script-nodes-both-streams-are-written-24",
+        "b-30-script-nodes-yaml-schema-25",
+        "b-30-script-nodes-yaml-26",
+        "b-30-script-nodes-fields-27",
+        "table-0-f91b1008",
+        "b-30-script-nodes-standard-dag-fields-id-29",
+        "b-30-script-nodes-inline-vs-named-scripts-30",
+        "b-30-script-nodes-the-executor-decides-mod-31",
+        "b-30-script-nodes-metacharacters-that-tr-32",
+        "b-30-script-nodes-block-33",
+        "b-30-script-nodes-inline-examples-c-34",
+        "b-30-script-nodes-snippet-with-a-space-35",
+        "b-30-script-nodes-named-examples-fet-36",
+        "b-30-script-nodes-identifiers-with-no-whit-37",
+        "b-30-script-nodes-if-you-want-an-inline-sn-38",
+        "b-30-script-nodes-named-script-resolution-39",
+        "b-30-script-nodes-named-scripts-use-one-of-40",
+        "b-30-script-nodes-packaged-workflow-r-41",
+        "b-30-script-nodes-legacy-workflow-res-42",
+        "b-30-script-nodes-workflow-local-lookup-is-43",
+        "b-30-script-nodes-packaged-scripts-can-imp-44",
+        "b-30-script-nodes-share-code-within-a-pack-45",
+        "b-30-script-nodes-put-reusable-ts-js-46",
+        "b-30-script-nodes-text-47",
+        "b-30-script-nodes-for-bun-import-from-the-48",
+        "b-30-script-nodes-typescript-49",
+        "b-30-script-nodes-python-scripts-run-as-fi-50",
+        "b-30-script-nodes-python-51",
+        "b-30-script-nodes-archon-preserves-these-r-52",
+        "b-30-script-nodes-keep-output-under-the-su-53",
+        "b-30-script-nodes-frozen-source-integrity-54",
+        "b-30-script-nodes-when-a-run-uses-captured-55",
+        "b-30-script-nodes-this-is-checkpoint-detec-56",
+        "b-30-script-nodes-each-shared-scripts-dire-57",
+        "b-30-script-nodes-extension-runtime-mapp-58",
+        "b-30-script-nodes-named-scripts-derive-the-59",
+        "table-1-f91b1008",
+        "b-30-script-nodes-the-runtime-declared-61",
+        "b-30-script-nodes-dependencies-uv-only-62",
+        "b-30-script-nodes-deps-is-a-pass-through-63",
+        "b-30-script-nodes-yaml-64",
+        "b-30-script-nodes-version-pinning-any-65",
+        "b-30-script-nodes-bun-ignores-deps-66",
+        "b-30-script-nodes-the-validator-emits-a-wa-67",
+        "b-30-script-nodes-no-persistent-environm-68",
+        "b-30-script-nodes-or-lockfile-to-maintain-69",
+        "b-30-script-nodes-output-and-data-flow-70",
+        "b-30-script-nodes-stdout-trimmed-of-its-71",
+        "b-30-script-nodes-declare-output-format-72",
+        "b-30-script-nodes-yaml-73",
+        "b-30-script-nodes-declaring-a-result-contr-74",
+        "b-30-script-nodes-without-output-format-75",
+        "b-30-script-nodes-yaml-76",
+        "b-30-script-nodes-with-a-schema-declared-77",
+        "b-30-script-nodes-parses-stdout-as-one-s-78",
+        "b-30-script-nodes-preamble-no-repair-pass-79",
+        "b-30-script-nodes-validates-it-against-the-80",
+        "b-30-script-nodes-match-naming-the-offend-81",
+        "b-30-script-nodes-publishes-the-canonical-82",
+        "b-30-script-nodes-value-to-downstream-bind-83",
+        "b-30-script-nodes-makes-a-reference-to-an-84",
+        "b-30-script-nodes-of-silently-resolving-to-85",
+        "b-30-script-nodes-that-is-the-same-contrac-86",
+        "b-30-script-nodes-a-schemaless-script-is-u-87",
+        "b-30-script-nodes-variable-substitution-in-88",
+        "b-30-script-nodes-variables-are-substitute-89",
+        "b-30-script-nodes-avoid-string-raw-with-nodeid-output-90",
+        "b-30-script-nodes-for-named-scripts-r-94",
+        "b-30-script-nodes-environment-and-isolatio-95",
+        "b-30-script-nodes-shell-injection-prevention-96",
+        "b-30-script-nodes-script-subprocesses-rece-97",
+        "b-30-script-nodes-target-repo-env-iso-98",
+        "b-30-script-nodes-validation-99",
+        "b-30-script-nodes-archon-validate-workflo-100",
+        "b-30-script-nodes-script-file-exists-101",
+        "b-30-script-nodes-owning-workflow-s-scrip-102",
+        "b-30-script-nodes-runtime-available-on-p-103",
+        "b-30-script-nodes-runtimes-emit-a-warning-104",
+        "b-30-script-nodes-curl-fssl-https-bun-105",
+        "b-30-script-nodes-curl-lssf-https-astr-106",
+        "b-30-script-nodes-deps-with-runtime-107",
+        "b-30-script-nodes-runtime-availability-is-108",
+        "b-30-script-nodes-patterns-109",
+        "b-30-script-nodes-transform-ai-output-befo-110",
+        "b-30-script-nodes-use-a-script-node-as-a-d-111",
+        "b-30-script-nodes-yaml-112",
+        "b-30-script-nodes-note-to-actually-popu-113",
+        "b-30-script-nodes-reusable-helper-in-a-114",
+        "b-30-script-nodes-a-helper-you-want-availa-115",
+        "b-30-script-nodes-typescript-116",
+        "b-30-script-nodes-then-reference-it-by-nam-117",
+        "b-30-script-nodes-yaml-118",
+        "b-30-script-nodes-python-with-scientific-d-119",
+        "b-30-script-nodes-yaml-120",
+        "b-30-script-nodes-what-does-not-work-121",
+        "b-30-script-nodes-ai-only-features-h-122",
+        "b-30-script-nodes-denied-tools-agents-123",
+        "b-30-script-nodes-json-repair-and-reasks-124",
+        "b-30-script-nodes-the-first-time-there-is-125",
+        "b-30-script-nodes-interactive-prompts-126",
+        "b-30-script-nodes-a-stdin-read-may-block-127",
+        "b-30-script-nodes-runtimes-other-than-b-128",
+        "b-30-script-nodes-cancelling-mid-executi-129",
+        "b-30-script-nodes-cancelling-the-run-ends-130",
+        "b-30-script-nodes-see-also-131",
+        "b-30-script-nodes-workflow-language-doc-132",
+        "b-30-script-nodes-global-workflows-comma-133",
+        "b-30-script-nodes-security-model-docs-1-134",
+        "b-30-script-nodes-variables-reference-d-135"
+      ]
+    },
+    "b-30-script-nodes-dag-workflow-nodes-suppo-1": {
+      "id": "b-30-script-nodes-dag-workflow-nodes-suppo-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "DAG workflow nodes support a "
+        },
+        {
+          "insert": "script",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field that runs a TypeScript, JavaScript,\nor Python snippet as part of the workflow. No AI agent is invoked: the script\nruns via the "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runtime, "
+        },
+        {
+          "insert": "stdout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is captured as the node's output,\nand the result is available downstream as "
+        },
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-use-script-nodes-for-det-2": {
+      "id": "b-30-script-nodes-use-script-nodes-for-det-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use script nodes for deterministic work that needs a real programming language:\nparsing JSON, transforming data between upstream AI nodes, calling HTTP APIs\nwith typed clients, or computing values that a shell one-liner would mangle.\nIf a plain shell command is enough, use a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "node-fields",
+              "label": "`bash:` node"
+            }
+          }
+        },
+        {
+          "insert": " node",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "node-fields",
+              "label": "`bash:` node"
+            }
+          }
+        },
+        {
+          "insert": "\ninstead."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-quick-start-3": {
+      "id": "b-30-script-nodes-quick-start-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick Start"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-inline-typescript-bun-4": {
+      "id": "b-30-script-nodes-inline-typescript-bun-4",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inline TypeScript (bun)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-5": {
+      "id": "b-30-script-nodes-yaml-5",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: parse\n    script: |\n      const data = { count: 42, label: \"ok\" };\n      console.log(JSON.stringify(data));\n    runtime: bun"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-inline-python-uv-6": {
+      "id": "b-30-script-nodes-inline-python-uv-6",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inline Python (uv)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-7": {
+      "id": "b-30-script-nodes-yaml-7",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: compute\n    script: |\n      import json, statistics\n      values = [1, 2, 3, 4, 5]\n      print(json.dumps({ \"mean\": statistics.mean(values) }))\n    runtime: uv"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-named-script-from-arch-8": {
+      "id": "b-30-script-nodes-named-script-from-arch-8",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Named script from "
+        },
+        {
+          "insert": ".archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-9": {
+      "id": "b-30-script-nodes-yaml-9",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: fetch-pages\n    script: fetch-github-pages   # resolves .archon/scripts/fetch-github-pages.ts\n    runtime: bun\n    timeout: 60000"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-the-file-archon-script-10": {
+      "id": "b-30-script-nodes-the-file-archon-script-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The file "
+        },
+        {
+          "insert": ".archon/scripts/fetch-github-pages.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is loaded and executed with\n"
+        },
+        {
+          "insert": "bun --no-env-file run <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-how-it-works-11": {
+      "id": "b-30-script-nodes-how-it-works-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How It Works"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-substitute-variables-12": {
+      "id": "b-30-script-nodes-substitute-variables-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Substitute variables.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Non-user-controlled "
+        },
+        {
+          "insert": "workflow variables",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/45-variables.md",
+              "label": "workflow variables"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-and-upstream-output-refe-13": {
+      "id": "b-30-script-nodes-and-upstream-output-refe-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "and upstream output references are substituted into the "
+        },
+        {
+          "insert": "script",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " text before\nexecution. User-controlled workflow variables like "
+        },
+        {
+          "insert": "$ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "$USER_MESSAGE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are not substituted into a "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " body: they arrive as\nenvironment variables instead ("
+        },
+        {
+          "insert": "process.env.ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "process.env.USER_MESSAGE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nin bun; "
+        },
+        {
+          "insert": "os.environ['ARGUMENTS']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "os.environ['USER_MESSAGE']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in uv/python), so\nthese workflow-variable values stay out of script source, see\n"
+        },
+        {
+          "insert": "Environment and Isolation",
+          "attributes": {
+            "link": "#environment-and-isolation"
+          }
+        },
+        {
+          "insert": ". Upstream output\nreferences are still substituted as raw text into script source and may\ncontain user-influenced content."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-detect-inline-vs-named-14": {
+      "id": "b-30-script-nodes-detect-inline-vs-named-14",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Detect inline vs named.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " If the "
+        },
+        {
+          "insert": "script",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " value contains a newline or any"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-shell-metacharacter-see-15": {
+      "id": "b-30-script-nodes-shell-metacharacter-see-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "shell metacharacter (see "
+        },
+        {
+          "insert": "Inline vs Named Scripts",
+          "attributes": {
+            "link": "#inline-vs-named-scripts"
+          }
+        },
+        {
+          "insert": "\nbelow), it's treated as inline code. Otherwise it's treated as a named-script\nreference."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-dispatch-16": {
+      "id": "b-30-script-nodes-dispatch-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Dispatch.",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": [
+        "b-30-script-nodes-runtime-bun-inline-17",
+        "b-30-script-nodes-runtime-bun-named-18",
+        "b-30-script-nodes-runtime-uv-inline-19",
+        "b-30-script-nodes-runtime-uv-named-20"
+      ]
+    },
+    "b-30-script-nodes-runtime-bun-inline-17": {
+      "id": "b-30-script-nodes-runtime-bun-inline-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "runtime: bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + inline → "
+        },
+        {
+          "insert": "bun --no-env-file -e '<code>'",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtime-bun-named-18": {
+      "id": "b-30-script-nodes-runtime-bun-named-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "runtime: bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + named  → "
+        },
+        {
+          "insert": "bun --no-env-file run <path>",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtime-uv-inline-19": {
+      "id": "b-30-script-nodes-runtime-uv-inline-19",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "runtime: uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + inline  → "
+        },
+        {
+          "insert": "uv run [--with dep ...] python -c '<code>'",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtime-uv-named-20": {
+      "id": "b-30-script-nodes-runtime-uv-named-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "runtime: uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + named   → "
+        },
+        {
+          "insert": "uv run [--with dep ...] <path>",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-capture-stdout-w-21": {
+      "id": "b-30-script-nodes-capture-stdout-w-21",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Capture.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "stdout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (with the trailing newline stripped) becomes"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-nodeid-output-on-a-s-22": {
+      "id": "b-30-script-nodes-nodeid-output-on-a-s-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". On a successful run, "
+        },
+        {
+          "insert": "stderr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is logged as a warning and\nposted to the conversation but does "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " fail the node. A non-zero exit\ncode fails the node; on failure, tails of both streams are surfaced in the\nerror message ("
+        },
+        {
+          "insert": "Script node 'X' failed [exit N]: [stderr] ... [stdout] ...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "),\nsharing a ~2 KB diagnostic budget: stderr keeps priority, stdout gets the\nremainder, and a label prefixes each stream only when both are populated.\nWith stderr empty, the stdout tail becomes the diagnostic. The script body\nis never echoed back to users. A timeout also fails by default. Set\n"
+        },
+        {
+          "insert": "on_timeout: skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the result is optional and downstream nodes handle\nits absence with an "
+        },
+        {
+          "insert": "if_skipped",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " binding."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-retain-regardless-o-23": {
+      "id": "b-30-script-nodes-retain-regardless-o-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Retain.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Regardless of outcome, capped and credential-redacted tails of"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-both-streams-are-written-24": {
+      "id": "b-30-script-nodes-both-streams-are-written-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "both streams are written to the run transcript as an "
+        },
+        {
+          "insert": "exec_output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " row, see\n"
+        },
+        {
+          "insert": "Retained subprocess evidence",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "retained-subprocess-evidence",
+              "label": "Retained subprocess evidence"
+            }
+          }
+        },
+        {
+          "insert": ".\nThat retention is evidence only; it never caps "
+        },
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-schema-25": {
+      "id": "b-30-script-nodes-yaml-schema-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "YAML Schema"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-26": {
+      "id": "b-30-script-nodes-yaml-26",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: node-name\n  script: <inline code OR named identifier>   # required, non-empty\n  runtime: bun | uv                            # required\n  deps: [\"httpx\", \"pydantic>=2\"]               # optional, uv-only (see below)\n  timeout: 60000                               # optional ms; no timeout when omitted\n  on_timeout: skip                             # optional; default is to fail\n  depends_on: [upstream]                       # optional\n  when: \"$upstream.output != '[]'\"             # optional (upstream is a bash/script node;\n                                               #  an AI producer needs output_format + a field)\n  output_format:                               # optional JSON Schema; makes stdout a contract\n    type: object\n    properties:\n      severity: { type: string }\n    required: [severity]\n  trigger_rule: all_success                    # optional (default)\n  retry:                                       # optional; same shape as bash/AI nodes\n    max_attempts: 3\n    on_error: all                              # a script exit is retried only under `all`;\n                                               #  `transient` retries only a timeout"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-fields-27": {
+      "id": "b-30-script-nodes-fields-27",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Fields"
+        }
+      ],
+      "children": []
+    },
+    "table-0-f91b1008": {
+      "id": "table-0-f91b1008",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "script",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Yes",
+            [
+              {
+                "insert": "Inline code, or a named script in the owning workflow's "
+              },
+              {
+                "insert": "scripts/",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " directory (packaged workflows) or shared script directories (legacy workflows)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "runtime",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'bun'",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " | "
+              },
+              {
+                "insert": "'uv'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Yes",
+            "Which runtime executes the script. Must match the file extension for named scripts"
+          ],
+          [
+            [
+              {
+                "insert": "deps",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string[]",
+            "No",
+            [
+              {
+                "insert": "Python dependencies to install for this run. "
+              },
+              {
+                "insert": "uv only",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": ": ignored with a warning for "
+              },
+              {
+                "insert": "bun",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "timeout",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "number (ms)",
+            "No",
+            [
+              {
+                "insert": "Milliseconds before Archon sends "
+              },
+              {
+                "insert": "SIGTERM",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " to the node. Omitted: no timeout, the node runs until it exits"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "on_timeout",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'skip'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "Complete the node as skipped after a timeout. The default is failed. The persisted skip cause is "
+              },
+              {
+                "insert": "timeout",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". See "
+              },
+              {
+                "insert": "Bash and script node timeouts",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#bash-and-script-node-timeouts"
+                }
+              },
+              {
+                "insert": " for what a timeout ends"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "output_format",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "object",
+            "No",
+            [
+              {
+                "insert": "JSON Schema the node's stdout must satisfy. See "
+              },
+              {
+                "insert": "Declaring a result contract",
+                "attributes": {
+                  "link": "#declaring-a-result-contract"
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-script-nodes-standard-dag-fields-id-29": {
+      "id": "b-30-script-nodes-standard-dag-fields-id-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Standard DAG fields ("
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "depends_on",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "when",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "trigger_rule",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "retry",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") all\nwork, and so does "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", see\n"
+        },
+        {
+          "insert": "Declaring a result contract",
+          "attributes": {
+            "link": "#declaring-a-result-contract"
+          }
+        },
+        {
+          "insert": ". AI-specific fields\n("
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "context",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "denied_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "hooks",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "skills",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "agents",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "effort",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "maxBudgetUsd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "systemPrompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "fallbackModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "betas",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "sandbox",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") are accepted by the parser but emit a\nloader warning and are ignored at runtime: no AI is invoked. "
+        },
+        {
+          "insert": "idle_timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is also accepted but ignored: script nodes\nrun as one-shot subprocesses, so use "
+        },
+        {
+          "insert": "timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " instead."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-inline-vs-named-scripts-30": {
+      "id": "b-30-script-nodes-inline-vs-named-scripts-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Inline vs Named Scripts"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-the-executor-decides-mod-31": {
+      "id": "b-30-script-nodes-the-executor-decides-mod-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The executor decides mode from the "
+        },
+        {
+          "insert": "script",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " string itself. A value is treated\nas "
+        },
+        {
+          "insert": "inline code",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " if it contains a newline or any shell metacharacter; otherwise\nit's a "
+        },
+        {
+          "insert": "named script",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " lookup."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-metacharacters-that-tr-32": {
+      "id": "b-30-script-nodes-metacharacters-that-tr-32",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Metacharacters that trigger inline mode:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " space, "
+        },
+        {
+          "insert": ";",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "(",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": ")",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "{",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "&",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-block-33": {
+      "id": "b-30-script-nodes-block-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "|",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "<",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": ">",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "$",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "  "
+        },
+        {
+          "insert": "  ",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\""
+        },
+        {
+          "insert": " ",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "'`"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-inline-examples-c-34": {
+      "id": "b-30-script-nodes-inline-examples-c-34",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Inline examples:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "\"const x = 1; console.log(x)\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", multi-line blocks, any"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-snippet-with-a-space-35": {
+      "id": "b-30-script-nodes-snippet-with-a-space-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "snippet with a space"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-named-examples-fet-36": {
+      "id": "b-30-script-nodes-named-examples-fet-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Named examples:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "fetch-pages",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "analyze_metrics",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "triage-fmt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (bare"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-identifiers-with-no-whit-37": {
+      "id": "b-30-script-nodes-identifiers-with-no-whit-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "identifiers with no whitespace or shell syntax)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-if-you-want-an-inline-sn-38": {
+      "id": "b-30-script-nodes-if-you-want-an-inline-sn-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you want an inline snippet that happens to be syntactically a single\nidentifier, add a trailing comment or newline to force inline mode."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-named-script-resolution-39": {
+      "id": "b-30-script-nodes-named-script-resolution-39",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Named Script Resolution"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-named-scripts-use-one-of-40": {
+      "id": "b-30-script-nodes-named-scripts-use-one-of-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Named scripts use one of two resolution modes:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-packaged-workflow-r-41": {
+      "id": "b-30-script-nodes-packaged-workflow-r-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Packaged workflow:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " resolve only from the owning workflow's "
+        },
+        {
+          "insert": "scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directory. Bundled package scripts use the same ownership rule and are embedded for binary distribution."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-legacy-workflow-res-42": {
+      "id": "b-30-script-nodes-legacy-workflow-res-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Legacy workflow:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " resolve shared scripts from "
+        },
+        {
+          "insert": "<repoRoot>/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "~/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-workflow-local-lookup-is-43": {
+      "id": "b-30-script-nodes-workflow-local-lookup-is-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflow-local lookup is scoped to the workflow that declared the node, including through "
+        },
+        {
+          "insert": "include:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " expansion. Authors still write only the bare name ("
+        },
+        {
+          "insert": "script: publish",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "); the ownership key is internal."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-packaged-scripts-can-imp-44": {
+      "id": "b-30-script-nodes-packaged-scripts-can-imp-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Packaged scripts can import modules from their pack's "
+        },
+        {
+          "insert": ".shared/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directory. Keep package dependencies out of that tree: packaged scripts must not depend on the target project's "
+        },
+        {
+          "insert": "package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "node_modules",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "tsconfig.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Python dependencies can still be declared with "
+        },
+        {
+          "insert": "deps:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Imports across packs and npm dependencies are outside the packaged-module contract."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-share-code-within-a-pack-45": {
+      "id": "b-30-script-nodes-share-code-within-a-pack-45",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Share code within a pack"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-put-reusable-ts-js-46": {
+      "id": "b-30-script-nodes-put-reusable-ts-js-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Put reusable "
+        },
+        {
+          "insert": ".ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": ".js",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": ".py",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " modules under "
+        },
+        {
+          "insert": "<pack>/.shared/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Module subdirectories are supported. Use regular files; the binary generator rejects symlinks under "
+        },
+        {
+          "insert": ".shared",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": ".shared",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is reserved for modules, "
+        },
+        {
+          "insert": ".md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " documents and the pack's "
+        },
+        {
+          "insert": "metric-views.json",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/75-metrics.md",
+              "section": "overview-cards-a-pack-declares",
+              "label": "`metric-views.json`"
+            }
+          }
+        },
+        {
+          "insert": ": its files are neither workflows nor named script targets. Documents ship with the pack in every build, beside the modules. Any node reads one through "
+        },
+        {
+          "insert": "$PACK_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the pack's directory in the run's source: a prompt or command file names "
+        },
+        {
+          "insert": "$PACK_DIR/.shared/policy/triage.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node also gets "
+        },
+        {
+          "insert": "PACK_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in its environment. See "
+        },
+        {
+          "insert": "$PACK_DIR",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/45-variables.md",
+              "section": "pack_dir-the-workflows-own-pack",
+              "label": "`$PACK_DIR`"
+            }
+          }
+        },
+        {
+          "insert": ". A packaged workflow that names an unavailable script, including a shared module, fails at load time."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-text-47": {
+      "id": "b-30-script-nodes-text-47",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "my-pack/\n├── .shared/\n│   ├── result.ts\n│   └── result.py\n├── release/\n│   ├── release.yaml\n│   └── scripts/\n│       └── publish.ts\n└── inspect/\n    ├── inspect.yaml\n    └── scripts/\n        └── report.py"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-for-bun-import-from-the-48": {
+      "id": "b-30-script-nodes-for-bun-import-from-the-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For Bun, import from the script's location:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-typescript-49": {
+      "id": "b-30-script-nodes-typescript-49",
+      "type": "code",
+      "props": {
+        "language": "typescript"
+      },
+      "text": [
+        {
+          "insert": "// release/scripts/publish.ts\nimport { summary } from '../../.shared/result.ts';\nconsole.log(summary);"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-python-scripts-run-as-fi-50": {
+      "id": "b-30-script-nodes-python-scripts-run-as-fi-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Python scripts run as files, so package-relative syntax such as "
+        },
+        {
+          "insert": "from ...shared",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not apply. Add the pack's shared directory using Python's standard library:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-python-51": {
+      "id": "b-30-script-nodes-python-51",
+      "type": "code",
+      "props": {
+        "language": "python"
+      },
+      "text": [
+        {
+          "insert": "# inspect/scripts/report.py\nfrom pathlib import Path\nimport sys\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[2] / \".shared\"))\nfrom result import summary\n\nprint(summary)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-archon-preserves-these-r-52": {
+      "id": "b-30-script-nodes-archon-preserves-these-r-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon preserves these relative paths in project and global source trees, bundled binaries, and frozen captures. A binary caches each pack's scripts and modules as one unit; changing a shared module creates a new unit. Authored scripts remain the only entry points, so workflow nodes still use names such as "
+        },
+        {
+          "insert": "script: publish",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-keep-output-under-the-su-53": {
+      "id": "b-30-script-nodes-keep-output-under-the-su-53",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep output under the supplied "
+        },
+        {
+          "insert": "ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "STATE_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", never beside a script. Bun module loading does not add files beside these sources, and Archon disables Python bytecode caching in both workflow execution and executable fixtures. This prevents import caches from changing the frozen source; it does not prevent your script from writing there explicitly."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-frozen-source-integrity-54": {
+      "id": "b-30-script-nodes-frozen-source-integrity-54",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Frozen source integrity"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-when-a-run-uses-captured-55": {
+      "id": "b-30-script-nodes-when-a-run-uses-captured-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When a run uses captured source, Archon rechecks the full capture against the run's pinned digest and source-resolution settings before each named-script attempt, including retries, and before lookup or subprocess dispatch. Any change to the capture refuses the node before it starts. Inline scripts are already held in the workflow definition and do not read the capture at execution time."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-this-is-checkpoint-detec-56": {
+      "id": "b-30-script-nodes-this-is-checkpoint-detec-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is checkpoint detection, not sealing or sandboxing. A process running as the Archon user can change source after the check, and a parallel node that already started is not cancelled."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-each-shared-scripts-dire-57": {
+      "id": "b-30-script-nodes-each-shared-scripts-dire-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each shared scripts directory is walked one subfolder deep (e.g. "
+        },
+        {
+          "insert": ".archon/scripts/triage/foo.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nresolves as "
+        },
+        {
+          "insert": "foo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Deeper nesting is ignored. On a same-name collision the\nrepo-local entry wins silently, see "
+        },
+        {
+          "insert": "Global Workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/50-global-workflows.md",
+              "label": "Global Workflows"
+            }
+          }
+        },
+        {
+          "insert": "\nfor the shared precedence rules."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-extension-runtime-mapp-58": {
+      "id": "b-30-script-nodes-extension-runtime-mapp-58",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Extension ↔ Runtime Mapping"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-named-scripts-derive-the-59": {
+      "id": "b-30-script-nodes-named-scripts-derive-the-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Named scripts derive their runtime from the file extension:"
+        }
+      ],
+      "children": []
+    },
+    "table-1-f91b1008": {
+      "id": "table-1-f91b1008",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Extension",
+          "Runtime"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": ".ts",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": ".js",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "bun",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": ".py",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "uv",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-script-nodes-the-runtime-declared-61": {
+      "id": "b-30-script-nodes-the-runtime-declared-61",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "runtime:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declared on the node "
+        },
+        {
+          "insert": "must match the file's extension",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the\nvalidator rejects "
+        },
+        {
+          "insert": "runtime: uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pointing at a "
+        },
+        {
+          "insert": ".ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file, and vice versa. For\ninline scripts, you can use any language that the chosen runtime supports."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-dependencies-uv-only-62": {
+      "id": "b-30-script-nodes-dependencies-uv-only-62",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Dependencies (uv only)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-deps-is-a-pass-through-63": {
+      "id": "b-30-script-nodes-deps-is-a-pass-through-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a pass-through to "
+        },
+        {
+          "insert": "uv run --with <dep>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which installs packages into\na per-run ephemeral environment:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-64": {
+      "id": "b-30-script-nodes-yaml-64",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: scrape\n  script: |\n    import httpx\n    r = httpx.get(\"https://api.github.com/repos/anthropics/anthropic-cookbook\")\n    print(r.text)\n  runtime: uv\n  deps: [\"httpx>=0.27\"]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-version-pinning-any-65": {
+      "id": "b-30-script-nodes-version-pinning-any-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Version pinning",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": any PEP 508 specifier works ("
+        },
+        {
+          "insert": "pkg==1.2.3",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pkg>=2,<3",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-bun-ignores-deps-66": {
+      "id": "b-30-script-nodes-bun-ignores-deps-66",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Bun ignores ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Bun auto-installs imported packages on first run, so"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-the-validator-emits-a-wa-67": {
+      "id": "b-30-script-nodes-the-validator-emits-a-wa-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "the validator emits a warning if you set "
+        },
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "runtime: bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Remove\nthe field, or switch to "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if you need explicit dependency management."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-no-persistent-environm-68": {
+      "id": "b-30-script-nodes-no-persistent-environm-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No persistent environment",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": each run is isolated; there is no "
+        },
+        {
+          "insert": "requirements.txt",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-or-lockfile-to-maintain-69": {
+      "id": "b-30-script-nodes-or-lockfile-to-maintain-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "or lockfile to maintain."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-output-and-data-flow-70": {
+      "id": "b-30-script-nodes-output-and-data-flow-70",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Output and Data Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-stdout-trimmed-of-its-71": {
+      "id": "b-30-script-nodes-stdout-trimmed-of-its-71",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "stdout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (trimmed of its trailing newline) becomes "
+        },
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Print JSON\nif you want downstream nodes to access structured fields with\n"
+        },
+        {
+          "insert": "$nodeId.output.field",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the workflow engine tries to parse the output as JSON\nfor field access in "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " conditions and prompt substitution."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-declare-output-format-72": {
+      "id": "b-30-script-nodes-declare-output-format-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Declare "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when you want that JSON to be a contract rather than a\nconvention, see "
+        },
+        {
+          "insert": "Declaring a result contract",
+          "attributes": {
+            "link": "#declaring-a-result-contract"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-73": {
+      "id": "b-30-script-nodes-yaml-73",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: classify\n  script: |\n    const input = process.argv.slice(2).join(' ');\n    const severity = input.includes('crash') ? 'high' : 'low';\n    console.log(JSON.stringify({ severity, length: input.length }));\n  runtime: bun\n\n- id: investigate\n  command: investigate-bug\n  depends_on: [classify]\n  when: \"$classify.output.severity == 'high'\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-declaring-a-result-contr-74": {
+      "id": "b-30-script-nodes-declaring-a-result-contr-74",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Declaring a result contract"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-without-output-format-75": {
+      "id": "b-30-script-nodes-without-output-format-75",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Without "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "$classify.output.severity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " above works by convention:\nthe engine parses the text and hopes the key is there. Declare "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nand the same result becomes a contract the node owns."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-76": {
+      "id": "b-30-script-nodes-yaml-76",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: classify\n  script: |\n    const input = process.env.ARGUMENTS ?? '';\n    console.log(JSON.stringify({\n      severity: input.includes('crash') ? 'high' : 'low',\n      units: [],\n    }));\n  runtime: bun\n  output_format:\n    type: object\n    properties:\n      severity: { type: string, enum: [low, high] }\n      units: { type: array, items: { type: object } }\n    required: [severity, units]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-with-a-schema-declared-77": {
+      "id": "b-30-script-nodes-with-a-schema-declared-77",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With a schema declared, the node:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-parses-stdout-as-one-s-78": {
+      "id": "b-30-script-nodes-parses-stdout-as-one-s-78",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "parses stdout as "
+        },
+        {
+          "insert": "one strict JSON document",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": no code fences, no prose"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-preamble-no-repair-pass-79": {
+      "id": "b-30-script-nodes-preamble-no-repair-pass-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "preamble, no repair pass, and no second attempt;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-validates-it-against-the-80": {
+      "id": "b-30-script-nodes-validates-it-against-the-80",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "validates it against the schema, and "
+        },
+        {
+          "insert": "fails the node",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " when it does not"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-match-naming-the-offend-81": {
+      "id": "b-30-script-nodes-match-naming-the-offend-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "match, naming the offending JSON path and quoting the start of stdout;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-publishes-the-canonical-82": {
+      "id": "b-30-script-nodes-publishes-the-canonical-82",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "publishes the canonical JSON document as "
+        },
+        {
+          "insert": "$classify.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the logical"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-value-to-downstream-bind-83": {
+      "id": "b-30-script-nodes-value-to-downstream-bind-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "value to downstream bindings and "
+        },
+        {
+          "insert": "fan_out.items",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the declared property\nnames to "
+        },
+        {
+          "insert": "$classify.output.<field>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ";"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-makes-a-reference-to-an-84": {
+      "id": "b-30-script-nodes-makes-a-reference-to-an-84",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "makes a reference to an "
+        },
+        {
+          "insert": "undeclared",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " field fail the consuming node instead"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-of-silently-resolving-to-85": {
+      "id": "b-30-script-nodes-of-silently-resolving-to-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "of silently resolving to "
+        },
+        {
+          "insert": "''",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-that-is-the-same-contrac-86": {
+      "id": "b-30-script-nodes-that-is-the-same-contrac-86",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "That is the same contract an AI node's "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " carries, so a script and\nan agent are interchangeable as the producer behind a "
+        },
+        {
+          "insert": "returns:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node. What that\nbuys a caller (through an "
+        },
+        {
+          "insert": "include:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " alias, a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sub-run, a fan-out, or\nan artifact pointer) is described once in\n"
+        },
+        {
+          "insert": "Workflow language → Result contracts",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "result-contracts",
+              "label": "Workflow language → Result contracts"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-a-schemaless-script-is-u-87": {
+      "id": "b-30-script-nodes-a-schemaless-script-is-u-87",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A schemaless script is unchanged: stdout stays raw text, trimmed only of its trailing\nnewline as before."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-variable-substitution-in-88": {
+      "id": "b-30-script-nodes-variable-substitution-in-88",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Variable Substitution in Scripts"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-variables-are-substitute-89": {
+      "id": "b-30-script-nodes-variables-are-substitute-89",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Variables are substituted into the "
+        },
+        {
+          "insert": "script",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " text "
+        },
+        {
+          "insert": "as raw strings, without\nshell quoting",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". In "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nodes, small string "
+        },
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " values are\nsingle-quoted inline, while spilled values use an unquoted command substitution\nthat splits words and expands globs when used as a bare argument. For Bash,\n"
+        },
+        {
+          "insert": "assign the reference, then quote the shell variable",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/45-variables.md",
+              "section": "shell-quoting-in-bash-vs-script",
+              "label": "assign the reference, then quote the shell variable"
+            }
+          }
+        },
+        {
+          "insert": ".\nIn script bodies, treat substituted values as untrusted input and parse them with\nlanguage features, not by interpolating into shell syntax."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-avoid-string-raw-with-nodeid-output-90": {
+      "id": "b-30-script-nodes-avoid-string-raw-with-nodeid-output-90",
+      "type": "callout",
+      "props": {
+        "title": "Avoid String.raw with `$nodeId.output`",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "The pattern  String.raw"
+        },
+        {
+          "insert": "$nodeId.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "  looks safe but fails silently when\nthe substituted value contains a backtick: common in AI-generated markdown,\n"
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " payloads, or any output with inline code spans. The backtick\nterminates the template literal early, producing a cryptic "
+        },
+        {
+          "insert": "Expected \";\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " parse\nerror at runtime."
+        }
+      ],
+      "children": [
+        "b-30-script-nodes-use-direct-assignment-91",
+        "b-30-script-nodes-typescript-92"
+      ]
+    },
+    "b-30-script-nodes-use-direct-assignment-91": {
+      "id": "b-30-script-nodes-use-direct-assignment-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use direct assignment instead.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " JSON is a strict subset of JavaScript\nexpression syntax, so the substituted value is always a valid JS literal:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-typescript-92": {
+      "id": "b-30-script-nodes-typescript-92",
+      "type": "code",
+      "props": {
+        "language": "typescript"
+      },
+      "text": [
+        {
+          "insert": "// Safe — works for any valid JSON, including content with backticks\nconst data = $fetch-issue.output;\n\n// Fragile — breaks if output contains a backtick\nconst data = JSON.parse(String.raw`$fetch-issue.output`);  // DON'T"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-for-named-scripts-r-94": {
+      "id": "b-30-script-nodes-for-named-scripts-r-94",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For "
+        },
+        {
+          "insert": "named scripts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", read workflow variables from the environment\n("
+        },
+        {
+          "insert": "process.env.USER_MESSAGE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "os.environ['USER_MESSAGE']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and "
+        },
+        {
+          "insert": "with:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bindings\nfrom "
+        },
+        {
+          "insert": "INPUTS_<UPPER_SNAKE>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " environment variables. Named scripts receive no stdin\npayload. For "
+        },
+        {
+          "insert": "inline scripts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", substituted variables are\nliterally embedded into the code string at execution time."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-environment-and-isolatio-95": {
+      "id": "b-30-script-nodes-environment-and-isolatio-95",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Environment and Isolation"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-shell-injection-prevention-96": {
+      "id": "b-30-script-nodes-shell-injection-prevention-96",
+      "type": "callout",
+      "props": {
+        "title": "Shell injection prevention",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "User-controlled workflow variables like "
+        },
+        {
+          "insert": "$USER_MESSAGE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "$ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are passed to "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nodes as environment variables (not inline-substituted into the shell command) to prevent shell injection: read an environment-delivered value with "
+        },
+        {
+          "insert": "\"$ARGUMENTS\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nodes receive these values the same way ("
+        },
+        {
+          "insert": "process.env.USER_MESSAGE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "process.env.ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in bun; "
+        },
+        {
+          "insert": "os.environ['USER_MESSAGE']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "os.environ['ARGUMENTS']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in uv/python). A "
+        },
+        {
+          "insert": "loop_group",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " body's "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node is the exception: the loop scope splices the reply ("
+        },
+        {
+          "insert": "$LOOP_USER_INPUT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") into its source, shell-quoted, so the reply arrives already quoted. Read the spliced reply as an already-quoted value (assign it and quote the variable ("
+        },
+        {
+          "insert": "value=$LOOP_USER_INPUT; printf '%s' \"$value\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")) rather than as "
+        },
+        {
+          "insert": "\"$LOOP_USER_INPUT\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-script-subprocesses-rece-97": {
+      "id": "b-30-script-nodes-script-subprocesses-rece-97",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Script subprocesses receive "
+        },
+        {
+          "insert": "process.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " merged with any codebase-scoped env\nvars you've configured by opening "
+        },
+        {
+          "insert": "Environment variables",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " from the project row\nin the console project rail, or through the "
+        },
+        {
+          "insert": "env:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block in\n"
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This is the same injection surface used by Claude, Codex,\nand bash nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-target-repo-env-iso-98": {
+      "id": "b-30-script-nodes-target-repo-env-iso-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Target repo ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " isolation:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the Bun subprocess is invoked with\n"
+        },
+        {
+          "insert": "--no-env-file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so variables in the target repo's "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " do "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " leak into\nthe script. Archon-managed env (from "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "<repo>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\npasses through normally. "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "-launched Python subprocesses do not auto-load\n"
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at all. See "
+        },
+        {
+          "insert": "Security Model",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "target-repo-env-isolation",
+              "label": "Security Model"
+            }
+          }
+        },
+        {
+          "insert": "\nfor the full story."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-validation-99": {
+      "id": "b-30-script-nodes-validation-99",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Validation"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-archon-validate-workflo-100": {
+      "id": "b-30-script-nodes-archon-validate-workflo-100",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon validate workflows <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " checks script nodes for:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-script-file-exists-101": {
+      "id": "b-30-script-nodes-script-file-exists-101",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Script file exists",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": for named scripts, the basename must exist in the"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-owning-workflow-s-scrip-102": {
+      "id": "b-30-script-nodes-owning-workflow-s-scrip-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "owning workflow's "
+        },
+        {
+          "insert": "scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directory or the legacy shared search path, with\na matching extension for the declared runtime. Missing files fail validation\nwith a hint showing the expected path."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtime-available-on-p-103": {
+      "id": "b-30-script-nodes-runtime-available-on-p-103",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Runtime available on PATH",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must be installed. Missing"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtimes-emit-a-warning-104": {
+      "id": "b-30-script-nodes-runtimes-emit-a-warning-104",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "runtimes emit a warning with the official install command:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-curl-fssl-https-bun-105": {
+      "id": "b-30-script-nodes-curl-fssl-https-bun-105",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://bun.sh/install | bash",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-curl-lssf-https-astr-106": {
+      "id": "b-30-script-nodes-curl-lssf-https-astr-106",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-deps-with-runtime-107": {
+      "id": "b-30-script-nodes-deps-with-runtime-107",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "runtime: bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": warns that "
+        },
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a no-op under Bun."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtime-availability-is-108": {
+      "id": "b-30-script-nodes-runtime-availability-is-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Runtime availability is cached per-process: the check spawns "
+        },
+        {
+          "insert": "which bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " /\n"
+        },
+        {
+          "insert": "which uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " once and memoizes the result."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-patterns-109": {
+      "id": "b-30-script-nodes-patterns-109",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Patterns"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-transform-ai-output-befo-110": {
+      "id": "b-30-script-nodes-transform-ai-output-befo-110",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Transform AI output before the next node"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-use-a-script-node-as-a-d-111": {
+      "id": "b-30-script-nodes-use-a-script-node-as-a-d-111",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use a script node as a deterministic adapter between two AI nodes. The script\nparses the upstream classifier's JSON, filters, and forwards a clean payload:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-112": {
+      "id": "b-30-script-nodes-yaml-112",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: classify\n  prompt: \"Classify: $ARGUMENTS\"\n  allowed_tools: []\n  output_format:\n    type: object\n    properties:\n      items:\n        type: array\n        items: { type: object }\n\n- id: filter\n  script: |\n    const upstream = JSON.parse(process.env.UPSTREAM ?? '{}');\n    const high = (upstream.items ?? []).filter(i => i.severity === 'high');\n    console.log(JSON.stringify(high));\n  runtime: bun\n  depends_on: [classify]\n\n- id: triage\n  command: triage-high-severity\n  depends_on: [filter]\n  when: \"$filter.output != '[]'\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-note-to-actually-popu-113": {
+      "id": "b-30-script-nodes-note-to-actually-popu-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "(Note: to actually populate ",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "UPSTREAM",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " you'd inline-substitute\n",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "$classify.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into the script body. The example above illustrates the\nshape.)",
+          "attributes": {
+            "italic": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-reusable-helper-in-a-114": {
+      "id": "b-30-script-nodes-reusable-helper-in-a-114",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Reusable helper in "
+        },
+        {
+          "insert": "~/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-a-helper-you-want-availa-115": {
+      "id": "b-30-script-nodes-a-helper-you-want-availa-115",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A helper you want available in every repo (say, a triage summary formatter) lives at "
+        },
+        {
+          "insert": "~/.archon/scripts/triage-fmt.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-typescript-116": {
+      "id": "b-30-script-nodes-typescript-116",
+      "type": "code",
+      "props": {
+        "language": "typescript"
+      },
+      "text": [
+        {
+          "insert": "// ~/.archon/scripts/triage-fmt.ts\nconst raw = process.argv.slice(2).join(' ') || '{}';\nconst data = JSON.parse(raw);\nconst lines = data.issues?.map((i: { id: string; title: string }) =>\n  `- [${i.id}] ${i.title}`\n).join('\\n') ?? '';\nconsole.log(lines || 'no issues');"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-then-reference-it-by-nam-117": {
+      "id": "b-30-script-nodes-then-reference-it-by-nam-117",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then reference it by name from any repo's workflow:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-118": {
+      "id": "b-30-script-nodes-yaml-118",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: format\n  script: triage-fmt\n  runtime: bun\n  depends_on: [gather]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-python-with-scientific-d-119": {
+      "id": "b-30-script-nodes-python-with-scientific-d-119",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Python with scientific dependencies"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-yaml-120": {
+      "id": "b-30-script-nodes-yaml-120",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: analyze\n  script: |\n    import json, sys\n    import pandas as pd\n    data = json.loads(sys.argv[1]) if len(sys.argv) > 1 else []\n    df = pd.DataFrame(data)\n    print(df.describe().to_json())\n  runtime: uv\n  deps: [\"pandas>=2.0\"]\n  depends_on: [collect]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-what-does-not-work-121": {
+      "id": "b-30-script-nodes-what-does-not-work-121",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What Does NOT Work"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-ai-only-features-h-122": {
+      "id": "b-30-script-nodes-ai-only-features-h-122",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "AI-only features",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "hooks",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "skills",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ","
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-denied-tools-agents-123": {
+      "id": "b-30-script-nodes-denied-tools-agents-123",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "denied_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "agents",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "effort",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "maxBudgetUsd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "systemPrompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "fallbackModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "betas",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "sandbox",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are\nall ignored at runtime. The loader emits a warning listing the ignored fields.\n("
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in that set: a script owns it, see\n"
+        },
+        {
+          "insert": "Declaring a result contract",
+          "attributes": {
+            "link": "#declaring-a-result-contract"
+          }
+        },
+        {
+          "insert": ".)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-json-repair-and-reasks-124": {
+      "id": "b-30-script-nodes-json-repair-and-reasks-124",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "JSON repair and reasks",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a certified script's stdout must be exactly right"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-the-first-time-there-is-125": {
+      "id": "b-30-script-nodes-the-first-time-there-is-125",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "the first time. There is no fence stripping and no second attempt: stdout that\ndoes not match the declared schema is a bug in the script."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-interactive-prompts-126": {
+      "id": "b-30-script-nodes-interactive-prompts-126",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Interactive prompts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the script runs headlessly and receives no user input."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-a-stdin-read-may-block-127": {
+      "id": "b-30-script-nodes-a-stdin-read-may-block-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "stdin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " read may block rather than immediately see EOF."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-runtimes-other-than-b-128": {
+      "id": "b-30-script-nodes-runtimes-other-than-b-128",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Runtimes other than ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": rejected at parse time."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-cancelling-mid-executi-129": {
+      "id": "b-30-script-nodes-cancelling-mid-executi-129",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Cancelling mid-execution",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": there is no cooperative cancellation signal."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-cancelling-the-run-ends-130": {
+      "id": "b-30-script-nodes-cancelling-the-run-ends-130",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cancelling the run ends a running script's process tree instead; see\n"
+        },
+        {
+          "insert": "Bash and script node timeouts",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "bash-and-script-node-timeouts",
+              "label": "Bash and script node timeouts"
+            }
+          }
+        },
+        {
+          "insert": "\nfor what it reaches. Without a "
+        },
+        {
+          "insert": "timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a script that hangs runs until it is\ncancelled."
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-see-also-131": {
+      "id": "b-30-script-nodes-see-also-131",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "See Also"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-workflow-language-doc-132": {
+      "id": "b-30-script-nodes-workflow-language-doc-132",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflow language",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "label": "Workflow language"
+            }
+          }
+        },
+        {
+          "insert": ": the full workflow reference"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-global-workflows-comma-133": {
+      "id": "b-30-script-nodes-global-workflows-comma-133",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Global Workflows, Commands, and Scripts",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/50-global-workflows.md",
+              "label": "Global Workflows, Commands, and Scripts"
+            }
+          }
+        },
+        {
+          "insert": ": home-scoped "
+        },
+        {
+          "insert": "~/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-security-model-docs-1-134": {
+      "id": "b-30-script-nodes-security-model-docs-1-134",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Security Model",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "target-repo-env-isolation",
+              "label": "Security Model"
+            }
+          }
+        },
+        {
+          "insert": ": env isolation details"
+        }
+      ],
+      "children": []
+    },
+    "b-30-script-nodes-variables-reference-d-135": {
+      "id": "b-30-script-nodes-variables-reference-d-135",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Variables Reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/45-variables.md",
+              "label": "Variables Reference"
+            }
+          }
+        },
+        {
+          "insert": ": substitution rules"
+        }
+      ],
+      "children": []
+    }
+  }
+}

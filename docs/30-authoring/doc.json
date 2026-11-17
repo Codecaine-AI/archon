@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring",
+  "title": "Authoring",
+  "root": "b-30-authoring-root-8",
+  "blocks": {
+    "b-30-authoring-root-8": {
+      "id": "b-30-authoring-root-8",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts"
+      },
+      "children": [
+        "b-30-authoring-authoring-is-a-guides-ti-1",
+        "b-30-authoring-the-guides-do-not-set-co-2",
+        "b-30-authoring-each-page-is-a-converted-3",
+        "b-30-authoring-the-import-replaces-each-4",
+        "b-30-authoring-contents-5",
+        "b-30-authoring-getting-started-docs-6",
+        "b-30-authoring-guides-docs-30-author-7"
+      ]
+    },
+    "b-30-authoring-authoring-is-a-guides-ti-1": {
+      "id": "b-30-authoring-authoring-is-a-guides-ti-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Authoring is a guides tier. It holds the procedures to install Archon and to write workflows, commands and nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-the-guides-do-not-set-co-2": {
+      "id": "b-30-authoring-the-guides-do-not-set-co-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The guides do not set contracts. System Design holds the contracts."
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-each-page-is-a-converted-3": {
+      "id": "b-30-authoring-each-page-is-a-converted-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each page is a converted copy of the upstream Archon docs."
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-the-import-replaces-each-4": {
+      "id": "b-30-authoring-the-import-replaces-each-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The import replaces each em dash of the upstream prose with a colon, a comma, parentheses or a hyphen."
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-contents-5": {
+      "id": "b-30-authoring-contents-5",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-getting-started-docs-6": {
+      "id": "b-30-authoring-getting-started-docs-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Getting Started",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started.md",
+              "label": "Getting Started"
+            }
+          }
+        },
+        {
+          "insert": ": The upstream Getting Started pages."
+        }
+      ],
+      "children": []
+    },
+    "b-30-authoring-guides-docs-30-author-7": {
+      "id": "b-30-authoring-guides-docs-30-author-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Guides",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides.md",
+              "label": "Guides"
+            }
+          }
+        },
+        {
+          "insert": ": How-to guides for authoring workflows, commands, and configuring node features in Archon."
+        }
+      ],
+      "children": []
+    }
+  }
+}

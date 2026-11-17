@@ -1,0 +1,2958 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-40-mcp-servers",
+  "title": "Per-Node MCP Servers",
+  "root": "b-40-mcp-servers-root-124",
+  "blocks": {
+    "b-40-mcp-servers-root-124": {
+      "id": "b-40-mcp-servers-root-124",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Attach MCP (Model Context Protocol) servers to individual workflow nodes for external tool access.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/mcp-servers.md"
+      },
+      "children": [
+        "b-40-mcp-servers-dag-workflow-nodes-suppo-1",
+        "b-40-mcp-servers-mcp-works-with-claude-c-2",
+        "b-40-mcp-servers-quick-start-3",
+        "b-40-mcp-servers-create-an-mcp-config-fil-4",
+        "b-40-mcp-servers-json-5",
+        "b-40-mcp-servers-reference-it-in-your-wor-6",
+        "b-40-mcp-servers-yaml-7",
+        "b-40-mcp-servers-that-s-it-the-mcp-serve-8",
+        "b-40-mcp-servers-optional-servers-9",
+        "b-40-mcp-servers-a-node-that-can-do-usefu-10",
+        "b-40-mcp-servers-yaml-11",
+        "b-40-mcp-servers-the-node-gets-exactly-th-12",
+        "table-0-b1f43441",
+        "b-40-mcp-servers-the-node-s-node-started-14",
+        "b-40-mcp-servers-the-engine-adds-nothing-15",
+        "b-40-mcp-servers-only-a-missing-file-coun-16",
+        "b-40-mcp-servers-relative-paths-resolve-a-17",
+        "b-40-mcp-servers-this-also-applies-to-opt-18",
+        "b-40-mcp-servers-only-a-missing-file-perm-19",
+        "b-40-mcp-servers-a-gitignored-checkout-co-20",
+        "b-40-mcp-servers-the-plain-string-form-21",
+        "b-40-mcp-servers-config-file-format-22",
+        "b-40-mcp-servers-mcp-config-files-are-jso-23",
+        "b-40-mcp-servers-archon-also-accepts-the-24",
+        "b-40-mcp-servers-stdio-default-25",
+        "b-40-mcp-servers-runs-a-local-process-th-26",
+        "b-40-mcp-servers-json-27",
+        "table-1-b1f43441",
+        "b-40-mcp-servers-http-29",
+        "b-40-mcp-servers-connects-to-a-remote-htt-30",
+        "b-40-mcp-servers-json-31",
+        "table-2-b1f43441",
+        "b-40-mcp-servers-sse-server-sent-events-33",
+        "b-40-mcp-servers-connects-to-an-sse-endpo-34",
+        "b-40-mcp-servers-json-35",
+        "table-3-b1f43441",
+        "b-40-mcp-servers-environment-variable-exp-37",
+        "b-40-mcp-servers-values-in-env-and-hea-38",
+        "b-40-mcp-servers-json-39",
+        "b-40-mcp-servers-rules-40",
+        "b-40-mcp-servers-pattern-upper-case-va-41",
+        "b-40-mcp-servers-only-env-and-headers-42",
+        "b-40-mcp-servers-undefined-vars-are-repla-43",
+        "b-40-mcp-servers-warning-node-x-mcp-c-44",
+        "b-40-mcp-servers-expansion-happens-at-exe-45",
+        "b-40-mcp-servers-why-file-based-mcp-46",
+        "b-40-mcp-servers-multiple-servers-per-nod-47",
+        "b-40-mcp-servers-a-single-config-file-can-48",
+        "b-40-mcp-servers-json-49",
+        "b-40-mcp-servers-provider-tool-wiring-50",
+        "b-40-mcp-servers-claude-nodes-automatical-51",
+        "b-40-mcp-servers-mcp-github-52",
+        "b-40-mcp-servers-mcp-postgres-53",
+        "b-40-mcp-servers-with-no-mcp-declarati-54",
+        "b-40-mcp-servers-codex-nodes-pass-the-sam-55",
+        "b-40-mcp-servers-a-codex-node-cannot-decl-56",
+        "b-40-mcp-servers-mcp-only-nodes-57",
+        "b-40-mcp-servers-for-providers-that-suppo-58",
+        "b-40-mcp-servers-yaml-59",
+        "b-40-mcp-servers-this-is-useful-for-sandb-60",
+        "b-40-mcp-servers-connection-failure-handl-61",
+        "b-40-mcp-servers-mcp-server-connections-a-62",
+        "b-40-mcp-servers-code-63",
+        "b-40-mcp-servers-and-the-node-fails-as-m-64",
+        "b-40-mcp-servers-code-65",
+        "b-40-mcp-servers-check-your-config-file-p-66",
+        "b-40-mcp-servers-claude-codex-and-copil-67",
+        "b-40-mcp-servers-claude-s-and-codex-s-str-68",
+        "b-40-mcp-servers-servers-that-ship-in-a-c-69",
+        "b-40-mcp-servers-naming-a-plugin-with-pl-70",
+        "b-40-mcp-servers-json-71",
+        "b-40-mcp-servers-its-tools-appear-as-mcp-72",
+        "b-40-mcp-servers-servers-that-ship-in-a-c-73",
+        "b-40-mcp-servers-naming-a-codex-plugin-wi-74",
+        "b-40-mcp-servers-workflow-examples-75",
+        "b-40-mcp-servers-github-issue-triage-76",
+        "b-40-mcp-servers-yaml-77",
+        "b-40-mcp-servers-database-informed-code-c-78",
+        "b-40-mcp-servers-yaml-79",
+        "b-40-mcp-servers-multi-service-orchestrat-80",
+        "b-40-mcp-servers-yaml-81",
+        "b-40-mcp-servers-read-only-analysis-with-82",
+        "b-40-mcp-servers-combine-mcp-with-hooks-83",
+        "b-40-mcp-servers-yaml-84",
+        "b-40-mcp-servers-push-notifications-ntfy-85",
+        "b-40-mcp-servers-a-workflow-can-end-with-86",
+        "b-40-mcp-servers-setup-30-seconds-87",
+        "b-40-mcp-servers-install-the-ntfy-app-h-88",
+        "b-40-mcp-servers-open-the-app-tap-s-89",
+        "b-40-mcp-servers-treat-the-topic-name-lik-90",
+        "b-40-mcp-servers-create-archon-mcp-ntfy-91",
+        "b-40-mcp-servers-json-92",
+        "b-40-mcp-servers-that-s-it-the-file-is-g-93",
+        "b-40-mcp-servers-how-it-works-in-workflow-94",
+        "b-40-mcp-servers-workflows-use-a-bash-nod-95",
+        "b-40-mcp-servers-yaml-96",
+        "b-40-mcp-servers-if-archon-mcp-ntfy-jso-97",
+        "b-40-mcp-servers-adding-notifications-to-98",
+        "b-40-mcp-servers-add-the-two-nodes-above-99",
+        "b-40-mcp-servers-quick-test-100",
+        "b-40-mcp-servers-bash-101",
+        "b-40-mcp-servers-mcp-vs-allowed-tools-den-102",
+        "table-4-b1f43441",
+        "b-40-mcp-servers-limitations-104",
+        "b-40-mcp-servers-codex-tool-restriction-105",
+        "b-40-mcp-servers-allowed-tools-denie-106",
+        "b-40-mcp-servers-haiku-model-tool-se-107",
+        "b-40-mcp-servers-haiku-you-ll-see-a-warn-108",
+        "b-40-mcp-servers-no-load-time-validatio-109",
+        "b-40-mcp-servers-file-archon-validate-w-110",
+        "b-40-mcp-servers-no-inline-config-mc-111",
+        "b-40-mcp-servers-this-is-intentional-it-112",
+        "b-40-mcp-servers-troubleshooting-113",
+        "table-5-b1f43441",
+        "b-40-mcp-servers-finding-mcp-servers-115",
+        "b-40-mcp-servers-popular-mcp-servers-for-116",
+        "b-40-mcp-servers-github-modelconte-117",
+        "b-40-mcp-servers-postgresql-modelc-118",
+        "b-40-mcp-servers-filesystem-modelc-119",
+        "b-40-mcp-servers-slack-modelcontex-120",
+        "b-40-mcp-servers-google-drive-mode-121",
+        "b-40-mcp-servers-brave-search-mode-122",
+        "b-40-mcp-servers-browse-the-full-director-123"
+      ]
+    },
+    "b-40-mcp-servers-dag-workflow-nodes-suppo-1": {
+      "id": "b-40-mcp-servers-dag-workflow-nodes-suppo-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "DAG workflow nodes support an "
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field that attaches MCP (Model Context Protocol)\nservers to individual nodes. Claude and Codex workflow nodes exclude ambient\nuser/project/plugin MCP by default, including the servers of plugins the node names with\n"
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and expose exactly the external servers in their declared file, plus\ngoverned native tools that Archon injects for the current workflow when applicable."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-works-with-claude-c-2": {
+      "id": "b-40-mcp-servers-mcp-works-with-claude-c-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "MCP works with Claude, Codex, and Copilot workflow nodes. On Pi and OpenCode, a\nnode with a required "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fails the run before any node starts, and\n"
+        },
+        {
+          "insert": "archon validate workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports it as an error. A node can instead declare its\nservers "
+        },
+        {
+          "insert": "optional",
+          "attributes": {
+            "link": "#optional-servers"
+          }
+        },
+        {
+          "insert": " and run without them."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-quick-start-3": {
+      "id": "b-40-mcp-servers-quick-start-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick Start"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-create-an-mcp-config-fil-4": {
+      "id": "b-40-mcp-servers-create-an-mcp-config-fil-4",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create an MCP config file (e.g., "
+        },
+        {
+          "insert": ".archon/mcp/github.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "):"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-5": {
+      "id": "b-40-mcp-servers-json-5",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"github\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n    \"env\": {\n      \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"$GITHUB_TOKEN\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-reference-it-in-your-wor-6": {
+      "id": "b-40-mcp-servers-reference-it-in-your-wor-6",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Reference it in your workflow:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-7": {
+      "id": "b-40-mcp-servers-yaml-7",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: triage-issues\ndescription: Triage GitHub issues using MCP\nnodes:\n  - id: triage\n    prompt: \"List open issues and label them by priority\"\n    mcp: .archon/mcp/github.json"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-that-s-it-the-mcp-serve-8": {
+      "id": "b-40-mcp-servers-that-s-it-the-mcp-serve-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "That's it. The MCP server starts when the node runs, its tools become available\nto the AI, and it shuts down when the node completes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-optional-servers-9": {
+      "id": "b-40-mcp-servers-optional-servers-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Optional Servers"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-a-node-that-can-do-usefu-10": {
+      "id": "b-40-mcp-servers-a-node-that-can-do-usefu-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A node that can do useful work without its servers declares them optional:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-11": {
+      "id": "b-40-mcp-servers-yaml-11",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: intel\n    prompt: |\n      If mcp__posthog__* tools are available, query product usage for the area this\n      change touches. Otherwise, report that no product data source is connected.\n    mcp:\n      path: .archon/mcp/posthog.json\n      optional: true"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-the-node-gets-exactly-th-12": {
+      "id": "b-40-mcp-servers-the-node-gets-exactly-th-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The node gets exactly the servers in the file when its provider supports MCP and the\nfile exists. Otherwise it runs without them:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-b1f43441": {
+      "id": "table-0-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Reason",
+          "When"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "provider_unsupported",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The node's provider cannot load MCP servers (Pi, OpenCode)"
+          ],
+          [
+            [
+              {
+                "insert": "config_missing",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The config file does not exist"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-the-node-s-node-started-14": {
+      "id": "b-40-mcp-servers-the-node-s-node-started-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The node's "
+        },
+        {
+          "insert": "node_started",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and terminal rows record "
+        },
+        {
+          "insert": "mcp_unavailable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the declared\n"
+        },
+        {
+          "insert": "path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the server names when the file was readable, and the chat\nshows a warning such as\n"
+        },
+        {
+          "insert": "Node 'intel' runs without its optional MCP servers (.archon/mcp/posthog.json): MCP config file not found: '.archon/mcp/posthog.json'. Tried: /repo/.archon/mcp/posthog.json.",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n"
+        },
+        {
+          "insert": "optional: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " covers only a missing file or a provider without MCP. Once the file\nloads, its servers are declared like any other, and one that fails to connect fails\nthe node as described under "
+        },
+        {
+          "insert": "Connection Failure Handling",
+          "attributes": {
+            "link": "#connection-failure-handling"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-the-engine-adds-nothing-15": {
+      "id": "b-40-mcp-servers-the-engine-adds-nothing-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The engine adds nothing to the prompt. The agent sees which servers loaded from its own\ntool list, so write the prompt to check for the "
+        },
+        {
+          "insert": "mcp__<server>__*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tools, as above."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-only-a-missing-file-coun-16": {
+      "id": "b-40-mcp-servers-only-a-missing-file-coun-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Only a missing file counts as absent. A file that exists but is unreadable or invalid\nJSON still fails "
+        },
+        {
+          "insert": "archon validate workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Invalid JSON and unreadable checkout\nconfig files fail the node on a provider that loads MCP. A host-local read failure\nin a run's captured home MCP config pauses the run so it can resume on a host that\ncan read the capture, including when the MCP declaration is optional.\n"
+        },
+        {
+          "insert": "archon validate workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports nothing for an optional declaration whose file is missing or whose provider\nlacks MCP, because that is the expected state for most users of a portable workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-relative-paths-resolve-a-17": {
+      "id": "b-40-mcp-servers-relative-paths-resolve-a-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Relative paths resolve against the run's checkout first. Only a declaration in a\nhome-scoped workflow may fall back to the directory containing its YAML file. This\nis the declaring file's directory, including for nested workflows and nodes brought\nin through "
+        },
+        {
+          "insert": "include:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Project, bundled, and installed workflows use only the checkout.\nCaptured runs, including continuations, use the captured copy of the home YAML's\ndirectory. An absolute path uses exactly that path and bypasses relative lookup."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-this-also-applies-to-opt-18": {
+      "id": "b-40-mcp-servers-this-also-applies-to-opt-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This also applies to optional declarations: a home workflow whose optional "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file is\nmissing from the checkout but present next to its YAML runs with those servers."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-only-a-missing-file-perm-19": {
+      "id": "b-40-mcp-servers-only-a-missing-file-perm-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Only a missing file permits fallback. An unreadable or invalid checkout config fails\ninstead of loading a home config. A missing-file error lists every location tried, in\norder; optional missing declarations record "
+        },
+        {
+          "insert": "config_missing",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and warn with those locations."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-a-gitignored-checkout-co-20": {
+      "id": "b-40-mcp-servers-a-gitignored-checkout-co-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A gitignored checkout config such as "
+        },
+        {
+          "insert": ".archon/mcp/posthog.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reaches a worktree run\nonly through "
+        },
+        {
+          "insert": "worktree.copyFiles",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; without it, and without an eligible home fallback,\nthe run records "
+        },
+        {
+          "insert": "config_missing",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for an optional declaration."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-the-plain-string-form-21": {
+      "id": "b-40-mcp-servers-the-plain-string-form-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The plain string form, "
+        },
+        {
+          "insert": "mcp: .archon/mcp/github.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", is a required declaration."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-config-file-format-22": {
+      "id": "b-40-mcp-servers-config-file-format-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Config File Format"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-config-files-are-jso-23": {
+      "id": "b-40-mcp-servers-mcp-config-files-are-jso-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "MCP config files are JSON objects where each key is a server name and the value\nis a server configuration. Three transport types are supported:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-archon-also-accepts-the-24": {
+      "id": "b-40-mcp-servers-archon-also-accepts-the-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon also accepts the common wrapper format "
+        },
+        {
+          "insert": "{ \"mcpServers\": { ... } }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; this\nis useful when copying config from tools that already export MCP JSON."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-stdio-default-25": {
+      "id": "b-40-mcp-servers-stdio-default-25",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "stdio (default)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-runs-a-local-process-th-26": {
+      "id": "b-40-mcp-servers-runs-a-local-process-th-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Runs a local process. This is the most common type."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-27": {
+      "id": "b-40-mcp-servers-json-27",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"github\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n    \"env\": {\n      \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"$GITHUB_TOKEN\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "table-1-b1f43441": {
+      "id": "table-1-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "type",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'stdio'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            "Default when omitted"
+          ],
+          [
+            [
+              {
+                "insert": "command",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Yes",
+            "Executable to run"
+          ],
+          [
+            [
+              {
+                "insert": "args",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string[]",
+            "No",
+            "Command arguments"
+          ],
+          [
+            [
+              {
+                "insert": "env",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Record<string, string>",
+            "No",
+            "Environment variables for the process"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-http-29": {
+      "id": "b-40-mcp-servers-http-29",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "HTTP"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-connects-to-a-remote-htt-30": {
+      "id": "b-40-mcp-servers-connects-to-a-remote-htt-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connects to a remote HTTP endpoint."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-31": {
+      "id": "b-40-mcp-servers-json-31",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"api\": {\n    \"type\": \"http\",\n    \"url\": \"https://mcp.example.com/v1\",\n    \"headers\": {\n      \"Authorization\": \"Bearer $API_KEY\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "table-2-b1f43441": {
+      "id": "table-2-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "type",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'http'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Yes",
+            [
+              {
+                "insert": "Must be "
+              },
+              {
+                "insert": "'http'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "url",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Yes",
+            "HTTP endpoint URL"
+          ],
+          [
+            [
+              {
+                "insert": "headers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Record<string, string>",
+            "No",
+            "Request headers"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-sse-server-sent-events-33": {
+      "id": "b-40-mcp-servers-sse-server-sent-events-33",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "SSE (Server-Sent Events)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-connects-to-an-sse-endpo-34": {
+      "id": "b-40-mcp-servers-connects-to-an-sse-endpo-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connects to an SSE endpoint."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-35": {
+      "id": "b-40-mcp-servers-json-35",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"realtime\": {\n    \"type\": \"sse\",\n    \"url\": \"https://mcp.example.com/sse\",\n    \"headers\": {\n      \"Authorization\": \"Bearer $SSE_TOKEN\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "table-3-b1f43441": {
+      "id": "table-3-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Type",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "type",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'sse'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Yes",
+            [
+              {
+                "insert": "Must be "
+              },
+              {
+                "insert": "'sse'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "url",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Yes",
+            "SSE endpoint URL"
+          ],
+          [
+            [
+              {
+                "insert": "headers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Record<string, string>",
+            "No",
+            "Request headers"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-environment-variable-exp-37": {
+      "id": "b-40-mcp-servers-environment-variable-exp-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Environment Variable Expansion"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-values-in-env-and-hea-38": {
+      "id": "b-40-mcp-servers-values-in-env-and-hea-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Values in "
+        },
+        {
+          "insert": "env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "headers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fields support "
+        },
+        {
+          "insert": "$VAR_NAME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "${VAR_NAME}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " references. They are\nexpanded from Archon's process environment at execution time. Codex workflow\nnodes also include codebase-scoped env vars in that expansion."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-39": {
+      "id": "b-40-mcp-servers-json-39",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"db\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@mcp/server-postgres\"],\n    \"env\": {\n      \"DATABASE_URL\": \"${DATABASE_URL}\",\n      \"POOL_SIZE\": \"$DB_POOL_SIZE\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-rules-40": {
+      "id": "b-40-mcp-servers-rules-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Rules:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-pattern-upper-case-va-41": {
+      "id": "b-40-mcp-servers-pattern-upper-case-va-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Pattern: "
+        },
+        {
+          "insert": "$UPPER_CASE_VAR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "${UPPER_CASE_VAR}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (matches "
+        },
+        {
+          "insert": "[A-Z_][A-Z0-9_]*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-only-env-and-headers-42": {
+      "id": "b-40-mcp-servers-only-env-and-headers-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Only "
+        },
+        {
+          "insert": "env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "headers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " values are expanded: "
+        },
+        {
+          "insert": "command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "args",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "url",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are left untouched"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-undefined-vars-are-repla-43": {
+      "id": "b-40-mcp-servers-undefined-vars-are-repla-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Undefined vars are replaced with empty string and a warning is shown:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-warning-node-x-mcp-c-44": {
+      "id": "b-40-mcp-servers-warning-node-x-mcp-c-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Warning: Node 'X' MCP config references undefined env vars: VAR_NAME",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-expansion-happens-at-exe-45": {
+      "id": "b-40-mcp-servers-expansion-happens-at-exe-45",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Expansion happens at execution time, not when the workflow YAML is loaded"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-why-file-based-mcp-46": {
+      "id": "b-40-mcp-servers-why-file-based-mcp-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Why file-based?",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " MCP configs often contain secrets (API tokens, database URLs).\nWorkflow YAML files are committed to git. By keeping configs in separate JSON files,\nyou can gitignore them or rely on env var references so secrets never appear in source."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-multiple-servers-per-nod-47": {
+      "id": "b-40-mcp-servers-multiple-servers-per-nod-47",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Multiple Servers Per Node"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-a-single-config-file-can-48": {
+      "id": "b-40-mcp-servers-a-single-config-file-can-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A single config file can define multiple servers:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-49": {
+      "id": "b-40-mcp-servers-json-49",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"github\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n    \"env\": { \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"$GITHUB_TOKEN\" }\n  },\n  \"postgres\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"@modelcontextprotocol/server-postgres\"],\n    \"env\": { \"DATABASE_URL\": \"$DATABASE_URL\" }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-provider-tool-wiring-50": {
+      "id": "b-40-mcp-servers-provider-tool-wiring-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Provider Tool Wiring"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-claude-nodes-automatical-51": {
+      "id": "b-40-mcp-servers-claude-nodes-automatical-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude nodes automatically add tool wildcards to "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". For servers\nnamed "
+        },
+        {
+          "insert": "github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "postgres",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the node gets:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-github-52": {
+      "id": "b-40-mcp-servers-mcp-github-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "mcp__github__*",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-postgres-53": {
+      "id": "b-40-mcp-servers-mcp-postgres-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "mcp__postgres__*",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-with-no-mcp-declarati-54": {
+      "id": "b-40-mcp-servers-with-no-mcp-declarati-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With no "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declaration, a Claude workflow node receives no ambient or\nauthor-declared MCP servers. Archon may still inject its own governed native-tool\nserver for a node that requests an engine capability. This does not disable\n"
+        },
+        {
+          "insert": "CLAUDE.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", built-in agents, or filesystem-defined agents."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-codex-nodes-pass-the-sam-55": {
+      "id": "b-40-mcp-servers-codex-nodes-pass-the-sam-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex nodes pass the same MCP config as per-node "
+        },
+        {
+          "insert": "mcp_servers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides on the\nCodex thread, so the servers are available for that node without requiring global\n"
+        },
+        {
+          "insert": "~/.codex/config.toml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " setup. Every other server in the user's or project's Codex\nconfig, every plugin's server, and ChatGPT apps are turned off for the node's thread.\nBefore the turn starts, Archon asks Codex which servers the thread loaded and fails the\nnode as misconfigured if any undeclared server is live. The servers you configured are\nleft untouched for interactive Codex sessions."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-a-codex-node-cannot-decl-56": {
+      "id": "b-40-mcp-servers-a-codex-node-cannot-decl-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A Codex node cannot declare a server under a name your Codex "
+        },
+        {
+          "insert": "config.toml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " already\nuses. Codex would merge the two definitions into one, so the node fails before it starts\nwith an instruction to rename the server in the "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-only-nodes-57": {
+      "id": "b-40-mcp-servers-mcp-only-nodes-57",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "MCP-Only Nodes"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-for-providers-that-suppo-58": {
+      "id": "b-40-mcp-servers-for-providers-that-suppo-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For providers that support tool restrictions, combine "
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with\n"
+        },
+        {
+          "insert": "allowed_tools: []",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to create nodes that can only use MCP tools and have no\naccess to built-in tools (Bash, Read, Write, etc.):"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-59": {
+      "id": "b-40-mcp-servers-yaml-59",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: query-db\n    prompt: \"Find all users who signed up in the last 24 hours\"\n    mcp: .archon/mcp/postgres.json\n    allowed_tools: []"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-this-is-useful-for-sandb-60": {
+      "id": "b-40-mcp-servers-this-is-useful-for-sandb-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is useful for sandboxing: the AI can only interact through the MCP server\nand cannot touch the filesystem or run shell commands. Codex currently does not\nsupport Archon's "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / "
+        },
+        {
+          "insert": "denied_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " restrictions, so this pattern\nis enforced for Claude nodes but not Codex nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-connection-failure-handl-61": {
+      "id": "b-40-mcp-servers-connection-failure-handl-61",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Connection Failure Handling"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-server-connections-a-62": {
+      "id": "b-40-mcp-servers-mcp-server-connections-a-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "MCP server connections are established when the node starts executing. A node that\ndeclares an MCP server needs it, so every declared server is required. On Claude and\nCodex the node waits for its declared servers to connect before the first model turn.\nIf one fails to connect, needs authentication, or is disabled, you'll see a message like:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-code-63": {
+      "id": "b-40-mcp-servers-code-63",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "MCP server connection failed: github (failed)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-and-the-node-fails-as-m-64": {
+      "id": "b-40-mcp-servers-and-the-node-fails-as-m-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "and the node fails as "
+        },
+        {
+          "insert": "misconfigured",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before any model call, with an error that names\nthe server and its reported cause:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-code-65": {
+      "id": "b-40-mcp-servers-code-65",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "Required MCP server \"github\" could not connect (failed): spawn ENOENT"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-check-your-config-file-p-66": {
+      "id": "b-40-mcp-servers-check-your-config-file-p-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check your config file path, server command, and environment variables if this happens.\nCopilot still reports the failure as a warning and runs the node without that server's tools."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-claude-codex-and-copil-67": {
+      "id": "b-40-mcp-servers-claude-codex-and-copil-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude, Codex, and Copilot report each server's status as an "
+        },
+        {
+          "insert": "mcp_server_status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nprovider event, which the run record keeps with the server name and the vendor's error."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-claude-s-and-codex-s-str-68": {
+      "id": "b-40-mcp-servers-claude-s-and-codex-s-str-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude's and Codex's strict workflow configuration prevents undeclared user/plugin MCPs\nfrom starting, so their connection failures do not affect the run."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-servers-that-ship-in-a-c-69": {
+      "id": "b-40-mcp-servers-servers-that-ship-in-a-c-69",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Servers that ship in a Claude plugin"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-naming-a-plugin-with-pl-70": {
+      "id": "b-40-mcp-servers-naming-a-plugin-with-pl-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Naming a plugin with "
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not connect its MCP servers. To use one, declare\nit in the node's "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file under the name Claude Code gives plugin servers,\n"
+        },
+        {
+          "insert": "plugin:<plugin>:<server>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". That name lets Claude reuse the sign-in it already stored\nfor the plugin's server. Copy the server's definition from "
+        },
+        {
+          "insert": "claude plugin list --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-71": {
+      "id": "b-40-mcp-servers-json-71",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"plugin:posthog:posthog\": {\n    \"type\": \"http\",\n    \"url\": \"https://mcp.posthog.com/mcp\",\n    \"headers\": { \"x-posthog-mcp-consumer\": \"plugin\" }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-its-tools-appear-as-mcp-72": {
+      "id": "b-40-mcp-servers-its-tools-appear-as-mcp-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Its tools appear as "
+        },
+        {
+          "insert": "mcp__plugin_posthog_posthog__*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This works for "
+        },
+        {
+          "insert": "http",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "sse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nservers. A "
+        },
+        {
+          "insert": "stdio",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " server, or a definition that uses Claude plugin placeholders such as\n"
+        },
+        {
+          "insert": "${CLAUDE_PLUGIN_ROOT}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", cannot be restated this way, because Archon does not expand\nthose placeholders."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-servers-that-ship-in-a-c-73": {
+      "id": "b-40-mcp-servers-servers-that-ship-in-a-c-73",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Servers that ship in a Codex plugin"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-naming-a-codex-plugin-wi-74": {
+      "id": "b-40-mcp-servers-naming-a-codex-plugin-wi-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Naming a Codex plugin with "
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not connect its MCP servers either. To use\none, declare it in the node's "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file under the name the plugin's "
+        },
+        {
+          "insert": ".mcp.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ngives it. Codex lets the declared\ndefinition replace the plugin's, and the node sees only the declared one. A definition\nthat depends on paths inside the plugin's directory cannot be restated this way."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-workflow-examples-75": {
+      "id": "b-40-mcp-servers-workflow-examples-75",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflow Examples"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-github-issue-triage-76": {
+      "id": "b-40-mcp-servers-github-issue-triage-76",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "GitHub Issue Triage"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-77": {
+      "id": "b-40-mcp-servers-yaml-77",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: triage-issues\ndescription: Fetch and label GitHub issues\nnodes:\n  - id: triage\n    prompt: |\n      List all open issues in this repo.\n      For each issue, add a priority label (P0-P3) based on:\n      - P0: Security vulnerabilities, data loss\n      - P1: Broken core functionality\n      - P2: Important but not blocking\n      - P3: Nice to have\n    mcp: .archon/mcp/github.json"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-database-informed-code-c-78": {
+      "id": "b-40-mcp-servers-database-informed-code-c-78",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Database-Informed Code Changes"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-79": {
+      "id": "b-40-mcp-servers-yaml-79",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: schema-aware-feature\ndescription: Build features with live database context\nnodes:\n  - id: inspect-schema\n    prompt: \"List all tables and their columns in the database\"\n    mcp: .archon/mcp/postgres.json\n    allowed_tools: []\n\n  - id: implement\n    command: implement-feature\n    depends_on: [inspect-schema]"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-multi-service-orchestrat-80": {
+      "id": "b-40-mcp-servers-multi-service-orchestrat-80",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Multi-Service Orchestration"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-81": {
+      "id": "b-40-mcp-servers-yaml-81",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: full-stack-fix\ndescription: Fix a bug using GitHub issues, database, and code\nnodes:\n  - id: fetch-context\n    prompt: \"Get issue details and related database schema\"\n    mcp: .archon/mcp/all-services.json\n    allowed_tools: []\n\n  - id: fix\n    command: implement-fix\n    depends_on: [fetch-context]\n\n  - id: verify\n    prompt: \"Run the relevant query to verify the fix\"\n    depends_on: [fix]\n    mcp: .archon/mcp/postgres.json\n    allowed_tools: []"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-read-only-analysis-with-82": {
+      "id": "b-40-mcp-servers-read-only-analysis-with-82",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Read-Only Analysis with Hooks"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-combine-mcp-with-hooks-83": {
+      "id": "b-40-mcp-servers-combine-mcp-with-hooks-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Combine MCP with "
+        },
+        {
+          "insert": "hooks",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/35-hooks.md",
+              "label": "hooks"
+            }
+          }
+        },
+        {
+          "insert": " to create nodes that can query external\nservices but cannot modify the codebase:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-84": {
+      "id": "b-40-mcp-servers-yaml-84",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: analyze\n    prompt: \"Analyze our GitHub PR review patterns\"\n    mcp: .archon/mcp/github.json\n    hooks:\n      PreToolUse:\n        - matcher: \"Write|Edit|Bash\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PreToolUse\n              permissionDecision: deny\n              permissionDecisionReason: \"Analysis only — no code changes\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-push-notifications-ntfy-85": {
+      "id": "b-40-mcp-servers-push-notifications-ntfy-85",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Push Notifications (ntfy)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-a-workflow-can-end-with-86": {
+      "id": "b-40-mcp-servers-a-workflow-can-end-with-86",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow can end with an optional notification node that sends a push\nnotification to your phone when the workflow completes. Gate it behind a "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ncondition so the node is skipped when ntfy isn't configured. No bundled workflow\nincludes one; add the nodes below to your own workflows."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-setup-30-seconds-87": {
+      "id": "b-40-mcp-servers-setup-30-seconds-87",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Setup (30 seconds)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-install-the-ntfy-app-h-88": {
+      "id": "b-40-mcp-servers-install-the-ntfy-app-h-88",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Install the "
+        },
+        {
+          "insert": "ntfy app",
+          "attributes": {
+            "link": "https://ntfy.sh/"
+          }
+        },
+        {
+          "insert": " on your phone (iOS / Android)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-open-the-app-tap-s-89": {
+      "id": "b-40-mcp-servers-open-the-app-tap-s-89",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Open the app, tap \"+\", subscribe to a topic name (e.g. "
+        },
+        {
+          "insert": "archon-yourname-a8f3x",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-treat-the-topic-name-lik-90": {
+      "id": "b-40-mcp-servers-treat-the-topic-name-lik-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Treat the topic name like a password: anyone who knows it can send you notifications."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-create-archon-mcp-ntfy-91": {
+      "id": "b-40-mcp-servers-create-archon-mcp-ntfy-91",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create "
+        },
+        {
+          "insert": ".archon/mcp/ntfy.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your repo:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-json-92": {
+      "id": "b-40-mcp-servers-json-92",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"ntfy\": {\n    \"command\": \"npx\",\n    \"args\": [\"-y\", \"ntfy-me-mcp\"],\n    \"env\": {\n      \"NTFY_TOPIC\": \"archon-yourname-a8f3x\"\n    }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-that-s-it-the-file-is-g-93": {
+      "id": "b-40-mcp-servers-that-s-it-the-file-is-g-93",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "That's it. The file is gitignored ("
+        },
+        {
+          "insert": ".archon/mcp/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is in "
+        },
+        {
+          "insert": ".gitignore",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), so your\ntopic stays local."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-how-it-works-in-workflow-94": {
+      "id": "b-40-mcp-servers-how-it-works-in-workflow-94",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "How it works in workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-workflows-use-a-bash-nod-95": {
+      "id": "b-40-mcp-servers-workflows-use-a-bash-nod-95",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflows use a bash node to check if the config file exists:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-yaml-96": {
+      "id": "b-40-mcp-servers-yaml-96",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "  - id: check-ntfy\n    bash: \"test -f .archon/mcp/ntfy.json && echo 'true' || echo 'false'\"\n    depends_on: [last-work-node]\n\n  - id: notify\n    depends_on: [check-ntfy, last-work-node]\n    when: \"$check-ntfy.output == 'true'\"\n    mcp: .archon/mcp/ntfy.json\n    allowed_tools: []\n    prompt: |\n      Send a push notification summarizing what was accomplished.\n      Keep it under 2 sentences. Use priority 3."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-if-archon-mcp-ntfy-jso-97": {
+      "id": "b-40-mcp-servers-if-archon-mcp-ntfy-jso-97",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If "
+        },
+        {
+          "insert": ".archon/mcp/ntfy.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " doesn't exist, "
+        },
+        {
+          "insert": "check-ntfy",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " outputs "
+        },
+        {
+          "insert": "false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the\n"
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " condition skips the notify node, and the workflow runs exactly as before."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-adding-notifications-to-98": {
+      "id": "b-40-mcp-servers-adding-notifications-to-98",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Adding notifications to your own workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-add-the-two-nodes-above-99": {
+      "id": "b-40-mcp-servers-add-the-two-nodes-above-99",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the two nodes above (check-ntfy + notify) to the end of any DAG workflow.\nThe notify node's prompt should reference upstream node outputs (e.g. "
+        },
+        {
+          "insert": "$synthesize.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\nto generate a meaningful summary."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-quick-test-100": {
+      "id": "b-40-mcp-servers-quick-test-100",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Quick test"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-bash-101": {
+      "id": "b-40-mcp-servers-bash-101",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Verify your phone receives notifications\ncurl -d \"Hello from Archon\" ntfy.sh/YOUR_TOPIC_NAME\n\n# Run one of your workflows that includes the notify node\nbun run cli workflow run my-workflow \"Review PR #123\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-mcp-vs-allowed-tools-den-102": {
+      "id": "b-40-mcp-servers-mcp-vs-allowed-tools-den-102",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "MCP vs allowed"
+        },
+        {
+          "insert": "tools/denied",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "tools vs hooks"
+        }
+      ],
+      "children": []
+    },
+    "table-4-b1f43441": {
+      "id": "table-4-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Feature",
+          [
+            {
+              "insert": "mcp",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "allowed_tools",
+              "attributes": {
+                "code": true
+              }
+            },
+            {
+              "insert": "/"
+            },
+            {
+              "insert": "denied_tools",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "hooks",
+              "attributes": {
+                "code": true
+              }
+            }
+          ]
+        ],
+        "rows": [
+          [
+            "Add external tools",
+            "Yes",
+            "No",
+            "No"
+          ],
+          [
+            "Remove built-in tools",
+            "No",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Inject context",
+            "No",
+            "No",
+            "Yes"
+          ],
+          [
+            "Modify tool input",
+            "No",
+            "No",
+            "Yes"
+          ],
+          [
+            "Sandbox to MCP only",
+            [
+              {
+                "insert": "mcp",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " + "
+              },
+              {
+                "insert": "allowed_tools: []",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "-",
+            "-"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-limitations-104": {
+      "id": "b-40-mcp-servers-limitations-104",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Limitations"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-codex-tool-restriction-105": {
+      "id": "b-40-mcp-servers-codex-tool-restriction-105",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Codex tool restrictions",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Codex nodes support "
+        },
+        {
+          "insert": "mcp",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", but Archon's"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-allowed-tools-denie-106": {
+      "id": "b-40-mcp-servers-allowed-tools-denie-106",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " / "
+        },
+        {
+          "insert": "denied_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " restrictions are still ignored by Codex."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-haiku-model-tool-se-107": {
+      "id": "b-40-mcp-servers-haiku-model-tool-se-107",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Haiku model",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Tool search (lazy loading for many tools) is not supported on"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-haiku-you-ll-see-a-warn-108": {
+      "id": "b-40-mcp-servers-haiku-you-ll-see-a-warn-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Haiku. You'll see a warning. Consider using Sonnet or Opus for MCP nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-no-load-time-validatio-109": {
+      "id": "b-40-mcp-servers-no-load-time-validatio-109",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No load-time validation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Loading the workflow YAML does not read the MCP config"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-file-archon-validate-w-110": {
+      "id": "b-40-mcp-servers-file-archon-validate-w-110",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "file. "
+        },
+        {
+          "insert": "archon validate workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " checks that a required file exists and is valid JSON;\notherwise a typo in the path surfaces when the node runs."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-no-inline-config-mc-111": {
+      "id": "b-40-mcp-servers-no-inline-config-mc-111",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No inline config",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": MCP configs must be in a separate JSON file, not inline in YAML."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-this-is-intentional-it-112": {
+      "id": "b-40-mcp-servers-this-is-intentional-it-112",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is intentional: it keeps secrets out of version-controlled workflow files."
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-troubleshooting-113": {
+      "id": "b-40-mcp-servers-troubleshooting-113",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "table-5-b1f43441": {
+      "id": "table-5-b1f43441",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Problem",
+          "Cause",
+          "Fix"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "MCP config file not found",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Wrong path or file doesn't exist",
+            [
+              {
+                "insert": "Check every location listed after "
+              },
+              {
+                "insert": "Tried:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ": the run checkout, then the declaring home YAML's directory (its captured copy for captured runs) when eligible"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "MCP config file is not valid JSON",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Syntax error in JSON",
+            [
+              {
+                "insert": "Validate with "
+              },
+              {
+                "insert": "cat .archon/mcp/config.json | python3 -m json.tool",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "MCP config must be a JSON object",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Top-level value is array or string",
+            [
+              {
+                "insert": "Wrap in "
+              },
+              {
+                "insert": "{ \"server-name\": { ... } }",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "undefined env vars: VAR_NAME",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Environment variable not set",
+            [
+              {
+                "insert": "Export the variable or add it to your "
+              },
+              {
+                "insert": ".env",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "MCP server connection failed",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " / "
+              },
+              {
+                "insert": "Required MCP server ... could not connect",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Server process crashed, URL unreachable, or authentication needed",
+            "Check command/URL, test the server standalone"
+          ],
+          [
+            "Plugin MCP missing from workflow output",
+            "User-level plugin MCPs are filtered out of workflow warnings",
+            [
+              {
+                "insert": "Run with "
+              },
+              {
+                "insert": "--verbose",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and look for provider MCP debug logs"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "allowed_tools",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " ignored with Codex"
+              }
+            ],
+            "Codex provider does not support Archon's tool restrictions yet",
+            [
+              {
+                "insert": "Do not rely on "
+              },
+              {
+                "insert": "allowed_tools: []",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " for Codex sandboxing"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Haiku model with MCP servers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Haiku doesn't support tool search",
+            [
+              {
+                "insert": "Use "
+              },
+              {
+                "insert": "model: sonnet",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "model: opus",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " instead"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-mcp-servers-finding-mcp-servers-115": {
+      "id": "b-40-mcp-servers-finding-mcp-servers-115",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Finding MCP Servers"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-popular-mcp-servers-for-116": {
+      "id": "b-40-mcp-servers-popular-mcp-servers-for-116",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Popular MCP servers for common integrations:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-github-modelconte-117": {
+      "id": "b-40-mcp-servers-github-modelconte-117",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitHub",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-github",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-postgresql-modelc-118": {
+      "id": "b-40-mcp-servers-postgresql-modelc-118",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "PostgreSQL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-postgres",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-filesystem-modelc-119": {
+      "id": "b-40-mcp-servers-filesystem-modelc-119",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Filesystem",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-filesystem",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-slack-modelcontex-120": {
+      "id": "b-40-mcp-servers-slack-modelcontex-120",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Slack",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-slack",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-google-drive-mode-121": {
+      "id": "b-40-mcp-servers-google-drive-mode-121",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Google Drive",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-gdrive",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-brave-search-mode-122": {
+      "id": "b-40-mcp-servers-brave-search-mode-122",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Brave Search",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "@modelcontextprotocol/server-brave-search",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-mcp-servers-browse-the-full-director-123": {
+      "id": "b-40-mcp-servers-browse-the-full-director-123",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Browse the full directory at "
+        },
+        {
+          "insert": "modelcontextprotocol.io/servers",
+          "attributes": {
+            "link": "https://modelcontextprotocol.io/servers"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,1608 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing-50-adding-a-community-provider",
+  "title": "Build a community provider",
+  "root": "b-50-adding-a-community-provider-root-36",
+  "blocks": {
+    "b-50-adding-a-community-provider-root-36": {
+      "id": "b-50-adding-a-community-provider-root-36",
+      "type": "paragraph",
+      "props": {
+        "description": "Publish an agent provider as an independently installed process plugin.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/adding-a-community-provider.mdx"
+      },
+      "children": [
+        "b-50-adding-a-community-provider-community-providers-ship-1",
+        "b-50-adding-a-community-provider-implement-the-provider-c-2",
+        "b-50-adding-a-community-provider-implement-iagentprovide-3",
+        "b-50-adding-a-community-provider-a-successful-stream-yiel-4",
+        "b-50-adding-a-community-provider-capabilities-are-promise-5",
+        "b-50-adding-a-community-provider-a-provider-that-loads-na-6",
+        "b-50-adding-a-community-provider-a-request-s-systempromp-7",
+        "b-50-adding-a-community-provider-streaming-event-mapping-8",
+        "b-50-adding-a-community-provider-each-runtime-reports-its-9",
+        "b-50-adding-a-community-provider-claude-code-sdk-p-10",
+        "b-50-adding-a-community-provider-assistant-text-becomes-11",
+        "b-50-adding-a-community-provider-if-the-stream-closes-whi-12",
+        "b-50-adding-a-community-provider-codex-app-server-13",
+        "b-50-adding-a-community-provider-streamturn-maps-parent-14",
+        "b-50-adding-a-community-provider-subagents-and-unified-ex-15",
+        "b-50-adding-a-community-provider-while-any-observed-task-16",
+        "b-50-adding-a-community-provider-once-the-parent-has-comp-17",
+        "b-50-adding-a-community-provider-sendquery-emits-settl-18",
+        "b-50-adding-a-community-provider-serve-it-over-stdio-19",
+        "b-50-adding-a-community-provider-wrap-the-implementation-20",
+        "b-50-adding-a-community-provider-ts-21",
+        "b-50-adding-a-community-provider-capabilities-must-prov-22",
+        "b-50-adding-a-community-provider-json-schema-does-not-enc-23",
+        "b-50-adding-a-community-provider-keep-configschema-as-t-24",
+        "b-50-adding-a-community-provider-credentials-are-a-static-25",
+        "b-50-adding-a-community-provider-optional-iagentprovider-26",
+        "b-50-adding-a-community-provider-the-wire-uses-acp-v1-s-27",
+        "b-50-adding-a-community-provider-the-language-neutral-def-28",
+        "b-50-adding-a-community-provider-prove-conformance-29",
+        "b-50-adding-a-community-provider-use-runproviderconforma-30",
+        "b-50-adding-a-community-provider-run-the-same-suite-in-pr-31",
+        "b-50-adding-a-community-provider-ts-32",
+        "b-50-adding-a-community-provider-add-the-capability-speci-33",
+        "b-50-adding-a-community-provider-publish-and-install-34",
+        "b-50-adding-a-community-provider-follow-publish-a-plugin-35"
+      ]
+    },
+    "b-50-adding-a-community-provider-community-providers-ship-1": {
+      "id": "b-50-adding-a-community-provider-community-providers-ship-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Community providers ship from their authors' repositories as optional plugins. They\nattach through the provider contract without an import in Archon's registry. Claude,\nCodex, and Pi remain maintained in this repository. The bundled OpenCode and Copilot\nproviders are deprecated: no Archon maintainer owns them."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-implement-the-provider-c-2": {
+      "id": "b-50-adding-a-community-provider-implement-the-provider-c-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Implement the provider contract"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-implement-iagentprovide-3": {
+      "id": "b-50-adding-a-community-provider-implement-iagentprovide-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Implement "
+        },
+        {
+          "insert": "IAgentProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "@archon/provider-contract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Its source and\n"
+        },
+        {
+          "insert": "contract README",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/provider-contract/README.md"
+          }
+        },
+        {
+          "insert": "\nown the interface and stream rules. A provider supplies its id, capabilities, a\n"
+        },
+        {
+          "insert": "sendQuery",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stream, and "
+        },
+        {
+          "insert": "checkCredential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "resolveCredentialModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is optional.\nPreserve the runtime's native user settings, authentication, and project guidance."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-a-successful-stream-yiel-4": {
+      "id": "b-50-adding-a-community-provider-a-successful-stream-yiel-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A successful stream yields provider events, a "
+        },
+        {
+          "insert": "result",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only after all\nobserved work ends. A running state update, new tool call, or started subtask requires\na fresh result before settlement. Housekeeping progress uses "
+        },
+        {
+          "insert": "heartbeat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to reset the\nidle watchdog without starting a new result phase. Report usage once. Include the\nnative session id when declaring session resume. Carry failures through the typed failure class; do not classify free\nprose with keyword matching. Cancellation must stop the provider's own work and must\nnot manufacture "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-capabilities-are-promise-5": {
+      "id": "b-50-adding-a-community-provider-capabilities-are-promise-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Capabilities are promises. Declare only what the implementation enforces. A node\nnaming unsupported skills, plugins, or MCP servers fails before spend. A provider that\nsupports those capabilities must suppress ambient capabilities and load exactly the\nones the node names, while preserving unrelated native configuration and guidance.\n"
+        },
+        {
+          "insert": "backgroundWork: 'reported'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " requires observable task lifecycles; "
+        },
+        {
+          "insert": "none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means verified\nabsence, and "
+        },
+        {
+          "insert": "unobserved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means work may exist without lifecycle visibility."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-a-provider-that-loads-na-6": {
+      "id": "b-50-adding-a-community-provider-a-provider-that-loads-na-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A provider that loads named skills only from its own directories declares them in the\ndescriptor's optional "
+        },
+        {
+          "insert": "skillDiscovery",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " roots relative to the working\ndirectory, "
+        },
+        {
+          "insert": "user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " roots relative to the user directory, and an optional\n"
+        },
+        {
+          "insert": "userDirectory: { env, home }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " naming the environment variable that overrides it and\nits home-relative fallback. Such a provider must refuse a named skill whose directory\nexists but is not loadable from its enabled roots, and workflow validation reports that\ncase as an error. With the "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability, the "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " setting\nsources gate those roots. A provider without "
+        },
+        {
+          "insert": "skillDiscovery",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is validated against\nArchon's shared skill roots, and a missing skill is only a warning."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-a-request-s-systempromp-7": {
+      "id": "b-50-adding-a-community-provider-a-request-s-systempromp-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A request's "
+        },
+        {
+          "insert": "systemPrompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses the provider's native system-instruction behavior (Copilot appends to its foundation prompt). Its\n"
+        },
+        {
+          "insert": "appendSystemPrompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " adds instructions to that prompt; a provider that cannot extend\nits prompt uses them as its system prompt, and a "
+        },
+        {
+          "insert": "systemPrompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes precedence."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-streaming-event-mapping-8": {
+      "id": "b-50-adding-a-community-provider-streaming-event-mapping-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Streaming event mapping"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-each-runtime-reports-its-9": {
+      "id": "b-50-adding-a-community-provider-each-runtime-reports-its-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each runtime reports its own event types, and the provider maps them to the contract's chunks. The maintained providers own the full mapping, including interrupted tool calls, subtasks, hooks, MCP status and tool-output limits."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-claude-code-sdk-p-10": {
+      "id": "b-50-adding-a-community-provider-claude-code-sdk-p-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude Code SDK",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "packages/providers/src/claude/stream.ts",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/providers/src/claude/stream.ts"
+          }
+        },
+        {
+          "insert": "):"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-assistant-text-becomes-11": {
+      "id": "b-50-adding-a-community-provider-assistant-text-becomes-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Assistant text becomes "
+        },
+        {
+          "insert": "agent_message_chunk",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; tool use becomes "
+        },
+        {
+          "insert": "tool_call",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The provider reports the turn's "
+        },
+        {
+          "insert": "result",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " separately from completion of background work. It tracks visible tasks and live background tasks from the SDK's lifecycle events. An idle notification ends the turn only after a result has been observed and both task sets are empty. A running notification resets the result condition for the next turn."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-if-the-stream-closes-whi-12": {
+      "id": "b-50-adding-a-community-provider-if-the-stream-closes-whi-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If the stream closes while observed work remains, or before reaching idle after background work was observed, it ends without "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Once those settlement conditions hold, a stream that closes without a result produces a failure result ("
+        },
+        {
+          "insert": "stream_ended_without_result",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), then "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An early idle notification alone produces neither completion nor failure."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-codex-app-server-13": {
+      "id": "b-50-adding-a-community-provider-codex-app-server-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex app-server",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "packages/providers/src/codex/stream.ts",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/providers/src/codex/stream.ts"
+          }
+        },
+        {
+          "insert": "): Archon speaks Codex's JSON-RPC protocol over stdio, one "
+        },
+        {
+          "insert": "codex app-server",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process per turn."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-streamturn-maps-parent-14": {
+      "id": "b-50-adding-a-community-provider-streamturn-maps-parent-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "streamTurn",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " maps parent-thread messages and foreground tools to provider events. The parent's "
+        },
+        {
+          "insert": "turn/completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " notification produces its successful "
+        },
+        {
+          "insert": "result",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", but background work can still be live. Failure results wait until observed background work drains because the executor stops reading on failure; failure classification uses the typed "
+        },
+        {
+          "insert": "codexErrorInfo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-subagents-and-unified-ex-15": {
+      "id": "b-50-adding-a-community-provider-subagents-and-unified-ex-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subagents and unified-exec processes report separate "
+        },
+        {
+          "insert": "subtask",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lifecycles. The provider tracks starts for the parent thread and turn, registers subagent threads, and tracks further subagents and processes on those recognized descendant threads. Child replies do not replace the parent result."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-while-any-observed-task-16": {
+      "id": "b-50-adding-a-community-provider-while-any-observed-task-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "While any observed task remains live, the provider keeps accepting background starts, including root subagents and unified-exec processes first observed after parent completion. Nested work is also drained, even after its direct parent task ends. Notification arrival order does not establish when the work began."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-once-the-parent-has-comp-17": {
+      "id": "b-50-adding-a-community-provider-once-the-parent-has-comp-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once the parent has completed and the observed task set is empty, the provider stops reading notifications and shuts down the app-server. This can happen immediately at parent completion if no background work was observed. Starts beyond that observation boundary are not guaranteed to be consumed; the boundary does not establish that Codex cannot report another start later."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-sendquery-emits-settl-18": {
+      "id": "b-50-adding-a-community-provider-sendquery-emits-settl-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "sendQuery",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " emits "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only after a clean app-server shutdown and without lost observation. A late start observed while draining can therefore extend the wait. If the connection closes before observed work drains, the turn does not settle: before a result, the provider reports a failure result; after a result, it logs the connection failure and ends without "
+        },
+        {
+          "insert": "settled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-serve-it-over-stdio-19": {
+      "id": "b-50-adding-a-community-provider-serve-it-over-stdio-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Serve it over stdio"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-wrap-the-implementation-20": {
+      "id": "b-50-adding-a-community-provider-wrap-the-implementation-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Wrap the implementation with the contract's plugin entrypoint:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-ts-21": {
+      "id": "b-50-adding-a-community-provider-ts-21",
+      "type": "code",
+      "props": {
+        "language": "ts"
+      },
+      "text": [
+        {
+          "insert": "import { serveProvider, PROVIDER_PLUGIN_PROTOCOL, type ProviderPluginDescriptor } from '@archon/provider-contract/plugin';\nimport { ExampleProvider } from './provider';\nimport { capabilities } from './capabilities';\n\nconst descriptor: ProviderPluginDescriptor = {\n  protocol: PROVIDER_PLUGIN_PROTOCOL,\n  id: 'example',\n  displayName: 'Example provider',\n  version: '1.0.0',\n  capabilities,\n  credentials: { kind: 'static', specs: [] },\n  configSchema: {\n    type: 'object',\n    properties: { model: { type: 'string' } },\n    additionalProperties: false,\n  },\n};\n\nawait serveProvider({ descriptor, create: () => new ExampleProvider() });"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-capabilities-must-prov-22": {
+      "id": "b-50-adding-a-community-provider-capabilities-must-prov-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "capabilities",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must provide the full "
+        },
+        {
+          "insert": "ProviderCapabilities",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shape. The descriptor's\n"
+        },
+        {
+          "insert": "configSchema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the fallback for all configuration scopes within protocol 2. Protocol-1\nplugins and hosts must update to protocol 2 before they can initialize together.\nRuntime discovery reports and skips incompatible or unusable installed receipts,\nincluding providers with mismatched executable identities or missing executable ownership,\nleaving other plugins available. Use "
+        },
+        {
+          "insert": "archon plugin update <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon plugin remove <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to\nrepair the install. A provider can\nadd "
+        },
+        {
+          "insert": "config: { install, run, snapshot, stripUnknownKeys? }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to use separate JSON\nSchemas for install defaults, per-run settings, and persisted snapshots. Newer hosts\nprefer "
+        },
+        {
+          "insert": "config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Generate these schemas from the same schemas used by the in-process\nparser, using "
+        },
+        {
+          "insert": "z.toJSONSchema(schema, { io: 'input' })",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for Zod schemas. Set\n"
+        },
+        {
+          "insert": "stripUnknownKeys: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to strip undeclared fields recursively where object member\nrules omit "
+        },
+        {
+          "insert": "additionalProperties",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Unconstrained schemas such as "
+        },
+        {
+          "insert": "{}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " preserve object\ncontents. Explicit "
+        },
+        {
+          "insert": "additionalProperties: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " still rejects\nunknown fields; "
+        },
+        {
+          "insert": "true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or a schema preserves allowed fields, including record keys.\nSnapshot projection retains fields declared by the snapshot schema, including\nreferenced schemas, all "
+        },
+        {
+          "insert": "allOf",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " conjuncts, the selected "
+        },
+        {
+          "insert": "anyOf",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "oneOf",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " alternative,\nand matching "
+        },
+        {
+          "insert": "patternProperties",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nAn explicit "
+        },
+        {
+          "insert": "additionalProperties: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also rejects unknown snapshot fields.\nFor snapshots that validate install settings before excluding them, use\n"
+        },
+        {
+          "insert": "snapshotConfigSchema(portableFields, localFields)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "@archon/provider-contract",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nIt generates a strict input schema and marks the local fields "
+        },
+        {
+          "insert": "writeOnly: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ";\nnewer hosts validate those fields before omitting them from the snapshot output."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-json-schema-does-not-enc-23": {
+      "id": "b-50-adding-a-community-provider-json-schema-does-not-enc-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "JSON Schema does not encode Zod string transforms. Use\n"
+        },
+        {
+          "insert": "normalizedConfigString(stringSchema, 'trim')",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to trim a config string or\n"
+        },
+        {
+          "insert": "normalizedConfigString(stringSchema, 'slash-separated')",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to trim the two sides of\nthe first slash in a structured reference. These helpers generate the\n"
+        },
+        {
+          "insert": "x-archon-normalize",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " annotation and the matching in-process transform from one\nowner. Scoped process registration applies normalization after validation. Credential lookup has only a model: alternative run branches must agree on its normalization, or lookup returns no vendor."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-keep-configschema-as-t-24": {
+      "id": "b-50-adding-a-community-provider-keep-configschema-as-t-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep "
+        },
+        {
+          "insert": "configSchema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as the fallback schema for install, run, and snapshot when\n"
+        },
+        {
+          "insert": "config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is omitted. This fallback is part of protocol 2; it does not provide\ncompatibility with protocol-1 peers. Providers that need scoped snapshot exclusion,\nrecursive stripping, or normalization annotations must declare scoped "
+        },
+        {
+          "insert": "config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nschemas and require a host version that supports those semantics."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-credentials-are-a-static-25": {
+      "id": "b-50-adding-a-community-provider-credentials-are-a-static-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Credentials are a static\nlist of vendor specs; declare only vendors the provider consumes. API-key vendors must\nhave an existing Archon delivery rule. With one vendor, all models use it. With several,\nmodel-only lookup uses the "
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field rule from the descriptor's run schema\n("
+        },
+        {
+          "insert": "config.run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", else "
+        },
+        {
+          "insert": "configSchema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), following root references and composition. It validates\nand normalizes that field without validating unrelated run fields or root constraints.\nThe text before the first "
+        },
+        {
+          "insert": "/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " selects a declared vendor after credential alias\nnormalization; a model rejected by its field rule selects none. An empty list uses native auth.\n"
+        },
+        {
+          "insert": "checkCredential",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns "
+        },
+        {
+          "insert": "CredentialStatus",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for doctor and run preflight, and receives\nits environment and abort signal from Archon. During run preflight it also receives the\nrun's "
+        },
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "execContext",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": check authentication where the run will\nexecute (the checkout, or the container for a container "
+        },
+        {
+          "insert": "execContext",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), not in the\nhost process directory. Return "
+        },
+        {
+          "insert": "not_checked",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the runtime cannot check without\nspending on a session. During run preflight, "
+        },
+        {
+          "insert": "not_connected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "unusable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block the\nrun, and "
+        },
+        {
+          "insert": "check_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lets it start with a warning event. Return "
+        },
+        {
+          "insert": "unusable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only when\nthe credential is definitely bad."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-optional-iagentprovider-26": {
+      "id": "b-50-adding-a-community-provider-optional-iagentprovider-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Optional "
+        },
+        {
+          "insert": "IAgentProvider.diagnose({ assistantConfig, signal })",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "listModels({ signal })",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hooks\nserve information to hosts through "
+        },
+        {
+          "insert": "_archon/diagnose",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "_archon/list_models",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nDiagnostics return "
+        },
+        {
+          "insert": "{ checks: [{ id, label, status, message, remedy? }] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with\n"
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " one of "
+        },
+        {
+          "insert": "ok",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "warn",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "fail",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Model lists return\n"
+        },
+        {
+          "insert": "{ models: [{ id, label? }] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". These hooks do not prompt or change configuration. The caller owns the deadline; both hooks receive an abort signal. A process-backed call stops its plugin process on cancellation.\nAn unsupported hook returns JSON-RPC "
+        },
+        {
+          "insert": "-32601",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; it does not report an empty successful\nresult. Diagnostic messages and remedies must never include credentials, tokens, or\nuser message text. The host withholds plugin stderr and plugin-controlled errors."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-the-wire-uses-acp-v1-s-27": {
+      "id": "b-50-adding-a-community-provider-the-wire-uses-acp-v1-s-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The wire uses ACP v1's "
+        },
+        {
+          "insert": "initialize",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "session/new",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "session/prompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and\n"
+        },
+        {
+          "insert": "session/cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lifecycle, with unchanged "
+        },
+        {
+          "insert": "ProviderChunk",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " values in "
+        },
+        {
+          "insert": "_archon/chunk",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nnotifications. Stdout is exclusively newline-delimited JSON-RPC. Native tool specifications\ntravel in the session request; "
+        },
+        {
+          "insert": "_archon/tool_call",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " invokes the host handler and returns\nits text result. Calls require a live, unsettled session. Dynamic credential catalogs\nand mid-run permission requests remain unsupported. A dynamic catalog is rejected.\n"
+        },
+        {
+          "insert": "_archon/log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " carries structured metadata logs ("
+        },
+        {
+          "insert": "level",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "msg",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", JSON "
+        },
+        {
+          "insert": "bindings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ").\n"
+        },
+        {
+          "insert": "serveProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " supplies an awaitable log sink to "
+        },
+        {
+          "insert": "create(log)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "connectProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " accepts\nan "
+        },
+        {
+          "insert": "onLog",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " callback. Log metadata only, never credentials, tokens, or message text.\nThe process host logs a fixed "
+        },
+        {
+          "insert": "provider.plugin.log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event at the supplied severity\nthrough "
+        },
+        {
+          "insert": "provider.<id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", using its own descriptor id. The only plugin values it forwards\nare "
+        },
+        {
+          "insert": "bindings.failureClass",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", when it is one of the contract's failure classes, and\n"
+        },
+        {
+          "insert": "bindings.lifecycle",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", when it is one of the contract's lifecycle events\n("
+        },
+        {
+          "insert": "providerLifecycleEventSchema",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), plus a lifecycle event's non-negative integer\n"
+        },
+        {
+          "insert": "bindings.waitedMs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the host drops a record with neither enum value. Plugin "
+        },
+        {
+          "insert": "msg",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", module identity, and all other\nbindings are withheld: any plugin-chosen string, even one that looks like a machine\ntoken, can carry a credential.\nContainer requests carry their optional "
+        },
+        {
+          "insert": "env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bag as session data while the plugin\nprocess retains the host environment.\nThis is an Archon provider protocol, not a generic plain-ACP adapter."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-the-language-neutral-def-28": {
+      "id": "b-50-adding-a-community-provider-the-language-neutral-def-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The language-neutral definitions are in\n"
+        },
+        {
+          "insert": "packages/provider-contract/schema/provider-contract.schema.json",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/packages/provider-contract/schema/provider-contract.schema.json"
+          }
+        },
+        {
+          "insert": ".\nThey include the descriptor, lifecycle, request, and chunk schemas. Non-TypeScript\nauthors can implement that wire directly. npm publication waits for the versioned SDK;\nuntil then, vendor the contract package or implement the generated schema."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-prove-conformance-29": {
+      "id": "b-50-adding-a-community-provider-prove-conformance-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prove conformance"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-use-runproviderconforma-30": {
+      "id": "b-50-adding-a-community-provider-use-runproviderconforma-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "runProviderConformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "@archon/provider-contract/conformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with fixture\nturns and the declared capabilities. Include typed failure cases, structured output,\nsession handoff, and observable background cases for every capability claimed. Use\n"
+        },
+        {
+          "insert": "checkCredentialStatuses",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to exercise native credential states."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-run-the-same-suite-in-pr-31": {
+      "id": "b-50-adding-a-community-provider-run-the-same-suite-in-pr-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run the same suite in process and against the executable. A binary connection uses\n"
+        },
+        {
+          "insert": "connectProvider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the child's stdio streams:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-ts-32": {
+      "id": "b-50-adding-a-community-provider-ts-32",
+      "type": "code",
+      "props": {
+        "language": "ts"
+      },
+      "text": [
+        {
+          "insert": "import { spawn } from 'node:child_process';\nimport { Readable, Writable } from 'node:stream';\nimport { connectProvider } from '@archon/provider-contract/plugin';\nimport { runProviderConformance } from '@archon/provider-contract/conformance';\n\nconst child = spawn('/absolute/path/archon-provider-example', [], {\n  stdio: ['pipe', 'pipe', 'inherit'],\n});\nconst closed = new Promise(resolve => child.once('close', resolve));\nconst client = await connectProvider({\n  readable: Readable.toWeb(child.stdout),\n  writable: Writable.toWeb(child.stdin),\n});\ntry {\n  const failures = await runProviderConformance({\n    capabilities: client.getCapabilities(),\n    turns: [{ name: 'turn', run: () => client.sendQuery('hello', process.cwd()) }],\n    failureCases: [\n      {\n        name: 'auth',\n        expected: 'auth',\n        // Vendor text the typed failure's evidence must keep.\n        evidence: 'HTTP 401',\n        // A fixture prompt your executable answers with a vendor auth failure.\n        run: () => client.sendQuery('failure', process.cwd()),\n      },\n    ],\n  });\n  if (failures.length) throw new Error(failures.join('\\n'));\n} finally {\n  await client.close();\n  await closed;\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-add-the-capability-speci-33": {
+      "id": "b-50-adding-a-community-provider-add-the-capability-speci-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the capability-specific fixtures your implementation needs. Compare the chunks\nwith in-process output, and test cancellation with real descendants. Keep credentials\nand user-message contents out of diagnostics. See the deterministic test provider in\n"
+        },
+        {
+          "insert": "packages/provider-contract/src/fixtures/test-provider/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the basic transport proof."
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-publish-and-install-34": {
+      "id": "b-50-adding-a-community-provider-publish-and-install-34",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Publish and install"
+        }
+      ],
+      "children": []
+    },
+    "b-50-adding-a-community-provider-follow-publish-a-plugin-35": {
+      "id": "b-50-adding-a-community-provider-follow-publish-a-plugin-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Follow "
+        },
+        {
+          "insert": "Publish a plugin",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/80-publishing-plugins.md",
+              "section": "provider-plugins",
+              "label": "Publish a plugin"
+            }
+          }
+        },
+        {
+          "insert": " for the manifest,\nrelease assets, checksums, environment policy, and install commands. The manifest\nexecutable must be "
+        },
+        {
+          "insert": "archon-provider-<descriptor id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Installation is the trust boundary:\nthe plugin runs as the operator's user with the same environment policy as in-process\nproviders. After installation, set "
+        },
+        {
+          "insert": "provider: <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the workflow. Restart a running\nserver to load changed receipts; hot registration is outside this contract."
+        }
+      ],
+      "children": []
+    }
+  }
+}

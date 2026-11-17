@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-60-community-20-gitea",
+  "title": "Gitea",
+  "root": "b-20-gitea-root-58",
+  "blocks": {
+    "b-20-gitea-root-58": {
+      "id": "b-20-gitea-root-58",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Connect Archon to a Gitea instance for issue and PR automation.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/community/gitea.md"
+      },
+      "children": [
+        "b-20-gitea-note-1",
+        "b-20-gitea-connect-archon-to-a-self-2",
+        "b-20-gitea-prerequisites-3",
+        "b-20-gitea-archon-server-running-4",
+        "b-20-gitea-a-gitea-instance-with-ap-5",
+        "b-20-gitea-a-gitea-personal-access-6",
+        "b-20-gitea-public-endpoint-for-webh-7",
+        "b-20-gitea-tip-8",
+        "b-20-gitea-step-1-create-a-gitea-t-9",
+        "b-20-gitea-log-in-to-your-gitea-ins-10",
+        "b-20-gitea-go-to-settings-appli-11",
+        "b-20-gitea-create-a-new-token-with-12",
+        "b-20-gitea-copy-the-token-you-wi-13",
+        "b-20-gitea-step-2-generate-a-webho-14",
+        "b-20-gitea-on-linux-mac-15",
+        "b-20-gitea-bash-16",
+        "b-20-gitea-on-windows-powershell-17",
+        "b-20-gitea-powershell-18",
+        "b-20-gitea-save-this-secret-for-ste-19",
+        "b-20-gitea-step-3-set-environment-20",
+        "b-20-gitea-ini-21",
+        "b-20-gitea-all-three-variables-are-22",
+        "b-20-gitea-optional-variables-23",
+        "b-20-gitea-ini-24",
+        "b-20-gitea-step-4-configure-gitea-25",
+        "b-20-gitea-go-to-your-repository-se-26",
+        "b-20-gitea-navigate-to-settings-27",
+        "b-20-gitea-webhook-configuration-28",
+        "table-0-f66b5d85",
+        "b-20-gitea-click-add-webhook-an-30",
+        "b-20-gitea-webhook-bodies-are-limit-31",
+        "b-20-gitea-usage-32",
+        "b-20-gitea-interact-by-mentioning-33",
+        "b-20-gitea-code-34",
+        "b-20-gitea-first-mention-behavior-35",
+        "b-20-gitea-reuses-an-existing-local-36",
+        "b-20-gitea-detects-and-loads-comman-37",
+        "b-20-gitea-injects-full-issue-pr-co-38",
+        "b-20-gitea-subsequent-mentions-39",
+        "b-20-gitea-resumes-the-existing-con-40",
+        "b-20-gitea-maintains-full-context-a-41",
+        "b-20-gitea-note-42",
+        "b-20-gitea-how-it-works-43",
+        "b-20-gitea-the-gitea-adapter-is-a-w-44",
+        "b-20-gitea-transport-receives-45",
+        "b-20-gitea-signature-verification-46",
+        "b-20-gitea-streaming-mode-alwa-47",
+        "b-20-gitea-conversation-id-format-48",
+        "b-20-gitea-self-loop-prevention-49",
+        "b-20-gitea-retry-logic-transie-50",
+        "b-20-gitea-close-merge-cleanup-51",
+        "b-20-gitea-when-an-issue-is-closed-52",
+        "b-20-gitea-adding-more-repositories-53",
+        "b-20-gitea-add-a-webhook-with-the-s-54",
+        "b-20-gitea-further-reading-55",
+        "b-20-gitea-configuration-docs-10-56",
+        "b-20-gitea-security-docs-10-syst-57"
+      ]
+    },
+    "b-20-gitea-note-1": {
+      "id": "b-20-gitea-note-1",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "Gitea is a "
+        },
+        {
+          "insert": "community adapter",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": contributed and maintained by the community."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-connect-archon-to-a-self-2": {
+      "id": "b-20-gitea-connect-archon-to-a-self-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to a self-hosted Gitea instance so you can interact with your AI coding assistant from Gitea issues and pull requests."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-prerequisites-3": {
+      "id": "b-20-gitea-prerequisites-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-archon-server-running-4": {
+      "id": "b-20-gitea-archon-server-running-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-a-gitea-instance-with-ap-5": {
+      "id": "b-20-gitea-a-gitea-instance-with-ap-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Gitea instance with API access enabled"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-a-gitea-personal-access-6": {
+      "id": "b-20-gitea-a-gitea-personal-access-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Gitea personal access token (or dedicated bot account token)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-public-endpoint-for-webh-7": {
+      "id": "b-20-gitea-public-endpoint-for-webh-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Public endpoint for webhooks (or a tunnel for local development)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-tip-8": {
+      "id": "b-20-gitea-tip-8",
+      "type": "callout",
+      "props": {
+        "title": "Tip",
+        "tone": "success"
+      },
+      "text": [
+        {
+          "insert": "GITEA_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also enables authenticated cloning of private Gitea and Forgejo repositories. If you set it for the adapter, clone authentication works automatically: no extra configuration needed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-step-1-create-a-gitea-t-9": {
+      "id": "b-20-gitea-step-1-create-a-gitea-t-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 1: Create a Gitea Token"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-log-in-to-your-gitea-ins-10": {
+      "id": "b-20-gitea-log-in-to-your-gitea-ins-10",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Log in to your Gitea instance"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-go-to-settings-appli-11": {
+      "id": "b-20-gitea-go-to-settings-appli-11",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to "
+        },
+        {
+          "insert": "Settings > Applications > Manage Access Tokens",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-create-a-new-token-with-12": {
+      "id": "b-20-gitea-create-a-new-token-with-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create a new token with repository read/write permissions"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-copy-the-token-you-wi-13": {
+      "id": "b-20-gitea-copy-the-token-you-wi-13",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the token -- you will need it for Step 3"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-step-2-generate-a-webho-14": {
+      "id": "b-20-gitea-step-2-generate-a-webho-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 2: Generate a Webhook Secret"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-on-linux-mac-15": {
+      "id": "b-20-gitea-on-linux-mac-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Linux/Mac:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-bash-16": {
+      "id": "b-20-gitea-bash-16",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "openssl rand -hex 32"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-on-windows-powershell-17": {
+      "id": "b-20-gitea-on-windows-powershell-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Windows (PowerShell):"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-powershell-18": {
+      "id": "b-20-gitea-powershell-18",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "-join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Maximum 256) })"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-save-this-secret-for-ste-19": {
+      "id": "b-20-gitea-save-this-secret-for-ste-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Save this secret for Steps 3 and 4."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-step-3-set-environment-20": {
+      "id": "b-20-gitea-step-3-set-environment-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 3: Set Environment Variables"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-ini-21": {
+      "id": "b-20-gitea-ini-21",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "GITEA_URL=https://gitea.example.com\nGITEA_TOKEN=your_personal_access_token\nGITEA_WEBHOOK_SECRET=your_secret_from_step_2"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-all-three-variables-are-22": {
+      "id": "b-20-gitea-all-three-variables-are-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All three variables are required. The adapter starts automatically when all three are set."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-optional-variables-23": {
+      "id": "b-20-gitea-optional-variables-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Optional variables:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-ini-24": {
+      "id": "b-20-gitea-ini-24",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "# Restrict who can trigger the bot (comma-separated usernames, case-insensitive)\nGITEA_ALLOWED_USERS=alice,bob\n\n# Custom @mention name (defaults to BOT_DISPLAY_NAME, then \"Archon\")\nGITEA_BOT_MENTION=archon"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-step-4-configure-gitea-25": {
+      "id": "b-20-gitea-step-4-configure-gitea-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4: Configure Gitea Webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-go-to-your-repository-se-26": {
+      "id": "b-20-gitea-go-to-your-repository-se-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Go to your repository settings in Gitea:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-navigate-to-settings-27": {
+      "id": "b-20-gitea-navigate-to-settings-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Navigate to "
+        },
+        {
+          "insert": "Settings > Webhooks > Add Webhook > Gitea",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-webhook-configuration-28": {
+      "id": "b-20-gitea-webhook-configuration-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Webhook Configuration:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "table-0-f66b5d85": {
+      "id": "table-0-f66b5d85",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Value"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Target URL",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "https://your-domain.com/webhooks/gitea",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "HTTP Method",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "POST",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Content Type",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "application/json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Secret",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Paste the secret from Step 2"
+          ],
+          [
+            [
+              {
+                "insert": "Events",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Issues, Issue Comments, Pull Requests, Pull Request Comments"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-gitea-click-add-webhook-an-30": {
+      "id": "b-20-gitea-click-add-webhook-an-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Add Webhook",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and use the "
+        },
+        {
+          "insert": "Test Delivery",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " button to verify connectivity."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-webhook-bodies-are-limit-31": {
+      "id": "b-20-gitea-webhook-bodies-are-limit-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Webhook bodies are limited to "
+        },
+        {
+          "insert": "32 MiB (33,554,432 bytes)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", inclusive. Larger bodies receive HTTP "
+        },
+        {
+          "insert": "413",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and are not processed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-usage-32": {
+      "id": "b-20-gitea-usage-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Usage"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-interact-by-mentioning-33": {
+      "id": "b-20-gitea-interact-by-mentioning-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Interact by @mentioning the bot in issue or PR "
+        },
+        {
+          "insert": "comments",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-code-34": {
+      "id": "b-20-gitea-code-34",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon can you analyze this bug?\n@archon review this implementation\n@archon /workflow run archon-investigate \"why does the auth flow reject valid tokens?\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-first-mention-behavior-35": {
+      "id": "b-20-gitea-first-mention-behavior-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "First mention behavior:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-reuses-an-existing-local-36": {
+      "id": "b-20-gitea-reuses-an-existing-local-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Reuses an existing local registration at its saved checkout path. Otherwise, registers and clones the repository to "
+        },
+        {
+          "insert": "~/.archon/workspaces/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-detects-and-loads-comman-37": {
+      "id": "b-20-gitea-detects-and-loads-comman-37",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Detects and loads commands from "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if present"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-injects-full-issue-pr-co-38": {
+      "id": "b-20-gitea-injects-full-issue-pr-co-38",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Injects full issue/PR context (title, description, labels) for the AI assistant"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-subsequent-mentions-39": {
+      "id": "b-20-gitea-subsequent-mentions-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subsequent mentions:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-resumes-the-existing-con-40": {
+      "id": "b-20-gitea-resumes-the-existing-con-40",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Resumes the existing conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-maintains-full-context-a-41": {
+      "id": "b-20-gitea-maintains-full-context-a-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Maintains full context across comments"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-note-42": {
+      "id": "b-20-gitea-note-42",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "Only comments trigger the bot. @mentions in issue or PR descriptions are ignored -- descriptions often contain example commands or documentation that are not intended as bot invocations."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-how-it-works-43": {
+      "id": "b-20-gitea-how-it-works-43",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How It Works"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-the-gitea-adapter-is-a-w-44": {
+      "id": "b-20-gitea-the-gitea-adapter-is-a-w-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Gitea adapter is a webhook-based forge adapter, similar to the GitHub adapter:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-transport-receives-45": {
+      "id": "b-20-gitea-transport-receives-45",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Transport",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Receives HTTP POST webhooks from Gitea"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-signature-verification-46": {
+      "id": "b-20-gitea-signature-verification-46",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Signature verification",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": HMAC SHA-256 over the exact received bytes, using the "
+        },
+        {
+          "insert": "X-Gitea-Signature",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " header"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-streaming-mode-alwa-47": {
+      "id": "b-20-gitea-streaming-mode-alwa-47",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Streaming mode",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Always batch (assembles the assistant reply after processing; long replies may span multiple comments; see "
+        },
+        {
+          "insert": "batch mode",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "batch-mode",
+              "label": "batch mode"
+            }
+          }
+        },
+        {
+          "insert": " for filtering and fallback behavior)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-conversation-id-format-48": {
+      "id": "b-20-gitea-conversation-id-format-48",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Conversation ID format",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "owner/repo#number",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for issues, "
+        },
+        {
+          "insert": "owner/repo!number",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for PRs"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-self-loop-prevention-49": {
+      "id": "b-20-gitea-self-loop-prevention-49",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Self-loop prevention",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Bot comments include a hidden HTML marker ("
+        },
+        {
+          "insert": "<!-- archon-bot-response -->",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") to avoid re-triggering on its own messages"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-retry-logic-transie-50": {
+      "id": "b-20-gitea-retry-logic-transie-50",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Retry logic",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Transient network errors (timeouts, connection resets) are retried up to 3 times with exponential backoff"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-close-merge-cleanup-51": {
+      "id": "b-20-gitea-close-merge-cleanup-51",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Close/Merge Cleanup"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-when-an-issue-is-closed-52": {
+      "id": "b-20-gitea-when-an-issue-is-closed-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When an issue is closed or a PR is merged/closed, the adapter automatically cleans up any associated worktree isolation environment."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-adding-more-repositories-53": {
+      "id": "b-20-gitea-adding-more-repositories-53",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Adding More Repositories"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-add-a-webhook-with-the-s-54": {
+      "id": "b-20-gitea-add-a-webhook-with-the-s-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add a webhook with the same secret to each repository you want the bot to monitor. The webhook secret must be identical across all repos pointing to the same Archon instance."
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-further-reading-55": {
+      "id": "b-20-gitea-further-reading-55",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Further Reading"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-configuration-docs-10-56": {
+      "id": "b-20-gitea-configuration-docs-10-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": " -- Full environment variable reference"
+        }
+      ],
+      "children": []
+    },
+    "b-20-gitea-security-docs-10-syst-57": {
+      "id": "b-20-gitea-security-docs-10-syst-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Security",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "label": "Security"
+            }
+          }
+        },
+        {
+          "insert": " -- Webhook verification and authorization details"
+        }
+      ],
+      "children": []
+    }
+  }
+}

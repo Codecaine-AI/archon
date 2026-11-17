@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters",
+  "title": "Platform Adapters",
+  "root": "b-20-adapters-root-19",
+  "blocks": {
+    "b-20-adapters-root-19": {
+      "id": "b-20-adapters-root-19",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Overview of all platform adapters available for connecting to Archon.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/index.md"
+      },
+      "children": [
+        "b-20-adapters-archon-supports-multiple-1",
+        "b-20-adapters-core-adapters-2",
+        "table-0-379b0f83",
+        "b-20-adapters-community-adapters-4",
+        "b-20-adapters-community-adapters-follo-5",
+        "table-1-379b0f83",
+        "b-20-adapters-how-adapters-work-7",
+        "b-20-adapters-slack-runs-as-a-chat-plu-8",
+        "b-20-adapters-message-ingestion-9",
+        "b-20-adapters-response-delivery-10",
+        "b-20-adapters-authorization-opt-11",
+        "b-20-adapters-conversation-tracking-12",
+        "b-20-adapters-choosing-an-adapter-13",
+        "b-20-adapters-web-ui-is-the-fastes-14",
+        "b-20-adapters-slack-is-ideal-for-m-15",
+        "b-20-adapters-github-integrates-di-16",
+        "b-20-adapters-discord-works-well-f-17",
+        "b-20-adapters-you-can-run-multiple-ada-18"
+      ]
+    },
+    "b-20-adapters-archon-supports-multiple-1": {
+      "id": "b-20-adapters-archon-supports-multiple-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon supports multiple platform adapters. Each adapter connects Archon to a different communication channel, letting you trigger workflows and interact with AI agents from wherever you work."
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-core-adapters-2": {
+      "id": "b-20-adapters-core-adapters-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Core Adapters"
+        }
+      ],
+      "children": []
+    },
+    "table-0-379b0f83": {
+      "id": "table-0-379b0f83",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Adapter",
+          "Transport",
+          "Auth Required",
+          "Setup"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "**Web UI**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/10-web.md"
+                }
+              }
+            ],
+            "SSE streaming",
+            "None",
+            "Built-in"
+          ],
+          [
+            [
+              {
+                "insert": "**CLI**",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/20-cli.md"
+                }
+              }
+            ],
+            "stdout",
+            "None",
+            "Built-in"
+          ],
+          [
+            [
+              {
+                "insert": "**Slack**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/20-slack.md"
+                }
+              }
+            ],
+            "Socket Mode, as a chat plugin",
+            "Plugin + Bot and App tokens",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/20-slack.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "**Telegram**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/30-telegram.md"
+                }
+              },
+              {
+                "insert": " (deprecated)"
+              }
+            ],
+            "Bot API polling",
+            "Bot token",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/30-telegram.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "**GitHub**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/40-github.md"
+                }
+              }
+            ],
+            "Webhooks",
+            "Token + webhook secret",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/40-github.md"
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-adapters-community-adapters-4": {
+      "id": "b-20-adapters-community-adapters-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Community Adapters"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-community-adapters-follo-5": {
+      "id": "b-20-adapters-community-adapters-follo-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Community adapters follow the same "
+        },
+        {
+          "insert": "IPlatformAdapter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " interface but target platforms outside the core set."
+        }
+      ],
+      "children": []
+    },
+    "table-1-379b0f83": {
+      "id": "table-1-379b0f83",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Adapter",
+          "Transport",
+          "Auth Required",
+          "Setup"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "**Discord**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/10-discord.md"
+                }
+              }
+            ],
+            "WebSocket",
+            "Bot token",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/10-discord.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "**Gitea**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/20-gitea.md"
+                }
+              }
+            ],
+            "Webhooks",
+            "Token + webhook secret",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/20-gitea.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "**GitLab**",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/30-gitlab.md"
+                }
+              }
+            ],
+            "Webhooks",
+            "Token + webhook secret",
+            [
+              {
+                "insert": "Setup guide",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/60-community/30-gitlab.md"
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-adapters-how-adapters-work-7": {
+      "id": "b-20-adapters-how-adapters-work-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How Adapters Work"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-slack-runs-as-a-chat-plu-8": {
+      "id": "b-20-adapters-slack-runs-as-a-chat-plu-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Slack runs as a chat plugin: a separate process the server starts from an installed plugin, speaking the chat plugin protocol. The other adapters are built into the server. All bundled adapters implement the "
+        },
+        {
+          "insert": "IPlatformAdapter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " interface. They handle:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-message-ingestion-9": {
+      "id": "b-20-adapters-message-ingestion-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Message ingestion",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- receiving messages from the platform and forwarding them to Archon's orchestrator"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-response-delivery-10": {
+      "id": "b-20-adapters-response-delivery-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Response delivery",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- streaming or batching AI responses back to the platform"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-authorization-opt-11": {
+      "id": "b-20-adapters-authorization-opt-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Authorization",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- optional user whitelists to restrict access"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-conversation-tracking-12": {
+      "id": "b-20-adapters-conversation-tracking-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Conversation tracking",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- mapping platform-specific identifiers (thread IDs, chat IDs, issue numbers) to Archon conversations"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-choosing-an-adapter-13": {
+      "id": "b-20-adapters-choosing-an-adapter-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Choosing an Adapter"
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-web-ui-is-the-fastes-14": {
+      "id": "b-20-adapters-web-ui-is-the-fastes-14",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " is the fastest way to get started -- no tokens or external services needed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-slack-is-ideal-for-m-15": {
+      "id": "b-20-adapters-slack-is-ideal-for-m-15",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Slack",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " is ideal for mobile access and team collaboration."
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-github-integrates-di-16": {
+      "id": "b-20-adapters-github-integrates-di-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitHub",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " integrates directly into your issue and PR workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-discord-works-well-f-17": {
+      "id": "b-20-adapters-discord-works-well-f-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Discord",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " works well for community or team servers."
+        }
+      ],
+      "children": []
+    },
+    "b-20-adapters-you-can-run-multiple-ada-18": {
+      "id": "b-20-adapters-you-can-run-multiple-ada-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can run multiple adapters simultaneously. Any bundled adapter with the required environment variables set will start automatically when you launch the server. Slack also needs its plugin installed; see the "
+        },
+        {
+          "insert": "Slack guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/20-slack.md",
+              "label": "Slack guide"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

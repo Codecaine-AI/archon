@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation",
+  "title": "Implementation",
+  "root": "b-20-implementation-root-7",
+  "blocks": {
+    "b-20-implementation-root-7": {
+      "id": "b-20-implementation-root-7",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts"
+      },
+      "children": [
+        "b-20-implementation-implementation-says-how-1",
+        "b-20-implementation-each-page-is-a-converted-2",
+        "b-20-implementation-the-import-replaces-each-3",
+        "b-20-implementation-contents-4",
+        "b-20-implementation-contributing-docs-20-5",
+        "b-20-implementation-deployment-overview-d-6"
+      ]
+    },
+    "b-20-implementation-implementation-says-how-1": {
+      "id": "b-20-implementation-implementation-says-how-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Implementation says how the Archon code is built, tested, released and deployed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-implementation-each-page-is-a-converted-2": {
+      "id": "b-20-implementation-each-page-is-a-converted-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each page is a converted copy of the upstream Archon docs."
+        }
+      ],
+      "children": []
+    },
+    "b-20-implementation-the-import-replaces-each-3": {
+      "id": "b-20-implementation-the-import-replaces-each-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The import replaces each em dash of the upstream prose with a colon, a comma, parentheses or a hyphen."
+        }
+      ],
+      "children": []
+    },
+    "b-20-implementation-contents-4": {
+      "id": "b-20-implementation-contents-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-20-implementation-contributing-docs-20-5": {
+      "id": "b-20-implementation-contributing-docs-20-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Contributing",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing.md",
+              "label": "Contributing"
+            }
+          }
+        },
+        {
+          "insert": ": Developer guides for contributing to Archon: internals, testing, releasing."
+        }
+      ],
+      "children": []
+    },
+    "b-20-implementation-deployment-overview-d-6": {
+      "id": "b-20-implementation-deployment-overview-d-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Deployment Overview",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment.md",
+              "label": "Deployment Overview"
+            }
+          }
+        },
+        {
+          "insert": ": Overview of deployment options for running Archon locally, with Docker, or on a cloud VPS."
+        }
+      ],
+      "children": []
+    }
+  }
+}

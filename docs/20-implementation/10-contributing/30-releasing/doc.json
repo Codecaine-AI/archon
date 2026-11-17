@@ -1,0 +1,1464 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing-30-releasing",
+  "title": "Releasing",
+  "root": "b-30-releasing-root-80",
+  "blocks": {
+    "b-30-releasing-root-80": {
+      "id": "b-30-releasing-root-80",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "developer"
+        ],
+        "category": "contributing",
+        "description": "How to create a new release of the Archon CLI: version management, release process, and troubleshooting.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/releasing.md"
+      },
+      "children": [
+        "b-30-releasing-this-guide-covers-how-to-1",
+        "b-30-releasing-version-management-2",
+        "b-30-releasing-versions-follow-semanti-3",
+        "b-30-releasing-major-1-0-0-break-4",
+        "b-30-releasing-minor-0-1-0-new-f-5",
+        "b-30-releasing-patch-0-0-1-bug-f-6",
+        "b-30-releasing-version-is-stored-in-the-7",
+        "b-30-releasing-release-process-8",
+        "b-30-releasing-releases-are-created-by-9",
+        "b-30-releasing-1-prepare-the-release-10",
+        "b-30-releasing-use-the-release-skill-11",
+        "b-30-releasing-bash-12",
+        "b-30-releasing-ci-remains-the-full-vali-13",
+        "b-30-releasing-the-release-skill-aut-14",
+        "b-30-releasing-compares-dev-to-main-15",
+        "b-30-releasing-bumps-the-version-in-roo-16",
+        "b-30-releasing-updates-changelog-md-f-17",
+        "b-30-releasing-creates-a-pr-from-dev-18",
+        "b-30-releasing-2-merge-and-tag-19",
+        "b-30-releasing-once-the-release-pr-is-r-20",
+        "b-30-releasing-bash-21",
+        "b-30-releasing-this-triggers-the-github-22",
+        "b-30-releasing-builds-binaries-for-all-23",
+        "b-30-releasing-generates-checksums-24",
+        "b-30-releasing-creates-a-github-release-25",
+        "b-30-releasing-3-update-homebrew-formu-26",
+        "b-30-releasing-after-the-release-workfl-27",
+        "b-30-releasing-bash-28",
+        "b-30-releasing-if-you-maintain-a-homebr-29",
+        "b-30-releasing-4-verify-the-release-30",
+        "b-30-releasing-bash-31",
+        "b-30-releasing-note-private-reposito-32",
+        "b-30-releasing-manual-release-when-git-33",
+        "b-30-releasing-if-github-actions-can-t-34",
+        "b-30-releasing-bash-35",
+        "b-30-releasing-note-with-target-36",
+        "b-30-releasing-manual-build-for-testin-37",
+        "b-30-releasing-to-build-binaries-locall-38",
+        "b-30-releasing-bash-39",
+        "b-30-releasing-release-workflow-details-40",
+        "b-30-releasing-the-github-workflows-r-41",
+        "b-30-releasing-triggers-on-42",
+        "b-30-releasing-build-job-runs-in-p-45",
+        "b-30-releasing-release-job-runs-af-50",
+        "b-30-releasing-troubleshooting-58",
+        "b-30-releasing-build-fails-on-github-ac-59",
+        "b-30-releasing-check-the-actions-tab-fo-60",
+        "b-30-releasing-dependency-installation-61",
+        "b-30-releasing-type-errors-run-bun-ru-62",
+        "b-30-releasing-install-script-fails-63",
+        "b-30-releasing-the-install-script-requi-64",
+        "b-30-releasing-curl-for-downloading-65",
+        "b-30-releasing-sha256sum-or-shasum-66",
+        "b-30-releasing-write-access-to-usr-lo-67",
+        "b-30-releasing-checksums-don-t-match-68",
+        "b-30-releasing-if-users-report-checksum-69",
+        "b-30-releasing-check-the-release-artifa-70",
+        "b-30-releasing-verify-checksums-txt-was-71",
+        "b-30-releasing-ensure-binaries-weren-t-72",
+        "b-30-releasing-pre-release-versions-73",
+        "b-30-releasing-for-testing-releases-bef-74",
+        "b-30-releasing-bash-75",
+        "b-30-releasing-pre-releases-tags-conta-76",
+        "b-30-releasing-hotfix-process-77",
+        "b-30-releasing-for-urgent-fixes-to-a-re-78",
+        "b-30-releasing-bash-79"
+      ]
+    },
+    "b-30-releasing-this-guide-covers-how-to-1": {
+      "id": "b-30-releasing-this-guide-covers-how-to-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This guide covers how to create a new release of the Archon CLI."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-version-management-2": {
+      "id": "b-30-releasing-version-management-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Version Management"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-versions-follow-semanti-3": {
+      "id": "b-30-releasing-versions-follow-semanti-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Versions follow "
+        },
+        {
+          "insert": "Semantic Versioning",
+          "attributes": {
+            "link": "https://semver.org/"
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-major-1-0-0-break-4": {
+      "id": "b-30-releasing-major-1-0-0-break-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Major",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (1.0.0): Breaking changes to CLI interface or workflow format"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-minor-0-1-0-new-f-5": {
+      "id": "b-30-releasing-minor-0-1-0-new-f-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Minor",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (0.1.0): New features, new workflows, new commands"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-patch-0-0-1-bug-f-6": {
+      "id": "b-30-releasing-patch-0-0-1-bug-f-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Patch",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (0.0.1): Bug fixes, documentation updates"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-version-is-stored-in-the-7": {
+      "id": "b-30-releasing-version-is-stored-in-the-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Version is stored in the root "
+        },
+        {
+          "insert": "package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only -- this is the single source of truth."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-release-process-8": {
+      "id": "b-30-releasing-release-process-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Release Process"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-releases-are-created-by-9": {
+      "id": "b-30-releasing-releases-are-created-by-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Releases are created by merging "
+        },
+        {
+          "insert": "dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Never commit directly to "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-1-prepare-the-release-10": {
+      "id": "b-30-releasing-1-prepare-the-release-10",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "1. Prepare the Release"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-use-the-release-skill-11": {
+      "id": "b-30-releasing-use-the-release-skill-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use the "
+        },
+        {
+          "insert": "/release",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " skill (or follow these manual steps):"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-12": {
+      "id": "b-30-releasing-bash-12",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Ensure dev is up to date\ngit checkout dev\ngit pull origin dev\n\n# Run default local validation\nbun run validate\nbun run validate --only format,workflow-fixtures"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-ci-remains-the-full-vali-13": {
+      "id": "b-30-releasing-ci-remains-the-full-vali-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CI remains the full validation gate, including service and binary checks that local validation does not run."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-the-release-skill-aut-14": {
+      "id": "b-30-releasing-the-release-skill-aut-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "/release",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " skill automates the following:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-compares-dev-to-main-15": {
+      "id": "b-30-releasing-compares-dev-to-main-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Compares "
+        },
+        {
+          "insert": "dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to generate changelog entries"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bumps-the-version-in-roo-16": {
+      "id": "b-30-releasing-bumps-the-version-in-roo-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Bumps the version in root "
+        },
+        {
+          "insert": "package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (patch by default; use "
+        },
+        {
+          "insert": "/release minor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "/release major",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for other increments)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-updates-changelog-md-f-17": {
+      "id": "b-30-releasing-updates-changelog-md-f-17",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Updates "
+        },
+        {
+          "insert": "CHANGELOG.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " following Keep a Changelog format"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-creates-a-pr-from-dev-18": {
+      "id": "b-30-releasing-creates-a-pr-from-dev-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Creates a PR from "
+        },
+        {
+          "insert": "dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-2-merge-and-tag-19": {
+      "id": "b-30-releasing-2-merge-and-tag-19",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "2. Merge and Tag"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-once-the-release-pr-is-r-20": {
+      "id": "b-30-releasing-once-the-release-pr-is-r-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once the release PR is reviewed and merged:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-21": {
+      "id": "b-30-releasing-bash-21",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Create and push the tag from main\ngit checkout main\ngit pull origin main\ngit tag vX.Y.Z\ngit push origin vX.Y.Z"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-this-triggers-the-github-22": {
+      "id": "b-30-releasing-this-triggers-the-github-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This triggers the GitHub Actions release workflow which:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-builds-binaries-for-all-23": {
+      "id": "b-30-releasing-builds-binaries-for-all-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Builds binaries for all platforms (macOS arm64/x64, Linux arm64/x64, Windows x64)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-generates-checksums-24": {
+      "id": "b-30-releasing-generates-checksums-24",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Generates checksums"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-creates-a-github-release-25": {
+      "id": "b-30-releasing-creates-a-github-release-25",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Creates a GitHub Release with all artifacts"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-3-update-homebrew-formu-26": {
+      "id": "b-30-releasing-3-update-homebrew-formu-26",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "3. Update Homebrew Formula (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-after-the-release-workfl-27": {
+      "id": "b-30-releasing-after-the-release-workfl-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "After the release workflow completes:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-28": {
+      "id": "b-30-releasing-bash-28",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Update checksums in the Homebrew formula\n./scripts/update-homebrew.sh vX.Y.Z\n\n# Review and commit\ngit diff homebrew/archon.rb\ngit add homebrew/archon.rb\ngit commit -m \"chore: update Homebrew formula for vX.Y.Z\"\ngit push origin main"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-if-you-maintain-a-homebr-29": {
+      "id": "b-30-releasing-if-you-maintain-a-homebr-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you maintain a Homebrew tap ("
+        },
+        {
+          "insert": "homebrew-archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), copy the updated formula there."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-4-verify-the-release-30": {
+      "id": "b-30-releasing-4-verify-the-release-30",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "4. Verify the Release"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-31": {
+      "id": "b-30-releasing-bash-31",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Test the install script (only works if repo is public)\ncurl -fsSL https://raw.githubusercontent.com/coleam00/Archon/main/scripts/install.sh | bash\n\n# Verify version\narchon version"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-note-private-reposito-32": {
+      "id": "b-30-releasing-note-private-reposito-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note: Private Repository Installation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "\n\nIf the repository is private, the curl install script won't work for anonymous users.\nUse the GitHub CLI instead:\n\n"
+        },
+        {
+          "insert": "bash\n# Download and install using gh (requires GitHub authentication)\ngh release download v0.2.0 --repo coleam00/Archon \\\n  --pattern \"archon-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/')\" \\\n  --dir /tmp/archon-install\n\n# Install the binary\nchmod +x /tmp/archon-install/archon-*\nsudo mv /tmp/archon-install/archon-* /usr/local/bin/archon\n\n# Verify\narchon version\n",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-manual-release-when-git-33": {
+      "id": "b-30-releasing-manual-release-when-git-33",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Manual Release (When GitHub Actions Unavailable)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-if-github-actions-can-t-34": {
+      "id": "b-30-releasing-if-github-actions-can-t-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If GitHub Actions can't run (billing issues, private repo limits), create the release manually:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-35": {
+      "id": "b-30-releasing-bash-35",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# 1. Build binaries locally (every target in the script's local TARGETS list).\n#    TARGET or OUTFILE left set in the shell switches the script to single-target mode.\nunset TARGET OUTFILE\n./scripts/build-binaries.sh\n\n# 2. Generate checksums.txt, which the install scripts verify against\n./scripts/checksums.sh\n\n# 3. Create the release with binaries and checksums\ngh release create vX.Y.Z dist/binaries/* \\\n  --title \"Archon CLI vX.Y.Z\" \\\n  --generate-notes\n\n# 4. Verify the release\ngh release view vX.Y.Z"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-note-with-target-36": {
+      "id": "b-30-releasing-note-with-target-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " With "
+        },
+        {
+          "insert": "TARGET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "OUTFILE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " unset, "
+        },
+        {
+          "insert": "scripts/build-binaries.sh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cross-compiles\nthe CLI and server executables for every target in its local "
+        },
+        {
+          "insert": "TARGETS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list into\n"
+        },
+        {
+          "insert": "dist/binaries/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". That list has no Windows target.\n\nA manual release is therefore incomplete. It lacks the assets only the CI release\nbuilds: the Windows binaries, the plugin executables ("
+        },
+        {
+          "insert": "archon plugin add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ndownloads these), and "
+        },
+        {
+          "insert": "archon-web.tar.gz",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " downloads it). The "
+        },
+        {
+          "insert": "files:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nlist of the release step in "
+        },
+        {
+          "insert": ".github/workflows/release.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the full set CI publishes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-manual-build-for-testin-37": {
+      "id": "b-30-releasing-manual-build-for-testin-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Manual Build (for Testing)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-to-build-binaries-locall-38": {
+      "id": "b-30-releasing-to-build-binaries-locall-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To build binaries locally without creating a release:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-39": {
+      "id": "b-30-releasing-bash-39",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Build every target in the script's local TARGETS list (no Windows)\nunset TARGET OUTFILE\n./scripts/build-binaries.sh\n\n# Binaries are in dist/binaries/\nls -la dist/binaries/\n\n# Generate checksums\n./scripts/checksums.sh"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-release-workflow-details-40": {
+      "id": "b-30-releasing-release-workflow-details-40",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Release Workflow Details"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-the-github-workflows-r-41": {
+      "id": "b-30-releasing-the-github-workflows-r-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": ".github/workflows/release.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflow:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-triggers-on-42": {
+      "id": "b-30-releasing-triggers-on-42",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Triggers on",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": [
+        "b-30-releasing-push-of-tags-matching-v-43",
+        "b-30-releasing-manual-workflow-dispatch-44"
+      ]
+    },
+    "b-30-releasing-push-of-tags-matching-v-43": {
+      "id": "b-30-releasing-push-of-tags-matching-v-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Push of tags matching "
+        },
+        {
+          "insert": "v*",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-manual-workflow-dispatch-44": {
+      "id": "b-30-releasing-manual-workflow-dispatch-44",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Manual workflow dispatch with version input"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-build-job-runs-in-p-45": {
+      "id": "b-30-releasing-build-job-runs-in-p-45",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Build job",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (runs in parallel for each platform):"
+        }
+      ],
+      "children": [
+        "b-30-releasing-sets-up-bun-46",
+        "b-30-releasing-installs-dependencies-47",
+        "b-30-releasing-compiles-binary-with-bu-48",
+        "b-30-releasing-uploads-as-artifact-49"
+      ]
+    },
+    "b-30-releasing-sets-up-bun-46": {
+      "id": "b-30-releasing-sets-up-bun-46",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Sets up Bun"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-installs-dependencies-47": {
+      "id": "b-30-releasing-installs-dependencies-47",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Installs dependencies"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-compiles-binary-with-bu-48": {
+      "id": "b-30-releasing-compiles-binary-with-bu-48",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Compiles binary with "
+        },
+        {
+          "insert": "bun build --compile",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-uploads-as-artifact-49": {
+      "id": "b-30-releasing-uploads-as-artifact-49",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Uploads as artifact"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-release-job-runs-af-50": {
+      "id": "b-30-releasing-release-job-runs-af-50",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Release job",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (runs after all builds complete):"
+        }
+      ],
+      "children": [
+        "b-30-releasing-downloads-all-artifacts-51",
+        "b-30-releasing-generates-sha256-checksu-52",
+        "b-30-releasing-creates-github-release-w-53"
+      ]
+    },
+    "b-30-releasing-downloads-all-artifacts-51": {
+      "id": "b-30-releasing-downloads-all-artifacts-51",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Downloads all artifacts"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-generates-sha256-checksu-52": {
+      "id": "b-30-releasing-generates-sha256-checksu-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Generates SHA256 checksums"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-creates-github-release-w-53": {
+      "id": "b-30-releasing-creates-github-release-w-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Creates GitHub Release with:"
+        }
+      ],
+      "children": [
+        "b-30-releasing-all-binaries-attached-54",
+        "b-30-releasing-checksums-txt-55",
+        "b-30-releasing-auto-generated-release-n-56",
+        "b-30-releasing-installation-instruction-57"
+      ]
+    },
+    "b-30-releasing-all-binaries-attached-54": {
+      "id": "b-30-releasing-all-binaries-attached-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "All binaries attached"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-checksums-txt-55": {
+      "id": "b-30-releasing-checksums-txt-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "checksums.txt"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-auto-generated-release-n-56": {
+      "id": "b-30-releasing-auto-generated-release-n-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Auto-generated release notes"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-installation-instruction-57": {
+      "id": "b-30-releasing-installation-instruction-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Installation instructions"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-troubleshooting-58": {
+      "id": "b-30-releasing-troubleshooting-58",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-build-fails-on-github-ac-59": {
+      "id": "b-30-releasing-build-fails-on-github-ac-59",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Build Fails on GitHub Actions"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-check-the-actions-tab-fo-60": {
+      "id": "b-30-releasing-check-the-actions-tab-fo-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check the Actions tab for specific errors. Common issues:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-dependency-installation-61": {
+      "id": "b-30-releasing-dependency-installation-61",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Dependency installation failure: Check "
+        },
+        {
+          "insert": "bun.lock",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is committed"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-type-errors-run-bun-ru-62": {
+      "id": "b-30-releasing-type-errors-run-bun-ru-62",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Type errors: Run "
+        },
+        {
+          "insert": "bun run type-check",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " locally first"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-install-script-fails-63": {
+      "id": "b-30-releasing-install-script-fails-63",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Install Script Fails"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-the-install-script-requi-64": {
+      "id": "b-30-releasing-the-install-script-requi-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The install script requires:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-curl-for-downloading-65": {
+      "id": "b-30-releasing-curl-for-downloading-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "curl",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for downloading"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-sha256sum-or-shasum-66": {
+      "id": "b-30-releasing-sha256sum-or-shasum-66",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "sha256sum",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "shasum",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for verification"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-write-access-to-usr-lo-67": {
+      "id": "b-30-releasing-write-access-to-usr-lo-67",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Write access to "
+        },
+        {
+          "insert": "/usr/local/bin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or custom "
+        },
+        {
+          "insert": "INSTALL_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-checksums-don-t-match-68": {
+      "id": "b-30-releasing-checksums-don-t-match-68",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Checksums Don't Match"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-if-users-report-checksum-69": {
+      "id": "b-30-releasing-if-users-report-checksum-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If users report checksum failures:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-check-the-release-artifa-70": {
+      "id": "b-30-releasing-check-the-release-artifa-70",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check the release artifacts are complete"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-verify-checksums-txt-was-71": {
+      "id": "b-30-releasing-verify-checksums-txt-was-71",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Verify checksums.txt was generated correctly"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-ensure-binaries-weren-t-72": {
+      "id": "b-30-releasing-ensure-binaries-weren-t-72",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Ensure binaries weren't modified after checksum generation"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-pre-release-versions-73": {
+      "id": "b-30-releasing-pre-release-versions-73",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pre-release Versions"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-for-testing-releases-bef-74": {
+      "id": "b-30-releasing-for-testing-releases-bef-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For testing releases before public announcement:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-75": {
+      "id": "b-30-releasing-bash-75",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Create a pre-release tag\ngit tag v0.3.0-beta.1\ngit push origin v0.3.0-beta.1"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-pre-releases-tags-conta-76": {
+      "id": "b-30-releasing-pre-releases-tags-conta-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pre-releases (tags containing "
+        },
+        {
+          "insert": "-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") are marked as such on GitHub."
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-hotfix-process-77": {
+      "id": "b-30-releasing-hotfix-process-77",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Hotfix Process"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-for-urgent-fixes-to-a-re-78": {
+      "id": "b-30-releasing-for-urgent-fixes-to-a-re-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For urgent fixes to a released version:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-releasing-bash-79": {
+      "id": "b-30-releasing-bash-79",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Create hotfix branch from tag\ngit checkout -b hotfix/0.2.1 v0.2.0\n\n# Make fixes, then tag\ngit tag v0.2.1\ngit push origin v0.2.1\n\n# Merge fixes back to dev\ngit checkout dev\ngit merge hotfix/0.2.1\ngit push origin dev"
+        }
+      ],
+      "children": []
+    }
+  }
+}

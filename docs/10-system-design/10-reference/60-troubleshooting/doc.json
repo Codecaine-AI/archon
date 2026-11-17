@@ -1,0 +1,3626 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-60-troubleshooting",
+  "title": "Troubleshooting",
+  "root": "b-60-troubleshooting-root-177",
+  "blocks": {
+    "b-60-troubleshooting-root-177": {
+      "id": "b-60-troubleshooting-root-177",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "reference",
+        "description": "Common issues and solutions when running Archon locally or in Docker.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/troubleshooting.md"
+      },
+      "children": [
+        "b-60-troubleshooting-common-issues-and-their-1",
+        "b-60-troubleshooting-for-credential-checks-be-2",
+        "b-60-troubleshooting-source-server-start-3",
+        "b-60-troubleshooting-cli-or-compiled-server-4",
+        "b-60-troubleshooting-docker-check-the-co-5",
+        "b-60-troubleshooting-replace-path-to-env-fi-6",
+        "b-60-troubleshooting-codex-credential-preflig-7",
+        "b-60-troubleshooting-multiple-codex-processes-8",
+        "b-60-troubleshooting-archon-rechecks-that-res-9",
+        "b-60-troubleshooting-for-host-execution-run-10",
+        "b-60-troubleshooting-codex-does-not-support-w-11",
+        "b-60-troubleshooting-a-host-credential-prefli-12",
+        "b-60-troubleshooting-project-uses-an-unexpect-13",
+        "b-60-troubleshooting-new-projects-follow-the-14",
+        "b-60-troubleshooting-projects-registered-by-o-15",
+        "b-60-troubleshooting-sql-16",
+        "b-60-troubleshooting-this-affects-new-convers-17",
+        "b-60-troubleshooting-bot-not-responding-18",
+        "b-60-troubleshooting-check-if-the-applicati-19",
+        "b-60-troubleshooting-if-running-locally-20",
+        "b-60-troubleshooting-bash-21",
+        "b-60-troubleshooting-if-running-via-docker-22",
+        "b-60-troubleshooting-bash-23",
+        "b-60-troubleshooting-check-application-logs-24",
+        "b-60-troubleshooting-local-25",
+        "b-60-troubleshooting-bash-26",
+        "b-60-troubleshooting-docker-27",
+        "b-60-troubleshooting-bash-28",
+        "b-60-troubleshooting-verify-bot-token-29",
+        "b-60-troubleshooting-bash-30",
+        "b-60-troubleshooting-test-with-health-check-31",
+        "b-60-troubleshooting-bash-32",
+        "b-60-troubleshooting-database-connection-erro-33",
+        "b-60-troubleshooting-check-database-health-34",
+        "b-60-troubleshooting-bash-35",
+        "b-60-troubleshooting-for-sqlite-default-36",
+        "b-60-troubleshooting-sqlite-requires-no-setup-37",
+        "b-60-troubleshooting-for-remote-postgresql-38",
+        "b-60-troubleshooting-bash-39",
+        "b-60-troubleshooting-verify-tables-exist-p-40",
+        "b-60-troubleshooting-bash-41",
+        "b-60-troubleshooting-clone-command-fails-42",
+        "b-60-troubleshooting-verify-github-token-43",
+        "b-60-troubleshooting-bash-44",
+        "b-60-troubleshooting-test-token-validity-45",
+        "b-60-troubleshooting-bash-46",
+        "b-60-troubleshooting-check-workspace-permis-47",
+        "b-60-troubleshooting-the-workspace-directory-48",
+        "b-60-troubleshooting-try-manual-clone-49",
+        "b-60-troubleshooting-bash-50",
+        "b-60-troubleshooting-github-webhook-not-trigg-51",
+        "b-60-troubleshooting-verify-webhook-deliver-52",
+        "b-60-troubleshooting-go-to-your-webhook-setti-53",
+        "b-60-troubleshooting-click-on-the-webhook-54",
+        "b-60-troubleshooting-check-recent-deliveries-55",
+        "b-60-troubleshooting-look-for-successful-deli-56",
+        "b-60-troubleshooting-check-webhook-secret-57",
+        "b-60-troubleshooting-bash-58",
+        "b-60-troubleshooting-verify-ngrok-is-runnin-59",
+        "b-60-troubleshooting-bash-60",
+        "b-60-troubleshooting-check-application-logs-61",
+        "b-60-troubleshooting-local-62",
+        "b-60-troubleshooting-bash-63",
+        "b-60-troubleshooting-docker-64",
+        "b-60-troubleshooting-bash-65",
+        "b-60-troubleshooting-port-conflicts-66",
+        "b-60-troubleshooting-check-if-port-3090-is-67",
+        "b-60-troubleshooting-macos-linux-68",
+        "b-60-troubleshooting-bash-69",
+        "b-60-troubleshooting-windows-70",
+        "b-60-troubleshooting-bash-71",
+        "b-60-troubleshooting-you-can-override-the-por-72",
+        "b-60-troubleshooting-bash-73",
+        "b-60-troubleshooting-when-running-in-a-git-wo-74",
+        "b-60-troubleshooting-stale-processes-windows-75",
+        "b-60-troubleshooting-symptom-the-web-ui-76",
+        "b-60-troubleshooting-cause-a-previous-b-77",
+        "b-60-troubleshooting-diagnose-78",
+        "b-60-troubleshooting-powershell-79",
+        "b-60-troubleshooting-note-the-pid-in-the-last-80",
+        "b-60-troubleshooting-powershell-81",
+        "b-60-troubleshooting-replace-12345-with-th-82",
+        "b-60-troubleshooting-fix-kill-by-pid-pr-83",
+        "b-60-troubleshooting-powershell-84",
+        "b-60-troubleshooting-if-multiple-stale-proces-85",
+        "b-60-troubleshooting-powershell-86",
+        "b-60-troubleshooting-caution-87",
+        "b-60-troubleshooting-see-also-windows-setup-88",
+        "b-60-troubleshooting-e2e-testing-agent-brow-89",
+        "b-60-troubleshooting-agent-browser-comman-90",
+        "b-60-troubleshooting-agent-browser-is-an-op-91",
+        "b-60-troubleshooting-bash-92",
+        "b-60-troubleshooting-agent-browser-daemon-f-93",
+        "b-60-troubleshooting-agent-browser-has-a-kno-94",
+        "b-60-troubleshooting-agent-browser-daemon-f-95",
+        "b-60-troubleshooting-kill-stale-daemons-and-r-96",
+        "b-60-troubleshooting-bash-97",
+        "b-60-troubleshooting-docker-98",
+        "b-60-troubleshooting-these-issues-are-specifi-99",
+        "b-60-troubleshooting-container-won-t-start-100",
+        "b-60-troubleshooting-check-logs-for-specifi-101",
+        "b-60-troubleshooting-bash-102",
+        "b-60-troubleshooting-verify-environment-var-103",
+        "b-60-troubleshooting-bash-104",
+        "b-60-troubleshooting-rebuild-without-cache-105",
+        "b-60-troubleshooting-bash-106",
+        "b-60-troubleshooting-if-using-the-with-db-p-107",
+        "b-60-troubleshooting-docker-database-issues-108",
+        "b-60-troubleshooting-for-local-postgresql-109",
+        "b-60-troubleshooting-bash-110",
+        "b-60-troubleshooting-verify-tables-exist-d-111",
+        "b-60-troubleshooting-bash-112",
+        "b-60-troubleshooting-docker-clone-issues-113",
+        "b-60-troubleshooting-check-workspace-permis-114",
+        "b-60-troubleshooting-bash-115",
+        "b-60-troubleshooting-try-manual-clone-insid-116",
+        "b-60-troubleshooting-bash-117",
+        "b-60-troubleshooting-claude-code-not-found-118",
+        "b-60-troubleshooting-symptom-a-workflow-119",
+        "b-60-troubleshooting-code-120",
+        "b-60-troubleshooting-cause-compiled-arch-121",
+        "b-60-troubleshooting-fix-install-claude-122",
+        "b-60-troubleshooting-bash-123",
+        "b-60-troubleshooting-if-claude-code-is-instal-124",
+        "b-60-troubleshooting-bash-125",
+        "b-60-troubleshooting-for-a-durable-setup-set-126",
+        "b-60-troubleshooting-yaml-127",
+        "b-60-troubleshooting-when-claude-is-selected-128",
+        "b-60-troubleshooting-see-the-ai-assistants-129",
+        "b-60-troubleshooting-workflows-time-out-waiti-130",
+        "b-60-troubleshooting-symptom-a-workflow-131",
+        "b-60-troubleshooting-cause-a-slow-enviro-132",
+        "b-60-troubleshooting-fix-raise-the-timeo-133",
+        "b-60-troubleshooting-bash-134",
+        "b-60-troubleshooting-running-archon-from-in-135",
+        "b-60-troubleshooting-worktree-belongs-to-a-di-136",
+        "b-60-troubleshooting-symptom-running-a-w-137",
+        "b-60-troubleshooting-worktree-at-path-belo-138",
+        "b-60-troubleshooting-cannot-verify-worktree-139",
+        "b-60-troubleshooting-cannot-adopt-path-pa-140",
+        "b-60-troubleshooting-cannot-adopt-path-g-141",
+        "b-60-troubleshooting-registration-refusal-142",
+        "b-60-troubleshooting-bash-143",
+        "b-60-troubleshooting-use-archon-project-list-144",
+        "b-60-troubleshooting-inspect-the-run-with-ar-145",
+        "b-60-troubleshooting-if-this-checkout-replace-146",
+        "b-60-troubleshooting-ownership-errors-ol-147",
+        "b-60-troubleshooting-other-variants-148",
+        "b-60-troubleshooting-path-contains-a-full-gi-149",
+        "b-60-troubleshooting-git-pointer-is-not-a-g-150",
+        "b-60-troubleshooting-cannot-verify-worktree-151",
+        "b-60-troubleshooting-legacy-nested-gitlab-sto-152",
+        "b-60-troubleshooting-a-legacy-gitlab-project-153",
+        "b-60-troubleshooting-restoring-the-original-c-154",
+        "b-60-troubleshooting-if-you-must-move-the-che-155",
+        "b-60-troubleshooting-chat-says-the-working-di-156",
+        "b-60-troubleshooting-symptom-a-chat-mess-157",
+        "b-60-troubleshooting-this-conversation-s-wor-158",
+        "b-60-troubleshooting-cause-the-conversat-159",
+        "b-60-troubleshooting-archon-refuses-the-turn-160",
+        "b-60-troubleshooting-fix-follow-the-messag-161",
+        "b-60-troubleshooting-setproject-name-162",
+        "b-60-troubleshooting-worktree-remove-i-163",
+        "b-60-troubleshooting-the-refusal-writes-nothi-164",
+        "b-60-troubleshooting-project-base-branch-poin-165",
+        "b-60-troubleshooting-older-registrations-stor-166",
+        "b-60-troubleshooting-until-project-settings-s-167",
+        "b-60-troubleshooting-sql-168",
+        "b-60-troubleshooting-to-make-that-project-fol-169",
+        "b-60-troubleshooting-sql-170",
+        "b-60-troubleshooting-this-leaves-other-projec-171",
+        "b-60-troubleshooting-stored-project-path-is-r-172",
+        "b-60-troubleshooting-workflow-runs-and-isolat-173",
+        "b-60-troubleshooting-in-archon-chat-supply-t-174",
+        "b-60-troubleshooting-text-175",
+        "b-60-troubleshooting-for-a-legacy-relative-pa-176"
+      ]
+    },
+    "b-60-troubleshooting-common-issues-and-their-1": {
+      "id": "b-60-troubleshooting-common-issues-and-their-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Common issues and their solutions when running Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-credential-checks-be-2": {
+      "id": "b-60-troubleshooting-for-credential-checks-be-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For credential checks below, trace the value Archon actually uses rather than checking only one file:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-source-server-start-3": {
+      "id": "b-60-troubleshooting-source-server-start-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Source server:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Start with the environment inherited by the server. Boot strips every key named in the CWD's "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": ".env.local",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": ".env.development",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": ".env.production",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including shell values. Archon's checkout-root "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " then fills missing values without overriding those that remain. Next, "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides those values, and finally "
+        },
+        {
+          "insert": "<cwd>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides user scope. Check all three files in that order; a key defined in either "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file wins over earlier sources, even if empty. CWD means the server's working directory, which may differ from the checkout."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cli-or-compiled-server-4": {
+      "id": "b-60-troubleshooting-cli-or-compiled-server-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CLI or compiled server:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Skip the checkout-root file. Check the inherited environment after CWD key stripping, then "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "<cwd>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". See "
+        },
+        {
+          "insert": "environment file locations and load order",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "env-file-locations",
+              "label": "environment file locations and load order"
+            }
+          }
+        },
+        {
+          "insert": " for CLI workflow credential exceptions."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-check-the-co-5": {
+      "id": "b-60-troubleshooting-docker-check-the-co-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Docker:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Check the Compose "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the container environment, then the container's Archon env files in the same user/repo order. See "
+        },
+        {
+          "insert": "Docker configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "configure-env",
+              "label": "Docker configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-replace-path-to-env-fi-6": {
+      "id": "b-60-troubleshooting-replace-path-to-env-fi-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Replace "
+        },
+        {
+          "insert": "/path/to/env-file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in each command with each applicable file above. A missing key in one file does not mean it is unset in Archon. Shell commands such as the GitHub API test use your current shell's value; set it to the effective credential you traced before testing."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-codex-credential-preflig-7": {
+      "id": "b-60-troubleshooting-codex-credential-preflig-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Codex credential preflight fails while other Codex work succeeds"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-multiple-codex-processes-8": {
+      "id": "b-60-troubleshooting-multiple-codex-processes-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Multiple Codex processes can try to refresh the same native ChatGPT login. One\nprocess may keep a rejected refresh token after another has saved a working login,\ncausing a credential check to report \"no usable login\"."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-archon-rechecks-that-res-9": {
+      "id": "b-60-troubleshooting-archon-rechecks-that-res-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon rechecks that result once in a fresh Codex process, using the same caller\ndeadline and requesting a refresh again. When the second read returns a status,\nit logs "
+        },
+        {
+          "insert": "codex.native_login_rechecked",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with only the resulting credential state.\nThe recheck does not bypass authentication or send a model request. If the recheck errors, times out or returns a malformed\nresponse, the check is inconclusive: the run starts with a\n"
+        },
+        {
+          "insert": "credential_check_inconclusive",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " warning, as any inconclusive credential check does."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-host-execution-run-10": {
+      "id": "b-60-troubleshooting-for-host-execution-run-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For host execution, run "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " under the same OS user and environment as\nthe server. Doctor checks only the configured host assistant. When that assistant\nis Codex, its Assistant login line must read "
+        },
+        {
+          "insert": "codex: usable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to show the native\nlogin works. A line reading "
+        },
+        {
+          "insert": "codex: uses the credential connected in Archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means\ndoctor skipped the native check because an "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " credential is connected; it\nsays nothing about the native login. If the native login remains unavailable, run\n"
+        },
+        {
+          "insert": "codex login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " under that user and environment and check again. "
+        },
+        {
+          "insert": "codex login status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nalone does not prove that a refresh will succeed."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-codex-does-not-support-w-11": {
+      "id": "b-60-troubleshooting-codex-does-not-support-w-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex does not support workflow container execution ("
+        },
+        {
+          "insert": "containerExec: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Run\nCodex workflows on the host: omit "
+        },
+        {
+          "insert": "--container",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and disable any effective workflow\nor global/project configuration "
+        },
+        {
+          "insert": "container.enabled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " setting. See the\n"
+        },
+        {
+          "insert": "container selection rules",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "container-isolation-folder-projects",
+              "label": "container selection rules"
+            }
+          }
+        },
+        {
+          "insert": ".\nRepairing container credentials does not enable this capability. See\n"
+        },
+        {
+          "insert": "container provider support",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/70-container-isolation.md",
+              "section": "provider-support",
+              "label": "container provider support"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-a-host-credential-prefli-12": {
+      "id": "b-60-troubleshooting-a-host-credential-prefli-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A host credential preflight refusal before run creation leaves no run to resume:\nrepeat the original "
+        },
+        {
+          "insert": "archon workflow run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command after fixing the login."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-project-uses-an-unexpect-13": {
+      "id": "b-60-troubleshooting-project-uses-an-unexpect-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project uses an unexpected provider"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-new-projects-follow-the-14": {
+      "id": "b-60-troubleshooting-new-projects-follow-the-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "New projects follow the configured provider when a conversation is created: repository\n"
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "assistant:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", global "
+        },
+        {
+          "insert": "defaultAssistant",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "DEFAULT_AI_ASSISTANT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\nthen the first registered built-in provider. "
+        },
+        {
+          "insert": ".claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": ".codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directories no\nlonger select a provider. Set "
+        },
+        {
+          "insert": "assistant:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in repository configuration to choose one."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-projects-registered-by-o-15": {
+      "id": "b-60-troubleshooting-projects-registered-by-o-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Projects registered by older versions retain their stored provider. Upgrades cannot\ndistinguish an explicit choice from a registration-time snapshot, so they preserve\nall stored values. To let one of these projects follow configuration, find its ID\nand clear only that project's choice in your SQLite or PostgreSQL database:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-sql-16": {
+      "id": "b-60-troubleshooting-sql-16",
+      "type": "code",
+      "props": {
+        "language": "sql"
+      },
+      "text": [
+        {
+          "insert": "SELECT id, name, ai_assistant_type FROM remote_agent_codebases;\nUPDATE remote_agent_codebases\nSET ai_assistant_type = NULL\nWHERE id = '<project-id>';"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-this-affects-new-convers-17": {
+      "id": "b-60-troubleshooting-this-affects-new-convers-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This affects new conversations. Existing conversations retain the provider recorded\nwhen they were created. Older Archon binaries can still open the database, but resolve\na project's "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " choice to Claude instead of the configured default on downgrade."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bot-not-responding-18": {
+      "id": "b-60-troubleshooting-bot-not-responding-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Bot Not Responding"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-if-the-applicati-19": {
+      "id": "b-60-troubleshooting-check-if-the-applicati-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check if the application is running:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-running-locally-20": {
+      "id": "b-60-troubleshooting-if-running-locally-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If running locally:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-21": {
+      "id": "b-60-troubleshooting-bash-21",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Check the server process\ncurl http://localhost:3090/health\n# Expected: {\"status\":\"ok\"}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-running-via-docker-22": {
+      "id": "b-60-troubleshooting-if-running-via-docker-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If running via Docker:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-23": {
+      "id": "b-60-troubleshooting-bash-23",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose ps\n# Should show 'app' with state 'Up'"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-application-logs-24": {
+      "id": "b-60-troubleshooting-check-application-logs-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check application logs:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-local-25": {
+      "id": "b-60-troubleshooting-local-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Local:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-26": {
+      "id": "b-60-troubleshooting-bash-26",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Server logs are printed to stdout when running `bun run dev`"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-27": {
+      "id": "b-60-troubleshooting-docker-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Docker:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-28": {
+      "id": "b-60-troubleshooting-bash-28",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose logs -f app"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-bot-token-29": {
+      "id": "b-60-troubleshooting-verify-bot-token-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify bot token:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-30": {
+      "id": "b-60-troubleshooting-bash-30",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "grep TELEGRAM_BOT_TOKEN /path/to/env-file"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-test-with-health-check-31": {
+      "id": "b-60-troubleshooting-test-with-health-check-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Test with health check:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-32": {
+      "id": "b-60-troubleshooting-bash-32",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/health\n# Expected: {\"status\":\"ok\"}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-database-connection-erro-33": {
+      "id": "b-60-troubleshooting-database-connection-erro-33",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Database Connection Errors"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-database-health-34": {
+      "id": "b-60-troubleshooting-check-database-health-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check database health:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-35": {
+      "id": "b-60-troubleshooting-bash-35",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/health/db\n# Expected: {\"status\":\"ok\",\"database\":\"connected\"}"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-sqlite-default-36": {
+      "id": "b-60-troubleshooting-for-sqlite-default-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For SQLite (default):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-sqlite-requires-no-setup-37": {
+      "id": "b-60-troubleshooting-sqlite-requires-no-setup-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "SQLite requires no setup. The database is created automatically at "
+        },
+        {
+          "insert": "~/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". If you see errors, check that the "
+        },
+        {
+          "insert": "~/.archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " directory exists and is writable."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-remote-postgresql-38": {
+      "id": "b-60-troubleshooting-for-remote-postgresql-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For remote PostgreSQL:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-39": {
+      "id": "b-60-troubleshooting-bash-39",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Verify DATABASE_URL\necho $DATABASE_URL\n\n# Test connection directly\npsql $DATABASE_URL -c \"SELECT 1\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-tables-exist-p-40": {
+      "id": "b-60-troubleshooting-verify-tables-exist-p-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify tables exist (PostgreSQL):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-41": {
+      "id": "b-60-troubleshooting-bash-41",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "psql $DATABASE_URL -c \"\\dt\"\n\n# Should show: remote_agent_codebases, remote_agent_conversations, remote_agent_sessions,\n# remote_agent_isolation_environments, remote_agent_workflow_runs, remote_agent_workflow_events,\n# remote_agent_messages"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-clone-command-fails-42": {
+      "id": "b-60-troubleshooting-clone-command-fails-42",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Clone Command Fails"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-github-token-43": {
+      "id": "b-60-troubleshooting-verify-github-token-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify GitHub token:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-44": {
+      "id": "b-60-troubleshooting-bash-44",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "grep GH_TOKEN /path/to/env-file\n# Should have both GH_TOKEN and GITHUB_TOKEN set"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-test-token-validity-45": {
+      "id": "b-60-troubleshooting-test-token-validity-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Test token validity:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-46": {
+      "id": "b-60-troubleshooting-bash-46",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Test GitHub API access\ncurl -H \"Authorization: token $GH_TOKEN\" https://api.github.com/user"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-workspace-permis-47": {
+      "id": "b-60-troubleshooting-check-workspace-permis-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check workspace permissions:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-the-workspace-directory-48": {
+      "id": "b-60-troubleshooting-the-workspace-directory-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workspace directory is "
+        },
+        {
+          "insert": "~/.archon/workspaces/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " by default (or "
+        },
+        {
+          "insert": "/.archon/workspaces/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Docker). Make sure it exists and is writable."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-try-manual-clone-49": {
+      "id": "b-60-troubleshooting-try-manual-clone-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Try manual clone:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-50": {
+      "id": "b-60-troubleshooting-bash-50",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git clone https://github.com/user/repo ~/.archon/workspaces/test-repo"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-github-webhook-not-trigg-51": {
+      "id": "b-60-troubleshooting-github-webhook-not-trigg-51",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "GitHub Webhook Not Triggering"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-webhook-deliver-52": {
+      "id": "b-60-troubleshooting-verify-webhook-deliver-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify webhook delivery:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-go-to-your-webhook-setti-53": {
+      "id": "b-60-troubleshooting-go-to-your-webhook-setti-53",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to your webhook settings in GitHub"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-click-on-the-webhook-54": {
+      "id": "b-60-troubleshooting-click-on-the-webhook-54",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click on the webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-recent-deliveries-55": {
+      "id": "b-60-troubleshooting-check-recent-deliveries-55",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check \"Recent Deliveries\" tab"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-look-for-successful-deli-56": {
+      "id": "b-60-troubleshooting-look-for-successful-deli-56",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Look for successful deliveries (green checkmark)"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-webhook-secret-57": {
+      "id": "b-60-troubleshooting-check-webhook-secret-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check webhook secret:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-58": {
+      "id": "b-60-troubleshooting-bash-58",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "grep WEBHOOK_SECRET /path/to/env-file\n# Must match exactly what you entered in GitHub"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-ngrok-is-runnin-59": {
+      "id": "b-60-troubleshooting-verify-ngrok-is-runnin-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify ngrok is running (local dev):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-60": {
+      "id": "b-60-troubleshooting-bash-60",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Check ngrok status\ncurl http://localhost:4040/api/tunnels\n# Or visit http://localhost:4040 in browser"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-application-logs-61": {
+      "id": "b-60-troubleshooting-check-application-logs-61",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check application logs for webhook processing:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-local-62": {
+      "id": "b-60-troubleshooting-local-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Local:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-63": {
+      "id": "b-60-troubleshooting-bash-63",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Look for GitHub-related log lines in server output"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-64": {
+      "id": "b-60-troubleshooting-docker-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Docker:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-65": {
+      "id": "b-60-troubleshooting-bash-65",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose logs -f app | grep GitHub"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-port-conflicts-66": {
+      "id": "b-60-troubleshooting-port-conflicts-66",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Port Conflicts"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-if-port-3090-is-67": {
+      "id": "b-60-troubleshooting-check-if-port-3090-is-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check if port 3090 is already in use:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-macos-linux-68": {
+      "id": "b-60-troubleshooting-macos-linux-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "macOS/Linux:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-69": {
+      "id": "b-60-troubleshooting-bash-69",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "lsof -i :3090"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-windows-70": {
+      "id": "b-60-troubleshooting-windows-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Windows:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-71": {
+      "id": "b-60-troubleshooting-bash-71",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "netstat -ano | findstr :3090"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-you-can-override-the-por-72": {
+      "id": "b-60-troubleshooting-you-can-override-the-por-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can override the port with the "
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " environment variable:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-73": {
+      "id": "b-60-troubleshooting-bash-73",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "PORT=4000 bun run dev"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-when-running-in-a-git-wo-74": {
+      "id": "b-60-troubleshooting-when-running-in-a-git-wo-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When running in a git worktree, Archon automatically allocates a unique port (3190-4089 range) so you don't need to worry about conflicts with the main instance."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-stale-processes-windows-75": {
+      "id": "b-60-troubleshooting-stale-processes-windows-75",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Stale Processes (Windows)"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-symptom-the-web-ui-76": {
+      "id": "b-60-troubleshooting-symptom-the-web-ui-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The Web UI shows a spinning indicator with no response, and the terminal shows no activity (even though you've started "
+        },
+        {
+          "insert": "bun run dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cause-a-previous-b-77": {
+      "id": "b-60-troubleshooting-cause-a-previous-b-77",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cause:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A previous "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "node",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process is still holding the port. This is common on Windows when the terminal is closed without stopping the server."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-diagnose-78": {
+      "id": "b-60-troubleshooting-diagnose-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Diagnose:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-powershell-79": {
+      "id": "b-60-troubleshooting-powershell-79",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "netstat -ano | findstr :3090"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-note-the-pid-in-the-last-80": {
+      "id": "b-60-troubleshooting-note-the-pid-in-the-last-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note the PID in the last column, then verify which process it is:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-powershell-81": {
+      "id": "b-60-troubleshooting-powershell-81",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "tasklist | findstr 12345"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-replace-12345-with-th-82": {
+      "id": "b-60-troubleshooting-replace-12345-with-th-82",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "(Replace "
+        },
+        {
+          "insert": "12345",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the actual PID.)"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-fix-kill-by-pid-pr-83": {
+      "id": "b-60-troubleshooting-fix-kill-by-pid-pr-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fix: kill by PID",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (preferred):"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-powershell-84": {
+      "id": "b-60-troubleshooting-powershell-84",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "taskkill /F /PID 12345"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-multiple-stale-proces-85": {
+      "id": "b-60-troubleshooting-if-multiple-stale-proces-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If multiple stale processes are present:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-powershell-86": {
+      "id": "b-60-troubleshooting-powershell-86",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "taskkill /F /IM bun.exe\ntaskkill /F /IM node.exe"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-caution-87": {
+      "id": "b-60-troubleshooting-caution-87",
+      "type": "callout",
+      "props": {
+        "title": "Caution",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Do not kill "
+        },
+        {
+          "insert": "claude.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " processes: those are active Claude Code sessions."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-see-also-windows-setup-88": {
+      "id": "b-60-troubleshooting-see-also-windows-setup-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See also: "
+        },
+        {
+          "insert": "Windows Setup",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/50-windows.md",
+              "label": "Windows Setup"
+            }
+          }
+        },
+        {
+          "insert": " for more Windows-specific guidance."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-e2e-testing-agent-brow-89": {
+      "id": "b-60-troubleshooting-e2e-testing-agent-brow-89",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "E2E Testing / agent-browser"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-agent-browser-comman-90": {
+      "id": "b-60-troubleshooting-agent-browser-comman-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser: command not found",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-agent-browser-is-an-op-91": {
+      "id": "b-60-troubleshooting-agent-browser-is-an-op-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is an optional external dependency -- see the "
+        },
+        {
+          "insert": "E2E Testing Guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/60-e2e-testing.md",
+              "label": "E2E Testing Guide"
+            }
+          }
+        },
+        {
+          "insert": " for installation."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-92": {
+      "id": "b-60-troubleshooting-bash-92",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "npm install -g agent-browser\nagent-browser install"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-agent-browser-daemon-f-93": {
+      "id": "b-60-troubleshooting-agent-browser-daemon-f-93",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser daemon fails to start (Windows):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-agent-browser-has-a-kno-94": {
+      "id": "b-60-troubleshooting-agent-browser-has-a-kno-94",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser has a "
+        },
+        {
+          "insert": "known Windows bug",
+          "attributes": {
+            "link": "https://github.com/vercel-labs/agent-browser/issues/56"
+          }
+        },
+        {
+          "insert": ". Use WSL as a workaround -- see "
+        },
+        {
+          "insert": "E2E Testing on WSL",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/70-e2e-testing-wsl.md",
+              "label": "E2E Testing on WSL"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-agent-browser-daemon-f-95": {
+      "id": "b-60-troubleshooting-agent-browser-daemon-f-95",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser daemon fails to start (macOS/Linux):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-kill-stale-daemons-and-r-96": {
+      "id": "b-60-troubleshooting-kill-stale-daemons-and-r-96",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Kill stale daemons and retry:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-97": {
+      "id": "b-60-troubleshooting-bash-97",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "pkill -f daemon.js\nagent-browser open http://localhost:3090"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-98": {
+      "id": "b-60-troubleshooting-docker-98",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Docker"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-these-issues-are-specifi-99": {
+      "id": "b-60-troubleshooting-these-issues-are-specifi-99",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These issues are specific to running Archon inside Docker containers."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-container-won-t-start-100": {
+      "id": "b-60-troubleshooting-container-won-t-start-100",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Container Won't Start"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-logs-for-specifi-101": {
+      "id": "b-60-troubleshooting-check-logs-for-specifi-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check logs for specific errors:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-102": {
+      "id": "b-60-troubleshooting-bash-102",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose logs app"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-environment-var-103": {
+      "id": "b-60-troubleshooting-verify-environment-var-103",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify environment variables:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-104": {
+      "id": "b-60-troubleshooting-bash-104",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Check if .env is properly formatted\ndocker compose config"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-rebuild-without-cache-105": {
+      "id": "b-60-troubleshooting-rebuild-without-cache-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Rebuild without cache:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-106": {
+      "id": "b-60-troubleshooting-bash-106",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose build --no-cache\ndocker compose up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-using-the-with-db-p-107": {
+      "id": "b-60-troubleshooting-if-using-the-with-db-p-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If using the "
+        },
+        {
+          "insert": "with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " profile, add "
+        },
+        {
+          "insert": "--profile with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the above commands."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-database-issues-108": {
+      "id": "b-60-troubleshooting-docker-database-issues-108",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Docker Database Issues"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-local-postgresql-109": {
+      "id": "b-60-troubleshooting-for-local-postgresql-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For local PostgreSQL (",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " profile):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-110": {
+      "id": "b-60-troubleshooting-bash-110",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Check if postgres container is running\ndocker compose --profile with-db ps postgres\n\n# Check postgres logs\ndocker compose logs -f postgres\n\n# Test direct connection\ndocker compose exec postgres psql -U postgres -c \"SELECT 1\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-verify-tables-exist-d-111": {
+      "id": "b-60-troubleshooting-verify-tables-exist-d-111",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Verify tables exist (Docker PostgreSQL):",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-112": {
+      "id": "b-60-troubleshooting-bash-112",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose exec postgres psql -U postgres -d remote_coding_agent -c \"\\dt\"\n\n# Should show: remote_agent_codebases, remote_agent_conversations, remote_agent_sessions,\n# remote_agent_isolation_environments, remote_agent_workflow_runs, remote_agent_workflow_events,\n# remote_agent_messages"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-docker-clone-issues-113": {
+      "id": "b-60-troubleshooting-docker-clone-issues-113",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Docker Clone Issues"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-check-workspace-permis-114": {
+      "id": "b-60-troubleshooting-check-workspace-permis-114",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check workspace permissions inside the container:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-115": {
+      "id": "b-60-troubleshooting-bash-115",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose exec app ls -la /.archon/workspaces"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-try-manual-clone-insid-116": {
+      "id": "b-60-troubleshooting-try-manual-clone-insid-116",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Try manual clone inside the container:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-117": {
+      "id": "b-60-troubleshooting-bash-117",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose exec app git clone https://github.com/user/repo /.archon/workspaces/test-repo"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-claude-code-not-found-118": {
+      "id": "b-60-troubleshooting-claude-code-not-found-118",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "\"Claude Code not found\" When Running Compiled Binary"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-symptom-a-workflow-119": {
+      "id": "b-60-troubleshooting-symptom-a-workflow-119",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A workflow that uses Claude fails with:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-code-120": {
+      "id": "b-60-troubleshooting-code-120",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude Code not found. Archon requires the Claude Code executable to be\nreachable at a configured path in compiled builds."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cause-compiled-arch-121": {
+      "id": "b-60-troubleshooting-cause-compiled-arch-121",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cause:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Compiled Archon binaries ("
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the curl/PowerShell installer or Homebrew) do not bundle Claude Code. They look for it at the native installer's path ("
+        },
+        {
+          "insert": "~/.local/bin/claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "%USERPROFILE%\\.local\\bin\\claude.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows) unless "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "assistants.claude.claudeBinaryPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " points elsewhere. This error means no pin is set and that path holds no executable. An invalid pin fails with a different error that names the setting ("
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH is set to ... but the file does not exist",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), in every mode and without falling back to autodetection; correct or remove that setting. Source/dev mode ("
+        },
+        {
+          "insert": "bun run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") with no pin resolves Claude Code through "
+        },
+        {
+          "insert": "node_modules",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-fix-install-claude-122": {
+      "id": "b-60-troubleshooting-fix-install-claude-122",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fix:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Install Claude Code with the native installer, which Archon then finds on its own:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-123": {
+      "id": "b-60-troubleshooting-bash-123",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# macOS / Linux / WSL\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# Windows (PowerShell)\nirm https://claude.ai/install.ps1 | iex"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-claude-code-is-instal-124": {
+      "id": "b-60-troubleshooting-if-claude-code-is-instal-124",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If Claude Code is installed somewhere else, such as through npm, set "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to it:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-125": {
+      "id": "b-60-troubleshooting-bash-125",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "export CLAUDE_BIN_PATH=\"$(npm root -g)/@anthropic-ai/claude-code/cli.js\""
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-a-durable-setup-set-126": {
+      "id": "b-60-troubleshooting-for-a-durable-setup-set-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For a durable setup, set the path in "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " instead:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-yaml-127": {
+      "id": "b-60-troubleshooting-yaml-127",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  claude:\n    claudeBinaryPath: /absolute/path/to/claude"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-when-claude-is-selected-128": {
+      "id": "b-60-troubleshooting-when-claude-is-selected-128",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When Claude is selected, setup auto-detects and writes "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for you. Run "
+        },
+        {
+          "insert": "archon setup --providers claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to select Claude and configure its path. After setup, run "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to confirm the binary actually spawns. Docker users do not need to do anything: the image pre-sets the variable."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-see-the-ai-assistants-129": {
+      "id": "b-60-troubleshooting-see-the-ai-assistants-129",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the "
+        },
+        {
+          "insert": "AI Assistants → Binary path configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "binary-path-configuration-compiled-binaries-only",
+              "label": "AI Assistants → Binary path configuration"
+            }
+          }
+        },
+        {
+          "insert": " guide for the full install matrix."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-workflows-time-out-waiti-130": {
+      "id": "b-60-troubleshooting-workflows-time-out-waiti-130",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflows Time Out Waiting for the First Event"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-symptom-a-workflow-131": {
+      "id": "b-60-troubleshooting-symptom-a-workflow-131",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A workflow node produces no output and eventually fails on a first-event timeout."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cause-a-slow-enviro-132": {
+      "id": "b-60-troubleshooting-cause-a-slow-enviro-132",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cause:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A slow environment (cold model, constrained machine) can exceed the default 60-second wait for the AI provider's first event."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-fix-raise-the-timeo-133": {
+      "id": "b-60-troubleshooting-fix-raise-the-timeo-133",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fix:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Raise the timeout:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-134": {
+      "id": "b-60-troubleshooting-bash-134",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ARCHON_CLAUDE_FIRST_EVENT_TIMEOUT_MS=120000 archon workflow run ..."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-running-archon-from-in-135": {
+      "id": "b-60-troubleshooting-running-archon-from-in-135",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Running "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from inside a Claude Code session (or another coding agent) is a supported, normal way to drive Archon: it no longer emits a warning."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-worktree-belongs-to-a-di-136": {
+      "id": "b-60-troubleshooting-worktree-belongs-to-a-di-136",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Worktree Belongs to a Different Clone"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-symptom-running-a-w-137": {
+      "id": "b-60-troubleshooting-symptom-running-a-w-137",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Running a workflow (especially with "
+        },
+        {
+          "insert": "--branch <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") from one local clone surfaces one of these errors:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-worktree-at-path-belo-138": {
+      "id": "b-60-troubleshooting-worktree-at-path-belo-138",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Worktree at <path> belongs to a different clone (<other-clone-path>). Remove it from that clone or use a different codebase registration.",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cannot-verify-worktree-139": {
+      "id": "b-60-troubleshooting-cannot-verify-worktree-139",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Cannot verify worktree ownership at <path>: <reason>",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cannot-adopt-path-pa-140": {
+      "id": "b-60-troubleshooting-cannot-adopt-path-pa-140",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Cannot adopt <path>: path contains a full git checkout, not a worktree.",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cannot-adopt-path-g-141": {
+      "id": "b-60-troubleshooting-cannot-adopt-path-g-141",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Cannot adopt <path>: .git pointer is not a git-worktree reference.",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-registration-refusal-142": {
+      "id": "b-60-troubleshooting-registration-refusal-142",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Registration refusal:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Project \"<name>\" is already registered at <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means this is another clone of a registered remote. Two clones of one remote cannot be separate Archon projects. Run from the named registered checkout and use "
+        },
+        {
+          "insert": "--branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "git worktree add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for parallel checkouts. For a fresh run from the separate clone, bind it to the existing project instead:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-bash-143": {
+      "id": "b-60-troubleshooting-bash-143",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-investigate --project owner/repo --cwd /other/clone --no-worktree"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-use-archon-project-list-144": {
+      "id": "b-60-troubleshooting-use-archon-project-list-144",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "archon project list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to find the registered name or ID. "
+        },
+        {
+          "insert": "--no-worktree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " executes in the clone; isolated execution uses the registered checkout. See "
+        },
+        {
+          "insert": "workflow run",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-run-name-message",
+              "label": "workflow run"
+            }
+          }
+        },
+        {
+          "insert": ". Removing a worktree or changing the branch name does not resolve a registration refusal."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-inspect-the-run-with-ar-145": {
+      "id": "b-60-troubleshooting-inspect-the-run-with-ar-145",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Inspect the run with "
+        },
+        {
+          "insert": "archon workflow get <full-run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or run "
+        },
+        {
+          "insert": "archon workflow runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the registered checkout. From the separate clone, "
+        },
+        {
+          "insert": "workflow runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " falls back to an install-wide list limited to 20 rows by default."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-this-checkout-replace-146": {
+      "id": "b-60-troubleshooting-if-this-checkout-replace-146",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If this checkout replaces a moved or retired checkout, use "
+        },
+        {
+          "insert": "/update-project \"<name>\" <new-absolute-path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to repair the registration. Keep its existing workspace storage: it contains state, artifacts and logs. For legacy nested GitLab projects, follow the "
+        },
+        {
+          "insert": "storage recovery steps below",
+          "attributes": {
+            "link": "#legacy-nested-gitlab-storage-recovery"
+          }
+        },
+        {
+          "insert": " before changing the path."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-ownership-errors-ol-147": {
+      "id": "b-60-troubleshooting-ownership-errors-ol-147",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Ownership errors:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Older registrations or manually changed worktrees can still produce the ownership errors above. Inspect "
+        },
+        {
+          "insert": "git worktree list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the registered checkout and the checkout named in the error. Preserve in-progress work and use the registered checkout's worktree. Only remove an obsolete worktree from its owning checkout after confirming it is no longer needed. Archon refuses to adopt worktrees from another clone."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-other-variants-148": {
+      "id": "b-60-troubleshooting-other-variants-148",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Other variants:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-path-contains-a-full-gi-149": {
+      "id": "b-60-troubleshooting-path-contains-a-full-gi-149",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "path contains a full git checkout, not a worktree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": something non-Archon created a full git repo at the worktree path. Remove or move it."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-git-pointer-is-not-a-g-150": {
+      "id": "b-60-troubleshooting-git-pointer-is-not-a-g-150",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": ".git pointer is not a git-worktree reference",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the "
+        },
+        {
+          "insert": ".git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file at that path points somewhere unexpected (submodule, malformed). Inspect it with "
+        },
+        {
+          "insert": "cat <path>/.git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and clean up manually."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cannot-verify-worktree-151": {
+      "id": "b-60-troubleshooting-cannot-verify-worktree-151",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Cannot verify worktree ownership",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": filesystem permission or I/O error reading "
+        },
+        {
+          "insert": "<path>/.git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Check "
+        },
+        {
+          "insert": "ls -la <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and file permissions on "
+        },
+        {
+          "insert": "~/.archon/workspaces",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-legacy-nested-gitlab-sto-152": {
+      "id": "b-60-troubleshooting-legacy-nested-gitlab-sto-152",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Legacy nested GitLab storage recovery"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-a-legacy-gitlab-project-153": {
+      "id": "b-60-troubleshooting-a-legacy-gitlab-project-153",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A legacy GitLab project whose registered name has more than two segments (for example "
+        },
+        {
+          "insert": "group/subgroup/api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") derives its storage root from the basename of its registered checkout path, rather than from its name. Its root is "
+        },
+        {
+          "insert": "$ARCHON_HOME/workspaces/_local/<checkout-basename>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " defaults to "
+        },
+        {
+          "insert": "~/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). This also applies when the saved checkout is an old worktree: a path ending in "
+        },
+        {
+          "insert": "worktrees/old-api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses "
+        },
+        {
+          "insert": "_local/old-api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-restoring-the-original-c-154": {
+      "id": "b-60-troubleshooting-restoring-the-original-c-154",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Restoring the original checkout at its saved path preserves that storage root. Archon refuses automatic repair when it cannot preserve the root."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-if-you-must-move-the-che-155": {
+      "id": "b-60-troubleshooting-if-you-must-move-the-che-155",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you must move the checkout, identify and back up the existing storage root "
+        },
+        {
+          "insert": "before",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " using "
+        },
+        {
+          "insert": "/update-project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Work out the destination root from the new checkout's basename and migrate the existing state, artifacts and logs there as part of the move. Do not overwrite another project's storage at that destination. A path update alone does not move storage: changing the basename can hide the existing state or select a root already used by another project. Keep the original storage until you have verified the recovered project can see its state and history."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-chat-says-the-working-di-156": {
+      "id": "b-60-troubleshooting-chat-says-the-working-di-156",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Chat Says the Working Directory No Longer Exists"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-symptom-a-chat-mess-157": {
+      "id": "b-60-troubleshooting-symptom-a-chat-mess-157",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A chat message in a project-scoped conversation is refused with:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-this-conversation-s-wor-158": {
+      "id": "b-60-troubleshooting-this-conversation-s-wor-158",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "This conversation's working directory no longer exists: <path>",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-cause-the-conversat-159": {
+      "id": "b-60-troubleshooting-cause-the-conversat-159",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cause:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The conversation carries a working-directory override ("
+        },
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") pointing at a directory that has since been removed (an isolated worktree torn down by "
+        },
+        {
+          "insert": "archon isolation cleanup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the periodic reaper, the Environments list in the web UI, or your own "
+        },
+        {
+          "insert": "rm -rf",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). The override outlives the directory. Only workflow runs re-resolve isolation; a chat turn uses the recorded path as-is."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-archon-refuses-the-turn-160": {
+      "id": "b-60-troubleshooting-archon-refuses-the-turn-160",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon refuses the turn instead of passing the missing path to the AI provider. It does not silently fall back to the project root, because relocating the agent into the live checkout would widen its write scope without you asking for it. Before this check existed, the provider spawned into the missing directory and the failure surfaced as an unrelated error: "
+        },
+        {
+          "insert": "posix_spawn",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports a missing "
+        },
+        {
+          "insert": "working directory",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " as "
+        },
+        {
+          "insert": "ENOENT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " against the "
+        },
+        {
+          "insert": "executable's",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " path, so Codex reported "
+        },
+        {
+          "insert": "No such file or directory (os error 2)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and Claude reported a libc/architecture mismatch. Neither named the directory."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-fix-follow-the-messag-161": {
+      "id": "b-60-troubleshooting-fix-follow-the-messag-161",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fix: follow the message:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-setproject-name-162": {
+      "id": "b-60-troubleshooting-setproject-name-162",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "/setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " clears the stale override and rebinds the conversation to a project. This always works and is the suggestion you will always be offered."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-worktree-remove-i-163": {
+      "id": "b-60-troubleshooting-worktree-remove-i-163",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "/worktree remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is offered "
+        },
+        {
+          "insert": "only",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " when the conversation is still bound to an isolation environment. It detaches and returns you to the project root. When the environment reference has already been cleared, this command reports "
+        },
+        {
+          "insert": "This conversation is not using a worktree.",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which is why it is not suggested in that state."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-the-refusal-writes-nothi-164": {
+      "id": "b-60-troubleshooting-the-refusal-writes-nothi-164",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The refusal writes nothing and changes no state, so a transient cause (a mount blip, a directory mid-move) costs one refused message and nothing else: the next turn re-evaluates from scratch. Operators can find these events in the logs under "
+        },
+        {
+          "insert": "orchestrator.conversation_cwd_missing",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which records the conversation id, the path, and the isolation environment id."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-project-base-branch-poin-165": {
+      "id": "b-60-troubleshooting-project-base-branch-poin-165",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project base branch points at an old local branch"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-older-registrations-stor-166": {
+      "id": "b-60-troubleshooting-older-registrations-stor-166",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Older registrations stored whichever local branch was checked out. Existing stored values\nare preserved because Archon cannot distinguish a past choice from a detected snapshot.\nNew registrations store only an explicit choice; "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " follows the remote default when needed.\nThe engine reads the remote's live HEAD advertisement, so a renamed default is picked up\nwithout refreshing local "
+        },
+        {
+          "insert": "origin/HEAD",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An unreachable remote or unknown HEAD fails resolution\nwith configuration guidance rather than guessing a branch."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-until-project-settings-s-167": {
+      "id": "b-60-troubleshooting-until-project-settings-s-167",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Until project settings support editing this value, look up the project in your database:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-sql-168": {
+      "id": "b-60-troubleshooting-sql-168",
+      "type": "code",
+      "props": {
+        "language": "sql"
+      },
+      "text": [
+        {
+          "insert": "SELECT id, name, default_branch FROM remote_agent_codebases;"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-to-make-that-project-fol-169": {
+      "id": "b-60-troubleshooting-to-make-that-project-fol-169",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To make that project follow its remote default, replace the ID below with the selected ID:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-sql-170": {
+      "id": "b-60-troubleshooting-sql-170",
+      "type": "code",
+      "props": {
+        "language": "sql"
+      },
+      "text": [
+        {
+          "insert": "UPDATE remote_agent_codebases SET default_branch = NULL WHERE id = '<project-id>';"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-this-leaves-other-projec-171": {
+      "id": "b-60-troubleshooting-this-leaves-other-projec-171",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This leaves other projects unchanged. "
+        },
+        {
+          "insert": "worktree.baseBranch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " still\noutranks the project choice, and "
+        },
+        {
+          "insert": "--base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides the base for a single dispatch.\n"
+        },
+        {
+          "insert": "--base-branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is for initial CLI registration, not editing an existing project.\nNo database migration is needed: older binaries already accept "
+        },
+        {
+          "insert": "NULL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as auto-detection,\nalthough they retain their older cached remote-HEAD behavior."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-stored-project-path-is-r-172": {
+      "id": "b-60-troubleshooting-stored-project-path-is-r-172",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Stored project path is relative"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-workflow-runs-and-isolat-173": {
+      "id": "b-60-troubleshooting-workflow-runs-and-isolat-173",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflow runs and isolation cleanup reject a registration whose stored "
+        },
+        {
+          "insert": "default_cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nis not absolute before using that path for Git or removing environments. The error\nnames the project and gives a recovery command. Changing the invocation directory\ndoes not repair the registration."
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-in-archon-chat-supply-t-174": {
+      "id": "b-60-troubleshooting-in-archon-chat-supply-t-174",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In Archon chat, supply the project's actual absolute path:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-text-175": {
+      "id": "b-60-troubleshooting-text-175",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "/register-project \"my-project\" /absolute/path/to/project"
+        }
+      ],
+      "children": []
+    },
+    "b-60-troubleshooting-for-a-legacy-relative-pa-176": {
+      "id": "b-60-troubleshooting-for-a-legacy-relative-pa-176",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For a legacy relative path, automatic repair detects the kind from the replacement\npath and preserves the registration's ID, settings, and history. Repair refuses a\npath or kind change that would move Archon storage or worktrees, including\ncross-run state and repo-local worktrees configured with "
+        },
+        {
+          "insert": "worktree.path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Use a\nreplacement path and kind that keep those locations unchanged.\nUse "
+        },
+        {
+          "insert": "/register-project --folder \"my-project\" /absolute/path/to/project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to keep a\nfolder project as a folder even when the path contains a Git repository.\nArchon does not guess a replacement or rewrite legacy rows automatically."
+        }
+      ],
+      "children": []
+    }
+  }
+}

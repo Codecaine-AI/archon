@@ -1,0 +1,1378 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-40-github",
+  "title": "GitHub",
+  "root": "b-40-github-root-69",
+  "blocks": {
+    "b-40-github-root-69": {
+      "id": "b-40-github-root-69",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Connect Archon to GitHub via webhooks to interact from issues and pull requests.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/github.md"
+      },
+      "children": [
+        "b-40-github-connect-archon-to-github-1",
+        "b-40-github-teams-sharing-one-arch-2",
+        "b-40-github-prerequisites-3",
+        "b-40-github-archon-server-running-4",
+        "b-40-github-github-repository-with-i-5",
+        "b-40-github-a-github-personal-access-6",
+        "b-40-github-public-endpoint-for-webh-7",
+        "b-40-github-step-1-generate-webhook-8",
+        "b-40-github-on-linux-mac-9",
+        "b-40-github-bash-10",
+        "b-40-github-on-windows-powershell-11",
+        "b-40-github-powershell-12",
+        "b-40-github-save-this-secret-you-13",
+        "b-40-github-step-2-expose-local-ser-14",
+        "b-40-github-using-ngrok-free-tier-15",
+        "b-40-github-bash-16",
+        "b-40-github-keep-this-terminal-open-17",
+        "b-40-github-using-cloudflare-tunnel-18",
+        "b-40-github-bash-19",
+        "b-40-github-persistent-urls-survive-20",
+        "b-40-github-for-production-deploym-21",
+        "b-40-github-step-3-configure-github-22",
+        "b-40-github-go-to-your-repository-se-23",
+        "b-40-github-navigate-to-https-gi-24",
+        "b-40-github-click-add-webhook-25",
+        "b-40-github-note-for-multiple-r-26",
+        "b-40-github-webhook-configuration-27",
+        "table-0-e0b71160",
+        "b-40-github-click-add-webhook-and-29",
+        "b-40-github-webhook-bodies-are-limit-30",
+        "b-40-github-step-4-set-environment-31",
+        "b-40-github-ini-32",
+        "b-40-github-important-the-webh-33",
+        "b-40-github-step-5-configure-stream-34",
+        "b-40-github-the-github-adapter-alway-35",
+        "b-40-github-usage-36",
+        "b-40-github-interact-by-mentioning-37",
+        "b-40-github-code-38",
+        "b-40-github-first-mention-behavior-39",
+        "b-40-github-reuses-an-existing-local-40",
+        "b-40-github-for-an-existing-registra-41",
+        "b-40-github-detects-and-loads-comman-42",
+        "b-40-github-injects-full-issue-pr-co-43",
+        "b-40-github-subsequent-mentions-44",
+        "b-40-github-resumes-existing-convers-45",
+        "b-40-github-maintains-full-context-a-46",
+        "b-40-github-note-47",
+        "b-40-github-adding-additional-reposi-48",
+        "b-40-github-once-your-server-is-runn-49",
+        "b-40-github-via-github-ui-repo-50",
+        "b-40-github-payload-url-your-se-51",
+        "b-40-github-content-type-appli-52",
+        "b-40-github-secret-same-webhoo-53",
+        "b-40-github-events-check-runs-54",
+        "b-40-github-via-cli-55",
+        "b-40-github-bash-56",
+        "b-40-github-important-the-webho-57",
+        "b-40-github-check-run-deliveries-wak-58",
+        "b-40-github-github-enterprise-server-59",
+        "b-40-github-to-run-the-adapter-again-60",
+        "b-40-github-ini-61",
+        "b-40-github-with-github-url-set-t-62",
+        "b-40-github-webhook-create-it-o-63",
+        "b-40-github-github-app-mode-reg-64",
+        "b-40-github-sdlc-workflows-the-65",
+        "b-40-github-current-limits-in-app-m-66",
+        "b-40-github-further-reading-67",
+        "b-40-github-configuration-docs-30-68"
+      ]
+    },
+    "b-40-github-connect-archon-to-github-1": {
+      "id": "b-40-github-connect-archon-to-github-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to GitHub so you can interact with your AI coding assistant from issues and pull requests."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-teams-sharing-one-arch-2": {
+      "id": "b-40-github-teams-sharing-one-arch-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Teams sharing one Archon instance:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " prefer the "
+        },
+        {
+          "insert": "GitHub App setup",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/50-github-app-setup.md",
+              "label": "GitHub App setup"
+            }
+          }
+        },
+        {
+          "insert": ". The PAT-mode setup on this page is the legacy path: it still works for solo installs, but bot comments all post under the PAT owner's avatar and tokens never auto-rotate. App mode gives you "
+        },
+        {
+          "insert": "<slug>[bot]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " attribution, 1h token rotation, multi-org support, and one webhook URL."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-prerequisites-3": {
+      "id": "b-40-github-prerequisites-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-archon-server-running-4": {
+      "id": "b-40-github-archon-server-running-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-github-repository-with-i-5": {
+      "id": "b-40-github-github-repository-with-i-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitHub repository with issues enabled"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-a-github-personal-access-6": {
+      "id": "b-40-github-a-github-personal-access-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A GitHub personal access token set as "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-public-endpoint-for-webh-7": {
+      "id": "b-40-github-public-endpoint-for-webh-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Public endpoint for webhooks (see ngrok setup below for local development)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-step-1-generate-webhook-8": {
+      "id": "b-40-github-step-1-generate-webhook-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 1: Generate Webhook Secret"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-on-linux-mac-9": {
+      "id": "b-40-github-on-linux-mac-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Linux/Mac:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-bash-10": {
+      "id": "b-40-github-bash-10",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "openssl rand -hex 32"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-on-windows-powershell-11": {
+      "id": "b-40-github-on-windows-powershell-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Windows (PowerShell):"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-powershell-12": {
+      "id": "b-40-github-powershell-12",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "-join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Maximum 256) })"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-save-this-secret-you-13": {
+      "id": "b-40-github-save-this-secret-you-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Save this secret -- you'll need it for steps 3 and 4."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-step-2-expose-local-ser-14": {
+      "id": "b-40-github-step-2-expose-local-ser-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 2: Expose Local Server (Development Only)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-using-ngrok-free-tier-15": {
+      "id": "b-40-github-using-ngrok-free-tier-15",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Using ngrok (Free Tier)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-bash-16": {
+      "id": "b-40-github-bash-16",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Install ngrok: https://ngrok.com/download\n# Or: choco install ngrok (Windows)\n# Or: brew install ngrok (Mac)\n\n# Start tunnel\nngrok http 3090\n\n# Copy the HTTPS URL (e.g., https://abc123.ngrok-free.app)\n# Free tier URLs change on restart"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-keep-this-terminal-open-17": {
+      "id": "b-40-github-keep-this-terminal-open-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Keep this terminal open while testing."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-using-cloudflare-tunnel-18": {
+      "id": "b-40-github-using-cloudflare-tunnel-18",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Using Cloudflare Tunnel (Persistent URLs)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-bash-19": {
+      "id": "b-40-github-bash-19",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Install: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/\ncloudflared tunnel --url http://localhost:3090\n\n# Get persistent URL from Cloudflare dashboard"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-persistent-urls-survive-20": {
+      "id": "b-40-github-persistent-urls-survive-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Persistent URLs survive restarts."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-for-production-deploym-21": {
+      "id": "b-40-github-for-production-deploym-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For production deployments",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", use your deployed server URL (no tunnel needed)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-step-3-configure-github-22": {
+      "id": "b-40-github-step-3-configure-github-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 3: Configure GitHub Webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-go-to-your-repository-se-23": {
+      "id": "b-40-github-go-to-your-repository-se-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Go to your repository settings:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-navigate-to-https-gi-24": {
+      "id": "b-40-github-navigate-to-https-gi-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Navigate to: "
+        },
+        {
+          "insert": "https://github.com/owner/repo/settings/hooks",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-click-add-webhook-25": {
+      "id": "b-40-github-click-add-webhook-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Click \"Add webhook\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-note-for-multiple-r-26": {
+      "id": "b-40-github-note-for-multiple-r-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Note",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": For multiple repositories, you'll need to add the webhook to each one individually"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-webhook-configuration-27": {
+      "id": "b-40-github-webhook-configuration-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Webhook Configuration:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "table-0-e0b71160": {
+      "id": "table-0-e0b71160",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Value"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Payload URL",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Local: "
+              },
+              {
+                "insert": "https://abc123.ngrok-free.app/webhooks/github",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "<br>Production: "
+              },
+              {
+                "insert": "https://your-domain.com/webhooks/github",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Content type",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "application/json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Secret",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Paste the secret from Step 1"
+          ],
+          [
+            [
+              {
+                "insert": "SSL verification",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Enable SSL verification (recommended)"
+          ],
+          [
+            [
+              {
+                "insert": "Events",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Select \"Let me select individual events\":<br>- Check runs<br>- Issues<br>- Issue comments<br>- Pull requests"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-github-click-add-webhook-and-29": {
+      "id": "b-40-github-click-add-webhook-and-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Click \"Add webhook\" and verify it shows a green checkmark after delivery."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-webhook-bodies-are-limit-30": {
+      "id": "b-40-github-webhook-bodies-are-limit-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Webhook bodies are limited to "
+        },
+        {
+          "insert": "32 MiB (33,554,432 bytes)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", inclusive. Larger bodies receive HTTP "
+        },
+        {
+          "insert": "413",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " before the signature is checked; Archon stops reading them and creates no receipt or workflow start. This limit applies only to webhook routes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-step-4-set-environment-31": {
+      "id": "b-40-github-step-4-set-environment-31",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4: Set Environment Variables"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-ini-32": {
+      "id": "b-40-github-ini-32",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "WEBHOOK_SECRET=your_secret_from_step_1"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-important-the-webh-33": {
+      "id": "b-40-github-important-the-webh-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Important",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": The "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must match exactly what you entered in GitHub's webhook configuration."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-step-5-configure-stream-34": {
+      "id": "b-40-github-step-5-configure-stream-34",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 5: Configure Streaming (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-the-github-adapter-alway-35": {
+      "id": "b-40-github-the-github-adapter-alway-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub adapter always uses "
+        },
+        {
+          "insert": "batch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mode (hardcoded). It assembles the reply before delivery and splits long replies into multiple comments."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-usage-36": {
+      "id": "b-40-github-usage-36",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Usage"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-interact-by-mentioning-37": {
+      "id": "b-40-github-interact-by-mentioning-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Interact by @mentioning your bot in issue or PR "
+        },
+        {
+          "insert": "comments",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-code-38": {
+      "id": "b-40-github-code-38",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon can you analyze this bug?\n@archon prime the codebase\n@archon review this implementation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-first-mention-behavior-39": {
+      "id": "b-40-github-first-mention-behavior-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "First mention behavior:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-reuses-an-existing-local-40": {
+      "id": "b-40-github-reuses-an-existing-local-40",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Reuses an existing local registration at its saved checkout path, including a subdirectory of a Git checkout. Otherwise, registers and clones the repository to "
+        },
+        {
+          "insert": "~/.archon/workspaces/owner/repo/source/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or to a suffixed path such as "
+        },
+        {
+          "insert": "owner/repo-2/source/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when that project name is taken."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-for-an-existing-registra-41": {
+      "id": "b-40-github-for-an-existing-registra-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "For an existing registration, readiness skips syncing the checkout to preserve local changes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-detects-and-loads-comman-42": {
+      "id": "b-40-github-detects-and-loads-comman-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Detects and loads commands from "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if present"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-injects-full-issue-pr-co-43": {
+      "id": "b-40-github-injects-full-issue-pr-co-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Injects full issue/PR context for the AI assistant"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-subsequent-mentions-44": {
+      "id": "b-40-github-subsequent-mentions-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subsequent mentions:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-resumes-existing-convers-45": {
+      "id": "b-40-github-resumes-existing-convers-45",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Resumes existing conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-maintains-full-context-a-46": {
+      "id": "b-40-github-maintains-full-context-a-46",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Maintains full context across comments"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-note-47": {
+      "id": "b-40-github-note-47",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "Only comments trigger the bot. @mentions in issue or PR descriptions are ignored -- descriptions often contain example commands or documentation that are not intended as bot invocations."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-adding-additional-reposi-48": {
+      "id": "b-40-github-adding-additional-reposi-48",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Adding Additional Repositories"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-once-your-server-is-runn-49": {
+      "id": "b-40-github-once-your-server-is-runn-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once your server is running, add more repos by creating a webhook with the same secret."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-via-github-ui-repo-50": {
+      "id": "b-40-github-via-github-ui-repo-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Via GitHub UI:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Repo Settings > Webhooks > Add webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-payload-url-your-se-51": {
+      "id": "b-40-github-payload-url-your-se-51",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Payload URL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Your server URL + "
+        },
+        {
+          "insert": "/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-content-type-appli-52": {
+      "id": "b-40-github-content-type-appli-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Content type",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "application/json",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-secret-same-webhoo-53": {
+      "id": "b-40-github-secret-same-webhoo-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Secret",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Same "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from your "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-events-check-runs-54": {
+      "id": "b-40-github-events-check-runs-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Events",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Check runs, Issues, Issue comments, Pull requests"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-via-cli-55": {
+      "id": "b-40-github-via-cli-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Via CLI:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-bash-56": {
+      "id": "b-40-github-bash-56",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Get your existing webhook secret\nWEBHOOK_SECRET=$(grep WEBHOOK_SECRET .env | cut -d= -f2)\n\n# Add webhook to new repo (replace OWNER/REPO)\ngh api repos/OWNER/REPO/hooks --method POST \\\n  -f \"config[url]=https://YOUR_DOMAIN/webhooks/github\" \\\n  -f \"config[content_type]=json\" \\\n  -f \"config[secret]=$WEBHOOK_SECRET\" \\\n  -f \"events[]=check_run\" \\\n  -f \"events[]=issues\" \\\n  -f \"events[]=issue_comment\" \\\n  -f \"events[]=pull_request\""
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-important-the-webho-57": {
+      "id": "b-40-github-important-the-webho-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Important",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": The webhook secret must be identical across all repos."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-check-run-deliveries-wak-58": {
+      "id": "b-40-github-check-run-deliveries-wak-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check-run deliveries wake CI waits quickly. They are not required for correctness: when GitHub does not deliver one, the workflow reaches its deadline and probes CI again."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-github-enterprise-server-59": {
+      "id": "b-40-github-github-enterprise-server-59",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "GitHub Enterprise Server"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-to-run-the-adapter-again-60": {
+      "id": "b-40-github-to-run-the-adapter-again-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To run the adapter against a self-hosted GitHub Enterprise Server, set its base URL:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-ini-61": {
+      "id": "b-40-github-ini-61",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "GITHUB_URL=https://github.example.com"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-with-github-url-set-t-62": {
+      "id": "b-40-github-with-github-url-set-t-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "GITHUB_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set, the adapter calls "
+        },
+        {
+          "insert": "https://github.example.com/api/v3",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", clones from "
+        },
+        {
+          "insert": "https://github.example.com/<owner>/<repo>.git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " authenticate HTTPS clones of that exact scheme, host and port. Leave it unset for github.com. A value with a path, query or credentials is rejected: the adapter and the GitHub App fail startup, and clones to the Enterprise host get no GitHub token. Clones from other forges are unaffected."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-webhook-create-it-o-63": {
+      "id": "b-40-github-webhook-create-it-o-63",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Webhook:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " create it on the Enterprise repository or organization, pointing at the same "
+        },
+        {
+          "insert": "/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " endpoint with the same secret (Step 3)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-github-app-mode-reg-64": {
+      "id": "b-40-github-github-app-mode-reg-64",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitHub App mode:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " register the App on the Enterprise instance ("
+        },
+        {
+          "insert": "Settings → Developer settings → GitHub Apps",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ") with the permissions listed in "
+        },
+        {
+          "insert": "GitHub App Setup",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/50-github-app-setup.md",
+              "label": "GitHub App Setup"
+            }
+          }
+        },
+        {
+          "insert": ". The App's API calls and installation tokens go to the Enterprise instance."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-sdlc-workflows-the-65": {
+      "id": "b-40-github-sdlc-workflows-the-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "SDLC workflows:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the forge plugin needs a "
+        },
+        {
+          "insert": "forge.hosts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " entry for the Enterprise host; see "
+        },
+        {
+          "insert": "forge plugin configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "section": "plugin-configuration",
+              "label": "forge plugin configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-current-limits-in-app-m-66": {
+      "id": "b-40-github-current-limits-in-app-m-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Current limits: in App mode, git operations after the first clone (sync, workflow pushes) and per-user identity ("
+        },
+        {
+          "insert": "archon auth github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the device flow) still target github.com. Use PAT mode on Enterprise Server for now."
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-further-reading-67": {
+      "id": "b-40-github-further-reading-67",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Further Reading"
+        }
+      ],
+      "children": []
+    },
+    "b-40-github-configuration-docs-30-68": {
+      "id": "b-40-github-configuration-docs-30-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

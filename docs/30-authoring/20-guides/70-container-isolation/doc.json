@@ -1,0 +1,1181 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-70-container-isolation",
+  "title": "Container Isolation",
+  "root": "b-70-container-isolation-root-39",
+  "blocks": {
+    "b-70-container-isolation-root-39": {
+      "id": "b-70-container-isolation-root-39",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Run folder-project workflows inside an overlay-isolated Docker container with governed, approval-gated write-back to the live root.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/container-isolation.md"
+      },
+      "children": [
+        "b-70-container-isolation-folder-projects-docs-1",
+        "b-70-container-isolation-this-is-folder-project-o-2",
+        "b-70-container-isolation-how-it-works-3",
+        "b-70-container-isolation-code-4",
+        "b-70-container-isolation-the-diagram-shows-a-norm-5",
+        "b-70-container-isolation-the-overlay-s-upper-laye-6",
+        "b-70-container-isolation-prerequisites-7",
+        "b-70-container-isolation-docker-running-on-th-8",
+        "b-70-container-isolation-the-runner-image-bu-9",
+        "b-70-container-isolation-bash-10",
+        "b-70-container-isolation-this-tags-archon-runner-11",
+        "b-70-container-isolation-rebuild-existing-runner-12",
+        "b-70-container-isolation-running-13",
+        "b-70-container-isolation-bash-14",
+        "b-70-container-isolation-you-ll-see-the-container-15",
+        "b-70-container-isolation-code-16",
+        "b-70-container-isolation-drive-it-like-any-other-17",
+        "b-70-container-isolation-bash-18",
+        "b-70-container-isolation-an-empty-diff-skips-19",
+        "b-70-container-isolation-pause-economics-20",
+        "b-70-container-isolation-on-a-normal-pause-inclu-21",
+        "b-70-container-isolation-the-cli-acquires-the-run-22",
+        "b-70-container-isolation-unreadable-source-suspen-23",
+        "b-70-container-isolation-stopping-is-best-effort-24",
+        "b-70-container-isolation-container-pauses-are-onl-25",
+        "b-70-container-isolation-selection-and-configurat-26",
+        "b-70-container-isolation-precedence-container-27",
+        "b-70-container-isolation-archon-isolation-list-28",
+        "b-70-container-isolation-provider-support-29",
+        "table-0-30318c3f",
+        "b-70-container-isolation-a-non-claude-node-in-a-c-31",
+        "b-70-container-isolation-security-posture-32",
+        "b-70-container-isolation-the-container-is-the-iso-33",
+        "b-70-container-isolation-overlay-mount-mode-is-ch-34",
+        "b-70-container-isolation-two-archon-owned-host-di-35",
+        "b-70-container-isolation-before-a-named-script-or-36",
+        "b-70-container-isolation-macos-linux-notes-37",
+        "b-70-container-isolation-the-overlay-upper-work-d-38"
+      ]
+    },
+    "b-70-container-isolation-folder-projects-docs-1": {
+      "id": "b-70-container-isolation-folder-projects-docs-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Folder projects",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/65-multi-repo-projects.md",
+              "label": "Folder projects"
+            }
+          }
+        },
+        {
+          "insert": " (directories with or without git, where Archon applies no git machinery) run "
+        },
+        {
+          "insert": "in place",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at the live root by default: every write lands immediately. That is honest but ungoverned, and unsafe for unattended automation against real client data. "
+        },
+        {
+          "insert": "Container isolation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " runs the whole workflow inside a Docker container over a "
+        },
+        {
+          "insert": "read-only mount of the project root plus a writable overlay upper layer",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", so nothing touches the live folder until you approve it."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-this-is-folder-project-o-2": {
+      "id": "b-70-container-isolation-this-is-folder-project-o-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is folder-project-only. Repo projects use "
+        },
+        {
+          "insert": "git worktrees",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/15-worktrees.md",
+              "label": "git worktrees"
+            }
+          }
+        },
+        {
+          "insert": " and are unaffected."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-how-it-works-3": {
+      "id": "b-70-container-isolation-how-it-works-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How it works"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-code-4": {
+      "id": "b-70-container-isolation-code-4",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "prepare → container (root mounted read-only, overlay upper on a per-run volume)\n   claude + bash/script nodes all run INSIDE via `docker exec`\n   env = the Archon-managed bag + auth only (never the host process.env)\n        │\n   … approval gate?  →  docker stop (0 RAM while stopped)  →  approve/resume → docker start\n        │\n   nodes done → WRITE-BACK GATE: overlay diff summarized, run pauses\n        │\n   approve → diff applied to the live root → run completed\n   reject  → diff discarded, live root untouched → run completed (noted)\n        │\n   teardown → container + volume removed"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-diagram-shows-a-norm-5": {
+      "id": "b-70-container-isolation-the-diagram-shows-a-norm-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The diagram shows a normal gate pause. Failed resume setup or suspension can leave the container running; see "
+        },
+        {
+          "insert": "Pause economics",
+          "attributes": {
+            "link": "#pause-economics"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-overlay-s-upper-laye-6": {
+      "id": "b-70-container-isolation-the-overlay-s-upper-laye-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The overlay's upper layer "
+        },
+        {
+          "insert": "is",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the diff by overlayfs construction, so computing what changed is a directory walk, not a tree comparison. Claude nodes run via the SDK's "
+        },
+        {
+          "insert": "spawnClaudeCodeProcess",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hook into "
+        },
+        {
+          "insert": "docker exec",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nodes exec in the same container rather than silently falling back to host execution."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-prerequisites-7": {
+      "id": "b-70-container-isolation-prerequisites-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-docker-running-on-th-8": {
+      "id": "b-70-container-isolation-docker-running-on-th-8",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Docker",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " running on the host (Engine ≥ 20.10 / Docker Desktop)."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-runner-image-bu-9": {
+      "id": "b-70-container-isolation-the-runner-image-bu-9",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The runner image",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", built from the current in-repo Dockerfile:"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-bash-10": {
+      "id": "b-70-container-isolation-bash-10",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run build:runner-image"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-this-tags-archon-runner-11": {
+      "id": "b-70-container-isolation-this-tags-archon-runner-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This tags "
+        },
+        {
+          "insert": "archon-runner:<version>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon-runner:latest",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the default). It bakes in the Claude native binary, git, bash, bun, uv, and "
+        },
+        {
+          "insert": "fuse-overlayfs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-rebuild-existing-runner-12": {
+      "id": "b-70-container-isolation-rebuild-existing-runner-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Rebuild existing runner images after upgrading Archon, including custom images with their own tags. The current entrypoint reports FUSE mount failure with exit status 78; older entrypoints that return a generic status cannot authorize native fallback."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-running-13": {
+      "id": "b-70-container-isolation-running-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Running"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-bash-14": {
+      "id": "b-70-container-isolation-bash-14",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Register the folder + run in a container in one go\ncd /path/to/ops-root\nbun run cli workflow run my-workflow --folder --container \"reorganize the invoices\""
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-you-ll-see-the-container-15": {
+      "id": "b-70-container-isolation-you-ll-see-the-container-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You'll see the container come up, nodes execute inside it, and (when the run finishes with changes) a "
+        },
+        {
+          "insert": "write-back gate",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-code-16": {
+      "id": "b-70-container-isolation-code-16",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "Container run finished — review before applying to the live folder.\n7 file(s) changed (3 added, 3 modified, 1 deleted):\n  + invoices/2026-06/summary.md\n  ~ invoices/index.md\n  - invoices/stale.tmp\n  … and 3 more\nApprove to APPLY these changes to the live folder, or reject to discard them."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-drive-it-like-any-other-17": {
+      "id": "b-70-container-isolation-drive-it-like-any-other-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Drive it like any other pause:"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-bash-18": {
+      "id": "b-70-container-isolation-bash-18",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run cli workflow approve <run-id>   # apply the diff to the live root, then complete\nbun run cli workflow reject  <run-id>   # discard the overlay, live root untouched, complete"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-an-empty-diff-skips-19": {
+      "id": "b-70-container-isolation-an-empty-diff-skips-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An "
+        },
+        {
+          "insert": "empty diff",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " skips the gate and completes silently. Set "
+        },
+        {
+          "insert": "container.write_back: auto",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a workflow to apply without pausing (logged, for unattended jobs)."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-pause-economics-20": {
+      "id": "b-70-container-isolation-pause-economics-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pause economics"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-on-a-normal-pause-inclu-21": {
+      "id": "b-70-container-isolation-on-a-normal-pause-inclu-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On a normal pause, including unreadable-source recovery before or inside the DAG, an approval/interactive gate mid-run, or the write-back gate at the end, Archon "
+        },
+        {
+          "insert": "docker stop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "s the container",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". Once stopped, a multi-day wait costs ~0 CPU/RAM. Failed resume setup or suspension can leave the container running, as described below. Approve/reject/resume rediscover the container by its "
+        },
+        {
+          "insert": "diy.archon.env-id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " label and "
+        },
+        {
+          "insert": "docker start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " it (or recreate one over the persisted upper volume if the container is gone). If the volume itself is gone (the only place the un-applied work lived), resume "
+        },
+        {
+          "insert": "fails loudly",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " rather than silently restarting from an empty overlay."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-cli-acquires-the-run-22": {
+      "id": "b-70-container-isolation-the-cli-acquires-the-run-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The CLI acquires the run's authoritative resume claim before restarting its container, including write-back-only continuations. A stale or competing attempt that loses admission cannot restart or suspend the container. If restart or container credential setup fails before execution, the engine marks the admitted run failed and surfaces the setup error. The overlay and write-back decision remain available for ordinary failed-run resume; the prior pause reason is cleared and failed nodes replay on retry. During setup, SIGINT and SIGTERM wait for the in-flight operation to settle, then fail the admitted run before exiting with an error. Setup can fail or be interrupted after restart succeeds; in that case the container may remain running, and its overlay is preserved."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-unreadable-source-suspen-23": {
+      "id": "b-70-container-isolation-unreadable-source-suspen-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Unreadable-source suspension uses a one-second Docker stop grace and a two-second timeout per Docker call (ownership restoration, stop, and failure inspection), keeping Docker work under the file store's ten-second lock wait. Other pauses retain Docker's default stop grace."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-stopping-is-best-effort-24": {
+      "id": "b-70-container-isolation-stopping-is-best-effort-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Stopping is best-effort: a backend failure is logged and reported to the operator, and the run stays paused for retry. No "
+        },
+        {
+          "insert": "container_stopped",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event is emitted on failure; the container may keep consuming resources until resume or teardown."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-container-pauses-are-onl-25": {
+      "id": "b-70-container-isolation-container-pauses-are-onl-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Container pauses are only resumable "
+        },
+        {
+          "insert": "from the CLI",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", where the Docker backend is wired. Approving or rejecting a container run from chat or the Web UI records the decision but cannot continue the container. The run stays paused until you run "
+        },
+        {
+          "insert": "archon workflow resume <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the CLI in the same project. Do not re-send the decision: the gate is already resolved."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-selection-and-configurat-26": {
+      "id": "b-70-container-isolation-selection-and-configurat-26",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Selection and configuration"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-precedence-container-27": {
+      "id": "b-70-container-isolation-precedence-container-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Precedence: "
+        },
+        {
+          "insert": "--container",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " flag > workflow "
+        },
+        {
+          "insert": "container.enabled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " > config "
+        },
+        {
+          "insert": "container.enabled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " > off. See "
+        },
+        {
+          "insert": "configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "container-isolation-folder-projects",
+              "label": "configuration"
+            }
+          }
+        },
+        {
+          "insert": " for the "
+        },
+        {
+          "insert": "container:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " config block (image, network, memory, pids) and the "
+        },
+        {
+          "insert": "container.write_back",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflow policy."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-archon-isolation-list-28": {
+      "id": "b-70-container-isolation-archon-isolation-list-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon isolation list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows active container environments with their age. "
+        },
+        {
+          "insert": "archon isolation cleanup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reaps containers and volumes older than the threshold only when no claimable run owns the environment and platform policy permits removal. It preserves containers for pending, running, paused, and resumable failed runs, including failed resume setup. The displayed run status or "
+        },
+        {
+          "insert": "no run (orphan)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " label does not establish eligibility: cleanup checks run metadata, conversation links, and same-codebase checkout paths. If that ownership lookup fails, cleanup reports the error and skips removal. To discard a failed run and its retry overlay, use "
+        },
+        {
+          "insert": "archon workflow abandon <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-provider-support-29": {
+      "id": "b-70-container-isolation-provider-support-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Provider support"
+        }
+      ],
+      "children": []
+    },
+    "table-0-30318c3f": {
+      "id": "table-0-30318c3f",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Provider",
+          "In-container",
+          "Notes"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Claude",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "✅",
+            [
+              {
+                "insert": "Spawns its CLI via "
+              },
+              {
+                "insert": "docker exec",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "; the binary is baked into the runner image."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Codex",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "🔜",
+            [
+              {
+                "insert": "Needs an in-container spawn of "
+              },
+              {
+                "insert": "codex app-server",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " + the binary in the image; "
+              },
+              {
+                "insert": "CODEX_HOME/auth.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " on the upper volume. Fails fast today via the "
+              },
+              {
+                "insert": "containerExec",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " capability."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Pi",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "🔜",
+            "In-process harness; needs a container tool-transport (Flue-style) or an in-image shim."
+          ],
+          [
+            [
+              {
+                "insert": "OpenCode / Copilot / community",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "🔜",
+            [
+              {
+                "insert": "Declare "
+              },
+              {
+                "insert": "containerExec: true",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and implement their own exec-in-container translation against the "
+              },
+              {
+                "insert": "ExecutionContext",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " contract."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-70-container-isolation-a-non-claude-node-in-a-c-31": {
+      "id": "b-70-container-isolation-a-non-claude-node-in-a-c-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A non-Claude node in a container run "
+        },
+        {
+          "insert": "fails fast before any node executes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", naming the provider and the "
+        },
+        {
+          "insert": "containerExec",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability: never a silent host escape."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-security-posture-32": {
+      "id": "b-70-container-isolation-security-posture-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Security posture"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-container-is-the-iso-33": {
+      "id": "b-70-container-isolation-the-container-is-the-iso-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The container is the isolation boundary: read-only lower bind + overlay upper on a VM-local volume + Archon-managed env only (the host "
+        },
+        {
+          "insert": "process.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " never crosses) + approval-gated write-back. The apply is the "
+        },
+        {
+          "insert": "one",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " moment the live root is written."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-overlay-mount-mode-is-ch-34": {
+      "id": "b-70-container-isolation-overlay-mount-mode-is-ch-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Overlay mount mode is chosen least-privilege-first: "
+        },
+        {
+          "insert": "fuse-overlayfs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (only "
+        },
+        {
+          "insert": "--device /dev/fuse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", no "
+        },
+        {
+          "insert": "CAP_SYS_ADMIN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") is attempted first and works on rootless / userns-remap daemons. Native fallback requires the runner to report a FUSE mount failure with exit status 78. Docker startup failures, including a missing "
+        },
+        {
+          "insert": "/dev/fuse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", readiness timeouts, unconfirmed exit status, and failed log checks stop preparation without fallback. A transient inspection failure can recover: a later inspection confirming exit 78 permits fallback. On a standard rootful daemon, a confirmed FUSE mount failure permits "
+        },
+        {
+          "insert": "native",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (kernel overlay + "
+        },
+        {
+          "insert": "CAP_SYS_ADMIN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), which lets in-container root remount the read-only lower, so "
+        },
+        {
+          "insert": "native",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is isolation-hardening, "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " a sandbox against a hostile agent. The full threat model, the "
+        },
+        {
+          "insert": "native",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " caveat, and the "
+        },
+        {
+          "insert": "docker exec -e",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " secrets-in-"
+        },
+        {
+          "insert": "ps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " limitation are documented in "
+        },
+        {
+          "insert": "packages/isolation/docker/SECURITY.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": read it before running untrusted work."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-two-archon-owned-host-di-35": {
+      "id": "b-70-container-isolation-two-archon-owned-host-di-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Two Archon-owned host directories are bound into the container at their host paths: the run's frozen workflow source, read-only, and "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", read-write. The artifacts bind is what lets an in-container node leave screenshots, reports, or the "
+        },
+        {
+          "insert": "evidence_policy",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " marker where the engine and the operator read them. It is the only host directory the container can write; its contents are run output and the host never executes them. Archon's own host writes into it refuse a symlinked parent directory and replace a symlinked file instead of writing through it, so a link planted by a node cannot redirect an engine write elsewhere on the host. On a rootful Linux daemon the container's root user owns what it writes there, so Archon attempts to restore host ownership when the container is suspended or destroyed. This is best-effort: failures are logged as "
+        },
+        {
+          "insert": "isolation.container_artifacts_chown_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and do not stop suspension or destruction."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-before-a-named-script-or-36": {
+      "id": "b-70-container-isolation-before-a-named-script-or-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Before a named script or other capture-backed read is dispatched, Archon hashes the host capture and compares it with the run's pinned source identity. This refuses a mismatch present at that checkpoint; it does not close the check-to-exec race, contain a same-UID host process, or cancel parallel nodes already running."
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-macos-linux-notes-37": {
+      "id": "b-70-container-isolation-macos-linux-notes-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "macOS / Linux notes"
+        }
+      ],
+      "children": []
+    },
+    "b-70-container-isolation-the-overlay-upper-work-d-38": {
+      "id": "b-70-container-isolation-the-overlay-upper-work-d-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The overlay upper/work dirs live on a VM-local named volume, never a host bind mount (a host-bind upperdir hits "
+        },
+        {
+          "insert": "EACCES",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on macOS). The merged overlay is mounted at the "
+        },
+        {
+          "insert": "same absolute path",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " as the host cwd, so "
+        },
+        {
+          "insert": "working_path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and every path substitution are unchanged inside the container. On a standard Docker Desktop / rootful Engine daemon, "
+        },
+        {
+          "insert": "native",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (CAP"
+        },
+        {
+          "insert": "SYS",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "ADMIN) is available only after the runner starts and reports the dedicated FUSE mount failure status; a missing "
+        },
+        {
+          "insert": "/dev/fuse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stops the run before that point."
+        }
+      ],
+      "children": []
+    }
+  }
+}

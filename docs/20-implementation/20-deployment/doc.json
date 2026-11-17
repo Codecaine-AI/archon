@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment",
+  "title": "Deployment Overview",
+  "root": "b-20-deployment-root-10",
+  "blocks": {
+    "b-20-deployment-root-10": {
+      "id": "b-20-deployment-root-10",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Overview of deployment options for running Archon locally, with Docker, or on a cloud VPS.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/index.md"
+      },
+      "children": [
+        "b-20-deployment-archon-can-run-locally-f-1",
+        "b-20-deployment-deployment-options-2",
+        "table-0-fc9378c0",
+        "b-20-deployment-using-an-existing-proxy-4",
+        "b-20-deployment-database-options-5",
+        "table-1-fc9378c0",
+        "b-20-deployment-sqlite-stores-data-at-7",
+        "b-20-deployment-testing-8",
+        "table-2-fc9378c0"
+      ]
+    },
+    "b-20-deployment-archon-can-run-locally-f-1": {
+      "id": "b-20-deployment-archon-can-run-locally-f-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon can run locally for development or be deployed to a server for always-on operation."
+        }
+      ],
+      "children": []
+    },
+    "b-20-deployment-deployment-options-2": {
+      "id": "b-20-deployment-deployment-options-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Deployment Options"
+        }
+      ],
+      "children": []
+    },
+    "table-0-fc9378c0": {
+      "id": "table-0-fc9378c0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Best For",
+          "Guide"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Local",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Development, personal use",
+            [
+              {
+                "insert": "Local Development",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/10-local.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Docker",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Self-hosted servers, CI environments",
+            [
+              {
+                "insert": "Docker",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/20-docker.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Cloud VPS",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "24/7 operation with automatic HTTPS",
+            [
+              {
+                "insert": "Cloud Deployment",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/30-cloud.md"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Windows",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Native Windows or WSL2",
+            [
+              {
+                "insert": "Windows",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/50-windows.md"
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-deployment-using-an-existing-proxy-4": {
+      "id": "b-20-deployment-using-an-existing-proxy-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Using an existing proxy? See "
+        },
+        {
+          "insert": "Running Archon behind your own reverse proxy",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/40-reverse-proxy.md",
+              "label": "Running Archon behind your own reverse proxy"
+            }
+          }
+        },
+        {
+          "insert": " for routing, authentication, webhook, and streaming requirements."
+        }
+      ],
+      "children": []
+    },
+    "b-20-deployment-database-options-5": {
+      "id": "b-20-deployment-database-options-5",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Database Options"
+        }
+      ],
+      "children": []
+    },
+    "table-1-fc9378c0": {
+      "id": "table-1-fc9378c0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Option",
+          "Setup",
+          "Best For"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "SQLite",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " (default)"
+              }
+            ],
+            [
+              {
+                "insert": "Zero config, just omit "
+              },
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Single-user, CLI usage, local development"
+          ],
+          [
+            [
+              {
+                "insert": "Remote PostgreSQL",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Set "
+              },
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " to hosted DB"
+              }
+            ],
+            "Cloud deployments, shared access"
+          ],
+          [
+            [
+              {
+                "insert": "Local PostgreSQL",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Docker "
+              },
+              {
+                "insert": "--profile with-db",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Self-hosted, Docker-based setups"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-deployment-sqlite-stores-data-at-7": {
+      "id": "b-20-deployment-sqlite-stores-data-at-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "SQLite stores data at "
+        },
+        {
+          "insert": "~/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Docker). It is auto-initialized on first run."
+        }
+      ],
+      "children": []
+    },
+    "b-20-deployment-testing-8": {
+      "id": "b-20-deployment-testing-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Testing"
+        }
+      ],
+      "children": []
+    },
+    "table-2-fc9378c0": {
+      "id": "table-2-fc9378c0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Guide",
+          "Audience"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "E2E Testing",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/60-e2e-testing.md"
+                }
+              }
+            ],
+            "Developers and operators"
+          ],
+          [
+            [
+              {
+                "insert": "E2E Testing on WSL",
+                "attributes": {
+                  "link": "docs/20-implementation/20-deployment/70-e2e-testing-wsl.md"
+                }
+              }
+            ],
+            "Developers on Windows"
+          ]
+        ]
+      },
+      "children": []
+    }
+  }
+}

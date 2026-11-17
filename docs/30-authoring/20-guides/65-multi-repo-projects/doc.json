@@ -1,0 +1,534 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-65-multi-repo-projects",
+  "title": "Multi-Repo Projects",
+  "root": "b-65-multi-repo-projects-root-19",
+  "blocks": {
+    "b-65-multi-repo-projects-root-19": {
+      "id": "b-65-multi-repo-projects-root-19",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Register a multi-repo root as a folder project and drive workflows and chat across every contained service repo.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/multi-repo-projects.md"
+      },
+      "children": [
+        "b-65-multi-repo-projects-many-platforms-are-not-a-1",
+        "b-65-multi-repo-projects-register-the-root-2",
+        "b-65-multi-repo-projects-from-the-multi-repo-root-3",
+        "b-65-multi-repo-projects-bash-4",
+        "b-65-multi-repo-projects-you-can-also-register-fr-5",
+        "b-65-multi-repo-projects-how-work-happens-across-6",
+        "b-65-multi-repo-projects-the-agent-s-working-di-7",
+        "b-65-multi-repo-projects-per-service-git-is-the-8",
+        "b-65-multi-repo-projects-the-chat-status-comma-9",
+        "b-65-multi-repo-projects-text-10",
+        "b-65-multi-repo-projects-artifacts-and-logs-are-s-11",
+        "b-65-multi-repo-projects-when-you-want-isolation-12",
+        "b-65-multi-repo-projects-folder-projects-intentio-13",
+        "b-65-multi-repo-projects-bash-14",
+        "b-65-multi-repo-projects-the-two-models-compose-15",
+        "b-65-multi-repo-projects-not-a-fit-for-16",
+        "b-65-multi-repo-projects-archon-managed-branchi-17",
+        "b-65-multi-repo-projects-a-repo-you-want-isolat-18"
+      ]
+    },
+    "b-65-multi-repo-projects-many-platforms-are-not-a-1": {
+      "id": "b-65-multi-repo-projects-many-platforms-are-not-a-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Many platforms are not a single repository: they're a "
+        },
+        {
+          "insert": "root directory holding N service repos",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "auth-service/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "billing-service/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", …), with or without git at the root itself. Archon models this as a "
+        },
+        {
+          "insert": "folder project",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a directory for which Archon applies no git machinery (no managed worktree, branch or pull request), whether or not it is a git repository. Folder projects also fit a single repository you want to run in place, or a business-operations folder with no git at all. They get identity, per-project env vars, run history and artifact storage like repo projects. Register the root once, and every workflow and chat runs "
+        },
+        {
+          "insert": "in place",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at that root by default, so the agent sees all contained repos at once. Opt into overlay-isolated, approval-gated container execution with "
+        },
+        {
+          "insert": "--container",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (see the "
+        },
+        {
+          "insert": "Container isolation guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/70-container-isolation.md",
+              "label": "Container isolation guide"
+            }
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-register-the-root-2": {
+      "id": "b-65-multi-repo-projects-register-the-root-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Register the root"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-from-the-multi-repo-root-3": {
+      "id": "b-65-multi-repo-projects-from-the-multi-repo-root-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From the multi-repo root, run any workflow with "
+        },
+        {
+          "insert": "--folder",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The first run registers the folder project; later runs from the root or ordinary subdirectories need no flag. For cross-service runs, start at the registered folder root or pass "
+        },
+        {
+          "insert": "--cwd ~/platform",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Running from inside a nested Git service repository resolves that service as its own repository project and registers it on first use."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-bash-4": {
+      "id": "b-65-multi-repo-projects-bash-4",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cd ~/platform          # contains auth-service/, billing-service/, ... — with or without git at the root\narchon workflow run archon-investigate --folder \"How do these services call each other?\"\n# → Registered folder project \"platform\" (~/platform)\n# → Folder project — running in place (no worktree isolation)."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-you-can-also-register-fr-5": {
+      "id": "b-65-multi-repo-projects-you-can-also-register-fr-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can also register from chat ("
+        },
+        {
+          "insert": "/register-project --folder platform ~/platform",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") or the web console's "
+        },
+        {
+          "insert": "Add Project",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (choose "
+        },
+        {
+          "insert": "Local path",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", paste the path and select "
+        },
+        {
+          "insert": "Register as a folder project",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "). These choices work for git roots too. Without an explicit choice, web and chat auto-detect non-git paths as folders and git paths as repos. An existing repo registration is not converted."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-how-work-happens-across-6": {
+      "id": "b-65-multi-repo-projects-how-work-happens-across-6",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How work happens across repos"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-the-agent-s-working-di-7": {
+      "id": "b-65-multi-repo-projects-the-agent-s-working-di-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The agent's working directory is the root",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", so it can "
+        },
+        {
+          "insert": "cd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into any child repo, read across services, and make coordinated changes in one run."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-per-service-git-is-the-8": {
+      "id": "b-65-multi-repo-projects-per-service-git-is-the-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-service git is the agent's job.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Archon does not create a worktree or manage branches/PRs for a folder project: the agent runs "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " itself inside each service repo (branch, commit, push, open PR). Your workflow prompts should instruct it to do so per service."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-the-chat-status-comma-9": {
+      "id": "b-65-multi-repo-projects-the-chat-status-comma-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The chat "
+        },
+        {
+          "insert": "/status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command and "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list the contained repos so you can confirm what's in scope:"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-text-10": {
+      "id": "b-65-multi-repo-projects-text-10",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "Contains 20 git repos: auth-service, billing-service, … (+10 more)"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-artifacts-and-logs-are-s-11": {
+      "id": "b-65-multi-repo-projects-artifacts-and-logs-are-s-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Artifacts and logs are stored under "
+        },
+        {
+          "insert": "~/.archon/workspaces/_folder/<slug>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and per-project "
+        },
+        {
+          "insert": "env vars",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "env vars"
+            }
+          }
+        },
+        {
+          "insert": " work exactly as for repo projects."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-when-you-want-isolation-12": {
+      "id": "b-65-multi-repo-projects-when-you-want-isolation-12",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "When you want isolation for one service"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-folder-projects-intentio-13": {
+      "id": "b-65-multi-repo-projects-folder-projects-intentio-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Folder projects intentionally run in the live checkout: "
+        },
+        {
+          "insert": "--branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "--from",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are rejected, and "
+        },
+        {
+          "insert": "/worktree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports \"not applicable\". If you want Archon-managed "
+        },
+        {
+          "insert": "worktree isolation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " for a single service (an isolated branch per run, auto PR flow), register that service repo as its "
+        },
+        {
+          "insert": "own",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " project:"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-bash-14": {
+      "id": "b-65-multi-repo-projects-bash-14",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cd ~/platform/auth-service       # a real git repo\narchon workflow run archon-implement --branch fix-auth \"Fix the token refresh bug\"\n# → normal repo project: isolated worktree + branch, no --folder"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-the-two-models-compose-15": {
+      "id": "b-65-multi-repo-projects-the-two-models-compose-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The two models compose: keep the root registered as a folder project for cross-service work, and register individual services as repo projects when you want per-run isolation for just that service."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-not-a-fit-for-16": {
+      "id": "b-65-multi-repo-projects-not-a-fit-for-16",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Not a fit for"
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-archon-managed-branchi-17": {
+      "id": "b-65-multi-repo-projects-archon-managed-branchi-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon-managed branching/PRs spanning child repos",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the agent coordinates git across services itself; Archon does not create a composed multi-repo worktree (a future isolation backend may)."
+        }
+      ],
+      "children": []
+    },
+    "b-65-multi-repo-projects-a-repo-you-want-isolat-18": {
+      "id": "b-65-multi-repo-projects-a-repo-you-want-isolat-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A repo you want isolated per run",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": register "
+        },
+        {
+          "insert": "that repo",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " directly (repo project), not the parent folder."
+        }
+      ],
+      "children": []
+    }
+  }
+}

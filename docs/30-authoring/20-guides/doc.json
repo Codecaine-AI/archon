@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides",
+  "title": "Guides",
+  "root": "b-20-guides-root-25",
+  "blocks": {
+    "b-20-guides-root-25": {
+      "id": "b-20-guides-root-25",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "How-to guides for authoring workflows, commands, and configuring node features in Archon.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/index.md"
+      },
+      "children": [
+        "b-20-guides-how-to-guides-for-buildi-1",
+        "b-20-guides-workflow-authoring-2",
+        "b-20-guides-build-your-first-workfl-3",
+        "b-20-guides-workflow-language-doc-4",
+        "b-20-guides-authoring-commands-do-5",
+        "b-20-guides-metrics-docs-30-autho-6",
+        "b-20-guides-node-types-7",
+        "b-20-guides-loop-nodes-docs-30-au-8",
+        "b-20-guides-approval-nodes-docs-3-9",
+        "b-20-guides-script-nodes-docs-30-10",
+        "b-20-guides-automation-11",
+        "b-20-guides-workflow-triggers-doc-12",
+        "b-20-guides-proactive-workflows-d-13",
+        "b-20-guides-node-features-14",
+        "b-20-guides-support-varies-by-provid-15",
+        "b-20-guides-per-node-hooks-docs-3-16",
+        "b-20-guides-per-node-mcp-servers-17",
+        "b-20-guides-per-node-skills-docs-18",
+        "b-20-guides-bundled-workflows-19",
+        "b-20-guides-archon-ships-the-sdlc-20",
+        "b-20-guides-to-customize-the-pack-c-21",
+        "b-20-guides-advanced-22",
+        "b-20-guides-global-workflows-docs-23",
+        "b-20-guides-multi-repo-projects-d-24"
+      ]
+    },
+    "b-20-guides-how-to-guides-for-buildi-1": {
+      "id": "b-20-guides-how-to-guides-for-buildi-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "How-to guides for building and running AI coding workflows with Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-workflow-authoring-2": {
+      "id": "b-20-guides-workflow-authoring-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflow Authoring"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-build-your-first-workfl-3": {
+      "id": "b-20-guides-build-your-first-workfl-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build your first workflow",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/30-first-workflow.md",
+              "label": "Build your first workflow"
+            }
+          }
+        },
+        {
+          "insert": ": Build, validate, dry-run and test a workflow with an approval gate"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-workflow-language-doc-4": {
+      "id": "b-20-guides-workflow-language-doc-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflow language",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "label": "Workflow language"
+            }
+          }
+        },
+        {
+          "insert": ": Every workflow field, node type and engine behavior"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-authoring-commands-do-5": {
+      "id": "b-20-guides-authoring-commands-do-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Authoring Commands",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/10-authoring-commands.md",
+              "label": "Authoring Commands"
+            }
+          }
+        },
+        {
+          "insert": ": Write prompt templates that serve as building blocks for workflow nodes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-metrics-docs-30-autho-6": {
+      "id": "b-20-guides-metrics-docs-30-autho-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Metrics",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/75-metrics.md",
+              "label": "Metrics"
+            }
+          }
+        },
+        {
+          "insert": ": Return counts and judged scores from nodes and read them across runs with "
+        },
+        {
+          "insert": "archon metrics",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-node-types-7": {
+      "id": "b-20-guides-node-types-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Node Types"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-loop-nodes-docs-30-au-8": {
+      "id": "b-20-guides-loop-nodes-docs-30-au-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Loop Nodes",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/20-loop-nodes.md",
+              "label": "Loop Nodes"
+            }
+          }
+        },
+        {
+          "insert": ": Iterative AI execution with completion conditions and deterministic exit checks"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-approval-nodes-docs-3-9": {
+      "id": "b-20-guides-approval-nodes-docs-3-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Approval Nodes",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/25-approval-nodes.md",
+              "label": "Approval Nodes"
+            }
+          }
+        },
+        {
+          "insert": ": Human review gates with optional AI rework on rejection"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-script-nodes-docs-30-10": {
+      "id": "b-20-guides-script-nodes-docs-30-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Script Nodes",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/30-script-nodes.md",
+              "label": "Script Nodes"
+            }
+          }
+        },
+        {
+          "insert": ": TypeScript/JavaScript (bun) or Python (uv) as a deterministic DAG node, without AI"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-automation-11": {
+      "id": "b-20-guides-automation-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Automation"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-workflow-triggers-doc-12": {
+      "id": "b-20-guides-workflow-triggers-doc-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflow Triggers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "label": "Workflow Triggers"
+            }
+          }
+        },
+        {
+          "insert": ": Start workflows from schedules and verified GitHub events"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-proactive-workflows-d-13": {
+      "id": "b-20-guides-proactive-workflows-d-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Proactive Workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/55-proactive-workflows.md",
+              "label": "Proactive Workflows"
+            }
+          }
+        },
+        {
+          "insert": ": Let a cheap agent decide whether an event matters, then keep a person on the loop before the run acts"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-node-features-14": {
+      "id": "b-20-guides-node-features-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Node Features"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-support-varies-by-provid-15": {
+      "id": "b-20-guides-support-varies-by-provid-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Support varies by provider. See the "
+        },
+        {
+          "insert": "provider capability matrix",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/70-provider-capabilities.md",
+              "label": "provider capability matrix"
+            }
+          }
+        },
+        {
+          "insert": " for each feature."
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-per-node-hooks-docs-3-16": {
+      "id": "b-20-guides-per-node-hooks-docs-3-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node Hooks",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/35-hooks.md",
+              "label": "Per-Node Hooks"
+            }
+          }
+        },
+        {
+          "insert": ": Attach Claude SDK hooks for tool control, context injection, and input modification"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-per-node-mcp-servers-17": {
+      "id": "b-20-guides-per-node-mcp-servers-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node MCP Servers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/40-mcp-servers.md",
+              "label": "Per-Node MCP Servers"
+            }
+          }
+        },
+        {
+          "insert": ": Connect external tools (GitHub, Postgres, etc.) to individual nodes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-per-node-skills-docs-18": {
+      "id": "b-20-guides-per-node-skills-docs-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node Skills",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/45-skills.md",
+              "label": "Per-Node Skills"
+            }
+          }
+        },
+        {
+          "insert": ": Preload specialized knowledge into node agents"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-bundled-workflows-19": {
+      "id": "b-20-guides-bundled-workflows-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Bundled Workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-archon-ships-the-sdlc-20": {
+      "id": "b-20-guides-archon-ships-the-sdlc-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon ships the "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflow pack, a software factory from an incoming issue to a merged pull request. "
+        },
+        {
+          "insert": "Set up the SDLC factory",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/45-sdlc-factory.md",
+              "label": "Set up the SDLC factory"
+            }
+          }
+        },
+        {
+          "insert": " runs it on your repository, and "
+        },
+        {
+          "insert": "SDLC pack workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/30-sdlc-workflows.md",
+              "label": "SDLC pack workflows"
+            }
+          }
+        },
+        {
+          "insert": " describes each workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-to-customize-the-pack-c-21": {
+      "id": "b-20-guides-to-customize-the-pack-c-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To customize the pack, copy the whole "
+        },
+        {
+          "insert": ".archon/workflows/sdlc/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " folder from the Archon repository into your project's "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and modify it -- same-named workflows override the bundled ones. Copy the pack rather than one workflow folder: its workflows include each other and share scripts in "
+        },
+        {
+          "insert": "sdlc/.shared/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-advanced-22": {
+      "id": "b-20-guides-advanced-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Advanced"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-global-workflows-docs-23": {
+      "id": "b-20-guides-global-workflows-docs-23",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Global Workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/50-global-workflows.md",
+              "label": "Global Workflows"
+            }
+          }
+        },
+        {
+          "insert": ": User-level workflows that apply to every project"
+        }
+      ],
+      "children": []
+    },
+    "b-20-guides-multi-repo-projects-d-24": {
+      "id": "b-20-guides-multi-repo-projects-d-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Multi-Repo Projects",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/65-multi-repo-projects.md",
+              "label": "Multi-Repo Projects"
+            }
+          }
+        },
+        {
+          "insert": ": Drive many service repos under one folder-project root"
+        }
+      ],
+      "children": []
+    }
+  }
+}

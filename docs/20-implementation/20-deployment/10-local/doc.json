@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-10-local",
+  "title": "Local Development",
+  "root": "b-10-local-root-14",
+  "blocks": {
+    "b-10-local-root-14": {
+      "id": "b-10-local-root-14",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Run the Archon server and Web UI on your own machine, with SQLite or PostgreSQL.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/local.md"
+      },
+      "children": [
+        "b-10-local-the-cli-needs-no-server-1",
+        "b-10-local-start-the-server-2",
+        "b-10-local-with-an-installed-binary-3",
+        "b-10-local-bash-4",
+        "b-10-local-a-binary-install-downloa-5",
+        "b-10-local-from-a-source-checkout-6",
+        "b-10-local-check-it-7",
+        "b-10-local-bash-8",
+        "b-10-local-choose-a-database-9",
+        "table-0-5f13715d",
+        "b-10-local-sqlite-stores-data-at-11",
+        "b-10-local-troubleshooting-12",
+        "b-10-local-if-the-port-is-taken-fi-13"
+      ]
+    },
+    "b-10-local-the-cli-needs-no-server-1": {
+      "id": "b-10-local-the-cli-needs-no-server-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The CLI needs no server. Run the server when you want the Web UI, chat adapters or webhooks. For a VPS with HTTPS, see "
+        },
+        {
+          "insert": "Cloud Deployment",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/30-cloud.md",
+              "label": "Cloud Deployment"
+            }
+          }
+        },
+        {
+          "insert": "; for containers, see "
+        },
+        {
+          "insert": "Docker",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "label": "Docker"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-start-the-server-2": {
+      "id": "b-10-local-start-the-server-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Start the server"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-with-an-installed-binary-3": {
+      "id": "b-10-local-with-an-installed-binary-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With an installed binary:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-bash-4": {
+      "id": "b-10-local-bash-4",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon serve                 # API and Web UI on http://localhost:3090\narchon serve --port 4000     # another port"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-a-binary-install-downloa-5": {
+      "id": "b-10-local-a-binary-install-downloa-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A binary install downloads the server and Web UI on the first run. "
+        },
+        {
+          "insert": "archon serve --download-only",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fetches them without starting."
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-from-a-source-checkout-6": {
+      "id": "b-10-local-from-a-source-checkout-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From a source checkout, "
+        },
+        {
+          "insert": "bun run dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts the API on port 3090 and the Vite dev server for the Web UI on port 5173; see the "
+        },
+        {
+          "insert": "new developer guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/10-new-developer-guide.md",
+              "label": "new developer guide"
+            }
+          }
+        },
+        {
+          "insert": ". A run inside a worktree gets an automatic port from 3190 to 4089, based on the path. "
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides the port in any context."
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-check-it-7": {
+      "id": "b-10-local-check-it-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check it:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-bash-8": {
+      "id": "b-10-local-bash-8",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/health               # {\"status\":\"ok\"}\ncurl http://localhost:3090/health/db            # database connectivity\ncurl http://localhost:3090/health/concurrency   # concurrency status"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-choose-a-database-9": {
+      "id": "b-10-local-choose-a-database-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Choose a database"
+        }
+      ],
+      "children": []
+    },
+    "table-0-5f13715d": {
+      "id": "table-0-5f13715d",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Option",
+          "Setup",
+          "Best for"
+        ],
+        "rows": [
+          [
+            "SQLite (default)",
+            [
+              {
+                "insert": "Nothing. Leave "
+              },
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " unset"
+              }
+            ],
+            "One operator, CLI use, local work"
+          ],
+          [
+            "PostgreSQL",
+            [
+              {
+                "insert": "Set "
+              },
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Shared or server installs"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-10-local-sqlite-stores-data-at-11": {
+      "id": "b-10-local-sqlite-stores-data-at-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "SQLite stores data at "
+        },
+        {
+          "insert": "~/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and creates it on first run. For a local PostgreSQL container, run "
+        },
+        {
+          "insert": "docker compose --profile with-db up -d postgres",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from a source checkout and set "
+        },
+        {
+          "insert": "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/remote_coding_agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The server creates and upgrades the schema on startup. See "
+        },
+        {
+          "insert": "Database",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/40-database.md",
+              "label": "Database"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-troubleshooting-12": {
+      "id": "b-10-local-troubleshooting-12",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-10-local-if-the-port-is-taken-fi-13": {
+      "id": "b-10-local-if-the-port-is-taken-fi-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If the port is taken, find the process with "
+        },
+        {
+          "insert": "lsof -i :3090",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on macOS or Linux, or "
+        },
+        {
+          "insert": "netstat -ano | findstr :3090",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows, or start on another port with "
+        },
+        {
+          "insert": "--port",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

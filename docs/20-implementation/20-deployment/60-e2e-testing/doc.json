@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-60-e2e-testing",
+  "title": "E2E Testing",
+  "root": "b-60-e2e-testing-root-20",
+  "blocks": {
+    "b-60-e2e-testing-root-20": {
+      "id": "b-60-e2e-testing-root-20",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "developer",
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Set up agent-browser for end-to-end browser testing in Archon workflows.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/e2e-testing.md"
+      },
+      "children": [
+        "b-60-e2e-testing-archon-uses-agent-brows-1",
+        "b-60-e2e-testing-installation-2",
+        "b-60-e2e-testing-bash-3",
+        "b-60-e2e-testing-verify-installation-4",
+        "b-60-e2e-testing-bash-5",
+        "b-60-e2e-testing-where-it-s-used-6",
+        "b-60-e2e-testing-no-bundled-workflow-requ-7",
+        "b-60-e2e-testing-platform-specific-notes-8",
+        "b-60-e2e-testing-docker-9",
+        "b-60-e2e-testing-agent-browser-is-pre-i-10",
+        "b-60-e2e-testing-macos-linux-11",
+        "b-60-e2e-testing-works-natively-after-run-12",
+        "b-60-e2e-testing-bash-13",
+        "b-60-e2e-testing-windows-14",
+        "b-60-e2e-testing-agent-browser-has-a-kno-15",
+        "b-60-e2e-testing-workaround-run-agen-16",
+        "b-60-e2e-testing-running-without-agent-br-17",
+        "b-60-e2e-testing-if-agent-browser-is-not-18",
+        "b-60-e2e-testing-you-can-safely-run-all-n-19"
+      ]
+    },
+    "b-60-e2e-testing-archon-uses-agent-brows-1": {
+      "id": "b-60-e2e-testing-archon-uses-agent-brows-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon uses "
+        },
+        {
+          "insert": "agent-browser",
+          "attributes": {
+            "link": "https://github.com/vercel-labs/agent-browser"
+          }
+        },
+        {
+          "insert": " (by Vercel Labs) for end-to-end browser testing in workflows. It is an "
+        },
+        {
+          "insert": "optional",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " external dependency: core Archon functionality works without it."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-installation-2": {
+      "id": "b-60-e2e-testing-installation-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Installation"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-bash-3": {
+      "id": "b-60-e2e-testing-bash-3",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Install globally\nnpm install -g agent-browser\n\n# Download browser engine (Chrome for Testing)\nagent-browser install"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-verify-installation-4": {
+      "id": "b-60-e2e-testing-verify-installation-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Verify Installation"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-bash-5": {
+      "id": "b-60-e2e-testing-bash-5",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "agent-browser --version\n# Expected: prints version number (e.g., 0.x.x)\n\n# Quick smoke test — opens a page and closes\nagent-browser open https://example.com\nagent-browser close"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-where-it-s-used-6": {
+      "id": "b-60-e2e-testing-where-it-s-used-6",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Where It's Used"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-no-bundled-workflow-requ-7": {
+      "id": "b-60-e2e-testing-no-bundled-workflow-requ-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "No bundled workflow requires agent-browser. Your own workflows can call it from a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node or from an AI node's instructions, for example to reproduce a UI bug in a real browser or to check a change against a running dev server."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-platform-specific-notes-8": {
+      "id": "b-60-e2e-testing-platform-specific-notes-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Platform-Specific Notes"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-docker-9": {
+      "id": "b-60-e2e-testing-docker-9",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Docker"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-agent-browser-is-pre-i-10": {
+      "id": "b-60-e2e-testing-agent-browser-is-pre-i-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser is "
+        },
+        {
+          "insert": "pre-installed",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the Archon Docker image. No action needed."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-macos-linux-11": {
+      "id": "b-60-e2e-testing-macos-linux-11",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "macOS / Linux"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-works-natively-after-run-12": {
+      "id": "b-60-e2e-testing-works-natively-after-run-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Works natively after running the install commands above. If the daemon fails to start:"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-bash-13": {
+      "id": "b-60-e2e-testing-bash-13",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Kill stale daemons and retry\npkill -f daemon.js\nagent-browser open http://localhost:3090"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-windows-14": {
+      "id": "b-60-e2e-testing-windows-14",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Windows"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-agent-browser-has-a-kno-15": {
+      "id": "b-60-e2e-testing-agent-browser-has-a-kno-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser has a "
+        },
+        {
+          "insert": "known bug",
+          "attributes": {
+            "link": "https://github.com/vercel-labs/agent-browser/issues/56"
+          }
+        },
+        {
+          "insert": " where the daemon fails to start due to Unix domain socket incompatibility on Windows."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-workaround-run-agen-16": {
+      "id": "b-60-e2e-testing-workaround-run-agen-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workaround:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Run agent-browser inside WSL while dev servers run on Windows. See the "
+        },
+        {
+          "insert": "E2E Testing on WSL",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/70-e2e-testing-wsl.md",
+              "label": "E2E Testing on WSL"
+            }
+          }
+        },
+        {
+          "insert": " guide for detailed setup instructions."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-running-without-agent-br-17": {
+      "id": "b-60-e2e-testing-running-without-agent-br-17",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Running Without agent-browser"
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-if-agent-browser-is-not-18": {
+      "id": "b-60-e2e-testing-if-agent-browser-is-not-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If agent-browser is not installed, the E2E workflow nodes will fail when the agent tries to invoke "
+        },
+        {
+          "insert": "agent-browser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The AI agent is instructed (via prompt) to stop after 2 failed connection attempts and produce a code-review-only report, but this is a prompt-level instruction, not automated workflow logic. Results may vary depending on the AI model's adherence to the instruction."
+        }
+      ],
+      "children": []
+    },
+    "b-60-e2e-testing-you-can-safely-run-all-n-19": {
+      "id": "b-60-e2e-testing-you-can-safely-run-all-n-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can safely run all non-E2E workflows without agent-browser installed."
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-70-e2e-testing-wsl",
+  "title": "E2E Testing on WSL",
+  "root": "b-70-e2e-testing-wsl-root-30",
+  "blocks": {
+    "b-70-e2e-testing-wsl-root-30": {
+      "id": "b-70-e2e-testing-wsl-root-30",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "developer"
+        ],
+        "category": "deployment",
+        "description": "Run agent-browser inside WSL for end-to-end testing when dev servers run on Windows.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/e2e-testing-wsl.md"
+      },
+      "children": [
+        "b-70-e2e-testing-wsl-agent-browser-vercel-1",
+        "b-70-e2e-testing-wsl-general-setup-for-n-2",
+        "b-70-e2e-testing-wsl-prerequisites-3",
+        "b-70-e2e-testing-wsl-wsl2-with-ubuntu-install-4",
+        "b-70-e2e-testing-wsl-agent-browser-installed-5",
+        "b-70-e2e-testing-wsl-playwright-chromium-inst-6",
+        "b-70-e2e-testing-wsl-setup-7",
+        "b-70-e2e-testing-wsl-1-find-the-windows-host-8",
+        "b-70-e2e-testing-wsl-bash-9",
+        "b-70-e2e-testing-wsl-or-from-inside-wsl-10",
+        "b-70-e2e-testing-wsl-bash-11",
+        "b-70-e2e-testing-wsl-the-windows-host-ip-for-12",
+        "b-70-e2e-testing-wsl-2-start-dev-servers-on-13",
+        "b-70-e2e-testing-wsl-bash-14",
+        "b-70-e2e-testing-wsl-3-verify-wsl-can-reach-15",
+        "b-70-e2e-testing-wsl-bash-16",
+        "b-70-e2e-testing-wsl-running-agent-browser-co-17",
+        "b-70-e2e-testing-wsl-all-commands-are-run-fro-18",
+        "b-70-e2e-testing-wsl-bash-19",
+        "b-70-e2e-testing-wsl-taking-screenshots-20",
+        "b-70-e2e-testing-wsl-screenshots-must-be-save-21",
+        "b-70-e2e-testing-wsl-bash-22",
+        "b-70-e2e-testing-wsl-why-not-save-directly-23",
+        "b-70-e2e-testing-wsl-gotchas-24",
+        "b-70-e2e-testing-wsl-localhost-doesn-t-wo-25",
+        "b-70-e2e-testing-wsl-vite-must-bind-to-0-0-26",
+        "b-70-e2e-testing-wsl-git-bash-path-expansio-27",
+        "b-70-e2e-testing-wsl-sse-connected-indica-28",
+        "b-70-e2e-testing-wsl-daemon-startup-if-29"
+      ]
+    },
+    "b-70-e2e-testing-wsl-agent-browser-vercel-1": {
+      "id": "b-70-e2e-testing-wsl-agent-browser-vercel-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "agent-browser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (Vercel) has a "
+        },
+        {
+          "insert": "known Windows bug",
+          "attributes": {
+            "link": "https://github.com/vercel-labs/agent-browser/issues/56"
+          }
+        },
+        {
+          "insert": " where the daemon fails to start due to Unix domain socket incompatibility. The workaround is to run agent-browser inside WSL while the dev servers run on Windows."
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-general-setup-for-n-2": {
+      "id": "b-70-e2e-testing-wsl-general-setup-for-n-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "General setup:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " For non-WSL platforms (macOS, Linux, Docker), see the "
+        },
+        {
+          "insert": "E2E Testing Guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/60-e2e-testing.md",
+              "label": "E2E Testing Guide"
+            }
+          }
+        },
+        {
+          "insert": " instead."
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-prerequisites-3": {
+      "id": "b-70-e2e-testing-wsl-prerequisites-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-wsl2-with-ubuntu-install-4": {
+      "id": "b-70-e2e-testing-wsl-wsl2-with-ubuntu-install-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "WSL2 with Ubuntu installed ("
+        },
+        {
+          "insert": "wsl --list --verbose",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-agent-browser-installed-5": {
+      "id": "b-70-e2e-testing-wsl-agent-browser-installed-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "agent-browser installed in WSL: "
+        },
+        {
+          "insert": "npm install -g agent-browser",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-playwright-chromium-inst-6": {
+      "id": "b-70-e2e-testing-wsl-playwright-chromium-inst-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Playwright chromium installed: "
+        },
+        {
+          "insert": "agent-browser install --with-deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (needs sudo)"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-setup-7": {
+      "id": "b-70-e2e-testing-wsl-setup-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Setup"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-1-find-the-windows-host-8": {
+      "id": "b-70-e2e-testing-wsl-1-find-the-windows-host-8",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "1. Find the Windows host IP accessible from WSL"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-9": {
+      "id": "b-70-e2e-testing-wsl-bash-9",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ipconfig | findstr \"IPv4\" | findstr \"WSL\"\n# Example output: IPv4 Address. . . . . . . . . . . : 172.18.64.1"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-or-from-inside-wsl-10": {
+      "id": "b-70-e2e-testing-wsl-or-from-inside-wsl-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Or from inside WSL:"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-11": {
+      "id": "b-70-e2e-testing-wsl-bash-11",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "wsl -d Ubuntu -- bash -c \"cat /etc/resolv.conf | grep nameserver\""
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-the-windows-host-ip-for-12": {
+      "id": "b-70-e2e-testing-wsl-the-windows-host-ip-for-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Windows host IP for this system is "
+        },
+        {
+          "insert": "172.18.64.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-2-start-dev-servers-on-13": {
+      "id": "b-70-e2e-testing-wsl-2-start-dev-servers-on-13",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "2. Start dev servers on Windows (bound to all interfaces)"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-14": {
+      "id": "b-70-e2e-testing-wsl-bash-14",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Backend (Hono on port 3090) - already binds to 0.0.0.0 by default\nbun run dev:server &\n\n# Frontend (Vite on port 5173) - needs --host flag\ncd packages/web && bun x vite --host 0.0.0.0 &"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-3-verify-wsl-can-reach-15": {
+      "id": "b-70-e2e-testing-wsl-3-verify-wsl-can-reach-15",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "3. Verify WSL can reach the servers"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-16": {
+      "id": "b-70-e2e-testing-wsl-bash-16",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "wsl -d Ubuntu -- curl -s http://172.18.64.1:3090/api/health\nwsl -d Ubuntu -- curl -s -o /dev/null -w \"%{http_code}\" http://172.18.64.1:5173"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-running-agent-browser-co-17": {
+      "id": "b-70-e2e-testing-wsl-running-agent-browser-co-17",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Running agent-browser Commands"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-all-commands-are-run-fro-18": {
+      "id": "b-70-e2e-testing-wsl-all-commands-are-run-fro-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All commands are run from the Windows terminal, prefixed with "
+        },
+        {
+          "insert": "wsl -d Ubuntu --",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-19": {
+      "id": "b-70-e2e-testing-wsl-bash-19",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Open a page\nwsl -d Ubuntu -- agent-browser open http://172.18.64.1:5173\n\n# Take interactive snapshot (get element refs like @e1, @e2)\nwsl -d Ubuntu -- agent-browser snapshot -i\n\n# Click, fill, press\nwsl -d Ubuntu -- agent-browser click @e1\nwsl -d Ubuntu -- agent-browser fill @e2 \"some text\"\nwsl -d Ubuntu -- agent-browser press Enter\n\n# Wait for content to load\nwsl -d Ubuntu -- agent-browser wait 3000\n\n# Reload page (hard refresh)\nwsl -d Ubuntu -- agent-browser reload\n\n# Close browser\nwsl -d Ubuntu -- agent-browser close"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-taking-screenshots-20": {
+      "id": "b-70-e2e-testing-wsl-taking-screenshots-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Taking Screenshots"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-screenshots-must-be-save-21": {
+      "id": "b-70-e2e-testing-wsl-screenshots-must-be-save-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Screenshots must be saved to a WSL-native path first, then copied to the Windows filesystem via the "
+        },
+        {
+          "insert": "/mnt/c/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " mount:"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-bash-22": {
+      "id": "b-70-e2e-testing-wsl-bash-22",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Save to WSL home, then copy to project\nwsl -d Ubuntu -- bash -c '\n  agent-browser screenshot /home/user/screenshot.png 2>&1 &&\n  cp /home/user/screenshot.png /path/to/archon/e2e-screenshots/my-test.png\n'"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-why-not-save-directly-23": {
+      "id": "b-70-e2e-testing-wsl-why-not-save-directly-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Why not save directly to ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "/mnt/c/...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "?",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " agent-browser resolves paths through its Node.js process, which on some setups mangles "
+        },
+        {
+          "insert": "/mnt/c/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " paths (e.g., prepending "
+        },
+        {
+          "insert": "C:/Program Files/Git/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Saving to a WSL-native path and copying avoids this."
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-gotchas-24": {
+      "id": "b-70-e2e-testing-wsl-gotchas-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Gotchas"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-localhost-doesn-t-wo-25": {
+      "id": "b-70-e2e-testing-wsl-localhost-doesn-t-wo-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "localhost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " doesn't work from WSL2",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " - must use the Windows host IP ("
+        },
+        {
+          "insert": "172.18.64.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-vite-must-bind-to-0-0-26": {
+      "id": "b-70-e2e-testing-wsl-vite-must-bind-to-0-0-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Vite must bind to ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - default "
+        },
+        {
+          "insert": "localhost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " isn't reachable from WSL"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-git-bash-path-expansio-27": {
+      "id": "b-70-e2e-testing-wsl-git-bash-path-expansio-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Git Bash path expansion",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " - "
+        },
+        {
+          "insert": "/status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gets expanded to "
+        },
+        {
+          "insert": "C:/Program Files/Git/status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when passed through Git Bash. Not an agent-browser issue; it's the shell expanding "
+        },
+        {
+          "insert": "/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " paths"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-sse-connected-indica-28": {
+      "id": "b-70-e2e-testing-wsl-sse-connected-indica-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "SSE ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "Connected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " indicator",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " - only shows for "
+        },
+        {
+          "insert": "web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " platform conversations; Telegram/Slack conversations show "
+        },
+        {
+          "insert": "Disconnected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (expected)"
+        }
+      ],
+      "children": []
+    },
+    "b-70-e2e-testing-wsl-daemon-startup-if-29": {
+      "id": "b-70-e2e-testing-wsl-daemon-startup-if-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Daemon startup",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " - if "
+        },
+        {
+          "insert": "agent-browser open",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fails with \"Daemon failed to start\", kill stale daemons: "
+        },
+        {
+          "insert": "wsl -d Ubuntu -- pkill -f daemon.js",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and retry"
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,1818 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-30-first-workflow",
+  "title": "Build your first workflow",
+  "root": "b-30-first-workflow-root-76",
+  "blocks": {
+    "b-30-first-workflow-root-76": {
+      "id": "b-30-first-workflow-root-76",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Build an agent-first workflow that plans a change, waits for your approval, implements it and fixes failing tests, and check every route before it spends a token.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/first-workflow.md"
+      },
+      "children": [
+        "b-30-first-workflow-in-this-tutorial-you-bui-1",
+        "b-30-first-workflow-has-an-agent-plan-the-ch-2",
+        "b-30-first-workflow-pauses-until-you-approve-3",
+        "b-30-first-workflow-has-an-agent-implement-t-4",
+        "b-30-first-workflow-runs-your-test-command-a-5",
+        "b-30-first-workflow-has-a-fresh-agent-fix-th-6",
+        "b-30-first-workflow-before-you-run-it-you-c-7",
+        "b-30-first-workflow-you-need-archon-installe-8",
+        "b-30-first-workflow-who-does-what-9",
+        "b-30-first-workflow-archon-s-rule-for-a-work-10",
+        "b-30-first-workflow-agents-judge-planni-11",
+        "b-30-first-workflow-scripts-give-facts-and-12",
+        "b-30-first-workflow-yaml-coordinates-th-13",
+        "b-30-first-workflow-tests-follow-the-same-sp-14",
+        "b-30-first-workflow-lay-out-the-workflow-fol-15",
+        "b-30-first-workflow-a-workflow-lives-in-its-16",
+        "b-30-first-workflow-text-17",
+        "b-30-first-workflow-my-team-is-the-pack-na-18",
+        "b-30-first-workflow-write-a-command-19",
+        "b-30-first-workflow-a-command-is-a-markdown-20",
+        "b-30-first-workflow-markdown-21",
+        "b-30-first-workflow-artifacts-dir-is-a-di-22",
+        "b-30-first-workflow-write-the-workflow-23",
+        "b-30-first-workflow-create-build-change-yam-24",
+        "b-30-first-workflow-yaml-25",
+        "b-30-first-workflow-each-node-does-one-job-26",
+        "b-30-first-workflow-plan-is-an-agent-n-27",
+        "b-30-first-workflow-approve-plan-is-th-28",
+        "b-30-first-workflow-stop-cancels-the-r-29",
+        "b-30-first-workflow-implement-runs-onl-30",
+        "b-30-first-workflow-test-is-a-script-n-31",
+        "b-30-first-workflow-fix-runs-only-when-32",
+        "b-30-first-workflow-nodes-without-a-dependen-33",
+        "b-30-first-workflow-validate-it-34",
+        "b-30-first-workflow-bash-35",
+        "b-30-first-workflow-text-36",
+        "b-30-first-workflow-validation-loads-the-wor-37",
+        "b-30-first-workflow-text-38",
+        "b-30-first-workflow-dry-run-it-with-stubs-39",
+        "b-30-first-workflow-a-dry-run-walks-the-grap-40",
+        "b-30-first-workflow-bash-41",
+        "b-30-first-workflow-edit-the-values-to-descr-42",
+        "b-30-first-workflow-yaml-43",
+        "b-30-first-workflow-run-the-simulation-44",
+        "b-30-first-workflow-bash-45",
+        "b-30-first-workflow-text-46",
+        "b-30-first-workflow-the-simulation-stops-at-47",
+        "b-30-first-workflow-yaml-48",
+        "b-30-first-workflow-text-49",
+        "b-30-first-workflow-the-trace-also-prints-ea-50",
+        "b-30-first-workflow-keep-the-routes-as-fixtu-51",
+        "b-30-first-workflow-a-fixture-is-a-stub-file-52",
+        "b-30-first-workflow-fixtures-approved-stubs-53",
+        "b-30-first-workflow-yaml-54",
+        "b-30-first-workflow-fixtures-red-stubs-yaml-55",
+        "b-30-first-workflow-yaml-56",
+        "b-30-first-workflow-fixtures-rejected-stubs-57",
+        "b-30-first-workflow-yaml-58",
+        "b-30-first-workflow-the-fixture-block-hol-59",
+        "b-30-first-workflow-bash-60",
+        "b-30-first-workflow-text-61",
+        "b-30-first-workflow-workflow-test-never-cr-62",
+        "b-30-first-workflow-run-it-with-a-real-brief-63",
+        "b-30-first-workflow-the-brief-is-the-input-t-64",
+        "b-30-first-workflow-bash-65",
+        "b-30-first-workflow-the-run-works-in-its-own-66",
+        "b-30-first-workflow-bash-67",
+        "b-30-first-workflow-approving-continues-the-68",
+        "b-30-first-workflow-where-to-go-next-69",
+        "b-30-first-workflow-every-field-and-node-t-70",
+        "b-30-first-workflow-repeat-work-until-a-ch-71",
+        "b-30-first-workflow-write-script-nodes-tha-72",
+        "b-30-first-workflow-start-a-workflow-from-73",
+        "b-30-first-workflow-write-better-commands-74",
+        "b-30-first-workflow-a-full-delivery-pipeli-75"
+      ]
+    },
+    "b-30-first-workflow-in-this-tutorial-you-bui-1": {
+      "id": "b-30-first-workflow-in-this-tutorial-you-bui-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In this tutorial you build "
+        },
+        {
+          "insert": "build-change",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a workflow that takes a brief for a small change to your repository and:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-has-an-agent-plan-the-ch-2": {
+      "id": "b-30-first-workflow-has-an-agent-plan-the-ch-2",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "has an agent plan the change and save the plan as an artifact;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-pauses-until-you-approve-3": {
+      "id": "b-30-first-workflow-pauses-until-you-approve-3",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "pauses until you approve the plan, or cancels if you reject it;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-has-an-agent-implement-t-4": {
+      "id": "b-30-first-workflow-has-an-agent-implement-t-4",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "has an agent implement the approved plan;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-runs-your-test-command-a-5": {
+      "id": "b-30-first-workflow-runs-your-test-command-a-5",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "runs your test command and records whether it passed;"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-has-a-fresh-agent-fix-th-6": {
+      "id": "b-30-first-workflow-has-a-fresh-agent-fix-th-6",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "has a fresh agent fix the code if the tests failed."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-before-you-run-it-you-c-7": {
+      "id": "b-30-first-workflow-before-you-run-it-you-c-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Before you run it, you check it three ways that cost nothing: "
+        },
+        {
+          "insert": "archon validate workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a dry run with stub outputs, and fixtures that "
+        },
+        {
+          "insert": "archon workflow test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " replays on every change."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-you-need-archon-installe-8": {
+      "id": "b-30-first-workflow-you-need-archon-installe-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You need Archon installed and a provider added; see the "
+        },
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": ". Work in a git repository that has a test command."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-who-does-what-9": {
+      "id": "b-30-first-workflow-who-does-what-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Who does what"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-archon-s-rule-for-a-work-10": {
+      "id": "b-30-first-workflow-archon-s-rule-for-a-work-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon's rule for a workflow is "
+        },
+        {
+          "insert": "YAML coordinates. Code computes. Agents judge.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "build-change",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " follows it:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-agents-judge-planni-11": {
+      "id": "b-30-first-workflow-agents-judge-planni-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Agents judge.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Planning a change, implementing it and working out why a test fails all need judgment, so each is an agent node. When a later node needs the agent's decision, the agent returns it as a small typed result through "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", never as prose for code to parse."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-scripts-give-facts-and-12": {
+      "id": "b-30-first-workflow-scripts-give-facts-and-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Scripts give facts and act at boundaries.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Whether the tests pass is a fact, so a script runs the test command and reports the exit code and output. It does not interpret the failure; that is the fixing agent's job. Use a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node only for work with a fixed rule like this one."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-coordinates-th-13": {
+      "id": "b-30-first-workflow-yaml-coordinates-th-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "YAML coordinates.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The file holds the order, the approval gate and the "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " conditions on typed fields. It decides nothing on its own."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-tests-follow-the-same-sp-14": {
+      "id": "b-30-first-workflow-tests-follow-the-same-sp-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Tests follow the same split. The fixtures you write later check outcomes at those seams: which nodes run, whether the run completes or is cancelled, and whether the test output reached the fixing agent. They never pin what an agent writes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-lay-out-the-workflow-fol-15": {
+      "id": "b-30-first-workflow-lay-out-the-workflow-fol-15",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Lay out the workflow folder"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-a-workflow-lives-in-its-16": {
+      "id": "b-30-first-workflow-a-workflow-lives-in-its-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow lives in its own folder under "
+        },
+        {
+          "insert": ".archon/workflows/<pack>/<workflow>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with the commands and fixtures it uses beside it. Create this layout in your repository:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-17": {
+      "id": "b-30-first-workflow-text-17",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": ".archon/workflows/my-team/build-change/\n├── build-change.yaml\n├── commands/\n│   └── fix-tests.md\n└── fixtures/"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-my-team-is-the-pack-na-18": {
+      "id": "b-30-first-workflow-my-team-is-the-pack-na-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "my-team",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the pack name; choose your own. A command or script that "
+        },
+        {
+          "insert": "build-change.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names resolves only from its own "
+        },
+        {
+          "insert": "commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " folders, so two workflows can each have a "
+        },
+        {
+          "insert": "fix-tests.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without colliding."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-write-a-command-19": {
+      "id": "b-30-first-workflow-write-a-command-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Write a command"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-a-command-is-a-markdown-20": {
+      "id": "b-30-first-workflow-a-command-is-a-markdown-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A command is a markdown file of instructions for an agent. Use one when the instructions are long or shared by several nodes. Create "
+        },
+        {
+          "insert": "commands/fix-tests.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-markdown-21": {
+      "id": "b-30-first-workflow-markdown-21",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "---\ndescription: Find why the tests fail after a change and fix the cause\n---\n\n# Fix failing tests\n\nThe change described in $ARTIFACTS_DIR/plan.md was implemented, and the\nproject's tests now fail. The test output is:\n\n$INPUTS.test_output\n\nDecide whether the failure comes from the change or from a test that the plan\nsays should change. Fix the cause, not the symptom: do not delete or skip a\ntest to make it pass. Run the tests again, then commit the fix."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-artifacts-dir-is-a-di-22": {
+      "id": "b-30-first-workflow-artifacts-dir-is-a-di-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "$ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a directory Archon creates for each run, outside your repository. "
+        },
+        {
+          "insert": "$INPUTS.test_output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a value the workflow passes to this command; the next section shows where it comes from."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-write-the-workflow-23": {
+      "id": "b-30-first-workflow-write-the-workflow-23",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Write the workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-create-build-change-yam-24": {
+      "id": "b-30-first-workflow-create-build-change-yam-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create "
+        },
+        {
+          "insert": "build-change.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-25": {
+      "id": "b-30-first-workflow-yaml-25",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: build-change\ndescription: |\n  Plan a change from a brief, wait for you to approve the plan, implement it,\n  run the tests, and fix the code if they fail.\n  Use when: you have a small, well-described change for this repository.\ninputs:\n  test_command:\n    default: npm test\n    description: the command that runs this project's tests\n\nnodes:\n  - id: plan\n    prompt: |\n      Read the brief below and the code it touches. Write an implementation\n      plan to $ARTIFACTS_DIR/plan.md: the files you will change, the approach,\n      and how you will know it works. Do not change any files yet.\n\n      Brief:\n      $ARGUMENTS\n    output_format:\n      type: object\n      properties:\n        summary: { type: string }\n      required: [summary]\n      additionalProperties: false\n\n  - id: approve-plan\n    depends_on: [plan]\n    wait:\n      attention: |\n        $plan.output.summary\n\n        Read the full plan with `archon workflow artifacts <run-id> plan.md`.\n        Approve to implement it, or reject with what to change.\n      form: approval\n\n  - id: stop\n    depends_on: [approve-plan]\n    when: \"$approve-plan.output.decision == 'reject'\"\n    cancel: The plan was rejected.\n\n  - id: implement\n    depends_on: [approve-plan]\n    when: \"$approve-plan.output.decision == 'approve'\"\n    prompt: |\n      Implement the plan in $ARTIFACTS_DIR/plan.md. Reviewer notes, if any:\n      $approve-plan.output.text\n      Commit your changes with a clear message.\n\n  - id: test\n    depends_on: [implement]\n    runtime: bun\n    script: |\n      const run = Bun.spawnSync(['sh', '-c', process.env.INPUTS_TEST_COMMAND ?? '']);\n      const output = (run.stdout.toString() + run.stderr.toString()).slice(-4000);\n      console.log(JSON.stringify({ passed: run.exitCode === 0, output }));\n    output_format:\n      type: object\n      properties:\n        passed: { type: boolean }\n        output: { type: string }\n      required: [passed, output]\n      additionalProperties: false\n\n  - id: fix\n    depends_on: [test]\n    when: \"$test.output.passed == false\"\n    command: fix-tests\n    context: fresh\n    with:\n      test_output: $test.output.output"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-each-node-does-one-job-26": {
+      "id": "b-30-first-workflow-each-node-does-one-job-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each node does one job:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-plan-is-an-agent-n-27": {
+      "id": "b-30-first-workflow-plan-is-an-agent-n-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "plan",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is an agent node. "
+        },
+        {
+          "insert": "$ARGUMENTS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the brief you pass to the run. "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " makes the agent return JSON matching the schema, so the gate can show "
+        },
+        {
+          "insert": "$plan.output.summary",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The node fails if the agent returns anything else."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-approve-plan-is-th-28": {
+      "id": "b-30-first-workflow-approve-plan-is-th-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "approve-plan",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the gate. A "
+        },
+        {
+          "insert": "wait:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node with "
+        },
+        {
+          "insert": "attention:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pauses the run until someone answers it, and "
+        },
+        {
+          "insert": "form: approval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means the answer is "
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " plus optional text. A paused run holds no process; answer it minutes or days later. Pause only where a person should decide. A check that code or another agent can make belongs in a node."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-stop-cancels-the-r-29": {
+      "id": "b-30-first-workflow-stop-cancels-the-r-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "stop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cancels the run when you reject. A rejection is an answer, not a cancellation, so the workflow decides what happens next."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-implement-runs-onl-30": {
+      "id": "b-30-first-workflow-implement-runs-onl-30",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "implement",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs only after an approval. "
+        },
+        {
+          "insert": "$approve-plan.output.text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " passes on any notes you gave with the answer."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-test-is-a-script-n-31": {
+      "id": "b-30-first-workflow-test-is-a-script-n-31",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a script node. It runs the command from the "
+        },
+        {
+          "insert": "test_command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " input, which defaults to "
+        },
+        {
+          "insert": "npm test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and prints "
+        },
+        {
+          "insert": "passed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the last 4,000 characters of output as JSON. "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a script certifies its stdout: output that does not match the schema fails the node."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-fix-runs-only-when-32": {
+      "id": "b-30-first-workflow-fix-runs-only-when-32",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "fix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs only when "
+        },
+        {
+          "insert": "test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports a failure. It loads "
+        },
+        {
+          "insert": "commands/fix-tests.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "with:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " binds the test output to the command's "
+        },
+        {
+          "insert": "$INPUTS.test_output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "context: fresh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts a new agent session, so the agent works from the real test output instead of what the implementer believed it wrote."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-nodes-without-a-dependen-33": {
+      "id": "b-30-first-workflow-nodes-without-a-dependen-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Nodes without a dependency between them run at the same time. Here every node depends on the one before it, so they run in order."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-validate-it-34": {
+      "id": "b-30-first-workflow-validate-it-34",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Validate it"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-35": {
+      "id": "b-30-first-workflow-bash-35",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon validate workflows build-change"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-36": {
+      "id": "b-30-first-workflow-text-36",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "  build-change                             ok\n\nResults: 1 valid, 0 with errors"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-validation-loads-the-wor-37": {
+      "id": "b-30-first-workflow-validation-loads-the-wor-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Validation loads the workflow the way a run would. It reports a misspelt key, a "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that references a field the producer never declares, a command file that does not exist, and a key that the node's type cannot use. For example, "
+        },
+        {
+          "insert": "timeout:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a prompt node fails:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-38": {
+      "id": "b-30-first-workflow-text-38",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "ERROR [validation_error] DAG node validation failed: Node 'plan': 'timeout' is only supported on bash, loop, loop_group or script nodes, not on prompt nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-dry-run-it-with-stubs-39": {
+      "id": "b-30-first-workflow-dry-run-it-with-stubs-39",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Dry-run it with stubs"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-a-dry-run-walks-the-grap-40": {
+      "id": "b-30-first-workflow-a-dry-run-walks-the-grap-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A dry run walks the graph with outputs you supply instead of calling a model or running scripts. It never creates a run, so it is free. Generate a stub file that has one entry per node that needs one:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-41": {
+      "id": "b-30-first-workflow-bash-41",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run build-change --dry-run --stubs-init stubs.yaml"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-edit-the-values-to-descr-42": {
+      "id": "b-30-first-workflow-edit-the-values-to-descr-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Edit the values to describe the route you want to see. This one simulates failing tests:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-43": {
+      "id": "b-30-first-workflow-yaml-43",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "plan: { summary: \"Add a --version flag that prints the version from package.json.\" }\nimplement: \"Added the flag and a test.\"\ntest: { passed: false, output: \"version.test.ts: expected 1.2.0, got undefined\" }\nfix: \"Read the version from package.json at startup.\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-run-the-simulation-44": {
+      "id": "b-30-first-workflow-run-the-simulation-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run the simulation:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-45": {
+      "id": "b-30-first-workflow-bash-45",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run build-change --dry-run --stubs stubs.yaml \"Add a --version flag\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-46": {
+      "id": "b-30-first-workflow-text-46",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "STUBBED   plan (prompt)\nPAUSED    approve-plan (wait) — durable wait\nSimulation outcome: paused"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-the-simulation-stops-at-47": {
+      "id": "b-30-first-workflow-the-simulation-stops-at-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The simulation stops at the gate, as a real run would. A stub for the wait node stands in for your answer. Add one and run it again:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-48": {
+      "id": "b-30-first-workflow-yaml-48",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "approve-plan: { decision: approve, text: \"\" }"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-49": {
+      "id": "b-30-first-workflow-text-49",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "STUBBED   plan (prompt)\nSTUBBED   approve-plan (wait) — answered by stub\nSKIPPED   stop (cancel) — when_condition_false\nSTUBBED   implement (prompt)\nSTUBBED   test (script)\nSTUBBED   fix (command)\nSimulation outcome: completed"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-the-trace-also-prints-ea-50": {
+      "id": "b-30-first-workflow-the-trace-also-prints-ea-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The trace also prints each agent node's resolved prompt and the provider and model it will run on. A dry run checks the wiring: routing, gates, "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " conditions and variable substitution. It does not check what the model will write. To run the "
+        },
+        {
+          "insert": "test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " script for real while the agents stay stubbed, delete its stub and add "
+        },
+        {
+          "insert": "--exec-code --input test_command=\"npm test\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". That runs your test command on your machine."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-keep-the-routes-as-fixtu-51": {
+      "id": "b-30-first-workflow-keep-the-routes-as-fixtu-51",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Keep the routes as fixtures"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-a-fixture-is-a-stub-file-52": {
+      "id": "b-30-first-workflow-a-fixture-is-a-stub-file-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A fixture is a stub file with an expected result, saved in the workflow's "
+        },
+        {
+          "insert": "fixtures/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " folder. "
+        },
+        {
+          "insert": "archon workflow test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " replays every fixture, so a later edit that breaks a route fails the test. Add one fixture per route."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-fixtures-approved-stubs-53": {
+      "id": "b-30-first-workflow-fixtures-approved-stubs-53",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "fixtures/approved.stubs.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the tests pass, so "
+        },
+        {
+          "insert": "fix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must not run."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-54": {
+      "id": "b-30-first-workflow-yaml-54",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# The tests pass, so `fix` is skipped. It has no stub, so the fixture fails if it runs.\nplan: { summary: \"Add a --version flag that prints the version from package.json.\" }\napprove-plan: { decision: approve, text: \"\" }\nimplement: \"Added the flag and a test.\"\ntest: { passed: true, output: \"12 pass, 0 fail\" }\nfixture:\n  expect: completed\n  reached: [implement, test]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-fixtures-red-stubs-yaml-55": {
+      "id": "b-30-first-workflow-fixtures-red-stubs-yaml-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "fixtures/red.stubs.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the tests fail, so "
+        },
+        {
+          "insert": "fix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs and receives the test output."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-56": {
+      "id": "b-30-first-workflow-yaml-56",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# The tests fail, so `fix` runs and receives the test output.\nplan: { summary: \"Add a --version flag that prints the version from package.json.\" }\napprove-plan: { decision: approve, text: \"\" }\nimplement: \"Added the flag.\"\ntest: { passed: false, output: \"version.test.ts: expected 1.2.0, got undefined\" }\nfix: \"Read the version from package.json at startup.\"\nfixture:\n  expect: completed\n  reached: [fix]\n  resolved-text-contains:\n    fix: \"expected 1.2.0, got undefined\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-fixtures-rejected-stubs-57": {
+      "id": "b-30-first-workflow-fixtures-rejected-stubs-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "fixtures/rejected.stubs.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": you reject the plan, so the run is cancelled before any code changes."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-yaml-58": {
+      "id": "b-30-first-workflow-yaml-58",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# You reject the plan: the run is cancelled before any code changes.\n# `implement` has no stub, so the fixture fails if it runs.\nplan: { summary: \"Rewrite the CLI parser.\" }\napprove-plan: { decision: reject, text: \"Too broad. Only add the flag.\" }\nfixture:\n  expect: cancelled\n  reached: [stop]"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-the-fixture-block-hol-59": {
+      "id": "b-30-first-workflow-the-fixture-block-hol-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "fixture:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block holds the expectations. "
+        },
+        {
+          "insert": "expect",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the simulation outcome: "
+        },
+        {
+          "insert": "completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "reached",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists nodes that must run. "
+        },
+        {
+          "insert": "resolved-text-contains",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " checks that a fact reached a node: here, that the failing test's output reached the fixing agent's instructions. A node the route reaches without a stub fails the fixture, so leaving out the stub for "
+        },
+        {
+          "insert": "fix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "approved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is what proves "
+        },
+        {
+          "insert": "fix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stays skipped."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-60": {
+      "id": "b-30-first-workflow-bash-60",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow test build-change"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-text-61": {
+      "id": "b-30-first-workflow-text-61",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "✔ my-team/build-change/fixtures/approved.stubs.yaml → build-change\n    Simulation outcome: completed\n✔ my-team/build-change/fixtures/red.stubs.yaml → build-change\n    Simulation outcome: completed\n✔ my-team/build-change/fixtures/rejected.stubs.yaml → build-change\n    Simulation outcome: cancelled\n\n3 passed, 0 failed"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-workflow-test-never-cr-62": {
+      "id": "b-30-first-workflow-workflow-test-never-cr-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workflow test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " never creates a run or calls a provider. Run it after every edit to the workflow, and in CI."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-run-it-with-a-real-brief-63": {
+      "id": "b-30-first-workflow-run-it-with-a-real-brief-63",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Run it with a real brief"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-the-brief-is-the-input-t-64": {
+      "id": "b-30-first-workflow-the-brief-is-the-input-t-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The brief is the input the whole run is measured against. A vague brief gets a confident plan for a change you didn't want. State the problem, why it matters, the outcome you want, what must not change, and how you will know it is done; see "
+        },
+        {
+          "insert": "The input is the contract",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "section": "the-input-is-the-contract",
+              "label": "The input is the contract"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-65": {
+      "id": "b-30-first-workflow-bash-65",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run build-change --branch feat/version-flag --input test_command=\"npm test\" \"$(cat <<'BRIEF'\nProblem: the CLI has no way to print its version, so bug reports never say\nwhich release they were filed against.\n\nOutcome: `mycli --version` prints the version from package.json and exits 0.\n\nInvariants: no new dependency; every other flag behaves as before.\n\nAcceptance: a test runs `mycli --version` and checks the output.\nBRIEF\n)\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-the-run-works-in-its-own-66": {
+      "id": "b-30-first-workflow-the-run-works-in-its-own-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The run works in its own git worktree on the branch "
+        },
+        {
+          "insert": "feat/version-flag",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so its edits stay out of your checkout. After "
+        },
+        {
+          "insert": "plan",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " finishes, the command prints "
+        },
+        {
+          "insert": "Workflow paused — waiting for approval.",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns. Read the plan and answer:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-bash-67": {
+      "id": "b-30-first-workflow-bash-67",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention                       # paused runs that need you, with their IDs\narchon workflow artifacts <run-id> plan.md      # print the plan\narchon workflow approve <run-id> \"Keep the flag handling in cli.ts\""
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-approving-continues-the-68": {
+      "id": "b-30-first-workflow-approving-continues-the-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Approving continues the run in your terminal until it finishes. To stop it instead, run "
+        },
+        {
+          "insert": "archon workflow reject <run-id> \"Too broad\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The answer's text reaches the next node as "
+        },
+        {
+          "insert": "$approve-plan.output.text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Afterwards, "
+        },
+        {
+          "insert": "archon workflow get <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows each node's status, and the commits are on "
+        },
+        {
+          "insert": "feat/version-flag",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-where-to-go-next-69": {
+      "id": "b-30-first-workflow-where-to-go-next-69",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Where to go next"
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-every-field-and-node-t-70": {
+      "id": "b-30-first-workflow-every-field-and-node-t-70",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Every field and node type:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Workflow language",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "label": "Workflow language"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-repeat-work-until-a-ch-71": {
+      "id": "b-30-first-workflow-repeat-work-until-a-ch-71",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Repeat work until a check passes:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Loop nodes",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/20-loop-nodes.md",
+              "label": "Loop nodes"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-write-script-nodes-tha-72": {
+      "id": "b-30-first-workflow-write-script-nodes-tha-72",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Write script nodes that supply facts:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Script nodes",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/30-script-nodes.md",
+              "label": "Script nodes"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-start-a-workflow-from-73": {
+      "id": "b-30-first-workflow-start-a-workflow-from-73",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Start a workflow from an event, such as a new issue:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Proactive workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/55-proactive-workflows.md",
+              "label": "Proactive workflows"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-write-better-commands-74": {
+      "id": "b-30-first-workflow-write-better-commands-74",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Write better commands:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Authoring commands",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/10-authoring-commands.md",
+              "label": "Authoring commands"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-first-workflow-a-full-delivery-pipeli-75": {
+      "id": "b-30-first-workflow-a-full-delivery-pipeli-75",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A full delivery pipeline to copy from:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the bundled "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pack; see "
+        },
+        {
+          "insert": "SDLC workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/30-sdlc-workflows.md",
+              "label": "SDLC workflows"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

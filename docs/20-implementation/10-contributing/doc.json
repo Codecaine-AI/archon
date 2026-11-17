@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing",
+  "title": "Contributing",
+  "root": "b-10-contributing-root-7",
+  "blocks": {
+    "b-10-contributing-root-7": {
+      "id": "b-10-contributing-root-7",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "developer"
+        ],
+        "category": "contributing",
+        "description": "Developer guides for contributing to Archon: internals, testing, releasing.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/index.md"
+      },
+      "children": [
+        "b-10-contributing-guides-for-developers-co-1",
+        "b-10-contributing-developer-guides-2",
+        "b-10-contributing-new-developer-guide-3",
+        "b-10-contributing-cli-internals-docs-4",
+        "b-10-contributing-releasing-docs-20-i-5",
+        "b-10-contributing-dx-quirks-docs-20-i-6"
+      ]
+    },
+    "b-10-contributing-guides-for-developers-co-1": {
+      "id": "b-10-contributing-guides-for-developers-co-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Guides for developers contributing to the Archon codebase."
+        }
+      ],
+      "children": []
+    },
+    "b-10-contributing-developer-guides-2": {
+      "id": "b-10-contributing-developer-guides-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Developer Guides"
+        }
+      ],
+      "children": []
+    },
+    "b-10-contributing-new-developer-guide-3": {
+      "id": "b-10-contributing-new-developer-guide-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "New Developer Guide",
+          "attributes": {
+            "bold": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/10-new-developer-guide.md",
+              "label": "New Developer Guide"
+            }
+          }
+        },
+        {
+          "insert": ": Codebase orientation, architecture overview, and first steps"
+        }
+      ],
+      "children": []
+    },
+    "b-10-contributing-cli-internals-docs-4": {
+      "id": "b-10-contributing-cli-internals-docs-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CLI Internals",
+          "attributes": {
+            "bold": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/20-cli-internals.md",
+              "label": "CLI Internals"
+            }
+          }
+        },
+        {
+          "insert": ": CLI package internals, command routing, and worktree logic"
+        }
+      ],
+      "children": []
+    },
+    "b-10-contributing-releasing-docs-20-i-5": {
+      "id": "b-10-contributing-releasing-docs-20-i-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Releasing",
+          "attributes": {
+            "bold": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/30-releasing.md",
+              "label": "Releasing"
+            }
+          }
+        },
+        {
+          "insert": ": Version management and release process"
+        }
+      ],
+      "children": []
+    },
+    "b-10-contributing-dx-quirks-docs-20-i-6": {
+      "id": "b-10-contributing-dx-quirks-docs-20-i-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "DX Quirks",
+          "attributes": {
+            "bold": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/40-dx-quirks.md",
+              "label": "DX Quirks"
+            }
+          }
+        },
+        {
+          "insert": ": Known development experience issues and workarounds"
+        }
+      ],
+      "children": []
+    }
+  }
+}

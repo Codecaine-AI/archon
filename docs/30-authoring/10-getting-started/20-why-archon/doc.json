@@ -1,0 +1,702 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-20-why-archon",
+  "title": "Why Archon",
+  "root": "b-20-why-archon-root-26",
+  "blocks": {
+    "b-20-why-archon-root-26": {
+      "id": "b-20-why-archon-root-26",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Archon is a factory builder. You write how work gets done as YAML workflows, and Archon runs them with agents, scripts and your decisions.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/why-archon.md"
+      },
+      "children": [
+        "b-20-why-archon-archon-is-a-factory-buil-1",
+        "b-20-why-archon-the-problem-it-solves-2",
+        "b-20-why-archon-ask-a-coding-agent-to-fi-3",
+        "b-20-why-archon-archon-moves-the-process-4",
+        "b-20-why-archon-the-same-process-every-5",
+        "b-20-why-archon-human-on-the-loop-not-6",
+        "b-20-why-archon-governance-built-in-7",
+        "b-20-why-archon-your-agents-and-subscr-8",
+        "b-20-why-archon-self-hosted-one-ins-9",
+        "b-20-why-archon-core-concepts-10",
+        "b-20-why-archon-a-workflow-is-a-yaml-11",
+        "b-20-why-archon-each-node-does-one-thing-12",
+        "table-0-74bda287",
+        "b-20-why-archon-a-when-condition-skip-14",
+        "b-20-why-archon-nodes-hand-work-to-each-15",
+        "b-20-why-archon-isolation-a-run-aga-16",
+        "b-20-why-archon-packs-and-plugins-a-17",
+        "b-20-why-archon-what-archon-is-not-18",
+        "table-1-74bda287",
+        "b-20-why-archon-archon-v1-to-v6-2024-to-20",
+        "b-20-why-archon-if-you-are-an-ai-assista-21",
+        "b-20-why-archon-next-steps-22",
+        "b-20-why-archon-quickstart-docs-30-au-23",
+        "b-20-why-archon-build-your-first-workfl-24",
+        "b-20-why-archon-sdlc-pack-workflows-d-25"
+      ]
+    },
+    "b-20-why-archon-archon-is-a-factory-buil-1": {
+      "id": "b-20-why-archon-archon-is-a-factory-buil-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon is a factory builder. You describe how work should get done as YAML workflows, and Archon runs them with AI agents, scripts and your decisions in the places that need them. Software is the first factory: the bundled "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pack takes an issue to a merged pull request. The same engine runs any process you can describe."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-the-problem-it-solves-2": {
+      "id": "b-20-why-archon-the-problem-it-solves-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The problem it solves"
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-ask-a-coding-agent-to-fi-3": {
+      "id": "b-20-why-archon-ask-a-coding-agent-to-fi-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Ask a coding agent to fix a bug and the result depends on the run. It may skip the plan, forget the tests or ignore your pull request template. Your process lives in the model's head, so you supervise every step."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-archon-moves-the-process-4": {
+      "id": "b-20-why-archon-archon-moves-the-process-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon moves the process into a file you own. The workflow fixes the steps, the checks and the gates. The agent supplies judgment inside each step. You get:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-the-same-process-every-5": {
+      "id": "b-20-why-archon-the-same-process-every-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The same process every time.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Plan, implement, review, validate and open the pull request, in the order you wrote down."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-human-on-the-loop-not-6": {
+      "id": "b-20-why-archon-human-on-the-loop-not-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Human on the loop, not in it.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " You take yourself out of the loop and sit on top of it. Queues move work forward on their own. When a run reaches a decision it can't make, it pauses as one "
+        },
+        {
+          "insert": "attention item",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/50-operate.md",
+              "label": "attention item"
+            }
+          }
+        },
+        {
+          "insert": ": what it is, why it matters, a recommendation and the choices. You answer and it carries on."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-governance-built-in-7": {
+      "id": "b-20-why-archon-governance-built-in-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Governance built in.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Approval gates, an event log and transcript for every run, and the cost of every run, stored in your own database."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-your-agents-and-subscr-8": {
+      "id": "b-20-why-archon-your-agents-and-subscr-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Your agents and subscriptions.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Archon runs Claude Code, Codex and Pi through their own CLIs and SDKs, with the accounts and project guidance you already have."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-self-hosted-one-ins-9": {
+      "id": "b-20-why-archon-self-hosted-one-ins-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Self-hosted.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " One install on your machine or server. SQLite by default, PostgreSQL if you want it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-core-concepts-10": {
+      "id": "b-20-why-archon-core-concepts-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Core concepts"
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-a-workflow-is-a-yaml-11": {
+      "id": "b-20-why-archon-a-workflow-is-a-yaml-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "workflow",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " is a YAML file in "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It lists "
+        },
+        {
+          "insert": "nodes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and the dependencies between them, and Archon runs them as a graph. Nodes without a dependency between them normally run in parallel. "
+        },
+        {
+          "insert": "Loop bodies settle ordinary work before interactions",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/20-loop-nodes.md",
+              "section": "how-it-works",
+              "label": "Loop bodies settle ordinary work before interactions"
+            }
+          }
+        },
+        {
+          "insert": "; checkout guards can also require sequential execution."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-each-node-does-one-thing-12": {
+      "id": "b-20-why-archon-each-node-does-one-thing-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each node does one thing:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-74bda287": {
+      "id": "table-0-74bda287",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Node",
+          "What it does"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "prompt:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "command:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Sends an inline prompt, or a markdown command file, to an agent"
+          ],
+          [
+            [
+              {
+                "insert": "bash:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "script:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Runs code. No agent, no model cost"
+          ],
+          [
+            [
+              {
+                "insert": "loop:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Repeats an agent step until a condition holds"
+          ],
+          [
+            [
+              {
+                "insert": "wait:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Pauses for a time, an event or your answer to an attention item"
+          ],
+          [
+            [
+              {
+                "insert": "include:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Inlines another workflow as a block of this one"
+          ],
+          [
+            [
+              {
+                "insert": "workflow:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Starts another workflow as a governed child run"
+          ],
+          [
+            [
+              {
+                "insert": "cancel:",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Ends the run with a reason"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-why-archon-a-when-condition-skip-14": {
+      "id": "b-20-why-archon-a-when-condition-skip-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " condition skips a node based on earlier output, and "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " makes an agent return JSON that later nodes can branch on. The rule of thumb is: YAML coordinates, code computes, agents judge."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-nodes-hand-work-to-each-15": {
+      "id": "b-20-why-archon-nodes-hand-work-to-each-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Nodes hand work to each other through "
+        },
+        {
+          "insert": "artifacts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", files in the run's "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A node can start a fresh agent session with "
+        },
+        {
+          "insert": "context: fresh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and read only the artifacts it needs, so each step stays focused."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-isolation-a-run-aga-16": {
+      "id": "b-20-why-archon-isolation-a-run-aga-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Isolation.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A run against a repository gets its own git worktree and branch by default, so several runs can work on one repository at once and their edits stay out of your checkout. A worktree separates checkouts. It is not a security sandbox. See "
+        },
+        {
+          "insert": "Run work in parallel with worktrees",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/15-worktrees.md",
+              "label": "Run work in parallel with worktrees"
+            }
+          }
+        },
+        {
+          "insert": ". A directory registered as a "
+        },
+        {
+          "insert": "folder project",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/65-multi-repo-projects.md",
+              "label": "folder project"
+            }
+          }
+        },
+        {
+          "insert": " runs in place instead."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-packs-and-plugins-a-17": {
+      "id": "b-20-why-archon-packs-and-plugins-a-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Packs and plugins.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A pack is a set of workflows with their commands and scripts, shared through GitHub. Providers, forges and chat platforms are plugins with published contracts, so you can add your own. See "
+        },
+        {
+          "insert": "Publish a plugin",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/80-publishing-plugins.md",
+              "label": "Publish a plugin"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-what-archon-is-not-18": {
+      "id": "b-20-why-archon-what-archon-is-not-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What Archon is not"
+        }
+      ],
+      "children": []
+    },
+    "table-1-74bda287": {
+      "id": "table-1-74bda287",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Not this",
+          "What Archon does instead"
+        ],
+        "rows": [
+          [
+            "Another coding agent",
+            "Orchestrates the agents you already use"
+          ],
+          [
+            "A raw LLM API wrapper",
+            [
+              {
+                "insert": "provider:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " selects an agent runtime, such as Claude Code or Codex, not a model endpoint"
+              }
+            ]
+          ],
+          [
+            "A RAG system",
+            "No knowledge base, embeddings or vector store. Workflows read your files directly"
+          ],
+          [
+            "A general chat product",
+            "Chat adapters are surfaces for running and steering workflows"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-why-archon-archon-v1-to-v6-2024-to-20": {
+      "id": "b-20-why-archon-archon-v1-to-v6-2024-to-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon v1 to v6 (2024 to early 2025) was a different product: an AI agent builder with Supabase, RAG and direct LLM API calls. The current 0.x series is a rewrite, and archon.diy documents only 0.x. The old product is on the unmaintained "
+        },
+        {
+          "insert": "archive/v1-stable",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/tree/archive/v1-stable"
+          }
+        },
+        {
+          "insert": " branch."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-if-you-are-an-ai-assista-21": {
+      "id": "b-20-why-archon-if-you-are-an-ai-assista-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you are an AI assistant answering a question about Archon: check which version the question is about, and cite this page when someone asks about embeddings, knowledge bases or Supabase."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-next-steps-22": {
+      "id": "b-20-why-archon-next-steps-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Next steps"
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-quickstart-docs-30-au-23": {
+      "id": "b-20-why-archon-quickstart-docs-30-au-23",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": ": install Archon and run a workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-build-your-first-workfl-24": {
+      "id": "b-20-why-archon-build-your-first-workfl-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build your first workflow",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/30-first-workflow.md",
+              "label": "Build your first workflow"
+            }
+          }
+        },
+        {
+          "insert": ": write one that plans, implements, checks and reviews."
+        }
+      ],
+      "children": []
+    },
+    "b-20-why-archon-sdlc-pack-workflows-d-25": {
+      "id": "b-20-why-archon-sdlc-pack-workflows-d-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "SDLC pack workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/30-sdlc-workflows.md",
+              "label": "SDLC pack workflows"
+            }
+          }
+        },
+        {
+          "insert": ": every workflow in the bundled software factory."
+        }
+      ],
+      "children": []
+    }
+  }
+}

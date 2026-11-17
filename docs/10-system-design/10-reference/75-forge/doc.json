@@ -1,0 +1,5728 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-75-forge",
+  "title": "Forge operations",
+  "root": "b-75-forge-root-106",
+  "blocks": {
+    "b-75-forge-root-106": {
+      "id": "b-75-forge-root-106",
+      "type": "paragraph",
+      "props": {
+        "area": "cli",
+        "audience": [
+          "user"
+        ],
+        "category": "reference",
+        "description": "Resolve repositories, read qualified pull-request checks, and perform verified pull-request writes through optional executable plugins.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/forge.md"
+      },
+      "children": [
+        "b-75-forge-forge-operations-load-on-1",
+        "b-75-forge-install-the-github-plugi-2",
+        "b-75-forge-github-is-an-optional-i-3",
+        "b-75-forge-each-archon-release-publ-4",
+        "b-75-forge-sh-5",
+        "b-75-forge-this-works-the-same-for-6",
+        "b-75-forge-resolves-the-tag-to-a-co-7",
+        "b-75-forge-downloads-archon-forge-8",
+        "b-75-forge-writes-it-to-archon-hom-9",
+        "b-75-forge-refuses-to-replace-an-a-10",
+        "b-75-forge-the-checksum-catches-a-c-11",
+        "b-75-forge-manage-the-install-with-12",
+        "b-75-forge-sh-13",
+        "b-75-forge-nothing-updates-in-the-b-14",
+        "b-75-forge-forge-plugins-provider-15",
+        "b-75-forge-commands-16",
+        "b-75-forge-sh-17",
+        "b-75-forge-every-command-emits-json-18",
+        "b-75-forge-the-github-plugin-also-r-19",
+        "b-75-forge-with-web-true-res-20",
+        "b-75-forge-pr-view-accepts-either-21",
+        "b-75-forge-data-file-path-rea-22",
+        "b-75-forge-exit-0-means-the-operati-23",
+        "b-75-forge-what-a-write-reports-24",
+        "b-75-forge-workitem-create-work-25",
+        "table-0-92302b04",
+        "b-75-forge-a-read-back-never-claims-27",
+        "b-75-forge-pr-draft-converts-an-o-28",
+        "b-75-forge-comment-upsert-writes-29",
+        "b-75-forge-workitem-comment-upsert-30",
+        "b-75-forge-pinned-merges-failed-ch-31",
+        "b-75-forge-pr-merge-takes-ref-32",
+        "b-75-forge-the-github-plugin-advert-33",
+        "b-75-forge-an-applied-result-includ-34",
+        "b-75-forge-checks-rerun-takes-r-35",
+        "b-75-forge-github-associates-action-36",
+        "b-75-forge-multi-run-requests-can-h-37",
+        "b-75-forge-pr-reviews-takes-ref-38",
+        "b-75-forge-pr-threads-takes-ref-39",
+        "b-75-forge-workitem-comments-take-40",
+        "b-75-forge-checks-commit-takes-41",
+        "b-75-forge-pr-merge-state-takes-42",
+        "b-75-forge-pr-files-takes-ref-43",
+        "b-75-forge-repo-file-takes-repo-44",
+        "b-75-forge-patches-and-file-text-be-45",
+        "b-75-forge-checks-logs-takes-re-46",
+        "b-75-forge-the-github-plugin-has-a-47",
+        "b-75-forge-pr-thread-reply-takes-48",
+        "b-75-forge-workitem-edit-body-tak-49",
+        "b-75-forge-github-credentials-and-c-50",
+        "b-75-forge-the-host-resolves-gh-to-51",
+        "b-75-forge-inside-a-workflow-work-52",
+        "b-75-forge-checks-identify-the-eval-53",
+        "b-75-forge-the-summary-states-are-54",
+        "b-75-forge-approvalpending-is-ind-55",
+        "b-75-forge-github-tokens-need-repos-56",
+        "b-75-forge-required-is-null-when-57",
+        "b-75-forge-use-the-forge-path-in-th-58",
+        "b-75-forge-the-bundled-sdlc-pack-re-59",
+        "b-75-forge-the-plugin-with-the-60",
+        "b-75-forge-a-credential-the-ho-61",
+        "b-75-forge-with-the-release-binary-62",
+        "b-75-forge-an-explicitly-empty-cred-63",
+        "b-75-forge-a-container-execution-64",
+        "b-75-forge-the-pr-and-test-value-me-65",
+        "b-75-forge-archon-ship-archon-d-66",
+        "b-75-forge-preflight-requires-every-67",
+        "b-75-forge-the-draft-pull-request-a-68",
+        "b-75-forge-initial-pr-publication-h-69",
+        "b-75-forge-what-a-red-check-means-i-70",
+        "b-75-forge-plugin-configuration-71",
+        "b-75-forge-put-trusted-executable-c-72",
+        "b-75-forge-yaml-73",
+        "b-75-forge-a-host-mapping-may-name-74",
+        "b-75-forge-https-remotes-with-expli-75",
+        "b-75-forge-the-github-plugin-suppor-76",
+        "b-75-forge-discovery-examines-confi-77",
+        "b-75-forge-executable-protocol-78",
+        "b-75-forge-the-authoritative-zod-sc-79",
+        "b-75-forge-archon-forge-conforman-80",
+        "b-75-forge-it-also-exports-runforg-81",
+        "b-75-forge-the-host-invokes-plugin-82",
+        "b-75-forge-for-an-operation-the-ho-83",
+        "b-75-forge-a-plugin-that-fails-a-wr-84",
+        "b-75-forge-the-host-limits-combined-85",
+        "b-75-forge-on-windows-discovered-e-86",
+        "b-75-forge-workflow-host-integratio-87",
+        "b-75-forge-the-cli-sets-archon-cli-88",
+        "b-75-forge-when-workflow-id-is-pr-89",
+        "b-75-forge-work-item-writes-90",
+        "b-75-forge-pass-these-request-objec-91",
+        "b-75-forge-workitem-create-rep-92",
+        "b-75-forge-workitem-labels-set-93",
+        "b-75-forge-workitem-label-add-94",
+        "b-75-forge-workitem-label-remove-95",
+        "b-75-forge-workitem-list-repo-96",
+        "b-75-forge-workitem-search-rep-97",
+        "b-75-forge-workitem-close-ref-98",
+        "b-75-forge-repo-labels-list-re-99",
+        "b-75-forge-repo-label-ensure-r-100",
+        "b-75-forge-work-item-mutation-evide-101",
+        "b-75-forge-workitem-view-and-pr-102",
+        "b-75-forge-pr-view-also-returns-103",
+        "b-75-forge-marker-recovery-guarante-104",
+        "b-75-forge-delivery-uses-an-exact-c-105"
+      ]
+    },
+    "b-75-forge-forge-operations-load-on-1": {
+      "id": "b-75-forge-forge-operations-load-on-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Forge operations load only when a caller invokes "
+        },
+        {
+          "insert": "archon forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Local workflows and SDK execution do not discover plugins or require forge credentials."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-install-the-github-plugi-2": {
+      "id": "b-75-forge-install-the-github-plugi-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Install the GitHub plugin"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-github-is-an-optional-i-3": {
+      "id": "b-75-forge-github-is-an-optional-i-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub is an optional, independently executable plugin. Its source is temporarily housed under "
+        },
+        {
+          "insert": "packages/adapters/src/forge/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the entry point imports the public forge contract and its own vendor code, not Archon's engine or adapter host. The CLI does not inject or require a GitHub implementation."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-each-archon-release-publ-4": {
+      "id": "b-75-forge-each-archon-release-publ-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each Archon release publishes the plugin as a native executable for every platform the CLI ships on. Install it with:"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-sh-5": {
+      "id": "b-75-forge-sh-5",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/forge-github"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-this-works-the-same-for-6": {
+      "id": "b-75-forge-this-works-the-same-for-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This works the same for the release binary, a source checkout, and "
+        },
+        {
+          "insert": "Docker",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "plugins",
+              "label": "Docker"
+            }
+          }
+        },
+        {
+          "insert": ". Without "
+        },
+        {
+          "insert": "@<tag>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " it installs from the latest Archon release; "
+        },
+        {
+          "insert": "coleam00/Archon/plugins/forge-github@<tag>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pins one. The command:"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-resolves-the-tag-to-a-co-7": {
+      "id": "b-75-forge-resolves-the-tag-to-a-co-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "resolves the tag to a commit with "
+        },
+        {
+          "insert": "git ls-remote",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and reads "
+        },
+        {
+          "insert": "plugins/forge-github/archon-plugin.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at that commit. It calls no GitHub API and needs no token."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-downloads-archon-forge-8": {
+      "id": "b-75-forge-downloads-archon-forge-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "downloads "
+        },
+        {
+          "insert": "archon-forge-github-<os>-<arch>[.exe]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from that release and checks it against the release's "
+        },
+        {
+          "insert": "checksums.txt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A mismatch installs nothing."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-writes-it-to-archon-hom-9": {
+      "id": "b-75-forge-writes-it-to-archon-hom-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "writes it to "
+        },
+        {
+          "insert": "ARCHON_HOME/plugins/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where discovery finds it, and records a receipt under "
+        },
+        {
+          "insert": "ARCHON_HOME/plugins/installed/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-refuses-to-replace-an-a-10": {
+      "id": "b-75-forge-refuses-to-replace-an-a-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "refuses to replace an "
+        },
+        {
+          "insert": "archon-forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file that it did not install. Move a hand-built copy away first."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-checksum-catches-a-c-11": {
+      "id": "b-75-forge-the-checksum-catches-a-c-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The checksum catches a corrupted download or an asset that does not belong to the release. It does not vouch for the publisher: installing runs code from the repository owner, and the command prints that owner and the commit."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-manage-the-install-with-12": {
+      "id": "b-75-forge-manage-the-install-with-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Manage the install with:"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-sh-13": {
+      "id": "b-75-forge-sh-13",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon plugin list                                                 # id, kind, tag, commit, compatibility\narchon plugin update coleam00/Archon/plugins/forge-github          # latest release; add @<tag> to pick one\narchon plugin remove coleam00/Archon/plugins/forge-github          # deletes only the files the receipt lists"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-nothing-updates-in-the-b-14": {
+      "id": "b-75-forge-nothing-updates-in-the-b-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Nothing updates in the background. To build the plugin yourself instead, compile "
+        },
+        {
+          "insert": "packages/adapters/src/forge/github/plugin.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from a source checkout ("
+        },
+        {
+          "insert": "bun run --cwd packages/adapters build:github-plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "bun build --compile <entry> --outfile archon-forge-github.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows) and copy the executable into "
+        },
+        {
+          "insert": "ARCHON_HOME/plugins/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or configure its absolute path under "
+        },
+        {
+          "insert": "forge.plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " below. "
+        },
+        {
+          "insert": "archon plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " leaves such a file alone."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-forge-plugins-provider-15": {
+      "id": "b-75-forge-forge-plugins-provider-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Forge plugins, provider plugins, chat plugins, and workflow packs install the same way: "
+        },
+        {
+          "insert": "archon plugin add owner/repo[/path][@tag]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads the repository's "
+        },
+        {
+          "insert": "archon-plugin.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and no central registry is involved. Other plugin kinds will use the same command when their install path exists. The Archon-maintained GitHub plugin may move to its own repository, which changes the reference you install from, not this runtime protocol. Setup does not install it for you. Other production forges are community-maintained; the existing bundled Gitea/GitLab transition is not settled by this contract."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-commands-16": {
+      "id": "b-75-forge-commands-16",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Commands"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-sh-17": {
+      "id": "b-75-forge-sh-17",
+      "type": "code",
+      "props": {
+        "language": "sh"
+      },
+      "text": [
+        {
+          "insert": "archon forge resolve --data '{\"remote\":\"git@github.com:owner/repository.git\"}'\narchon forge resolve --data '{\"remote\":\"https://github.com/owner/repository/pull/42\",\"web\":true}'\narchon forge checks --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}'\narchon forge workitem.view --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":31}}'\narchon forge pr.view --data '{\"selector\":{\"kind\":\"number\",\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}}'\narchon forge workitem.create --data-file ./issue.json\narchon forge workitem.labels.set --data-file ./labels.json\narchon forge workitem.label.add --data '{\"subject\":{\"kind\":\"pr\",\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}},\"name\":\"queued\"}'\narchon forge workitem.label.remove --data '{\"subject\":{\"kind\":\"issue\",\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":31}},\"name\":\"queued\"}'\narchon forge workitem.list --data '{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"label\":\"queued\"}'\narchon forge workitem.search --data '{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"text\":\"retry backoff\",\"state\":\"any\"}'\narchon forge repo.labels.list --data-file ./repository.json\narchon forge repo.label.ensure --data-file ./label.json\narchon forge pr.create --data-file ./create.json\narchon forge pr.edit-body --data-file ./body.json\narchon forge pr.ready --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}'\narchon forge pr.draft --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}'\narchon forge comment.upsert --data-file ./comment.json\narchon forge workitem.comment.upsert --data-file ./issue-comment.json\narchon forge workitem.close --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":31},\"reason\":\"duplicate\"}'\narchon forge pr.merge --data-file ./merge.json\narchon forge checks.rerun --data-file ./rerun.json\narchon forge pr.reviews --data-file ./reviews.json\narchon forge pr.threads --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}'\narchon forge pr.files --data '{\"ref\":{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"number\":42}}'\narchon forge repo.file --data '{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"path\":\"src/app.test.ts\",\"revision\":\"<commit sha>\"}'\narchon forge checks.logs --data '{\"repo\":{\"host\":\"github.com\",\"path\":\"owner/repository\"},\"unit\":{\"kind\":\"check\",\"id\":\"71\",\"name\":\"test (linux)\"}}'\narchon forge pr.thread.reply --data-file ./thread-reply.json\narchon forge pr.thread.resolve --data-file ./thread-resolve.json\narchon forge workitem.edit-body --data-file ./issue-body.json"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-every-command-emits-json-18": {
+      "id": "b-75-forge-every-command-emits-json-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every command emits JSON. When the host selects a credential, it adds "
+        },
+        {
+          "insert": "credentialSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the CLI response envelope with the source name, never the token. This is host diagnostic metadata; the plugin protocol is unchanged. "
+        },
+        {
+          "insert": "resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes an explicit remote, including "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for no remote. A local or unclaimed remote returns "
+        },
+        {
+          "insert": "{ \"kind\": \"none\", \"forge\": \"none\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside the success result. It performs no HTTP host probe. Every other operation names its target explicitly: a qualified repository for creation, repository-label operations, listing by label, "
+        },
+        {
+          "insert": "workitem.search",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and a "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " head selector; a subject "
+        },
+        {
+          "insert": "{kind: \"issue\" | \"pr\", ref}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for single-label writes and "
+        },
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a qualified repository and number otherwise. None is inferred from the checkout."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-github-plugin-also-r-19": {
+      "id": "b-75-forge-the-github-plugin-also-r-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub plugin also resolves HTTP Git remotes. For example, "
+        },
+        {
+          "insert": "http://github.example.com:8080/team/repo.git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " resolves to host "
+        },
+        {
+          "insert": "github.example.com:8080",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and path "
+        },
+        {
+          "insert": "team/repo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when that exact host and port are explicitly claimed by the plugin. The remote must not contain credentials, a query, or a fragment. Resolution needs no credential or network request; it does not select the API origin."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-with-web-true-res-20": {
+      "id": "b-75-forge-with-web-true-res-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "\"web\": true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads the forge's web URL of an issue or a pull request instead of a Git remote, and the result adds "
+        },
+        {
+          "insert": "subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{ \"kind\": \"issue\" | \"pr\", \"number\": n }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "repo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The shape of such a URL belongs to the forge, so a caller that holds one asks the plugin rather than parsing it; the SDLC pack does this for a pull request it was handed as a URL. A query or fragment is ignored, and a URL that names no issue or pull request returns "
+        },
+        {
+          "insert": "none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A plugin advertises this with the "
+        },
+        {
+          "insert": "resolve:subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability, and the host refuses the request on a plugin without it. A "
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " answer without "
+        },
+        {
+          "insert": "subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is refused as an invalid response."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-view-accepts-either-21": {
+      "id": "b-75-forge-pr-view-accepts-either-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " accepts either selector: "
+        },
+        {
+          "insert": "{\"kind\":\"number\",\"ref\":…}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "{\"kind\":\"head\",\"repo\":…,\"headRepo\":…,\"head\":\"branch\"}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with an optional "
+        },
+        {
+          "insert": "base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The head form answers \"does this branch have a pull request\", so it resolves the "
+        },
+        {
+          "insert": "open",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " one and returns "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when no open pull request matches the selector, including its "
+        },
+        {
+          "insert": "base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when one is given. A head matching more than one open pull request is a conflict rather than a guess. With "
+        },
+        {
+          "insert": "\"state\":\"any\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the head selector, it resolves the newest pull request on that head in any state, open, closed or merged, and returns "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only when no pull request on that head, in any state, matches the selector and its optional "
+        },
+        {
+          "insert": "base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A plugin declares that it supports this with the "
+        },
+        {
+          "insert": "pr.view:any-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability; the host refuses the request with "
+        },
+        {
+          "insert": "unsupported_op",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a plugin that does not, because an older plugin would ignore the field and answer for the open pull request only."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-data-file-path-rea-22": {
+      "id": "b-75-forge-data-file-path-rea-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "--data-file <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads the same JSON request from a file. Authored content (a pull-request body, a review comment) belongs there rather than in "
+        },
+        {
+          "insert": "--data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so it never appears in any process's argument list."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-exit-0-means-the-operati-23": {
+      "id": "b-75-forge-exit-0-means-the-operati-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Exit 0 means the operation succeeded. Exit 1 means it failed. Exit 2 means the operation returned a response but its run audit could not be persisted. Stdout retains that response, which may be a success or a failed write with its mutation outcome; read it before retrying or reconciling, because exit 2 alone does not say whether a write happened."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-what-a-write-reports-24": {
+      "id": "b-75-forge-what-a-write-reports-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What a write reports"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-create-work-25": {
+      "id": "b-75-forge-workitem-create-work-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workitem.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.labels.set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.label.add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.label.remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.close",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "repo.label.ensure",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.edit-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.draft",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " each perform at most one write and then read the result back. A valid write request reports exactly one outcome, so a caller never has to guess which happened. A request that fails validation before dispatch is answered with "
+        },
+        {
+          "insert": "invalid_request",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and no "
+        },
+        {
+          "insert": "mutation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; nothing was written."
+        }
+      ],
+      "children": []
+    },
+    "table-0-92302b04": {
+      "id": "table-0-92302b04",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Outcome",
+          "Shape",
+          "What it means"
+        ],
+        "rows": [
+          [
+            "applied",
+            [
+              {
+                "insert": "ok: true",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "result.value.outcome: \"applied\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "The write was performed and read back. "
+              },
+              {
+                "insert": "changed: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " means the forge already carried the requested state and nothing was submitted."
+              }
+            ]
+          ],
+          [
+            "refused",
+            [
+              {
+                "insert": "ok: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "mutation.outcome: \"refused\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Nothing was written. The forge answered with a refusal, or the request was rejected before submission."
+          ],
+          [
+            "verification failed",
+            [
+              {
+                "insert": "ok: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "mutation.outcome: \"verification_failed\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "The write was acknowledged, but the read-back disagreed or could not run. "
+              },
+              {
+                "insert": "leaveBehind",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " names what may remain on the forge."
+              }
+            ]
+          ],
+          [
+            "outcome unknown",
+            [
+              {
+                "insert": "ok: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "mutation.outcome: \"outcome_unknown\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The request was submitted and its answer was lost, or the plugin's answer cannot show whether the write was applied (see the executable protocol below). Reconcile before retrying."
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-75-forge-a-read-back-never-claims-27": {
+      "id": "b-75-forge-a-read-back-never-claims-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A read-back never claims to have "
+        },
+        {
+          "insert": "prevented",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " a wrong write; it only reports what it could and could not confirm. A vendor that accepts a write and silently does not apply it is reported as a verification failure, never as success."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-draft-converts-an-o-28": {
+      "id": "b-75-forge-pr-draft-converts-an-o-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.draft",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " converts an open pull request to draft and returns its verified PR record. An already-draft PR returns "
+        },
+        {
+          "insert": "applied",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "changed: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; closed or merged PRs are refused with the observed record. A plugin that does not advertise "
+        },
+        {
+          "insert": "pr.draft",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns "
+        },
+        {
+          "insert": "unsupported_op",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before execution. Nothing falls back to "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The GitHub plugin uses "
+        },
+        {
+          "insert": "the GraphQL draft mutation",
+          "attributes": {
+            "link": "https://docs.github.com/en/graphql/reference/pulls#convertpullrequesttodraft"
+          }
+        },
+        {
+          "insert": " and reads the PR back before reporting success."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-comment-upsert-writes-29": {
+      "id": "b-75-forge-comment-upsert-writes-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " writes the one comment whose first line is the exact "
+        },
+        {
+          "insert": "marker",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", creating it when absent and replacing it in place when present. A body that does not begin with that marker is refused, and more than one marked comment is a conflict."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-comment-upsert-30": {
+      "id": "b-75-forge-workitem-comment-upsert-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does the same on an issue or a pull request. It takes "
+        },
+        {
+          "insert": "{subject: {kind: \"issue\" | \"pr\", ref}, marker, body}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the subject's kind must match the item, so a mismatch is refused before writing. Its result adds the item's "
+        },
+        {
+          "insert": "workitem",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " record to the "
+        },
+        {
+          "insert": "comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps its pull-request "
+        },
+        {
+          "insert": "ref",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " form for existing callers and for installed plugins that predate subjects."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pinned-merges-failed-ch-31": {
+      "id": "b-75-forge-pinned-merges-failed-ch-31",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pinned merges, failed-check reruns and reviews"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-merge-takes-ref-32": {
+      "id": "b-75-forge-pr-merge-takes-ref-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref, method: \"merge\" | \"squash\", conditions: {head, base?, tree?}}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Every merge requires the caller's approved full head object ID. Missing heads and unsupported conditions are refused before operation execution. The conditions object rejects unknown keys. Plugin metadata declares enforced conditions under "
+        },
+        {
+          "insert": "mutationConditions[\"pr.merge\"]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; absence declares none."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-github-plugin-advert-33": {
+      "id": "b-75-forge-the-github-plugin-advert-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub plugin advertises and atomically enforces "
+        },
+        {
+          "insert": "only ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "head",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", through the REST merge endpoint's "
+        },
+        {
+          "insert": "sha",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " parameter. It refuses "
+        },
+        {
+          "insert": "base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "tree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before writing. Reading the base before merging would not enforce a base condition. A stale head, draft, closed or already merged PR is refused. No head is refreshed or substituted to make a merge proceed."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-an-applied-result-includ-34": {
+      "id": "b-75-forge-an-applied-result-includ-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An applied result includes "
+        },
+        {
+          "insert": "pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "method",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", echoed "
+        },
+        {
+          "insert": "conditions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "enforcedConditions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "landed: {commit, tree, parents}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Landed fields come from read-back; unavailable supplemental tree or parents are null. Parent order is preserved. The landed commit can differ from the PR head after a squash or merge. A mismatched PR/head/commit is a verification failure, never a successful merge with guessed evidence."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-checks-rerun-takes-r-35": {
+      "id": "b-75-forge-checks-rerun-takes-r-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "checks.rerun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref, revision, units: [{unit: {kind, id, name}, rerun: {id, attempt} | null}]}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from a prior "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " observation. Revision and IDs are opaque; names are display facts. Empty selections and duplicate unit identities fail validation. Unsupported units, stale attempts, wrong revisions and ineligible checks are refused before any write, including when another selected unit is eligible."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-github-associates-action-36": {
+      "id": "b-75-forge-github-associates-action-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub associates Actions checks with workflow runs using structured check-suite and app identities. Commit statuses and checks from other apps have "
+        },
+        {
+          "insert": "rerun: null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Eligible completed failed, cancelled or timed-out checks cause one failed-job rerun per distinct owning run. GitHub also reruns dependent jobs, so this can rerun more jobs than the selected units. Attempt checks are preflight evidence, "
+        },
+        {
+          "insert": "not an atomic condition",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " on GitHub's rerun endpoint. Success requires read-back of the same run and revision with a newer attempt for every selected unit."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-multi-run-requests-can-h-37": {
+      "id": "b-75-forge-multi-run-requests-can-h-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Multi-run requests can have partial effects. Submission stops at the first failure. After an earlier acknowledged write, a later definitive refusal reports "
+        },
+        {
+          "insert": "verification_failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a lost submission response reports "
+        },
+        {
+          "insert": "outcome_unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Failure evidence retains the requested units and observed newer attempts. Merge failures retain the attempted method and conditions and any landed observation. No operation retries, polls, rolls back or deletes after an uncertain write. Reconcile using reads before taking another action."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-reviews-takes-ref-38": {
+      "id": "b-75-forge-pr-reviews-takes-ref-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.reviews",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{ref, items}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with submitted review and root diff-review comment items. Each carries "
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "author",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", vendor "
+        },
+        {
+          "insert": "state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "createdAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "url",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; unavailable facts are null. GitHub excludes pending draft reviews and thread replies, and includes dismissed submissions. Issue-conversation comments are not diff reviews. Bodies remain available to the caller but become digest/byte-count projections in audit events. The operation does not classify findings or choose required reviewers."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-threads-takes-ref-39": {
+      "id": "b-75-forge-pr-threads-takes-ref-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.threads",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{ref, threads}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": every review thread on the pull request, each with its opaque "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "outdated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "line",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (null when the forge has none), and "
+        },
+        {
+          "insert": "comments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "author",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "url",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The GitHub plugin reads every page of threads and of each thread's comments, so a long list is never cut short. Comment bodies become digest/byte-count projections in audit events."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-comments-take-40": {
+      "id": "b-75-forge-workitem-comments-take-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workitem.comments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{subject: {kind: \"issue\" | \"pr\", ref}}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{workitem, comments}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the item's record and every conversation comment on it, oldest first, each with "
+        },
+        {
+          "insert": "id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "author",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (null for a deleted account), "
+        },
+        {
+          "insert": "url",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A subject whose kind does not match the item is refused. The GitHub plugin reads every page, so a long conversation is never cut short. Comment bodies become digest/byte-count projections in audit events."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-checks-commit-takes-41": {
+      "id": "b-75-forge-checks-commit-takes-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "checks.commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{repo, at: {kind: \"revision\", revision} | {kind: \"default_branch\"}}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns the same check set as "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "units",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "summary",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "approvalPending",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") with "
+        },
+        {
+          "insert": "{repo, branch, revision}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the commit the checks were read on, and "
+        },
+        {
+          "insert": "branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names the default branch for the "
+        },
+        {
+          "insert": "default_branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " form and is null for a given revision. The GitHub plugin resolves the default branch and its head through GraphQL; a repository that reports none is "
+        },
+        {
+          "insert": "not_found",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-merge-state-takes-42": {
+      "id": "b-75-forge-pr-merge-state-takes-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.merge-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{ref, head_revision, default_branch, default_revision, behind, mergeable, merge_commit}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "behind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " counts the commits of the default branch at "
+        },
+        {
+          "insert": "default_revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that the head at "
+        },
+        {
+          "insert": "head_revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lacks. "
+        },
+        {
+          "insert": "mergeable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "clean",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "conflict",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; GitHub computes mergeability lazily, so a first read may be "
+        },
+        {
+          "insert": "unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "merge_commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the commit the pull request landed as, null until it is merged. The GitHub plugin compares through GraphQL, which accepts a head from a fork, and a failed comparison is an error, never a guessed zero."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-files-takes-ref-43": {
+      "id": "b-75-forge-pr-files-takes-ref-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{ref, head_revision, files}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "head_revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the pull request's head as the list was read; pass it to "
+        },
+        {
+          "insert": "repo.file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to read text at the commit the patches belong to. "
+        },
+        {
+          "insert": "files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds every file the pull request changes, each with "
+        },
+        {
+          "insert": "path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "previous_path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the path before a rename or copy, else null), "
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "added",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "removed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "modified",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "renamed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "copied",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "changed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "unchanged",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and "
+        },
+        {
+          "insert": "patch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which is null when the forge has no diff for the file, such as a binary or very large one. The GitHub plugin reads every page and refuses with "
+        },
+        {
+          "insert": "forge_error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when GitHub lists fewer files than the pull request changes, as it does past 3,000 files, or when the head moves while the list is read, so a partial list or one from another commit never reads as the whole change at "
+        },
+        {
+          "insert": "head_revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-repo-file-takes-repo-44": {
+      "id": "b-75-forge-repo-file-takes-repo-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "repo.file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{repo, path, revision}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and returns "
+        },
+        {
+          "insert": "{repo, path, revision, text}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the file's UTF-8 text at that commit. "
+        },
+        {
+          "insert": "path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is repository-relative; a "
+        },
+        {
+          "insert": ".",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "..",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " segment is an invalid request. A path that is not a file at that commit, such as a directory, is "
+        },
+        {
+          "insert": "not_found",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a malformed answer is "
+        },
+        {
+          "insert": "forge_error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The GitHub plugin reads through the contents API, so a file over 1 MB, or one that is not UTF-8 text, is refused with "
+        },
+        {
+          "insert": "forge_error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rather than returned empty."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-patches-and-file-text-be-45": {
+      "id": "b-75-forge-patches-and-file-text-be-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Patches and file text become digest/byte-count projections in audit events."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-checks-logs-takes-re-46": {
+      "id": "b-75-forge-checks-logs-takes-re-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{repo, unit: {kind, id, name}, maxBytes?}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where "
+        },
+        {
+          "insert": "unit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is one unit exactly as "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "checks.commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reported it, and returns "
+        },
+        {
+          "insert": "{repo, unit, log}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A log is "
+        },
+        {
+          "insert": "{kind: \"text\", text, truncated, totalBytes}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "maxBytes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bounds "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in UTF-8 bytes: 65,536 when omitted, at most 1,048,576. A longer log keeps its end, because a failure is at the end, with "
+        },
+        {
+          "insert": "truncated: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the whole log's size in "
+        },
+        {
+          "insert": "totalBytes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; ask again with a larger "
+        },
+        {
+          "insert": "maxBytes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to read further back. A unit without a log is an answer, not an error: "
+        },
+        {
+          "insert": "{kind: \"none\", reason}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where "
+        },
+        {
+          "insert": "unit_has_no_log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means this unit never has one, such as a commit status, and "
+        },
+        {
+          "insert": "log_unavailable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means the forge does not hold it now, because the unit is still running or the log has expired. A unit the forge does not know is "
+        },
+        {
+          "insert": "not_found",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The log is the forge's text as written; nothing in it is redacted, so a plugin must return only the log and never the request it made for it. In audit events the text is a digest and byte count."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-github-plugin-has-a-47": {
+      "id": "b-75-forge-the-github-plugin-has-a-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub plugin has a log only for a GitHub Actions check run, whose check-run id is its job id. A commit status and another app's check run answer "
+        },
+        {
+          "insert": "unit_has_no_log",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". GitHub serves a job log through a short-lived signed URL, which the plugin fetches without the token and never repeats in an error."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-thread-reply-takes-48": {
+      "id": "b-75-forge-pr-thread-reply-takes-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.thread.reply",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref, thread, body}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and posts one reply on that thread; an applied result carries the "
+        },
+        {
+          "insert": "thread",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the new "
+        },
+        {
+          "insert": "comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " record with its body digest. "
+        },
+        {
+          "insert": "pr.thread.resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref, thread}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a thread already resolved is applied with "
+        },
+        {
+          "insert": "changed: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Both refuse, before writing, a thread that does not belong to the pull request "
+        },
+        {
+          "insert": "ref",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-edit-body-tak-49": {
+      "id": "b-75-forge-workitem-edit-body-tak-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workitem.edit-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes "
+        },
+        {
+          "insert": "{ref, body}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for an issue and replaces its body; an applied result carries the issue record and the body digest read back. The forge has no conditional body write, so an edit saved between the caller's read and this write is lost. A pull request uses "
+        },
+        {
+          "insert": "pr.edit-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-github-credentials-and-c-50": {
+      "id": "b-75-forge-github-credentials-and-c-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "GitHub credentials and check observations"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-host-resolves-gh-to-51": {
+      "id": "b-75-forge-the-host-resolves-gh-to-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host resolves "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then the "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI login for the target host. The dispatcher passes the selected token to the child as "
+        },
+        {
+          "insert": "ARCHON_FORGE_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Tokens never belong in command arguments, JSON requests or remote URLs."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-inside-a-workflow-work-52": {
+      "id": "b-75-forge-inside-a-workflow-work-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Inside a workflow ("
+        },
+        {
+          "insert": "WORKFLOW_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set), a "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "COPILOT_GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " the command inherits is the run's credential. Neither "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nor the repository's "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " replaces it, and an empty value (a credential the run withholds) stays empty. When the run sets no value, or a project "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names the key so startup strips it, those files supply the credential as they do outside a workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-checks-identify-the-eval-53": {
+      "id": "b-75-forge-checks-identify-the-eval-53",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Checks identify the evaluated revision and each check-run or commit-status unit. GitHub enumeration includes current check runs and the latest status for each context. The plugin preserves distinct runs with the same name. It does not use GitHub's aggregate status as evidence that checks exist."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-summary-states-are-54": {
+      "id": "b-75-forge-the-summary-states-are-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The summary states are "
+        },
+        {
+          "insert": "none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pending",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "green",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "red",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "gated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means zero enumerated units. The summary precedence is red, gated, unknown, pending, then green. "
+        },
+        {
+          "insert": "gated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names an explicit action-required conclusion; missing checks are not evidence of an approval gate. Unrecognized vendor states remain unknown with their native value retained."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-approvalpending-is-ind-55": {
+      "id": "b-75-forge-approvalpending-is-ind-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "approvalPending",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is independent of the unit summary. True means explicit approval evidence at the evaluated revision, false means the authoritative lookup found none, and null/absence means it was not established. GitHub reads head-filtered Actions workflow runs, including approval-blocked runs that registered no check units. Thus "
+        },
+        {
+          "insert": "summary.state: \"none\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can coexist with "
+        },
+        {
+          "insert": "approvalPending: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Generic waiting states and zero units never imply approval. A failed Actions read or a query exceeding GitHub's 1,000-result search cap fails the observation rather than certifying no approval requirement."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-github-tokens-need-repos-56": {
+      "id": "b-75-forge-github-tokens-need-repos-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GitHub tokens need repository pull-request and check/status read permissions, plus Actions read permission for check observations and Actions write permission for reruns. Merge requires Contents write permission. An authorization failure stays explicit; Archon does not switch credential sources or use the CLI to read checks after a plugin failure."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-required-is-null-when-57": {
+      "id": "b-75-forge-required-is-null-when-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "required",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is null when no authoritative required set was obtained. The current GitHub plugin returns null; it does not infer branch protection from check names."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-use-the-forge-path-in-th-58": {
+      "id": "b-75-forge-use-the-forge-path-in-th-58",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Use the forge path in the SDLC pack"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-bundled-sdlc-pack-re-59": {
+      "id": "b-75-forge-the-bundled-sdlc-pack-re-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The bundled SDLC pack reaches the forge only through "
+        },
+        {
+          "insert": "archon forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; it has no other path. For github.com it needs two things:"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-plugin-with-the-60": {
+      "id": "b-75-forge-the-plugin-with-the-60",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The plugin.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " With the release binary or Homebrew, "
+        },
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". In a source checkout, "
+        },
+        {
+          "insert": "bun run cli plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or a plugin you built yourself (see above). In Docker, "
+        },
+        {
+          "insert": "docker compose exec -u appuser app bun run cli plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-a-credential-the-ho-61": {
+      "id": "b-75-forge-a-credential-the-ho-61",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "A credential.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The host resolves GitHub credentials in order: "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then the "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI login via "
+        },
+        {
+          "insert": "gh auth token --hostname <forge-host>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It passes the token to the plugin, including released v0.11.1 plugins. If a source is absent, the host tries the next; a selected token rejected by the forge, or an installed "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that fails or returns an empty token, is reported without trying another source. Tokens are never logged. Run "
+        },
+        {
+          "insert": "archon workflow run archon-forge-check",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the checkout to run the pack's preflight on its own, including the required-operation check. It names the credential source used."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-with-the-release-binary-62": {
+      "id": "b-75-forge-with-the-release-binary-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With the release binary, Homebrew or a source install, an existing "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " works. Alternatively, put "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Archon's env file, "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". In Docker, set "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the compose "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or authenticate "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside the container; the host machine's login is not shared automatically. GitHub App mode supplies each run its token. The run shim refreshes installation tokens through the App credential helper without requiring the real "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " executable. Prefer "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when configuring the forge alone: beside "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also switches the server's GitHub adapter into token mode."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-an-explicitly-empty-cred-63": {
+      "id": "b-75-forge-an-explicitly-empty-cred-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An explicitly empty credential with no non-empty alternative refuses instead of using the host login. The engine uses empty values to deny an unconnected user's run access to shared credentials. For a solo install with an empty "
+        },
+        {
+          "insert": "GH_TOKEN=",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line, remove that line to use "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An explicit "
+        },
+        {
+          "insert": "token_env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in trusted forge configuration selects only that variable; it does not consult the default sources. A GitHub plugin advertising custom credential names uses those names in its advertised order, without consulting the host login. The standard GitHub order applies when the plugin advertises only "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and/or "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-a-container-execution-64": {
+      "id": "b-75-forge-a-container-execution-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "container execution",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/70-container-isolation.md",
+              "label": "container execution"
+            }
+          }
+        },
+        {
+          "insert": " has no host command for the forge, so a pack run in a container refuses at its forge check. Delivery reads, answers and resolves a pull request's review threads through "
+        },
+        {
+          "insert": "pr.threads",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.thread.reply",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "pr.thread.resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Standalone "
+        },
+        {
+          "insert": "archon-review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads a pull request it is given with "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and diffs it with "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The merge queue reads through "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.merge-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.threads",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "workitem.comments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", reruns a pull request's failed checks through "
+        },
+        {
+          "insert": "checks.rerun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", merges through "
+        },
+        {
+          "insert": "pr.merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pinned to the head, and refuses a plugin missing any of them before claiming work. A selected non-GitHub plugin must advertise the operations those steps use; an unsupported operation fails without falling back to another tool."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-pr-and-test-value-me-65": {
+      "id": "b-75-forge-the-pr-and-test-value-me-65",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The PR and test-value metrics read each pull request's "
+        },
+        {
+          "insert": "timestamps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and refuse a view without them; the test-value judge reads "
+        },
+        {
+          "insert": "pr.files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "repo.file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The build queue reads a dead round's pull request through "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " by head with "
+        },
+        {
+          "insert": "\"state\":\"any\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which needs "
+        },
+        {
+          "insert": "pr.view:any-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the build queue runs no forge check, so on a plugin without it the queue refuses, naming that capability, when it releases a dead claim that recorded a branch. Agents read CI job logs with the tools the run has. A red default branch is always raised as a "
+        },
+        {
+          "insert": "merge: base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " item, because "
+        },
+        {
+          "insert": "checks.rerun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " acts only on a pull request."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-archon-ship-archon-d-66": {
+      "id": "b-75-forge-archon-ship-archon-d-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon-ship",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "archon-deliver",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "archon-upkeep",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon-pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " run a "
+        },
+        {
+          "insert": "forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node that checks the plugin can act before any agent runs: host metadata inspection ("
+        },
+        {
+          "insert": "archon forge metadata --data '{\"host\":\"github.com\"}' --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") must first advertise every required operation, then an authenticated pull-request read ("
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " by head, which every released GitHub plugin supports) for the repositories the checkout's remotes name, which proves the token can read the repository but not that it can write: the run's log says so, and write access is first proven by the run's first write. One readable repository, including a readable mirror, is sufficient. A missing plugin or token refuses there, naming both steps, rather than after implementation and review. With per-user GitHub enabled, a run started by a user who has not connected their own GitHub identity has no token, and the refusal names the connect step ("
+        },
+        {
+          "insert": "archon auth github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or the Web UI Settings page). When one remote repository fails but another is readable, the successful diagnostic includes the failed repository and its error. The operations themselves still refuse on their own. The run's worktree exists by then: the engine creates it before the first node."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-preflight-requires-every-67": {
+      "id": "b-75-forge-preflight-requires-every-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Preflight requires every operation in "
+        },
+        {
+          "insert": "REQUIRED_FORGE_OPERATIONS",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflows/sdlc/.shared/forge-check.ts"
+          }
+        },
+        {
+          "insert": " in ",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflows/sdlc/.shared/forge-check.ts"
+          }
+        },
+        {
+          "insert": ".archon/workflows/sdlc/.shared/forge-check.ts",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflows/sdlc/.shared/forge-check.ts"
+          }
+        },
+        {
+          "insert": ". The GitHub plugin advertises all of them from v0.13.0; earlier releases lack some and cannot run the pack. Preflight names missing operations and refuses before AI. The merge queue's gate and the PR and test-value metrics also resolve a pull request URL, which needs the "
+        },
+        {
+          "insert": "resolve:subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability. No release up to v0.14.0 has it; the first release after v0.14.0 does. Preflight does not check "
+        },
+        {
+          "insert": "resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". On a plugin without "
+        },
+        {
+          "insert": "resolve:subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the host refuses the resolve, naming the missing support, and the step that called it fails. The build queue resolves a round's pull request URL when it records the round, to store the number; when the resolve fails, the round is still recorded without a number and the run notes why. Its next read of the item's pull request resolves the URL again and refuses there if it still cannot. Host metadata inspection uses trusted plugin discovery without credentials or a plugin operation; it does not change the forge protocol."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-draft-pull-request-a-68": {
+      "id": "b-75-forge-the-draft-pull-request-a-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The draft pull request and the canonical review comment are written in deterministic nodes ("
+        },
+        {
+          "insert": "publish-pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "publish-review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") that publish through the forge and fail unless the result reads back. In delivery, "
+        },
+        {
+          "insert": "publish-pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also writes the description content a round prepared, as a marked section of the description, before that round's review. Two agents write through the forge: "
+        },
+        {
+          "insert": "update-pr-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " edits the description after review, and the "
+        },
+        {
+          "insert": "ci",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " agent marks the pull request ready and puts it back to draft on red. The correction agent pushes its commit with plain "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Whether a branch already has a pull request is decided by an open-head lookup, so a second one is never opened for it."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-initial-pr-publication-h-69": {
+      "id": "b-75-forge-initial-pr-publication-h-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Initial PR publication has a 180-second node deadline. A push that exits nonzero is retried once after 20 seconds; a successful push must still read back the remote ref as HEAD before publication continues. The publication node does not automatically retry timeouts or forge failures. Before creating a PR, publish records a durable "
+        },
+        {
+          "insert": "pr-create-started",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file in the run's artifacts. On explicit resume, publication pushes again, then looks for the PR. If it finds one, it reuses it; if a create was started but no PR is visible, it fails with an unresolved-write message instead of submitting a competing create. Resume can reconcile the PR once it becomes visible. Keep the record while the write is unresolved: stopping a local client does not cancel a request already submitted to the forge."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-what-a-red-check-means-i-70": {
+      "id": "b-75-forge-what-a-red-check-means-i-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "What a red check means is an agent's judgment. Under "
+        },
+        {
+          "insert": "ci: forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the delivery's "
+        },
+        {
+          "insert": "ci",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node reads the checks once with "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before it marks the pull request ready. It hands off pending checks, and red checks the pull request did not cause, for the merge queue to judge; a red check the pull request caused sends it back to the implementer, still a draft. Under "
+        },
+        {
+          "insert": "ci: none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " the agent runs the project's full validation itself and records it. It acts on the pull request "
+        },
+        {
+          "insert": "publish-pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " recorded, never one found from the checkout's remote. A red check's log is evidence for that judgment, which the agent reads with "
+        },
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". No workflow preflights "
+        },
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "workitem.search",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the two reads only agents call: a plugin without one refuses the call with "
+        },
+        {
+          "insert": "unsupported_op",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the agent reports that. A step whose forge operation cannot answer fails with the reason, for example "
+        },
+        {
+          "insert": "no forge plugin claims <host>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-plugin-configuration-71": {
+      "id": "b-75-forge-plugin-configuration-71",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Plugin configuration"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-put-trusted-executable-c-72": {
+      "id": "b-75-forge-put-trusted-executable-c-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Put trusted executable configuration in the user Archon config, "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or the directory selected by "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Repository configuration does not install or select executable plugins. The CLI captures the plugin execution environment before loading repository "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides. In the CLI, a workflow's inherited "
+        },
+        {
+          "insert": "GH_CONFIG_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " takes precedence over the user env file. Repository "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cannot redirect the CLI's stored gh login, including for nested workflow commands; set "
+        },
+        {
+          "insert": "GH_CONFIG_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the process environment, user env file, or workflow configuration instead. The standalone server follows the general env load order: repository "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can override the user-scope "
+        },
+        {
+          "insert": "GH_CONFIG_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and host subprocesses inherit that directory. Repository env may supply a credential named by trusted plugin configuration, but cannot redirect plugin discovery or execution: Archon refuses to start when a repository's "
+        },
+        {
+          "insert": ".archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sets "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "USERPROFILE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "ARCHON_DOCKER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "WORKSPACE_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-yaml-73": {
+      "id": "b-75-forge-yaml-73",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "forge:\n  hosts:\n    github.example.com:8080:\n      plugin: github\n      token_env: COMPANY_GITHUB_TOKEN\n  plugins:\n    - plugin: company-forge\n      command: /absolute/path/to/python\n      args: [/absolute/path/to/plugin.py]\n  scanPath: true"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-a-host-mapping-may-name-74": {
+      "id": "b-75-forge-a-host-mapping-may-name-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A host mapping may name a discovered plugin directly, or supply "
+        },
+        {
+          "insert": "plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", an absolute "
+        },
+        {
+          "insert": "command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", interpreter "
+        },
+        {
+          "insert": "args",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "token_env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Its key must match the repository's exact "
+        },
+        {
+          "insert": "host[:port]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-https-remotes-with-expli-75": {
+      "id": "b-75-forge-https-remotes-with-expli-75",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "HTTPS remotes with explicit "
+        },
+        {
+          "insert": ":443",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " first use that exact claim; if it is absent, resolution may use the bare-host claim. When resolution uses the bare claim, the repository retains its "
+        },
+        {
+          "insert": "host:443",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " authority and includes the presence marker "
+        },
+        {
+          "insert": "hostClaim: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Pass the complete repository reference to subsequent operations: dispatch validates the marked authority and uses its derived bare host for both plugin and credential selection. A qualified "
+        },
+        {
+          "insert": "host:443",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reference without "
+        },
+        {
+          "insert": "hostClaim",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " still requires an exact claim. HTTP and SSH remotes do not receive this HTTPS exception."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-github-plugin-suppor-76": {
+      "id": "b-75-forge-the-github-plugin-suppor-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub plugin supports explicitly mapped GitHub Enterprise hosts at "
+        },
+        {
+          "insert": "https://HOST/api/v3",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Set "
+        },
+        {
+          "insert": "GITHUB_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to a bare HTTP(S) origin, such as "
+        },
+        {
+          "insert": "http://github.example.com:8080",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the mapping above, to preserve its scheme and port for REST and GraphQL calls to that matching host and port. Other hosts keep HTTPS, and github.com always uses its canonical HTTPS endpoints. Invalid "
+        },
+        {
+          "insert": "GITHUB_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " values fail before API dispatch."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-discovery-examines-confi-77": {
+      "id": "b-75-forge-discovery-examines-confi-77",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Discovery examines configured executables, "
+        },
+        {
+          "insert": "~/.archon/plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", configured "
+        },
+        {
+          "insert": "pluginDirs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and PATH names beginning with "
+        },
+        {
+          "insert": "archon-forge-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Duplicate identities or host claims fail loudly. Failed explicitly configured or host-selected plugins fail discovery. An unrelated automatically scanned candidate with a failed metadata handshake or file inspection ("
+        },
+        {
+          "insert": "stat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or POSIX executable "
+        },
+        {
+          "insert": "access",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " check) is reported on stderr and kept as unavailable evidence. Inspection diagnostics include the command, failed check, and original error. Healthy plugins still serve their claimed hosts. A broken link ("
+        },
+        {
+          "insert": "stat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ENOENT) keeps the metadata-handshake failure behavior. A file with no execute bits that fails "
+        },
+        {
+          "insert": "access",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with EACCES is skipped with a notice and adds no unavailable evidence. Other access failures, including EACCES on a file with execute bits, remain unavailable evidence. When a scanned executable is also configured with the same command and arguments, its inspection failure is preserved and discovery fails as it does for other configured-plugin failures. If no valid plugin serves it and any candidate failed, resolution fails rather than reporting no forge. No forge is injected as an implicit fallback. No remote URL can select an arbitrary executable."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-executable-protocol-78": {
+      "id": "b-75-forge-executable-protocol-78",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Executable protocol"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-authoritative-zod-sc-79": {
+      "id": "b-75-forge-the-authoritative-zod-sc-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The authoritative Zod schemas and derived TypeScript types are exported by "
+        },
+        {
+          "insert": "@archon/forge/operations",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Dispatch and configuration are separate exports, "
+        },
+        {
+          "insert": "@archon/forge/dispatch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "@archon/forge/plugin-config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-archon-forge-conforman-80": {
+      "id": "b-75-forge-archon-forge-conforman-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon/forge/conformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " exports "
+        },
+        {
+          "insert": "runForgeReadConformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for controlled repository fixtures. Pass the plugin operation function and cases naming the expected revision, state and exact unit identities. The kit validates the response schema, correlation, qualified target, counts and summary."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-it-also-exports-runforg-81": {
+      "id": "b-75-forge-it-also-exports-runforg-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "It also exports "
+        },
+        {
+          "insert": "runForgeMutationConformance",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for write fixtures. Pass the plugin operation function, its metadata, and cases naming the request and the outcome the fixture sets up. The kit validates the response schema, correlation, qualified target, the applied result against the request that asked for it, and that the reported outcome is the expected one."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-host-invokes-plugin-82": {
+      "id": "b-75-forge-the-host-invokes-plugin-82",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host invokes "
+        },
+        {
+          "insert": "PLUGIN metadata",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before any operation. Metadata declares integer protocol version 1, plugin name/version, forge family, static hosts, capabilities (the operations it supports, plus capability tokens such as "
+        },
+        {
+          "insert": "pr.view:any-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " that are not operation names), enforced mutation conditions and credential environment names. Protocol incompatibility and unsupported operations fail before operation execution."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-for-an-operation-the-ho-83": {
+      "id": "b-75-forge-for-an-operation-the-ho-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For an operation, the host invokes "
+        },
+        {
+          "insert": "PLUGIN op OPERATION",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.commit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.comments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.search",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.labels.set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.label.add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.label.remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.close",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "repo.labels.list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "repo.label.ensure",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.edit-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.draft",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "checks.rerun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.reviews",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.threads",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.merge-state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "repo.file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.thread.reply",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "pr.thread.resolve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.edit-body",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") sends one JSON request on stdin and expects one JSON response on stdout. Write explicit UTF-8 bytes. Diagnostics go to stderr. Exit 0 carries a success response; exit 1 carries a structured operation error. Other exits, malformed JSON and mismatched operation/target identity are process or protocol failures."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-a-plugin-that-fails-a-wr-84": {
+      "id": "b-75-forge-a-plugin-that-fails-a-wr-84",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A plugin that fails a write must state which outcome it was under "
+        },
+        {
+          "insert": "mutation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and an applied result must answer the request that asked for it: the same pull request, the same head and draft state for a create, the digest of the body it was given for an edit or comment. The host checks both rather than trusting the claim. A failed write with no stated outcome, or an applied result that does not answer the request, becomes "
+        },
+        {
+          "insert": "outcome_unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the plugin ran, so what it did to the forge is no longer knowable from here. A write whose plugin process never started, or whose operation the plugin does not declare, is a refusal."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-host-limits-combined-85": {
+      "id": "b-75-forge-the-host-limits-combined-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The host limits combined output to 16 MiB and kills the process tree on timeout. It supplies selected runtime environment variables and the resolved token, with value-based token redaction on captured output. Windows may inject additional system environment variables. Installed plugin code is trusted code and can access files under its operating-system identity."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-on-windows-discovered-e-86": {
+      "id": "b-75-forge-on-windows-discovered-e-86",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Windows, discovered executables must have an "
+        },
+        {
+          "insert": ".exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " extension. "
+        },
+        {
+          "insert": ".cmd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": ".bat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are unsupported. Scripts use explicit interpreter argv; no platform invokes a shell to interpret plugin arguments. Windows termination uses "
+        },
+        {
+          "insert": "taskkill /T /F",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; POSIX termination uses a process group."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workflow-host-integratio-87": {
+      "id": "b-75-forge-workflow-host-integratio-87",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflow host integration and audit"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-the-cli-sets-archon-cli-88": {
+      "id": "b-75-forge-the-cli-sets-archon-cli-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The CLI sets "
+        },
+        {
+          "insert": "ARCHON_CLI_COMMAND",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at startup to a JSON argv array for the install's CLI: the compiled CLI executable, or the Bun runtime and CLI source entry in a source checkout. A source server also publishes the source CLI command. A compiled server launched by "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " requires and preserves the launching CLI's value instead of publishing its own executable. Runs launched from the CLI, the Web UI or a chat or forge adapter therefore see the same CLI command. Bundled scripts append command arguments without shell parsing. An SDK host must supply its own argv array. A container execution does not receive the variable, because a host binary path is not assumed to exist in a container."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-when-workflow-id-is-pr-89": {
+      "id": "b-75-forge-when-workflow-id-is-pr-89",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When "
+        },
+        {
+          "insert": "WORKFLOW_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is present, the CLI persists an "
+        },
+        {
+          "insert": "integration_operation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event through its database host. The forge payload retains operation correlation, qualified target, plugin identity/version, result and duration. Audit records keep identity and content digests only: the title and body a view operation returned, and each review, thread and conversation comment body, are replaced by a digest and a byte count, so authored content never lands in the run's durable event log. The engine does not interpret the forge payload. The CLI reports persistence failure separately from the operation's observed outcome."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-work-item-writes-90": {
+      "id": "b-75-forge-work-item-writes-90",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Work-item writes"
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pass-these-request-objec-91": {
+      "id": "b-75-forge-pass-these-request-objec-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pass these request objects through "
+        },
+        {
+          "insert": "--data-file",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The host supplies "
+        },
+        {
+          "insert": "operationId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "op",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-create-rep-92": {
+      "id": "b-75-forge-workitem-create-rep-92",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{repo: {host, path}, title, body, marker}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The one-line marker must be the body's exact first line. The plugin enumerates issues across all states, excluding PRs, and compares the exact first line. A failed lookup or multiple matches refuses before writing. One match is read directly and returned with "
+        },
+        {
+          "insert": "changed:false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including when closed; recovery never edits or reopens it. Otherwise one create is followed by an independent read. Fresh creation proves open state and requested title/body digests; recovery proves issue identity and marker digest while returning existing content digests."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-labels-set-93": {
+      "id": "b-75-forge-workitem-labels-set-93",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.labels.set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{ref: {repo: {host, path}, number}, labels: [name]}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This replaces the complete label set; "
+        },
+        {
+          "insert": "[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " clears it. Every name must exist in the repository. It never creates labels. The result carries the independently observed exact set, and equal sets submit no write."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-label-add-94": {
+      "id": "b-75-forge-workitem-label-add-94",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.label.add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{subject: {kind: \"issue\" | \"pr\", ref: {repo: {host, path}, number}}, name}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Adds one label and leaves every other label on the item alone. The subject's kind must match the item: a pull request is labelled by its pull-request reference, and a mismatch is refused before writing. The name must already exist in the repository with exact case; adding never creates a label. An item that already carries the label returns "
+        },
+        {
+          "insert": "changed:false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without writing. The result carries the item's complete label set as read back after the write."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-label-remove-95": {
+      "id": "b-75-forge-workitem-label-remove-95",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.label.remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the same request shape. Removes one label and leaves the others. An item that does not carry the label returns "
+        },
+        {
+          "insert": "changed:false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including when another writer removed it between this call's read and its write."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-list-repo-96": {
+      "id": "b-75-forge-workitem-list-repo-96",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{repo: {host, path}, label}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Returns "
+        },
+        {
+          "insert": "{repo, label, items}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", every open issue and pull request that carries the exact label, each with "
+        },
+        {
+          "insert": "{ref, kind, url, state}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The GitHub plugin follows every page and refuses a label name containing a comma, which its filter cannot express."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-search-rep-97": {
+      "id": "b-75-forge-workitem-search-rep-97",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.search",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{repo: {host, path}, text, kind?, state?, limit?}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A read. Returns "
+        },
+        {
+          "insert": "{repo, text, items, truncated}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the issues and pull requests in that repository that match "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", most recently updated first, each with "
+        },
+        {
+          "insert": "{ref, kind, url, state, title, updatedAt}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "issue",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and both when omitted. "
+        },
+        {
+          "insert": "state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "open",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "closed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "any",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "open",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when omitted; a merged pull request is "
+        },
+        {
+          "insert": "closed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "limit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is at most 100 and 30 when omitted; "
+        },
+        {
+          "insert": "truncated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is true when more matched than "
+        },
+        {
+          "insert": "items",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds, and there is no next page: narrow the text, kind or state. How "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " matches is the forge's own search, with its own ranking of words, phrases and any qualifiers; the contract promises no query language, so a caller that needs an exact answer reads the items it found. A search index can lag a new item by a minute or more. The words and each title become digest/byte-count projections in audit events. The GitHub plugin passes "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to GitHub's issue search inside "
+        },
+        {
+          "insert": "repo:<owner>/<name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", asks once per kind, refuses a query over GitHub's 256 characters as "
+        },
+        {
+          "insert": "invalid_request",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and fails the read if a match belongs to another repository."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-close-ref-98": {
+      "id": "b-75-forge-workitem-close-ref-98",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workitem.close",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{ref: {repo: {host, path}, number}, reason}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "completed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "not_planned",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "duplicate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Closes an issue and records the reason; a pull request is refused before writing. An issue already closed for the same reason returns "
+        },
+        {
+          "insert": "changed:false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without writing. One closed for another reason is refused as a conflict; a close never rewrites an earlier reason. The result carries the closed "
+        },
+        {
+          "insert": "workitem",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as read back. A duplicate's link belongs in a comment written with "
+        },
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-repo-labels-list-re-99": {
+      "id": "b-75-forge-repo-labels-list-re-99",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "repo.labels.list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{repo: {host, path}}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Returns complete repository label names as "
+        },
+        {
+          "insert": "{repo, labels: [{name}]}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-repo-label-ensure-r-100": {
+      "id": "b-75-forge-repo-label-ensure-r-100",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "repo.label.ensure",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "{repo: {host, path}, name, color, description}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Explicitly ensure one repository label. Color is six hexadecimal digits. An existing name returns "
+        },
+        {
+          "insert": "changed:false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without changing operator metadata. Creation performs one write and verifies name, color and description digest by a separate read."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-work-item-mutation-evide-101": {
+      "id": "b-75-forge-work-item-mutation-evide-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Work-item mutation evidence contains "
+        },
+        {
+          "insert": "{ref, kind, url, state}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", never authored title/body. "
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "issue",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for "
+        },
+        {
+          "insert": "workitem.create",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workitem.labels.set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "workitem.close",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the subject's kind for single-label writes and "
+        },
+        {
+          "insert": "workitem.comment.upsert",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Label metadata evidence contains name, color and description digest. "
+        },
+        {
+          "insert": "workitem.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " may omit labels for older protocol-1 plugins; triage requires label facts and fails if absent."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-workitem-view-and-pr-102": {
+      "id": "b-75-forge-workitem-view-and-pr-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workitem.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " return "
+        },
+        {
+          "insert": "author: {host, id, login}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the plugin reports one. "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means the forge has no author for the item, such as a deleted account. An older protocol-1 plugin may omit the field."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-pr-view-also-returns-103": {
+      "id": "b-75-forge-pr-view-also-returns-103",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pr.view",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also returns "
+        },
+        {
+          "insert": "timestamps: {created_at, merged_at, closed_at}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the plugin reports them. An open pull request has neither "
+        },
+        {
+          "insert": "merged_at",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nor "
+        },
+        {
+          "insert": "closed_at",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a merged one has "
+        },
+        {
+          "insert": "merged_at",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; one closed without merging has "
+        },
+        {
+          "insert": "closed_at",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and no "
+        },
+        {
+          "insert": "merged_at",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The host refuses timestamps that contradict the pull request's "
+        },
+        {
+          "insert": "state",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as an invalid response. An older protocol-1 plugin may omit the field, so a caller that needs timestamps must refuse a view without them."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-marker-recovery-guarante-104": {
+      "id": "b-75-forge-marker-recovery-guarante-104",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Marker recovery guarantees sequential reuse of a visible item, including after an unknown create outcome. It does not provide atomic uniqueness for concurrent creates: GitHub has no marker uniqueness constraint. Callers must reconcile unknown outcomes, never retry automatically inside a call. Whole-set label replacement preserves labels observed before writing, but cannot preserve concurrent edits between that read and the write. Two writers that each need one label should use "
+        },
+        {
+          "insert": "workitem.label.add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "workitem.label.remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": the GitHub plugin submits one label through GitHub's single-label endpoints, so a concurrent writer's labels survive."
+        }
+      ],
+      "children": []
+    },
+    "b-75-forge-delivery-uses-an-exact-c-105": {
+      "id": "b-75-forge-delivery-uses-an-exact-c-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Delivery uses an exact-content SHA-256 marker derived from title, claim, evidence and relation. Run provenance does not affect identity. Semantic duplicate detection is separate work. The SDLC pack's "
+        },
+        {
+          "insert": "archon-discoveries",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflow files a discovery with the marker "
+        },
+        {
+          "insert": "<!-- archon-discovery <key> -->",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where the key is the one its deciding agent gave the discovery; which discoveries are duplicates is that agent's judgment, not the marker's. Triage explicitly ensures only missing wanted pack labels, omits nonexistent area labels, then replaces labels while preserving observed unrelated names."
+        }
+      ],
+      "children": []
+    }
+  }
+}

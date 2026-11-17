@@ -1,0 +1,1352 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-55-proactive-workflows",
+  "title": "Proactive workflows",
+  "root": "b-55-proactive-workflows-root-37",
+  "blocks": {
+    "b-55-proactive-workflows-root-37": {
+      "id": "b-55-proactive-workflows-root-37",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Start agent work from an event, let a cheap agent decide whether it matters, and pause for an answer before anything leaves the run.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/proactive-workflows.md"
+      },
+      "children": [
+        "b-55-proactive-workflows-a-proactive-workflow-sta-1",
+        "b-55-proactive-workflows-archon-builds-this-from-2",
+        "table-0-62968f11",
+        "b-55-proactive-workflows-the-reference-workflow-4",
+        "b-55-proactive-workflows-the-archon-repository-sh-5",
+        "b-55-proactive-workflows-when-an-issue-opens-it-6",
+        "b-55-proactive-workflows-classify-reads-the-7",
+        "b-55-proactive-workflows-investigate-runs-o-8",
+        "b-55-proactive-workflows-review-is-a-wait-9",
+        "b-55-proactive-workflows-drop-runs-only-whe-10",
+        "b-55-proactive-workflows-post-runs-only-whe-11",
+        "b-55-proactive-workflows-the-workflow-declares-r-12",
+        "b-55-proactive-workflows-every-agent-node-returns-13",
+        "b-55-proactive-workflows-start-it-when-an-issue-o-14",
+        "b-55-proactive-workflows-bind-the-workflow-to-git-15",
+        "b-55-proactive-workflows-this-binding-maps-the-is-16",
+        "b-55-proactive-workflows-json-17",
+        "b-55-proactive-workflows-a-run-waiting-at-review-18",
+        "b-55-proactive-workflows-the-run-uses-the-provide-19",
+        "b-55-proactive-workflows-to-run-the-same-pattern-20",
+        "b-55-proactive-workflows-review-the-draft-21",
+        "b-55-proactive-workflows-a-triggered-run-has-no-c-22",
+        "b-55-proactive-workflows-bash-23",
+        "b-55-proactive-workflows-then-approve-or-reject-i-24",
+        "b-55-proactive-workflows-bash-25",
+        "b-55-proactive-workflows-check-the-routes-before-26",
+        "b-55-proactive-workflows-the-fixtures-beside-the-27",
+        "b-55-proactive-workflows-bash-28",
+        "b-55-proactive-workflows-to-see-the-run-stop-at-29",
+        "b-55-proactive-workflows-bash-30",
+        "b-55-proactive-workflows-where-stubs-yaml-holds-31",
+        "b-55-proactive-workflows-yaml-32",
+        "b-55-proactive-workflows-adapting-it-33",
+        "b-55-proactive-workflows-change-what-counts-as-34",
+        "b-55-proactive-workflows-change-the-work-in-t-35",
+        "b-55-proactive-workflows-change-the-action-in-36"
+      ]
+    },
+    "b-55-proactive-workflows-a-proactive-workflow-sta-1": {
+      "id": "b-55-proactive-workflows-a-proactive-workflow-sta-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A proactive workflow starts without anyone asking. An event arrives, an agent decides whether it matters, another agent does the work, and the run pauses until its result is approved before Archon acts on it. Whoever answers reviews finished work instead of starting each run."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-archon-builds-this-from-2": {
+      "id": "b-55-proactive-workflows-archon-builds-this-from-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon builds this from parts that already exist:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-62968f11": {
+      "id": "table-0-62968f11",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Step",
+          "Archon primitive"
+        ],
+        "rows": [
+          [
+            "Something happens",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "trigger binding",
+                "attributes": {
+                  "link": "docs/30-authoring/20-guides/60-workflow-triggers.md"
+                }
+              },
+              {
+                "insert": " starts a run from a GitHub webhook or a schedule"
+              }
+            ]
+          ],
+          [
+            "Decide whether it matters",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "prompt:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node on the "
+              },
+              {
+                "insert": "small",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " "
+              },
+              {
+                "insert": "model tier",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#portable-model-references"
+                }
+              },
+              {
+                "insert": " with an "
+              },
+              {
+                "insert": "output_format",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#output_format-for-structured-json",
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Stop when it does not",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "when:",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#when-condition-syntax",
+                  "code": true
+                }
+              },
+              {
+                "insert": " condition on that output"
+              }
+            ]
+          ],
+          [
+            "Do the work",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "prompt:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node on the default model"
+              }
+            ]
+          ],
+          [
+            "Ask for approval",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "wait:",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#attention-waits",
+                  "code": true
+                }
+              },
+              {
+                "insert": " node with the ",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#attention-waits"
+                }
+              },
+              {
+                "insert": "approval",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#attention-waits",
+                  "code": true
+                }
+              },
+              {
+                "insert": " form",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#attention-waits"
+                }
+              }
+            ]
+          ],
+          [
+            "Stop on reject",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "cancel:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node with a "
+              },
+              {
+                "insert": "when:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " condition on the answer"
+              }
+            ]
+          ],
+          [
+            "Act",
+            [
+              {
+                "insert": "A node that runs only when the answer is "
+              },
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-55-proactive-workflows-the-reference-workflow-4": {
+      "id": "b-55-proactive-workflows-the-reference-workflow-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The reference workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-the-archon-repository-sh-5": {
+      "id": "b-55-proactive-workflows-the-archon-repository-sh-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Archon repository ships one complete example: "
+        },
+        {
+          "insert": ".archon/workflows/examples/proactive-issue-investigation.yaml",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflows/examples/proactive-issue-investigation.yaml"
+          }
+        },
+        {
+          "insert": ". It is not part of the bundled pack. Copy it into your project's "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to use it."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-when-an-issue-opens-it-6": {
+      "id": "b-55-proactive-workflows-when-an-issue-opens-it-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When an issue opens, it runs these nodes:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-classify-reads-the-7": {
+      "id": "b-55-proactive-workflows-classify-reads-the-7",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "classify",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads the issue on the "
+        },
+        {
+          "insert": "small",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tier and returns "
+        },
+        {
+          "insert": "route",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "investigate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and a one-sentence "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Most issues need no investigation, so the cheap model reads every issue and the stronger model reads only the ones routed onward."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-investigate-runs-o-8": {
+      "id": "b-55-proactive-workflows-investigate-runs-o-8",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "investigate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs only when "
+        },
+        {
+          "insert": "$classify.output.route == 'investigate'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It reads the issue and the code in the checkout and returns a draft "
+        },
+        {
+          "insert": "comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Its prompt tells it not to change files or write to GitHub."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-review-is-a-wait-9": {
+      "id": "b-55-proactive-workflows-review-is-a-wait-9",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a "
+        },
+        {
+          "insert": "wait:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node with "
+        },
+        {
+          "insert": "form: approval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Its "
+        },
+        {
+          "insert": "attention:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " message shows the classifier's reason and the full draft. The answer is "
+        },
+        {
+          "insert": "{decision, text}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where "
+        },
+        {
+          "insert": "decision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Rejecting does not end the run by itself; the next two nodes branch on the decision."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-drop-runs-only-whe-10": {
+      "id": "b-55-proactive-workflows-drop-runs-only-whe-10",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "drop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs only when "
+        },
+        {
+          "insert": "$review.output.decision == 'reject'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It is a "
+        },
+        {
+          "insert": "cancel:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node, so a rejected draft cancels the run and nothing is posted."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-post-runs-only-whe-11": {
+      "id": "b-55-proactive-workflows-post-runs-only-whe-11",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs only when "
+        },
+        {
+          "insert": "$review.output.decision == 'approve'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and sends the draft with "
+        },
+        {
+          "insert": "gh issue comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It is a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node rather than an agent because the review approved that exact text, and an agent could reword it after approval."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-the-workflow-declares-r-12": {
+      "id": "b-55-proactive-workflows-the-workflow-declares-r-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workflow declares "
+        },
+        {
+          "insert": "repository",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "issue_number",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as required "
+        },
+        {
+          "insert": "inputs",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "workflow-signature-inputs-returns-and-inputs",
+              "label": "inputs"
+            }
+          }
+        },
+        {
+          "insert": ", so the trigger binding supplies them. The "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node needs no extra declaration: a triggered run that reaches it pauses in the attention queue and continues once someone answers."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-every-agent-node-returns-13": {
+      "id": "b-55-proactive-workflows-every-agent-node-returns-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every agent node returns a small typed object. Nodes never parse another node's prose, and the "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " condition compares an enum field, not free text."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-start-it-when-an-issue-o-14": {
+      "id": "b-55-proactive-workflows-start-it-when-an-issue-o-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Start it when an issue opens"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-bind-the-workflow-to-git-15": {
+      "id": "b-55-proactive-workflows-bind-the-workflow-to-git-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bind the workflow to GitHub issue openings in your "
+        },
+        {
+          "insert": "webhook source configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "configure-github-event-starts",
+              "label": "webhook source configuration"
+            }
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "workflow triggers guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "label": "workflow triggers guide"
+            }
+          }
+        },
+        {
+          "insert": " also covers signed Standard Webhooks and CLI-driven polling for systems that cannot send webhooks."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-this-binding-maps-the-is-16": {
+      "id": "b-55-proactive-workflows-this-binding-maps-the-is-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This binding maps the issue number from the event and the repository from a literal:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-json-17": {
+      "id": "b-55-proactive-workflows-json-17",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"bindingId\": \"widgets-issue-investigation\",\n  \"hostId\": \"build-host-1\",\n  \"runAsUserId\": \"2a568f73-e217-40ca-b17d-a784d19fd43a\",\n  \"resource\": \"github:acme/widgets:issue-investigation\",\n  \"capacity\": 3,\n  \"overlap\": \"queue\",\n  \"launch\": {\n    \"cwd\": \"/srv/archon/widgets\",\n    \"workflowName\": \"proactive-issue-investigation\",\n    \"inputs\": {},\n    \"isolation\": { \"kind\": \"default\" }\n  },\n  \"selector\": {\n    \"kind\": \"issue.lifecycle\",\n    \"actions\": [\"opened\"],\n    \"repository\": { \"host\": \"github.com\", \"path\": \"acme/widgets\" }\n  },\n  \"inputMapping\": {\n    \"issue_number\": { \"source\": \"field\", \"field\": \"subject.number\" },\n    \"repository\": { \"source\": \"literal\", \"value\": \"acme/widgets\" }\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-a-run-waiting-at-review-18": {
+      "id": "b-55-proactive-workflows-a-run-waiting-at-review-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run waiting at "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and it gives its resource slot back while it waits, so unreviewed drafts do not block later issues. "
+        },
+        {
+          "insert": "capacity: 3",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bounds how many investigations execute at once. When a draft is approved, its run continues ahead of queued issues once a slot frees. This needs a continuation host: "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "archon workflow wake --watch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " beside the trigger host. See "
+        },
+        {
+          "insert": "resource, capacity, and overlap",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "choose-a-resource-capacity-and-overlap-policy",
+              "label": "resource, capacity, and overlap"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-the-run-uses-the-provide-19": {
+      "id": "b-55-proactive-workflows-the-run-uses-the-provide-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The run uses the provider configuration and credentials of "
+        },
+        {
+          "insert": "runAsUserId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI must be authenticated for that user on the execution host, because both agents and the "
+        },
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node call it."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-to-run-the-same-pattern-20": {
+      "id": "b-55-proactive-workflows-to-run-the-same-pattern-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To run the same pattern on a timer instead, use a "
+        },
+        {
+          "insert": "schedule binding",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "configure-a-native-macos-schedule",
+              "label": "schedule binding"
+            }
+          }
+        },
+        {
+          "insert": ". A schedule has no event to map from, so the workflow's first node has to find its own work, such as listing issues opened since the last run. Keep that cursor in a "
+        },
+        {
+          "insert": "durable state document",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "durable-state-documents",
+              "label": "durable state document"
+            }
+          }
+        },
+        {
+          "insert": " and update it from a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node, so the next run starts where this one stopped."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-review-the-draft-21": {
+      "id": "b-55-proactive-workflows-review-the-draft-21",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Review the draft"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-a-triggered-run-has-no-c-22": {
+      "id": "b-55-proactive-workflows-a-triggered-run-has-no-c-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A triggered run has no chat conversation, so the attention message is not posted to a chat. The console's "
+        },
+        {
+          "insert": "Needs your input",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "find-runs-needing-your-input",
+              "label": "Needs your input"
+            }
+          }
+        },
+        {
+          "insert": " banner lists the paused run with its message and approve and reject controls. From the CLI, find paused runs and read the draft with:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-bash-23": {
+      "id": "b-55-proactive-workflows-bash-23",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow status --all\narchon workflow get <run-id>"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-then-approve-or-reject-i-24": {
+      "id": "b-55-proactive-workflows-then-approve-or-reject-i-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then approve or reject it. Approving continues the run to "
+        },
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Rejecting continues it to "
+        },
+        {
+          "insert": "drop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which cancels the run. The reason is recorded as the answer's "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-bash-25": {
+      "id": "b-55-proactive-workflows-bash-25",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow approve <run-id>\narchon workflow reject <run-id> \"Wrong root cause\""
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-check-the-routes-before-26": {
+      "id": "b-55-proactive-workflows-check-the-routes-before-26",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Check the routes before deploying"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-the-fixtures-beside-the-27": {
+      "id": "b-55-proactive-workflows-the-fixtures-beside-the-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The fixtures beside the workflow cover its outcomes. A stub for "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stands in for its answer and must match the approval form's output. "
+        },
+        {
+          "insert": "posted",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " routes an issue to investigation, answers "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "{ decision: approve, text: \"\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and checks that the attention message and the "
+        },
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node both carry the draft. "
+        },
+        {
+          "insert": "rejected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " answers "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "decision: reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and expects the run to end cancelled at "
+        },
+        {
+          "insert": "drop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " has no stub, so the fixture fails if it runs. "
+        },
+        {
+          "insert": "skipped",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " routes an issue to "
+        },
+        {
+          "insert": "skip",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and fails if any later node runs. Run them without calling a model or GitHub:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-bash-28": {
+      "id": "b-55-proactive-workflows-bash-28",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow test proactive-issue-investigation"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-to-see-the-run-stop-at-29": {
+      "id": "b-55-proactive-workflows-to-see-the-run-stop-at-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To see the run stop at "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", stub only the two agent nodes. With no stub for "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the simulation pauses there, as a real run would:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-bash-30": {
+      "id": "b-55-proactive-workflows-bash-30",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run proactive-issue-investigation --dry-run \\\n  --stubs stubs.yaml --input repository=acme/widgets --input issue_number=42"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-where-stubs-yaml-holds-31": {
+      "id": "b-55-proactive-workflows-where-stubs-yaml-holds-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "where "
+        },
+        {
+          "insert": "stubs.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " holds:"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-yaml-32": {
+      "id": "b-55-proactive-workflows-yaml-32",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "classify: { route: investigate, reason: \"a regression with a stack trace\" }\ninvestigate: { comment: \"The cause is the null check in parser.ts\" }"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-adapting-it-33": {
+      "id": "b-55-proactive-workflows-adapting-it-33",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Adapting it"
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-change-what-counts-as-34": {
+      "id": "b-55-proactive-workflows-change-what-counts-as-34",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Change what counts as worth investigating",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the "
+        },
+        {
+          "insert": "classify",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prompt. Keep its output an enum so the "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " condition stays an exact comparison."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-change-the-work-in-t-35": {
+      "id": "b-55-proactive-workflows-change-the-work-in-t-35",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Change the work",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the "
+        },
+        {
+          "insert": "investigate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prompt. Keep the instruction not to write anywhere; "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " exists so the result is approved before it leaves the run."
+        }
+      ],
+      "children": []
+    },
+    "b-55-proactive-workflows-change-the-action-in-36": {
+      "id": "b-55-proactive-workflows-change-the-action-in-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Change the action",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the "
+        },
+        {
+          "insert": "post",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node. If the action itself needs judgment, such as applying a fix, use an agent node after "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and have "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " approve the plan rather than exact text."
+        }
+      ],
+      "children": []
+    }
+  }
+}

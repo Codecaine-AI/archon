@@ -1,0 +1,916 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-50-windows",
+  "title": "Windows Setup",
+  "root": "b-50-windows-root-50",
+  "blocks": {
+    "b-50-windows-root-50": {
+      "id": "b-50-windows-root-50",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Run Archon on Windows natively with Bun or with full WSL2 compatibility.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/windows.md"
+      },
+      "children": [
+        "b-50-windows-archon-runs-on-windows-i-1",
+        "b-50-windows-native-windows-with-bu-2",
+        "b-50-windows-wsl2-recommended-3",
+        "b-50-windows-the-rest-of-this-guide-c-4",
+        "b-50-windows-why-wsl2-5",
+        "b-50-windows-the-archon-cli-relies-on-6",
+        "b-50-windows-git-worktree-operations-7",
+        "b-50-windows-shell-scripting-for-ai-a-8",
+        "b-50-windows-file-system-operations-t-9",
+        "b-50-windows-wsl2-provides-a-full-lin-10",
+        "b-50-windows-quick-wsl2-setup-11",
+        "b-50-windows-install-wsl2-requir-12",
+        "b-50-windows-powershell-13",
+        "b-50-windows-this-installs-ubuntu-by-14",
+        "b-50-windows-set-up-ubuntu-15",
+        "b-50-windows-open-ubuntu-from-the-s-16",
+        "b-50-windows-install-bun-in-wsl2-17",
+        "b-50-windows-bash-18",
+        "b-50-windows-clone-and-install-arch-19",
+        "b-50-windows-bash-20",
+        "b-50-windows-make-cli-globally-avai-21",
+        "b-50-windows-bash-22",
+        "b-50-windows-verify-installation-23",
+        "b-50-windows-bash-24",
+        "b-50-windows-working-with-windows-fil-25",
+        "b-50-windows-wsl2-can-access-your-win-26",
+        "b-50-windows-bash-27",
+        "b-50-windows-for-best-performance-ke-28",
+        "b-50-windows-stale-processes-native-29",
+        "b-50-windows-note-30",
+        "b-50-windows-symptom-the-web-ui-31",
+        "b-50-windows-cause-a-previous-b-32",
+        "b-50-windows-diagnose-33",
+        "b-50-windows-powershell-34",
+        "b-50-windows-note-the-pid-in-the-last-35",
+        "b-50-windows-powershell-36",
+        "b-50-windows-replace-12345-with-th-37",
+        "b-50-windows-fix-kill-by-pid-pr-38",
+        "b-50-windows-powershell-39",
+        "b-50-windows-if-there-are-multiple-st-40",
+        "b-50-windows-powershell-41",
+        "b-50-windows-caution-42",
+        "b-50-windows-see-also-port-conflict-43",
+        "b-50-windows-sleep-during-workflow-ru-44",
+        "b-50-windows-while-a-workflow-run-is-45",
+        "b-50-windows-tips-46",
+        "b-50-windows-vs-code-integration-47",
+        "b-50-windows-terminal-windows-te-48",
+        "b-50-windows-git-use-git-inside-49"
+      ]
+    },
+    "b-50-windows-archon-runs-on-windows-i-1": {
+      "id": "b-50-windows-archon-runs-on-windows-i-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon runs on Windows in two ways:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-native-windows-with-bu-2": {
+      "id": "b-50-windows-native-windows-with-bu-2",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Native Windows with Bun",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Works for basic usage (server, Web UI, simple workflows). No WSL2 required. Install "
+        },
+        {
+          "insert": "Bun for Windows",
+          "attributes": {
+            "link": "https://bun.sh"
+          }
+        },
+        {
+          "insert": ", clone the repo, and run "
+        },
+        {
+          "insert": "bun install && bun run dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-wsl2-recommended-3": {
+      "id": "b-50-windows-wsl2-recommended-3",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "WSL2 (recommended)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Required for full compatibility, especially git worktree isolation, shell-based workflow steps, and CLI features that depend on Unix tooling."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-the-rest-of-this-guide-c-4": {
+      "id": "b-50-windows-the-rest-of-this-guide-c-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The rest of this guide covers the WSL2 setup for full compatibility."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-why-wsl2-5": {
+      "id": "b-50-windows-why-wsl2-5",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Why WSL2?"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-the-archon-cli-relies-on-6": {
+      "id": "b-50-windows-the-archon-cli-relies-on-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Archon CLI relies on Unix-specific features and tools:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-git-worktree-operations-7": {
+      "id": "b-50-windows-git-worktree-operations-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Git worktree operations with symlinks"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-shell-scripting-for-ai-a-8": {
+      "id": "b-50-windows-shell-scripting-for-ai-a-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Shell scripting for AI agent execution"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-file-system-operations-t-9": {
+      "id": "b-50-windows-file-system-operations-t-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "File system operations that differ between Windows and Unix"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-wsl2-provides-a-full-lin-10": {
+      "id": "b-50-windows-wsl2-provides-a-full-lin-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "WSL2 provides a full Linux environment that runs seamlessly on Windows."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-quick-wsl2-setup-11": {
+      "id": "b-50-windows-quick-wsl2-setup-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick WSL2 Setup"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-install-wsl2-requir-12": {
+      "id": "b-50-windows-install-wsl2-requir-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Install WSL2",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (requires Windows 10 version 2004+ or Windows 11):"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-powershell-13": {
+      "id": "b-50-windows-powershell-13",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "wsl --install"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-this-installs-ubuntu-by-14": {
+      "id": "b-50-windows-this-installs-ubuntu-by-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This installs Ubuntu by default. Restart your computer when prompted."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-set-up-ubuntu-15": {
+      "id": "b-50-windows-set-up-ubuntu-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Set up Ubuntu",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-open-ubuntu-from-the-s-16": {
+      "id": "b-50-windows-open-ubuntu-from-the-s-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Open \"Ubuntu\" from the Start menu and create a username/password."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-install-bun-in-wsl2-17": {
+      "id": "b-50-windows-install-bun-in-wsl2-17",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Install Bun in WSL2",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-bash-18": {
+      "id": "b-50-windows-bash-18",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://bun.sh/install | bash\nsource ~/.bashrc"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-clone-and-install-arch-19": {
+      "id": "b-50-windows-clone-and-install-arch-19",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Clone and install Archon",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-bash-20": {
+      "id": "b-50-windows-bash-20",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git clone https://github.com/coleam00/Archon\ncd Archon\nbun install"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-make-cli-globally-avai-21": {
+      "id": "b-50-windows-make-cli-globally-avai-21",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Make CLI globally available",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-bash-22": {
+      "id": "b-50-windows-bash-22",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cd packages/cli\nbun link"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-verify-installation-23": {
+      "id": "b-50-windows-verify-installation-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Verify installation",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-bash-24": {
+      "id": "b-50-windows-bash-24",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon version"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-working-with-windows-fil-25": {
+      "id": "b-50-windows-working-with-windows-fil-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Working with Windows Files"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-wsl2-can-access-your-win-26": {
+      "id": "b-50-windows-wsl2-can-access-your-win-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "WSL2 can access your Windows files at "
+        },
+        {
+          "insert": "/mnt/c/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (for C: drive):"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-bash-27": {
+      "id": "b-50-windows-bash-27",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-investigate --cwd /mnt/c/Users/YourName/Projects/my-repo \"Why does the build fail on Windows?\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-for-best-performance-ke-28": {
+      "id": "b-50-windows-for-best-performance-ke-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For best performance, keep projects inside the WSL2 file system ("
+        },
+        {
+          "insert": "~/projects/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") rather than "
+        },
+        {
+          "insert": "/mnt/c/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-stale-processes-native-29": {
+      "id": "b-50-windows-stale-processes-native-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Stale Processes (Native Windows Only)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-note-30": {
+      "id": "b-50-windows-note-30",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "This section applies to native Windows ("
+        },
+        {
+          "insert": "bun run dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in PowerShell or CMD). If you're using WSL2, use "
+        },
+        {
+          "insert": "pkill -f bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " instead."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-symptom-the-web-ui-31": {
+      "id": "b-50-windows-symptom-the-web-ui-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Symptom:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The Web UI shows a spinning indicator with no response after starting "
+        },
+        {
+          "insert": "bun run dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or you see "
+        },
+        {
+          "insert": "EADDRINUSE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " errors on startup."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-cause-a-previous-b-32": {
+      "id": "b-50-windows-cause-a-previous-b-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Cause:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A previous "
+        },
+        {
+          "insert": "bun",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "node",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process is still holding the port, typically because the terminal was closed without stopping the server."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-diagnose-33": {
+      "id": "b-50-windows-diagnose-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Diagnose:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-powershell-34": {
+      "id": "b-50-windows-powershell-34",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "netstat -ano | findstr :3090"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-note-the-pid-in-the-last-35": {
+      "id": "b-50-windows-note-the-pid-in-the-last-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note the PID in the last column, then confirm which process it is:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-powershell-36": {
+      "id": "b-50-windows-powershell-36",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "tasklist | findstr 12345"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-replace-12345-with-th-37": {
+      "id": "b-50-windows-replace-12345-with-th-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "(Replace "
+        },
+        {
+          "insert": "12345",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the actual PID from "
+        },
+        {
+          "insert": "netstat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-fix-kill-by-pid-pr-38": {
+      "id": "b-50-windows-fix-kill-by-pid-pr-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Fix: kill by PID",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (preferred):"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-powershell-39": {
+      "id": "b-50-windows-powershell-39",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "taskkill /F /PID 12345"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-if-there-are-multiple-st-40": {
+      "id": "b-50-windows-if-there-are-multiple-st-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If there are multiple stale processes:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-powershell-41": {
+      "id": "b-50-windows-powershell-41",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "taskkill /F /IM bun.exe\ntaskkill /F /IM node.exe"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-caution-42": {
+      "id": "b-50-windows-caution-42",
+      "type": "callout",
+      "props": {
+        "title": "Caution",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Do not kill "
+        },
+        {
+          "insert": "claude.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " processes: those are active Claude Code sessions."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-see-also-port-conflict-43": {
+      "id": "b-50-windows-see-also-port-conflict-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See also: "
+        },
+        {
+          "insert": "Port Conflicts",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/60-troubleshooting.md",
+              "section": "port-conflicts",
+              "label": "Port Conflicts"
+            }
+          }
+        },
+        {
+          "insert": " in the troubleshooting guide."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-sleep-during-workflow-ru-44": {
+      "id": "b-50-windows-sleep-during-workflow-ru-44",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Sleep During Workflow Runs (Native Windows Only)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-while-a-workflow-run-is-45": {
+      "id": "b-50-windows-while-a-workflow-run-is-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "While a workflow run is active on native Windows, Archon holds the system awake (via "
+        },
+        {
+          "insert": "SetThreadExecutionState",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") so Modern Standby cannot freeze the executor mid-run: the display can still turn off, only system sleep is inhibited. This is automatic and best-effort: it releases as soon as the last active run finishes, requires no configuration, and if the OS call is unavailable Archon simply runs without it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-tips-46": {
+      "id": "b-50-windows-tips-46",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Tips"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-vs-code-integration-47": {
+      "id": "b-50-windows-vs-code-integration-47",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "VS Code Integration",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Install the \"Remote - WSL\" extension to edit WSL2 files from VS Code"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-terminal-windows-te-48": {
+      "id": "b-50-windows-terminal-windows-te-48",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Terminal",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Windows Terminal provides excellent WSL2 support"
+        }
+      ],
+      "children": []
+    },
+    "b-50-windows-git-use-git-inside-49": {
+      "id": "b-50-windows-git-use-git-inside-49",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Git",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Use Git inside WSL2 for consistent behavior with Archon"
+        }
+      ],
+      "children": []
+    }
+  }
+}

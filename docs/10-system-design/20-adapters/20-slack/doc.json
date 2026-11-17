@@ -1,0 +1,3382 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-20-slack",
+  "title": "Slack",
+  "root": "b-20-slack-root-168",
+  "blocks": {
+    "b-20-slack-root-168": {
+      "id": "b-20-slack-root-168",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Install the Slack chat plugin and connect Archon to Slack over Socket Mode -- works behind firewalls with no public URL needed.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/slack.md"
+      },
+      "children": [
+        "b-20-slack-connect-archon-to-slack-1",
+        "b-20-slack-slack-runs-as-a-chat-plu-2",
+        "b-20-slack-new-identities-are-creat-3",
+        "b-20-slack-prerequisites-4",
+        "b-20-slack-archon-server-running-5",
+        "b-20-slack-a-slack-workspace-where-6",
+        "b-20-slack-an-archon-release-that-p-7",
+        "b-20-slack-overview-8",
+        "b-20-slack-archon-uses-socket-mod-9",
+        "b-20-slack-no-public-http-endpoints-10",
+        "b-20-slack-works-behind-firewalls-11",
+        "b-20-slack-simpler-local-developmen-12",
+        "b-20-slack-not-suitable-for-slack-a-13",
+        "b-20-slack-step-1-create-a-slack-a-14",
+        "b-20-slack-go-to-slack-api-apps-h-15",
+        "b-20-slack-log-in-if-prompted-16",
+        "b-20-slack-choose-the-workspace-for-17",
+        "b-20-slack-click-create-new-app-18",
+        "b-20-slack-choose-from-scratch-19",
+        "b-20-slack-enter-20",
+        "b-20-slack-click-create-app-23",
+        "b-20-slack-step-2-enable-socket-mo-24",
+        "b-20-slack-in-the-left-sidebar-cli-25",
+        "b-20-slack-toggle-enable-socket-m-26",
+        "b-20-slack-when-prompted-create-an-27",
+        "b-20-slack-copy-the-token-star-31",
+        "b-20-slack-step-3-configure-bot-sc-32",
+        "b-20-slack-in-the-left-sidebar-cli-33",
+        "b-20-slack-scroll-down-to-scopes-34",
+        "b-20-slack-add-these-scopes-to-bot-35",
+        "b-20-slack-step-4-subscribe-to-eve-49",
+        "b-20-slack-in-the-left-sidebar-cli-50",
+        "b-20-slack-toggle-enable-events-51",
+        "b-20-slack-under-subscribe-to-bot-52",
+        "b-20-slack-click-save-changes-57",
+        "b-20-slack-step-4b-enable-interact-58",
+        "b-20-slack-interactive-buttons-gat-59",
+        "b-20-slack-in-the-left-sidebar-cli-60",
+        "b-20-slack-toggle-interactivity-61",
+        "b-20-slack-leave-the-request-url-62",
+        "b-20-slack-click-save-changes-63",
+        "b-20-slack-step-4c-register-slash-64",
+        "b-20-slack-two-slash-commands-give-65",
+        "table-0-ab05c7c1",
+        "b-20-slack-for-each-command-67",
+        "b-20-slack-in-the-left-sidebar-cli-68",
+        "b-20-slack-click-create-new-comma-69",
+        "b-20-slack-fill-in-70",
+        "b-20-slack-save-75",
+        "b-20-slack-reinstall-the-app-step-76",
+        "b-20-slack-step-5-install-to-works-77",
+        "b-20-slack-in-the-left-sidebar-cli-78",
+        "b-20-slack-click-install-to-works-79",
+        "b-20-slack-review-the-permissions-a-80",
+        "b-20-slack-copy-the-bot-user-oaut-81",
+        "b-20-slack-step-6-set-environment-82",
+        "b-20-slack-add-both-tokens-to-the-s-83",
+        "b-20-slack-ini-84",
+        "b-20-slack-in-docker-a-nonempty-s-85",
+        "b-20-slack-the-plugin-reads-them-fr-86",
+        "b-20-slack-step-7-install-the-slac-87",
+        "b-20-slack-with-the-release-binary-88",
+        "b-20-slack-bash-89",
+        "b-20-slack-in-a-source-checkout-ru-90",
+        "b-20-slack-in-docker-restart-the-c-91",
+        "b-20-slack-without-a-tag-manual-p-92",
+        "b-20-slack-step-8-invite-bot-to-ch-93",
+        "b-20-slack-go-to-the-slack-channel-94",
+        "b-20-slack-type-invite-your-bot-95",
+        "b-20-slack-the-bot-should-now-respo-96",
+        "b-20-slack-configure-user-whitelist-97",
+        "b-20-slack-to-restrict-bot-access-t-98",
+        "b-20-slack-in-slack-go-to-a-user-s-99",
+        "b-20-slack-add-to-environment-100",
+        "b-20-slack-ini-101",
+        "b-20-slack-when-set-only-listed-us-102",
+        "b-20-slack-configure-streaming-mode-103",
+        "b-20-slack-ini-104",
+        "b-20-slack-for-streaming-mode-detai-105",
+        "b-20-slack-usage-106",
+        "b-20-slack-select-a-registered-proj-107",
+        "b-20-slack-slack-registers-archon-108",
+        "b-20-slack-once-scoped-the-assista-109",
+        "b-20-slack-mention-in-channels-110",
+        "b-20-slack-code-111",
+        "b-20-slack-continue-work-in-thread-112",
+        "b-20-slack-reply-in-the-thread-crea-113",
+        "b-20-slack-code-114",
+        "b-20-slack-start-parallel-work-wor-115",
+        "b-20-slack-code-116",
+        "b-20-slack-direct-messages-117",
+        "b-20-slack-you-can-also-dm-the-bot-118",
+        "b-20-slack-code-119",
+        "b-20-slack-in-thread-ux-120",
+        "b-20-slack-when-a-workflow-runs-in-121",
+        "b-20-slack-adds-to-your-triggeri-122",
+        "b-20-slack-on-execution-completion-123",
+        "b-20-slack-posts-a-single-status-me-124",
+        "b-20-slack-nodes-start-complete-f-125",
+        "b-20-slack-when-approval-details-ar-126",
+        "b-20-slack-buttons-using-labels-wh-127",
+        "b-20-slack-if-approval-details-cann-128",
+        "b-20-slack-notice-naming-the-run-in-129",
+        "b-20-slack-adds-a-cancel-button-130",
+        "b-20-slack-non-terminal-so-the-run-131",
+        "b-20-slack-appends-a-small-italic-c-132",
+        "b-20-slack-e-g-cost-0-0234-133",
+        "b-20-slack-labels-execution-status-134",
+        "b-20-slack-workflows-without-an-aut-135",
+        "b-20-slack-annotates-long-responses-136",
+        "b-20-slack-part-i-n-footers-so-137",
+        "b-20-slack-all-gate-decision-and-ca-138",
+        "b-20-slack-archon-connect-github-139",
+        "b-20-slack-upgrading-from-the-bundl-140",
+        "b-20-slack-earlier-archon-versions-141",
+        "b-20-slack-in-docker-existing-toke-142",
+        "b-20-slack-troubleshooting-143",
+        "b-20-slack-bot-doesn-t-respond-144",
+        "b-20-slack-check-that-the-plugin-is-145",
+        "b-20-slack-check-that-socket-mode-i-146",
+        "b-20-slack-verify-both-tokens-are-c-147",
+        "b-20-slack-ensure-the-bot-is-invite-148",
+        "b-20-slack-make-sure-you-re-mentio-149",
+        "b-20-slack-channel-not-found-erro-150",
+        "b-20-slack-the-bot-needs-to-be-invi-151",
+        "b-20-slack-code-152",
+        "b-20-slack-missing-scope-error-153",
+        "b-20-slack-add-the-required-scope-i-154",
+        "b-20-slack-thread-context-not-worki-155",
+        "b-20-slack-ensure-these-scopes-are-156",
+        "b-20-slack-channels-history-publ-157",
+        "b-20-slack-groups-history-privat-158",
+        "b-20-slack-security-recommendations-159",
+        "b-20-slack-use-user-whitelist-160",
+        "b-20-slack-private-channels-in-161",
+        "b-20-slack-token-security-neve-162",
+        "b-20-slack-reference-links-163",
+        "b-20-slack-slack-api-documentation-164",
+        "b-20-slack-bolt-for-javascript-ht-165",
+        "b-20-slack-socket-mode-guide-http-166",
+        "b-20-slack-permission-scopes-http-167"
+      ]
+    },
+    "b-20-slack-connect-archon-to-slack-1": {
+      "id": "b-20-slack-connect-archon-to-slack-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to Slack so you can interact with your AI coding assistant from any Slack workspace."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-slack-runs-as-a-chat-plu-2": {
+      "id": "b-20-slack-slack-runs-as-a-chat-plu-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Slack runs as a chat plugin, "
+        },
+        {
+          "insert": "chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", released with Archon. The server starts the plugin as its own process and talks to it over the chat plugin protocol; the server itself contains no Slack code. You create a Slack app, set its two tokens in the server environment, and install the plugin. Docker provisions the image-provided plugin automatically when "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is configured."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-new-identities-are-creat-3": {
+      "id": "b-20-slack-new-identities-are-creat-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "New identities are created as members. The operator can designate admins with "
+        },
+        {
+          "insert": "archon user role <id> admin",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "users-and-roles",
+              "label": "`archon user role <id> admin`"
+            }
+          }
+        },
+        {
+          "insert": "; only a run's starter or an admin can act on it. See "
+        },
+        {
+          "insert": "Who can act on a run",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "who-can-act-on-a-run",
+              "label": "Who can act on a run"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-prerequisites-4": {
+      "id": "b-20-slack-prerequisites-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-archon-server-running-5": {
+      "id": "b-20-slack-archon-server-running-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-a-slack-workspace-where-6": {
+      "id": "b-20-slack-a-slack-workspace-where-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Slack workspace where you have permission to install apps"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-an-archon-release-that-p-7": {
+      "id": "b-20-slack-an-archon-release-that-p-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An Archon release that publishes the Slack plugin asset ("
+        },
+        {
+          "insert": "archon-chat-slack-<os>-<arch>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-overview-8": {
+      "id": "b-20-slack-overview-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Overview"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-archon-uses-socket-mod-9": {
+      "id": "b-20-slack-archon-uses-socket-mod-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon uses "
+        },
+        {
+          "insert": "Socket Mode",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " for Slack integration, which means:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-no-public-http-endpoints-10": {
+      "id": "b-20-slack-no-public-http-endpoints-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No public HTTP endpoints needed"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-works-behind-firewalls-11": {
+      "id": "b-20-slack-works-behind-firewalls-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Works behind firewalls"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-simpler-local-developmen-12": {
+      "id": "b-20-slack-simpler-local-developmen-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Simpler local development"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-not-suitable-for-slack-a-13": {
+      "id": "b-20-slack-not-suitable-for-slack-a-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Not suitable for Slack App Directory (fine for personal/team use)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-1-create-a-slack-a-14": {
+      "id": "b-20-slack-step-1-create-a-slack-a-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 1: Create a Slack App"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-go-to-slack-api-apps-h-15": {
+      "id": "b-20-slack-go-to-slack-api-apps-h-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to "
+        },
+        {
+          "insert": "Slack API Apps",
+          "attributes": {
+            "link": "https://api.slack.com/apps"
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-log-in-if-prompted-16": {
+      "id": "b-20-slack-log-in-if-prompted-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Log in if prompted"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-choose-the-workspace-for-17": {
+      "id": "b-20-slack-choose-the-workspace-for-17",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Choose the workspace for your app"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-create-new-app-18": {
+      "id": "b-20-slack-click-create-new-app-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Create New App",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-choose-from-scratch-19": {
+      "id": "b-20-slack-choose-from-scratch-19",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Choose "
+        },
+        {
+          "insert": "From scratch",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-enter-20": {
+      "id": "b-20-slack-enter-20",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Enter:"
+        }
+      ],
+      "children": [
+        "b-20-slack-app-name-any-name-21",
+        "b-20-slack-workspace-select-yo-22"
+      ]
+    },
+    "b-20-slack-app-name-any-name-21": {
+      "id": "b-20-slack-app-name-any-name-21",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "App Name",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Any name (this is what you will use to @mention the bot)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-workspace-select-yo-22": {
+      "id": "b-20-slack-workspace-select-yo-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workspace",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Select your workspace"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-create-app-23": {
+      "id": "b-20-slack-click-create-app-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Create App",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-2-enable-socket-mo-24": {
+      "id": "b-20-slack-step-2-enable-socket-mo-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 2: Enable Socket Mode"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-25": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-25",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "Socket Mode",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-toggle-enable-socket-m-26": {
+      "id": "b-20-slack-toggle-enable-socket-m-26",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Toggle "
+        },
+        {
+          "insert": "Enable Socket Mode",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " to ON"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-when-prompted-create-an-27": {
+      "id": "b-20-slack-when-prompted-create-an-27",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "When prompted, create an App-Level Token:"
+        }
+      ],
+      "children": [
+        "b-20-slack-token-name-socket-28",
+        "b-20-slack-scopes-add-connect-29",
+        "b-20-slack-click-generate-30"
+      ]
+    },
+    "b-20-slack-token-name-socket-28": {
+      "id": "b-20-slack-token-name-socket-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Token Name",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "socket-mode",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-scopes-add-connect-29": {
+      "id": "b-20-slack-scopes-add-connect-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Scopes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Add "
+        },
+        {
+          "insert": "connections:write",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-generate-30": {
+      "id": "b-20-slack-click-generate-30",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Generate",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-copy-the-token-star-31": {
+      "id": "b-20-slack-copy-the-token-star-31",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the token",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (starts with "
+        },
+        {
+          "insert": "xapp-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") -- this is your "
+        },
+        {
+          "insert": "SLACK_APP_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-3-configure-bot-sc-32": {
+      "id": "b-20-slack-step-3-configure-bot-sc-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 3: Configure Bot Scopes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-33": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-33",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "OAuth & Permissions",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-scroll-down-to-scopes-34": {
+      "id": "b-20-slack-scroll-down-to-scopes-34",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Scroll down to "
+        },
+        {
+          "insert": "Scopes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " > "
+        },
+        {
+          "insert": "Bot Token Scopes",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-add-these-scopes-to-bot-35": {
+      "id": "b-20-slack-add-these-scopes-to-bot-35",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Add these scopes to bot token scopes:"
+        }
+      ],
+      "children": [
+        "b-20-slack-app-mentions-read-r-36",
+        "b-20-slack-chat-write-send-and-37",
+        "b-20-slack-channels-history-re-38",
+        "b-20-slack-channels-join-allow-39",
+        "b-20-slack-groups-history-read-40",
+        "b-20-slack-im-history-read-dm-41",
+        "b-20-slack-im-write-send-dms-42",
+        "b-20-slack-im-read-read-dm-his-43",
+        "b-20-slack-mpim-history-read-g-44",
+        "b-20-slack-mpim-write-send-gro-45",
+        "b-20-slack-reactions-write-add-46",
+        "b-20-slack-commands-required-f-47",
+        "b-20-slack-users-read-look-up-48"
+      ]
+    },
+    "b-20-slack-app-mentions-read-r-36": {
+      "id": "b-20-slack-app-mentions-read-r-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "app_mentions:read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Receive @mention events"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-chat-write-send-and-37": {
+      "id": "b-20-slack-chat-write-send-and-37",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "chat:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Send and edit messages (covers "
+        },
+        {
+          "insert": "chat.update",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the bot's own messages)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-channels-history-re-38": {
+      "id": "b-20-slack-channels-history-re-38",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "channels:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Read messages in public channels (for thread context)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-channels-join-allow-39": {
+      "id": "b-20-slack-channels-join-allow-39",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "channels:join",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Allow bot to join public channels"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-groups-history-read-40": {
+      "id": "b-20-slack-groups-history-read-40",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "groups:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Read messages in private channels (optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-im-history-read-dm-41": {
+      "id": "b-20-slack-im-history-read-dm-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "im:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Read DM history (for DM support)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-im-write-send-dms-42": {
+      "id": "b-20-slack-im-write-send-dms-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "im:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Send DMs"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-im-read-read-dm-his-43": {
+      "id": "b-20-slack-im-read-read-dm-his-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "im:read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Read DM history (for DM support)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-mpim-history-read-g-44": {
+      "id": "b-20-slack-mpim-history-read-g-44",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "mpim:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Read group DM history (optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-mpim-write-send-gro-45": {
+      "id": "b-20-slack-mpim-write-send-gro-45",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "mpim:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Send group DMs"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-reactions-write-add-46": {
+      "id": "b-20-slack-reactions-write-add-46",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "reactions:write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Add lifecycle reactions (🔄 / ✅ / ❌) to the triggering message"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-commands-required-f-47": {
+      "id": "b-20-slack-commands-required-f-47",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "commands",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Required for the "
+        },
+        {
+          "insert": "/archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/archon-workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " slash commands"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-users-read-look-up-48": {
+      "id": "b-20-slack-users-read-look-up-48",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "users:read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Look up real names via "
+        },
+        {
+          "insert": "users.info",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for user attribution. Without this scope messages still flow, but real names do not appear in the Archon database."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-4-subscribe-to-eve-49": {
+      "id": "b-20-slack-step-4-subscribe-to-eve-49",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4: Subscribe to Events"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-50": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-50",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "Event Subscriptions",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-toggle-enable-events-51": {
+      "id": "b-20-slack-toggle-enable-events-51",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Toggle "
+        },
+        {
+          "insert": "Enable Events",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " to ON"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-under-subscribe-to-bot-52": {
+      "id": "b-20-slack-under-subscribe-to-bot-52",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Under "
+        },
+        {
+          "insert": "Subscribe to bot events",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", add:"
+        }
+      ],
+      "children": [
+        "b-20-slack-app-mention-when-so-53",
+        "b-20-slack-message-im-direct-m-54",
+        "b-20-slack-message-channels-me-55",
+        "b-20-slack-message-groups-mess-56"
+      ]
+    },
+    "b-20-slack-app-mention-when-so-53": {
+      "id": "b-20-slack-app-mention-when-so-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "app_mention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- When someone @mentions your bot"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-message-im-direct-m-54": {
+      "id": "b-20-slack-message-im-direct-m-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "message.im",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Direct messages to your bot"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-message-channels-me-55": {
+      "id": "b-20-slack-message-channels-me-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "message.channels",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Messages in public channels (optional, for broader context)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-message-groups-mess-56": {
+      "id": "b-20-slack-message-groups-mess-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "message.groups",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- Messages in private channels (optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-save-changes-57": {
+      "id": "b-20-slack-click-save-changes-57",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Save Changes",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-4b-enable-interact-58": {
+      "id": "b-20-slack-step-4b-enable-interact-58",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4b: Enable Interactivity"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-interactive-buttons-gat-59": {
+      "id": "b-20-slack-interactive-buttons-gat-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Interactive buttons (gate decisions and Cancel on workflow runs) ride the same\nSocket Mode connection -- no public URL needed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-60": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-60",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "Interactivity & Shortcuts",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-toggle-interactivity-61": {
+      "id": "b-20-slack-toggle-interactivity-61",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Toggle "
+        },
+        {
+          "insert": "Interactivity",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " to ON"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-leave-the-request-url-62": {
+      "id": "b-20-slack-leave-the-request-url-62",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Leave the "
+        },
+        {
+          "insert": "Request URL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " field blank -- Socket Mode handles routing"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-save-changes-63": {
+      "id": "b-20-slack-click-save-changes-63",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Save Changes",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-4c-register-slash-64": {
+      "id": "b-20-slack-step-4c-register-slash-64",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4c: Register Slash Commands"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-two-slash-commands-give-65": {
+      "id": "b-20-slack-two-slash-commands-give-65",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Two slash commands give the team an alternative to @mention:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-ab05c7c1": {
+      "id": "table-0-ab05c7c1",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "What it does"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/archon <message>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Starts a new thread in the current channel. To continue an existing thread, post "
+              },
+              {
+                "insert": "@archon <message>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " in that thread."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "/archon-workflow <subcommand>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Direct workflow control. Supports "
+              },
+              {
+                "insert": "list",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "status",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "get <id>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "run <name> <args>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "approve <id> [comment]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reject <id> [reason]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "respond <id> <decision> [text]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "abandon <id>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "resume <id>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-slack-for-each-command-67": {
+      "id": "b-20-slack-for-each-command-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For each command:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-68": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-68",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "Slash Commands",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-create-new-comma-69": {
+      "id": "b-20-slack-click-create-new-comma-69",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Create New Command",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-fill-in-70": {
+      "id": "b-20-slack-fill-in-70",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Fill in:"
+        }
+      ],
+      "children": [
+        "b-20-slack-command-archon-71",
+        "b-20-slack-request-url-leave-b-72",
+        "b-20-slack-short-description-e-73",
+        "b-20-slack-usage-hint-e-g-m-74"
+      ]
+    },
+    "b-20-slack-command-archon-71": {
+      "id": "b-20-slack-command-archon-71",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Command",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "/archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "/archon-workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-request-url-leave-b-72": {
+      "id": "b-20-slack-request-url-leave-b-72",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Request URL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": leave blank -- Socket Mode handles routing"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-short-description-e-73": {
+      "id": "b-20-slack-short-description-e-73",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Short Description",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": e.g. \"Talk to Archon\" or \"Archon workflow control\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-usage-hint-e-g-m-74": {
+      "id": "b-20-slack-usage-hint-e-g-m-74",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Usage Hint",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": e.g. "
+        },
+        {
+          "insert": "<message>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "<subcommand>",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-save-75": {
+      "id": "b-20-slack-save-75",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Save"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-reinstall-the-app-step-76": {
+      "id": "b-20-slack-reinstall-the-app-step-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Reinstall the app (Step 5) after adding scopes or commands so Slack issues a\nfresh token with the new permissions."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-5-install-to-works-77": {
+      "id": "b-20-slack-step-5-install-to-works-77",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 5: Install to Workspace"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-the-left-sidebar-cli-78": {
+      "id": "b-20-slack-in-the-left-sidebar-cli-78",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In the left sidebar, click "
+        },
+        {
+          "insert": "Install App",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-click-install-to-works-79": {
+      "id": "b-20-slack-click-install-to-works-79",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click "
+        },
+        {
+          "insert": "Install to Workspace",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-review-the-permissions-a-80": {
+      "id": "b-20-slack-review-the-permissions-a-80",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Review the permissions and click "
+        },
+        {
+          "insert": "Allow",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-copy-the-bot-user-oaut-81": {
+      "id": "b-20-slack-copy-the-bot-user-oaut-81",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the Bot User OAuth Token",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (starts with "
+        },
+        {
+          "insert": "xoxb-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") -- this is your "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-6-set-environment-82": {
+      "id": "b-20-slack-step-6-set-environment-82",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 6: Set Environment Variables"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-add-both-tokens-to-the-s-83": {
+      "id": "b-20-slack-add-both-tokens-to-the-s-83",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add both tokens to the server's env file ("
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or the compose "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Docker):"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-ini-84": {
+      "id": "b-20-slack-ini-84",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "SLACK_BOT_TOKEN=xoxb-your-bot-token\nSLACK_APP_TOKEN=xapp-your-app-token"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-docker-a-nonempty-s-85": {
+      "id": "b-20-slack-in-docker-a-nonempty-s-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In Docker, a nonempty "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declares installation at startup, including tokens in "
+        },
+        {
+          "insert": "/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Both tokens are required for a connection."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-the-plugin-reads-them-fr-86": {
+      "id": "b-20-slack-the-plugin-reads-them-fr-86",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The plugin reads them from the environment the server starts it with. If either is missing, the plugin fails to start and the server does not retry it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-7-install-the-slac-87": {
+      "id": "b-20-slack-step-7-install-the-slac-87",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 7: Install the Slack Plugin"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-with-the-release-binary-88": {
+      "id": "b-20-slack-with-the-release-binary-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With the release binary or Homebrew:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-bash-89": {
+      "id": "b-20-slack-bash-89",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/chat-slack"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-a-source-checkout-ru-90": {
+      "id": "b-20-slack-in-a-source-checkout-ru-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In a source checkout, run "
+        },
+        {
+          "insert": "bun run cli plugin add coleam00/Archon/plugins/chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-docker-restart-the-c-91": {
+      "id": "b-20-slack-in-docker-restart-the-c-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In Docker, restart the container with its tokens configured. The image-provided release installs offline before the server starts, writes a verified receipt to "
+        },
+        {
+          "insert": "/.archon/plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and logs why it was provisioned. No manual install is needed. A valid installed Slack plugin is retained at its current version. See "
+        },
+        {
+          "insert": "Building the image",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "building-the-image",
+              "label": "Building the image"
+            }
+          }
+        },
+        {
+          "insert": " for the release pin and build args."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-without-a-tag-manual-p-92": {
+      "id": "b-20-slack-without-a-tag-manual-p-92",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Without a tag, manual "
+        },
+        {
+          "insert": "plugin add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " installs the latest release. Restart the server; Slack appears in "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " once the plugin connects. Keep the plugin current with "
+        },
+        {
+          "insert": "archon plugin update coleam00/Archon/plugins/chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and remove it with "
+        },
+        {
+          "insert": "archon plugin remove coleam00/Archon/plugins/chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". In Docker, remove Slack tokens from every effective env source as well, or the image plugin is reinstalled on restart. Outside Docker, removal followed by a restart keeps Slack off. See "
+        },
+        {
+          "insert": "archon plugin",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "plugin",
+              "label": "`archon plugin`"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-step-8-invite-bot-to-ch-93": {
+      "id": "b-20-slack-step-8-invite-bot-to-ch-93",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 8: Invite Bot to Channel"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-go-to-the-slack-channel-94": {
+      "id": "b-20-slack-go-to-the-slack-channel-94",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to the Slack channel where you want to use the bot"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-type-invite-your-bot-95": {
+      "id": "b-20-slack-type-invite-your-bot-95",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Type "
+        },
+        {
+          "insert": "/invite @your-bot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (your bot's display name)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-the-bot-should-now-respo-96": {
+      "id": "b-20-slack-the-bot-should-now-respo-96",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The bot should now respond to @mentions in that channel"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-configure-user-whitelist-97": {
+      "id": "b-20-slack-configure-user-whitelist-97",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure User Whitelist (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-to-restrict-bot-access-t-98": {
+      "id": "b-20-slack-to-restrict-bot-access-t-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To restrict bot access to specific users:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-slack-go-to-a-user-s-99": {
+      "id": "b-20-slack-in-slack-go-to-a-user-s-99",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In Slack, go to a user's profile > click \"...\" > \"Copy member ID\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-add-to-environment-100": {
+      "id": "b-20-slack-add-to-environment-100",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Add to environment:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-ini-101": {
+      "id": "b-20-slack-ini-101",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "SLACK_ALLOWED_USER_IDS=U01ABC123,U02DEF456"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-when-set-only-listed-us-102": {
+      "id": "b-20-slack-when-set-only-listed-us-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When set, only listed user IDs can interact with the bot. When empty/unset, the bot responds to all users. The server enforces this list, for messages and for button clicks alike, before anything reaches Archon."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-configure-streaming-mode-103": {
+      "id": "b-20-slack-configure-streaming-mode-103",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure Streaming Mode (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-ini-104": {
+      "id": "b-20-slack-ini-104",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "SLACK_STREAMING_MODE=batch  # batch (default) | stream"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-for-streaming-mode-detai-105": {
+      "id": "b-20-slack-for-streaming-mode-detai-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For streaming mode details, see "
+        },
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-usage-106": {
+      "id": "b-20-slack-usage-106",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Usage"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-select-a-registered-proj-107": {
+      "id": "b-20-slack-select-a-registered-proj-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Select a registered project by posting "
+        },
+        {
+          "insert": "@your-bot /setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the target thread. To register a local directory first, post "
+        },
+        {
+          "insert": "@your-bot /register-project [--folder] <name> <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then select it; registration alone does not bind the conversation. Projectless questions still work. Selection applies to that conversation, not every channel."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-slack-registers-archon-108": {
+      "id": "b-20-slack-slack-registers-archon-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Slack registers "
+        },
+        {
+          "insert": "/archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/archon-workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", not raw "
+        },
+        {
+          "insert": "/setproject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "/register-project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " slash commands. "
+        },
+        {
+          "insert": "/archon <message>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " creates a new thread; use an @mention in the existing thread to scope that conversation."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-once-scoped-the-assista-109": {
+      "id": "b-20-slack-once-scoped-the-assista-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once scoped, the assistant launches and manages runs through its native tools (Claude, Codex, Pi) or the existing CLI (Copilot/OpenCode). CLI launches are detached and headless, use CLI identity and return a run ID for inspection; they do not deliver progress or results to the originating chat. See "
+        },
+        {
+          "insert": "Deprecated providers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "deprecated-providers",
+              "label": "Deprecated providers"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-mention-in-channels-110": {
+      "id": "b-20-slack-mention-in-channels-110",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "@Mention in Channels"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-code-111": {
+      "id": "b-20-slack-code-111",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@your-bot /clone https://github.com/user/repo"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-continue-work-in-thread-112": {
+      "id": "b-20-slack-continue-work-in-thread-112",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Continue Work in Thread"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-reply-in-the-thread-crea-113": {
+      "id": "b-20-slack-reply-in-the-thread-crea-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Reply in the thread created by the initial message:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-code-114": {
+      "id": "b-20-slack-code-114",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@your-bot /status"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-start-parallel-work-wor-115": {
+      "id": "b-20-slack-start-parallel-work-wor-115",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Start Parallel Work (Worktree)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-code-116": {
+      "id": "b-20-slack-code-116",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@your-bot /worktree feature-branch"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-direct-messages-117": {
+      "id": "b-20-slack-direct-messages-117",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Direct Messages"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-you-can-also-dm-the-bot-118": {
+      "id": "b-20-slack-you-can-also-dm-the-bot-118",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can also DM the bot directly -- no @mention needed:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-code-119": {
+      "id": "b-20-slack-code-119",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "/help"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-thread-ux-120": {
+      "id": "b-20-slack-in-thread-ux-120",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "In-Thread UX"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-when-a-workflow-runs-in-121": {
+      "id": "b-20-slack-when-a-workflow-runs-in-121",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When a workflow runs in a Slack thread, Archon now:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-adds-to-your-triggeri-122": {
+      "id": "b-20-slack-adds-to-your-triggeri-122",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Adds 🔄 to your triggering message when the run starts, and swaps it for ✅"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-on-execution-completion-123": {
+      "id": "b-20-slack-on-execution-completion-123",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "on execution completion or ❌ on execution failure / cancellation. If a declared\nauthored outcome disagrees, it also adds the outcome reaction, so both facts remain visible"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-posts-a-single-status-me-124": {
+      "id": "b-20-slack-posts-a-single-status-me-124",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Posts a single status message in the thread that's edited in place as DAG"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-nodes-start-complete-f-125": {
+      "id": "b-20-slack-nodes-start-complete-f-125",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "nodes start, complete, fail, or get skipped"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-when-approval-details-ar-126": {
+      "id": "b-20-slack-when-approval-details-ar-126",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "When approval details are available, renders the gate's declared decisions as"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-buttons-using-labels-wh-127": {
+      "id": "b-20-slack-buttons-using-labels-wh-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "buttons, using labels when supplied and sending the exact decision ID.\nLegacy gates keep "
+        },
+        {
+          "insert": "Approve",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " / "
+        },
+        {
+          "insert": "Reject",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ".\nThe fallback text lists "
+        },
+        {
+          "insert": "/archon-workflow respond <id> <decision> [text]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " commands;\nuse these to include optional text with a decision. For a parent blocked on a\nchild run, these parent controls redirect to the child instead of recording a\nparent decision. Answer the child run using the displayed child command"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-if-approval-details-cann-128": {
+      "id": "b-20-slack-if-approval-details-cann-128",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "If approval details cannot be loaded, posts an "
+        },
+        {
+          "insert": "Approval details unavailable",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-notice-naming-the-run-in-129": {
+      "id": "b-20-slack-notice-naming-the-run-in-129",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "notice naming the run instead of decision buttons or response commands. Check\nthe run status before responding"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-adds-a-cancel-button-130": {
+      "id": "b-20-slack-adds-a-cancel-button-130",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Adds a "
+        },
+        {
+          "insert": "Cancel",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " button on the status message while the run is"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-non-terminal-so-the-run-131": {
+      "id": "b-20-slack-non-terminal-so-the-run-131",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "non-terminal, so the run's starter or an admin can abandon a runaway run\nwith a click"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-appends-a-small-italic-c-132": {
+      "id": "b-20-slack-appends-a-small-italic-c-132",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Appends a small italic cost / token footer after direct-chat replies"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-e-g-cost-0-0234-133": {
+      "id": "b-20-slack-e-g-cost-0-0234-133",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "(e.g. "
+        },
+        {
+          "insert": "_cost: $0.0234 · 12.4k tokens · stop: end_turn_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and on the\nfinal status message when a workflow completes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-labels-execution-status-134": {
+      "id": "b-20-slack-labels-execution-status-134",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Labels execution status and a non-null authored outcome separately in the final status message;"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-workflows-without-an-aut-135": {
+      "id": "b-20-slack-workflows-without-an-aut-135",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "workflows without an authored outcome retain the existing status-only message"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-annotates-long-responses-136": {
+      "id": "b-20-slack-annotates-long-responses-136",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Annotates long responses split across multiple Slack messages with"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-part-i-n-footers-so-137": {
+      "id": "b-20-slack-part-i-n-footers-so-137",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "_part i/n_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " footers so it's clear they belong together"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-all-gate-decision-and-ca-138": {
+      "id": "b-20-slack-all-gate-decision-and-ca-138",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All gate-decision and Cancel clicks run through the same\n"
+        },
+        {
+          "insert": "SLACK_ALLOWED_USER_IDS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " whitelist as inbound messages -- clicks from users\noutside it are dropped. A member who is not the run's starter or an admin sees\na refusal only they can see."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-archon-connect-github-139": {
+      "id": "b-20-slack-archon-connect-github-139",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "/archon connect github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " replies with a pointer to the Web UI or\n"
+        },
+        {
+          "insert": "archon auth github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; it does not run the GitHub device flow in Slack."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-upgrading-from-the-bundl-140": {
+      "id": "b-20-slack-upgrading-from-the-bundl-140",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Upgrading From the Bundled Slack Adapter"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-earlier-archon-versions-141": {
+      "id": "b-20-slack-earlier-archon-versions-141",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Earlier Archon versions ran Slack inside the server whenever "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "SLACK_APP_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " were set. The server no longer contains that adapter: without the\nplugin, Slack stays off. When "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set and no Slack plugin is installed,\nstartup logs a "
+        },
+        {
+          "insert": "chat.bundled_adapter_retired",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " warning with Docker provisioning guidance and the manual install command."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-in-docker-existing-toke-142": {
+      "id": "b-20-slack-in-docker-existing-toke-142",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In Docker, existing token configuration provisions the image-provided plugin offline on restart; no manual step is needed. The boot log names the release and why it was installed. Outside Docker, install the plugin (Step 7) and restart. Nothing else changes: the tokens, the Slack app\nconfiguration, "
+        },
+        {
+          "insert": "SLACK_ALLOWED_USER_IDS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "SLACK_STREAMING_MODE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stay as they are, and\nexisting conversations, linked identities and workspaces carry over because the plugin\nkeeps the platform id "
+        },
+        {
+          "insert": "slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-troubleshooting-143": {
+      "id": "b-20-slack-troubleshooting-143",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-bot-doesn-t-respond-144": {
+      "id": "b-20-slack-bot-doesn-t-respond-144",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Bot Doesn't Respond"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-check-that-the-plugin-is-145": {
+      "id": "b-20-slack-check-that-the-plugin-is-145",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check that the plugin is installed: "
+        },
+        {
+          "insert": "archon plugin list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows "
+        },
+        {
+          "insert": "coleam00/Archon/plugins/chat-slack",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-check-that-socket-mode-i-146": {
+      "id": "b-20-slack-check-that-socket-mode-i-146",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check that Socket Mode is enabled"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-verify-both-tokens-are-c-147": {
+      "id": "b-20-slack-verify-both-tokens-are-c-147",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Verify both tokens are correct in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then check the server log for "
+        },
+        {
+          "insert": "chat.bundled_adapter_retired",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or a plugin start failure"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-ensure-the-bot-is-invite-148": {
+      "id": "b-20-slack-ensure-the-bot-is-invite-148",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Ensure the bot is invited to the channel"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-make-sure-you-re-mentio-149": {
+      "id": "b-20-slack-make-sure-you-re-mentio-149",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Make sure you're @mentioning the bot (not just typing)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-channel-not-found-erro-150": {
+      "id": "b-20-slack-channel-not-found-erro-150",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "\"channel"
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "found\" Error"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-the-bot-needs-to-be-invi-151": {
+      "id": "b-20-slack-the-bot-needs-to-be-invi-151",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The bot needs to be invited to the channel:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-code-152": {
+      "id": "b-20-slack-code-152",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "/invite @your-bot"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-missing-scope-error-153": {
+      "id": "b-20-slack-missing-scope-error-153",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "\"missing_scope\" Error"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-add-the-required-scope-i-154": {
+      "id": "b-20-slack-add-the-required-scope-i-154",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the required scope in "
+        },
+        {
+          "insert": "OAuth & Permissions",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and reinstall the app."
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-thread-context-not-worki-155": {
+      "id": "b-20-slack-thread-context-not-worki-155",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Thread Context Not Working"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-ensure-these-scopes-are-156": {
+      "id": "b-20-slack-ensure-these-scopes-are-156",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Ensure these scopes are added:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-channels-history-publ-157": {
+      "id": "b-20-slack-channels-history-publ-157",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "channels:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (public channels)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-groups-history-privat-158": {
+      "id": "b-20-slack-groups-history-privat-158",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "groups:history",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (private channels)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-security-recommendations-159": {
+      "id": "b-20-slack-security-recommendations-159",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Security Recommendations"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-use-user-whitelist-160": {
+      "id": "b-20-slack-use-user-whitelist-160",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Use User Whitelist",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Set "
+        },
+        {
+          "insert": "SLACK_ALLOWED_USER_IDS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to restrict bot access"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-private-channels-in-161": {
+      "id": "b-20-slack-private-channels-in-161",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Private Channels",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Invite the bot only to channels where it's needed"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-token-security-neve-162": {
+      "id": "b-20-slack-token-security-neve-162",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Token Security",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Never commit tokens to version control"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-reference-links-163": {
+      "id": "b-20-slack-reference-links-163",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Reference Links"
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-slack-api-documentation-164": {
+      "id": "b-20-slack-slack-api-documentation-164",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Slack API Documentation",
+          "attributes": {
+            "link": "https://api.slack.com/docs"
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-bolt-for-javascript-ht-165": {
+      "id": "b-20-slack-bolt-for-javascript-ht-165",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Bolt for JavaScript",
+          "attributes": {
+            "link": "https://tools.slack.dev/bolt-js/"
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-socket-mode-guide-http-166": {
+      "id": "b-20-slack-socket-mode-guide-http-166",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Socket Mode Guide",
+          "attributes": {
+            "link": "https://api.slack.com/apis/connections/socket"
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-slack-permission-scopes-http-167": {
+      "id": "b-20-slack-permission-scopes-http-167",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Permission Scopes",
+          "attributes": {
+            "link": "https://api.slack.com/scopes"
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

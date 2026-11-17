@@ -1,0 +1,1633 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-50-global-workflows",
+  "title": "Global Workflows, Commands, and Scripts",
+  "root": "b-50-global-workflows-root-70",
+  "blocks": {
+    "b-50-global-workflows-root-70": {
+      "id": "b-50-global-workflows-root-70",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Define user-level workflows, commands, and scripts that apply to every project on your machine.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/global-workflows.md"
+      },
+      "children": [
+        "b-50-global-workflows-workflows-placed-in-1",
+        "b-50-global-workflows-paths-2",
+        "b-50-global-workflows-code-3",
+        "b-50-global-workflows-or-if-you-have-set-arc-4",
+        "b-50-global-workflows-code-5",
+        "b-50-global-workflows-create-the-directories-i-6",
+        "b-50-global-workflows-bash-7",
+        "b-50-global-workflows-note-on-location-th-8",
+        "b-50-global-workflows-supported-layouts-9",
+        "b-50-global-workflows-shared-commands-scripts-10",
+        "b-50-global-workflows-text-11",
+        "b-50-global-workflows-yaml-nested-below-the-wo-12",
+        "b-50-global-workflows-commands-resolve-by-fi-13",
+        "b-50-global-workflows-load-priority-14",
+        "b-50-global-workflows-bundled-defaults-lo-15",
+        "b-50-global-workflows-global-home-scoped-16",
+        "b-50-global-workflows-repo-specific-r-17",
+        "b-50-global-workflows-same-named-legacy-shared-18",
+        "b-50-global-workflows-installed-workflow-packs-19",
+        "b-50-global-workflows-a-workflow-pack-publishe-20",
+        "b-50-global-workflows-a-plugin-root-is-a-direc-21",
+        "b-50-global-workflows-text-22",
+        "b-50-global-workflows-the-whole-plugin-directo-23",
+        "b-50-global-workflows-json-24",
+        "b-50-global-workflows-identity-an-entrypo-25",
+        "b-50-global-workflows-support-workflows-e-26",
+        "b-50-global-workflows-names-a-qualified-n-27",
+        "b-50-global-workflows-runs-keep-their-revisi-28",
+        "b-50-global-workflows-installed-or-copied-29",
+        "b-50-global-workflows-practical-examples-30",
+        "b-50-global-workflows-personal-code-review-31",
+        "b-50-global-workflows-a-workflow-that-runs-you-32",
+        "b-50-global-workflows-yaml-33",
+        "b-50-global-workflows-custom-linting-or-format-34",
+        "b-50-global-workflows-a-workflow-that-runs-pro-35",
+        "b-50-global-workflows-yaml-36",
+        "b-50-global-workflows-quick-explain-37",
+        "b-50-global-workflows-a-simple-workflow-for-un-38",
+        "b-50-global-workflows-yaml-39",
+        "b-50-global-workflows-personal-command-helpers-40",
+        "b-50-global-workflows-commands-placed-in-a-41",
+        "b-50-global-workflows-markdown-42",
+        "b-50-global-workflows-a-workflow-in-any-repo-c-43",
+        "b-50-global-workflows-yaml-44",
+        "b-50-global-workflows-syncing-with-dotfiles-45",
+        "b-50-global-workflows-if-you-manage-your-confi-46",
+        "b-50-global-workflows-bash-47",
+        "b-50-global-workflows-then-symlink-during-dotf-48",
+        "b-50-global-workflows-bash-49",
+        "b-50-global-workflows-or-copy-them-as-part-of-50",
+        "b-50-global-workflows-bash-51",
+        "b-50-global-workflows-this-way-your-personal-w-52",
+        "b-50-global-workflows-cli-and-web-support-53",
+        "b-50-global-workflows-the-cli-server-and-web-54",
+        "b-50-global-workflows-bash-55",
+        "b-50-global-workflows-in-the-web-ui-workflow-b-56",
+        "b-50-global-workflows-migrating-from-the-old-p-57",
+        "b-50-global-workflows-earlier-versions-of-arch-58",
+        "b-50-global-workflows-bash-59",
+        "b-50-global-workflows-if-the-destination-alrea-60",
+        "b-50-global-workflows-troubleshooting-61",
+        "b-50-global-workflows-workflow-not-appearing-i-62",
+        "b-50-global-workflows-check-the-path-th-63",
+        "b-50-global-workflows-bash-64",
+        "b-50-global-workflows-check-file-extension-65",
+        "b-50-global-workflows-check-yaml-validity-66",
+        "b-50-global-workflows-bash-67",
+        "b-50-global-workflows-check-for-name-conflic-68",
+        "b-50-global-workflows-check-archon-home-69"
+      ]
+    },
+    "b-50-global-workflows-workflows-placed-in-1": {
+      "id": "b-50-global-workflows-workflows-placed-in-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflows placed in "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", commands in "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and scripts in "
+        },
+        {
+          "insert": "~/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are loaded globally -- they appear in every project and can be invoked from any repository. Repo-specific files take precedence over home-scoped files with the same name."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-paths-2": {
+      "id": "b-50-global-workflows-paths-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Paths"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-code-3": {
+      "id": "b-50-global-workflows-code-3",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "~/.archon/workflows/\n~/.archon/commands/\n~/.archon/scripts/"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-or-if-you-have-set-arc-4": {
+      "id": "b-50-global-workflows-or-if-you-have-set-arc-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Or, if you have set "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-code-5": {
+      "id": "b-50-global-workflows-code-5",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "$ARCHON_HOME/workflows/\n$ARCHON_HOME/commands/\n$ARCHON_HOME/scripts/"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-create-the-directories-i-6": {
+      "id": "b-50-global-workflows-create-the-directories-i-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create the directories if they do not exist:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-7": {
+      "id": "b-50-global-workflows-bash-7",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "mkdir -p ~/.archon/workflows ~/.archon/commands ~/.archon/scripts"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-note-on-location-th-8": {
+      "id": "b-50-global-workflows-note-on-location-th-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note on location.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " These are direct children of "
+        },
+        {
+          "insert": "~/.archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- same level as "
+        },
+        {
+          "insert": "workspaces/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Earlier Archon versions stored global workflows at "
+        },
+        {
+          "insert": "~/.archon/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Migrating from the old path",
+          "attributes": {
+            "link": "#migrating-from-the-old-path"
+          }
+        },
+        {
+          "insert": " below."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-supported-layouts-9": {
+      "id": "b-50-global-workflows-supported-layouts-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Supported layouts"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-shared-commands-scripts-10": {
+      "id": "b-50-global-workflows-shared-commands-scripts-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Shared commands/scripts and legacy grouped workflows support one grouping folder. Packaged workflows instead use exactly "
+        },
+        {
+          "insert": "<pack>/<workflow>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with one YAML file directly inside the workflow folder."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-text-11": {
+      "id": "b-50-global-workflows-text-11",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "~/.archon/workflows/\n├── my-review.yaml              # ✅ top-level file\n├── triage/                     # ✅ 1-level subfolder (grouping)\n│   └── weekly-cleanup.yaml     # ✅ resolvable as `weekly-cleanup`\n└── team/                       # ✅ packaged workflow\n    └── personal/\n        └── personal.yaml       # exactly one direct YAML is required"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-yaml-nested-below-the-wo-12": {
+      "id": "b-50-global-workflows-yaml-nested-below-the-wo-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "YAML nested below the workflow folder is not loaded. Inside a pack, a folder with no direct YAML (tests, docs, assets) and any dot directory ("
+        },
+        {
+          "insert": ".shared",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": ".github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") are not workflow folders and are skipped. A folder with two or more direct YAML files is reported as invalid rather than ignored silently."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-commands-resolve-by-fi-13": {
+      "id": "b-50-global-workflows-commands-resolve-by-fi-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Commands resolve by "
+        },
+        {
+          "insert": "filename without extension",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". Project, global, and bundled workflows launch and compose by their exact, case-sensitive YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", regardless of which subfolder the file lives in. Launch "
+        },
+        {
+          "insert": "installed pack entrypoints",
+          "attributes": {
+            "link": "#installed-workflow-packs"
+          }
+        },
+        {
+          "insert": " by their qualified "
+        },
+        {
+          "insert": "owner/plugin:entrypoint",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " name; references within that pack can use the YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Duplicate basenames within the same scope are a user error -- keep each name unique within "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "<repoRoot>/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), across whatever subfolders you use."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-load-priority-14": {
+      "id": "b-50-global-workflows-load-priority-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Load Priority"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bundled-defaults-lo-15": {
+      "id": "b-50-global-workflows-bundled-defaults-lo-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Bundled defaults",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (lowest priority) -- the "
+        },
+        {
+          "insert": "archon-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " workflows/commands embedded in the Archon binary."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-global-home-scoped-16": {
+      "id": "b-50-global-workflows-global-home-scoped-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Global / home-scoped",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "~/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (override bundled by filename)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-repo-specific-r-17": {
+      "id": "b-50-global-workflows-repo-specific-r-17",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Repo-specific",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- "
+        },
+        {
+          "insert": "<repoRoot>/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "<repoRoot>/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "<repoRoot>/.archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (override global by filename)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-same-named-legacy-shared-18": {
+      "id": "b-50-global-workflows-same-named-legacy-shared-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Same-named legacy/shared files at a higher scope win. Packaged commands and scripts resolve only within their owning package and never fall through to another scope."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-installed-workflow-packs-19": {
+      "id": "b-50-global-workflows-installed-workflow-packs-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Installed workflow packs"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-workflow-pack-publishe-20": {
+      "id": "b-50-global-workflows-a-workflow-pack-publishe-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow pack published on GitHub installs for every project on this Archon with "
+        },
+        {
+          "insert": "archon plugin add",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "plugin",
+              "label": "`archon plugin add`"
+            }
+          }
+        },
+        {
+          "insert": ". Installed packs are a fourth source next to bundled, global and project, outside the precedence above."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-plugin-root-is-a-direc-21": {
+      "id": "b-50-global-workflows-a-plugin-root-is-a-direc-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A plugin root is a directory containing "
+        },
+        {
+          "insert": "archon-plugin.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and one pack in the packaged layout. A repository can contain one or more plugin roots, at the repository root or in subdirectories. Each root installs independently using "
+        },
+        {
+          "insert": "owner/repo[/path]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This example shows a single plugin root:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-text-22": {
+      "id": "b-50-global-workflows-text-22",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "review-kit/                     # plugin root: owner/repo or owner/repo/<path>\n├── archon-plugin.json\n├── .shared/                    # modules and documents the pack's scripts use\n│   ├── metric-views.json       # optional overview cards for the console\n│   └── util.ts\n├── .github/workflows/ci.yml    # a dot directory: never a workflow folder\n├── tests/                      # no direct YAML: not a workflow folder\n├── review/                     # an entrypoint\n│   ├── review.yaml\n│   ├── commands/scope.md\n│   └── scripts/check.ts\n└── helper/                     # a support workflow\n    ├── helper.yaml\n    └── commands/summarize.md"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-the-whole-plugin-directo-23": {
+      "id": "b-50-global-workflows-the-whole-plugin-directo-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The whole plugin directory is installed, so a pack at the repository root can keep its CI configuration, tests and README next to its workflows. Only folders holding exactly one direct YAML file load as workflows."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-json-24": {
+      "id": "b-50-global-workflows-json-24",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"workflow-pack\",\n  \"name\": \"review-kit\",\n  \"description\": \"Review workflows\",\n  \"compatibility\": { \"archon\": \">=0.11.0\" },\n  \"entrypoints\": { \"review\": \"review/review.yaml\" }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-identity-an-entrypo-25": {
+      "id": "b-50-global-workflows-identity-an-entrypo-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Identity.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " An entrypoint is listed and run as "
+        },
+        {
+          "insert": "owner/plugin:entrypoint",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "owner",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the GitHub owner from the install id and "
+        },
+        {
+          "insert": "plugin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the manifest "
+        },
+        {
+          "insert": "name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so the pack above installed from "
+        },
+        {
+          "insert": "acme/review-kit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs as "
+        },
+        {
+          "insert": "archon workflow run acme/review-kit:review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is how workflows refer to each other inside the pack."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-support-workflows-e-26": {
+      "id": "b-50-global-workflows-support-workflows-e-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Support workflows.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Every workflow that is not an entrypoint is support. An entrypoint uses it with "
+        },
+        {
+          "insert": "include:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (by its YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), and nothing else can run it: not the CLI, chat, the router, the API, another pack, or a project workflow. Inside a pack, a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " child run may launch another entrypoint of the pack by its YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", but not a support workflow, because a child run is dispatch."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-names-a-qualified-n-27": {
+      "id": "b-50-global-workflows-names-a-qualified-n-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Names.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A qualified name matches exactly (case-sensitive) and never by suffix or substring, and a project or global workflow that declares an installed name is not loaded. Inside a pack, a reference to a YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shared by multiple files fails discovery; when the files have distinct public identities, use a qualified identity such as "
+        },
+        {
+          "insert": "acme/review-kit:review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to select the intended target. Qualified identities take precedence over colliding authored names. Support identities use the YAML "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so two support files with the same name also have the same public identity and fail discovery. Rename one support workflow and update its references; qualification cannot distinguish them."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-runs-keep-their-revisi-28": {
+      "id": "b-50-global-workflows-runs-keep-their-revisi-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Runs keep their revision.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A run freezes the pack at the commit it started with, and a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " child takes the packs its parent froze. "
+        },
+        {
+          "insert": "archon plugin update",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " affects only runs that start afterwards."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-installed-or-copied-29": {
+      "id": "b-50-global-workflows-installed-or-copied-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Installed or copied.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " An installed pack is read-only and changes only through "
+        },
+        {
+          "insert": "archon plugin update",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". To change one for a single project, "
+        },
+        {
+          "insert": "archon plugin copy <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " writes it to "
+        },
+        {
+          "insert": ".archon/workflows/<name>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", where it is an ordinary project pack: its workflows run under their own "
+        },
+        {
+          "insert": "name:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "update",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " no longer touches it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-practical-examples-30": {
+      "id": "b-50-global-workflows-practical-examples-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Practical Examples"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-personal-code-review-31": {
+      "id": "b-50-global-workflows-personal-code-review-31",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Personal Code Review"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-workflow-that-runs-you-32": {
+      "id": "b-50-global-workflows-a-workflow-that-runs-you-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow that runs your preferred review checklist on every project:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-yaml-33": {
+      "id": "b-50-global-workflows-yaml-33",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# ~/.archon/workflows/my-review.yaml\nname: my-review\ndescription: Personal code review with my standards\nmodel: sonnet\n\nnodes:\n  - id: review\n    prompt: |\n      Review the changes on this branch against main.\n      Check for: error handling, test coverage, naming conventions,\n      and unnecessary complexity. Be direct and specific."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-custom-linting-or-format-34": {
+      "id": "b-50-global-workflows-custom-linting-or-format-34",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Custom Linting or Formatting Check"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-workflow-that-runs-pro-35": {
+      "id": "b-50-global-workflows-a-workflow-that-runs-pro-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow that runs project-agnostic checks:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-yaml-36": {
+      "id": "b-50-global-workflows-yaml-36",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# ~/.archon/workflows/lint-check.yaml\nname: lint-check\ndescription: Check for common code quality issues across any project\n\nnodes:\n  - id: check\n    prompt: |\n      Scan this codebase for:\n      1. Functions longer than 50 lines\n      2. Deeply nested conditionals (>3 levels)\n      3. TODO/FIXME comments without issue references\n      Report findings as a prioritized list."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-quick-explain-37": {
+      "id": "b-50-global-workflows-quick-explain-37",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Quick Explain"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-simple-workflow-for-un-38": {
+      "id": "b-50-global-workflows-a-simple-workflow-for-un-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A simple workflow for understanding unfamiliar codebases:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-yaml-39": {
+      "id": "b-50-global-workflows-yaml-39",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# ~/.archon/workflows/explain.yaml\nname: explain\ndescription: Quick explanation of a codebase or module\nmodel: haiku\n\nnodes:\n  - id: explain\n    prompt: |\n      Give a concise explanation of this codebase.\n      Focus on: what it does, key entry points, and how the main\n      pieces connect. Keep it under 500 words.\n      Topic: $ARGUMENTS"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-personal-command-helpers-40": {
+      "id": "b-50-global-workflows-personal-command-helpers-40",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Personal Command Helpers"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-commands-placed-in-a-41": {
+      "id": "b-50-global-workflows-commands-placed-in-a-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Commands placed in "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are available to every workflow on the machine. Useful for prompts you reuse across projects."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-markdown-42": {
+      "id": "b-50-global-workflows-markdown-42",
+      "type": "code",
+      "props": {
+        "language": "markdown"
+      },
+      "text": [
+        {
+          "insert": "<!-- ~/.archon/commands/review-checklist.md -->\nReview the uncommitted changes in the current worktree.\nCheck for:\n- Error handling gaps\n- Missing tests\n- Surprising API shapes\n- Unnecessary cleverness\nBe terse. Report findings grouped by file."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-a-workflow-in-any-repo-c-43": {
+      "id": "b-50-global-workflows-a-workflow-in-any-repo-c-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow in any repo can then reference it:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-yaml-44": {
+      "id": "b-50-global-workflows-yaml-44",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "nodes:\n  - id: review\n    command: review-checklist"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-syncing-with-dotfiles-45": {
+      "id": "b-50-global-workflows-syncing-with-dotfiles-45",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Syncing with Dotfiles"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-if-you-manage-your-confi-46": {
+      "id": "b-50-global-workflows-if-you-manage-your-confi-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you manage your configuration with a dotfiles repository, you can include your global content:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-47": {
+      "id": "b-50-global-workflows-bash-47",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# In your dotfiles repo\ndotfiles/\n└── archon/\n    ├── workflows/\n    │   ├── my-review.yaml\n    │   └── explain.yaml\n    └── commands/\n        └── review-checklist.md"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-then-symlink-during-dotf-48": {
+      "id": "b-50-global-workflows-then-symlink-during-dotf-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then symlink during dotfiles setup:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-49": {
+      "id": "b-50-global-workflows-bash-49",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ln -sf ~/dotfiles/archon/workflows ~/.archon/workflows\nln -sf ~/dotfiles/archon/commands  ~/.archon/commands"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-or-copy-them-as-part-of-50": {
+      "id": "b-50-global-workflows-or-copy-them-as-part-of-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Or copy them as part of your dotfiles install script:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-51": {
+      "id": "b-50-global-workflows-bash-51",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "mkdir -p ~/.archon/workflows ~/.archon/commands\ncp ~/dotfiles/archon/workflows/*.yaml ~/.archon/workflows/\ncp ~/dotfiles/archon/commands/*.md    ~/.archon/commands/"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-this-way-your-personal-w-52": {
+      "id": "b-50-global-workflows-this-way-your-personal-w-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This way your personal workflows and commands travel with you across machines."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-cli-and-web-support-53": {
+      "id": "b-50-global-workflows-cli-and-web-support-53",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "CLI and Web Support"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-the-cli-server-and-web-54": {
+      "id": "b-50-global-workflows-the-cli-server-and-web-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The CLI, server, and Web UI discover home-scoped content automatically -- no flag, no config option."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-55": {
+      "id": "b-50-global-workflows-bash-55",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Lists bundled + global + repo-specific workflows\narchon workflow list\n\n# Run a global workflow from any repo\narchon workflow run my-review"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-in-the-web-ui-workflow-b-56": {
+      "id": "b-50-global-workflows-in-the-web-ui-workflow-b-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In the Web UI workflow builder, add a command node and enter the command name in\nthe inspector. The builder does not currently provide source-grouped command\nbrowsing."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-migrating-from-the-old-p-57": {
+      "id": "b-50-global-workflows-migrating-from-the-old-p-57",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Migrating from the old path"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-earlier-versions-of-arch-58": {
+      "id": "b-50-global-workflows-earlier-versions-of-arch-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Earlier versions of Archon stored global workflows at "
+        },
+        {
+          "insert": "~/.archon/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n(with an extra nested "
+        },
+        {
+          "insert": ".archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Archon no longer reads that location or warns about\nit, and does not migrate workflows automatically. Set "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your shell to\nyour Archon home (default "
+        },
+        {
+          "insert": "~/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). If "
+        },
+        {
+          "insert": "$ARCHON_HOME/workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not exist, move\nthe old directory:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-59": {
+      "id": "b-50-global-workflows-bash-59",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "mv \"$ARCHON_HOME/.archon/workflows\" \"$ARCHON_HOME/workflows\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-if-the-destination-alrea-60": {
+      "id": "b-50-global-workflows-if-the-destination-alrea-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If the destination already exists, merge the files manually, checking for name conflicts.\nThere was no prior home-scoped commands location, so "
+        },
+        {
+          "insert": "~/.archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " has nothing\nto migrate."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-troubleshooting-61": {
+      "id": "b-50-global-workflows-troubleshooting-61",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-workflow-not-appearing-i-62": {
+      "id": "b-50-global-workflows-workflow-not-appearing-i-62",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Workflow Not Appearing in List"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-check-the-path-th-63": {
+      "id": "b-50-global-workflows-check-the-path-th-63",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check the path",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- The directory must be exactly "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (a direct child of "
+        },
+        {
+          "insert": "~/.archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", not the old double-nested "
+        },
+        {
+          "insert": "~/.archon/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-64": {
+      "id": "b-50-global-workflows-bash-64",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ls ~/.archon/workflows/"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-check-file-extension-65": {
+      "id": "b-50-global-workflows-check-file-extension-65",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check file extension",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- Workflow files must end in "
+        },
+        {
+          "insert": ".yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": ".yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-check-yaml-validity-66": {
+      "id": "b-50-global-workflows-check-yaml-validity-66",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check YAML validity",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- A syntax error in the YAML will cause the workflow to appear in the errors list rather than the workflow list. Run:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-bash-67": {
+      "id": "b-50-global-workflows-bash-67",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon validate workflows my-workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-check-for-name-conflic-68": {
+      "id": "b-50-global-workflows-check-for-name-conflic-68",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check for name conflicts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- If a repo-specific workflow has the same filename, it overrides the global one. The global version will not appear when you are in that repo."
+        }
+      ],
+      "children": []
+    },
+    "b-50-global-workflows-check-archon-home-69": {
+      "id": "b-50-global-workflows-check-archon-home-69",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check ARCHON_HOME",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- If you have set "
+        },
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to a custom path, global workflows must be at "
+        },
+        {
+          "insert": "$ARCHON_HOME/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", not "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

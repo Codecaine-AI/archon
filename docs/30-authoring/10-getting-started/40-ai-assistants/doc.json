@@ -1,0 +1,4868 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-40-ai-assistants",
+  "title": "AI Assistants",
+  "root": "b-40-ai-assistants-root-148",
+  "blocks": {
+    "b-40-ai-assistants-root-148": {
+      "id": "b-40-ai-assistants-root-148",
+      "type": "paragraph",
+      "props": {
+        "area": "clients",
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Install, authenticate and configure Claude Code, Codex, Pi, OpenCode and GitHub Copilot for Archon.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/ai-assistants.md"
+      },
+      "children": [
+        "b-40-ai-assistants-archon-needs-at-least-on-1",
+        "b-40-ai-assistants-which-workflow-features-2",
+        "b-40-ai-assistants-install-a-provider-3",
+        "b-40-ai-assistants-release-binaries-quick-4",
+        "b-40-ai-assistants-bash-5",
+        "b-40-ai-assistants-archon-setup-asks-whic-6",
+        "b-40-ai-assistants-deprecated-providers-7",
+        "b-40-ai-assistants-opencode-and-github-copi-8",
+        "b-40-ai-assistants-in-chat-claude-codex-a-9",
+        "b-40-ai-assistants-archon-shows-the-depreca-10",
+        "b-40-ai-assistants-structured-output-guaran-11",
+        "b-40-ai-assistants-when-a-node-sets-output-12",
+        "table-0-09cbeab5",
+        "b-40-ai-assistants-see-workflow-language-14",
+        "b-40-ai-assistants-claude-code-15",
+        "b-40-ai-assistants-use-claude-code-with-a-c-16",
+        "b-40-ai-assistants-install-claude-code-17",
+        "b-40-ai-assistants-archon-does-not-bundle-c-18",
+        "b-40-ai-assistants-bash-19",
+        "b-40-ai-assistants-homebrew-brew-install-20",
+        "b-40-ai-assistants-binary-path-configuratio-21",
+        "b-40-ai-assistants-a-compiled-archon-finds-22",
+        "b-40-ai-assistants-claude-bin-path-in-the-23",
+        "b-40-ai-assistants-assistants-claude-claud-24",
+        "b-40-ai-assistants-the-native-installer-s-p-25",
+        "b-40-ai-assistants-if-none-resolves-the-fi-26",
+        "b-40-ai-assistants-a-source-install-bun-r-27",
+        "b-40-ai-assistants-archon-asks-claude-code-28",
+        "b-40-ai-assistants-authenticate-claude-code-29",
+        "b-40-ai-assistants-claude-code-authenticate-30",
+        "b-40-ai-assistants-subscription-login-31",
+        "b-40-ai-assistants-oauth-token-run-cl-32",
+        "b-40-ai-assistants-api-key-create-a-ke-33",
+        "b-40-ai-assistants-claude-use-global-auth-34",
+        "b-40-ai-assistants-claude-config-keys-35",
+        "b-40-ai-assistants-yaml-36",
+        "b-40-ai-assistants-settingsources-sets-wh-37",
+        "b-40-ai-assistants-codex-38",
+        "b-40-ai-assistants-use-codex-with-a-chatgpt-39",
+        "b-40-ai-assistants-install-the-codex-cli-40",
+        "b-40-ai-assistants-archon-does-not-bundle-t-41",
+        "b-40-ai-assistants-bash-42",
+        "b-40-ai-assistants-native-binaries-are-on-t-43",
+        "b-40-ai-assistants-a-compiled-archon-finds-44",
+        "b-40-ai-assistants-codex-bin-path-in-the-45",
+        "b-40-ai-assistants-assistants-codex-codexb-46",
+        "b-40-ai-assistants-a-binary-you-place-at-47",
+        "b-40-ai-assistants-common-npm-global-locati-48",
+        "b-40-ai-assistants-a-source-install-runs-th-49",
+        "b-40-ai-assistants-authenticate-codex-50",
+        "b-40-ai-assistants-by-default-codex-uses-th-51",
+        "b-40-ai-assistants-login-on-the-host-r-52",
+        "b-40-ai-assistants-api-key-set-codex-53",
+        "b-40-ai-assistants-copied-login-tokens-d-54",
+        "b-40-ai-assistants-ini-55",
+        "b-40-ai-assistants-at-each-start-the-conta-56",
+        "b-40-ai-assistants-connected-credential-57",
+        "b-40-ai-assistants-native-credential-checks-58",
+        "b-40-ai-assistants-how-archon-runs-codex-59",
+        "b-40-ai-assistants-each-codex-turn-runs-on-60",
+        "b-40-ai-assistants-codex-chats-get-archon-s-61",
+        "b-40-ai-assistants-in-workflow-nodes-archon-62",
+        "b-40-ai-assistants-codex-config-keys-63",
+        "b-40-ai-assistants-yaml-64",
+        "b-40-ai-assistants-a-workflow-s-effort-o-65",
+        "b-40-ai-assistants-some-model-routes-reject-66",
+        "b-40-ai-assistants-the-final-turn-drops-the-67",
+        "b-40-ai-assistants-pi-68",
+        "b-40-ai-assistants-pi-earendil-works-pi-69",
+        "b-40-ai-assistants-install-pi-70",
+        "b-40-ai-assistants-add-pi-with-archon-prov-71",
+        "b-40-ai-assistants-archon-setup-can-confi-72",
+        "b-40-ai-assistants-authenticate-pi-73",
+        "b-40-ai-assistants-archon-reads-your-pi-cre-74",
+        "b-40-ai-assistants-pi-login-covers-these-75",
+        "b-40-ai-assistants-key-based-backends-read-76",
+        "table-1-09cbeab5",
+        "b-40-ai-assistants-the-full-map-is-generate-78",
+        "b-40-ai-assistants-for-anthropic-models-us-79",
+        "b-40-ai-assistants-local-and-custom-endpoin-80",
+        "b-40-ai-assistants-pi-caches-the-result-of-81",
+        "b-40-ai-assistants-pi-config-keys-82",
+        "b-40-ai-assistants-yaml-83",
+        "b-40-ai-assistants-env-and-maxconcurrent-84",
+        "b-40-ai-assistants-model-references-can-nes-85",
+        "b-40-ai-assistants-pi-names-azure-models-a-86",
+        "b-40-ai-assistants-pi-settings-and-context-87",
+        "b-40-ai-assistants-every-session-starts-fro-88",
+        "b-40-ai-assistants-pi-keeps-its-native-cont-89",
+        "b-40-ai-assistants-extensions-90",
+        "b-40-ai-assistants-pi-extensions-are-packag-91",
+        "b-40-ai-assistants-repo-controlled-pi-directories-92",
+        "b-40-ai-assistants-set-an-extension-s-postu-93",
+        "b-40-ai-assistants-assistants-pi-the-i-94",
+        "b-40-ai-assistants-assistants-pi-nodes-no-95",
+        "b-40-ai-assistants-a-pi-block-on-the-nod-96",
+        "b-40-ai-assistants-each-layer-s-extensionf-97",
+        "b-40-ai-assistants-for-example-with-the-p-98",
+        "b-40-ai-assistants-yaml-99",
+        "b-40-ai-assistants-the-plan-node-prints-a-100",
+        "b-40-ai-assistants-archon-adds-neither-web-101",
+        "b-40-ai-assistants-an-exception-that-escape-102",
+        "b-40-ai-assistants-see-the-pi-documentatio-103",
+        "b-40-ai-assistants-opencode-104",
+        "b-40-ai-assistants-deprecated-105",
+        "b-40-ai-assistants-archon-runs-opencode-thr-106",
+        "b-40-ai-assistants-archon-providers-brin-107",
+        "b-40-ai-assistants-opencode-handles-its-own-108",
+        "b-40-ai-assistants-all-nodes-share-one-embe-109",
+        "b-40-ai-assistants-yaml-110",
+        "b-40-ai-assistants-github-copilot-111",
+        "b-40-ai-assistants-deprecated-112",
+        "b-40-ai-assistants-archon-drives-the-copilo-113",
+        "b-40-ai-assistants-a-source-install-gets-th-114",
+        "b-40-ai-assistants-copilot-picks-its-creden-115",
+        "b-40-ai-assistants-copilot-github-token-i-116",
+        "b-40-ai-assistants-with-useloggedinuser-f-117",
+        "b-40-ai-assistants-the-login-from-copilot-118",
+        "b-40-ai-assistants-archon-ignores-gh-token-119",
+        "b-40-ai-assistants-yaml-120",
+        "b-40-ai-assistants-copilot-has-no-session-f-121",
+        "b-40-ai-assistants-per-user-credentials-and-122",
+        "b-40-ai-assistants-everything-above-configu-123",
+        "b-40-ai-assistants-the-credential-vault-wor-124",
+        "b-40-ai-assistants-connect-a-credential-125",
+        "b-40-ai-assistants-credentials-are-stored-p-126",
+        "b-40-ai-assistants-an-anthropic-subscript-127",
+        "b-40-ai-assistants-in-the-console-open-s-128",
+        "b-40-ai-assistants-from-the-cli-archon-a-129",
+        "b-40-ai-assistants-bash-130",
+        "b-40-ai-assistants-when-credentials-are-che-131",
+        "b-40-ai-assistants-a-run-checks-the-credent-132",
+        "b-40-ai-assistants-with-store-database-133",
+        "b-40-ai-assistants-with-store-files-or-134",
+        "b-40-ai-assistants-claude-checks-account-in-135",
+        "b-40-ai-assistants-providers-that-cannot-ch-136",
+        "b-40-ai-assistants-a-check-that-cannot-deci-137",
+        "b-40-ai-assistants-a-key-that-resolves-is-o-138",
+        "b-40-ai-assistants-model-tiers-aliases-and-139",
+        "b-40-ai-assistants-the-small-medium-an-140",
+        "b-40-ai-assistants-when-you-are-signed-in-t-141",
+        "b-40-ai-assistants-bash-142",
+        "b-40-ai-assistants-chat-picks-its-provider-143",
+        "b-40-ai-assistants-for-a-single-run-archo-144",
+        "b-40-ai-assistants-how-assistant-selection-145",
+        "b-40-ai-assistants-a-new-conversation-uses-146",
+        "b-40-ai-assistants-workflows-set-provider-147"
+      ]
+    },
+    "b-40-ai-assistants-archon-needs-at-least-on-1": {
+      "id": "b-40-ai-assistants-archon-needs-at-least-on-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon needs at least one AI assistant. You can configure several and mix them in one workflow. This page covers what each provider needs installed, how it authenticates, and its "
+        },
+        {
+          "insert": "assistants.<provider>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keys in "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-which-workflow-features-2": {
+      "id": "b-40-ai-assistants-which-workflow-features-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Which workflow features each provider supports is in the generated "
+        },
+        {
+          "insert": "Provider Capability Matrix",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/70-provider-capabilities.md",
+              "label": "Provider Capability Matrix"
+            }
+          }
+        },
+        {
+          "insert": ". Every config key, with the other settings around it, is in "
+        },
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-install-a-provider-3": {
+      "id": "b-40-ai-assistants-install-a-provider-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Install a provider"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-release-binaries-quick-4": {
+      "id": "b-40-ai-assistants-release-binaries-quick-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Release binaries (quick install, Homebrew) ship without Claude, Codex and Pi. Add the ones you use:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-bash-5": {
+      "id": "b-40-ai-assistants-bash-5",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon provider add claude codex pi   # any subset"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-setup-asks-whic-6": {
+      "id": "b-40-ai-assistants-archon-setup-asks-whic-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon setup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " asks which to add and then sets up their authentication. An added provider must match the CLI version, so add it again after you upgrade Archon. Adding a provider connects Archon to the agent; it does not install the agent's own CLI. Your native configuration and login ("
+        },
+        {
+          "insert": "~/.claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "~/.codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Pi's "
+        },
+        {
+          "insert": "auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") keep working. Source checkouts and Docker images run Claude, Codex and Pi from source with no add step. See "
+        },
+        {
+          "insert": "Installation → Providers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/10-installation.md",
+              "section": "providers",
+              "label": "Installation → Providers"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-deprecated-providers-7": {
+      "id": "b-40-ai-assistants-deprecated-providers-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Deprecated providers"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-opencode-and-github-copi-8": {
+      "id": "b-40-ai-assistants-opencode-and-github-copi-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "OpenCode and GitHub Copilot are deprecated: no Archon maintainer owns them. Both stay bundled and keep working, and no removal is scheduled, but fixes are not guaranteed. For a version you control, build and own it as a provider plugin: see "
+        },
+        {
+          "insert": "Publish a plugin",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/80-publishing-plugins.md",
+              "section": "provider-plugins",
+              "label": "Publish a plugin"
+            }
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "Adding a Community Provider",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/50-adding-a-community-provider.md",
+              "label": "Adding a Community Provider"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-in-chat-claude-codex-a-9": {
+      "id": "b-40-ai-assistants-in-chat-claude-codex-a-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In chat, Claude, Codex and Pi launch and manage runs through native "
+        },
+        {
+          "insert": "invoke_workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "register_project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "manage_run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tools. Copilot and OpenCode have no native tools, so after you select a project with "
+        },
+        {
+          "insert": "/setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " they run "
+        },
+        {
+          "insert": "archon workflow run <workflow> \"<message>\" --detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in its directory and return the run ID. Those runs are headless: they use CLI identity and send no progress or results back to the chat."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-shows-the-depreca-10": {
+      "id": "b-40-ai-assistants-archon-shows-the-depreca-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon shows the deprecation notice only to someone who uses one of them, at most once per command or process. "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports it when one is your default assistant, "
+        },
+        {
+          "insert": "archon ai default",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prints it when you select one, and the first run in a process that uses one prints it on stderr. The server writes it to its log."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-structured-output-guaran-11": {
+      "id": "b-40-ai-assistants-structured-output-guaran-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Structured output guarantees"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-when-a-node-sets-output-12": {
+      "id": "b-40-ai-assistants-when-a-node-sets-output-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When a node sets "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the parsed output is validated against the schema before downstream nodes see it. A node that produces no schema-valid output fails. How hard the provider works to produce valid output depends on its tier, which "
+        },
+        {
+          "insert": "GET /api/providers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reports as "
+        },
+        {
+          "insert": "capabilities.structuredOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "table-0-09cbeab5": {
+      "id": "table-0-09cbeab5",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Provider",
+          "Tier",
+          "How it works",
+          "On a validation miss"
+        ],
+        "rows": [
+          [
+            "Claude, Codex, OpenCode",
+            "enforced",
+            "The SDK constrains decoding to the schema.",
+            [
+              {
+                "insert": "The node fails. A refusal or "
+              },
+              {
+                "insert": "max_tokens",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " truncation can still bypass the constraint, which is why the output is validated anyway."
+              }
+            ]
+          ],
+          [
+            "Pi",
+            "best-effort",
+            [
+              {
+                "insert": "The schema, which must have "
+              },
+              {
+                "insert": "type: object",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " at its root, becomes the parameters of a "
+              },
+              {
+                "insert": "structured_output",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " tool the prompt asks the model to call. Pi validates each call and returns errors to the model in the same session; after 3 invalid calls the turn ends without output. A model that answers in text instead has JSON extracted from the reply, never from its thinking. The tool call cannot be forced, so the tier stays best-effort."
+              }
+            ],
+            "The executor asks again with the schema errors, up to 3 times, then fails the node."
+          ],
+          [
+            "Copilot",
+            "best-effort",
+            "The schema is appended to the prompt. JSON is extracted from the reply and repaired (trailing commas, single quotes, truncated tails).",
+            "The executor asks again with the schema errors, up to 3 times, then fails the node."
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-ai-assistants-see-workflow-language-14": {
+      "id": "b-40-ai-assistants-see-workflow-language-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See "
+        },
+        {
+          "insert": "Workflow language → ",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "output_format-for-structured-json",
+              "label": "Workflow language → `output_format`"
+            }
+          }
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "output_format-for-structured-json",
+              "label": "Workflow language → `output_format`"
+            }
+          }
+        },
+        {
+          "insert": " for field access."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-code-15": {
+      "id": "b-40-ai-assistants-claude-code-15",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Claude Code"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-use-claude-code-with-a-c-16": {
+      "id": "b-40-ai-assistants-use-claude-code-with-a-c-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use Claude Code with a Claude Pro or Max subscription, an OAuth token, or an Anthropic API key."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-install-claude-code-17": {
+      "id": "b-40-ai-assistants-install-claude-code-17",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Install Claude Code"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-does-not-bundle-c-18": {
+      "id": "b-40-ai-assistants-archon-does-not-bundle-c-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon does not bundle Claude Code. Install it with Anthropic's native installer:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-bash-19": {
+      "id": "b-40-ai-assistants-bash-19",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# macOS / Linux / WSL\ncurl -fsSL https://claude.ai/install.sh | bash\n\n# Windows (PowerShell)\nirm https://claude.ai/install.ps1 | iex"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-homebrew-brew-install-20": {
+      "id": "b-40-ai-assistants-homebrew-brew-install-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Homebrew ("
+        },
+        {
+          "insert": "brew install --cask claude-code",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), npm ("
+        },
+        {
+          "insert": "npm install -g @anthropic-ai/claude-code",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and winget ("
+        },
+        {
+          "insert": "winget install Anthropic.ClaudeCode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") work too. See "
+        },
+        {
+          "insert": "Anthropic's setup guide",
+          "attributes": {
+            "link": "https://code.claude.com/docs/en/setup"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-binary-path-configuratio-21": {
+      "id": "b-40-ai-assistants-binary-path-configuratio-21",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Binary path configuration (compiled binaries only)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-compiled-archon-finds-22": {
+      "id": "b-40-ai-assistants-a-compiled-archon-finds-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A compiled Archon finds Claude Code in this order:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-bin-path-in-the-23": {
+      "id": "b-40-ai-assistants-claude-bin-path-in-the-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the environment."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-assistants-claude-claud-24": {
+      "id": "b-40-ai-assistants-assistants-claude-claud-24",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "assistants.claude.claudeBinaryPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or a repository "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-native-installer-s-p-25": {
+      "id": "b-40-ai-assistants-the-native-installer-s-p-25",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The native installer's path: "
+        },
+        {
+          "insert": "~/.local/bin/claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "%USERPROFILE%\\.local\\bin\\claude.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-if-none-resolves-the-fi-26": {
+      "id": "b-40-ai-assistants-if-none-resolves-the-fi-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If none resolves, the first Claude query fails with install instructions. Run "
+        },
+        {
+          "insert": "which claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "where claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows) to find the path. Archon accepts the native binary, an npm "
+        },
+        {
+          "insert": "cli.js",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "$(npm root -g)/@anthropic-ai/claude-code/cli.js",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), or an npm platform-package directory such as "
+        },
+        {
+          "insert": "@anthropic-ai/claude-code-win32-x64",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which it expands to the "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " executable inside. The Docker image sets "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the container starts."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-source-install-bun-r-27": {
+      "id": "b-40-ai-assistants-a-source-install-bun-r-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A source install ("
+        },
+        {
+          "insert": "bun run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") uses the binary bundled with the Claude Agent SDK. Set "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "claudeBinaryPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only to override it, most often on glibc Linux, where the SDK can pick the musl build first and fail to start. An explicit path that is invalid fails in both modes instead of falling back."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-asks-claude-code-28": {
+      "id": "b-40-ai-assistants-archon-asks-claude-code-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon asks Claude Code for session-state events and finishes a node when the session goes idle after its final result. The CLI the bundled SDK ships emits them. A configured binary that does not still works if its process exits after the turn. If the process hangs instead, the node fails at the idle timeout, saying the provider never signalled that its turn settled."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-authenticate-claude-code-29": {
+      "id": "b-40-ai-assistants-authenticate-claude-code-29",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Authenticate Claude Code"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-code-authenticate-30": {
+      "id": "b-40-ai-assistants-claude-code-authenticate-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude Code authenticates from its environment, or from its own login when the environment has no credential. Pick one:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-subscription-login-31": {
+      "id": "b-40-ai-assistants-subscription-login-31",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Subscription login.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Run "
+        },
+        {
+          "insert": "claude /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " once. This is the default for a solo install."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-oauth-token-run-cl-32": {
+      "id": "b-40-ai-assistants-oauth-token-run-cl-32",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "OAuth token.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Run "
+        },
+        {
+          "insert": "claude setup-token",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and set "
+        },
+        {
+          "insert": "CLAUDE_CODE_OAUTH_TOKEN=sk-ant-oat01-...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-api-key-create-a-ke-33": {
+      "id": "b-40-ai-assistants-api-key-create-a-ke-33",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "API key.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Create a key at "
+        },
+        {
+          "insert": "console.anthropic.com/settings/keys",
+          "attributes": {
+            "link": "https://console.anthropic.com/settings/keys"
+          }
+        },
+        {
+          "insert": " and set "
+        },
+        {
+          "insert": "CLAUDE_API_KEY=sk-ant-...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon hands it to Claude Code as "
+        },
+        {
+          "insert": "ANTHROPIC_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only when neither "
+        },
+        {
+          "insert": "CLAUDE_CODE_OAUTH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nor "
+        },
+        {
+          "insert": "ANTHROPIC_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set, so an OAuth token wins over "
+        },
+        {
+          "insert": "CLAUDE_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-use-global-auth-34": {
+      "id": "b-40-ai-assistants-claude-use-global-auth-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CLAUDE_USE_GLOBAL_AUTH=true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tells the server's startup check that you rely on "
+        },
+        {
+          "insert": "claude /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Claude Code never reads it. The CLI sets it when no Claude token or key is set, and so does the server unless "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set. With "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a credential a user connects in Archon takes precedence over these install-wide settings for that user's runs (see "
+        },
+        {
+          "insert": "Per-user credentials",
+          "attributes": {
+            "link": "#per-user-credentials-and-ai-settings"
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-config-keys-35": {
+      "id": "b-40-ai-assistants-claude-config-keys-35",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Claude config keys"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-36": {
+      "id": "b-40-ai-assistants-yaml-36",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  claude:\n    model: sonnet          # sonnet, opus, haiku, a claude-* id, or inherit\n    settingSources:        # default: [project, user]\n      - project            # <cwd>/.claude/\n      - user               # ~/.claude/\n    claudeBinaryPath: /absolute/path/to/claude   # optional, see above"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-settingsources-sets-wh-37": {
+      "id": "b-40-ai-assistants-settingsources-sets-wh-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sets where the Claude Agent SDK discovers "
+        },
+        {
+          "insert": "CLAUDE.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", skills, commands, agents and hooks. Use "
+        },
+        {
+          "insert": "[project]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to leave out your personal "
+        },
+        {
+          "insert": "~/.claude/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a node with no setting sources. Discovery only makes a skill eligible: a workflow node activates exactly the skills its "
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list names. See "
+        },
+        {
+          "insert": "Claude settingSources",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "claude-settingsources",
+              "label": "Claude settingSources"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-codex-38": {
+      "id": "b-40-ai-assistants-codex-38",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Codex"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-use-codex-with-a-chatgpt-39": {
+      "id": "b-40-ai-assistants-use-codex-with-a-chatgpt-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use Codex with a ChatGPT subscription login or an OpenAI API key."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-install-the-codex-cli-40": {
+      "id": "b-40-ai-assistants-install-the-codex-cli-40",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Install the Codex CLI"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-does-not-bundle-t-41": {
+      "id": "b-40-ai-assistants-archon-does-not-bundle-t-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon does not bundle the Codex CLI in a compiled install:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-bash-42": {
+      "id": "b-40-ai-assistants-bash-42",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "npm install -g @openai/codex   # any platform; on Windows OpenAI recommends WSL2\nbrew install codex             # macOS"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-native-binaries-are-on-t-43": {
+      "id": "b-40-ai-assistants-native-binaries-are-on-t-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Native binaries are on the "
+        },
+        {
+          "insert": "Codex releases page",
+          "attributes": {
+            "link": "https://github.com/openai/codex/releases"
+          }
+        },
+        {
+          "insert": ". See "
+        },
+        {
+          "insert": "OpenAI's Codex CLI docs",
+          "attributes": {
+            "link": "https://developers.openai.com/codex/cli"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-compiled-archon-finds-44": {
+      "id": "b-40-ai-assistants-a-compiled-archon-finds-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A compiled Archon finds Codex in this order:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-codex-bin-path-in-the-45": {
+      "id": "b-40-ai-assistants-codex-bin-path-in-the-45",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "CODEX_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the environment."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-assistants-codex-codexb-46": {
+      "id": "b-40-ai-assistants-assistants-codex-codexb-46",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "assistants.codex.codexBinaryPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in config."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-binary-you-place-at-47": {
+      "id": "b-40-ai-assistants-a-binary-you-place-at-47",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "A binary you place at "
+        },
+        {
+          "insert": "~/.archon/vendor/codex/codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "codex.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-common-npm-global-locati-48": {
+      "id": "b-40-ai-assistants-common-npm-global-locati-48",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Common npm global locations: "
+        },
+        {
+          "insert": "~/.npm-global/bin/codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "/opt/homebrew/bin/codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/usr/local/bin/codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "%APPDATA%\\npm\\codex.cmd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "%USERPROFILE%\\.npm-global\\codex.cmd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows. For any other npm prefix, set the path explicitly."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-source-install-runs-th-49": {
+      "id": "b-40-ai-assistants-a-source-install-runs-th-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A source install runs the binary from the "
+        },
+        {
+          "insert": "@openai/codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " package Archon depends on, unless you set a path."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-authenticate-codex-50": {
+      "id": "b-40-ai-assistants-authenticate-codex-50",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Authenticate Codex"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-by-default-codex-uses-th-51": {
+      "id": "b-40-ai-assistants-by-default-codex-uses-th-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "By default Codex uses the login in your Codex home ("
+        },
+        {
+          "insert": "~/.codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "CODEX_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), exactly as "
+        },
+        {
+          "insert": "codex login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " left it. Outside Docker, Archon never writes to that directory."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-login-on-the-host-r-52": {
+      "id": "b-40-ai-assistants-login-on-the-host-r-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Login on the host.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Run "
+        },
+        {
+          "insert": "codex login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the machine that runs Archon. This works for a server too."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-api-key-set-codex-53": {
+      "id": "b-40-ai-assistants-api-key-set-codex-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "API key.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Set "
+        },
+        {
+          "insert": "CODEX_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Archon's environment, for example "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon passes it to the Codex process in memory. Codex does not read "
+        },
+        {
+          "insert": "OPENAI_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-copied-login-tokens-d-54": {
+      "id": "b-40-ai-assistants-copied-login-tokens-d-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Copied login tokens, Docker only.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " For the Docker image, run "
+        },
+        {
+          "insert": "codex login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on another machine and copy the four values from "
+        },
+        {
+          "insert": "~/.codex/auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-ini-55": {
+      "id": "b-40-ai-assistants-ini-55",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "ARCHON_CODEX_ID_TOKEN=eyJhbGc...\nARCHON_CODEX_ACCESS_TOKEN=eyJhbGc...\nARCHON_CODEX_REFRESH_TOKEN=rt_...\nARCHON_CODEX_ACCOUNT_ID=6a6a7ba6-..."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-at-each-start-the-conta-56": {
+      "id": "b-40-ai-assistants-at-each-start-the-conta-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "At each start, the container's "
+        },
+        {
+          "insert": "setup-auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " step writes them to "
+        },
+        {
+          "insert": "~/.codex/auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Outside Docker nothing reads them at run time: the server's startup check passes, but every Codex run fails with "
+        },
+        {
+          "insert": "auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Use a host login or "
+        },
+        {
+          "insert": "CODEX_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " there instead. The "
+        },
+        {
+          "insert": "ARCHON_",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prefix keeps the values from overriding a Codex login, because Codex reads "
+        },
+        {
+          "insert": "CODEX_ACCESS_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " itself. If your "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " still has the old "
+        },
+        {
+          "insert": "CODEX_*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names, run "
+        },
+        {
+          "insert": "archon setup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to rename them or rename all four yourself. Until the next release Archon still reads the old names, with a deprecation warning, but only when "
+        },
+        {
+          "insert": "CODEX_ID_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set and no "
+        },
+        {
+          "insert": "ARCHON_CODEX_*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " variable is."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-connected-credential-57": {
+      "id": "b-40-ai-assistants-connected-credential-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Connected credential.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " With "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", an "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " credential connected in Archon ("
+        },
+        {
+          "insert": "archon ai key set openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon ai login openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") takes precedence over the native login, in workflows and in chat. An API key reaches Codex as "
+        },
+        {
+          "insert": "CODEX_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a ChatGPT subscription logs the Codex process in, in memory. A subscription token that expires during a run fails the turn with "
+        },
+        {
+          "insert": "auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and resuming the run picks up the refreshed token."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-native-credential-checks-58": {
+      "id": "b-40-ai-assistants-native-credential-checks-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Native credential checks request a sign-in refresh through app-server. If Codex reports no account, Archon rechecks once in a fresh process under the same deadline: another process may have saved a working login while the first retained a rejected refresh token. The fresh process must still pass the refresh check; missing or rejected logins continue to block the run. See "
+        },
+        {
+          "insert": "credential preflight troubleshooting",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/60-troubleshooting.md",
+              "section": "codex-credential-preflight-fails-while-other-codex-work-succeeds",
+              "label": "credential preflight troubleshooting"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-how-archon-runs-codex-59": {
+      "id": "b-40-ai-assistants-how-archon-runs-codex-59",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "How Archon runs Codex"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-each-codex-turn-runs-on-60": {
+      "id": "b-40-ai-assistants-each-codex-turn-runs-on-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each Codex turn runs on its own "
+        },
+        {
+          "insert": "codex app-server",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " process. Your Codex config, hooks and "
+        },
+        {
+          "insert": "AGENTS.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " guidance load as they do for "
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " itself. In direct chat your plugins and MCP servers load too. A workflow node loads only the MCP servers its "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file declares and the plugins its "
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " list names, with ChatGPT apps off (see "
+        },
+        {
+          "insert": "Plugins",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "plugins",
+              "label": "Plugins"
+            }
+          }
+        },
+        {
+          "insert": "). Failed turns carry a typed failure class from Codex's own error code; the classes are listed under "
+        },
+        {
+          "insert": "Error classification",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "error-classification",
+              "label": "Error classification"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-codex-chats-get-archon-s-61": {
+      "id": "b-40-ai-assistants-codex-chats-get-archon-s-61",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Codex chats get Archon's "
+        },
+        {
+          "insert": "invoke_workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "register_project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tools, plus "
+        },
+        {
+          "insert": "manage_run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in project-scoped chats, through Codex's experimental dynamic-tool API. The tool catalog is fixed when a thread starts. If a chat predates Archon's record of that catalog, or the tools have changed since, Archon asks you to start a new chat before it runs a model turn."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-in-workflow-nodes-archon-62": {
+      "id": "b-40-ai-assistants-in-workflow-nodes-archon-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In workflow nodes Archon turns Codex's automatic skill catalog off, so a prompt invokes an installed skill from "
+        },
+        {
+          "insert": ".agents/skills/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " explicitly with "
+        },
+        {
+          "insert": "$skill-name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Direct chat keeps native discovery. See "
+        },
+        {
+          "insert": "Per-Node Skills",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/45-skills.md",
+              "section": "codex-compatibility",
+              "label": "Per-Node Skills"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-codex-config-keys-63": {
+      "id": "b-40-ai-assistants-codex-config-keys-63",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Codex config keys"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-64": {
+      "id": "b-40-ai-assistants-yaml-64",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  codex:\n    model: gpt-6.1-sol\n    modelReasoningEffort: medium  # minimal, low, medium, high, xhigh, max, ultra or persistent\n    webSearchMode: live           # disabled, cached or live\n    additionalDirectories:\n      - /absolute/path/to/other/repo\n    codexBinaryPath: /absolute/path/to/codex   # optional, see above\n    toolFreeStructuredOutputModels:            # routes that reject tools and a strict schema together\n      - glm-5.3"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-workflow-s-effort-o-65": {
+      "id": "b-40-ai-assistants-a-workflow-s-effort-o-65",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow's "
+        },
+        {
+          "insert": "effort:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " overrides "
+        },
+        {
+          "insert": "modelReasoningEffort",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-some-model-routes-reject-66": {
+      "id": "b-40-ai-assistants-some-model-routes-reject-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Some model routes reject a request that carries both tools and a strict output schema. On a model listed in "
+        },
+        {
+          "insert": "toolFreeStructuredOutputModels",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a node with "
+        },
+        {
+          "insert": "output_format",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs its tool turn without the schema, then one final turn on the same thread with the schema and no tools. That costs one extra model request per node. The list matches only a model Archon resolves ("
+        },
+        {
+          "insert": "assistants.codex.model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a tier, an alias or the node's "
+        },
+        {
+          "insert": "model:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), not one set in Codex's own "
+        },
+        {
+          "insert": "config.toml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The list is read live, so a resumed run uses the current list."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-final-turn-drops-the-67": {
+      "id": "b-40-ai-assistants-the-final-turn-drops-the-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The final turn drops the tools a Codex model catalog entry adds ("
+        },
+        {
+          "insert": "tool_mode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "experimental_supported_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "apply_patch_tool_type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "): its process loads a catalog whose only entry is that model with no tools. The entry keeps the context window Codex reported for the tool turn, so Codex compacts the conversation before the final turn at about the size it would for the tool turn. Codex multi-agent is off on these threads, with one limit: Codex keeps a catalog entry's "
+        },
+        {
+          "insert": "multi_agent_version: v2",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the thread, so that entry's collaboration tools ("
+        },
+        {
+          "insert": "spawn_agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "send_message",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the rest) stay on both turns, including the final one. If such a model's route rejects them, drop "
+        },
+        {
+          "insert": "multi_agent_version",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from that model's entry in the catalog Codex loads ("
+        },
+        {
+          "insert": "model_catalog_json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Codex's "
+        },
+        {
+          "insert": "config.toml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "codex debug models",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prints the current one)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-68": {
+      "id": "b-40-ai-assistants-pi-68",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pi"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-earendil-works-pi-69": {
+      "id": "b-40-ai-assistants-pi-earendil-works-pi-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pi ("
+        },
+        {
+          "insert": "@earendil-works/pi-coding-agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") is a coding-agent harness the Archon core team maintains alongside Claude and Codex. One "
+        },
+        {
+          "insert": "provider: pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reaches Anthropic, OpenAI, Google (Gemini and Vertex), Groq, Mistral, Cerebras, xAI, OpenRouter, Hugging Face, and local models such as LM Studio, ollama and llamacpp."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-install-pi-70": {
+      "id": "b-40-ai-assistants-install-pi-70",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Install Pi"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-add-pi-with-archon-prov-71": {
+      "id": "b-40-ai-assistants-add-pi-with-archon-prov-71",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add Pi with "
+        },
+        {
+          "insert": "archon provider add pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The provider embeds the Pi SDK, so you need the Pi CLI only to log in with "
+        },
+        {
+          "insert": "pi /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or to refresh the model catalog. Source installs include the provider already. Install the CLI with "
+        },
+        {
+          "insert": "npm install -g @earendil-works/pi-coding-agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-setup-can-confi-72": {
+      "id": "b-40-ai-assistants-archon-setup-can-confi-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon setup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can configure Pi: pick "
+        },
+        {
+          "insert": "Pi",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", choose a backend and paste its key. Setup writes the key to "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the model to "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-authenticate-pi-73": {
+      "id": "b-40-ai-assistants-authenticate-pi-73",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Authenticate Pi"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-reads-your-pi-cre-74": {
+      "id": "b-40-ai-assistants-archon-reads-your-pi-cre-74",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon reads your Pi credentials from "
+        },
+        {
+          "insert": "~/.pi/agent/auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", written by "
+        },
+        {
+          "insert": "pi /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and from environment variables. Environment variables win per request, so codebase-scoped overrides work. A per-user credential that Archon delivers wins over all of them."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-login-covers-these-75": {
+      "id": "b-40-ai-assistants-pi-login-covers-these-75",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "pi /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " covers these OAuth subscriptions: OpenAI ChatGPT Plus or Pro, GitHub Copilot, Google Gemini CLI and Google Antigravity."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-key-based-backends-read-76": {
+      "id": "b-40-ai-assistants-key-based-backends-read-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Key-based backends read these variables:"
+        }
+      ],
+      "children": []
+    },
+    "table-1-09cbeab5": {
+      "id": "table-1-09cbeab5",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Pi provider id",
+          "Env var"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "anthropic",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "ANTHROPIC_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "openai",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "OPENAI_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "google",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GEMINI_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "groq",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GROQ_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "mistral",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "MISTRAL_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "cerebras",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "CEREBRAS_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "xai",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "XAI_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "openrouter",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "OPENROUTER_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "huggingface",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "HF_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-40-ai-assistants-the-full-map-is-generate-78": {
+      "id": "b-40-ai-assistants-the-full-map-is-generate-78",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The full map is generated from the installed Pi SDK ("
+        },
+        {
+          "insert": "bun run generate:pi-vendor-map",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and covers every other key-based backend, such as DeepSeek, Together, Fireworks and Azure OpenAI. Amazon Bedrock and Google Vertex use ambient cloud credentials (the AWS chain or gcloud ADC)."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-for-anthropic-models-us-79": {
+      "id": "b-40-ai-assistants-for-anthropic-models-us-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For Anthropic models, use "
+        },
+        {
+          "insert": "provider: claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with a Claude subscription, or give Pi an "
+        },
+        {
+          "insert": "ANTHROPIC_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Claude Pro or Max OAuth through Pi, including a native "
+        },
+        {
+          "insert": "pi /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " session, is not supported: Anthropic can reject Pi's default system prompt on subscription tokens. Archon never delivers its stored Claude subscription to Pi."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-local-and-custom-endpoin-80": {
+      "id": "b-40-ai-assistants-local-and-custom-endpoin-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Local and custom endpoints need no Archon configuration. Register them in "
+        },
+        {
+          "insert": "~/.pi/agent/models.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as Pi documents, then reference them as "
+        },
+        {
+          "insert": "<pi-provider-id>/<model-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". With no credential found, Archon continues and Pi connects to the endpoint."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-caches-the-result-of-81": {
+      "id": "b-40-ai-assistants-pi-caches-the-result-of-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pi caches the result of an API key stored as "
+        },
+        {
+          "insert": "!command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the life of the process, keyed by the command text. All Pi nodes in one Archon server share that cache. If the command returns a short-lived token, the server keeps sending it after it expires. Restart the server to run the command again, or use a longer-lived credential. Keys and headers from "
+        },
+        {
+          "insert": "models.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " commands are not cached this way."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-config-keys-82": {
+      "id": "b-40-ai-assistants-pi-config-keys-82",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Pi config keys"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-83": {
+      "id": "b-40-ai-assistants-yaml-83",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  pi:\n    model: anthropic/claude-haiku-4-5   # <pi-provider-id>/<model-id>\n    enableExtensions: true              # default true; false skips extension discovery\n    interactive: true                   # default true; false loads extensions with no UI bridge\n    extensionFlags:                     # per-extension flags, like Pi's --flag switches\n      plan: false\n    nodes:                              # per-node extension posture, keyed by node id\n      plan: { interactive: true, extensionFlags: { plan: true } }\n    env:                                # set in process.env for extensions; shell env wins\n      PLANNOTATOR_REMOTE: \"1\"\n    maxConcurrent: 2                    # cap on concurrent Pi prompts in this process"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-env-and-maxconcurrent-84": {
+      "id": "b-40-ai-assistants-env-and-maxconcurrent-84",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "maxConcurrent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " apply to the whole process, so a per-run "
+        },
+        {
+          "insert": "--config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " layer refuses them. Use codebase env vars, not "
+        },
+        {
+          "insert": "assistants.pi.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", for secrets that vary per project."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-model-references-can-nes-85": {
+      "id": "b-40-ai-assistants-model-references-can-nes-85",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Model references can nest slashes, as in "
+        },
+        {
+          "insert": "openrouter/qwen/qwen3-coder",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon reads Pi's model catalog from "
+        },
+        {
+          "insert": "~/.pi/agent/models-store.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "$PI_CODING_AGENT_DIR/models-store.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when that variable is set. If a model is newer than your catalog, run "
+        },
+        {
+          "insert": "pi update --models",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and retry. Archon never refreshes the catalog itself and never substitutes another model when a lookup fails."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-names-azure-models-a-86": {
+      "id": "b-40-ai-assistants-pi-names-azure-models-a-86",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pi names Azure models "
+        },
+        {
+          "insert": "azure/<model-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", including Foundry Chat Completions deployments. If you are upgrading from Pi 1.0.2 or earlier, change "
+        },
+        {
+          "insert": "azure-openai-responses",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "azure",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your Archon model references and in Pi's own "
+        },
+        {
+          "insert": "auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "models.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "settings.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon does not rewrite Pi's files. See the "
+        },
+        {
+          "insert": "Pi 1.0.3 release notes",
+          "attributes": {
+            "link": "https://github.com/earendil-works/pi/releases/tag/v1.0.3"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-settings-and-context-87": {
+      "id": "b-40-ai-assistants-pi-settings-and-context-87",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Pi settings and context files"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-every-session-starts-fro-88": {
+      "id": "b-40-ai-assistants-every-session-starts-fro-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every session starts from "
+        },
+        {
+          "insert": "~/.pi/agent/settings.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with "
+        },
+        {
+          "insert": "<repo>/.pi/settings.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on top. Edit those files for retries, transport, compaction, thinking budgets and the default model; you do not restate them in Archon's config. Archon never writes to them, and changes made during a session are discarded when it ends. Missing files fall back to Pi's defaults, and a file that fails to parse is logged as "
+        },
+        {
+          "insert": "pi.settings_load_error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without stopping the session."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-keeps-its-native-cont-89": {
+      "id": "b-40-ai-assistants-pi-keeps-its-native-cont-89",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pi keeps its native context-file discovery: "
+        },
+        {
+          "insert": "~/.pi/agent/AGENTS.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plus "
+        },
+        {
+          "insert": "AGENTS.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "CLAUDE.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the project and its parent directories. "
+        },
+        {
+          "insert": "AGENTS.override.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " replaces the ordinary file in the same directory."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-extensions-90": {
+      "id": "b-40-ai-assistants-extensions-90",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Extensions"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-pi-extensions-are-packag-91": {
+      "id": "b-40-ai-assistants-pi-extensions-are-packag-91",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Pi extensions are packages installed with "
+        },
+        {
+          "insert": "pi install npm:<package>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or your own local files, that hook into the agent's lifecycle. They can add tools, intercept tool calls or block for human review. Archon loads them by default."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-repo-controlled-pi-directories-92": {
+      "id": "b-40-ai-assistants-repo-controlled-pi-directories-92",
+      "type": "callout",
+      "props": {
+        "title": "Repo-controlled `.pi/` directories",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Extension discovery includes "
+        },
+        {
+          "insert": "<cwd>/.pi/extensions/*.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "<cwd>/.pi/settings.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the run's working directory. When you run a workflow against a repository you did not write, anything in its "
+        },
+        {
+          "insert": ".pi/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs with the Archon server's OS permissions. Audit that directory first, or set "
+        },
+        {
+          "insert": "enableExtensions: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " globally or on the node."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-set-an-extension-s-postu-93": {
+      "id": "b-40-ai-assistants-set-an-extension-s-postu-93",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set an extension's posture ("
+        },
+        {
+          "insert": "enableExtensions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "interactive",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "extensionFlags",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") on the node that needs it, not install-wide. A planning flag set under "
+        },
+        {
+          "insert": "assistants.pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also reaches the implement node, which then starts in planning mode, has its edits blocked and waits for a review nobody asked for. Three layers resolve per node, later ones winning:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-assistants-pi-the-i-94": {
+      "id": "b-40-ai-assistants-assistants-pi-the-i-94",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "assistants.pi.*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the install-wide default."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-assistants-pi-nodes-no-95": {
+      "id": "b-40-ai-assistants-assistants-pi-nodes-no-95",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "assistants.pi.nodes.<nodeId>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", for a workflow you cannot edit. It lives in one machine's config and is keyed by node id, so renaming the node orphans it."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-pi-block-on-the-nod-96": {
+      "id": "b-40-ai-assistants-a-pi-block-on-the-nod-96",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "pi:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block on the node in the workflow YAML. It travels with the workflow and is the one to use."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-each-layer-s-extensionf-97": {
+      "id": "b-40-ai-assistants-each-layer-s-extensionf-97",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each layer's "
+        },
+        {
+          "insert": "extensionFlags",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " merge over the layer below key by key, so a node can turn off an inherited flag with "
+        },
+        {
+          "insert": "plan: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "pi:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block works on "
+        },
+        {
+          "insert": "prompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "loop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " nodes. On a "
+        },
+        {
+          "insert": "loop_group",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " it is ignored with a warning; put it on the body nodes."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-for-example-with-the-p-98": {
+      "id": "b-40-ai-assistants-for-example-with-the-p-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For example, with the "
+        },
+        {
+          "insert": "plannotator",
+          "attributes": {
+            "link": "https://github.com/dmcglinn/plannotator"
+          }
+        },
+        {
+          "insert": " review extension installed ("
+        },
+        {
+          "insert": "pi install npm:@plannotator/pi-extension",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), turn planning mode on for the planner only:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-99": {
+      "id": "b-40-ai-assistants-yaml-99",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: plan-then-build\nprovider: pi\nnodes:\n  - id: plan\n    prompt: \"Draft a plan for: $ARGUMENTS\"\n    pi:\n      interactive: true          # plannotator opens its review server\n      extensionFlags: { plan: true }\n\n  - id: implement\n    depends_on: [plan]\n    loop:\n      prompt: \"Implement the approved plan. Print DONE when finished.\"\n      until: \"DONE\"\n      max_iterations: 10\n    pi:\n      interactive: false\n      extensionFlags: { plan: false }"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-plan-node-prints-a-100": {
+      "id": "b-40-ai-assistants-the-plan-node-prints-a-100",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "plan",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node prints a review URL and blocks until you approve or deny in the browser. Archon flushes that URL to the CLI or chat straight away."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-adds-neither-web-101": {
+      "id": "b-40-ai-assistants-archon-adds-neither-web-101",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon adds neither web search nor MCP to Pi; Pi rejects MCP by design. Both come from extensions that call "
+        },
+        {
+          "insert": "pi.registerTool",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", such as a search API wrapper or an MCP bridge, and the tools reach workflow nodes with no Archon configuration. A tool's "
+        },
+        {
+          "insert": "execute",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must return "
+        },
+        {
+          "insert": "{ content, details }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; a bare string reaches the model as an empty result. Search the "
+        },
+        {
+          "insert": "package ecosystem",
+          "attributes": {
+            "link": "https://shittycodingagent.ai/packages"
+          }
+        },
+        {
+          "insert": " before writing one."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-an-exception-that-escape-102": {
+      "id": "b-40-ai-assistants-an-exception-that-escape-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An exception that escapes a detached extension callback, such as a timer or a watcher, fails the Pi node that loaded the extension instead of the Archon process. Archon routes it by the extension path in the stack. If several running Pi nodes loaded that extension, each fails with an error that says so. An escaped error that names no loaded extension still ends the process."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-see-the-pi-documentatio-103": {
+      "id": "b-40-ai-assistants-see-the-pi-documentatio-103",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the "
+        },
+        {
+          "insert": "Pi documentation",
+          "attributes": {
+            "link": "https://pi.dev"
+          }
+        },
+        {
+          "insert": " for extensions, the model registry and settings."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-opencode-104": {
+      "id": "b-40-ai-assistants-opencode-104",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "OpenCode"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-deprecated-105": {
+      "id": "b-40-ai-assistants-deprecated-105",
+      "type": "callout",
+      "props": {
+        "title": "Deprecated",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "No Archon maintainer owns OpenCode. It keeps working. See "
+        },
+        {
+          "insert": "Deprecated providers",
+          "attributes": {
+            "link": "#deprecated-providers"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-runs-opencode-thr-106": {
+      "id": "b-40-ai-assistants-archon-runs-opencode-thr-106",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon runs OpenCode through "
+        },
+        {
+          "insert": "@opencode-ai/sdk",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as an embedded server that it starts, protects with a random password and stops after its last request. Connecting to an external OpenCode server is not supported."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-providers-brin-107": {
+      "id": "b-40-ai-assistants-archon-providers-brin-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon/providers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " brings the SDK, but not the "
+        },
+        {
+          "insert": "opencode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " executable. Install the "
+        },
+        {
+          "insert": "OpenCode CLI",
+          "attributes": {
+            "link": "https://opencode.ai/docs/#install"
+          }
+        },
+        {
+          "insert": " on the Archon process's "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". In Docker, install it on "
+        },
+        {
+          "insert": "appuser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "'s "
+        },
+        {
+          "insert": "PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in a derived image (see "
+        },
+        {
+          "insert": "Customizing the image",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "customizing-the-image",
+              "label": "Customizing the image"
+            }
+          }
+        },
+        {
+          "insert": "). "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " checks both without starting the server."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-opencode-handles-its-own-108": {
+      "id": "b-40-ai-assistants-opencode-handles-its-own-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "OpenCode handles its own authentication; Archon passes no keys. Run "
+        },
+        {
+          "insert": "opencode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and use "
+        },
+        {
+          "insert": "/connect",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or store credentials in "
+        },
+        {
+          "insert": "~/.config/opencode/opencode.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "{env:VAR}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "{file:PATH}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " substitution. Connected credentials persist in "
+        },
+        {
+          "insert": "~/.local/share/opencode/auth.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-all-nodes-share-one-embe-109": {
+      "id": "b-40-ai-assistants-all-nodes-share-one-embe-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All nodes share one embedded server, so codebase env vars do not reach OpenCode, and Archon warns when a node would have received any."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-110": {
+      "id": "b-40-ai-assistants-yaml-110",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  opencode:\n    model: anthropic/claude-3-5-sonnet   # required format: <provider>/<model>; list them with `opencode models`"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-github-copilot-111": {
+      "id": "b-40-ai-assistants-github-copilot-111",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "GitHub Copilot"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-deprecated-112": {
+      "id": "b-40-ai-assistants-deprecated-112",
+      "type": "callout",
+      "props": {
+        "title": "Deprecated",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "No Archon maintainer owns GitHub Copilot. It keeps working. See "
+        },
+        {
+          "insert": "Deprecated providers",
+          "attributes": {
+            "link": "#deprecated-providers"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-drives-the-copilo-113": {
+      "id": "b-40-ai-assistants-archon-drives-the-copilo-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon drives the Copilot CLI through "
+        },
+        {
+          "insert": "@github/copilot-sdk",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". You need an active Copilot subscription."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-source-install-gets-th-114": {
+      "id": "b-40-ai-assistants-a-source-install-gets-th-114",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A source install gets the CLI with "
+        },
+        {
+          "insert": "bun install",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". For a compiled Archon, install it with "
+        },
+        {
+          "insert": "npm install -g @github/copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon finds it through "
+        },
+        {
+          "insert": "COPILOT_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "assistants.copilot.copilotCliPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "~/.archon/vendor/copilot/copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "copilot.exe",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on Windows), then common install locations."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-copilot-picks-its-creden-115": {
+      "id": "b-40-ai-assistants-copilot-picks-its-creden-115",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Copilot picks its credential in this order:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-copilot-github-token-i-116": {
+      "id": "b-40-ai-assistants-copilot-github-token-i-116",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "COPILOT_GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the environment."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-with-useloggedinuser-f-117": {
+      "id": "b-40-ai-assistants-with-useloggedinuser-f-117",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "useLoggedInUser: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a generic "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-login-from-copilot-118": {
+      "id": "b-40-ai-assistants-the-login-from-copilot-118",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "The login from "
+        },
+        {
+          "insert": "copilot login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the default."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-archon-ignores-gh-token-119": {
+      "id": "b-40-ai-assistants-archon-ignores-gh-token-119",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon ignores "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " unless you opt in, because a classic GitHub token has no Copilot entitlement and fails with a misleading SDK error."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-yaml-120": {
+      "id": "b-40-ai-assistants-yaml-120",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  copilot:\n    model: gpt-5-mini              # for example gpt-5, gpt-5-mini, claude-sonnet-4.5; unset passes auto\n    modelReasoningEffort: medium   # any Archon effort, clamped to the SDK's low..max\n    copilotCliPath: /absolute/path/to/copilot\n    configDir: /absolute/path/to/copilot-config   # default: the SDK's own, usually ~/.copilot\n    enableConfigDiscovery: false   # default false; true loads the repo's .copilot/ MCP servers and skills\n    useLoggedInUser: true          # default true; false allows GH_TOKEN or GITHUB_TOKEN\n    logLevel: error                # none, error, warning, info, debug or all"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-copilot-has-no-session-f-121": {
+      "id": "b-40-ai-assistants-copilot-has-no-session-f-121",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Copilot has no session-fork API. When Archon asks for a fork on retry, it starts a fresh session and posts a warning."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-per-user-credentials-and-122": {
+      "id": "b-40-ai-assistants-per-user-credentials-and-122",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Per-user credentials and AI Settings"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-everything-above-configu-123": {
+      "id": "b-40-ai-assistants-everything-above-configu-123",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Everything above configures install-wide credentials that every run shares. On a shared Archon server, each user can instead connect their own API key or subscription, so their runs and chats use their account. A solo install does not need this."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-credential-vault-wor-124": {
+      "id": "b-40-ai-assistants-the-credential-vault-wor-124",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The credential vault works on every install. Archon creates a local encryption key at "
+        },
+        {
+          "insert": "~/.archon/credential-key",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on first use. To manage the key yourself, for example to share it across containers or keep it in a secrets manager, set "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (64 hex characters, "
+        },
+        {
+          "insert": "openssl rand -hex 32",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and the key file is not used. Changing the key, or deleting the key file, makes every stored credential unreadable and everyone must reconnect. "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " then lists each of your credentials as \"cannot be used\", with the "
+        },
+        {
+          "insert": "archon ai login <vendor>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon ai key set <vendor>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command that reconnects it."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-connect-a-credential-125": {
+      "id": "b-40-ai-assistants-connect-a-credential-125",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Connect a credential"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-credentials-are-stored-p-126": {
+      "id": "b-40-ai-assistants-credentials-are-stored-p-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Credentials are stored per vendor ("
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openrouter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and others), and one credential serves every agent that uses that vendor. Every vendor accepts an API key. "
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also accept a subscription login. The legacy ids "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are accepted and normalized."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-an-anthropic-subscript-127": {
+      "id": "b-40-ai-assistants-an-anthropic-subscript-127",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An "
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " subscription runs only on Claude Code. Because one credential is stored per vendor, connecting an Anthropic API key replaces the subscription. To give Pi an Anthropic key while Claude Code uses the subscription, set "
+        },
+        {
+          "insert": "ANTHROPIC_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the install or codebase env."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-in-the-console-open-s-128": {
+      "id": "b-40-ai-assistants-in-the-console-open-s-128",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In the console, open "
+        },
+        {
+          "insert": "Settings",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "Agents",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " section has one card per agent with its credentials and a ready or needs-credential state. The Pi card lists its backends behind "
+        },
+        {
+          "insert": "Add backend…",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and shows Bedrock and Vertex as status-only rows. OpenCode's backends are install-wide, not per user."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-from-the-cli-archon-a-129": {
+      "id": "b-40-ai-assistants-from-the-cli-archon-a-129",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From the CLI ("
+        },
+        {
+          "insert": "archon ai",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "ai",
+              "label": "`archon ai`"
+            }
+          }
+        },
+        {
+          "insert": "):"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-bash-130": {
+      "id": "b-40-ai-assistants-bash-130",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "echo \"$MY_KEY\" | archon ai key set openrouter   # API key for any vendor\narchon ai login anthropic                        # subscription: anthropic, openai or github-copilot\narchon ai list"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-when-credentials-are-che-131": {
+      "id": "b-40-ai-assistants-when-credentials-are-che-131",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "When credentials are checked"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-run-checks-the-credent-132": {
+      "id": "b-40-ai-assistants-a-run-checks-the-credent-132",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run checks the credentials its AI nodes need before it creates isolation, and again before any node runs when execution starts or resumes. Vendors the run does not use are not checked, and a child workflow checks its own graph when it starts."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-with-store-database-133": {
+      "id": "b-40-ai-assistants-with-store-database-133",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "store: database",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a connected credential that cannot be read or is rejected blocks the run. Archon never falls back to another account."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-with-store-files-or-134": {
+      "id": "b-40-ai-assistants-with-store-files-or-134",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "store: files",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or with no connected credential, runs use the provider's native or environment account, and a missing login blocks launch. A host run checks that login before isolation; a container run checks it inside the container."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-claude-checks-account-in-135": {
+      "id": "b-40-ai-assistants-claude-checks-account-in-135",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Claude checks account information in the target directory with each node's setting sources, without a model request. An "
+        },
+        {
+          "insert": "apiKeyHelper",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must exit successfully with a non-empty credential, unless an environment credential authenticates instead."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-providers-that-cannot-ch-136": {
+      "id": "b-40-ai-assistants-providers-that-cannot-ch-136",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Providers that cannot check without a model session, including Copilot, OpenCode and Claude cloud backends, report \"not checked\" and may proceed."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-check-that-cannot-deci-137": {
+      "id": "b-40-ai-assistants-a-check-that-cannot-deci-137",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A check that cannot decide (the vendor or the provider's runtime gave no answer, or the 60 s check timed out) does not block the run. The run starts and records a "
+        },
+        {
+          "insert": "credential_check_inconclusive",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event with the evidence, shown in the Web UI. A bad credential then fails the first AI node as "
+        },
+        {
+          "insert": "auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", without retry. A connected credential is refreshed again when execution starts, and blocks the run then if it still cannot be used."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-key-that-resolves-is-o-138": {
+      "id": "b-40-ai-assistants-a-key-that-resolves-is-o-138",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A key that resolves is only usable; only a model request proves the vendor accepts it."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-model-tiers-aliases-and-139": {
+      "id": "b-40-ai-assistants-model-tiers-aliases-and-139",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Model tiers, aliases and defaults"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-the-small-medium-an-140": {
+      "id": "b-40-ai-assistants-the-small-medium-an-140",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "small",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "medium",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tiers map to a provider and model. Only "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " have built-in tier defaults; every other provider must configure each tier it uses. Set tiers and "
+        },
+        {
+          "insert": "@alias",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " references in the console's "
+        },
+        {
+          "insert": "Model Tiers",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "Model Aliases",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " sections, with "
+        },
+        {
+          "insert": "archon ai tier set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon ai alias set",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or in the "
+        },
+        {
+          "insert": "tiers:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "aliases:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " blocks described in "
+        },
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": ". These need no encryption key."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-when-you-are-signed-in-t-141": {
+      "id": "b-40-ai-assistants-when-you-are-signed-in-t-141",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When you are signed in to the web UI, those sections and "
+        },
+        {
+          "insert": "Defaults",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " have a "
+        },
+        {
+          "insert": "This install / Just me",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " toggle. Just-me settings are stored in Archon's database and win over the install config for runs and chats you start. The CLI equivalent is "
+        },
+        {
+          "insert": "--scope user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-bash-142": {
+      "id": "b-40-ai-assistants-bash-142",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon ai tier set large claude opus --scope user\narchon ai default pi openrouter/minimax/minimax-m2 --scope user   # pin your chat provider and model"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-chat-picks-its-provider-143": {
+      "id": "b-40-ai-assistants-chat-picks-its-provider-143",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Chat picks its provider from your personal default, then the conversation's recorded assistant, then the install default. Its model is your personal pin when the pin's provider matches, then the configured "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tier (yours, then repo, then global), then "
+        },
+        {
+          "insert": "assistants.<provider>.model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when no "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tier is configured, then the built-in default. If chat asks for "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and only another tier is configured, Archon uses the nearest one and says which. Workflow nodes ignore the chat pin; "
+        },
+        {
+          "insert": "model: large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " always means the tier."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-for-a-single-run-archo-144": {
+      "id": "b-40-ai-assistants-for-a-single-run-archo-144",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For a single run, "
+        },
+        {
+          "insert": "archon workflow run --model <name>=<spec>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or the console's "
+        },
+        {
+          "insert": "Start a new run",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " card rebinds named tiers or aliases without touching shared config. See "
+        },
+        {
+          "insert": "workflow run",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-run-name-message",
+              "label": "`workflow run`"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-how-assistant-selection-145": {
+      "id": "b-40-ai-assistants-how-assistant-selection-145",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How assistant selection works"
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-a-new-conversation-uses-146": {
+      "id": "b-40-ai-assistants-a-new-conversation-uses-146",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A new conversation uses the repository's "
+        },
+        {
+          "insert": "assistant",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "defaultAssistant",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then the "
+        },
+        {
+          "insert": "DEFAULT_AI_ASSISTANT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " environment variable. Each must name a registered provider. Once a conversation starts, its assistant is fixed."
+        }
+      ],
+      "children": []
+    },
+    "b-40-ai-assistants-workflows-set-provider-147": {
+      "id": "b-40-ai-assistants-workflows-set-provider-147",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Workflows set "
+        },
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at the workflow or node level. Tier and alias references resolve from your personal preferences, then repository and global config, then built-in defaults. A literal model id passes unchanged to the provider."
+        }
+      ],
+      "children": []
+    }
+  }
+}

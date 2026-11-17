@@ -1,0 +1,2031 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-45-sdlc-factory",
+  "title": "Set up the SDLC factory",
+  "root": "b-45-sdlc-factory-root-70",
+  "blocks": {
+    "b-45-sdlc-factory-root-70": {
+      "id": "b-45-sdlc-factory-root-70",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user"
+        ],
+        "category": "getting-started",
+        "description": "Take a GitHub repository from nothing to an issue built by the build queue and merged by the merge queue, and know everything the pack writes.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/sdlc-factory.md"
+      },
+      "children": [
+        "b-45-sdlc-factory-the-bundled-sdlc-pack-1",
+        "table-0-aa10dd3e",
+        "b-45-sdlc-factory-every-workflow-in-the-pa-3",
+        "b-45-sdlc-factory-before-you-start-4",
+        "b-45-sdlc-factory-you-need-5",
+        "b-45-sdlc-factory-archon-with-at-least-one-6",
+        "b-45-sdlc-factory-a-local-clone-of-a-githu-7",
+        "b-45-sdlc-factory-the-forge-plugin-archo-8",
+        "b-45-sdlc-factory-a-github-credential-for-9",
+        "b-45-sdlc-factory-ci-that-reports-checks-o-10",
+        "b-45-sdlc-factory-1-check-the-forge-11",
+        "b-45-sdlc-factory-bash-12",
+        "b-45-sdlc-factory-the-pack-talks-to-the-fo-13",
+        "b-45-sdlc-factory-2-name-your-maintainers-14",
+        "b-45-sdlc-factory-create-archon-sdlc-pol-15",
+        "b-45-sdlc-factory-json-16",
+        "b-45-sdlc-factory-each-entry-is-a-github-l-17",
+        "b-45-sdlc-factory-whose-issues-get-triag-18",
+        "b-45-sdlc-factory-whose-review-verdicts-19",
+        "b-45-sdlc-factory-3-adjust-policy-and-mod-20",
+        "b-45-sdlc-factory-the-queues-decide-clear-21",
+        "table-1-aa10dd3e",
+        "b-45-sdlc-factory-to-change-one-put-only-23",
+        "b-45-sdlc-factory-each-stage-picks-its-mod-24",
+        "table-2-aa10dd3e",
+        "b-45-sdlc-factory-bash-26",
+        "b-45-sdlc-factory-4-write-an-issue-the-fa-27",
+        "b-45-sdlc-factory-the-issue-body-is-the-co-28",
+        "b-45-sdlc-factory-5-run-the-queues-by-han-29",
+        "b-45-sdlc-factory-run-each-queue-once-your-30",
+        "b-45-sdlc-factory-triage-the-issue-31",
+        "b-45-sdlc-factory-bash-32",
+        "b-45-sdlc-factory-intake-labels-the-issue-33",
+        "b-45-sdlc-factory-build-it-34",
+        "b-45-sdlc-factory-bash-35",
+        "b-45-sdlc-factory-you-can-also-say-what-to-36",
+        "b-45-sdlc-factory-a-round-is-archon-ship-37",
+        "b-45-sdlc-factory-merge-it-38",
+        "b-45-sdlc-factory-bash-39",
+        "b-45-sdlc-factory-one-sweep-agent-decides-40",
+        "b-45-sdlc-factory-the-trusted-review-verdi-41",
+        "b-45-sdlc-factory-ci-is-green-at-that-head-42",
+        "b-45-sdlc-factory-the-default-branch-s-ci-43",
+        "b-45-sdlc-factory-the-head-contains-the-de-44",
+        "b-45-sdlc-factory-the-gate-merges-pinned-t-45",
+        "b-45-sdlc-factory-drain-what-the-runs-noti-46",
+        "b-45-sdlc-factory-bash-47",
+        "b-45-sdlc-factory-6-answer-what-the-facto-48",
+        "b-45-sdlc-factory-bash-49",
+        "b-45-sdlc-factory-each-item-says-what-is-b-50",
+        "b-45-sdlc-factory-bash-51",
+        "b-45-sdlc-factory-the-reason-matters-a-bu-52",
+        "b-45-sdlc-factory-7-let-it-run-on-its-own-53",
+        "b-45-sdlc-factory-the-pack-installs-no-tri-54",
+        "b-45-sdlc-factory-bash-55",
+        "b-45-sdlc-factory-host-is-a-name-you-c-56",
+        "b-45-sdlc-factory-build-split-merge-an-57",
+        "b-45-sdlc-factory-bash-58",
+        "b-45-sdlc-factory-on-linux-or-windows-run-59",
+        "b-45-sdlc-factory-intake-starts-on-git-60",
+        "b-45-sdlc-factory-the-pack-s-readme-says-w-61",
+        "b-45-sdlc-factory-what-the-pack-writes-62",
+        "b-45-sdlc-factory-everything-below-is-writ-63",
+        "table-3-aa10dd3e",
+        "b-45-sdlc-factory-on-your-machine-it-keeps-65",
+        "b-45-sdlc-factory-pause-or-stop-it-66",
+        "b-45-sdlc-factory-stop-new-runs-remov-67",
+        "b-45-sdlc-factory-stop-runs-in-flight-68",
+        "b-45-sdlc-factory-stop-one-item-answe-69"
+      ]
+    },
+    "b-45-sdlc-factory-the-bundled-sdlc-pack-1": {
+      "id": "b-45-sdlc-factory-the-bundled-sdlc-pack-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The bundled "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pack is a software factory made of five queues. You write an issue; intake triages it, the split queue files the issues a large item splits into when it can't be built as one, the build queue works it to a reviewed pull request, and the merge queue merges it. When a run reaches a decision it can't make, it pauses as one attention item for you to answer. This page sets that up on one GitHub repository, runs it by hand once, and then shows how to let it run on its own."
+        }
+      ],
+      "children": []
+    },
+    "table-0-aa10dd3e": {
+      "id": "table-0-aa10dd3e",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Queue",
+          "What it does"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "archon-intake",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Checks the issue's author against your maintainer list, triages a maintainer's issue and labels its route"
+          ],
+          [
+            [
+              {
+                "insert": "archon-build-queue",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Takes one triaged issue through build rounds until its pull request is reviewed Ready, or a maintainer's "
+              },
+              {
+                "insert": "ready",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " answer hands it to the merge queue"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "archon-merge-queue",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Merges the Ready, green pull requests the build queue finished, and sends back what it can't merge"
+          ],
+          [
+            [
+              {
+                "insert": "archon-discoveries",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Files, tracks or drops what runs noticed outside their own task"
+          ],
+          [
+            [
+              {
+                "insert": "archon-split",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Files the issues a large item splits into when triage judged it can't be built as one work item, and sends them back through intake. Its agent can also hand the item back to be built whole. They are opened by the install's login, so that login must be in "
+              },
+              {
+                "insert": "maintainers.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or intake treats them as outside items"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-sdlc-factory-every-workflow-in-the-pa-3": {
+      "id": "b-45-sdlc-factory-every-workflow-in-the-pa-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every workflow in the pack is described in "
+        },
+        {
+          "insert": "SDLC pack workflows",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/30-sdlc-workflows.md",
+              "label": "SDLC pack workflows"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-before-you-start-4": {
+      "id": "b-45-sdlc-factory-before-you-start-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Before you start"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-you-need-5": {
+      "id": "b-45-sdlc-factory-you-need-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You need:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-archon-with-at-least-one-6": {
+      "id": "b-45-sdlc-factory-archon-with-at-least-one-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon with at least one provider, from the "
+        },
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-a-local-clone-of-a-githu-7": {
+      "id": "b-45-sdlc-factory-a-local-clone-of-a-githu-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A local clone of a GitHub repository you can push to."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-forge-plugin-archo-8": {
+      "id": "b-45-sdlc-factory-the-forge-plugin-archo-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The forge plugin: "
+        },
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-a-github-credential-for-9": {
+      "id": "b-45-sdlc-factory-a-github-credential-for-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A GitHub credential for the account the pack will act as: "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Archon's env file. The plugin uses it, and every label, comment, push and merge is made as that account."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-ci-that-reports-checks-o-10": {
+      "id": "b-45-sdlc-factory-ci-that-reports-checks-o-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CI that reports checks on pull requests. The merge queue merges only when the checks at the pull request's head are green, so a repository with no checks never merges."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-1-check-the-forge-11": {
+      "id": "b-45-sdlc-factory-1-check-the-forge-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "1. Check the forge"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-12": {
+      "id": "b-45-sdlc-factory-bash-12",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-forge-check     # from the clone"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-pack-talks-to-the-fo-13": {
+      "id": "b-45-sdlc-factory-the-pack-talks-to-the-fo-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The pack talks to the forge only through "
+        },
+        {
+          "insert": "archon forge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and an installed "
+        },
+        {
+          "insert": "forge plugin",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "label": "forge plugin"
+            }
+          }
+        },
+        {
+          "insert": "; for GitHub, "
+        },
+        {
+          "insert": "archon plugin add coleam00/Archon/plugins/forge-github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The check proves the plugin offers every operation the delivery workflows' scripts call and can read the repository the clone's remotes name. It does not check "
+        },
+        {
+          "insert": "checks.logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "workitem.search",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which only agents call; a plugin without one refuses that call and the agent reports it. It proves read access only; the first write proves the rest. It does not check the merge queue's operations: the merge queue checks those itself when it starts and refuses a plugin without them before it claims any work."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-2-name-your-maintainers-14": {
+      "id": "b-45-sdlc-factory-2-name-your-maintainers-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "2. Name your maintainers"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-create-archon-sdlc-pol-15": {
+      "id": "b-45-sdlc-factory-create-archon-sdlc-pol-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create "
+        },
+        {
+          "insert": ".archon/sdlc/policy/maintainers.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and commit it to the default branch. The queues read it from the default branch's head on the remote, so a local copy does nothing."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-json-16": {
+      "id": "b-45-sdlc-factory-json-16",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "[\"your-login\", \"teammate\"]"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-each-entry-is-a-github-l-17": {
+      "id": "b-45-sdlc-factory-each-entry-is-a-github-l-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each entry is a GitHub login. With no file, every author is outside. The list decides two things:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-whose-issues-get-triag-18": {
+      "id": "b-45-sdlc-factory-whose-issues-get-triag-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Whose issues get triaged.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " An issue from anyone else gets "
+        },
+        {
+          "insert": "archon-needs-maintainer",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and starts no agent until a listed maintainer adds "
+        },
+        {
+          "insert": "archon-triage",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or a route label to it."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-whose-review-verdicts-19": {
+      "id": "b-45-sdlc-factory-whose-review-verdicts-19",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Whose review verdicts count.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The merge queue trusts only a review comment written by a listed login. "
+        },
+        {
+          "insert": "The login that authors the pack's published review comment must be on the list on the default branch",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", or that verdict is ignored. This is the forge plugin's credential identity. Check the published comment's author when choosing which login to list."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-3-adjust-policy-and-mod-20": {
+      "id": "b-45-sdlc-factory-3-adjust-policy-and-mod-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "3. Adjust policy and models (optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-queues-decide-clear-21": {
+      "id": "b-45-sdlc-factory-the-queues-decide-clear-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The queues decide clear cases on their own and ask about unclear ones. The pack's default policy for each decision lives in "
+        },
+        {
+          "insert": ".shared/policy/",
+          "attributes": {
+            "code": true,
+            "link": "https://github.com/coleam00/Archon/tree/dev/.archon/workflows/sdlc/.shared/policy"
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "table-1-aa10dd3e": {
+      "id": "table-1-aa10dd3e",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "File",
+          "Decides"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "triage.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "What triage accepts, and what may close without a person"
+          ],
+          [
+            [
+              {
+                "insert": "build.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "What the build queue continues on its own and what it asks"
+          ],
+          [
+            [
+              {
+                "insert": "merge.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Which pull requests merge on their own: by default small fixes, small features, tests and docs. Schemas, auth, large or partial work are asked"
+          ],
+          [
+            [
+              {
+                "insert": "rulings.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Answers your maintainers already gave, read before plan or review stops to ask"
+          ],
+          [
+            [
+              {
+                "insert": "discoveries.md",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "When a discovery is filed, tracked or dropped"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-sdlc-factory-to-change-one-put-only-23": {
+      "id": "b-45-sdlc-factory-to-change-one-put-only-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To change one, put only the lines to add or override in "
+        },
+        {
+          "insert": ".archon/sdlc/policy/<file>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The agent reads the default first, then your file, and your line wins where they conflict. A policy file can be a pointer to documents the project already has."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-each-stage-picks-its-mod-24": {
+      "id": "b-45-sdlc-factory-each-stage-picks-its-mod-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each stage picks its model from a concern alias, falling back to the tier it has always used. With nothing set, you get the tier models."
+        }
+      ],
+      "children": []
+    },
+    "table-2-aa10dd3e": {
+      "id": "table-2-aa10dd3e",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Alias",
+          "Nodes",
+          "Falls back to"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "@triage",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "triage",
+            [
+              {
+                "insert": "medium",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "@planner",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "plan",
+            [
+              {
+                "insert": "large",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "@investigator",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "investigate",
+            [
+              {
+                "insert": "medium",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "@implementer",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "implement",
+            [
+              {
+                "insert": "large",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "@reviewer",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "every review agent and simplify",
+            "each node's tier"
+          ],
+          [
+            [
+              {
+                "insert": "@review-<lens>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "one lens: "
+              },
+              {
+                "insert": "seams",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "code",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "tests",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "errors",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "docs",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "ux",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "simplify",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@reviewer",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", then the lens's tier"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-26": {
+      "id": "b-45-sdlc-factory-bash-26",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon ai alias set @reviewer codex gpt-6.1-sol                                   # every run\narchon workflow run archon-build-queue --model @reviewer=codex/gpt-6.1-sol ...    # one run"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-4-write-an-issue-the-fa-27": {
+      "id": "b-45-sdlc-factory-4-write-an-issue-the-fa-27",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "4. Write an issue the factory can build"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-issue-body-is-the-co-28": {
+      "id": "b-45-sdlc-factory-the-issue-body-is-the-co-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The issue body is the contract every round is measured against. State the problem, why it is worth solving, why now, the desired outcome, the invariants, and acceptance; see "
+        },
+        {
+          "insert": "The input is the contract",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "section": "the-input-is-the-contract",
+              "label": "The input is the contract"
+            }
+          }
+        },
+        {
+          "insert": ". The build queue asks you for a missing element instead of guessing it."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-5-run-the-queues-by-han-29": {
+      "id": "b-45-sdlc-factory-5-run-the-queues-by-han-29",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "5. Run the queues by hand"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-run-each-queue-once-your-30": {
+      "id": "b-45-sdlc-factory-run-each-queue-once-your-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run each queue once yourself before you automate anything, from your repository's checkout. Replace "
+        },
+        {
+          "insert": "42",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with the issue number. Each queue works on the repository the checkout's "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remote (or its only remote) names; when "
+        },
+        {
+          "insert": "origin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a fork, add "
+        },
+        {
+          "insert": "--input repo_host=github.com --input repo_path=<owner>/<repo>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to choose the repository."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-triage-the-issue-31": {
+      "id": "b-45-sdlc-factory-triage-the-issue-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Triage the issue:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-32": {
+      "id": "b-45-sdlc-factory-bash-32",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-intake --input number=42"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-intake-labels-the-issue-33": {
+      "id": "b-45-sdlc-factory-intake-labels-the-issue-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Intake labels the issue with its route ("
+        },
+        {
+          "insert": "archon-ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "archon-plan",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "archon-investigate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon-split",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), its type and its size, creating any pack label the repository lacks, and records a work item. Read the item with "
+        },
+        {
+          "insert": "archon state get work/42",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-build-it-34": {
+      "id": "b-45-sdlc-factory-build-it-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Build it:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-35": {
+      "id": "b-45-sdlc-factory-bash-35",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-build-queue --input number=42 --detach"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-you-can-also-say-what-to-36": {
+      "id": "b-45-sdlc-factory-you-can-also-say-what-to-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can also say what to build instead of giving a number, such as "
+        },
+        {
+          "insert": "archon workflow run archon-build-queue \"build the retry fix\" --detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An agent finds the issue you mean and claims it, asks you to choose when several match, or files new work as an issue and hands it to intake, which triages it before any queue builds it."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-a-round-is-archon-ship-37": {
+      "id": "b-45-sdlc-factory-a-round-is-archon-ship-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A round is "
+        },
+        {
+          "insert": "archon-ship",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without its triage, which intake already did: investigate or plan if the route needs it, implement, open a draft pull request, review it, fix the findings, wait for CI and mark it ready. When a round ends on something the contract already answers, such as a review finding or red CI the change caused, the queue starts the next round at once as a new detached run, unless the fix would add machinery the issue does not ask for; then it asks you first. A pull request that changed nothing material since its last review, no commits or only cosmetic edits, never gets another round. The item is done when the pull request's latest review says Ready at its head (when only a check no round can run is left, such as a deferred operator check, the queue asks you for it once at that head), or when a maintainer answers "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", for example after finishing the pull request by hand; the merge gate still checks the verdict and CI either way. Follow it with "
+        },
+        {
+          "insert": "archon workflow runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and answer anything it asks (step 6)."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-merge-it-38": {
+      "id": "b-45-sdlc-factory-merge-it-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Merge it:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-39": {
+      "id": "b-45-sdlc-factory-bash-39",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-merge-queue"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-one-sweep-agent-decides-40": {
+      "id": "b-45-sdlc-factory-one-sweep-agent-decides-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "One sweep agent decides every pull request the build queue made ready. It never pushes, never builds or tests, and never waits for CI. Each merge goes through a gate script that reads the pull request fresh and refuses unless:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-trusted-review-verdi-41": {
+      "id": "b-45-sdlc-factory-the-trusted-review-verdi-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "the trusted review verdict says Ready for the current head (a push after the review voids it);"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-ci-is-green-at-that-head-42": {
+      "id": "b-45-sdlc-factory-ci-is-green-at-that-head-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CI is green at that head;"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-default-branch-s-ci-43": {
+      "id": "b-45-sdlc-factory-the-default-branch-s-ci-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "the default branch's CI is not red (pending does not hold a merge);"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-head-contains-the-de-44": {
+      "id": "b-45-sdlc-factory-the-head-contains-the-de-44",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "the head contains the default branch, or GitHub reports it merges cleanly."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-gate-merges-pinned-t-45": {
+      "id": "b-45-sdlc-factory-the-gate-merges-pinned-t-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The gate merges pinned to that head through the forge's "
+        },
+        {
+          "insert": "pr.merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (squash by default; "
+        },
+        {
+          "insert": "--input merge_method=merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a merge commit). A conflict, a stale verdict, a review thread that raises a defect, or red the change caused goes back to the build queue with a brief. Red CI in code the pull request doesn't touch gets one rerun of its failed jobs. If the default branch is red, nothing merges, and the queue raises one "
+        },
+        {
+          "insert": "merge: base",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " item whose only choice is "
+        },
+        {
+          "insert": "hold",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the forge can't rerun a commit with no pull request, so a flaky default branch is rerun by hand. A pull request it fails to read twice in a row is parked until the build queue readies it again."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-drain-what-the-runs-noti-46": {
+      "id": "b-45-sdlc-factory-drain-what-the-runs-noti-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Drain what the runs noticed outside their task:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-47": {
+      "id": "b-45-sdlc-factory-bash-47",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow run archon-discoveries"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-6-answer-what-the-facto-48": {
+      "id": "b-45-sdlc-factory-6-answer-what-the-facto-48",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "6. Answer what the factory asks"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-49": {
+      "id": "b-45-sdlc-factory-bash-49",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow attention --all --watch"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-each-item-says-what-is-b-50": {
+      "id": "b-45-sdlc-factory-each-item-says-what-is-b-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each item says what is being decided, why it matters, the agent's recommendation with its evidence and confidence, the choices and what each does, and what happens if nobody answers. Its label names the queue and decision, such as "
+        },
+        {
+          "insert": "build: scope",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "merge: pr",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Answer with the choice and a reason:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-51": {
+      "id": "b-45-sdlc-factory-bash-51",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow respond <run-id> <choice> \"why\""
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-reason-matters-a-bu-52": {
+      "id": "b-45-sdlc-factory-the-reason-matters-a-bu-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The reason matters. A build or merge queue answer is written into the issue body as a dated \"Current scope\" section, and later rounds work from it. Every build item and merge pull-request item offers "
+        },
+        {
+          "insert": "other",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": its text says what to do instead and becomes the ruling. "
+        },
+        {
+          "insert": "park",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " stops the queue working that item. "
+        },
+        {
+          "insert": "Operate runs",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/50-operate.md",
+              "label": "Operate runs"
+            }
+          }
+        },
+        {
+          "insert": " covers answering, resuming and stopping runs in full."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-7-let-it-run-on-its-own-53": {
+      "id": "b-45-sdlc-factory-7-let-it-run-on-its-own-53",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "7. Let it run on its own"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-pack-installs-no-tri-54": {
+      "id": "b-45-sdlc-factory-the-pack-installs-no-tri-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The pack installs no trigger. Nothing starts until you start it, by hand as above or with a binding you add. A binding names the workflow, its inputs, the Archon user it runs as and how starts may overlap. The pack declares the bindings it recommends, and one command writes them as files for your repository:"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-55": {
+      "id": "b-45-sdlc-factory-bash-55",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon trigger whoami   # prints the runAsUserId\narchon pack bindings sdlc \\\n  --repo github.com/acme/widgets \\\n  --host build-host-1 \\\n  --run-as <runAsUserId> \\\n  --cwd ~/code/widgets \\\n  --out ~/.archon/triggers"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-host-is-a-name-you-c-56": {
+      "id": "b-45-sdlc-factory-host-is-a-name-you-c-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "--host",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is a name you choose for this machine, and "
+        },
+        {
+          "insert": "--cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the clone the runs launch in. The command writes one file per binding and prints what registers each. It registers and schedules nothing, and "
+        },
+        {
+          "insert": "--only build-queue,merge-queue,discoveries",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " writes a subset. See "
+        },
+        {
+          "insert": "pack bindings",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "pack-bindings",
+              "label": "`pack bindings`"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-build-split-merge-an-57": {
+      "id": "b-45-sdlc-factory-build-split-merge-an-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Build, split, merge and discoveries",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " run on a schedule. Fire each written file once, then install it. The command prints both lines for every file. Set "
+        },
+        {
+          "insert": "BINDING",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to the path it printed for each one; below it is the "
+        },
+        {
+          "insert": "build-queue",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file for "
+        },
+        {
+          "insert": "github.com/acme/widgets",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-bash-58": {
+      "id": "b-45-sdlc-factory-bash-58",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "BINDING=~/.archon/triggers/sdlc-acme-widgets-build-queue-0297fdfa94d5.json\narchon trigger fire --config \"$BINDING\"\narchon trigger schedule install --config \"$BINDING\"   # macOS"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-on-linux-or-windows-run-59": {
+      "id": "b-45-sdlc-factory-on-linux-or-windows-run-59",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Linux or Windows, run the same "
+        },
+        {
+          "insert": "trigger fire",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command from cron, systemd or Task Scheduler.\nIf you already schedule a queue another way, remove that schedule first, or both start runs for the same queue."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-intake-starts-on-git-60": {
+      "id": "b-45-sdlc-factory-intake-starts-on-git-60",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Intake",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " starts on GitHub issue and label events, through the GitHub source plugin on a running server. The two "
+        },
+        {
+          "insert": "intake-*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " files are entries for that plugin's "
+        },
+        {
+          "insert": "bindings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " array ("
+        },
+        {
+          "insert": "Configure GitHub event starts",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "section": "configure-github-event-starts",
+              "label": "Configure GitHub event starts"
+            }
+          }
+        },
+        {
+          "insert": "). It needs a webhook, so it is the last piece most people add. Until then, run intake by hand for each new issue."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-the-pack-s-readme-says-w-61": {
+      "id": "b-45-sdlc-factory-the-pack-s-readme-says-w-61",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The pack's README says what each binding does and why it has its capacity and overlap: "
+        },
+        {
+          "insert": "Bindings",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflows/sdlc/README.md#bindings"
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "Workflow triggers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/60-workflow-triggers.md",
+              "label": "Workflow triggers"
+            }
+          }
+        },
+        {
+          "insert": " covers schedules, webhooks, capacity and overlap."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-what-the-pack-writes-62": {
+      "id": "b-45-sdlc-factory-what-the-pack-writes-62",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "What the pack writes"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-everything-below-is-writ-63": {
+      "id": "b-45-sdlc-factory-everything-below-is-writ-63",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Everything below is written as the "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " account, to the repository the queues name."
+        }
+      ],
+      "children": []
+    },
+    "table-3-aa10dd3e": {
+      "id": "table-3-aa10dd3e",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Where",
+          "What",
+          "Who"
+        ],
+        "rows": [
+          [
+            "Labels",
+            [
+              {
+                "insert": "Creates the pack's own "
+              },
+              {
+                "insert": "archon-*",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " labels when missing. Adds and removes them on issues as a delta, so labels others add survive"
+              }
+            ],
+            [
+              {
+                "insert": "Intake; "
+              },
+              {
+                "insert": "archon-triage",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " with "
+              },
+              {
+                "insert": "--input publish=true",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Issues",
+            [
+              {
+                "insert": "Closes a duplicate of an open issue, or an issue a merged change already delivered, with one comment linking the cause, and a link-back comment on the original. Intake closes issues by triage verdict, as "
+              },
+              {
+                "insert": "triage.md",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " allows, and a merged pull request closes the issue it names with "
+              },
+              {
+                "insert": "Closes #N",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Intake; merges"
+          ],
+          [
+            "Issue bodies",
+            "Appends a dated \"Current scope\" section with your answer",
+            "Build queue, merge queue"
+          ],
+          [
+            "New issues",
+            "Files an issue for a verified discovery, marked so a rerun never files it twice. Adds one evidence comment to an open issue it tracks",
+            "Discoveries"
+          ],
+          [
+            "Branches",
+            [
+              {
+                "insert": "Pushes "
+              },
+              {
+                "insert": "build/<issue>-<slug>-<run>",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or pushes onto an open pull request's existing head. Never force-pushes or rebases"
+              }
+            ],
+            "Build queue rounds"
+          ],
+          [
+            "Pull requests",
+            [
+              {
+                "insert": "Opens a draft, updates its description, posts one review comment and edits it in place, replies to and resolves review threads, marks it ready and back to draft. The description says "
+              },
+              {
+                "insert": "Closes #N",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " only when the review found every acceptance item met and no dated ruling on the issue keeps it open. Before merging, the merge queue rechecks the keyword against the review's stamped coverage and the issue's latest ruling, and corrects it in either direction"
+              }
+            ],
+            "Build queue rounds; merge queue"
+          ],
+          [
+            "CI",
+            [
+              {
+                "insert": "Reruns a pull request's failed jobs once, when the red is outside the change. A red default branch is never rerun: it is raised as a "
+              },
+              {
+                "insert": "merge: base",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " item"
+              }
+            ],
+            "Build queue rounds, merge queue"
+          ],
+          [
+            "Merges",
+            "Merges through the gate, pinned to the reviewed head. Deletes no branch",
+            "Merge queue"
+          ],
+          [
+            "Worktrees and branches",
+            "If you schedule it, removes each merged worktree with its local branch, including a branch Archon adopted. Remote branches stay, with a warning",
+            [
+              {
+                "insert": "archon-worktree-cleanup",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-45-sdlc-factory-on-your-machine-it-keeps-65": {
+      "id": "b-45-sdlc-factory-on-your-machine-it-keeps-65",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On your machine it keeps state documents ("
+        },
+        {
+          "insert": "archon state list --prefix work/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), worktrees and run artifacts under "
+        },
+        {
+          "insert": "~/.archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-pause-or-stop-it-66": {
+      "id": "b-45-sdlc-factory-pause-or-stop-it-66",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pause or stop it"
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-stop-new-runs-remov-67": {
+      "id": "b-45-sdlc-factory-stop-new-runs-remov-67",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stop new runs.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Remove the schedules ("
+        },
+        {
+          "insert": "archon trigger schedule remove --config <file>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or the cron or systemd entry) and the intake webhook bindings. Removing a schedule does not cancel work already accepted."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-stop-runs-in-flight-68": {
+      "id": "b-45-sdlc-factory-stop-runs-in-flight-68",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stop runs in flight.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A build round that continues starts its next round as a new detached run, and answering "
+        },
+        {
+          "insert": "merge",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a merge item starts a sweep at once, so removing schedules alone does not stop a chain. List the runs with "
+        },
+        {
+          "insert": "archon workflow status --all",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon workflow cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon workflow abandon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " them."
+        }
+      ],
+      "children": []
+    },
+    "b-45-sdlc-factory-stop-one-item-answe-69": {
+      "id": "b-45-sdlc-factory-stop-one-item-answe-69",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Stop one item.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Answer its attention item with "
+        },
+        {
+          "insert": "park",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A paused run waiting on you does nothing until you answer."
+        }
+      ],
+      "children": []
+    }
+  }
+}

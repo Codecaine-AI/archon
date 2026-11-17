@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-15-updating",
+  "title": "Updating Archon",
+  "root": "b-15-updating-root-27",
+  "blocks": {
+    "b-15-updating-root-27": {
+      "id": "b-15-updating-root-27",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "getting-started",
+        "description": "Update an existing Archon installation.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/updating.md"
+      },
+      "children": [
+        "b-15-updating-use-the-same-method-you-1",
+        "b-15-updating-a-release-binary-checks-2",
+        "b-15-updating-bash-3",
+        "b-15-updating-until-you-do-a-run-that-4",
+        "b-15-updating-homebrew-5",
+        "b-15-updating-bash-6",
+        "b-15-updating-quick-installer-7",
+        "b-15-updating-re-run-the-installer-to-8",
+        "b-15-updating-macos-linux-9",
+        "b-15-updating-bash-10",
+        "b-15-updating-windows-powershell-11",
+        "b-15-updating-powershell-12",
+        "b-15-updating-docker-13",
+        "b-15-updating-for-the-release-image-sh-14",
+        "b-15-updating-bash-15",
+        "b-15-updating-for-a-long-running-conta-16",
+        "b-15-updating-the-repository-s-docker-17",
+        "b-15-updating-from-source-18",
+        "b-15-updating-in-your-archon-checkout-19",
+        "b-15-updating-bash-20",
+        "b-15-updating-commit-or-stash-your-cha-21",
+        "b-15-updating-bash-22",
+        "b-15-updating-if-you-serve-the-console-23",
+        "b-15-updating-update-notices-24",
+        "b-15-updating-compiled-cli-installs-ch-25",
+        "b-15-updating-the-console-shows-a-bann-26"
+      ]
+    },
+    "b-15-updating-use-the-same-method-you-1": {
+      "id": "b-15-updating-use-the-same-method-you-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use the same method you used to "
+        },
+        {
+          "insert": "install Archon",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/10-installation.md",
+              "label": "install Archon"
+            }
+          }
+        },
+        {
+          "insert": ".\nRead the "
+        },
+        {
+          "insert": "release notes",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/releases"
+          }
+        },
+        {
+          "insert": " before updating.\nLet active workflows finish and stop any running Archon server before replacing\nits executable or source checkout. Restart the server afterward so the console\nand new runs use the updated version."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-a-release-binary-checks-2": {
+      "id": "b-15-updating-a-release-binary-checks-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A release binary checks that each installed provider matches its own version.\nAfter a Homebrew or quick-installer update, reinstall the providers you use\n(the quick installer asks; Homebrew does not):"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-3": {
+      "id": "b-15-updating-bash-3",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon provider add claude codex   # the providers you use"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-until-you-do-a-run-that-4": {
+      "id": "b-15-updating-until-you-do-a-run-that-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Until you do, a run that needs one fails before it starts and prints this\ncommand. "
+        },
+        {
+          "insert": "archon doctor",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists each provider's installed version. Docker and\nsource installs run providers from source and skip this step."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-homebrew-5": {
+      "id": "b-15-updating-homebrew-5",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Homebrew"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-6": {
+      "id": "b-15-updating-bash-6",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "brew update\nbrew upgrade archon\narchon version"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-quick-installer-7": {
+      "id": "b-15-updating-quick-installer-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick installer"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-re-run-the-installer-to-8": {
+      "id": "b-15-updating-re-run-the-installer-to-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Re-run the installer to download and replace the executable with the latest release."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-macos-linux-9": {
+      "id": "b-15-updating-macos-linux-9",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "macOS / Linux"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-10": {
+      "id": "b-15-updating-bash-10",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://archon.diy/install | bash\narchon version"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-windows-powershell-11": {
+      "id": "b-15-updating-windows-powershell-11",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Windows (PowerShell)"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-powershell-12": {
+      "id": "b-15-updating-powershell-12",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "irm https://archon.diy/install.ps1 | iex\narchon version"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-docker-13": {
+      "id": "b-15-updating-docker-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Docker"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-for-the-release-image-sh-14": {
+      "id": "b-15-updating-for-the-release-image-sh-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For the release image shown in the installation guide, pull the new image before\nstarting another container:"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-15": {
+      "id": "b-15-updating-bash-15",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker pull ghcr.io/coleam00/archon:latest\ndocker run --rm -v \"$PWD:/workspace\" ghcr.io/coleam00/archon:latest version"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-for-a-long-running-conta-16": {
+      "id": "b-15-updating-for-a-long-running-conta-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For a long-running container, stop and recreate it using the same volumes,\nenvironment, and ports as the original container. Restarting an existing container\ndoes not change its image. Keep your data volumes."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-the-repository-s-docker-17": {
+      "id": "b-15-updating-the-repository-s-docker-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The repository's Docker Compose deployment builds from source. Follow its\n"
+        },
+        {
+          "insert": "update instructions",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/20-docker.md",
+              "section": "update",
+              "label": "update instructions"
+            }
+          }
+        },
+        {
+          "insert": ", retaining the profiles you\nused for deployment; rebuilding and recreating the app loads the updated source."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-from-source-18": {
+      "id": "b-15-updating-from-source-18",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "From source"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-in-your-archon-checkout-19": {
+      "id": "b-15-updating-in-your-archon-checkout-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "In your Archon checkout, first check for local changes:"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-20": {
+      "id": "b-15-updating-bash-20",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git status"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-commit-or-stash-your-cha-21": {
+      "id": "b-15-updating-commit-or-stash-your-cha-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Commit or stash your changes before updating. The "
+        },
+        {
+          "insert": "main",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " branch contains releases;\n"
+        },
+        {
+          "insert": "dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the working development branch."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-bash-22": {
+      "id": "b-15-updating-bash-22",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git switch main\ngit pull --ff-only\nbun install --frozen-lockfile\nbun run cli version"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-if-you-serve-the-console-23": {
+      "id": "b-15-updating-if-you-serve-the-console-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If you serve the console from source, rebuild it with "
+        },
+        {
+          "insert": "bun run build:web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before\nrestarting your server."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-update-notices-24": {
+      "id": "b-15-updating-update-notices-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Update notices"
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-compiled-cli-installs-ch-25": {
+      "id": "b-15-updating-compiled-cli-installs-ch-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Compiled CLI installs check for updates in the background during "
+        },
+        {
+          "insert": "workflow run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nand "
+        },
+        {
+          "insert": "workflow resume",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". When fresh release data is available, they print update\ninstructions to stderr at most once every 24 hours, even when the command fails.\n"
+        },
+        {
+          "insert": "--quiet",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "--json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " suppress this notice. An unavailable network or stale cache\ndoes not delay the command."
+        }
+      ],
+      "children": []
+    },
+    "b-15-updating-the-console-shows-a-bann-26": {
+      "id": "b-15-updating-the-console-shows-a-bann-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The console shows a banner when a newer release is available. Dismissing it is\nremembered in your browser for that release; a later release shows the banner again."
+        }
+      ],
+      "children": []
+    }
+  }
+}

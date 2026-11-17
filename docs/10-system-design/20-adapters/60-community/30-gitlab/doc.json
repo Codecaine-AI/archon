@@ -1,0 +1,1405 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-60-community-30-gitlab",
+  "title": "GitLab",
+  "root": "b-30-gitlab-root-60",
+  "blocks": {
+    "b-30-gitlab-root-60": {
+      "id": "b-30-gitlab-root-60",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Connect Archon to GitLab for AI coding assistance in issues and merge requests.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/community/gitlab.md"
+      },
+      "children": [
+        "b-30-gitlab-note-1",
+        "b-30-gitlab-connect-archon-to-a-gitl-2",
+        "b-30-gitlab-prerequisites-3",
+        "b-30-gitlab-archon-server-running-4",
+        "b-30-gitlab-gitlab-project-with-issu-5",
+        "b-30-gitlab-gitlab-personal-access-t-6",
+        "b-30-gitlab-public-endpoint-for-webh-7",
+        "b-30-gitlab-tip-8",
+        "b-30-gitlab-step-1-create-a-gitlab-9",
+        "b-30-gitlab-personal-access-token-r-10",
+        "b-30-gitlab-go-to-gitlab-user-se-11",
+        "b-30-gitlab-create-a-token-with-12",
+        "b-30-gitlab-copy-the-token-starts-w-16",
+        "b-30-gitlab-project-access-token-re-17",
+        "b-30-gitlab-go-to-project-settin-18",
+        "b-30-gitlab-create-a-token-with-19",
+        "b-30-gitlab-this-creates-a-bot-user-22",
+        "b-30-gitlab-step-2-generate-webhook-23",
+        "b-30-gitlab-bash-24",
+        "b-30-gitlab-windows-powershell-25",
+        "b-30-gitlab-powershell-26",
+        "b-30-gitlab-save-this-secret-you-ll-27",
+        "b-30-gitlab-step-3-expose-local-ser-28",
+        "b-30-gitlab-bash-29",
+        "b-30-gitlab-for-production-use-your-30",
+        "b-30-gitlab-step-4-configure-gitlab-31",
+        "b-30-gitlab-navigate-to-project-32",
+        "table-0-6093e690",
+        "b-30-gitlab-click-add-webhook-and-34",
+        "b-30-gitlab-note-35",
+        "b-30-gitlab-step-5-set-environment-36",
+        "b-30-gitlab-ini-37",
+        "b-30-gitlab-optional-38",
+        "b-30-gitlab-ini-39",
+        "b-30-gitlab-see-the-full-environmen-40",
+        "b-30-gitlab-usage-41",
+        "b-30-gitlab-mention-your-bot-in-issu-42",
+        "b-30-gitlab-code-43",
+        "b-30-gitlab-first-mention-reuses-44",
+        "b-30-gitlab-subsequent-mentions-45",
+        "b-30-gitlab-conversation-id-format-46",
+        "table-1-6093e690",
+        "b-30-gitlab-supported-events-48",
+        "table-2-6093e690",
+        "b-30-gitlab-adding-additional-projec-50",
+        "b-30-gitlab-add-the-same-webhook-to-51",
+        "b-30-gitlab-bash-52",
+        "b-30-gitlab-or-via-gitlab-ui-with-th-53",
+        "b-30-gitlab-troubleshooting-54",
+        "table-3-6093e690",
+        "b-30-gitlab-glab-cli-reference-56",
+        "b-30-gitlab-the-ai-agent-uses-glab-57",
+        "b-30-gitlab-bash-58",
+        "table-4-6093e690"
+      ]
+    },
+    "b-30-gitlab-note-1": {
+      "id": "b-30-gitlab-note-1",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "GitLab is a "
+        },
+        {
+          "insert": "community adapter",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": contributed and maintained by the community."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-connect-archon-to-a-gitl-2": {
+      "id": "b-30-gitlab-connect-archon-to-a-gitl-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to a GitLab instance (gitlab.com or self-hosted) so you can interact with your AI coding assistant from issues and merge requests."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-prerequisites-3": {
+      "id": "b-30-gitlab-prerequisites-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-archon-server-running-4": {
+      "id": "b-30-gitlab-archon-server-running-4",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-gitlab-project-with-issu-5": {
+      "id": "b-30-gitlab-gitlab-project-with-issu-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitLab project with issues and merge requests enabled"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-gitlab-personal-access-t-6": {
+      "id": "b-30-gitlab-gitlab-personal-access-t-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "GitLab Personal Access Token or Project Access Token with "
+        },
+        {
+          "insert": "api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " scope"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-public-endpoint-for-webh-7": {
+      "id": "b-30-gitlab-public-endpoint-for-webh-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Public endpoint for webhooks (see ngrok setup below for local development)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-tip-8": {
+      "id": "b-30-gitlab-tip-8",
+      "type": "callout",
+      "props": {
+        "title": "Tip",
+        "tone": "success"
+      },
+      "text": [
+        {
+          "insert": "GITLAB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also enables authenticated cloning of private GitLab repositories. If you set it for the adapter, clone authentication works automatically: no extra configuration needed."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-step-1-create-a-gitlab-9": {
+      "id": "b-30-gitlab-step-1-create-a-gitlab-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 1: Create a GitLab Access Token"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-personal-access-token-r-10": {
+      "id": "b-30-gitlab-personal-access-token-r-10",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Personal Access Token (recommended for getting started)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-go-to-gitlab-user-se-11": {
+      "id": "b-30-gitlab-go-to-gitlab-user-se-11",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to "
+        },
+        {
+          "insert": "GitLab → User Settings → Access Tokens",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-create-a-token-with-12": {
+      "id": "b-30-gitlab-create-a-token-with-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create a token with:"
+        }
+      ],
+      "children": [
+        "b-30-gitlab-name-archon-13",
+        "b-30-gitlab-scopes-api-14",
+        "b-30-gitlab-expiration-set-as-n-15"
+      ]
+    },
+    "b-30-gitlab-name-archon-13": {
+      "id": "b-30-gitlab-name-archon-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Name",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-scopes-api-14": {
+      "id": "b-30-gitlab-scopes-api-14",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Scopes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "api",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-expiration-set-as-n-15": {
+      "id": "b-30-gitlab-expiration-set-as-n-15",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Expiration",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Set as needed"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-copy-the-token-starts-w-16": {
+      "id": "b-30-gitlab-copy-the-token-starts-w-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the token (starts with "
+        },
+        {
+          "insert": "glpat-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-project-access-token-re-17": {
+      "id": "b-30-gitlab-project-access-token-re-17",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Project Access Token (recommended for production)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-go-to-project-settin-18": {
+      "id": "b-30-gitlab-go-to-project-settin-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to "
+        },
+        {
+          "insert": "Project → Settings → Access Tokens",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-create-a-token-with-19": {
+      "id": "b-30-gitlab-create-a-token-with-19",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create a token with:"
+        }
+      ],
+      "children": [
+        "b-30-gitlab-role-developer-or-m-20",
+        "b-30-gitlab-scopes-api-21"
+      ]
+    },
+    "b-30-gitlab-role-developer-or-m-20": {
+      "id": "b-30-gitlab-role-developer-or-m-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Role",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Developer or Maintainer"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-scopes-api-21": {
+      "id": "b-30-gitlab-scopes-api-21",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Scopes",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "api",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-this-creates-a-bot-user-22": {
+      "id": "b-30-gitlab-this-creates-a-bot-user-22",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "This creates a bot user scoped to the project"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-step-2-generate-webhook-23": {
+      "id": "b-30-gitlab-step-2-generate-webhook-23",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 2: Generate Webhook Secret"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-bash-24": {
+      "id": "b-30-gitlab-bash-24",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "openssl rand -hex 32"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-windows-powershell-25": {
+      "id": "b-30-gitlab-windows-powershell-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Windows (PowerShell):"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-powershell-26": {
+      "id": "b-30-gitlab-powershell-26",
+      "type": "code",
+      "props": {
+        "language": "powershell"
+      },
+      "text": [
+        {
+          "insert": "-join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Maximum 256) })"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-save-this-secret-you-ll-27": {
+      "id": "b-30-gitlab-save-this-secret-you-ll-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Save this secret: you'll need it for steps 3 and 4."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-step-3-expose-local-ser-28": {
+      "id": "b-30-gitlab-step-3-expose-local-ser-28",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 3: Expose Local Server (Development Only)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-bash-29": {
+      "id": "b-30-gitlab-bash-29",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ngrok http 3090\n# Copy the HTTPS URL (e.g., https://abc123.ngrok-free.app)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-for-production-use-your-30": {
+      "id": "b-30-gitlab-for-production-use-your-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For production, use your deployed server URL directly."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-step-4-configure-gitlab-31": {
+      "id": "b-30-gitlab-step-4-configure-gitlab-31",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 4: Configure GitLab Webhook"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-navigate-to-project-32": {
+      "id": "b-30-gitlab-navigate-to-project-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Navigate to "
+        },
+        {
+          "insert": "Project → Settings → Webhooks → Add new webhook",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "table-0-6093e690": {
+      "id": "table-0-6093e690",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Value"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "URL",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "https://your-domain.com/webhooks/gitlab",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "Secret token",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "The secret from Step 2"
+          ],
+          [
+            [
+              {
+                "insert": "Triggers",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Enable: "
+              },
+              {
+                "insert": "Comments",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "Issues events",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "Merge request events",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "SSL verification",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "Enable (recommended)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-gitlab-click-add-webhook-and-34": {
+      "id": "b-30-gitlab-click-add-webhook-and-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Click \"Add webhook\" and use "
+        },
+        {
+          "insert": "Test → Note events",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " to verify."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-note-35": {
+      "id": "b-30-gitlab-note-35",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "GitLab uses a plain secret token in the "
+        },
+        {
+          "insert": "X-Gitlab-Token",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " header (not HMAC like GitHub). The token must match your "
+        },
+        {
+          "insert": "GITLAB_WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " exactly."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-step-5-set-environment-36": {
+      "id": "b-30-gitlab-step-5-set-environment-36",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Step 5: Set Environment Variables"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-ini-37": {
+      "id": "b-30-gitlab-ini-37",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "GITLAB_URL=https://gitlab.com\nGITLAB_TOKEN=glpat-your-token-here\nGITLAB_WEBHOOK_SECRET=your-secret-here"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-optional-38": {
+      "id": "b-30-gitlab-optional-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Optional:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-ini-39": {
+      "id": "b-30-gitlab-ini-39",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "GITLAB_ALLOWED_USERS=alice,bob\nGITLAB_BOT_MENTION=archon"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-see-the-full-environmen-40": {
+      "id": "b-30-gitlab-see-the-full-environmen-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the "
+        },
+        {
+          "insert": "full environment variable reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "label": "full environment variable reference"
+            }
+          }
+        },
+        {
+          "insert": " for details."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-usage-41": {
+      "id": "b-30-gitlab-usage-41",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Usage"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-mention-your-bot-in-issu-42": {
+      "id": "b-30-gitlab-mention-your-bot-in-issu-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Mention your bot in issue or MR comments:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-code-43": {
+      "id": "b-30-gitlab-code-43",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon can you analyze this bug?\n@archon /status\n@archon review this implementation"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-first-mention-reuses-44": {
+      "id": "b-30-gitlab-first-mention-reuses-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "First mention",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " reuses an existing local registration at its saved checkout path; otherwise it registers and clones the repository. It detects "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if present and injects full issue/MR context. For a one-level namespace, the checkout is "
+        },
+        {
+          "insert": "~/.archon/workspaces/<group>/<project>/source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Nested namespaces are flattened after the top-level group: "
+        },
+        {
+          "insert": "org/team/api",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses "
+        },
+        {
+          "insert": "~/.archon/workspaces/org/team-api/source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". If another project owns that storage name, registration allocates a suffix such as "
+        },
+        {
+          "insert": "org/team-api-2",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", with its checkout under "
+        },
+        {
+          "insert": "~/.archon/workspaces/org/team-api-2/source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". See the "
+        },
+        {
+          "insert": "directory reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/15-archon-directories.md",
+              "label": "directory reference"
+            }
+          }
+        },
+        {
+          "insert": " for the full workspace layout."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-subsequent-mentions-45": {
+      "id": "b-30-gitlab-subsequent-mentions-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subsequent mentions",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " resume the existing conversation with full context."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-conversation-id-format-46": {
+      "id": "b-30-gitlab-conversation-id-format-46",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Conversation ID Format"
+        }
+      ],
+      "children": []
+    },
+    "table-1-6093e690": {
+      "id": "table-1-6093e690",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Type",
+          "Format",
+          "Example"
+        ],
+        "rows": [
+          [
+            "Issue",
+            [
+              {
+                "insert": "group/project#iid",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "myteam/api#42",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Merge Request",
+            [
+              {
+                "insert": "group/project!iid",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "myteam/api!15",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "Nested group",
+            [
+              {
+                "insert": "group/subgroup/project#iid",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "org/team/api#7",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-gitlab-supported-events-48": {
+      "id": "b-30-gitlab-supported-events-48",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Supported Events"
+        }
+      ],
+      "children": []
+    },
+    "table-2-6093e690": {
+      "id": "table-2-6093e690",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "GitLab Event",
+          "Action"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "Note Hook",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " (comment with @mention)"
+              }
+            ],
+            "Triggers AI conversation"
+          ],
+          [
+            [
+              {
+                "insert": "Issue Hook",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " (close)"
+              }
+            ],
+            "Cleans up isolation environment"
+          ],
+          [
+            [
+              {
+                "insert": "MR Hook",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " (close/merge)"
+              }
+            ],
+            "Cleans up isolation environment"
+          ],
+          [
+            "Issue/MR opened",
+            "Ignored (descriptions are not commands)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-gitlab-adding-additional-projec-50": {
+      "id": "b-30-gitlab-adding-additional-projec-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Adding Additional Projects"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-add-the-same-webhook-to-51": {
+      "id": "b-30-gitlab-add-the-same-webhook-to-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add the same webhook to other projects:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-bash-52": {
+      "id": "b-30-gitlab-bash-52",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "glab api projects/<PROJECT_ID>/hooks \\\n  --method POST \\\n  -f url=\"https://YOUR_DOMAIN/webhooks/gitlab\" \\\n  -f token=\"YOUR_WEBHOOK_SECRET\" \\\n  -f note_events=true \\\n  -f issues_events=true \\\n  -f merge_requests_events=true"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-or-via-gitlab-ui-with-th-53": {
+      "id": "b-30-gitlab-or-via-gitlab-ui-with-th-53",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Or via GitLab UI with the same secret."
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-troubleshooting-54": {
+      "id": "b-30-gitlab-troubleshooting-54",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "table-3-6093e690": {
+      "id": "table-3-6093e690",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Issue",
+          "Cause",
+          "Fix"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "gitlab.invalid_webhook_token",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Secret mismatch",
+            [
+              {
+                "insert": "Ensure "
+              },
+              {
+                "insert": "GITLAB_WEBHOOK_SECRET",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " matches the webhook config exactly"
+              }
+            ]
+          ],
+          [
+            "Clone hangs",
+            "macOS Keychain credential helper",
+            "The adapter disables it automatically"
+          ],
+          [
+            [
+              {
+                "insert": "404 Project Not Found",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Token lacks access",
+            [
+              {
+                "insert": "Ensure token has "
+              },
+              {
+                "insert": "api",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " scope and project access"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "403 You are not allowed",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Insufficient permissions",
+            "Use a token with Developer role or higher"
+          ],
+          [
+            "No webhook delivery",
+            "ngrok URL changed",
+            "Update the webhook URL after restarting ngrok"
+          ],
+          [
+            "Webhook auto-disabled",
+            "4+ consecutive failures",
+            "Fix the issue, then send a test event to re-enable"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-30-gitlab-glab-cli-reference-56": {
+      "id": "b-30-gitlab-glab-cli-reference-56",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "glab CLI Reference"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-the-ai-agent-uses-glab-57": {
+      "id": "b-30-gitlab-the-ai-agent-uses-glab-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The AI agent uses "
+        },
+        {
+          "insert": "glab",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI commands. Install and authenticate:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-gitlab-bash-58": {
+      "id": "b-30-gitlab-bash-58",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "brew install glab\nglab auth login"
+        }
+      ],
+      "children": []
+    },
+    "table-4-6093e690": {
+      "id": "table-4-6093e690",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "glab issue view <IID>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "View issue details"
+          ],
+          [
+            [
+              {
+                "insert": "glab issue note <IID> -m \"...\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Comment on issue"
+          ],
+          [
+            [
+              {
+                "insert": "glab mr view <IID>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "View merge request"
+          ],
+          [
+            [
+              {
+                "insert": "glab mr diff <IID>",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "View MR diff"
+          ],
+          [
+            [
+              {
+                "insert": "glab mr note <IID> -m \"...\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Comment on MR"
+          ],
+          [
+            [
+              {
+                "insert": "glab mr create --title \"...\" --description \"...\"",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Create MR"
+          ]
+        ]
+      },
+      "children": []
+    }
+  }
+}

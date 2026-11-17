@@ -1,0 +1,4693 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-20-deployment-20-docker",
+  "title": "Docker Guide",
+  "root": "b-20-docker-root-158",
+  "blocks": {
+    "b-20-docker-root-158": {
+      "id": "b-20-docker-root-158",
+      "type": "paragraph",
+      "props": {
+        "area": "infra",
+        "audience": [
+          "operator"
+        ],
+        "category": "deployment",
+        "description": "Run Archon with Docker Compose, locally or on a server with PostgreSQL and automatic HTTPS.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/deployment/docker.md"
+      },
+      "children": [
+        "b-20-docker-this-page-installs-and-r-1",
+        "b-20-docker-the-image-includes-the-c-2",
+        "b-20-docker-cloud-init-fastest-setu-3",
+        "b-20-docker-deploy-cloud-init-yml-4",
+        "table-0-614fb1b0",
+        "b-20-docker-the-script-installs-dock-6",
+        "b-20-docker-setup-takes-5-to-8-minut-7",
+        "b-20-docker-bash-8",
+        "b-20-docker-local-docker-desktop-wi-9",
+        "b-20-docker-run-archon-on-your-own-m-10",
+        "b-20-docker-bash-11",
+        "b-20-docker-open-http-localhost-3-12",
+        "b-20-docker-on-windows-build-from-a-13",
+        "b-20-docker-manual-server-setup-14",
+        "b-20-docker-use-this-instead-of-clou-15",
+        "b-20-docker-install-docker-then-log-16",
+        "b-20-docker-bash-17",
+        "b-20-docker-clone-the-repository-and-18",
+        "b-20-docker-bash-19",
+        "b-20-docker-edit-env-as-described-20",
+        "b-20-docker-start-the-app-postgresq-21",
+        "b-20-docker-bash-22",
+        "b-20-docker-check-it-23",
+        "b-20-docker-bash-24",
+        "b-20-docker-pre-built-image-25",
+        "b-20-docker-to-run-ghcr-io-coleam00-26",
+        "b-20-docker-bash-27",
+        "b-20-docker-this-compose-file-has-on-28",
+        "b-20-docker-verify-image-attestation-29",
+        "b-20-docker-published-images-carry-b-30",
+        "b-20-docker-bash-31",
+        "b-20-docker-both-results-must-be-non-32",
+        "b-20-docker-the-source-is-https-g-33",
+        "b-20-docker-the-workflow-ref-in-bui-34",
+        "b-20-docker-the-builder-id-builder-35",
+        "b-20-docker-the-package-inventory-is-36",
+        "b-20-docker-configure-env-37",
+        "b-20-docker-docker-compose-reads-the-38",
+        "b-20-docker-ai-credentials-39",
+        "b-20-docker-set-at-least-one-provide-40",
+        "b-20-docker-ini-41",
+        "b-20-docker-env-example-sets-cla-42",
+        "b-20-docker-server-domain-and-datab-43",
+        "table-1-614fb1b0",
+        "b-20-docker-for-the-postgresql-conta-45",
+        "b-20-docker-ini-46",
+        "b-20-docker-platform-tokens-telegr-47",
+        "b-20-docker-profiles-48",
+        "b-20-docker-compose-profiles-add-pos-49",
+        "table-2-614fb1b0",
+        "b-20-docker-add-profile-auth-for-51",
+        "b-20-docker-no-profile-sqlite-52",
+        "b-20-docker-with-db-a-postgre-53",
+        "b-20-docker-cloud-caddy-htt-54",
+        "b-20-docker-protect-the-web-ui-55",
+        "b-20-docker-a-web-ui-on-a-public-dom-56",
+        "b-20-docker-better-auth-postgre-57",
+        "b-20-docker-caddy-basic-auth-th-58",
+        "b-20-docker-form-login-sidecar-59",
+        "b-20-docker-use-one-caddy-option-at-60",
+        "b-20-docker-caddy-basic-auth-61",
+        "b-20-docker-generate-a-bcrypt-hash-62",
+        "b-20-docker-bash-63",
+        "b-20-docker-set-caddy-basic-auth-i-64",
+        "b-20-docker-ini-65",
+        "b-20-docker-this-is-a-single-quoted-66",
+        "b-20-docker-recreate-caddy-so-it-rea-67",
+        "b-20-docker-bash-68",
+        "b-20-docker-to-turn-it-off-leave-c-69",
+        "b-20-docker-form-login-sidecar-70",
+        "b-20-docker-generate-a-bcrypt-hash-71",
+        "b-20-docker-bash-72",
+        "b-20-docker-generate-a-cookie-signin-73",
+        "b-20-docker-bash-74",
+        "b-20-docker-set-them-in-env-writ-75",
+        "b-20-docker-ini-76",
+        "b-20-docker-in-caddyfile-uncommen-77",
+        "b-20-docker-start-with-the-auth-pr-78",
+        "b-20-docker-bash-79",
+        "b-20-docker-your-domain-now-redirect-80",
+        "b-20-docker-data-and-home-volumes-81",
+        "b-20-docker-the-container-keeps-arch-82",
+        "table-3-614fb1b0",
+        "b-20-docker-both-are-docker-named-vo-84",
+        "b-20-docker-bash-85",
+        "b-20-docker-ini-86",
+        "b-20-docker-on-every-start-the-entry-87",
+        "b-20-docker-archon-home-has-no-eff-88",
+        "b-20-docker-a-bind-mounted-home-star-89",
+        "b-20-docker-safe-directory-entries-90",
+        "b-20-docker-to-keep-pi-s-data-on-the-91",
+        "b-20-docker-to-wipe-the-home-volume-92",
+        "b-20-docker-root-fallback-for-macos-93",
+        "b-20-docker-on-a-macos-bind-mount-v-94",
+        "b-20-docker-archon-allow-root-fallb-95",
+        "b-20-docker-caution-96",
+        "b-20-docker-github-credentials-97",
+        "b-20-docker-the-container-uses-gh-t-98",
+        "b-20-docker-bash-99",
+        "b-20-docker-with-gh-token-set-and-100",
+        "b-20-docker-in-github-app-mode-do-101",
+        "b-20-docker-the-entrypoint-reads-the-102",
+        "b-20-docker-delete-an-empty-gh-toke-103",
+        "b-20-docker-plugins-104",
+        "b-20-docker-install-plugins-inside-t-105",
+        "b-20-docker-bash-106",
+        "b-20-docker-plugin-update-plugin-107",
+        "b-20-docker-the-bundled-sdlc-workflo-108",
+        "b-20-docker-the-image-includes-a-ver-109",
+        "b-20-docker-an-installed-verified-s-110",
+        "b-20-docker-missing-or-changed-slack-111",
+        "b-20-docker-to-turn-slack-off-remov-112",
+        "b-20-docker-the-image-has-git-and-113",
+        "b-20-docker-container-isolation-is-u-114",
+        "b-20-docker-archon-workflow-run-115",
+        "b-20-docker-caution-116",
+        "b-20-docker-building-the-image-117",
+        "b-20-docker-bash-118",
+        "b-20-docker-the-dockerfile-builds-in-119",
+        "b-20-docker-manifests-and-sources-120",
+        "b-20-docker-deps-installs-all-depe-121",
+        "b-20-docker-image-plugins-download-122",
+        "b-20-docker-web-build-builds-the-w-123",
+        "b-20-docker-production-keeps-produ-124",
+        "b-20-docker-the-production-image-run-125",
+        "b-20-docker-the-slack-release-is-pin-126",
+        "b-20-docker-customizing-the-image-127",
+        "b-20-docker-to-add-tools-without-edi-128",
+        "b-20-docker-copy-dockerfile-user-ex-129",
+        "b-20-docker-copy-docker-compose-ove-130",
+        "b-20-docker-run-docker-compose-up-131",
+        "b-20-docker-both-files-are-gitignore-132",
+        "b-20-docker-maintenance-133",
+        "b-20-docker-bash-134",
+        "b-20-docker-update-135",
+        "b-20-docker-bash-136",
+        "b-20-docker-use-the-same-profiles-yo-137",
+        "b-20-docker-troubleshooting-138",
+        "b-20-docker-app-exits-with-no-ai-cr-139",
+        "b-20-docker-the-server-found-no-clau-140",
+        "b-20-docker-caddy-fails-with-not-a-141",
+        "b-20-docker-code-142",
+        "b-20-docker-caddyfile-did-not-exis-143",
+        "b-20-docker-bash-144",
+        "b-20-docker-caddy-gets-no-certificat-145",
+        "b-20-docker-check-that-dig-archon-e-146",
+        "b-20-docker-health-check-fails-147",
+        "b-20-docker-the-container-health-che-148",
+        "b-20-docker-bash-149",
+        "b-20-docker-postgresql-connection-re-150",
+        "b-20-docker-with-profile-with-db-151",
+        "b-20-docker-permission-errors-in-152",
+        "b-20-docker-the-entrypoint-exits-1-w-153",
+        "b-20-docker-port-already-in-use-154",
+        "b-20-docker-set-another-port-in-155",
+        "b-20-docker-container-keeps-restarti-156",
+        "b-20-docker-run-docker-compose-ps-157"
+      ]
+    },
+    "b-20-docker-this-page-installs-and-r-1": {
+      "id": "b-20-docker-this-page-installs-and-r-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This page installs and runs Archon with Docker Compose: on your own machine, or on a server with PostgreSQL and Caddy for automatic HTTPS. To prepare a VPS first (a user, SSH, the firewall and DNS), see "
+        },
+        {
+          "insert": "Cloud Deployment",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/30-cloud.md",
+              "label": "Cloud Deployment"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-image-includes-the-c-2": {
+      "id": "b-20-docker-the-image-includes-the-c-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The image includes the Claude Code binary from the Claude Agent SDK. On start, the entrypoint points "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at it unless you set "
+        },
+        {
+          "insert": "CLAUDE_BIN_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " yourself."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-cloud-init-fastest-setu-3": {
+      "id": "b-20-docker-cloud-init-fastest-setu-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Cloud-init (fastest setup)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-deploy-cloud-init-yml-4": {
+      "id": "b-20-docker-deploy-cloud-init-yml-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "deploy/cloud-init.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prepares a new VPS when it first boots. Paste its contents into the provider's User Data field when you create the server (Ubuntu 22.04+ or Debian 12+), add your SSH key, and point your domain's A record at the server's IP."
+        }
+      ],
+      "children": []
+    },
+    "table-0-614fb1b0": {
+      "id": "table-0-614fb1b0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Provider",
+          "Where to paste it"
+        ],
+        "rows": [
+          [
+            "DigitalOcean",
+            "Create Droplet, Advanced Options, User Data"
+          ],
+          [
+            "AWS EC2",
+            "Launch Instance, Advanced Details, User Data"
+          ],
+          [
+            "Linode",
+            "Create Linode, Add Tags, Metadata (User Data)"
+          ],
+          [
+            "Hetzner",
+            "Create Server, Cloud config, User Data"
+          ],
+          [
+            "Vultr",
+            "Deploy, Additional Features, Cloud-Init User-Data"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-docker-the-script-installs-dock-6": {
+      "id": "b-20-docker-the-script-installs-dock-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The script installs Docker, opens ports 22, 80 and 443 (TCP, plus UDP 443 for HTTP/3), adds a 2 GB swapfile, clones the repository to "
+        },
+        {
+          "insert": "/opt/archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", copies "
+        },
+        {
+          "insert": ".env.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "Caddyfile.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and builds the image. It also creates an "
+        },
+        {
+          "insert": "archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " user with Docker access but no sudo, and copies your SSH key to it. Use the default cloud user or root for system maintenance."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-setup-takes-5-to-8-minut-7": {
+      "id": "b-20-docker-setup-takes-5-to-8-minut-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Setup takes 5 to 8 minutes and writes "
+        },
+        {
+          "insert": "/opt/archon/SETUP_COMPLETE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when it finishes. Then:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-8": {
+      "id": "b-20-docker-bash-8",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "ssh archon@your-server-ip\nnano /opt/archon/.env          # see \"Configure .env\" below\ncd /opt/archon\ndocker compose --profile with-db --profile cloud up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-local-docker-desktop-wi-9": {
+      "id": "b-20-docker-local-docker-desktop-wi-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Local Docker Desktop (Windows and macOS)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-run-archon-on-your-own-m-10": {
+      "id": "b-20-docker-run-archon-on-your-own-m-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run Archon on your own machine with SQLite and the Web UI. No domain or VPS is needed."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-11": {
+      "id": "b-20-docker-bash-11",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git clone https://github.com/coleam00/Archon.git\ncd Archon\ncp .env.example .env           # set a Claude or Codex credential\ndocker compose up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-open-http-localhost-3-12": {
+      "id": "b-20-docker-open-http-localhost-3-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Open "
+        },
+        {
+          "insert": "http://localhost:3000",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Add "
+        },
+        {
+          "insert": "--profile with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to use the PostgreSQL container instead of SQLite (see "
+        },
+        {
+          "insert": "Profiles",
+          "attributes": {
+            "link": "#profiles"
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-on-windows-build-from-a-13": {
+      "id": "b-20-docker-on-windows-build-from-a-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On Windows, build from a WSL terminal (for example in "
+        },
+        {
+          "insert": "/mnt/c/Users/YourName/path/to/Archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), not PowerShell. Docker Desktop cannot follow Bun workspace symlinks from a Windows build context and fails with "
+        },
+        {
+          "insert": "The file cannot be accessed by the system",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". If the container fails with "
+        },
+        {
+          "insert": "exec docker-entrypoint.sh: no such file or directory",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the checkout has CRLF line endings. "
+        },
+        {
+          "insert": ".gitattributes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " forces LF for shell scripts, so re-clone the repository."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-manual-server-setup-14": {
+      "id": "b-20-docker-manual-server-setup-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Manual server setup"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-use-this-instead-of-clou-15": {
+      "id": "b-20-docker-use-this-instead-of-clou-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use this instead of cloud-init when you want each step under your control. Prepare the server with "
+        },
+        {
+          "insert": "Cloud Deployment",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/30-cloud.md",
+              "label": "Cloud Deployment"
+            }
+          }
+        },
+        {
+          "insert": " first."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-install-docker-then-log-16": {
+      "id": "b-20-docker-install-docker-then-log-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Install Docker, then log out and back in so the group change applies:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-17": {
+      "id": "b-20-docker-bash-17",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://get.docker.com | sh\nsudo usermod -aG docker $USER"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-clone-the-repository-and-18": {
+      "id": "b-20-docker-clone-the-repository-and-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Clone the repository and create the config files:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-19": {
+      "id": "b-20-docker-bash-19",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git clone https://github.com/coleam00/Archon.git\ncd Archon\ncp .env.example .env\ncp Caddyfile.example Caddyfile"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-edit-env-as-described-20": {
+      "id": "b-20-docker-edit-env-as-described-20",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Edit "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as described in "
+        },
+        {
+          "insert": "Configure .env",
+          "attributes": {
+            "link": "#configure-env"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-start-the-app-postgresq-21": {
+      "id": "b-20-docker-start-the-app-postgresq-21",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Start the app, PostgreSQL and Caddy:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-22": {
+      "id": "b-20-docker-bash-22",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose --profile with-db --profile cloud up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-check-it-23": {
+      "id": "b-20-docker-check-it-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Check it:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-24": {
+      "id": "b-20-docker-bash-24",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose --profile with-db --profile cloud ps\ndocker compose logs -f app\ncurl https://archon.example.com/api/health    # from your machine"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-pre-built-image-25": {
+      "id": "b-20-docker-pre-built-image-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Pre-built image"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-run-ghcr-io-coleam00-26": {
+      "id": "b-20-docker-to-run-ghcr-io-coleam00-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To run "
+        },
+        {
+          "insert": "ghcr.io/coleam00/archon:latest",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without building from source:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-27": {
+      "id": "b-20-docker-bash-27",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "mkdir archon && cd archon\ncurl -O https://raw.githubusercontent.com/coleam00/Archon/main/deploy/docker-compose.yml\ncurl -O https://raw.githubusercontent.com/coleam00/Archon/main/.env.example\ncp .env.example .env           # see \"Configure .env\" below\ndocker compose up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-this-compose-file-has-on-28": {
+      "id": "b-20-docker-this-compose-file-has-on-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This compose file has only the app service. To add PostgreSQL, uncomment the "
+        },
+        {
+          "insert": "postgres",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " service and the "
+        },
+        {
+          "insert": "postgres_data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " volume, and set "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It has no Caddy service."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-verify-image-attestation-29": {
+      "id": "b-20-docker-verify-image-attestation-29",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Verify image attestations"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-published-images-carry-b-30": {
+      "id": "b-20-docker-published-images-carry-b-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Published images carry BuildKit provenance and SPDX SBOM attestations. Resolve the tag to a digest, then inspect that digest so the image cannot change between inspection and deployment:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-31": {
+      "id": "b-20-docker-bash-31",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker buildx imagetools inspect ghcr.io/coleam00/archon:latest\n# Copy the top-level Digest, not a platform manifest's digest.\nimage='ghcr.io/coleam00/archon@sha256:<digest>'\ndocker buildx imagetools inspect \"$image\" --format '{{ json .Provenance }}'\ndocker buildx imagetools inspect \"$image\" --format '{{ json .SBOM }}'"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-both-results-must-be-non-32": {
+      "id": "b-20-docker-both-results-must-be-non-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both results must be non-empty: each platform has a "
+        },
+        {
+          "insert": "SLSA",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " provenance object and an "
+        },
+        {
+          "insert": "SPDX",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " SBOM object. In the provenance, check three things:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-source-is-https-g-33": {
+      "id": "b-20-docker-the-source-is-https-g-33",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The source is "
+        },
+        {
+          "insert": "https://github.com/coleam00/Archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the revision is the release commit you intend to run. Current releases record them in "
+        },
+        {
+          "insert": "buildDefinition.externalParameters.request.args",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as "
+        },
+        {
+          "insert": "label:org.opencontainers.image.source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "label:org.opencontainers.image.revision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Older BuildKit versions use "
+        },
+        {
+          "insert": "invocation.configSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "invocation.environment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-workflow-ref-in-bui-34": {
+      "id": "b-20-docker-the-workflow-ref-in-bui-34",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The workflow ref in "
+        },
+        {
+          "insert": "buildDefinition.internalParameters.github_workflow_ref",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " names "
+        },
+        {
+          "insert": ".github/workflows/publish.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at the expected ref."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-builder-id-builder-35": {
+      "id": "b-20-docker-the-builder-id-builder-35",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The builder ID ("
+        },
+        {
+          "insert": "builder.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "runDetails.builder.id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") links to the GitHub Actions run."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-package-inventory-is-36": {
+      "id": "b-20-docker-the-package-inventory-is-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The package inventory is under "
+        },
+        {
+          "insert": "SPDX.packages",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "unknown/unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " entries in the manifest list are the attestation manifests. The attestations are unsigned metadata, so they do not authenticate the publisher by themselves. See "
+        },
+        {
+          "insert": "Docker's provenance documentation",
+          "attributes": {
+            "link": "https://docs.docker.com/build/metadata/attestations/slsa-provenance/"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-configure-env-37": {
+      "id": "b-20-docker-configure-env-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure .env"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-docker-compose-reads-the-38": {
+      "id": "b-20-docker-docker-compose-reads-the-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Docker Compose reads the repository's "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Edit it directly. Don't run "
+        },
+        {
+          "insert": "archon setup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a Docker install: the wizard writes Archon's CLI env files, not this one. "
+        },
+        {
+          "insert": ".env.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " documents every variable."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ai-credentials-39": {
+      "id": "b-20-docker-ai-credentials-39",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "AI credentials"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-set-at-least-one-provide-40": {
+      "id": "b-20-docker-set-at-least-one-provide-40",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set at least one provider:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ini-41": {
+      "id": "b-20-docker-ini-41",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "# Claude: an OAuth token from `claude setup-token` on your own machine\nCLAUDE_CODE_OAUTH_TOKEN=sk-ant-oat01-xxxxx\n# or an API key from console.anthropic.com\n# CLAUDE_API_KEY=sk-ant-xxxxx\n\n# Codex: values from ~/.codex/auth.json after `codex login`\n# ARCHON_CODEX_ID_TOKEN=eyJhbGc...\n# ARCHON_CODEX_ACCESS_TOKEN=eyJhbGc...\n# ARCHON_CODEX_REFRESH_TOKEN=rt_...\n# ARCHON_CODEX_ACCOUNT_ID=6a6a7ba6-..."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-env-example-sets-cla-42": {
+      "id": "b-20-docker-env-example-sets-cla-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": ".env.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sets "
+        },
+        {
+          "insert": "CLAUDE_USE_GLOBAL_AUTH=true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". That flag only satisfies the server's startup check: it tells Archon to rely on a "
+        },
+        {
+          "insert": "claude /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " session, and a fresh container has none. Set a token or key. When one is set, Archon uses it whatever the flag says. See "
+        },
+        {
+          "insert": "AI Assistants",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "label": "AI Assistants"
+            }
+          }
+        },
+        {
+          "insert": " for every provider."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-server-domain-and-datab-43": {
+      "id": "b-20-docker-server-domain-and-datab-43",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Server, domain and database"
+        }
+      ],
+      "children": []
+    },
+    "table-1-614fb1b0": {
+      "id": "table-1-614fb1b0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Variable",
+          "Default in Docker",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "PORT",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "3000",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "App port, published on the host. Local development defaults to 3090."
+          ],
+          [
+            [
+              {
+                "insert": "DOMAIN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "none",
+            [
+              {
+                "insert": "Public hostname. Required for "
+              },
+              {
+                "insert": "--profile cloud",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "unset (SQLite)",
+            "PostgreSQL connection string."
+          ],
+          [
+            [
+              {
+                "insert": "POSTGRES_PORT",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "5432",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Host port for the PostgreSQL container, bound to "
+              },
+              {
+                "insert": "127.0.0.1",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "LOG_LEVEL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "info",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "fatal",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "error",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "warn",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "info",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "debug",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "trace",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-docker-for-the-postgresql-conta-45": {
+      "id": "b-20-docker-for-the-postgresql-conta-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For the PostgreSQL container, use the service name as the host:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ini-46": {
+      "id": "b-20-docker-ini-46",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DATABASE_URL=postgresql://postgres:postgres@postgres:5432/remote_coding_agent"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-platform-tokens-telegr-47": {
+      "id": "b-20-docker-platform-tokens-telegr-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Platform tokens ("
+        },
+        {
+          "insert": "TELEGRAM_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and so on) are covered in each adapter's page under "
+        },
+        {
+          "insert": "Adapters",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters.md",
+              "label": "Adapters"
+            }
+          }
+        },
+        {
+          "insert": ". For a GitHub webhook, the payload URL is "
+        },
+        {
+          "insert": "https://archon.example.com/webhooks/github",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "GitHub",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/40-github.md",
+              "label": "GitHub"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-profiles-48": {
+      "id": "b-20-docker-profiles-48",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Profiles"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-compose-profiles-add-pos-49": {
+      "id": "b-20-docker-compose-profiles-add-pos-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Compose profiles add PostgreSQL, HTTPS or form login to the base app service:"
+        }
+      ],
+      "children": []
+    },
+    "table-2-614fb1b0": {
+      "id": "table-2-614fb1b0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Command",
+          "What runs"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "docker compose up -d",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "App with SQLite"
+          ],
+          [
+            [
+              {
+                "insert": "docker compose --profile with-db up -d",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "App and PostgreSQL 17"
+          ],
+          [
+            [
+              {
+                "insert": "docker compose --profile cloud up -d",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "App and Caddy"
+          ],
+          [
+            [
+              {
+                "insert": "docker compose --profile with-db --profile cloud up -d",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "App, PostgreSQL and Caddy"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-docker-add-profile-auth-for-51": {
+      "id": "b-20-docker-add-profile-auth-for-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Add "
+        },
+        {
+          "insert": "--profile auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the "
+        },
+        {
+          "insert": "form login sidecar",
+          "attributes": {
+            "link": "#form-login-sidecar"
+          }
+        },
+        {
+          "insert": ". For an external database such as Supabase or Neon, set "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and use no database profile. There is no "
+        },
+        {
+          "insert": "external-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " profile."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-no-profile-sqlite-52": {
+      "id": "b-20-docker-no-profile-sqlite-52",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "No profile:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " SQLite, stored in the data volume at "
+        },
+        {
+          "insert": "/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-with-db-a-postgre-53": {
+      "id": "b-20-docker-with-db-a-postgre-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " a PostgreSQL 17 container. The app creates the schema on first start and upgrades it when the Archon build changes. If you start this profile without setting "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the app logs a warning and uses SQLite, and the container sits unused."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-cloud-caddy-htt-54": {
+      "id": "b-20-docker-cloud-caddy-htt-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cloud",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "Caddy",
+          "attributes": {
+            "link": "https://caddyserver.com/"
+          }
+        },
+        {
+          "insert": " in front of the app, with Let's Encrypt certificates, HTTP to HTTPS redirects, HTTP/3 and unbuffered "
+        },
+        {
+          "insert": "/api/stream/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for live updates. It needs a "
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (copied from "
+        },
+        {
+          "insert": "Caddyfile.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), "
+        },
+        {
+          "insert": "DOMAIN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set, the DNS A record in place, and ports 80 and 443 open. Caddy waits for the app's health check before it starts."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-protect-the-web-ui-55": {
+      "id": "b-20-docker-protect-the-web-ui-55",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Protect the Web UI"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-a-web-ui-on-a-public-dom-56": {
+      "id": "b-20-docker-a-web-ui-on-a-public-dom-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A Web UI on a public domain needs a login. Choose one of these:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-better-auth-postgre-57": {
+      "id": "b-20-docker-better-auth-postgre-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Better Auth",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (PostgreSQL only, recommended): per-user accounts, and the server rejects every "
+        },
+        {
+          "insert": "/api/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " request without a session. Set "
+        },
+        {
+          "insert": "BETTER_AUTH_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI login",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "web-ui-login-better-auth-optional",
+              "label": "Web UI login"
+            }
+          }
+        },
+        {
+          "insert": ". Signup is closed by default: invite people with "
+        },
+        {
+          "insert": "ARCHON_AUTH_ALLOWED_EMAILS",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or open it with "
+        },
+        {
+          "insert": "ARCHON_AUTH_OPEN_SIGNUP=true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". With Better Auth on, you don't need either Caddy option below; the "
+        },
+        {
+          "insert": "Security reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "adapter-authorization",
+              "label": "Security reference"
+            }
+          }
+        },
+        {
+          "insert": " explains how to retire them."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caddy-basic-auth-th-58": {
+      "id": "b-20-docker-caddy-basic-auth-th-58",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Caddy basic auth:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " the browser's own login prompt, with no extra container."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-form-login-sidecar-59": {
+      "id": "b-20-docker-form-login-sidecar-59",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Form login sidecar:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " a styled login page and a session cookie, served by the "
+        },
+        {
+          "insert": "auth-service",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " container."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-use-one-caddy-option-at-60": {
+      "id": "b-20-docker-use-one-caddy-option-at-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use one Caddy option at a time, not both. Caddy always leaves "
+        },
+        {
+          "insert": "/webhooks/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " open, and webhooks verify their own signatures. Caddy answers "
+        },
+        {
+          "insert": "/internal/*",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with a 404 and never forwards it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caddy-basic-auth-61": {
+      "id": "b-20-docker-caddy-basic-auth-61",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Caddy basic auth"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-generate-a-bcrypt-hash-62": {
+      "id": "b-20-docker-generate-a-bcrypt-hash-62",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Generate a bcrypt hash. Never put a plaintext password in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-63": {
+      "id": "b-20-docker-bash-63",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker run --rm caddy caddy hash-password --plaintext 'YOUR_PASSWORD'"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-set-caddy-basic-auth-i-64": {
+      "id": "b-20-docker-set-caddy-basic-auth-i-64",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Set "
+        },
+        {
+          "insert": "CADDY_BASIC_AUTH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Replace "
+        },
+        {
+          "insert": "admin",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with your username and paste the complete hash unchanged:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ini-65": {
+      "id": "b-20-docker-ini-65",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "CADDY_BASIC_AUTH='basic_auth @protected {\n  admin REPLACE_WITH_COMPLETE_HASH_OUTPUT\n}'"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-this-is-a-single-quoted-66": {
+      "id": "b-20-docker-this-is-a-single-quoted-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is a single-quoted multiline Compose value, so newlines and "
+        },
+        {
+          "insert": "$",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " characters survive as written. Don't double the dollar signs, and don't source the file in a shell. See "
+        },
+        {
+          "insert": "Compose interpolation",
+          "attributes": {
+            "link": "https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/"
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "Caddy's basic_auth",
+          "attributes": {
+            "link": "https://caddyserver.com/docs/caddyfile/directives/basic_auth"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-recreate-caddy-so-it-rea-67": {
+      "id": "b-20-docker-recreate-caddy-so-it-rea-67",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Recreate Caddy so it reads the new value:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-68": {
+      "id": "b-20-docker-bash-68",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose --profile cloud up -d --force-recreate caddy"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-turn-it-off-leave-c-69": {
+      "id": "b-20-docker-to-turn-it-off-leave-c-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To turn it off, leave "
+        },
+        {
+          "insert": "CADDY_BASIC_AUTH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " empty or unset."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-form-login-sidecar-70": {
+      "id": "b-20-docker-form-login-sidecar-70",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Form login sidecar"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-generate-a-bcrypt-hash-71": {
+      "id": "b-20-docker-generate-a-bcrypt-hash-71",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Generate a bcrypt hash. The first run builds the "
+        },
+        {
+          "insert": "auth-service",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " image."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-72": {
+      "id": "b-20-docker-bash-72",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose --profile auth run --rm auth-service \\\n  node -e \"require('bcryptjs').hash('YOUR_PASSWORD', 12).then(h => console.log(h))\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-generate-a-cookie-signin-73": {
+      "id": "b-20-docker-generate-a-cookie-signin-73",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Generate a cookie signing secret:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-74": {
+      "id": "b-20-docker-bash-74",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker run --rm node:22-alpine \\\n  node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-set-them-in-env-writ-75": {
+      "id": "b-20-docker-set-them-in-env-writ-75",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Set them in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", writing every "
+        },
+        {
+          "insert": "$",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the hash as "
+        },
+        {
+          "insert": "$$",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so Compose does not interpolate it:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ini-76": {
+      "id": "b-20-docker-ini-76",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "AUTH_USERNAME=admin\nAUTH_PASSWORD_HASH=$$2b$$12$$REPLACE_WITH_YOUR_HASH\nCOOKIE_SECRET=REPLACE_WITH_64_HEX_CHARS\n# COOKIE_MAX_AGE=86400   # session length in seconds"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-in-caddyfile-uncommen-77": {
+      "id": "b-20-docker-in-caddyfile-uncommen-77",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "In "
+        },
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", uncomment the Option A block ("
+        },
+        {
+          "insert": "handle /login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "handle /logout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and the "
+        },
+        {
+          "insert": "forward_auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " handle), and comment out the \"No auth\" "
+        },
+        {
+          "insert": "handle",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block below it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-start-with-the-auth-pr-78": {
+      "id": "b-20-docker-start-with-the-auth-pr-78",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Start with the "
+        },
+        {
+          "insert": "auth",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " profile:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-79": {
+      "id": "b-20-docker-bash-79",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose --profile with-db --profile cloud --profile auth up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-your-domain-now-redirect-80": {
+      "id": "b-20-docker-your-domain-now-redirect-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Your domain now redirects to "
+        },
+        {
+          "insert": "/login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Visit "
+        },
+        {
+          "insert": "/logout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to end the session."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-data-and-home-volumes-81": {
+      "id": "b-20-docker-data-and-home-volumes-81",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Data and home volumes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-container-keeps-arch-82": {
+      "id": "b-20-docker-the-container-keeps-arch-82",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The container keeps Archon's data in "
+        },
+        {
+          "insert": "/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": workspaces, worktrees, artifacts, logs, plugins and the SQLite database. The user's home, "
+        },
+        {
+          "insert": "/home/appuser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", holds provider and tool state:"
+        }
+      ],
+      "children": []
+    },
+    "table-3-614fb1b0": {
+      "id": "table-3-614fb1b0",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Path",
+          "What it holds"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "~/.claude/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Claude Code skills, commands, agents, hooks, MCP config, sessions, memory and OAuth state"
+          ],
+          [
+            [
+              {
+                "insert": "~/.codex/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Codex "
+              },
+              {
+                "insert": "auth.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " from "
+              },
+              {
+                "insert": "codex login",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". With the "
+              },
+              {
+                "insert": "ARCHON_CODEX_*",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " variables set, startup overwrites it each time."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "~/.pi/agent/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Pi "
+              },
+              {
+                "insert": "auth.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " from "
+              },
+              {
+                "insert": "pi /login",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "models.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "settings.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and sessions"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "~/.gitconfig",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Git identity, signing config, aliases and "
+              },
+              {
+                "insert": "safe.directory",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " entries"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "~/.config/gh/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "GitHub CLI login from "
+              },
+              {
+                "insert": "gh auth login",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "~/.bash_history",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Shell history from "
+              },
+              {
+                "insert": "docker compose exec app bash",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-docker-both-are-docker-named-vo-84": {
+      "id": "b-20-docker-both-are-docker-named-vo-84",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both are Docker named volumes by default ("
+        },
+        {
+          "insert": "archon_data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "archon_user_home",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), so they survive restarts and rebuilds. To keep them at a host path instead, set "
+        },
+        {
+          "insert": "ARCHON_DATA",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "ARCHON_USER_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and make the directory writable by UID 1001, the container user:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-85": {
+      "id": "b-20-docker-bash-85",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "sudo mkdir -p /opt/archon-data /opt/archon-user-home\nsudo chown -R 1001:1001 /opt/archon-data /opt/archon-user-home"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-ini-86": {
+      "id": "b-20-docker-ini-86",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "ARCHON_DATA=/opt/archon-data\nARCHON_USER_HOME=/opt/archon-user-home"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-on-every-start-the-entry-87": {
+      "id": "b-20-docker-on-every-start-the-entry-87",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On every start the entrypoint fixes ownership of both paths, touching only files with the wrong owner."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-archon-home-has-no-eff-88": {
+      "id": "b-20-docker-archon-home-has-no-eff-88",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "ARCHON_HOME",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " has no effect inside the container, which always uses "
+        },
+        {
+          "insert": "/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Use "
+        },
+        {
+          "insert": "ARCHON_DATA",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to choose where that lives on the host."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-a-bind-mounted-home-star-89": {
+      "id": "b-20-docker-a-bind-mounted-home-star-89",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A bind-mounted home starts with an empty "
+        },
+        {
+          "insert": "~/.gitconfig",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", because Docker copies image content into new named volumes but never into bind mounts. The entrypoint still adds the "
+        },
+        {
+          "insert": "safe.directory",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " entries Archon needs. Set your Git identity with "
+        },
+        {
+          "insert": "git config --global",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside the container."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-safe-directory-entries-90": {
+      "id": "b-20-docker-safe-directory-entries-90",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "safe.directory",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " entries added at runtime stay in the home volume, even after the checkout is gone. Archon never removes them, because concurrent setup may rely on the same entry. See "
+        },
+        {
+          "insert": "Git directory trust",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "git-directory-trust",
+              "label": "Git directory trust"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-keep-pi-s-data-on-the-91": {
+      "id": "b-20-docker-to-keep-pi-s-data-on-the-91",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "To keep Pi's data on the data volume, set "
+        },
+        {
+          "insert": "PI_CODING_AGENT_DIR=/.archon/pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before the container starts."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-wipe-the-home-volume-92": {
+      "id": "b-20-docker-to-wipe-the-home-volume-92",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "To wipe the home volume: "
+        },
+        {
+          "insert": "docker compose down && docker volume rm archon_archon_user_home",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-root-fallback-for-macos-93": {
+      "id": "b-20-docker-root-fallback-for-macos-93",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Root fallback for macOS bind mounts"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-on-a-macos-bind-mount-v-94": {
+      "id": "b-20-docker-on-a-macos-bind-mount-v-94",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "On a macOS bind mount (VirtioFS), the ownership fix always fails: the host will not remap files to UID 1001. The entrypoint prints the "
+        },
+        {
+          "insert": "chown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " error and exits 1, so the container restarts in a loop. Read-only mounts and SELinux or AppArmor denials on Linux fail the same way."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-archon-allow-root-fallb-95": {
+      "id": "b-20-docker-archon-allow-root-fallb-95",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "ARCHON_ALLOW_ROOT_FALLBACK=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " makes the entrypoint print a warning and keep running as root instead. Any other value, or none, keeps the exit. The variable does nothing when the ownership fix succeeds."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caution-96": {
+      "id": "b-20-docker-caution-96",
+      "type": "callout",
+      "props": {
+        "title": "Caution",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Running as root also sets "
+        },
+        {
+          "insert": "IS_SANDBOX=1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which disables the Claude provider's refusal to run "
+        },
+        {
+          "insert": "bypassPermissions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as root, so AI subprocesses run as root in the container. That is acceptable on a single-operator Mac where the bind mount already limits what the container can reach. On Linux the failure means the volume ownership is wrong: run "
+        },
+        {
+          "insert": "sudo chown -R 1001:1001 <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the host instead."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-github-credentials-97": {
+      "id": "b-20-docker-github-credentials-97",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "GitHub credentials"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-container-uses-gh-t-98": {
+      "id": "b-20-docker-the-container-uses-gh-t-98",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The container uses "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". You can also log in inside the container, and the login lands on the home volume:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-99": {
+      "id": "b-20-docker-bash-99",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose exec -u appuser -e HOME=/home/appuser app gh auth login"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-with-gh-token-set-and-100": {
+      "id": "b-20-docker-with-gh-token-set-and-100",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set and GitHub App mode off, every start resets Git's "
+        },
+        {
+          "insert": "https://github.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " credential helper to one that uses "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A helper written by "
+        },
+        {
+          "insert": "gh auth login",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " applies only without "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-in-github-app-mode-do-101": {
+      "id": "b-20-docker-in-github-app-mode-do-101",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "In "
+        },
+        {
+          "insert": "GitHub App mode",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/50-github-app-setup.md",
+              "label": "GitHub App mode"
+            }
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a private key and "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set, "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " unset), startup removes only the PAT helper that the entrypoint wrote earlier. An incomplete App configuration leaves it in place. Other helpers are yours and stay."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-entrypoint-reads-the-102": {
+      "id": "b-20-docker-the-entrypoint-reads-the-102",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "The entrypoint reads these variables from the container environment, not from "
+        },
+        {
+          "insert": "/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Keep "
+        },
+        {
+          "insert": "GITHUB_APP_ID",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "GITHUB_APP_PRIVATE_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "GITHUB_APP_PRIVATE_KEY_PATH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "WEBHOOK_SECRET",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the compose "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". If they are only in "
+        },
+        {
+          "insert": "/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the server runs in App mode while clones keep using the old PAT."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-delete-an-empty-gh-toke-103": {
+      "id": "b-20-docker-delete-an-empty-gh-toke-103",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Delete an empty "
+        },
+        {
+          "insert": "GH_TOKEN=",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " line to use the container's "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " login. The forge refuses an empty "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is unset, rather than fall back to the stored login."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-plugins-104": {
+      "id": "b-20-docker-plugins-104",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Plugins"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-install-plugins-inside-t-105": {
+      "id": "b-20-docker-install-plugins-inside-t-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Install plugins inside the running container, as "
+        },
+        {
+          "insert": "appuser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so the server owns the files:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-106": {
+      "id": "b-20-docker-bash-106",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose exec -u appuser app bun run cli plugin add coleam00/Archon/plugins/forge-github\ndocker compose exec -u appuser app bun run cli plugin add Wirasm/archon-video"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-plugin-update-plugin-107": {
+      "id": "b-20-docker-plugin-update-plugin-107",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "plugin update",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "plugin remove",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "plugin list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " work the same way. Plugins live in "
+        },
+        {
+          "insert": "/.archon/plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the data volume, so they survive restarts and rebuilds. See "
+        },
+        {
+          "insert": "Forge operations",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "section": "install-the-github-plugin",
+              "label": "Forge operations"
+            }
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "Installed workflow packs",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/50-global-workflows.md",
+              "section": "installed-workflow-packs",
+              "label": "Installed workflow packs"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-bundled-sdlc-workflo-108": {
+      "id": "b-20-docker-the-bundled-sdlc-workflo-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The bundled SDLC workflows reach GitHub only through the forge plugin, so install the latest forge-github release. The merge queue needs its "
+        },
+        {
+          "insert": "resolve:subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " capability, which first ships in the release after v0.14.0. The plugin looks for "
+        },
+        {
+          "insert": "GH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then "
+        },
+        {
+          "insert": "GITHUB_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then the container's "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " login. Your host's "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " login is not visible inside the container. See "
+        },
+        {
+          "insert": "Use the forge path in the SDLC pack",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "section": "use-the-forge-path-in-the-sdlc-pack",
+              "label": "Use the forge path in the SDLC pack"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-image-includes-a-ver-109": {
+      "id": "b-20-docker-the-image-includes-a-ver-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The image includes a verified Slack plugin outside the data volume. When "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set, in the container environment or in "
+        },
+        {
+          "insert": "/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the entrypoint installs it offline into "
+        },
+        {
+          "insert": "/.archon/plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before the server starts, and logs the release and commit. You don't run "
+        },
+        {
+          "insert": "plugin add",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for Slack. Slack still needs both "
+        },
+        {
+          "insert": "SLACK_BOT_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "SLACK_APP_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to connect; see "
+        },
+        {
+          "insert": "Slack",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/20-slack.md",
+              "label": "Slack"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-an-installed-verified-s-110": {
+      "id": "b-20-docker-an-installed-verified-s-110",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An installed, verified Slack plugin stays as it is, including a release you pinned from another source. The image does not update it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-missing-or-changed-slack-111": {
+      "id": "b-20-docker-missing-or-changed-slack-111",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Missing or changed Slack executables, ownership conflicts, or a broken image receipt when a new install is needed stop provisioning with an error in the boot logs. Repair the install before restarting."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-turn-slack-off-remov-112": {
+      "id": "b-20-docker-to-turn-slack-off-remov-112",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "To turn Slack off, remove its tokens from every env source, run "
+        },
+        {
+          "insert": "docker compose exec -u appuser app bun run cli plugin remove coleam00/Archon/plugins/chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and restart. Removing only the plugin reinstalls it on the next start. Removing only the tokens leaves it installed and reporting missing credentials."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-image-has-git-and-113": {
+      "id": "b-20-docker-the-image-has-git-and-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The image has "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and Bun, but not "
+        },
+        {
+          "insert": "uv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Python, or tools a pack's scripts call, such as ffmpeg. Add them with "
+        },
+        {
+          "insert": "Dockerfile.user",
+          "attributes": {
+            "link": "#customizing-the-image"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-container-isolation-is-u-114": {
+      "id": "b-20-docker-container-isolation-is-u-114",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Container isolation is unavailable"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-archon-workflow-run-115": {
+      "id": "b-20-docker-archon-workflow-run-115",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon workflow run ... --container",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " starts a sibling Docker container for each run. Inside this compose stack it fails at preflight with \"Cannot connect to the Docker daemon\": the image has no "
+        },
+        {
+          "insert": "docker",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI, and the stack does not mount "
+        },
+        {
+          "insert": "/var/run/docker.sock",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Worktree isolation and in-place folder runs work normally."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caution-116": {
+      "id": "b-20-docker-caution-116",
+      "type": "callout",
+      "props": {
+        "title": "Caution",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Mounting the Docker socket into the app container is not part of the supported stack. The socket is root-equivalent: anything that can reach it can start a privileged container and take over the host. If you accept that on a single-operator host, read "
+        },
+        {
+          "insert": "packages/isolation/docker/SECURITY.md",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " first. To use "
+        },
+        {
+          "insert": "--container",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without that risk, run Archon directly on a host with a local Docker daemon."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-building-the-image-117": {
+      "id": "b-20-docker-building-the-image-117",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Building the image"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-118": {
+      "id": "b-20-docker-bash-118",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker build -t archon .\ndocker run --env-file .env -e ARCHON_DOCKER=true -p 3000:3000 archon"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-dockerfile-builds-in-119": {
+      "id": "b-20-docker-the-dockerfile-builds-in-119",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Dockerfile builds in these stages:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-manifests-and-sources-120": {
+      "id": "b-20-docker-manifests-and-sources-120",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "manifests",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "sources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " derive the workspace layout from "
+        },
+        {
+          "insert": "packages/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so a new package needs no Dockerfile edit."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-deps-installs-all-depe-121": {
+      "id": "b-20-docker-deps-installs-all-depe-121",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "deps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " installs all dependencies, including the dev dependencies the web build needs."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-image-plugins-download-122": {
+      "id": "b-20-docker-image-plugins-download-122",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "image-plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " downloads the pinned Slack release, checks its commit and checksum, and records a verified receipt."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-web-build-builds-the-w-123": {
+      "id": "b-20-docker-web-build-builds-the-w-123",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "web-build",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " builds the Web UI with Vite."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-production-keeps-produ-124": {
+      "id": "b-20-docker-production-keeps-produ-124",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "production",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps production dependencies and the built Web UI."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-production-image-run-125": {
+      "id": "b-20-docker-the-production-image-run-125",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The production image runs Bun as the non-root "
+        },
+        {
+          "insert": "appuser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (UID 1001), which Claude Code requires. It includes "
+        },
+        {
+          "insert": "git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "curl",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "postgresql-client",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "ripgrep",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "jq",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Chromium and "
+        },
+        {
+          "insert": "agent-browser",
+          "attributes": {
+            "link": "https://github.com/vercel-labs/agent-browser"
+          }
+        },
+        {
+          "insert": ", which drives the system Chromium for browser testing. It ships the source of every workspace package except "
+        },
+        {
+          "insert": "docs-web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "web",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (only the built UI ships) and "
+        },
+        {
+          "insert": "chat-slack",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (shipped as the verified release under "
+        },
+        {
+          "insert": "/opt/archon/image-plugins",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-slack-release-is-pin-126": {
+      "id": "b-20-docker-the-slack-release-is-pin-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Slack release is pinned separately from Archon's version by the build args "
+        },
+        {
+          "insert": "SLACK_PLUGIN_TAG",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (default "
+        },
+        {
+          "insert": "v0.12.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and "
+        },
+        {
+          "insert": "SLACK_PLUGIN_COMMIT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (default "
+        },
+        {
+          "insert": "5f2b4841aaca38180c0abbd32bc6345593292019",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Override both together; the build rejects a tag that resolves to a different commit. Downloads happen only at build time."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-customizing-the-image-127": {
+      "id": "b-20-docker-customizing-the-image-127",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Customizing the image"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-to-add-tools-without-edi-128": {
+      "id": "b-20-docker-to-add-tools-without-edi-128",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To add tools without editing the tracked Dockerfile:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-copy-dockerfile-user-ex-129": {
+      "id": "b-20-docker-copy-dockerfile-user-ex-129",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy "
+        },
+        {
+          "insert": "Dockerfile.user.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "Dockerfile.user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (use "
+        },
+        {
+          "insert": "deploy/Dockerfile.user.example",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a server deploy) and edit it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-copy-docker-compose-ove-130": {
+      "id": "b-20-docker-copy-docker-compose-ove-130",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy "
+        },
+        {
+          "insert": "docker-compose.override.example.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "docker-compose.override.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (or "
+        },
+        {
+          "insert": "deploy/docker-compose.override.example.yml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-run-docker-compose-up-131": {
+      "id": "b-20-docker-run-docker-compose-up-131",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Run "
+        },
+        {
+          "insert": "docker compose up -d",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Compose merges the override file automatically."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-both-files-are-gitignore-132": {
+      "id": "b-20-docker-both-files-are-gitignore-132",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both files are gitignored, so your changes stay local."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-maintenance-133": {
+      "id": "b-20-docker-maintenance-133",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Maintenance"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-134": {
+      "id": "b-20-docker-bash-134",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "docker compose logs -f app            # follow app logs\ndocker compose logs --tail=100 app    # last 100 lines\ndocker compose restart app\ndocker compose down                   # stop, keep data\ndocker compose down -v                # stop and delete volumes, including data\ndocker system df                      # Docker disk usage"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-update-135": {
+      "id": "b-20-docker-update-135",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Update"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-136": {
+      "id": "b-20-docker-bash-136",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "git pull\ndocker compose --profile with-db --profile cloud up -d --build"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-use-the-same-profiles-yo-137": {
+      "id": "b-20-docker-use-the-same-profiles-yo-137",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use the same profiles you deployed with. The app applies schema changes on startup: it runs the idempotent "
+        },
+        {
+          "insert": "migrations/000_combined.sql",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " under a PostgreSQL advisory lock, so there is no manual migration step."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-troubleshooting-138": {
+      "id": "b-20-docker-troubleshooting-138",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Troubleshooting"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-app-exits-with-no-ai-cr-139": {
+      "id": "b-20-docker-app-exits-with-no-ai-cr-139",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "App exits with "
+        },
+        {
+          "insert": "no_ai_credentials",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-server-found-no-clau-140": {
+      "id": "b-20-docker-the-server-found-no-clau-140",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server found no Claude credential and no Codex credential. Set "
+        },
+        {
+          "insert": "CLAUDE_CODE_OAUTH_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "CLAUDE_API_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "ARCHON_CODEX_ID_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "ARCHON_CODEX_ACCESS_TOKEN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". See "
+        },
+        {
+          "insert": "AI credentials",
+          "attributes": {
+            "link": "#ai-credentials"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caddy-fails-with-not-a-141": {
+      "id": "b-20-docker-caddy-fails-with-not-a-141",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Caddy fails with \"not a directory\""
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-code-142": {
+      "id": "b-20-docker-code-142",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "error mounting \"Caddyfile\": not a directory"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caddyfile-did-not-exis-143": {
+      "id": "b-20-docker-caddyfile-did-not-exis-143",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Caddyfile",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " did not exist, so Docker created a directory in its place:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-144": {
+      "id": "b-20-docker-bash-144",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "rm -rf Caddyfile\ncp Caddyfile.example Caddyfile\ndocker compose --profile cloud up -d"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-caddy-gets-no-certificat-145": {
+      "id": "b-20-docker-caddy-gets-no-certificat-145",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Caddy gets no certificate"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-check-that-dig-archon-e-146": {
+      "id": "b-20-docker-check-that-dig-archon-e-146",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Check that "
+        },
+        {
+          "insert": "dig archon.example.com",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns the server's IP, that "
+        },
+        {
+          "insert": "sudo ufw status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows 80 and 443 open, and that "
+        },
+        {
+          "insert": "DOMAIN",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is spelled right. Then read "
+        },
+        {
+          "insert": "docker compose logs caddy",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". DNS changes can take up to an hour to propagate."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-health-check-fails-147": {
+      "id": "b-20-docker-health-check-fails-147",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Health check fails"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-container-health-che-148": {
+      "id": "b-20-docker-the-container-health-che-148",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The container health check calls "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on "
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", not "
+        },
+        {
+          "insert": "/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-bash-149": {
+      "id": "b-20-docker-bash-149",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3000/api/health"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-postgresql-connection-re-150": {
+      "id": "b-20-docker-postgresql-connection-re-150",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "PostgreSQL connection refused"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-with-profile-with-db-151": {
+      "id": "b-20-docker-with-profile-with-db-151",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "With "
+        },
+        {
+          "insert": "--profile with-db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " must use the service name "
+        },
+        {
+          "insert": "postgres",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as the host, not "
+        },
+        {
+          "insert": "localhost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Check the container with "
+        },
+        {
+          "insert": "docker compose ps postgres",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-permission-errors-in-152": {
+      "id": "b-20-docker-permission-errors-in-152",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Permission errors in "
+        },
+        {
+          "insert": "/.archon",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-the-entrypoint-exits-1-w-153": {
+      "id": "b-20-docker-the-entrypoint-exits-1-w-153",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The entrypoint exits 1 with the "
+        },
+        {
+          "insert": "chown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " error when it cannot give "
+        },
+        {
+          "insert": "/.archon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "/home/appuser",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to UID 1001. On Linux with a bind mount, run "
+        },
+        {
+          "insert": "sudo chown -R 1001:1001 /path/to/archon-data",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the host. On a macOS bind mount, "
+        },
+        {
+          "insert": "chown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the host does not help; see "
+        },
+        {
+          "insert": "Root fallback for macOS bind mounts",
+          "attributes": {
+            "link": "#root-fallback-for-macos-bind-mounts"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-port-already-in-use-154": {
+      "id": "b-20-docker-port-already-in-use-154",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Port already in use"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-set-another-port-in-155": {
+      "id": "b-20-docker-set-another-port-in-155",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set another "
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", such as "
+        },
+        {
+          "insert": "PORT=3001",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-container-keeps-restarti-156": {
+      "id": "b-20-docker-container-keeps-restarti-156",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Container keeps restarting"
+        }
+      ],
+      "children": []
+    },
+    "b-20-docker-run-docker-compose-ps-157": {
+      "id": "b-20-docker-run-docker-compose-ps-157",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run "
+        },
+        {
+          "insert": "docker compose ps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "docker compose logs --tail=50 app",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The usual causes are a missing "
+        },
+        {
+          "insert": ".env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", an invalid credential or an unreachable database."
+        }
+      ],
+      "children": []
+    }
+  }
+}

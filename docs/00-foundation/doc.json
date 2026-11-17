@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "00-foundation",
+  "title": "Foundation",
+  "root": "b-00-foundation-root-8",
+  "blocks": {
+    "b-00-foundation-root-8": {
+      "id": "b-00-foundation-root-8",
+      "type": "paragraph",
+      "props": {
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts"
+      },
+      "children": [
+        "b-00-foundation-foundation-says-what-arc-1",
+        "b-00-foundation-the-purpose-page-belongs-2",
+        "b-00-foundation-the-import-replaces-each-3",
+        "b-00-foundation-contents-4",
+        "b-00-foundation-purpose-docs-00-found-5",
+        "b-00-foundation-archon-docs-00-founda-6",
+        "b-00-foundation-brand-docs-00-foundat-7"
+      ]
+    },
+    "b-00-foundation-foundation-says-what-arc-1": {
+      "id": "b-00-foundation-foundation-says-what-arc-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Foundation says what Archon is and why this fork exists."
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-the-purpose-page-belongs-2": {
+      "id": "b-00-foundation-the-purpose-page-belongs-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The purpose page belongs to the fork. The other pages are converted copies of the upstream Archon docs."
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-the-import-replaces-each-3": {
+      "id": "b-00-foundation-the-import-replaces-each-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The import replaces each em dash of the upstream prose with a colon, a comma, parentheses or a hyphen."
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-contents-4": {
+      "id": "b-00-foundation-contents-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Contents"
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-purpose-docs-00-found-5": {
+      "id": "b-00-foundation-purpose-docs-00-found-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Purpose",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/00-foundation/10-purpose.md",
+              "label": "Purpose"
+            }
+          }
+        },
+        {
+          "insert": ": What the fork is, what it changes, and what stays upstream code."
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-archon-docs-00-founda-6": {
+      "id": "b-00-foundation-archon-docs-00-founda-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/00-foundation/20-archon.md",
+              "label": "Archon"
+            }
+          }
+        },
+        {
+          "insert": ": The simplest way to build the software that builds your software. YAML workflows that can do anything."
+        }
+      ],
+      "children": []
+    },
+    "b-00-foundation-brand-docs-00-foundat-7": {
+      "id": "b-00-foundation-brand-docs-00-foundat-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Brand",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/00-foundation/30-brand.md",
+              "label": "Brand"
+            }
+          }
+        },
+        {
+          "insert": ": Archon brand foundation: colors, logo, and usage guidelines."
+        }
+      ],
+      "children": []
+    }
+  }
+}

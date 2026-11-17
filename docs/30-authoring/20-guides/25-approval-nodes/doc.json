@@ -1,0 +1,1726 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-25-approval-nodes",
+  "title": "Asking for an Answer",
+  "root": "b-25-approval-nodes-root-67",
+  "blocks": {
+    "b-25-approval-nodes-root-67": {
+      "id": "b-25-approval-nodes-root-67",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Pause a workflow until it gets an answer with wait attention forms, and migrate legacy approval gates and interactive loops.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/approval-nodes.md"
+      },
+      "children": [
+        "b-25-approval-nodes-a-workflow-that-needs-in-1",
+        "b-25-approval-nodes-use-it-to-review-a-gener-2",
+        "b-25-approval-nodes-quick-start-3",
+        "b-25-approval-nodes-yaml-4",
+        "b-25-approval-nodes-when-execution-reaches-5",
+        "b-25-approval-nodes-reject-is-an-answer-li-6",
+        "b-25-approval-nodes-forms-7",
+        "b-25-approval-nodes-form-fixes-what-the-wa-8",
+        "table-0-285ec134",
+        "b-25-approval-nodes-select-and-multi-sele-10",
+        "b-25-approval-nodes-yaml-11",
+        "b-25-approval-nodes-the-attention-message-ac-12",
+        "b-25-approval-nodes-answering-13",
+        "b-25-approval-nodes-every-surface-accepts-th-14",
+        "b-25-approval-nodes-cli-archon-workfl-15",
+        "b-25-approval-nodes-occurrence-from-workflo-16",
+        "b-25-approval-nodes-bash-17",
+        "b-25-approval-nodes-chat-workflow-app-18",
+        "b-25-approval-nodes-the-same-arguments-ar-19",
+        "b-25-approval-nodes-web-console-open-th-20",
+        "b-25-approval-nodes-choices-21",
+        "b-25-approval-nodes-http-post-api-wor-22",
+        "b-25-approval-nodes-occurrence-choose-23",
+        "b-25-approval-nodes-an-answer-names-the-occu-24",
+        "b-25-approval-nodes-continuing-after-an-answ-25",
+        "b-25-approval-nodes-reading-the-answer-26",
+        "b-25-approval-nodes-downstream-nodes-read-th-27",
+        "b-25-approval-nodes-route-on-the-decision-wi-28",
+        "b-25-approval-nodes-yaml-29",
+        "b-25-approval-nodes-rework-until-approved-30",
+        "b-25-approval-nodes-to-revise-and-ask-again-31",
+        "b-25-approval-nodes-yaml-32",
+        "b-25-approval-nodes-the-wait-must-be-the-bod-33",
+        "b-25-approval-nodes-engine-initiated-pauses-34",
+        "b-25-approval-nodes-two-pauses-are-created-b-35",
+        "b-25-approval-nodes-container-write-back-36",
+        "b-25-approval-nodes-the-checkout-approve-37",
+        "b-25-approval-nodes-a-parent-blocked-on-a-38",
+        "b-25-approval-nodes-question-answer-the-chi-39",
+        "b-25-approval-nodes-migrating-from-approval-40",
+        "b-25-approval-nodes-approval-gates-and-in-41",
+        "b-25-approval-nodes-container-isolated-workf-42",
+        "b-25-approval-nodes-see-the-canonical-depre-43",
+        "b-25-approval-nodes-a-plain-gate-before-and-44",
+        "b-25-approval-nodes-yaml-45",
+        "b-25-approval-nodes-nodes-that-depended-on-t-46",
+        "b-25-approval-nodes-a-gate-with-authored-dec-47",
+        "b-25-approval-nodes-yaml-48",
+        "b-25-approval-nodes-dry-runs-and-fixtures-49",
+        "b-25-approval-nodes-archon-workflow-run-d-50",
+        "b-25-approval-nodes-legacy-gate-behavior-51",
+        "b-25-approval-nodes-this-describes-the-depre-52",
+        "b-25-approval-nodes-approve-records-the-53",
+        "b-25-approval-nodes-capture-response-true-54",
+        "b-25-approval-nodes-reject-cancels-the-r-55",
+        "b-25-approval-nodes-on-reject-prompt-runs-56",
+        "b-25-approval-nodes-authored-decisions-57",
+        "b-25-approval-nodes-approve-and-reject-w-58",
+        "b-25-approval-nodes-interactive-loop-gates-59",
+        "b-25-approval-nodes-another-iteration-with-t-60",
+        "b-25-approval-nodes-an-approval-gate-insi-61",
+        "b-25-approval-nodes-like-a-wait-62",
+        "b-25-approval-nodes-while-approved-or-reject-63",
+        "b-25-approval-nodes-metadata-approval-resol-64",
+        "b-25-approval-nodes-a-gate-in-a-container-ru-65",
+        "b-25-approval-nodes-continue-on-its-own-afte-66"
+      ]
+    },
+    "b-25-approval-nodes-a-workflow-that-needs-in-1": {
+      "id": "b-25-approval-nodes-a-workflow-that-needs-in-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow that needs input pauses at a "
+        },
+        {
+          "insert": "wait: attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node. The run stops,\nthe question waits in the attention queue, and the run continues once someone\nanswers it in the form the node declares. Archon does not route the question or\ncare who answers: a person in the console or chat, an agent through the CLI, or a\nhandler workflow all use the same answer channel."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-use-it-to-review-a-gener-2": {
+      "id": "b-25-approval-nodes-use-it-to-review-a-gener-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use it to review a generated plan before expensive work, to pick between options\nan agent produced, or to collect instructions mid-run."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-quick-start-3": {
+      "id": "b-25-approval-nodes-quick-start-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick start"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-4": {
+      "id": "b-25-approval-nodes-yaml-4",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: plan-review-implement\ndescription: Plan, pause for review, then implement\n\nnodes:\n  - id: plan\n    prompt: |\n      Analyze the codebase and create a detailed implementation plan.\n      $USER_MESSAGE\n\n  - id: review\n    depends_on: [plan]\n    wait:\n      form: approval\n      attention: |\n        Review the plan before implementation starts:\n\n        $plan.output\n\n  - id: stop\n    depends_on: [review]\n    when: \"$review.output.decision == 'reject'\"\n    cancel: The plan was rejected.\n\n  - id: implement\n    depends_on: [review]\n    when: \"$review.output.decision == 'approve'\"\n    prompt: |\n      Implement the plan. Reviewer notes: $review.output.text\n      $plan.output"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-when-execution-reaches-5": {
+      "id": "b-25-approval-nodes-when-execution-reaches-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When execution reaches "
+        },
+        {
+          "insert": "review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the run pauses and the question is sent to the\nconversation that started it. The pause is durable: it waits in the attention\nqueue until it is answered, whether the run started in the foreground, with\n"
+        },
+        {
+          "insert": "--detach",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", from the web console, or from a trigger. If the notice cannot be\ndelivered, the run still waits; the failed delivery is logged and recorded on\nthe run as a "
+        },
+        {
+          "insert": "pause_notice_undelivered",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event. When web push is configured, the\nowner of a run on a chat platform is then notified by push instead, once per pause."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-reject-is-an-answer-li-6": {
+      "id": "b-25-approval-nodes-reject-is-an-answer-li-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is an answer like any other and never cancels the run by itself. The\n"
+        },
+        {
+          "insert": "stop",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node is what ends it; leave it out when a rejection should continue\nsomewhere else."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-forms-7": {
+      "id": "b-25-approval-nodes-forms-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Forms"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-form-fixes-what-the-wa-8": {
+      "id": "b-25-approval-nodes-form-fixes-what-the-wa-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "form",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fixes what the wait accepts and what the next node reads:"
+        }
+      ],
+      "children": []
+    },
+    "table-0-285ec134": {
+      "id": "table-0-285ec134",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Form",
+          "Answer accepted",
+          "The next node reads"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "message",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (default)"
+              }
+            ],
+            "free text, which may be empty",
+            [
+              {
+                "insert": "{ text }",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "approval",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "reject",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", plus optional text"
+              }
+            ],
+            [
+              {
+                "insert": "{ decision, text }",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "select",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "exactly one declared option id, plus optional text",
+            [
+              {
+                "insert": "{ decision, text }",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "multi_select",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "one or more distinct declared option ids, plus optional text",
+            [
+              {
+                "insert": "{ decisions, text }",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-25-approval-nodes-select-and-multi-sele-10": {
+      "id": "b-25-approval-nodes-select-and-multi-sele-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "select",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "multi_select",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declare "
+        },
+        {
+          "insert": "options",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", literally or as one whole\nreference to an upstream output:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-11": {
+      "id": "b-25-approval-nodes-yaml-11",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: choose-base\n  depends_on: [plan]\n  wait:\n    attention: \"Which branch should the fix target?\"\n    form: select\n    options:\n      - { id: use-main, label: \"Base on main\" }\n      - { id: use-dev }"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-the-attention-message-ac-12": {
+      "id": "b-25-approval-nodes-the-attention-message-ac-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The attention message accepts runtime references ("
+        },
+        {
+          "insert": "$plan.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "$INPUTS.x",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ").\nSee "
+        },
+        {
+          "insert": "Attention waits",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "attention-waits",
+              "label": "Attention waits"
+            }
+          }
+        },
+        {
+          "insert": " for the full\nrules on forms, options and output."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-answering-13": {
+      "id": "b-25-approval-nodes-answering-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Answering"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-every-surface-accepts-th-14": {
+      "id": "b-25-approval-nodes-every-surface-accepts-th-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Every surface accepts the same answers. An undeclared option is refused on every\nsurface and the run stays paused."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-cli-archon-workfl-15": {
+      "id": "b-25-approval-nodes-cli-archon-workfl-15",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "CLI",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "archon workflow answer",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "workflow-answer",
+              "label": "`archon workflow answer`"
+            }
+          }
+        },
+        {
+          "insert": " with the"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-occurrence-from-workflo-16": {
+      "id": "b-25-approval-nodes-occurrence-from-workflo-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "occurrence from "
+        },
+        {
+          "insert": "workflow get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "workflow wait --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "approve [text]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "reject [text]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "respond <option> [text]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " work as shorthand: "
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nanswers a "
+        },
+        {
+          "insert": "message",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " wait with its text, and otherwise each verb chooses the\noption of the same id."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-bash-17": {
+      "id": "b-25-approval-nodes-bash-17",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "archon workflow approve <run-id> \"Looks good\"\narchon workflow reject <run-id> \"Needs tests\"\narchon workflow respond <run-id> use-dev"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-chat-workflow-app-18": {
+      "id": "b-25-approval-nodes-chat-workflow-app-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Chat",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "/workflow approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "/workflow reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/workflow respond",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-the-same-arguments-ar-19": {
+      "id": "b-25-approval-nodes-the-same-arguments-ar-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "the same arguments ("
+        },
+        {
+          "insert": "/archon-workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in Slack). You can also say what you\nwant in the conversation. The chat agent reads the open question and your full\nmessage, and answers only when your message clearly is one. A question or an\nambiguous message leaves the run paused."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-web-console-open-th-20": {
+      "id": "b-25-approval-nodes-web-console-open-th-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Web console",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": open the paused run; it shows the question and the form's"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-choices-21": {
+      "id": "b-25-approval-nodes-choices-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "choices."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-http-post-api-wor-22": {
+      "id": "b-25-approval-nodes-http-post-api-wor-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "HTTP",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "POST /api/workflows/runs/<run-id>/answer",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-occurrence-choose-23": {
+      "id": "b-25-approval-nodes-occurrence-choose-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "{ occurrence, choose?, text? }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-an-answer-names-the-occu-24": {
+      "id": "b-25-approval-nodes-an-answer-names-the-occu-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "An answer names the occurrence it was meant for, so an answer to an earlier pause\nof the same run is refused. Answering through the CLI without "
+        },
+        {
+          "insert": "--json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " continues\nthe run in that process; otherwise "
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "archon workflow wake",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ncontinues it. Attention waits are not supported in container-isolated workflows."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-continuing-after-an-answ-25": {
+      "id": "b-25-approval-nodes-continuing-after-an-answ-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Continuing after an answer picks the run up where it paused. Nodes that completed\nreplay their results, and a node that failed before the pause replays its failure\ninstead of running again, because the run had already moved past it. On the first\nanswer, if the question the wait would ask now differs from the one that was answered,\nthe wait discards the answer and asks again. Its notice names the changed dependencies\nwhen the engine can identify them; otherwise it gives a generic notice that the\nquestion changed. After one re-ask, the next answer is accepted even if the question\nchanges again. See "
+        },
+        {
+          "insert": "attention waits",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "attention-waits",
+              "label": "attention waits"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-reading-the-answer-26": {
+      "id": "b-25-approval-nodes-reading-the-answer-26",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Reading the answer"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-downstream-nodes-read-th-27": {
+      "id": "b-25-approval-nodes-downstream-nodes-read-th-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Downstream nodes read the answer as "
+        },
+        {
+          "insert": "$<wait-id>.output.decision",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "$<wait-id>.output.decisions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "$<wait-id>.output.text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", depending on the\nform. Every form records the answer's text, so there is nothing to opt into."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-route-on-the-decision-wi-28": {
+      "id": "b-25-approval-nodes-route-on-the-decision-wi-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Route on the decision with "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-29": {
+      "id": "b-25-approval-nodes-yaml-29",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: implement\n  depends_on: [review]\n  when: \"$review.output.decision == 'approve'\"\n  prompt: \"Implement the plan. Notes: $review.output.text\""
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-rework-until-approved-30": {
+      "id": "b-25-approval-nodes-rework-until-approved-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Rework until approved"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-to-revise-and-ask-again-31": {
+      "id": "b-25-approval-nodes-to-revise-and-ask-again-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To revise and ask again, put the work and the question in a "
+        },
+        {
+          "insert": "loop_group",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " whose\nbody ends in the wait. The next iteration reads the previous answer as\n"
+        },
+        {
+          "insert": "$LOOP_PREV.<wait-id>.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "until_bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ends the loop on approval:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-32": {
+      "id": "b-25-approval-nodes-yaml-32",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "- id: refine-plan\n  depends_on: [plan]\n  loop_group:\n    max_iterations: 3\n    until_bash: 'decision=$review.output.decision; [ \"$decision\" = \"approve\" ]'\n    nodes:\n      - id: revise\n        prompt: |\n          Improve this plan: $plan.output\n          Feedback on the previous revision, if any: $LOOP_PREV.review.output.text\n      - id: review\n        depends_on: [revise]\n        wait:\n          form: approval\n          attention: |\n            Review the revised plan:\n\n            $revise.output"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-the-wait-must-be-the-bod-33": {
+      "id": "b-25-approval-nodes-the-wait-must-be-the-bod-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The wait must be the body's sole terminal sink. The loader warns when\n"
+        },
+        {
+          "insert": "until_bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not reference the wait's output, because the loop would then\nignore every answer. See\n"
+        },
+        {
+          "insert": "Pausing to ask inside the body",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/20-loop-nodes.md",
+              "section": "pausing-to-ask-inside-the-body",
+              "label": "Pausing to ask inside the body"
+            }
+          }
+        },
+        {
+          "insert": "\nfor how a paused loop group continues."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-engine-initiated-pauses-34": {
+      "id": "b-25-approval-nodes-engine-initiated-pauses-34",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Engine-initiated pauses"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-two-pauses-are-created-b-35": {
+      "id": "b-25-approval-nodes-two-pauses-are-created-b-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Two pauses are created by the engine, not authored, and keep their own\nmechanics:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-container-write-back-36": {
+      "id": "b-25-approval-nodes-container-write-back-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Container write-back",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": a container run pauses before applying its changes to"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-the-checkout-approve-37": {
+      "id": "b-25-approval-nodes-the-checkout-approve-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "the checkout. "
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " applies the overlay and "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " discards it."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-a-parent-blocked-on-a-38": {
+      "id": "b-25-approval-nodes-a-parent-blocked-on-a-38",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A parent blocked on a ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " child",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the child run pauses with its own"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-question-answer-the-chi-39": {
+      "id": "b-25-approval-nodes-question-answer-the-chi-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "question. Answer the child by its run id; answering the parent is refused with\na redirect to the child, and the parent continues when the child finishes."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-migrating-from-approval-40": {
+      "id": "b-25-approval-nodes-migrating-from-approval-40",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Migrating from approval gates"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-approval-gates-and-in-41": {
+      "id": "b-25-approval-nodes-approval-gates-and-in-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "approval:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gates and interactive loop gates are deprecated. They still load and\nrun exactly as before, and paused runs of the old shapes stay answerable with\n"
+        },
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "respond",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Each file that uses one gets one load warning\nper legacy shape, naming every node that uses it and its replacement. Removing the\nlegacy runtime is a later release, whose notes will ask you to answer or abandon\npaused runs of the old shapes first."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-container-isolated-workf-42": {
+      "id": "b-25-approval-nodes-container-isolated-workf-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Container-isolated workflows cannot migrate yet: a run with container isolation\nrefuses any "
+        },
+        {
+          "insert": "wait:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node before it starts, so "
+        },
+        {
+          "insert": "approval:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is still their only\nauthored pause. Keep those gates until waits are supported there; the load\nwarning still appears."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-see-the-canonical-depre-43": {
+      "id": "b-25-approval-nodes-see-the-canonical-depre-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the canonical "
+        },
+        {
+          "insert": "deprecated node fields",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "deprecated-node-fields",
+              "label": "deprecated node fields"
+            }
+          }
+        },
+        {
+          "insert": "\nfor each replacement and its deprecation release. For repeated rework, see\n"
+        },
+        {
+          "insert": "Rework until approved",
+          "attributes": {
+            "link": "#rework-until-approved"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-a-plain-gate-before-and-44": {
+      "id": "b-25-approval-nodes-a-plain-gate-before-and-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A plain gate, before and after:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-45": {
+      "id": "b-25-approval-nodes-yaml-45",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# Before: reject cancels the run\n- id: review\n  depends_on: [plan]\n  approval:\n    message: \"Review the plan.\"\n    capture_response: true\n\n# After: the decision is routed explicitly\n- id: review\n  depends_on: [plan]\n  wait:\n    form: approval\n    attention: \"Review the plan.\"\n\n- id: stop\n  depends_on: [review]\n  when: \"$review.output.decision == 'reject'\"\n  cancel: The plan was rejected."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-nodes-that-depended-on-t-46": {
+      "id": "b-25-approval-nodes-nodes-that-depended-on-t-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Nodes that depended on the gate and should only run on approval need\n"
+        },
+        {
+          "insert": "when: \"$review.output.decision == 'approve'\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A downstream reference to\n"
+        },
+        {
+          "insert": "$review.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from a "
+        },
+        {
+          "insert": "capture_response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gate becomes "
+        },
+        {
+          "insert": "$review.output.text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-a-gate-with-authored-dec-47": {
+      "id": "b-25-approval-nodes-a-gate-with-authored-dec-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A gate with authored decisions maps one to one:"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-yaml-48": {
+      "id": "b-25-approval-nodes-yaml-48",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "# Before\napproval:\n  message: \"CI failed. What next?\"\n  decisions:\n    - { id: rerun-ci, label: \"Re-run CI\" }\n    - { id: give-up }\n\n# After\nwait:\n  attention: \"CI failed. What next?\"\n  form: select\n  options:\n    - { id: rerun-ci, label: \"Re-run CI\" }\n    - { id: give-up }"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-dry-runs-and-fixtures-49": {
+      "id": "b-25-approval-nodes-dry-runs-and-fixtures-49",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Dry runs and fixtures"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-archon-workflow-run-d-50": {
+      "id": "b-25-approval-nodes-archon-workflow-run-d-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "archon workflow run --dry-run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " auto-approves a legacy gate unless you pass\n"
+        },
+        {
+          "insert": "--pause-at-gates",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An attention wait pauses the simulation instead, unless the\nstubs give the wait node a value: that stub stands in for the answer and must\nmatch the form's output, for example "
+        },
+        {
+          "insert": "review: { decision: approve, text: \"\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-legacy-gate-behavior-51": {
+      "id": "b-25-approval-nodes-legacy-gate-behavior-51",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Legacy gate behavior"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-this-describes-the-depre-52": {
+      "id": "b-25-approval-nodes-this-describes-the-depre-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This describes the deprecated shapes for runs and workflows that still use them."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-approve-records-the-53": {
+      "id": "b-25-approval-nodes-approve-records-the-53",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Approve",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " records the answer and continues the run. A gate with"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-capture-response-true-54": {
+      "id": "b-25-approval-nodes-capture-response-true-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "capture_response: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and no "
+        },
+        {
+          "insert": "decisions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " outputs the approval comment as\n"
+        },
+        {
+          "insert": "$<id>.output",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; otherwise its output is empty."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-reject-cancels-the-r-55": {
+      "id": "b-25-approval-nodes-reject-cancels-the-r-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Reject",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " cancels the run, unless the gate has "
+        },
+        {
+          "insert": "on_reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Then the"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-on-reject-prompt-runs-56": {
+      "id": "b-25-approval-nodes-on-reject-prompt-runs-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "on_reject.prompt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs with "
+        },
+        {
+          "insert": "$REJECTION_REASON",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set to the reason, and the run\npauses at the same gate again, until approval or "
+        },
+        {
+          "insert": "on_reject.max_attempts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n(default 3, range 1 to 10) rejections, which cancel the run."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-authored-decisions-57": {
+      "id": "b-25-approval-nodes-authored-decisions-57",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Authored ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "decisions",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " accept only the declared ids through "
+        },
+        {
+          "insert": "respond",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ";"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-approve-and-reject-w-58": {
+      "id": "b-25-approval-nodes-approve-and-reject-w-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "approve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "reject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " work only when declared. Every decision completes the\ngate with "
+        },
+        {
+          "insert": "{ decision, text }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and never cancels by itself."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-interactive-loop-gates-59": {
+      "id": "b-25-approval-nodes-interactive-loop-gates-59",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Interactive loop gates",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " pause after each iteration. Approving with text runs"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-another-iteration-with-t-60": {
+      "id": "b-25-approval-nodes-another-iteration-with-t-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "another iteration with the text as "
+        },
+        {
+          "insert": "$LOOP_USER_INPUT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". When a completion signal\nalready fired on that iteration, approving without text finalizes the loop."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-an-approval-gate-insi-61": {
+      "id": "b-25-approval-nodes-an-approval-gate-insi-61",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "An "
+        },
+        {
+          "insert": "approval:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gate inside a "
+        },
+        {
+          "insert": "loop_group",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " body must be its sole terminal sink,"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-like-a-wait-62": {
+      "id": "b-25-approval-nodes-like-a-wait-62",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "like a wait."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-while-approved-or-reject-63": {
+      "id": "b-25-approval-nodes-while-approved-or-reject-63",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "While approved or rejected-with-rework, a gate's run stays "
+        },
+        {
+          "insert": "paused",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-metadata-approval-resol-64": {
+      "id": "b-25-approval-nodes-metadata-approval-resol-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "metadata.approval.resolved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " set until the resume machinery picks it up, so a\n"
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " status always means a real failure."
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-a-gate-in-a-container-ru-65": {
+      "id": "b-25-approval-nodes-a-gate-in-a-container-ru-65",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A gate in a container run, or one already paused when you upgraded, does not"
+        }
+      ],
+      "children": []
+    },
+    "b-25-approval-nodes-continue-on-its-own-afte-66": {
+      "id": "b-25-approval-nodes-continue-on-its-own-afte-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "continue on its own after it is answered. Run "
+        },
+        {
+          "insert": "archon workflow resume <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nin the same project."
+        }
+      ],
+      "children": []
+    }
+  }
+}

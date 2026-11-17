@@ -1,0 +1,1224 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing-40-dx-quirks",
+  "title": "DX Quirks",
+  "root": "b-40-dx-quirks-root-49",
+  "blocks": {
+    "b-40-dx-quirks-root-49": {
+      "id": "b-40-dx-quirks-root-49",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "developer"
+        ],
+        "category": "contributing",
+        "description": "Known development experience quirks and workarounds when working on the Archon codebase.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/dx-quirks.md"
+      },
+      "children": [
+        "b-40-dx-quirks-development-experience-n-1",
+        "b-40-dx-quirks-bun-log-elision-2",
+        "b-40-dx-quirks-when-running-bun-dev-f-3",
+        "b-40-dx-quirks-code-4",
+        "b-40-dx-quirks-to-see-full-logs-ru-5",
+        "b-40-dx-quirks-bash-6",
+        "b-40-dx-quirks-or-7",
+        "b-40-dx-quirks-bash-8",
+        "b-40-dx-quirks-note-the-root-bun-dev-9",
+        "b-40-dx-quirks-mock-module-merges-o-10",
+        "b-40-dx-quirks-bun-merges-a-mock-modul-11",
+        "b-40-dx-quirks-bun-run-check-mock-modu-12",
+        "b-40-dx-quirks-ts-13",
+        "b-40-dx-quirks-a-spreading-factory-prov-14",
+        "b-40-dx-quirks-factories-that-were-inco-15",
+        "b-40-dx-quirks-what-the-check-does-not-16",
+        "b-40-dx-quirks-it-reads-factory-keys-fr-17",
+        "b-40-dx-quirks-it-checks-only-literal-s-18",
+        "b-40-dx-quirks-it-refuses-a-module-type-19",
+        "b-40-dx-quirks-a-grandfathered-factory-20",
+        "b-40-dx-quirks-it-says-nothing-about-a-21",
+        "b-40-dx-quirks-it-runs-in-validate-and-22",
+        "b-40-dx-quirks-mock-module-pollutio-23",
+        "b-40-dx-quirks-bun-s-mock-module-is-24",
+        "b-40-dx-quirks-never-add-afterall-25",
+        "b-40-dx-quirks-use-spyon-for-intern-26",
+        "b-40-dx-quirks-never-mock-module-a-27",
+        "b-40-dx-quirks-when-adding-a-new-test-f-28",
+        "b-40-dx-quirks-in-the-other-packages-g-29",
+        "b-40-dx-quirks-a-package-s-testconcurr-30",
+        "b-40-dx-quirks-full-package-runs-start-31",
+        "b-40-dx-quirks-worktree-port-allocation-32",
+        "b-40-dx-quirks-worktrees-auto-allocate-33",
+        "b-40-dx-quirks-main-repo-defaults-to-30-34",
+        "b-40-dx-quirks-override-port-4000-bun-35",
+        "b-40-dx-quirks-same-worktree-always-get-36",
+        "b-40-dx-quirks-if-that-port-is-already-37",
+        "b-40-dx-quirks-process-holds-it-the-s-38",
+        "b-40-dx-quirks-port-is-never-moved-a-39",
+        "b-40-dx-quirks-bun-run-test-vs-bun-t-40",
+        "b-40-dx-quirks-never-run-bun-test-f-41",
+        "b-40-dx-quirks-always-use-bun-run-test-42",
+        "b-40-dx-quirks-running-one-test-43",
+        "b-40-dx-quirks-bun-run-test-path-ru-44",
+        "b-40-dx-quirks-bash-45",
+        "b-40-dx-quirks-from-the-repo-root-a-te-46",
+        "b-40-dx-quirks-within-a-package-substr-47",
+        "b-40-dx-quirks-test-options-are-forward-48"
+      ]
+    },
+    "b-40-dx-quirks-development-experience-n-1": {
+      "id": "b-40-dx-quirks-development-experience-n-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Development experience notes and workarounds."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-log-elision-2": {
+      "id": "b-40-dx-quirks-bun-log-elision-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Bun Log Elision"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-when-running-bun-dev-f-3": {
+      "id": "b-40-dx-quirks-when-running-bun-dev-f-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When running "
+        },
+        {
+          "insert": "bun dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the repo root, Bun's "
+        },
+        {
+          "insert": "--filter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " truncates logs:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-code-4": {
+      "id": "b-40-dx-quirks-code-4",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "@archon/server dev $ bun --watch src/index.ts\n│ [129 lines elided]\n│ [Hono] Server listening on port 3090\n└─ Running..."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-to-see-full-logs-ru-5": {
+      "id": "b-40-dx-quirks-to-see-full-logs-ru-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To see full logs",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ", run directly from the server package:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bash-6": {
+      "id": "b-40-dx-quirks-bash-6",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "cd packages/server && bun --watch src/index.ts"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-or-7": {
+      "id": "b-40-dx-quirks-or-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Or:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bash-8": {
+      "id": "b-40-dx-quirks-bash-8",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun --cwd packages/server run dev"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-note-the-root-bun-dev-9": {
+      "id": "b-40-dx-quirks-note-the-root-bun-dev-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note: The root "
+        },
+        {
+          "insert": "bun dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses "
+        },
+        {
+          "insert": "--filter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to fix hot reload path issues, but this comes with log condensing."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-mock-module-merges-o-10": {
+      "id": "b-40-dx-quirks-mock-module-merges-o-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " merges over the real module"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-merges-a-mock-modul-11": {
+      "id": "b-40-dx-quirks-bun-merges-a-mock-modul-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bun merges a "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " factory over the real module: an export the factory leaves out keeps its real implementation. When a mocked module gains an export, every factory that does not list it starts running real code (a database, the network, the filesystem) while its tests still pass, often until a 5-second timeout."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-run-check-mock-modu-12": {
+      "id": "b-40-dx-quirks-bun-run-check-mock-modu-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "bun run check:mock-modules",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (part of "
+        },
+        {
+          "insert": "bun run lint",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", so it runs in CI) fails on every factory that leaves out a value export of the module it mocks, naming the file, line, specifier and missing names. Mock each missing export, or spread the real module to keep the rest real on purpose:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-ts-13": {
+      "id": "b-40-dx-quirks-ts-13",
+      "type": "code",
+      "props": {
+        "language": "ts"
+      },
+      "text": [
+        {
+          "insert": "mock.module('../db/workflows', async () => ({\n  ...(await import('../db/workflows')),\n  getWorkflowRun: mockGetWorkflowRun,\n}));"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-a-spreading-factory-prov-14": {
+      "id": "b-40-dx-quirks-a-spreading-factory-prov-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A spreading factory provides every export, including ones the module gains later; that is the author's declaration. Where test files share a process (packages other than "
+        },
+        {
+          "insert": "@archon/core",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", unless the file has its own group), the "
+        },
+        {
+          "insert": "import()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can return a module an earlier file already mocked."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-factories-that-were-inco-15": {
+      "id": "b-40-dx-quirks-factories-that-were-inco-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Factories that were incomplete when the check landed are grandfathered in "
+        },
+        {
+          "insert": "scripts/mock-module-baseline.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A grandfathered site may omit only the exports its module's grandfathered sites omitted then, so a new export still fails at every one of them. The baseline only shrinks: after completing a factory, run "
+        },
+        {
+          "insert": "bun run check:mock-modules --write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "bun run check:ratchet",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " refuses entries the baseline gains unless a commit in the change carries "
+        },
+        {
+          "insert": "Ratchet-Allow: scripts/mock-module-baseline.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-what-the-check-does-not-16": {
+      "id": "b-40-dx-quirks-what-the-check-does-not-16",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "What the check does not prove:"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-it-reads-factory-keys-fr-17": {
+      "id": "b-40-dx-quirks-it-reads-factory-keys-fr-17",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It reads factory keys from the factory's type, so an "
+        },
+        {
+          "insert": "as",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cast can misstate them."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-it-checks-only-literal-s-18": {
+      "id": "b-40-dx-quirks-it-checks-only-literal-s-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It checks only literal specifiers, and refuses a non-literal one."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-it-refuses-a-module-type-19": {
+      "id": "b-40-dx-quirks-it-refuses-a-module-type-19",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It refuses a module TypeScript cannot read (no type declarations, or a path that does not resolve) unless the site is grandfathered."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-a-grandfathered-factory-20": {
+      "id": "b-40-dx-quirks-a-grandfathered-factory-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A grandfathered factory can drop a key that another grandfathered site of the same module already omits."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-it-says-nothing-about-a-21": {
+      "id": "b-40-dx-quirks-it-says-nothing-about-a-21",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It says nothing about a client a test never stubbed, or about I/O outside "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The adapters package preloads "
+        },
+        {
+          "insert": "no-network",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (it traps only "
+        },
+        {
+          "insert": "globalThis.fetch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and "
+        },
+        {
+          "insert": "no-archon-home-writes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " guards for part of that; Bun reads "
+        },
+        {
+          "insert": "bunfig.toml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only from the working directory, so those guards apply only when the tests run from "
+        },
+        {
+          "insert": "packages/adapters",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Their headers list the limits."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-it-runs-in-validate-and-22": {
+      "id": "b-40-dx-quirks-it-runs-in-validate-and-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "It runs in validate and CI, not inside "
+        },
+        {
+          "insert": "bun test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-mock-module-pollutio-23": {
+      "id": "b-40-dx-quirks-mock-module-pollutio-23",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Pollution"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-s-mock-module-is-24": {
+      "id": "b-40-dx-quirks-bun-s-mock-module-is-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Bun's "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is process-global and irreversible: "
+        },
+        {
+          "insert": "mock.restore()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does NOT undo it."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-never-add-afterall-25": {
+      "id": "b-40-dx-quirks-never-add-afterall-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Never add "
+        },
+        {
+          "insert": "afterAll(() => mock.restore())",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " cleanup: it has no effect"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-use-spyon-for-intern-26": {
+      "id": "b-40-dx-quirks-use-spyon-for-intern-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "spyOn()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for internal modules that other test files import directly (e.g., "
+        },
+        {
+          "insert": "spyOn(git, 'checkout')",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "): "
+        },
+        {
+          "insert": "spy.mockRestore()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " DOES work for spies"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-never-mock-module-a-27": {
+      "id": "b-40-dx-quirks-never-mock-module-a-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Never "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " a module path that another test file also "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "s with a different implementation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-when-adding-a-new-test-f-28": {
+      "id": "b-40-dx-quirks-when-adding-a-new-test-f-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "When adding a new test file with "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to "
+        },
+        {
+          "insert": "packages/core",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", make its first line exactly "
+        },
+        {
+          "insert": "// @archon-test-isolated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " so it runs in its own process. Core discovers its tests, and discovery fails on a file that calls "
+        },
+        {
+          "insert": "mock.module()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without the marker. A file that mocks through a helper needs the marker too; discovery cannot see that call"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-in-the-other-packages-g-29": {
+      "id": "b-40-dx-quirks-in-the-other-packages-g-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "In the other packages, give the file its own entry in "
+        },
+        {
+          "insert": "testGroups",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the package's "
+        },
+        {
+          "insert": "package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or its own "
+        },
+        {
+          "insert": "bun test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " step for a package still using a "
+        },
+        {
+          "insert": "&&",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " chain"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-a-package-s-testconcurr-30": {
+      "id": "b-40-dx-quirks-a-package-s-testconcurr-30",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A package's "
+        },
+        {
+          "insert": "testConcurrency",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "package.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs that many "
+        },
+        {
+          "insert": "testGroups",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " at once, each still in its own process; leave it out to run groups one at a time"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-full-package-runs-start-31": {
+      "id": "b-40-dx-quirks-full-package-runs-start-31",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Full package runs start groups slowest first, by the times in "
+        },
+        {
+          "insert": "scripts/test-weights.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Requested runs start groups in resolver order. CI splits slow shards into parts with "
+        },
+        {
+          "insert": "ARCHON_TEST_PART=<index>/<count>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", using the same times; "
+        },
+        {
+          "insert": "ARCHON_TEST_PART=1/2 bun run test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in a package runs that part locally. A new group with no recorded time counts as one second, so refresh the file with "
+        },
+        {
+          "insert": "bun scripts/update-test-weights.ts <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when one part of a shard finishes well after its sibling"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-worktree-port-allocation-32": {
+      "id": "b-40-dx-quirks-worktree-port-allocation-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Worktree Port Allocation"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-worktrees-auto-allocate-33": {
+      "id": "b-40-dx-quirks-worktrees-auto-allocate-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Worktrees auto-allocate ports (3190–4089 range, hash-based on path). Same worktree always gets same port."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-main-repo-defaults-to-30-34": {
+      "id": "b-40-dx-quirks-main-repo-defaults-to-30-34",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Main repo defaults to 3090"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-override-port-4000-bun-35": {
+      "id": "b-40-dx-quirks-override-port-4000-bun-35",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Override: "
+        },
+        {
+          "insert": "PORT=4000 bun dev",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-same-worktree-always-get-36": {
+      "id": "b-40-dx-quirks-same-worktree-always-get-36",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Same worktree always gets same port (deterministic)"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-if-that-port-is-already-37": {
+      "id": "b-40-dx-quirks-if-that-port-is-already-37",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "If that port is already taken (another worktree hashed to it, or any unrelated"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-process-holds-it-the-s-38": {
+      "id": "b-40-dx-quirks-process-holds-it-the-s-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "process holds it), the server takes the next free port in the range and logs\n"
+        },
+        {
+          "insert": "worktree_port_reallocated",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with both the port it wanted and the one it got.\nThe root "
+        },
+        {
+          "insert": "bun dev",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " launcher passes that selected port to both the server and Web\nclient, so the Vite proxy and SSE streams use the endpoint the server binds. It\nreturns to the hashed port once that frees up."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-port-is-never-moved-a-39": {
+      "id": "b-40-dx-quirks-port-is-never-moved-a-39",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is never moved: an explicit override binds where you said, or fails."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-run-test-vs-bun-t-40": {
+      "id": "b-40-dx-quirks-bun-run-test-vs-bun-t-40",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "bun run test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " vs "
+        },
+        {
+          "insert": "bun test",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-never-run-bun-test-f-41": {
+      "id": "b-40-dx-quirks-never-run-bun-test-f-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "NEVER run ",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "bun test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the repo root",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": it discovers all test files across all packages and runs them in one process, causing ~135 mock pollution failures."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-always-use-bun-run-test-42": {
+      "id": "b-40-dx-quirks-always-use-bun-run-test-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Always use "
+        },
+        {
+          "insert": "bun run test",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which runs each package's own grouped suite for isolation."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-running-one-test-43": {
+      "id": "b-40-dx-quirks-running-one-test-43",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Running one test"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bun-run-test-path-ru-44": {
+      "id": "b-40-dx-quirks-bun-run-test-path-ru-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "bun run test <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs that path."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-bash-45": {
+      "id": "b-40-dx-quirks-bash-45",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run test packages/paths/src/skills.test.ts   # from the repo root\ncd packages/paths && bun run test src/skills.test.ts"
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-from-the-repo-root-a-te-46": {
+      "id": "b-40-dx-quirks-from-the-repo-root-a-te-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "From the repo root, a test selector under "
+        },
+        {
+          "insert": "packages/<name>/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or\n"
+        },
+        {
+          "insert": ".archon/scripts/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " chooses the working directory. Option values stay unchanged, even\nwhen they look like test paths. Paths naming several packages run one package at a time\nand stop at the first failed package. An argument that names no owner fails instead of\nrunning the suite."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-within-a-package-substr-47": {
+      "id": "b-40-dx-quirks-within-a-package-substr-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Within a package, substring selectors expand to matching files and retain the package's\nisolation groups. Every selected group runs, even after another group fails; the command\nreturns nonzero if any group fails. A full run without arguments still stops admitting\ngroups after a failure. Discovery errors, including selected files outside explicit\n"
+        },
+        {
+          "insert": "testGroups",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", stop the request before any group starts."
+        }
+      ],
+      "children": []
+    },
+    "b-40-dx-quirks-test-options-are-forward-48": {
+      "id": "b-40-dx-quirks-test-options-are-forward-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Test options are forwarded to each group. Name filters ("
+        },
+        {
+          "insert": "-t",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "--test-name-pattern",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\nare supported only when the request selects one isolation group, preserving Bun's native\nexit result. Requests selecting multiple groups with a name filter fail before tests load,\nwith a diagnostic naming the groups. Root name-filter requests must also select one\ntest owner; multi-owner requests fail before any tests start and name the owners.\nSharding ("
+        },
+        {
+          "insert": "--shard",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") also requires one isolation group and one root test owner, so Bun\napplies the shard to the complete selected inventory. Select files from one group or\nrun each group separately. Load and hook failures still return nonzero. An explicit\n"
+        },
+        {
+          "insert": "--reporter=junit --reporter-outfile <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " receives one combined report containing all\nstarted groups and repository-root owners, including their failures and aggregate counts. Each failed child also\ncontributes a process error because Bun can omit load failures from its JUnit output;\nthe child output contains the diagnostics.\nAn unreadable or invalid private report fails its group and contributes a runner error\nwithout preventing later requested groups from running. Bun can omit JUnit output on\nsuccessful zero-file runs. An absent report after exit 0 emits a diagnostic and contributes\nno results, preserving Bun's exit code; absence after a nonzero exit remains a runner error.\nThe wrapper cannot distinguish successful zero-file execution from report loss after exit 0."
+        }
+      ],
+      "children": []
+    }
+  }
+}

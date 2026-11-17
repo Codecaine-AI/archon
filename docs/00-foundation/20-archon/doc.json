@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "id": "00-foundation-20-archon",
+  "title": "Archon",
+  "root": "b-20-archon-root-14",
+  "blocks": {
+    "b-20-archon-root-14": {
+      "id": "b-20-archon-root-14",
+      "type": "paragraph",
+      "props": {
+        "description": "The simplest way to build the software that builds your software. YAML workflows that can do anything.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/docs.mdx"
+      },
+      "children": [
+        "b-20-archon-archon-is-a-factory-buil-1",
+        "b-20-archon-take-yourself-out-of-the-2",
+        "b-20-archon-workflows-you-own-3",
+        "b-20-archon-the-workflow-fixes-the-s-4",
+        "b-20-archon-queues-and-attention-5",
+        "b-20-archon-queues-move-work-forward-6",
+        "b-20-archon-a-reliable-core-open-at-7",
+        "b-20-archon-providers-forges-chat-8",
+        "b-20-archon-your-agents-self-hosted-9",
+        "b-20-archon-runs-claude-code-codex-10",
+        "b-20-archon-install-11",
+        "b-20-archon-bash-12",
+        "b-20-archon-then-follow-the-quickst-13"
+      ]
+    },
+    "b-20-archon-archon-is-a-factory-buil-1": {
+      "id": "b-20-archon-archon-is-a-factory-buil-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon is a factory builder. You describe how work should get done as YAML workflows, and Archon runs them with AI agents, scripts and your decisions in the places that need them. Software is the first factory: the bundled "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pack takes an issue to a merged pull request. The same engine runs any process you can describe."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-take-yourself-out-of-the-2": {
+      "id": "b-20-archon-take-yourself-out-of-the-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Take yourself out of the loop and sit on top of it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-workflows-you-own-3": {
+      "id": "b-20-archon-workflows-you-own-3",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Workflows you own"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-the-workflow-fixes-the-s-4": {
+      "id": "b-20-archon-the-workflow-fixes-the-s-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The workflow fixes the steps, checks and gates. The agent supplies judgment inside each step."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-queues-and-attention-5": {
+      "id": "b-20-archon-queues-and-attention-5",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Queues and attention"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-queues-move-work-forward-6": {
+      "id": "b-20-archon-queues-move-work-forward-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Queues move work forward on their own. A run comes to you only when it needs a decision you own."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-a-reliable-core-open-at-7": {
+      "id": "b-20-archon-a-reliable-core-open-at-7",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "A reliable core, open at the seams"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-providers-forges-chat-8": {
+      "id": "b-20-archon-providers-forges-chat-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Providers, forges, chat platforms and workflow packs are plugins. Build your own for anything."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-your-agents-self-hosted-9": {
+      "id": "b-20-archon-your-agents-self-hosted-9",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Your agents, self-hosted"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-runs-claude-code-codex-10": {
+      "id": "b-20-archon-runs-claude-code-codex-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Runs Claude Code, Codex and Pi on the subscriptions you have. Every run is logged in your own database."
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-install-11": {
+      "id": "b-20-archon-install-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Install"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-bash-12": {
+      "id": "b-20-archon-bash-12",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -fsSL https://archon.diy/install | bash        # macOS / Linux\nirm https://archon.diy/install.ps1 | iex             # Windows (PowerShell)\nbrew install coleam00/archon/archon                 # Homebrew, then: archon setup"
+        }
+      ],
+      "children": []
+    },
+    "b-20-archon-then-follow-the-quickst-13": {
+      "id": "b-20-archon-then-follow-the-quickst-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Then follow the "
+        },
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": " to run your first workflow, or read "
+        },
+        {
+          "insert": "Installation",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/10-installation.md",
+              "label": "Installation"
+            }
+          }
+        },
+        {
+          "insert": " for Docker and source installs."
+        }
+      ],
+      "children": []
+    }
+  }
+}

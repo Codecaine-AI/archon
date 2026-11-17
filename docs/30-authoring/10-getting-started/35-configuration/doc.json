@@ -1,0 +1,655 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-10-getting-started-35-configuration",
+  "title": "Configuration",
+  "root": "b-35-configuration-root-8",
+  "blocks": {
+    "b-35-configuration-root-8": {
+      "id": "b-35-configuration-root-8",
+      "type": "paragraph",
+      "props": {
+        "area": "config",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "getting-started",
+        "description": "Configure Archon with API keys, assistants, and project settings.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/getting-started/configuration.md"
+      },
+      "children": [
+        "b-35-configuration-environment-variables-1",
+        "b-35-configuration-set-these-in-your-shell-2",
+        "table-0-ce555704",
+        "b-35-configuration-project-configuration-4",
+        "b-35-configuration-create-archon-config-y-5",
+        "b-35-configuration-yaml-6",
+        "b-35-configuration-see-the-full-configurat-7"
+      ]
+    },
+    "b-35-configuration-environment-variables-1": {
+      "id": "b-35-configuration-environment-variables-1",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Environment Variables"
+        }
+      ],
+      "children": []
+    },
+    "b-35-configuration-set-these-in-your-shell-2": {
+      "id": "b-35-configuration-set-these-in-your-shell-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Set these in your shell, "
+        },
+        {
+          "insert": "~/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for user-wide settings, or "
+        },
+        {
+          "insert": "<cwd>/.archon/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for project overrides. The CLI strips keys named in a target repository's "
+        },
+        {
+          "insert": "<cwd>/.env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; use the Archon-owned files for credentials. See "
+        },
+        {
+          "insert": "environment file locations and load order",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "section": "env-file-locations",
+              "label": "environment file locations and load order"
+            }
+          }
+        },
+        {
+          "insert": ", including the source-server exception."
+        }
+      ],
+      "children": []
+    },
+    "table-0-ce555704": {
+      "id": "table-0-ce555704",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Variable",
+          "Required",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "CLAUDE_BIN_PATH",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "No (binary builds autodetect "
+              },
+              {
+                "insert": "~/.local/bin/claude",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            [
+              {
+                "insert": "Absolute path to the Claude Code binary, SDK "
+              },
+              {
+                "insert": "cli.js",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or the npm platform-package directory (e.g. "
+              },
+              {
+                "insert": "@anthropic-ai/claude-code-win32-x64",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", auto-expanded to "
+              },
+              {
+                "insert": "claude",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "claude.exe",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "). Takes precedence over "
+              },
+              {
+                "insert": "assistants.claude.claudeBinaryPath",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " in both source and compiled installs. Without either pin, compiled builds autodetect the native-installer path; dev mode ("
+              },
+              {
+                "insert": "bun run",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") lets the SDK resolve via "
+              },
+              {
+                "insert": "node_modules",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". Invalid explicit pins fail in either mode."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "CLAUDE_USE_GLOBAL_AUTH",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "Startup-check marker for a "
+              },
+              {
+                "insert": "claude /login",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " session; Claude Code never reads it. Set automatically when no other Claude token is set. A Docker container has no login session, so set a token or key there."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "CLAUDE_CODE_OAUTH_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "OAuth token from "
+              },
+              {
+                "insert": "claude setup-token",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "CLAUDE_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            "Anthropic API key for pay-per-use"
+          ],
+          [
+            [
+              {
+                "insert": "CODEX_BIN_PATH",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            "Absolute path to the Codex CLI binary. Overrides auto-detection in compiled Archon builds."
+          ],
+          [
+            [
+              {
+                "insert": "ARCHON_CODEX_ACCESS_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "Docker only: one of four copied Codex login values the container writes to "
+              },
+              {
+                "insert": "~/.codex/auth.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". Elsewhere use "
+              },
+              {
+                "insert": "codex login",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "CODEX_API_KEY",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (see "
+              },
+              {
+                "insert": "AI Assistants",
+                "attributes": {
+                  "link": "docs/30-authoring/10-getting-started/40-ai-assistants.md"
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "DATABASE_URL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            "PostgreSQL connection string (default: SQLite)"
+          ],
+          [
+            [
+              {
+                "insert": "GH_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "GitHub personal access token: used to authenticate when cloning private repos from "
+              },
+              {
+                "insert": "github.com",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or the "
+              },
+              {
+                "insert": "GITHUB_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " host"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "GITHUB_URL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "GitHub Enterprise Server base URL (e.g. "
+              },
+              {
+                "insert": "https://github.example.com",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "); unset means github.com. See "
+              },
+              {
+                "insert": "GitHub Enterprise Server",
+                "attributes": {
+                  "link": "docs/10-system-design/20-adapters/40-github.md#github-enterprise-server"
+                }
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "GITLAB_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "GitLab personal/project access token: used to authenticate when cloning private repos from "
+              },
+              {
+                "insert": "gitlab.com",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or the "
+              },
+              {
+                "insert": "GITLAB_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " host (also used by the GitLab adapter)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "GITEA_TOKEN",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "Gitea/Forgejo access token: used to authenticate when cloning private repos from "
+              },
+              {
+                "insert": "gitea.com",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or the "
+              },
+              {
+                "insert": "GITEA_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " / "
+              },
+              {
+                "insert": "FORGEJO_URL",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " host (also used by the Gitea adapter)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "LOG_LEVEL",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            [
+              {
+                "insert": "debug",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "info",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (default for the server and "
+              },
+              {
+                "insert": "archon serve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "), "
+              },
+              {
+                "insert": "warn",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (default for other CLI commands), "
+              },
+              {
+                "insert": "error",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". See "
+              },
+              {
+                "insert": "CLI logs",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/20-cli.md#logs"
+                }
+              },
+              {
+                "insert": "."
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "PORT",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No",
+            "Server port (default: 3090, Docker: 3000)"
+          ],
+          [
+            [
+              {
+                "insert": "WSL_DISTRO_NAME",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "No (WSL sets it automatically)",
+            [
+              {
+                "insert": "WSL distro name; Archon reads it to emit Windows-host-friendly "
+              },
+              {
+                "insert": "vscode://vscode-remote/wsl+<distro>/...",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " \"Open in IDE\" links. Override only to force a specific distro name into the URI."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-configuration-project-configuration-4": {
+      "id": "b-35-configuration-project-configuration-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project Configuration"
+        }
+      ],
+      "children": []
+    },
+    "b-35-configuration-create-archon-config-y-5": {
+      "id": "b-35-configuration-create-archon-config-y-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Create "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in your repository:"
+        }
+      ],
+      "children": []
+    },
+    "b-35-configuration-yaml-6": {
+      "id": "b-35-configuration-yaml-6",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "assistants:\n  claude:\n    model: sonnet  # or 'opus', 'haiku', 'inherit'\n    settingSources:\n      - project\n  codex:\n    model: gpt-6.1-sol\n    modelReasoningEffort: medium\n\n# docs:\n#   path: packages/docs-web/src/content/docs  # Optional: default is docs/"
+        }
+      ],
+      "children": []
+    },
+    "b-35-configuration-see-the-full-configurat-7": {
+      "id": "b-35-configuration-see-the-full-configurat-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "See the "
+        },
+        {
+          "insert": "full configuration reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/55-configuration.md",
+              "label": "full configuration reference"
+            }
+          }
+        },
+        {
+          "insert": " for all options."
+        }
+      ],
+      "children": []
+    }
+  }
+}

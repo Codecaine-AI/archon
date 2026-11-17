@@ -1,0 +1,7283 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-50-api",
+  "title": "API Reference",
+  "root": "b-50-api-root-217",
+  "blocks": {
+    "b-50-api-root-217": {
+      "id": "b-50-api-root-217",
+      "type": "paragraph",
+      "props": {
+        "area": "server",
+        "audience": [
+          "developer"
+        ],
+        "category": "reference",
+        "description": "REST API endpoints for programmatic access to Archon.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/api.md"
+      },
+      "children": [
+        "b-50-api-archon-exposes-a-rest-ap-1",
+        "b-50-api-base-url-2",
+        "b-50-api-by-default-the-api-serv-3",
+        "b-50-api-code-4",
+        "b-50-api-override-the-port-with-t-5",
+        "b-50-api-openapi-specification-6",
+        "b-50-api-a-machine-readable-opena-7",
+        "b-50-api-code-8",
+        "b-50-api-you-can-feed-this-into-t-9",
+        "b-50-api-authentication-10",
+        "b-50-api-authentication-is-option-11",
+        "b-50-api-the-trusted-identity-hea-12",
+        "table-0-cff8fc96",
+        "b-50-api-the-github-connection-ro-14",
+        "b-50-api-divider-15",
+        "b-50-api-health-16",
+        "table-1-cff8fc96",
+        "b-50-api-bash-18",
+        "b-50-api-api-health-is-public-19",
+        "b-50-api-api-health-also-retur-20",
+        "b-50-api-divider-21",
+        "b-50-api-conversations-22",
+        "table-2-cff8fc96",
+        "b-50-api-list-conversations-24",
+        "b-50-api-bash-25",
+        "b-50-api-query-parameters-26",
+        "b-50-api-codebaseid-optional-27",
+        "b-50-api-platform-optional-28",
+        "b-50-api-mine-optional-tr-29",
+        "b-50-api-where-web-auth-is-enable-30",
+        "b-50-api-create-a-conversation-31",
+        "b-50-api-bash-32",
+        "b-50-api-optionally-specify-a-cod-33",
+        "b-50-api-bash-34",
+        "b-50-api-returns-the-created-conv-35",
+        "b-50-api-send-a-message-36",
+        "b-50-api-bash-37",
+        "b-50-api-the-message-is-dispatche-38",
+        "b-50-api-get-messages-39",
+        "b-50-api-bash-40",
+        "b-50-api-query-parameters-41",
+        "b-50-api-limit-optional-nu-42",
+        "b-50-api-before-optional-c-43",
+        "b-50-api-update-a-conversation-44",
+        "b-50-api-bash-45",
+        "b-50-api-delete-a-conversation-46",
+        "b-50-api-bash-47",
+        "b-50-api-performs-a-soft-delete-48",
+        "b-50-api-divider-49",
+        "b-50-api-codebases-50",
+        "table-3-cff8fc96",
+        "b-50-api-list-codebases-52",
+        "b-50-api-bash-53",
+        "b-50-api-returns-codebases-sorted-54",
+        "b-50-api-if-a-stored-checkout-pat-55",
+        "b-50-api-when-all-stored-checkout-56",
+        "b-50-api-register-a-codebase-57",
+        "b-50-api-clone-from-a-url-58",
+        "b-50-api-bash-59",
+        "b-50-api-register-a-local-path-60",
+        "b-50-api-bash-61",
+        "b-50-api-rename-a-codebase-62",
+        "b-50-api-bash-63",
+        "b-50-api-returns-the-updated-code-64",
+        "b-50-api-delete-a-codebase-65",
+        "b-50-api-bash-66",
+        "b-50-api-removes-the-codebase-reg-67",
+        "b-50-api-if-managed-workspace-rem-68",
+        "b-50-api-run-archon-isolation-cl-69",
+        "b-50-api-list-environments-70",
+        "b-50-api-bash-71",
+        "b-50-api-returns-the-active-isola-72",
+        "b-50-api-divider-73",
+        "b-50-api-workflows-74",
+        "b-50-api-definitions-75",
+        "table-4-cff8fc96",
+        "b-50-api-list-workflows-77",
+        "b-50-api-bash-78",
+        "b-50-api-query-parameters-79",
+        "b-50-api-cwd-optional-work-80",
+        "b-50-api-when-cwd-is-omitted-a-81",
+        "b-50-api-returns-workflows-82",
+        "b-50-api-workflows-each-entr-83",
+        "b-50-api-recommended-repo-ow-84",
+        "b-50-api-errors-yaml-parsing-85",
+        "b-50-api-get-a-workflow-86",
+        "b-50-api-bash-87",
+        "b-50-api-query-parameters-88",
+        "b-50-api-cwd-optional-work-89",
+        "b-50-api-returns-workflow-fil-90",
+        "b-50-api-validate-a-workflow-91",
+        "b-50-api-bash-92",
+        "b-50-api-returns-valid-true-93",
+        "b-50-api-save-a-workflow-94",
+        "b-50-api-bash-95",
+        "b-50-api-query-parameters-96",
+        "b-50-api-cwd-optional-targ-97",
+        "b-50-api-source-optional-enum-98",
+        "b-50-api-validates-the-definition-99",
+        "b-50-api-delete-a-workflow-100",
+        "b-50-api-bash-101",
+        "b-50-api-query-parameters-102",
+        "b-50-api-cwd-optional-targ-103",
+        "b-50-api-source-optional-enum-104",
+        "b-50-api-only-user-defined-workfl-105",
+        "b-50-api-runs-106",
+        "table-5-cff8fc96",
+        "b-50-api-for-signal-send-108",
+        "b-50-api-get-api-workflows-runs-109",
+        "b-50-api-run-responses-expose-st-110",
+        "b-50-api-run-a-workflow-111",
+        "b-50-api-bash-112",
+        "b-50-api-adoption-and-supersede-113",
+        "b-50-api-for-an-execution-time-co-114",
+        "b-50-api-supplying-declared-inp-115",
+        "b-50-api-bash-116",
+        "b-50-api-values-are-validated-aga-117",
+        "b-50-api-rebinding-models-for-o-118",
+        "b-50-api-bash-119",
+        "b-50-api-tier-keys-are-small-120",
+        "b-50-api-loading-inline-config-121",
+        "b-50-api-bash-122",
+        "b-50-api-supported-inline-keys-ar-123",
+        "b-50-api-list-run-artifacts-124",
+        "b-50-api-bash-125",
+        "b-50-api-walks-the-run-s-on-disk-126",
+        "b-50-api-resume-a-failed-or-pause-127",
+        "b-50-api-bash-128",
+        "b-50-api-resumes-the-workflow-fro-129",
+        "b-50-api-approve-reject-a-pause-130",
+        "b-50-api-bash-131",
+        "b-50-api-both-routes-accept-optio-132",
+        "b-50-api-these-routes-record-the-133",
+        "b-50-api-sub-run-child-gates-134",
+        "b-50-api-divider-135",
+        "b-50-api-attention-queue-136",
+        "table-6-cff8fc96",
+        "b-50-api-list-and-count-responses-138",
+        "b-50-api-queue-items-include-answ-139",
+        "b-50-api-divider-140",
+        "b-50-api-commands-141",
+        "table-7-cff8fc96",
+        "b-50-api-bash-143",
+        "b-50-api-query-parameters-144",
+        "b-50-api-cwd-optional-work-145",
+        "b-50-api-returns-commands-146",
+        "b-50-api-divider-147",
+        "b-50-api-dashboard-148",
+        "table-8-cff8fc96",
+        "b-50-api-query-parameters-include-150",
+        "b-50-api-get-api-dashboard-runs-151",
+        "b-50-api-each-run-includes-activ-152",
+        "b-50-api-process-owner-liveness-i-153",
+        "b-50-api-divider-154",
+        "b-50-api-metrics-155",
+        "table-9-cff8fc96",
+        "b-50-api-bash-157",
+        "b-50-api-query-parameters-all-op-158",
+        "b-50-api-get-api-metric-views-159",
+        "b-50-api-divider-160",
+        "b-50-api-configuration-161",
+        "table-10-cff8fc96",
+        "b-50-api-get-api-config-return-163",
+        "b-50-api-these-config-routes-writ-164",
+        "b-50-api-a-patch-whose-resultin-165",
+        "b-50-api-bash-166",
+        "b-50-api-divider-167",
+        "b-50-api-per-user-ai-preferences-168",
+        "b-50-api-each-user-can-override-t-169",
+        "table-11-cff8fc96",
+        "b-50-api-bash-171",
+        "b-50-api-all-writes-validate-the-172",
+        "b-50-api-divider-173",
+        "b-50-api-ai-provider-credentials-174",
+        "b-50-api-per-user-provider-creden-175",
+        "table-12-cff8fc96",
+        "b-50-api-credentials-are-encrypte-177",
+        "b-50-api-list-connected-providers-178",
+        "b-50-api-bash-179",
+        "b-50-api-returns-enabled-conn-180",
+        "b-50-api-available-every-v-181",
+        "b-50-api-subscriptionavailable-182",
+        "b-50-api-agents-the-agent-183",
+        "b-50-api-connect-an-api-key-184",
+        "b-50-api-bash-185",
+        "b-50-api-returns-success-prov-186",
+        "b-50-api-disconnect-a-provider-187",
+        "b-50-api-bash-188",
+        "b-50-api-idempotent-disconnect-189",
+        "b-50-api-subscription-login-oaut-190",
+        "b-50-api-subscription-login-is-a-191",
+        "b-50-api-manual-anthropic-c-192",
+        "b-50-api-device-github-copilo-193",
+        "b-50-api-bash-194",
+        "b-50-api-poll-returns-status-195",
+        "b-50-api-the-cli-equivalent-of-th-196",
+        "b-50-api-divider-197",
+        "b-50-api-web-push-198",
+        "table-13-cff8fc96",
+        "b-50-api-subscription-writes-requ-200",
+        "b-50-api-divider-201",
+        "b-50-api-system-202",
+        "table-14-cff8fc96",
+        "b-50-api-returns-updateavailab-204",
+        "b-50-api-divider-205",
+        "b-50-api-sse-streaming-206",
+        "table-15-cff8fc96",
+        "b-50-api-these-are-server-sent-ev-208",
+        "b-50-api-bash-209",
+        "b-50-api-events-are-json-encoded-210",
+        "b-50-api-divider-211",
+        "b-50-api-common-patterns-212",
+        "b-50-api-create-a-conversation-an-213",
+        "b-50-api-bash-214",
+        "b-50-api-run-a-workflow-via-the-a-215",
+        "b-50-api-bash-216"
+      ]
+    },
+    "b-50-api-archon-exposes-a-rest-ap-1": {
+      "id": "b-50-api-archon-exposes-a-rest-ap-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon exposes a REST API via a "
+        },
+        {
+          "insert": "Hono",
+          "attributes": {
+            "link": "https://hono.dev/"
+          }
+        },
+        {
+          "insert": " server with OpenAPI spec generation. All endpoints are prefixed with "
+        },
+        {
+          "insert": "/api/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-base-url-2": {
+      "id": "b-50-api-base-url-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Base URL"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-by-default-the-api-serv-3": {
+      "id": "b-50-api-by-default-the-api-serv-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "By default, the API server runs at:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-code-4": {
+      "id": "b-50-api-code-4",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "http://localhost:3090/api/"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-override-the-port-with-t-5": {
+      "id": "b-50-api-override-the-port-with-t-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Override the port with the "
+        },
+        {
+          "insert": "PORT",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " environment variable or let Archon auto-allocate when running inside a worktree (range 3190-4089)."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-openapi-specification-6": {
+      "id": "b-50-api-openapi-specification-6",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "OpenAPI Specification"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-a-machine-readable-opena-7": {
+      "id": "b-50-api-a-machine-readable-opena-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A machine-readable OpenAPI 3.0 spec is available at:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-code-8": {
+      "id": "b-50-api-code-8",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/openapi.json"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-you-can-feed-this-into-t-9": {
+      "id": "b-50-api-you-can-feed-this-into-t-9",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can feed this into tools like Swagger UI or use it to generate typed API clients."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-authentication-10": {
+      "id": "b-50-api-authentication-10",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Authentication"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-authentication-is-option-11": {
+      "id": "b-50-api-authentication-is-option-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Authentication is optional for a local or trusted solo install. When Web authentication is enabled, the API requires a Better Auth session or a trusted proxy identity unless "
+        },
+        {
+          "insert": "ARCHON_WEB_AUTH_REQUIRED=false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The "
+        },
+        {
+          "insert": "/api/auth/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " surfaces are exempt from that general gate, but per-user endpoints still require an identity."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-the-trusted-identity-hea-12": {
+      "id": "b-50-api-the-trusted-identity-hea-12",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The trusted identity header defaults to "
+        },
+        {
+          "insert": "X-Archon-User",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and can be changed with "
+        },
+        {
+          "insert": "ARCHON_WEB_AUTH_HEADER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Bind the server to loopback ("
+        },
+        {
+          "insert": "HOST=127.0.0.1",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") or keep the app port reachable only through a trusted reverse proxy. The proxy must strip client-supplied identity headers. If the proxy supplies an identity header, it must set that value only from an authenticated identity. For network deployments, see the "
+        },
+        {
+          "insert": "reverse-proxy deployment guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/20-deployment/40-reverse-proxy.md",
+              "section": "authentication-and-headers",
+              "label": "reverse-proxy deployment guide"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "table-0-cff8fc96": {
+      "id": "table-0-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/auth/status",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Read Web auth availability and signup posture (no identity required)"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/auth/github",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Read the current user's GitHub connection status"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/auth/github",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Disconnect the current user's GitHub identity"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/auth/github/device/start",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Start a GitHub device login for the current user"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/auth/github/device/poll",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Poll a GitHub device login and persist the authorized connection"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-the-github-connection-ro-14": {
+      "id": "b-50-api-the-github-connection-ro-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The GitHub connection routes require a resolved Web identity. The device login routes also require per-user GitHub to be enabled on the install."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-15": {
+      "id": "b-50-api-divider-15",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-health-16": {
+      "id": "b-50-api-health-16",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Health"
+        }
+      ],
+      "children": []
+    },
+    "table-1-cff8fc96": {
+      "id": "table-1-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/health",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Basic health check"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/health",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "API-level health check"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-bash-18": {
+      "id": "b-50-api-bash-18",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/health\n# {\"status\":\"ok\"}\n\ncurl http://localhost:3090/api/health\n# {\"status\":\"ok\",\"adapter\":\"...\",\"concurrency\":{...},\"runningWorkflows\":0}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-api-health-is-public-19": {
+      "id": "b-50-api-api-health-is-public-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is public, so its "
+        },
+        {
+          "insert": "concurrency",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " object carries counts and the oldest active and queued ages, never conversation ids. The per-conversation view is the authenticated "
+        },
+        {
+          "insert": "GET /api/dashboard/conversations",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-api-health-also-retur-20": {
+      "id": "b-50-api-api-health-also-retur-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "/api/health",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also returns "
+        },
+        {
+          "insert": "storeId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the opaque id of the Archon home the server serves. It is random and carries no path. To check that a server serves the home you mean, compare it with that home's "
+        },
+        {
+          "insert": "store-id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " file; a running server for a home is recorded in "
+        },
+        {
+          "insert": "<ARCHON_HOME>/server.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". See "
+        },
+        {
+          "insert": "Archon directories",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/15-archon-directories.md",
+              "label": "Archon directories"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-21": {
+      "id": "b-50-api-divider-21",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-conversations-22": {
+      "id": "b-50-api-conversations-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Conversations"
+        }
+      ],
+      "children": []
+    },
+    "table-2-cff8fc96": {
+      "id": "table-2-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/conversations",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List conversations"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/conversations/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get a single conversation"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/conversations",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Create a new conversation"
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/conversations/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Update a conversation (rename)"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/conversations/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Soft-delete a conversation"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/conversations/{id}/messages",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List messages in a conversation"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/conversations/{id}/message",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Send a message to a conversation"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-list-conversations-24": {
+      "id": "b-50-api-list-conversations-24",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "List Conversations"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-25": {
+      "id": "b-50-api-bash-25",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/conversations"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-26": {
+      "id": "b-50-api-query-parameters-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-codebaseid-optional-27": {
+      "id": "b-50-api-codebaseid-optional-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "codebaseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Filter by codebase"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-platform-optional-28": {
+      "id": "b-50-api-platform-optional-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "platform",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Filter by platform type"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-mine-optional-tr-29": {
+      "id": "b-50-api-mine-optional-tr-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "mine",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- "
+        },
+        {
+          "insert": "true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " narrows to the caller's own conversations on every platform when an identity resolves. Where conversations are private the list already holds only the caller's own web and CLI conversations, and "
+        },
+        {
+          "insert": "mine=true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also drops chat and forge conversations attributed to anyone else."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-where-web-auth-is-enable-30": {
+      "id": "b-50-api-where-web-auth-is-enable-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Where web auth is enabled or "
+        },
+        {
+          "insert": "ARCHON_WEB_AUTH_HEADER",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set, web and CLI conversations are private to their owner; see "
+        },
+        {
+          "insert": "Security",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "adapter-authorization",
+              "label": "Security"
+            }
+          }
+        },
+        {
+          "insert": " for the rules and status codes."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-create-a-conversation-31": {
+      "id": "b-50-api-create-a-conversation-31",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Create a Conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-32": {
+      "id": "b-50-api-bash-32",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/conversations \\\n  -H \"Content-Type: application/json\" \\\n  -d '{}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-optionally-specify-a-cod-33": {
+      "id": "b-50-api-optionally-specify-a-cod-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Optionally specify a codebase:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-34": {
+      "id": "b-50-api-bash-34",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/conversations \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"codebaseId\": \"your-codebase-id\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-the-created-conv-35": {
+      "id": "b-50-api-returns-the-created-conv-35",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns the created conversation with its "
+        },
+        {
+          "insert": "conversationId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-send-a-message-36": {
+      "id": "b-50-api-send-a-message-36",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Send a Message"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-37": {
+      "id": "b-50-api-bash-37",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/conversations/{id}/message \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\": \"What does this codebase do?\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-the-message-is-dispatche-38": {
+      "id": "b-50-api-the-message-is-dispatche-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The message is dispatched to the orchestrator asynchronously. The response confirms dispatch -- actual AI responses arrive via SSE streaming or can be polled via the messages endpoint."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-get-messages-39": {
+      "id": "b-50-api-get-messages-39",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Get Messages"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-40": {
+      "id": "b-50-api-bash-40",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/conversations/{id}/messages"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-41": {
+      "id": "b-50-api-query-parameters-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-limit-optional-nu-42": {
+      "id": "b-50-api-limit-optional-nu-42",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "limit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Number of messages to return"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-before-optional-c-43": {
+      "id": "b-50-api-before-optional-c-43",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "before",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Cursor for pagination"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-update-a-conversation-44": {
+      "id": "b-50-api-update-a-conversation-44",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Update a Conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-45": {
+      "id": "b-50-api-bash-45",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X PATCH http://localhost:3090/api/conversations/{id} \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\": \"My feature discussion\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-delete-a-conversation-46": {
+      "id": "b-50-api-delete-a-conversation-46",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Delete a Conversation"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-47": {
+      "id": "b-50-api-bash-47",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X DELETE http://localhost:3090/api/conversations/{id}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-performs-a-soft-delete-48": {
+      "id": "b-50-api-performs-a-soft-delete-48",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Performs a soft delete -- the conversation is hidden but not destroyed."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-49": {
+      "id": "b-50-api-divider-49",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-codebases-50": {
+      "id": "b-50-api-codebases-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Codebases"
+        }
+      ],
+      "children": []
+    },
+    "table-3-cff8fc96": {
+      "id": "table-3-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/codebases",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List codebases with one representative per resolved repository remote"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/codebases/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get a single codebase"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/codebases",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Register a codebase (clone or local path)"
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/codebases/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Rename a codebase"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/codebases/{id}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Delete a codebase after container cleanup"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/codebases/{id}/environments",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List isolation environments for a codebase"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/codebases/base-branch",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Inspect the remote default branch without registering a project"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/codebases/{id}/config",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Get a codebase's merged config (defaults, global and its "
+              },
+              {
+                "insert": ".archon/config.yaml",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") with secrets removed; "
+              },
+              {
+                "insert": "envKeys",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " lists its "
+              },
+              {
+                "insert": "env:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " key names only"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/codebases/{id}/env",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List a codebase's environment variable keys (values are never returned)"
+          ],
+          [
+            "PUT",
+            [
+              {
+                "insert": "/api/codebases/{id}/env",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Set or update a codebase environment variable"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/codebases/{id}/env/{key}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Delete a codebase environment variable"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-list-codebases-52": {
+      "id": "b-50-api-list-codebases-52",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "List Codebases"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-53": {
+      "id": "b-50-api-bash-53",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/codebases"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-codebases-sorted-54": {
+      "id": "b-50-api-returns-codebases-sorted-54",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns codebases sorted by name. Repository registrations that resolve to the same remote use registration's remote equality rules, including GitHub HTTPS/SSH spellings, trailing slashes, "
+        },
+        {
+          "insert": ".git",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " suffixes, GitHub repository-path case variants, and equivalent local paths. Repository paths on other hosts remain case-sensitive. Only the most recently updated row for each resolved remote is returned. Folder registrations and rows without a repository URL remain separate."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-if-a-stored-checkout-pat-55": {
+      "id": "b-50-api-if-a-stored-checkout-pat-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If a stored checkout path is invalid or a remote identity cannot be resolved, the affected row is returned unchanged and separately. Each failure logs a warning with the codebase ID, name and original error; healthy rows remain available. Database query failures still return HTTP 500."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-when-all-stored-checkout-56": {
+      "id": "b-50-api-when-all-stored-checkout-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When all stored checkout paths validate, "
+        },
+        {
+          "insert": "archon project list --json",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "project-list",
+              "label": "`archon project list --json`"
+            }
+          }
+        },
+        {
+          "insert": " returns a complete inventory of registrations without collapsing duplicate remotes. An invalid stored checkout path makes that command fail and must be repaired before it can return the inventory. The API list summarizes duplicate remotes; it does not remove stored rows."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-register-a-codebase-57": {
+      "id": "b-50-api-register-a-codebase-57",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Register a Codebase"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-clone-from-a-url-58": {
+      "id": "b-50-api-clone-from-a-url-58",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Clone from a URL:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-59": {
+      "id": "b-50-api-bash-59",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/codebases \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"url\": \"https://github.com/user/repo\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-register-a-local-path-60": {
+      "id": "b-50-api-register-a-local-path-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Register a local path:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-61": {
+      "id": "b-50-api-bash-61",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/codebases \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"path\": \"/home/user/projects/my-repo\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-rename-a-codebase-62": {
+      "id": "b-50-api-rename-a-codebase-62",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Rename a Codebase"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-63": {
+      "id": "b-50-api-bash-63",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X PATCH http://localhost:3090/api/codebases/{id} \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\": \"my-repo\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-the-updated-code-64": {
+      "id": "b-50-api-returns-the-updated-code-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns the updated codebase. The name is trimmed and must be 1 to 255 characters. The response is "
+        },
+        {
+          "insert": "409",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when another codebase already uses the name, or when the new name would change where Archon stores the project's worktrees, state, logs and artifacts. Repository state, logs and artifacts use the "
+        },
+        {
+          "insert": "owner/repo",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " name when supplied, otherwise "
+        },
+        {
+          "insert": "_local/<directory name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; folder storage uses the slug of its name. Default worktree locations also use repository identity, which can come from the checkout path. A configured repo-local "
+        },
+        {
+          "insert": "worktree.path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " instead anchors worktrees to the checkout. Rename checks the actual storage and worktree locations and succeeds only when they stay unchanged. The Web UI renames from the project's "
+        },
+        {
+          "insert": "More actions",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " menu or by double-clicking its name."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-delete-a-codebase-65": {
+      "id": "b-50-api-delete-a-codebase-65",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Delete a Codebase"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-66": {
+      "id": "b-50-api-bash-66",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X DELETE http://localhost:3090/api/codebases/{id}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-removes-the-codebase-reg-67": {
+      "id": "b-50-api-removes-the-codebase-reg-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Removes the codebase registration and cleans up associated worktrees. If active container environments remain, returns "
+        },
+        {
+          "insert": "409",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with their environment IDs and leaves the registration intact. Deletion does not remove containers or volumes. A worktree cleanup failure returns "
+        },
+        {
+          "insert": "500",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and keeps the registration and unfinished cleanup records for retry. If a worktree is registered during cleanup, deletion returns "
+        },
+        {
+          "insert": "409",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; retry the request to clean it up."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-if-managed-workspace-rem-68": {
+      "id": "b-50-api-if-managed-workspace-rem-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "If managed-workspace removal fails after the registration is deleted, the response is "
+        },
+        {
+          "insert": "500",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and names the retained path. Resolve the filesystem error and remove that directory manually."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-run-archon-isolation-cl-69": {
+      "id": "b-50-api-run-archon-isolation-cl-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run "
+        },
+        {
+          "insert": "archon isolation cleanup 0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to remove eligible containers, then retry the DELETE request. Cleanup preserves containers owned by resumable runs; release those runs before cleanup."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-list-environments-70": {
+      "id": "b-50-api-list-environments-70",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "List Environments"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-71": {
+      "id": "b-50-api-bash-71",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/codebases/{id}/environments"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-the-active-isola-72": {
+      "id": "b-50-api-returns-the-active-isola-72",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns the active isolation environments (worktrees and containers) associated with a codebase."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-73": {
+      "id": "b-50-api-divider-73",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-workflows-74": {
+      "id": "b-50-api-workflows-74",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-definitions-75": {
+      "id": "b-50-api-definitions-75",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Definitions"
+        }
+      ],
+      "children": []
+    },
+    "table-4-cff8fc96": {
+      "id": "table-4-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List available workflows"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows/{name}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get a single workflow definition"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/validate",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Validate a workflow definition (in-memory, no save)"
+          ],
+          [
+            "PUT",
+            [
+              {
+                "insert": "/api/workflows/{name}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Save (create or update) a workflow"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/workflows/{name}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Delete a user-defined workflow"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/workflows/{name}/node-sessions",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Reset persisted per-node provider sessions with optional "
+              },
+              {
+                "insert": "scope",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and "
+              },
+              {
+                "insert": "node",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " filters; omitting "
+              },
+              {
+                "insert": "scope",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " requires "
+              },
+              {
+                "insert": "confirm=all-scopes",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", and returns "
+              },
+              {
+                "insert": "403",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " when conversations are private ("
+              },
+              {
+                "insert": "Security",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/65-security.md#adapter-authorization"
+                }
+              },
+              {
+                "insert": "); there "
+              },
+              {
+                "insert": "scope",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " must name an existing conversation, and a web or CLI one must be the caller's own (chat and forge conversations need no ownership)"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-list-workflows-77": {
+      "id": "b-50-api-list-workflows-77",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "List Workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-78": {
+      "id": "b-50-api-bash-78",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-79": {
+      "id": "b-50-api-query-parameters-79",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-cwd-optional-work-80": {
+      "id": "b-50-api-cwd-optional-work-80",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Working directory to discover project-specific workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-when-cwd-is-omitted-a-81": {
+      "id": "b-50-api-when-cwd-is-omitted-a-81",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When "
+        },
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is omitted, Archon returns bundled default workflows and any from "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (home-scoped). Project-specific workflows require either the "
+        },
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " query param or a registered codebase, so the endpoint is useful on first launch before any project is registered."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-workflows-82": {
+      "id": "b-50-api-returns-workflows-82",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ workflows: [...], recommended: [...], errors?: [...] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-workflows-each-entr-83": {
+      "id": "b-50-api-workflows-each-entr-83",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workflows[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": each entry is "
+        },
+        {
+          "insert": "{ workflow, source, parseWarnings? }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "parseWarnings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " contains warning messages identifying the keys the engine silently dropped from that workflow's YAML, each with the node it was found on and what to write instead (see "
+        },
+        {
+          "insert": "Unknown keys",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "unknown-keys-are-reported-not-rejected",
+              "label": "Unknown keys"
+            }
+          }
+        },
+        {
+          "insert": "); it is "
+        },
+        {
+          "insert": "omitted entirely",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " when the workflow is clean, so its presence alone is the signal."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-recommended-repo-ow-84": {
+      "id": "b-50-api-recommended-repo-ow-84",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "recommended[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": repo-owner-curated workflow names from "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", filtered to discovered names and kept in declared order. Empty when there is no project context."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-errors-yaml-parsing-85": {
+      "id": "b-50-api-errors-yaml-parsing-85",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "errors[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": YAML parsing failures encountered during discovery. Unlike "
+        },
+        {
+          "insert": "parseWarnings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", these workflows did "
+        },
+        {
+          "insert": "not",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " load."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-get-a-workflow-86": {
+      "id": "b-50-api-get-a-workflow-86",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Get a Workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-87": {
+      "id": "b-50-api-bash-87",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/workflows/archon-investigate"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-88": {
+      "id": "b-50-api-query-parameters-88",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-cwd-optional-work-89": {
+      "id": "b-50-api-cwd-optional-work-89",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Working directory for project-specific lookup"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-workflow-fil-90": {
+      "id": "b-50-api-returns-workflow-fil-90",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ workflow, filename, source: \"project\" | \"global\" | \"bundled\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The endpoint auto-discovers across all three scopes in order (project → home-scoped → bundled). "
+        },
+        {
+          "insert": "source: \"global\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is returned when the workflow comes from "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-validate-a-workflow-91": {
+      "id": "b-50-api-validate-a-workflow-91",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Validate a Workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-92": {
+      "id": "b-50-api-bash-92",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/workflows/validate \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"definition\": {\"name\": \"my-wf\", \"description\": \"Test\", \"nodes\": [{\"id\": \"a\", \"prompt\": \"hello\"}]}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-valid-true-93": {
+      "id": "b-50-api-returns-valid-true-93",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ valid: true }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "{ valid: false, errors: [\"...\"] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Does not save anything."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-save-a-workflow-94": {
+      "id": "b-50-api-save-a-workflow-94",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Save a Workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-95": {
+      "id": "b-50-api-bash-95",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X PUT http://localhost:3090/api/workflows/my-workflow \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"definition\": {\"name\": \"my-workflow\", \"description\": \"My custom workflow\", \"nodes\": [{\"id\": \"plan\", \"prompt\": \"Plan the feature\"}]}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-96": {
+      "id": "b-50-api-query-parameters-96",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-cwd-optional-targ-97": {
+      "id": "b-50-api-cwd-optional-targ-97",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Target directory (must have "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-source-optional-enum-98": {
+      "id": "b-50-api-source-optional-enum-98",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional, enum: "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " \\| "
+        },
+        {
+          "insert": "global",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") -- Scope to write the workflow to. Defaults to "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (writes to "
+        },
+        {
+          "insert": "<cwd>/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Pass "
+        },
+        {
+          "insert": "source=global",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to write to the home-scoped location ("
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). Returns "
+        },
+        {
+          "insert": "400 \"Invalid workflow source\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if any other value is supplied."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-validates-the-definition-99": {
+      "id": "b-50-api-validates-the-definition-99",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Validates the definition before saving. Returns the saved workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-delete-a-workflow-100": {
+      "id": "b-50-api-delete-a-workflow-100",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Delete a Workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-101": {
+      "id": "b-50-api-bash-101",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X DELETE http://localhost:3090/api/workflows/my-workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-102": {
+      "id": "b-50-api-query-parameters-102",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-cwd-optional-targ-103": {
+      "id": "b-50-api-cwd-optional-targ-103",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Target directory (must have "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-source-optional-enum-104": {
+      "id": "b-50-api-source-optional-enum-104",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "source",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional, enum: "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " \\| "
+        },
+        {
+          "insert": "global",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") -- Scope to delete from. Defaults to "
+        },
+        {
+          "insert": "project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Pass "
+        },
+        {
+          "insert": "source=global",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to delete from "
+        },
+        {
+          "insert": "~/.archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Returns "
+        },
+        {
+          "insert": "400 \"Invalid workflow source\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if any other value is supplied."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-only-user-defined-workfl-105": {
+      "id": "b-50-api-only-user-defined-workfl-105",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Only user-defined workflows can be deleted. Bundled defaults cannot be removed."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-runs-106": {
+      "id": "b-50-api-runs-106",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Runs"
+        }
+      ],
+      "children": []
+    },
+    "table-5-cff8fc96": {
+      "id": "table-5-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/{name}/run",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Run a workflow (JSON or multipart)"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows/runs",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List workflow runs"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Get run details with events (provider events are served by the route below). "
+              },
+              {
+                "insert": "run.nodes[]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " is the engine's per-node state; a "
+              },
+              {
+                "insert": "workflow:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " fan-out node also carries "
+              },
+              {
+                "insert": "fan_out_outcome",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", its "
+              },
+              {
+                "insert": "per-slot record and tally",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#a-completed-fan-out-node-is-not-completed-child-work"
+                }
+              },
+              {
+                "insert": ". See "
+              },
+              {
+                "insert": "node execution records",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/80-node-execution.md"
+                }
+              },
+              {
+                "insert": " for event fields, reporting availability, and cost scope"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/provider-events",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "The run's provider events as "
+              },
+              {
+                "insert": "{events: ProviderEventRecord[]}",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ": each is "
+              },
+              {
+                "insert": "{runId, stepName, attemptId, seq, observedAt, event}",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", grouped by node and in emission order within one. "
+              },
+              {
+                "insert": "?step=",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " limits it to one node. "
+              },
+              {
+                "insert": "?attemptId=&afterSeq=",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (both, and with "
+              },
+              {
+                "insert": "step",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") returns only the events after that one: the attempt's later events and every later attempt's. Rows written before the engine recorded envelopes come back translated, with "
+              },
+              {
+                "insert": "attemptId: null",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ". Returns "
+              },
+              {
+                "insert": "400",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " for a partial cursor"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/runs/{runId}/artifacts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List artifact files produced by a run"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/artifacts/{runId}/{filename}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Read an artifact's text content; encode the complete relative filename, including slashes, as one path value"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/workflows/runs/by-worker/{platformId}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Look up a run by worker conversation ID"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/cancel",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Cancel a running workflow: a run this server executes stops at its next status check; a run another process owns has that owner stopped first. Returns "
+              },
+              {
+                "insert": "409",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " with the reason, and leaves the run unchanged, when no owner answers (abandon it once its process is gone) or the owner cannot be stopped; "
+              },
+              {
+                "insert": "400",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " for a run that is not running"
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/resume",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Resume a failed or paused workflow. A run started outside the web UI resumes on the server and returns "
+              },
+              {
+                "insert": "409",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " with the reason, leaving the run unchanged, when its resource is full: a paused run that is ready to continue keeps its place and a continuation host continues it, and a failed run stays failed until it is resumed again. A run started from a web conversation reports the same wait in that conversation"
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/abandon",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Abandon a run (running, paused, or failed); stops a live detached owner first, attempts to cancel discovered "
+              },
+              {
+                "insert": "workflow:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " descendants except completed and cancelled runs within the "
+              },
+              {
+                "insert": "500-parent expansion bound",
+                "attributes": {
+                  "link": "docs/10-system-design/10-reference/35-workflow-language.md#max_parallel-bounds-concurrency-not-count"
+                }
+              },
+              {
+                "insert": ", and attempts to remove the worktrees those runs created, keeping their branches. Owner warnings retain affected checkouts: inspect them ("
+              },
+              {
+                "insert": "lsof",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " when output is still held), resolve the warning, then abandon the cancelled run again to retry removal. Returns "
+              },
+              {
+                "insert": "409",
+                "attributes": {
+                  "bold": true
+                }
+              },
+              {
+                "insert": " with the reason, and leaves the run unchanged, when an owner answers but cannot be stopped or the run cannot be abandoned. A silent descendant also retains its checkout and the selected root's checkout, even if the root's owner stopped; each descendant needs its own owner check. If the selected sub-run has no answering endpoint, cancellation succeeds but its subtree's owned checkouts remain: silence does not prove the enclosing execution stopped. Inspect the owning execution and stop or abandon it only if you intend to stop its whole scope; repeated child-only abandonment may still retain the checkouts."
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/approve",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Approve a paused workflow; optional "
+              },
+              {
+                "insert": "expectedGate",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " refuses stale answers with 409 (400 if paused blocked on a "
+              },
+              {
+                "insert": "workflow:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " child: approve the child)"
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/reject",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Reject a paused workflow; optional "
+              },
+              {
+                "insert": "expectedGate",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " refuses stale answers with 409 (400 if paused blocked on a "
+              },
+              {
+                "insert": "workflow:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " child: reject the child)"
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/respond",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Resolve a paused gate with one of its declared decisions"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/answer",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Answer a paused attention wait in its declared form, naming the exact occurrence"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}/signal",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Signal an external event wait; use "
+              },
+              {
+                "insert": "occurrence",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " for an exact match"
+              }
+            ]
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/workflows/runs/{runId}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Delete a terminal run and its events"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-for-signal-send-108": {
+      "id": "b-50-api-for-signal-send-108",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For "
+        },
+        {
+          "insert": "/signal",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", send "
+        },
+        {
+          "insert": "{ \"event\": \"checks.complete\", \"occurrence\": \"<metadata.wait.pauseId>\", \"payload\": { \"conclusion\": \"success\" } }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The occurrence identifies the exact wait, including when deadlines repeat. The legacy "
+        },
+        {
+          "insert": "resumeAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " selector remains accepted and is required when "
+        },
+        {
+          "insert": "occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is omitted; it cannot distinguish two occurrences with the same event and deadline. If both selectors are supplied, both must match. Waits persisted without a "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can still be signaled using "
+        },
+        {
+          "insert": "resumeAt",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-get-api-workflows-runs-109": {
+      "id": "b-50-api-get-api-workflows-runs-109",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/workflows/runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rejects the entire list if any row it reads has an unsupported\npersisted status. It returns HTTP 500 ("
+        },
+        {
+          "insert": "Failed to list workflow runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), with no partial list;\nit never silently drops the offending row. Server logs record "
+        },
+        {
+          "insert": "WorkflowStatusReadError",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with\nthe offending run ID and exact stored value; the HTTP error does not include those details."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-run-responses-expose-st-110": {
+      "id": "b-50-api-run-responses-expose-st-110",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run responses expose "
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "outcome",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as separate fields. "
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the execution\nlifecycle. "
+        },
+        {
+          "insert": "outcome",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the workflow-authored verdict ("
+        },
+        {
+          "insert": "\"succeeded\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "\"failed\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and\nis never derived by the API from status or output text. Contradictory combinations are valid: for\nexample, "
+        },
+        {
+          "insert": "{\"status\":\"completed\",\"outcome\":\"failed\"}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means execution finished but the workflow\nrejected its result. "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means no verdict has been authored, including undeclared and historical\nruns. The list, detail, by-worker, and dashboard run endpoints preserve both fields."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-run-a-workflow-111": {
+      "id": "b-50-api-run-a-workflow-111",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Run a Workflow"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-112": {
+      "id": "b-50-api-bash-112",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# JSON (no attachments)\ncurl -X POST http://localhost:3090/api/workflows/archon-investigate/run \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\": \"Why does login fail after a password reset?\", \"conversationId\": \"conv-123\"}'\n\n# multipart (with file attachments — max 5 files, ≤10 MB each)\ncurl -X POST http://localhost:3090/api/workflows/archon-investigate/run \\\n  -F \"conversationId=conv-123\" \\\n  -F \"message=Investigate this trace\" \\\n  -F \"files=@stacktrace.txt\" \\\n  -F \"files=@screenshot.png\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-adoption-and-supersede-113": {
+      "id": "b-50-api-adoption-and-supersede-113",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Adoption and supersede.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " JSON requests may supply "
+        },
+        {
+          "insert": "adopt_run_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "supersedes_run_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\nbut cannot supply both. Unique prefixes resolve within the conversation's selected project;\na prefix without a selected project is refused. Full IDs select the exact run without prefix\nlookup; adoption still requires the same project. Unknown or ambiguous targets and non-terminal\ntargets return HTTP 400 before uploads, history writes or queuing. Ambiguity errors list candidate\nIDs. Targets are checked again when execution begins, since their status can change while queued.\nIf the conversation would continue an existing run, either declaration\nis refused before continuation or its fresh fallback. The refusal names the existing run: resume\nit with "
+        },
+        {
+          "insert": "/workflow resume <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", abandon it with "
+        },
+        {
+          "insert": "/workflow abandon <id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before retrying, or\nuse a conversation with no open run. An accepted fresh supersede records the replaced run ID in\n"
+        },
+        {
+          "insert": "adopted_from_run_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "metadata.continuation.mode: \"supersede\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on the new run."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-for-an-execution-time-co-114": {
+      "id": "b-50-api-for-an-execution-time-co-114",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For an execution-time continuation refusal, the launch response still returns HTTP 200 with "
+        },
+        {
+          "insert": "accepted: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nThe refusal arrives as a "
+        },
+        {
+          "insert": "text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event on the conversation's SSE stream. Callers must read\nthe stream to determine whether the workflow started; the JSON response alone does not confirm it."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-supplying-declared-inp-115": {
+      "id": "b-50-api-supplying-declared-inp-115",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Supplying declared inputs.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " A workflow that declares "
+        },
+        {
+          "insert": "inputs:",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "running-a-workflow-that-declares-inputs",
+              "label": "`inputs:`"
+            }
+          }
+        },
+        {
+          "insert": " takes their values through an optional "
+        },
+        {
+          "insert": "inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " map: a flat object of string values. Omit a name to take its declared "
+        },
+        {
+          "insert": "default:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-116": {
+      "id": "b-50-api-bash-116",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# JSON: inputs is a nested object\ncurl -X POST http://localhost:3090/api/workflows/review-block/run \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\": \"review it\", \"conversationId\": \"conv-123\",\n       \"inputs\": {\"diff\": \"...\", \"style\": \"terse\"}}'\n\n# multipart: form fields are strings, so the same map travels JSON-encoded\ncurl -X POST http://localhost:3090/api/workflows/review-block/run \\\n  -F \"conversationId=conv-123\" \\\n  -F \"message=review it\" \\\n  -F 'inputs={\"diff\":\"...\",\"style\":\"terse\"}' \\\n  -F \"files=@context.md\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-values-are-validated-aga-117": {
+      "id": "b-50-api-values-are-validated-aga-117",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Values are validated against the workflow's declaration before any worktree, clone, or AI cost: a missing "
+        },
+        {
+          "insert": "required",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " input and an "
+        },
+        {
+          "insert": "undeclared",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " name are both refused up front, through the same contract a composing "
+        },
+        {
+          "insert": "with:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " map goes through. "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " if "
+        },
+        {
+          "insert": "inputs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is not an object of strings (or, on multipart, not valid JSON). An empty object is the same as omitting the field."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-rebinding-models-for-o-118": {
+      "id": "b-50-api-rebinding-models-for-o-118",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Rebinding models for one run.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Optional "
+        },
+        {
+          "insert": "tiers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "aliases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " maps change only the named tier or existing "
+        },
+        {
+          "insert": "@alias",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for this invocation. Every other binding keeps its normal user → repo → global → built-in value."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-119": {
+      "id": "b-50-api-bash-119",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# JSON: only `large` changes\ncurl -X POST http://localhost:3090/api/workflows/issue-to-pr/run \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\":\"fix #2481\",\"conversationId\":\"conv-123\",\n       \"tiers\":{\"large\":\"openai/gpt-5.6\"},\n       \"aliases\":{\"@reviewer\":\"codex/gpt-6.1-sol\"}}'\n\n# multipart: each map is one JSON-encoded form field\ncurl -X POST http://localhost:3090/api/workflows/issue-to-pr/run \\\n  -F \"conversationId=conv-123\" \\\n  -F \"message=fix #2481\" \\\n  -F 'tiers={\"large\":\"openai/gpt-5.6\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-tier-keys-are-small-120": {
+      "id": "b-50-api-tier-keys-are-small-120",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Tier keys are "
+        },
+        {
+          "insert": "small",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "medium",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; alias keys start with "
+        },
+        {
+          "insert": "@",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A model spec can name an Archon agent/model, a Pi vendor/model, an unqualified model under the binding's current provider, or another tier/alias preset. Literal model pins in the workflow remain unchanged. To replace all default tiers, author all three mappings explicitly. The run's "
+        },
+        {
+          "insert": "metadata.model_bindings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " records the effective non-secret bindings for attribution and the sparse resolved overrides for reuse on resume."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-loading-inline-config-121": {
+      "id": "b-50-api-loading-inline-config-121",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Loading inline config for one run.",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Optional "
+        },
+        {
+          "insert": "config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " content uses the same sparse runtime keys as a CLI run config file. JSON sends it as an object; multipart sends the object JSON-encoded in one form field. Explicit "
+        },
+        {
+          "insert": "tiers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "aliases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " fields are the final model layer and replace only matching names from "
+        },
+        {
+          "insert": "config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-122": {
+      "id": "b-50-api-bash-122",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# JSON content\ncurl -X POST http://localhost:3090/api/workflows/issue-to-pr/run \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\":\"fix #2482\",\"conversationId\":\"conv-123\",\n       \"config\":{\"tiers\":{\"large\":{\"provider\":\"pi\",\"model\":\"minimax/MiniMax-M3\"}},\n                 \"env\":{\"BENCH_MODE\":\"1\"}},\n       \"tiers\":{\"large\":\"openai/gpt-5.6\"}}'\n\n# multipart content\ncurl -X POST http://localhost:3090/api/workflows/issue-to-pr/run \\\n  -F \"conversationId=conv-123\" \\\n  -F \"message=fix #2482\" \\\n  -F 'config={\"docs\":{\"path\":\"handbook\"},\"workflows\":{\"toolCallAttentionMs\":600000}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-supported-inline-keys-ar-123": {
+      "id": "b-50-api-supported-inline-keys-ar-123",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Supported inline keys are "
+        },
+        {
+          "insert": "assistant",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "defaultAssistant",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "assistants",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "tiers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "aliases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workflows",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "docs.path",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "env",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Unknown or ineffective keys fail with "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and name the key. "
+        },
+        {
+          "insert": "configPath",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is always rejected: HTTP callers cannot ask the server to read a filesystem path. Run metadata stores sealed replay content plus redacted source/key attribution, and resume uses the original layer without accepting replacement content."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-list-run-artifacts-124": {
+      "id": "b-50-api-list-run-artifacts-124",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "List Run Artifacts"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-125": {
+      "id": "b-50-api-bash-125",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/runs/{runId}/artifacts"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-walks-the-run-s-on-disk-126": {
+      "id": "b-50-api-walks-the-run-s-on-disk-126",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Walks the run's on-disk artifact directory and returns "
+        },
+        {
+          "insert": "{ files: [{ path, size, modifiedAt }] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Used by the console UI's Artifacts tab. It leaves out only the engine's own "
+        },
+        {
+          "insert": "$ARTIFACTS_DIR/.archon/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " child, the same rule "
+        },
+        {
+          "insert": "archon workflow get",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " applies, so a workflow's own dotfiles are listed. Returns 400 on an invalid run id or path-escape attempt, and 404 if the run does not exist or its output location cannot be resolved."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-resume-a-failed-or-pause-127": {
+      "id": "b-50-api-resume-a-failed-or-pause-127",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Resume a Failed or Paused Run"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-128": {
+      "id": "b-50-api-bash-128",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X POST http://localhost:3090/api/workflows/runs/{runId}/resume"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-resumes-the-workflow-fro-129": {
+      "id": "b-50-api-resumes-the-workflow-fro-129",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Resumes the workflow from where it left off, skipping already-completed nodes. Equivalent to "
+        },
+        {
+          "insert": "archon workflow resume <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the CLI. Plain "
+        },
+        {
+          "insert": "archon workflow run <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " invocations never resume implicitly."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-approve-reject-a-pause-130": {
+      "id": "b-50-api-approve-reject-a-pause-130",
+      "type": "heading",
+      "props": {
+        "level": 4
+      },
+      "text": [
+        {
+          "insert": "Approve / Reject a Paused Run"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-131": {
+      "id": "b-50-api-bash-131",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Approve (optionally with a comment)\ncurl -X POST http://localhost:3090/api/workflows/runs/{runId}/approve \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"comment\": \"Looks good, proceed\", \"expectedGate\": {\"nodeId\": \"review\", \"pauseId\": \"pause-id\"}}'\n\n# Reject (optionally with a reason)\ncurl -X POST http://localhost:3090/api/workflows/runs/{runId}/reject \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"reason\": \"Please add error handling first\", \"expectedGate\": {\"nodeId\": \"review\", \"pauseId\": \"pause-id\"}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-both-routes-accept-optio-132": {
+      "id": "b-50-api-both-routes-accept-optio-132",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Both routes accept optional "
+        },
+        {
+          "insert": "expectedGate: { nodeId, pauseId }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". For an approval\ngate with a "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", copy "
+        },
+        {
+          "insert": "nodeId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from "
+        },
+        {
+          "insert": "run.metadata.approval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nin the run detail response. For a legacy gate without "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", send its node ID\nas a string instead, for example "
+        },
+        {
+          "insert": "expectedGate: \"review\"",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This legacy identity\ncan answer only a gate without a pause ID; it cannot answer a later gate with one. For an attention wait, use "
+        },
+        {
+          "insert": "run.attention.nodeId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as "
+        },
+        {
+          "insert": "nodeId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "run.attention.occurrence",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as "
+        },
+        {
+          "insert": "pauseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". When\nthe run is no longer paused at that gate occurrence, the request returns "
+        },
+        {
+          "insert": "409",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": "\nand leaves the current pause unchanged. The identity is checked atomically with\nthe answer write. Omitting "
+        },
+        {
+          "insert": "expectedGate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " answers the current gate as before;\n"
+        },
+        {
+          "insert": "comment",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "reason",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " remain optional, and a request without a body is supported."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-these-routes-record-the-133": {
+      "id": "b-50-api-these-routes-record-the-133",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These routes record the decision and return. The server's continuation scheduler then continues the run on the platform that started it, whichever surface answered; a container run, or a gate that was already paused when you upgraded to this version, is the exception and needs "
+        },
+        {
+          "insert": "archon workflow resume <run-id>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". The response message says which applies."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-sub-run-child-gates-134": {
+      "id": "b-50-api-sub-run-child-gates-134",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Sub-run child gates (#2121 Phase 2):",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " when a "
+        },
+        {
+          "insert": "workflow:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " sub-run pauses at its own gate, its parent run pauses \"blocked on child\". Approve/reject the "
+        },
+        {
+          "insert": "child",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " run using the full "
+        },
+        {
+          "insert": "run.metadata.approval.childRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from the parent's run detail response. The stored block message contains only a short child label; a surface notice may include the full child command. The parent auto-resumes when the child completes. A child inside a "
+        },
+        {
+          "insert": "fan_out:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " expansion pauses the same way: it stays paused as its own run, and the parent pauses on a "
+        },
+        {
+          "insert": "fan_out",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " gate listing every unfinished child, then continues once they finish. Calling approve/reject on the "
+        },
+        {
+          "insert": "parent's",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " id while it is blocked on a child returns "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " with a redirect to the child id (a fan-out parent's error names every child it waits on). "
+        },
+        {
+          "insert": "abandon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a parent attempts to cancel discovered sub-run descendants except completed and cancelled runs within the "
+        },
+        {
+          "insert": "500-parent expansion bound",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "max_parallel-bounds-concurrency-not-count",
+              "label": "500-parent expansion bound"
+            }
+          }
+        },
+        {
+          "insert": ". Completed and cancelled runs are left alone, but the walk still inspects beneath them. The response's "
+        },
+        {
+          "insert": "cascadeFailures",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " counts failed child cancellations, failed lookups, and unresolved subtrees beyond the bound. "
+        },
+        {
+          "insert": "blockedParentRunId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set when the abandoned run was itself a child stranding a paused parent."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-135": {
+      "id": "b-50-api-divider-135",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-attention-queue-136": {
+      "id": "b-50-api-attention-queue-136",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Attention queue"
+        }
+      ],
+      "children": []
+    },
+    "table-6-cff8fc96": {
+      "id": "table-6-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/runs/attention",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "List attention queue items or count them with "
+              },
+              {
+                "insert": "countBy",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/runs/attention/stream",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Stream the attention queue as server-sent events; "
+              },
+              {
+                "insert": "Last-Event-ID",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " resumes ("
+              },
+              {
+                "insert": "stream over HTTP",
+                "attributes": {
+                  "link": "docs/30-authoring/10-getting-started/50-operate.md#stream-over-http"
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/runs/{runId}/attention",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Read "
+              },
+              {
+                "insert": "{ item: <attention item> }",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", or "
+              },
+              {
+                "insert": "{ item: null }",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " when there is no queue item"
+              }
+            ]
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/runs/{runId}/attention/labels",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Set or remove labels on the exact attention wait occurrence a run is paused at"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-list-and-count-responses-138": {
+      "id": "b-50-api-list-and-count-responses-138",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "List and count responses add a "
+        },
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " array when a paused row or a descendant needed\nto project its attention item cannot be read:\n"
+        },
+        {
+          "insert": "{ \"type\": \"degraded\", \"reason\": \"run_unreadable\", \"runId\": \"<id>\" }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\n"
+        },
+        {
+          "insert": "runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " identifies the unreadable paused row, or an affected readable paused parent when\nits unreadable descendant is not paused. A parent blocked on an already-reported unreadable\npaused descendant is omitted without an additional warning; absence does not mean its block cleared.\nReadable runs and items remain available; counts cover readable matching items and may be incomplete.\nProject-scoped responses omit each warning's "
+        },
+        {
+          "insert": "runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " because the unreadable row's project membership cannot be established.\nWarnings survive project and label filters. Operator logs retain safe run IDs without stored origin contents.\nUse the logged unreadable run ID to locate the stored data to repair; a warning may name its\nreadable parent instead. Read again after repair; warnings offer no run action and do not transition runs.\nHealthy responses omit "
+        },
+        {
+          "insert": "degraded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-queue-items-include-answ-139": {
+      "id": "b-50-api-queue-items-include-answ-139",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Queue items include answerable pauses, "
+        },
+        {
+          "insert": "usage_limit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " waits that continue automatically\nwhen a provider usage limit resets or a rate limit's wait ends (its reported reset, else a backoff), and "
+        },
+        {
+          "insert": "unreadable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pauses needing inspection. Branch on "
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " before acting:\nonly "
+        },
+        {
+          "insert": "attention",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "awaiting_response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " accept answers. Outside answerers can submit an\nanswer through "
+        },
+        {
+          "insert": "/api/workflows/runs/{runId}/answer",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Answers and label writes that name a stale occurrence return "
+        },
+        {
+          "insert": "409",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-140": {
+      "id": "b-50-api-divider-140",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-commands-141": {
+      "id": "b-50-api-commands-141",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Commands"
+        }
+      ],
+      "children": []
+    },
+    "table-7-cff8fc96": {
+      "id": "table-7-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/commands",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List available command names"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-bash-143": {
+      "id": "b-50-api-bash-143",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/commands"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-144": {
+      "id": "b-50-api-query-parameters-144",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters:"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-cwd-optional-work-145": {
+      "id": "b-50-api-cwd-optional-work-145",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "cwd",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional) -- Working directory for project-specific commands"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-commands-146": {
+      "id": "b-50-api-returns-commands-146",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ commands: [{ name, source: \"bundled\" | \"project\" }] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-147": {
+      "id": "b-50-api-divider-147",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-dashboard-148": {
+      "id": "b-50-api-dashboard-148",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Dashboard"
+        }
+      ],
+      "children": []
+    },
+    "table-8-cff8fc96": {
+      "id": "table-8-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/dashboard/runs",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List enriched workflow runs for the dashboard"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/dashboard/conversations",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Active and queued conversation processing in this server process, with acquisition and enqueue times"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-query-parameters-include-150": {
+      "id": "b-50-api-query-parameters-include-150",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters include status filters, date ranges, and pagination. Used by the Command Center UI."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-get-api-dashboard-runs-151": {
+      "id": "b-50-api-get-api-dashboard-runs-151",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/dashboard/runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rejects the entire result if a returned row or a status-count group\ncontains an unsupported persisted status. Counts cover the filtered set before the status\nfilter and pagination, so a bad row can fail the request even when it is outside the selected\nstatus or page. The response is HTTP 500 ("
+        },
+        {
+          "insert": "Failed to list dashboard runs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), with no partial\nlist or counts. Server logs record "
+        },
+        {
+          "insert": "WorkflowStatusReadError",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with an offending run ID and\nexact stored value; the HTTP error does not include those details."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-each-run-includes-activ-152": {
+      "id": "b-50-api-each-run-includes-activ-152",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each run includes "
+        },
+        {
+          "insert": "active_nodes",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", ordered by unresolved "
+        },
+        {
+          "insert": "node_started",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " event order. Completion,\nfailure, and both skip lifecycle events remove a node; "
+        },
+        {
+          "insert": "node_suspended",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " keeps it active; a retrying start adds it again. Concurrent\nnodes remain separate entries. The compatibility fields "
+        },
+        {
+          "insert": "current_step_name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "current_step_status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are populated only when exactly one node is active, and are "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for zero\nor multiple active nodes. "
+        },
+        {
+          "insert": "total_steps",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; observed lifecycle events do not define the\nworkflow's total node count. This state describes node lifecycle, not process-owner liveness."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-process-owner-liveness-i-153": {
+      "id": "b-50-api-process-owner-liveness-i-153",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Process-owner liveness is "
+        },
+        {
+          "insert": "owner_observation",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which dashboard runs and the run in\n"
+        },
+        {
+          "insert": "GET /api/workflows/runs/{runId}",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " carry. The server observes it per request, by the rule\n"
+        },
+        {
+          "insert": "archon workflow wait",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses for "
+        },
+        {
+          "insert": "owner_lost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "reachable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when an owner answers,\n"
+        },
+        {
+          "insert": "unreachable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the recorded owner is on the server's host and user and nothing answers,\nand "
+        },
+        {
+          "insert": "unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when the server cannot observe the owner (another host or user, no recorded\nowner, or no answer in time). It is "
+        },
+        {
+          "insert": "null",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for a run that is not running. It is never stored\nand never changes "
+        },
+        {
+          "insert": "status",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; how long a run has been quiet is not an input. The console shows\na run whose owner is "
+        },
+        {
+          "insert": "unreachable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "unknown",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as not live and offers Abandon for\n"
+        },
+        {
+          "insert": "unreachable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-154": {
+      "id": "b-50-api-divider-154",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-metrics-155": {
+      "id": "b-50-api-metrics-155",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Metrics"
+        }
+      ],
+      "children": []
+    },
+    "table-9-cff8fc96": {
+      "id": "table-9-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/metrics",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Aggregate stored metric records as a "
+              },
+              {
+                "insert": "MetricsReport",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/metric-views",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "The overview cards workflow packs declare, as "
+              },
+              {
+                "insert": "MetricViews",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-bash-157": {
+      "id": "b-50-api-bash-157",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl 'http://localhost:3090/api/metrics?name=factory.prs_merged&since=7d'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-query-parameters-all-op-158": {
+      "id": "b-50-api-query-parameters-all-op-158",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Query parameters, all optional: "
+        },
+        {
+          "insert": "since",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (a duration such as "
+        },
+        {
+          "insert": "7d",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "24h",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "2w",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or an ISO\ndate or time; default 30 days before "
+        },
+        {
+          "insert": "until",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), "
+        },
+        {
+          "insert": "until",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (an ISO date or time; default now),\n"
+        },
+        {
+          "insert": "name",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "subject",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "codebaseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "compare",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (an ISO date or time to split each\ninstrument's records at) and "
+        },
+        {
+          "insert": "byModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (a node id to split them by the model that ran it).\nThe window is half-open. It returns the same "
+        },
+        {
+          "insert": "MetricsReport",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "archon metrics --json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nprints: per name, its definition and one entry per instrument and "
+        },
+        {
+          "insert": "measured_by",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with\n"
+        },
+        {
+          "insert": "value",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "n",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "interval",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "cost",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "latest",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and a daily "
+        },
+        {
+          "insert": "series",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", a "
+        },
+        {
+          "insert": "compare",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block when\n"
+        },
+        {
+          "insert": "compare",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is given or a "
+        },
+        {
+          "insert": "by_model",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block when "
+        },
+        {
+          "insert": "byModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is, plus "
+        },
+        {
+          "insert": "refused[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Returns\n"
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " for a malformed window or "
+        },
+        {
+          "insert": "compare",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", an empty "
+        },
+        {
+          "insert": "byModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "compare",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " with "
+        },
+        {
+          "insert": "byModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and a\n"
+        },
+        {
+          "insert": "byModel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node none of the window's existing producing runs ran, with the AI node ids they\ndid run in the error. The node is not checked when no producing run still exists: a window\nwith no records returns an empty report, and records whose runs were all deleted are\n"
+        },
+        {
+          "insert": "unattributed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-get-api-metric-views-159": {
+      "id": "b-50-api-get-api-metric-views-159",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/metric-views",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists each pack's "
+        },
+        {
+          "insert": ".shared/metric-views.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " as "
+        },
+        {
+          "insert": "packs[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (pack,\nsource, "
+        },
+        {
+          "insert": "names",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "cards",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") and the declarations that could not be read or did not\nvalidate as "
+        },
+        {
+          "insert": "errors[]",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". With "
+        },
+        {
+          "insert": "codebaseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the codebase's project packs are included and its\nconfig decides whether bundled packs are; an unknown "
+        },
+        {
+          "insert": "codebaseId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns "
+        },
+        {
+          "insert": "404",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ".\nSee the "
+        },
+        {
+          "insert": "metrics guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/75-metrics.md",
+              "label": "metrics guide"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-160": {
+      "id": "b-50-api-divider-160",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-configuration-161": {
+      "id": "b-50-api-configuration-161",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configuration"
+        }
+      ],
+      "children": []
+    },
+    "table-10-cff8fc96": {
+      "id": "table-10-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/config",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get read-only configuration (safe subset)"
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/config/assistants",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Update the default assistant and per-provider model defaults"
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/config/tiers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Update model-tier presets ("
+              },
+              {
+                "insert": "small",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "medium",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "large",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/config/aliases",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Update "
+              },
+              {
+                "insert": "@custom",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " model aliases (per-key merge; "
+              },
+              {
+                "insert": "null",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " unsets)"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/providers/pi/models",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Pi's model catalog (cost/reasoning metadata; best-effort, "
+              },
+              {
+                "insert": "[]",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " on failure)"
+              }
+            ]
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/providers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List registered AI providers"
+          ],
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/providers/opencode/credentials",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Inspect OpenCode's backend catalog and install-wide auth state (metadata only; starts the embedded runtime on demand)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-get-api-config-return-163": {
+      "id": "b-50-api-get-api-config-return-163",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "GET /api/config",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns the safe config subset, now including the configured "
+        },
+        {
+          "insert": "tiers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", the built-in "
+        },
+        {
+          "insert": "tierDefaults",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for the current default provider (what an unset tier resolves to), and the configured "
+        },
+        {
+          "insert": "aliases",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-these-config-routes-writ-164": {
+      "id": "b-50-api-these-config-routes-writ-164",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These config routes write non-secret model config to "
+        },
+        {
+          "insert": "~/.archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and work on solo installs without an identity or "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". They follow the general API authentication gate when enabled. Contrast with the "
+        },
+        {
+          "insert": "AI Provider Credentials",
+          "attributes": {
+            "link": "#ai-provider-credentials"
+          }
+        },
+        {
+          "insert": " routes below, which always require an identity."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-a-patch-whose-resultin-165": {
+      "id": "b-50-api-a-patch-whose-resultin-165",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A "
+        },
+        {
+          "insert": "PATCH",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " whose resulting config would be invalid is refused with "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and nothing is written. The "
+        },
+        {
+          "insert": "error",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field names the refused key, for example "
+        },
+        {
+          "insert": "Invalid assistants config: 'assistants.codex.modelReasoningEffort': ...",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". This includes an invalid value already in the file that the patch leaves in place: fix that key (in the same request or by editing the file) before other changes save."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-166": {
+      "id": "b-50-api-bash-166",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Read current config (includes `tiers` + `tierDefaults`)\ncurl http://localhost:3090/api/config\n\n# Set the default assistant\ncurl -X PATCH http://localhost:3090/api/config/assistants \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"assistant\": \"claude\"}'\n\n# Or update per-provider model defaults\ncurl -X PATCH http://localhost:3090/api/config/assistants \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"assistants\": {\"claude\": {\"model\": \"opus\"}}}'\n\n# Set a model tier (a `null` tier value unsets it, falling back to the built-in default)\ncurl -X PATCH http://localhost:3090/api/config/tiers \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"tiers\": {\"large\": {\"provider\": \"claude\", \"model\": \"opus\"}}}'\n\n# Set a @custom alias (a `null` value unsets it)\ncurl -X PATCH http://localhost:3090/api/config/aliases \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"aliases\": {\"@fast\": {\"provider\": \"claude\", \"model\": \"haiku\"}}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-167": {
+      "id": "b-50-api-divider-167",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-per-user-ai-preferences-168": {
+      "id": "b-50-api-per-user-ai-preferences-168",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Per-User AI Preferences"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-each-user-can-override-t-169": {
+      "id": "b-50-api-each-user-can-override-t-169",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each user can override the install-wide model config with "
+        },
+        {
+          "insert": "personal",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " tiers, "
+        },
+        {
+          "insert": "@custom",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " aliases, and a default assistant: the highest-precedence resolver layer, applied to runs and chats "
+        },
+        {
+          "insert": "they",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": " start. These routes require a resolved web identity ("
+        },
+        {
+          "insert": "X-Archon-User",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " header or a Better Auth session) but "
+        },
+        {
+          "insert": "no",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": model names aren't secrets. Without an identity they return "
+        },
+        {
+          "insert": "401",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and model resolution stays config-only (solo installs are unchanged)."
+        }
+      ],
+      "children": []
+    },
+    "table-11-cff8fc96": {
+      "id": "table-11-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/auth/me/ai-prefs",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The current user's stored prefs (raw layer, not merged)"
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/auth/me/ai-prefs/tiers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Update personal tier presets (per-key merge; "
+              },
+              {
+                "insert": "null",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " unsets)"
+              }
+            ]
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/auth/me/ai-prefs/aliases",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Update personal "
+              },
+              {
+                "insert": "@custom",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " aliases (per-key merge; "
+              },
+              {
+                "insert": "null",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " unsets)"
+              }
+            ]
+          ],
+          [
+            "PATCH",
+            [
+              {
+                "insert": "/api/auth/me/ai-prefs/default",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "Set (or clear with "
+              },
+              {
+                "insert": "null",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") the personal default assistant + default chat model ("
+              },
+              {
+                "insert": "{ provider, model? }",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ": written atomically; an omitted "
+              },
+              {
+                "insert": "model",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " clears any pin, and "
+              },
+              {
+                "insert": "model",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " without a "
+              },
+              {
+                "insert": "provider",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " is rejected)"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-bash-171": {
+      "id": "b-50-api-bash-171",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Point YOUR `large` tier at opus without touching the install config\ncurl -X PATCH http://localhost:3090/api/auth/me/ai-prefs/tiers \\\n  -H \"X-Archon-User: your-user-id\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"tiers\": {\"large\": {\"provider\": \"claude\", \"model\": \"opus\"}}}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-all-writes-validate-the-172": {
+      "id": "b-50-api-all-writes-validate-the-172",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "All writes validate the provider (registered), effort (provider vocabulary), and alias names ("
+        },
+        {
+          "insert": "@",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " prefix, not a reserved tier keyword), and return the updated prefs. The console exposes the same scopes as the "
+        },
+        {
+          "insert": "\"This install / Just me\"",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " toggle on AI Settings; the CLI as "
+        },
+        {
+          "insert": "archon ai … --scope user",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-173": {
+      "id": "b-50-api-divider-173",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-ai-provider-credentials-174": {
+      "id": "b-50-api-ai-provider-credentials-174",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "AI Provider Credentials"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-per-user-provider-creden-175": {
+      "id": "b-50-api-per-user-provider-creden-175",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Per-user provider credentials let each user bill their runs and chats to "
+        },
+        {
+          "insert": "their own",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " API key or subscription instead of the shared install key. These endpoints require a resolved web identity ("
+        },
+        {
+          "insert": "X-Archon-User",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " header or a Better Auth session): "
+        },
+        {
+          "insert": "GET /api/auth/providers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns "
+        },
+        {
+          "insert": "401",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without one. The encryption key is auto-provisioned on every install; "
+        },
+        {
+          "insert": "TOKEN_ENCRYPTION_KEY",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is an optional override for managed deployments."
+        }
+      ],
+      "children": []
+    },
+    "table-12-cff8fc96": {
+      "id": "table-12-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/auth/providers",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "List the current user's connected credentials (metadata only)"
+          ],
+          [
+            "PUT",
+            [
+              {
+                "insert": "/api/auth/providers/{provider}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Connect (upsert) an API key for a provider"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/auth/providers/{provider}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Disconnect a provider credential (idempotent)"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/auth/providers/{provider}/oauth/start",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Begin a subscription (OAuth) login"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/auth/providers/{provider}/oauth/poll",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Poll a subscription login session"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-credentials-are-encrypte-177": {
+      "id": "b-50-api-credentials-are-encrypte-177",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Credentials are encrypted at rest; "
+        },
+        {
+          "insert": "no endpoint ever returns a secret value",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- responses carry only "
+        },
+        {
+          "insert": "provider",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "kind",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "label",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " metadata."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-list-connected-providers-178": {
+      "id": "b-50-api-list-connected-providers-178",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "List Connected Providers"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-179": {
+      "id": "b-50-api-bash-179",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl http://localhost:3090/api/auth/providers \\\n  -H \"X-Archon-User: your-user-id\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-enabled-conn-180": {
+      "id": "b-50-api-returns-enabled-conn-180",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ enabled, connections: [{ provider, kind, label }], available, subscriptionAvailable, agents }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-available-every-v-181": {
+      "id": "b-50-api-available-every-v-181",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "available",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- every "
+        },
+        {
+          "insert": "vendor",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " id you can connect an API key for ("
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plus the Pi backends). Legacy "
+        },
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ids are accepted on writes and normalized."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-subscriptionavailable-182": {
+      "id": "b-50-api-subscriptionavailable-182",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "subscriptionAvailable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- the subset that supports subscription (OAuth) login: "
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "openai",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". (The ChatGPT/Codex subscription runs an Archon-owned PKCE flow -- see "
+        },
+        {
+          "insert": "#1924",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/issues/1924"
+          }
+        },
+        {
+          "insert": ".)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-agents-the-agent-183": {
+      "id": "b-50-api-agents-the-agent-183",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "agents",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -- the agent -> credential matrix: per registered agent "
+        },
+        {
+          "insert": "{ id, displayName, catalog: 'static'|'dynamic', ready, credentials: [{ vendor, displayName, kinds, connected, connectionConsumed, subscriptionAvailable, installEnv, ambientConfigured?, usable }] }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "connectionConsumed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " says whether the agent uses the "
+        },
+        {
+          "insert": "connected",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " credential's kind (a connected "
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " subscription is consumed by Claude Code, not Pi). "
+        },
+        {
+          "insert": "usable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is true for a consumed connection, install env, or detected ambient chain, and "
+        },
+        {
+          "insert": "ready",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is true when any credential is "
+        },
+        {
+          "insert": "usable",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "installEnv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " counts only the env vars that agent reads; "
+        },
+        {
+          "insert": "installEnv",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "ambientConfigured",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " report server-side detection so readiness renders on solo installs too; OpenCode is "
+        },
+        {
+          "insert": "catalog:'dynamic'",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (introspect via "
+        },
+        {
+          "insert": "GET /api/providers/opencode/credentials",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-connect-an-api-key-184": {
+      "id": "b-50-api-connect-an-api-key-184",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Connect an API Key"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-185": {
+      "id": "b-50-api-bash-185",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X PUT http://localhost:3090/api/auth/providers/openrouter \\\n  -H \"X-Archon-User: your-user-id\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"apiKey\": \"sk-...\", \"label\": \"personal\"}'"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-returns-success-prov-186": {
+      "id": "b-50-api-returns-success-prov-186",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ success, provider, kind: \"api_key\", label }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". An unknown provider or a blank key returns "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-disconnect-a-provider-187": {
+      "id": "b-50-api-disconnect-a-provider-187",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Disconnect a Provider"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-188": {
+      "id": "b-50-api-bash-188",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "curl -X DELETE http://localhost:3090/api/auth/providers/openrouter \\\n  -H \"X-Archon-User: your-user-id\""
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-idempotent-disconnect-189": {
+      "id": "b-50-api-idempotent-disconnect-189",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Idempotent -- disconnecting a provider that was never connected still returns "
+        },
+        {
+          "insert": "{ success: true }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-subscription-login-oaut-190": {
+      "id": "b-50-api-subscription-login-oaut-190",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Subscription Login (OAuth)"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-subscription-login-is-a-191": {
+      "id": "b-50-api-subscription-login-is-a-191",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subscription login is a two-step "
+        },
+        {
+          "insert": "start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " -> "
+        },
+        {
+          "insert": "poll",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " flow held server-side. "
+        },
+        {
+          "insert": "start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns a "
+        },
+        {
+          "insert": "mode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-manual-anthropic-c-192": {
+      "id": "b-50-api-manual-anthropic-c-192",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "manual",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "anthropic",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", Claude Pro/Max) -- show the returned "
+        },
+        {
+          "insert": "url",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the user authorizes in a browser and pastes the resulting code back via "
+        },
+        {
+          "insert": "poll",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-device-github-copilo-193": {
+      "id": "b-50-api-device-github-copilo-193",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "device",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "github-copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") -- show "
+        },
+        {
+          "insert": "userCode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " + "
+        },
+        {
+          "insert": "verificationUri",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "poll",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " until connected."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-194": {
+      "id": "b-50-api-bash-194",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# 1. Start a login session\ncurl -X POST http://localhost:3090/api/auth/providers/anthropic/oauth/start \\\n  -H \"X-Archon-User: your-user-id\"\n# {\"sessionId\":\"...\",\"mode\":\"manual\",\"url\":\"https://...\",\"expiresIn\":600}\n\n# 2. Poll (pass the pasted `code` once, for manual flows)\ncurl -X POST http://localhost:3090/api/auth/providers/anthropic/oauth/poll \\\n  -H \"X-Archon-User: your-user-id\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"sessionId\": \"...\", \"code\": \"the-pasted-code\"}'\n# {\"status\":\"connected\"}"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-poll-returns-status-195": {
+      "id": "b-50-api-poll-returns-status-195",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "poll",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returns "
+        },
+        {
+          "insert": "{ status: \"pending\" | \"connected\" | \"error\", detail? }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". A provider that does not support subscription login returns "
+        },
+        {
+          "insert": "400",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on "
+        },
+        {
+          "insert": "start",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-the-cli-equivalent-of-th-196": {
+      "id": "b-50-api-the-cli-equivalent-of-th-196",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The CLI equivalent of this whole surface is "
+        },
+        {
+          "insert": "archon ai",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "ai",
+              "label": "`archon ai`"
+            }
+          }
+        },
+        {
+          "insert": ". For the end-to-end setup walkthrough, see "
+        },
+        {
+          "insert": "Per-user credentials and AI Settings",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "per-user-credentials-and-ai-settings",
+              "label": "Per-user credentials and AI Settings"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-197": {
+      "id": "b-50-api-divider-197",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-web-push-198": {
+      "id": "b-50-api-web-push-198",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Web push"
+        }
+      ],
+      "children": []
+    },
+    "table-13-cff8fc96": {
+      "id": "table-13-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/web-push/key",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get the browser push VAPID public key"
+          ],
+          [
+            "POST",
+            [
+              {
+                "insert": "/api/web-push/subscriptions",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Subscribe this browser to push notifications for the current user"
+          ],
+          [
+            "DELETE",
+            [
+              {
+                "insert": "/api/web-push/subscriptions",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Remove a browser push subscription by endpoint for the current user"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-subscription-writes-requ-200": {
+      "id": "b-50-api-subscription-writes-requ-200",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Subscription writes require a resolved Web identity, including on solo installs."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-201": {
+      "id": "b-50-api-divider-201",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-system-202": {
+      "id": "b-50-api-system-202",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "System"
+        }
+      ],
+      "children": []
+    },
+    "table-14-cff8fc96": {
+      "id": "table-14-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Method",
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            "GET",
+            [
+              {
+                "insert": "/api/update-check",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Check for available updates (binary builds only)"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-returns-updateavailab-204": {
+      "id": "b-50-api-returns-updateavailab-204",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Returns "
+        },
+        {
+          "insert": "{ updateAvailable, currentVersion, latestVersion, releaseUrl }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". For non-binary (source) builds, always returns "
+        },
+        {
+          "insert": "updateAvailable: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " without making external requests."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-205": {
+      "id": "b-50-api-divider-205",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-sse-streaming-206": {
+      "id": "b-50-api-sse-streaming-206",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "SSE Streaming"
+        }
+      ],
+      "children": []
+    },
+    "table-15-cff8fc96": {
+      "id": "table-15-cff8fc96",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Path",
+          "Description"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "/api/stream/{conversationId}",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Real-time events for a conversation"
+          ],
+          [
+            [
+              {
+                "insert": "/api/stream/__dashboard__",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Multiplexed workflow events across all conversations"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-50-api-these-are-server-sent-ev-208": {
+      "id": "b-50-api-these-are-server-sent-ev-208",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These are Server-Sent Events (SSE) endpoints -- connect with "
+        },
+        {
+          "insert": "EventSource",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in a browser or any SSE client."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-209": {
+      "id": "b-50-api-bash-209",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# Listen to a conversation stream\ncurl -N http://localhost:3090/api/stream/your-conversation-id"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-events-are-json-encoded-210": {
+      "id": "b-50-api-events-are-json-encoded-210",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Events are JSON-encoded with a "
+        },
+        {
+          "insert": "type",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field. See the "
+        },
+        {
+          "insert": "Web UI documentation",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "section": "sse-streaming",
+              "label": "Web UI documentation"
+            }
+          }
+        },
+        {
+          "insert": " for the full list of event types."
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-divider-211": {
+      "id": "b-50-api-divider-211",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-50-api-common-patterns-212": {
+      "id": "b-50-api-common-patterns-212",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Common Patterns"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-create-a-conversation-an-213": {
+      "id": "b-50-api-create-a-conversation-an-213",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Create a Conversation and Send a Message"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-214": {
+      "id": "b-50-api-bash-214",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# 1. Create a conversation\nCONV_ID=$(curl -s -X POST http://localhost:3090/api/conversations \\\n  -H \"Content-Type: application/json\" \\\n  -d '{}' | jq -r '.conversationId')\n\n# 2. Send a message\ncurl -X POST http://localhost:3090/api/conversations/$CONV_ID/message \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"message\": \"/status\"}'\n\n# 3. Poll for messages\ncurl http://localhost:3090/api/conversations/$CONV_ID/messages"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-run-a-workflow-via-the-a-215": {
+      "id": "b-50-api-run-a-workflow-via-the-a-215",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Run a Workflow via the API"
+        }
+      ],
+      "children": []
+    },
+    "b-50-api-bash-216": {
+      "id": "b-50-api-bash-216",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "# 1. Create a conversation scoped to a codebase\nCONV_ID=$(curl -s -X POST http://localhost:3090/api/conversations \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"codebaseId\": \"your-codebase-id\"}' | jq -r '.conversationId')\n\n# 2. Start the workflow\ncurl -X POST http://localhost:3090/api/workflows/archon-investigate/run \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{\\\"message\\\": \\\"Why does login fail after a password reset?\\\", \\\"conversationId\\\": \\\"$CONV_ID\\\"}\"\n\n# 3. Monitor via SSE\ncurl -N http://localhost:3090/api/stream/$CONV_ID"
+        }
+      ],
+      "children": []
+    }
+  }
+}

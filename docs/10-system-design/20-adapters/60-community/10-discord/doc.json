@@ -1,0 +1,1025 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-60-community-10-discord",
+  "title": "Discord",
+  "root": "b-10-discord-root-59",
+  "blocks": {
+    "b-10-discord-root-59": {
+      "id": "b-10-discord-root-59",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Connect Archon to Discord for AI coding assistance in servers and DMs.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/community/discord.md"
+      },
+      "children": [
+        "b-10-discord-note-1",
+        "b-10-discord-connect-archon-to-discor-2",
+        "b-10-discord-new-identities-are-creat-3",
+        "b-10-discord-prerequisites-4",
+        "b-10-discord-archon-server-running-5",
+        "b-10-discord-a-discord-account-6",
+        "b-10-discord-manage-server-permissi-7",
+        "b-10-discord-create-discord-bot-8",
+        "b-10-discord-visit-discord-developer-9",
+        "b-10-discord-click-new-application-10",
+        "b-10-discord-go-to-the-bot-tab-in-t-11",
+        "b-10-discord-click-add-bot-confir-12",
+        "b-10-discord-get-bot-token-13",
+        "b-10-discord-under-the-bot-tab-click-14",
+        "b-10-discord-copy-the-token-starts-w-15",
+        "b-10-discord-save-it-securely-16",
+        "b-10-discord-enable-message-content-i-17",
+        "b-10-discord-scroll-down-to-privileg-18",
+        "b-10-discord-enable-message-conten-19",
+        "b-10-discord-save-changes-20",
+        "b-10-discord-caution-21",
+        "b-10-discord-invite-bot-to-your-serve-22",
+        "b-10-discord-go-to-oauth2-url-ge-23",
+        "b-10-discord-under-scopes-select-24",
+        "b-10-discord-under-bot-permissions-26",
+        "b-10-discord-copy-the-generated-url-a-31",
+        "b-10-discord-paste-it-in-your-browser-32",
+        "b-10-discord-click-authorize-33",
+        "b-10-discord-note-you-need-mana-34",
+        "b-10-discord-set-environment-variable-35",
+        "b-10-discord-ini-36",
+        "b-10-discord-configure-user-whitelist-37",
+        "b-10-discord-to-restrict-bot-access-t-38",
+        "b-10-discord-user-settings-advanced-39",
+        "b-10-discord-right-click-on-users-40",
+        "b-10-discord-add-to-environment-41",
+        "b-10-discord-ini-42",
+        "b-10-discord-configure-streaming-mode-43",
+        "b-10-discord-ini-44",
+        "b-10-discord-for-streaming-mode-detai-45",
+        "b-10-discord-configure-mention-requir-46",
+        "b-10-discord-by-default-the-bot-only-47",
+        "b-10-discord-ini-48",
+        "b-10-discord-only-the-literal-value-49",
+        "b-10-discord-usage-50",
+        "b-10-discord-select-a-registered-proj-51",
+        "b-10-discord-once-scoped-the-assista-52",
+        "b-10-discord-the-bot-responds-to-53",
+        "b-10-discord-direct-messages-jus-54",
+        "b-10-discord-server-channels-me-55",
+        "b-10-discord-threads-bot-maintai-56",
+        "b-10-discord-further-reading-57",
+        "b-10-discord-configuration-docs-30-58"
+      ]
+    },
+    "b-10-discord-note-1": {
+      "id": "b-10-discord-note-1",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "Discord is a "
+        },
+        {
+          "insert": "community adapter",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": contributed and maintained by the community."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-connect-archon-to-discor-2": {
+      "id": "b-10-discord-connect-archon-to-discor-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to Discord so you can interact with your AI coding assistant from any Discord server or DM."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-new-identities-are-creat-3": {
+      "id": "b-10-discord-new-identities-are-creat-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "New identities are created as members. The operator can designate admins with "
+        },
+        {
+          "insert": "archon user role <id> admin",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "users-and-roles",
+              "label": "`archon user role <id> admin`"
+            }
+          }
+        },
+        {
+          "insert": "; only a run's starter or an admin can act on it. See "
+        },
+        {
+          "insert": "Who can act on a run",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "who-can-act-on-a-run",
+              "label": "Who can act on a run"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-prerequisites-4": {
+      "id": "b-10-discord-prerequisites-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-archon-server-running-5": {
+      "id": "b-10-discord-archon-server-running-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-a-discord-account-6": {
+      "id": "b-10-discord-a-discord-account-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Discord account"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-manage-server-permissi-7": {
+      "id": "b-10-discord-manage-server-permissi-7",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "\"Manage Server\" permission on the Discord server you want to add the bot to"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-create-discord-bot-8": {
+      "id": "b-10-discord-create-discord-bot-8",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Create Discord Bot"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-visit-discord-developer-9": {
+      "id": "b-10-discord-visit-discord-developer-9",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Visit "
+        },
+        {
+          "insert": "Discord Developer Portal",
+          "attributes": {
+            "link": "https://discord.com/developers/applications"
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-click-new-application-10": {
+      "id": "b-10-discord-click-new-application-10",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click \"New Application\" > Enter a name > Click \"Create\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-go-to-the-bot-tab-in-t-11": {
+      "id": "b-10-discord-go-to-the-bot-tab-in-t-11",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to the \"Bot\" tab in the left sidebar"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-click-add-bot-confir-12": {
+      "id": "b-10-discord-click-add-bot-confir-12",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click \"Add Bot\" > Confirm"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-get-bot-token-13": {
+      "id": "b-10-discord-get-bot-token-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Get Bot Token"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-under-the-bot-tab-click-14": {
+      "id": "b-10-discord-under-the-bot-tab-click-14",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Under the Bot tab, click \"Reset Token\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-copy-the-token-starts-w-15": {
+      "id": "b-10-discord-copy-the-token-starts-w-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the token (starts with a long alphanumeric string)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-save-it-securely-16": {
+      "id": "b-10-discord-save-it-securely-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Save it securely",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " -- you won't be able to see it again"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-enable-message-content-i-17": {
+      "id": "b-10-discord-enable-message-content-i-17",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Enable Message Content Intent (Required)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-scroll-down-to-privileg-18": {
+      "id": "b-10-discord-scroll-down-to-privileg-18",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Scroll down to \"Privileged Gateway Intents\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-enable-message-conten-19": {
+      "id": "b-10-discord-enable-message-conten-19",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Enable "
+        },
+        {
+          "insert": "\"Message Content Intent\"",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " (required for the bot to read messages)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-save-changes-20": {
+      "id": "b-10-discord-save-changes-20",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Save changes"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-caution-21": {
+      "id": "b-10-discord-caution-21",
+      "type": "callout",
+      "props": {
+        "title": "Caution",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "Skipping this step causes Discord to reject the bot's connection with\n"
+        },
+        {
+          "insert": "Used disallowed intents",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Archon will log\n"
+        },
+        {
+          "insert": "discord.start_failed_continuing_without_adapter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and keep the rest of\nthe server running, but the Discord adapter will be unavailable until\nthe intent is enabled and the server is restarted."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-invite-bot-to-your-serve-22": {
+      "id": "b-10-discord-invite-bot-to-your-serve-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Invite Bot to Your Server"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-go-to-oauth2-url-ge-23": {
+      "id": "b-10-discord-go-to-oauth2-url-ge-23",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Go to \"OAuth2\" > \"URL Generator\" in the left sidebar"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-under-scopes-select-24": {
+      "id": "b-10-discord-under-scopes-select-24",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Under \"Scopes\", select:"
+        }
+      ],
+      "children": [
+        "b-10-discord-bot-25"
+      ]
+    },
+    "b-10-discord-bot-25": {
+      "id": "b-10-discord-bot-25",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "bot",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-under-bot-permissions-26": {
+      "id": "b-10-discord-under-bot-permissions-26",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Under \"Bot Permissions\", select:"
+        }
+      ],
+      "children": [
+        "b-10-discord-send-messages-27",
+        "b-10-discord-read-message-history-28",
+        "b-10-discord-create-public-threads-o-29",
+        "b-10-discord-send-messages-in-threads-30"
+      ]
+    },
+    "b-10-discord-send-messages-27": {
+      "id": "b-10-discord-send-messages-27",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Send Messages"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-read-message-history-28": {
+      "id": "b-10-discord-read-message-history-28",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Read Message History"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-create-public-threads-o-29": {
+      "id": "b-10-discord-create-public-threads-o-29",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Create Public Threads (optional, for thread support)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-send-messages-in-threads-30": {
+      "id": "b-10-discord-send-messages-in-threads-30",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Send Messages in Threads (optional, for thread support)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-copy-the-generated-url-a-31": {
+      "id": "b-10-discord-copy-the-generated-url-a-31",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the generated URL at the bottom"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-paste-it-in-your-browser-32": {
+      "id": "b-10-discord-paste-it-in-your-browser-32",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Paste it in your browser and select your server"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-click-authorize-33": {
+      "id": "b-10-discord-click-authorize-33",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Click \"Authorize\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-note-you-need-mana-34": {
+      "id": "b-10-discord-note-you-need-mana-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " You need \"Manage Server\" permission to add bots."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-set-environment-variable-35": {
+      "id": "b-10-discord-set-environment-variable-35",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Set Environment Variable"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-ini-36": {
+      "id": "b-10-discord-ini-36",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DISCORD_BOT_TOKEN=your_bot_token_here"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-configure-user-whitelist-37": {
+      "id": "b-10-discord-configure-user-whitelist-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure User Whitelist (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-to-restrict-bot-access-t-38": {
+      "id": "b-10-discord-to-restrict-bot-access-t-38",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To restrict bot access to specific users, enable Developer Mode in Discord:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-user-settings-advanced-39": {
+      "id": "b-10-discord-user-settings-advanced-39",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "User Settings > Advanced > Enable \"Developer Mode\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-right-click-on-users-40": {
+      "id": "b-10-discord-right-click-on-users-40",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Right-click on users > \"Copy User ID\""
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-add-to-environment-41": {
+      "id": "b-10-discord-add-to-environment-41",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Add to environment:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-ini-42": {
+      "id": "b-10-discord-ini-42",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DISCORD_ALLOWED_USER_IDS=123456789012345678,987654321098765432"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-configure-streaming-mode-43": {
+      "id": "b-10-discord-configure-streaming-mode-43",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure Streaming Mode (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-ini-44": {
+      "id": "b-10-discord-ini-44",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DISCORD_STREAMING_MODE=batch  # batch (default) | stream"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-for-streaming-mode-detai-45": {
+      "id": "b-10-discord-for-streaming-mode-detai-45",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For streaming mode details, see "
+        },
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-configure-mention-requir-46": {
+      "id": "b-10-discord-configure-mention-requir-46",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure Mention Requirement (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-by-default-the-bot-only-47": {
+      "id": "b-10-discord-by-default-the-bot-only-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "By default the bot only activates in servers when @mentioned (DMs are exempt). On single-user or private servers you can opt out so the bot responds to any authorized message:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-ini-48": {
+      "id": "b-10-discord-ini-48",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "DISCORD_REQUIRE_MENTION=false  # true (default) | false"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-only-the-literal-value-49": {
+      "id": "b-10-discord-only-the-literal-value-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Only the literal value "
+        },
+        {
+          "insert": "false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " disables the mention requirement. Mentions that are present are still stripped from the message."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-usage-50": {
+      "id": "b-10-discord-usage-50",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Usage"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-select-a-registered-proj-51": {
+      "id": "b-10-discord-select-a-registered-proj-51",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Select a registered project by submitting "
+        },
+        {
+          "insert": "/setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the conversation or thread where you want to work. To register a local directory first, submit "
+        },
+        {
+          "insert": "/register-project [--folder] <name> <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then select it; registration alone does not bind the conversation. Projectless questions still work. Selection applies to that conversation, not every channel."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-once-scoped-the-assista-52": {
+      "id": "b-10-discord-once-scoped-the-assista-52",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once scoped, the assistant launches and manages runs through its native tools (Claude, Codex, Pi) or the existing CLI (Copilot/OpenCode). CLI launches are detached and headless, use CLI identity and return a run ID for inspection; they do not deliver progress or results to the originating chat. See "
+        },
+        {
+          "insert": "Deprecated providers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "deprecated-providers",
+              "label": "Deprecated providers"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-the-bot-responds-to-53": {
+      "id": "b-10-discord-the-bot-responds-to-53",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The bot responds to:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-direct-messages-jus-54": {
+      "id": "b-10-discord-direct-messages-jus-54",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Direct Messages",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Just send messages directly"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-server-channels-me-55": {
+      "id": "b-10-discord-server-channels-me-55",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Server Channels",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": @mention the bot (e.g., "
+        },
+        {
+          "insert": "@YourBotName help me with this code",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), or any authorized message when "
+        },
+        {
+          "insert": "DISCORD_REQUIRE_MENTION=false",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-threads-bot-maintai-56": {
+      "id": "b-10-discord-threads-bot-maintai-56",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Threads",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Bot maintains context in thread conversations"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-further-reading-57": {
+      "id": "b-10-discord-further-reading-57",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Further Reading"
+        }
+      ],
+      "children": []
+    },
+    "b-10-discord-configuration-docs-30-58": {
+      "id": "b-10-discord-configuration-docs-30-58",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,1277 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-10-reference-70-provider-capabilities",
+  "title": "Provider Capability Matrix",
+  "root": "b-70-provider-capabilities-root-27",
+  "blocks": {
+    "b-70-provider-capabilities-root-27": {
+      "id": "b-70-provider-capabilities-root-27",
+      "type": "paragraph",
+      "props": {
+        "area": "clients",
+        "audience": [
+          "user",
+          "developer"
+        ],
+        "category": "reference",
+        "description": "Canonical per-provider capability matrix, generated from each provider capabilities.ts.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/reference/provider-capabilities.md"
+      },
+      "children": [
+        "b-70-provider-capabilities-auto-generated-do-1",
+        "b-70-provider-capabilities-note-2",
+        "b-70-provider-capabilities-each-column-is-a-registe-3",
+        "b-70-provider-capabilities-the-columns-are-the-prov-4",
+        "b-70-provider-capabilities-reporting-flags-describe-5",
+        "b-70-provider-capabilities-background-work-report-6",
+        "b-70-provider-capabilities-providers-7",
+        "b-70-provider-capabilities-claude-claude-anthro-8",
+        "b-70-provider-capabilities-codex-codex-openai-9",
+        "b-70-provider-capabilities-opencode-opencode-co-10",
+        "b-70-provider-capabilities-pi-pi-11",
+        "b-70-provider-capabilities-copilot-copilot-gith-12",
+        "b-70-provider-capabilities-capabilities-13",
+        "table-0-b607ba05",
+        "b-70-provider-capabilities-caveats-15",
+        "b-70-provider-capabilities-opencode-inline-sub-16",
+        "b-70-provider-capabilities-legend-17",
+        "b-70-provider-capabilities-the-capabilit-18",
+        "b-70-provider-capabilities-unknown-the-provide-19",
+        "b-70-provider-capabilities-superscript-su-20",
+        "b-70-provider-capabilities-meaning-of-the-axis-see-21",
+        "b-70-provider-capabilities-structured-output-22",
+        "b-70-provider-capabilities-best-effort-the-model-23",
+        "b-70-provider-capabilities-in-process-native-tool-24",
+        "b-70-provider-capabilities-turn-it-gates-auto-inje-25",
+        "b-70-provider-capabilities-for-per-provider-field-l-26"
+      ]
+    },
+    "b-70-provider-capabilities-auto-generated-do-1": {
+      "id": "b-70-provider-capabilities-auto-generated-do-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "<!-- AUTO-GENERATED: DO NOT EDIT. Regenerate with: bun run generate:capability-matrix -->"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-note-2": {
+      "id": "b-70-provider-capabilities-note-2",
+      "type": "callout",
+      "props": {
+        "title": "Note",
+        "tone": "info"
+      },
+      "text": [
+        {
+          "insert": "This page is "
+        },
+        {
+          "insert": "auto-generated",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " from each provider's "
+        },
+        {
+          "insert": "capabilities.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the same\nconstants the workflow engine reads to enforce provider-specific behavior). Do not\nedit it by hand: run "
+        },
+        {
+          "insert": "bun run generate:capability-matrix",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nA capability change fails "
+        },
+        {
+          "insert": "bun run validate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " until this page is regenerated."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-each-column-is-a-registe-3": {
+      "id": "b-70-provider-capabilities-each-column-is-a-registe-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each column is a registered provider id (the value you set as "
+        },
+        {
+          "insert": "provider:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in a\nworkflow or "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). A ✅ means Archon translates the corresponding\ncapability for that provider; a ❌ means the capability is unsupported. Unsupported\nbehavior is feature-specific: some optional fields are ignored with a warning, while\nstrict contracts fail closed. In particular, a node naming "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or\n"
+        },
+        {
+          "insert": "plugins:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on a provider without that capability fails the run before any node\nstarts, and "
+        },
+        {
+          "insert": "context.resume",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " rejects an explicitly unsupported provider at load\ntime and an implicitly resolved one at runtime. An "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " declared "
+        },
+        {
+          "insert": "optional: true",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\ninstead runs the node without its servers and records why."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-the-columns-are-the-prov-4": {
+      "id": "b-70-provider-capabilities-the-columns-are-the-prov-4",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The columns are the providers built from this repository. Release binaries install\nClaude, Codex and Pi as provider plugins, with the same capabilities. A third-party\nprovider plugin declares its capabilities in its install-time descriptor and is not\na column in this generated table. The same pre-spend capability checks apply."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-reporting-flags-describe-5": {
+      "id": "b-70-provider-capabilities-reporting-flags-describe-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Reporting flags describe SDK fields that Archon translates into execution results.\nSupported does not guarantee that every result reports a value or that usage includes\nall nested agents. Unsupported fields remain absent; Archon does not estimate cost,\ncount events as turns, or substitute the requested model for an unreported model.\nCost reporting is independent of spend-limit support. Older providers may omit\nreporting declarations; absence means unknown, not unsupported."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-background-work-report-6": {
+      "id": "b-70-provider-capabilities-background-work-report-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Background work: "
+        },
+        {
+          "insert": "reported",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " waits for runtime-reported task endings; "
+        },
+        {
+          "insert": "none",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means verified absent;\n"
+        },
+        {
+          "insert": "unobserved",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " means background work may exist without an observable lifecycle. A process\nbackgrounded inside a foreground shell command ("
+        },
+        {
+          "insert": "cmd &",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") is invisible to every provider.\nCodex observes subagents through "
+        },
+        {
+          "insert": "subAgentActivity",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " notifications and unified-exec processes\nthrough "
+        },
+        {
+          "insert": "commandExecution",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " items with source "
+        },
+        {
+          "insert": "unifiedExecStartup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Idle thread status is\nnot evidence that this work has ended. See "
+        },
+        {
+          "insert": "Streaming event mapping",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/20-implementation/10-contributing/50-adding-a-community-provider.md",
+              "section": "streaming-event-mapping",
+              "label": "Streaming event mapping"
+            }
+          }
+        },
+        {
+          "insert": "\nfor the background-start admission and observation cutoff rules."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-providers-7": {
+      "id": "b-70-provider-capabilities-providers-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Providers"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-claude-claude-anthro-8": {
+      "id": "b-70-provider-capabilities-claude-claude-anthro-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "claude",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Claude (Anthropic)"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-codex-codex-openai-9": {
+      "id": "b-70-provider-capabilities-codex-codex-openai-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "codex",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Codex (OpenAI)"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-opencode-opencode-co-10": {
+      "id": "b-70-provider-capabilities-opencode-opencode-co-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "opencode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": OpenCode (community) "
+        },
+        {
+          "insert": "(community provider, ",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "deprecated",
+          "attributes": {
+            "italic": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "deprecated-providers",
+              "label": "deprecated"
+            }
+          }
+        },
+        {
+          "insert": ")",
+          "attributes": {
+            "italic": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-pi-pi-11": {
+      "id": "b-70-provider-capabilities-pi-pi-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "pi",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Pi"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-copilot-copilot-gith-12": {
+      "id": "b-70-provider-capabilities-copilot-copilot-gith-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "copilot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Copilot (GitHub) "
+        },
+        {
+          "insert": "(community provider, ",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "deprecated",
+          "attributes": {
+            "italic": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "deprecated-providers",
+              "label": "deprecated"
+            }
+          }
+        },
+        {
+          "insert": ")",
+          "attributes": {
+            "italic": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-capabilities-13": {
+      "id": "b-70-provider-capabilities-capabilities-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Capabilities"
+        }
+      ],
+      "children": []
+    },
+    "table-0-b607ba05": {
+      "id": "table-0-b607ba05",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Capability",
+          [
+            {
+              "insert": "claude",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "codex",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "opencode",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "pi",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "copilot",
+              "attributes": {
+                "code": true
+              }
+            }
+          ]
+        ],
+        "rows": [
+          [
+            "Background work observation",
+            "reported",
+            "reported",
+            "unobserved",
+            "none",
+            "unobserved"
+          ],
+          [
+            "Session resume",
+            "✅",
+            "✅",
+            "✅",
+            "✅",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Immutable session fork ("
+              },
+              {
+                "insert": "context.resume",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", cross-run "
+              },
+              {
+                "insert": "persist_session",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "✅",
+            "❌",
+            "✅",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "MCP servers ("
+              },
+              {
+                "insert": "mcp:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "✅",
+            "❌",
+            "❌",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Hooks ("
+              },
+              {
+                "insert": "hooks:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Skills ("
+              },
+              {
+                "insert": "skills:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "✅",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Plugins ("
+              },
+              {
+                "insert": "plugins:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "✅",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Inline sub-agents ("
+              },
+              {
+                "insert": "agents:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "✅¹",
+            "❌",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Tool restrictions ("
+              },
+              {
+                "insert": "allowed_tools",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "denied_tools",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "✅",
+            "✅",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Structured output ("
+              },
+              {
+                "insert": "output_format",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            [
+              {
+                "insert": "enforced",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "enforced",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "enforced",
+                "attributes": {
+                  "bold": true
+                }
+              }
+            ],
+            "best-effort",
+            "best-effort"
+          ],
+          [
+            [
+              {
+                "insert": "Env injection ("
+              },
+              {
+                "insert": "env:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "✅",
+            "❌",
+            "✅",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Spend limit ("
+              },
+              {
+                "insert": "maxBudgetUsd",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Cost reporting ("
+              },
+              {
+                "insert": "costUsd",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "✅",
+            "✅",
+            "❌"
+          ],
+          [
+            "Token reporting",
+            "✅",
+            "✅",
+            "✅",
+            "✅",
+            "✅"
+          ],
+          [
+            "Stop reason reporting",
+            "✅",
+            "❌",
+            "✅",
+            "✅",
+            "❌"
+          ],
+          [
+            "Turn count reporting",
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            "Resolved model reporting",
+            "✅",
+            "❌",
+            "✅",
+            "✅",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Effort control ("
+              },
+              {
+                "insert": "effort",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "✅",
+            "❌",
+            "✅",
+            "✅"
+          ],
+          [
+            [
+              {
+                "insert": "Fallback model ("
+              },
+              {
+                "insert": "fallbackModel",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Sandbox ("
+              },
+              {
+                "insert": "sandbox",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Setting sources ("
+              },
+              {
+                "insert": "settingSources",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            "In-process native tools",
+            "✅",
+            "✅",
+            "❌",
+            "✅",
+            "❌"
+          ],
+          [
+            "Container exec (folder-project container backend)",
+            "✅",
+            "❌",
+            "❌",
+            "❌",
+            "❌"
+          ],
+          [
+            [
+              {
+                "insert": "Strict-mode "
+              },
+              {
+                "insert": "required",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " coverage (every key in "
+              },
+              {
+                "insert": "properties",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " MUST appear in "
+              },
+              {
+                "insert": "required",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ],
+            "❌",
+            "✅",
+            "❌",
+            "❌",
+            "❌"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-70-provider-capabilities-caveats-15": {
+      "id": "b-70-provider-capabilities-caveats-15",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Caveats"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-opencode-inline-sub-16": {
+      "id": "b-70-provider-capabilities-opencode-inline-sub-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "¹ "
+        },
+        {
+          "insert": "opencode",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ": Inline sub-agents ("
+        },
+        {
+          "insert": "agents:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "): Config-file-based agent selection (named agents from "
+        },
+        {
+          "insert": "opencode.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") with per-call model/tools overrides, not inline sub-agent definitions."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-legend-17": {
+      "id": "b-70-provider-capabilities-legend-17",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Legend"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-the-capabilit-18": {
+      "id": "b-70-provider-capabilities-the-capabilit-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "✅ / ❌",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the capability is supported or unsupported for this provider."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-unknown-the-provide-19": {
+      "id": "b-70-provider-capabilities-unknown-the-provide-19",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Unknown",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the provider has not declared whether this reporting channel is supported."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-superscript-su-20": {
+      "id": "b-70-provider-capabilities-superscript-su-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "✅¹ (superscript)",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": supported, but with semantics that differ from the headline"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-meaning-of-the-axis-see-21": {
+      "id": "b-70-provider-capabilities-meaning-of-the-axis-see-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "meaning of the axis, see "
+        },
+        {
+          "insert": "Caveats",
+          "attributes": {
+            "link": "#caveats"
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-structured-output-22": {
+      "id": "b-70-provider-capabilities-structured-output-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Structured output",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "enforced",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the SDK/backend grammar-constrains decoding),"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-best-effort-the-model-23": {
+      "id": "b-70-provider-capabilities-best-effort-the-model-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "best-effort",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (the model is asked for the schema, then validated + re-asked up to 3×),\nor ❌ (unsupported). See "
+        },
+        {
+          "insert": "AI Assistants → Structured output guarantees",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "structured-output-guarantees",
+              "label": "AI Assistants → Structured output guarantees"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-in-process-native-tool-24": {
+      "id": "b-70-provider-capabilities-in-process-native-tool-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "In-process native tools",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": the provider can register Archon "
+        },
+        {
+          "insert": "NativeTool",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "s for a"
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-turn-it-gates-auto-inje-25": {
+      "id": "b-70-provider-capabilities-turn-it-gates-auto-inje-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "turn. It gates auto-injection of Archon's "
+        },
+        {
+          "insert": "invoke_workflow",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "register_project",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " tools\ninto every chat, and of "
+        },
+        {
+          "insert": "manage_run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " into project-scoped chat. Providers without it\nuse the existing CLI for run launch and management after project selection.\nThese launches are detached and headless, with CLI identity and no originating-chat\ndelivery. Registration requires an explicit user command; assistant prose has no effects."
+        }
+      ],
+      "children": []
+    },
+    "b-70-provider-capabilities-for-per-provider-field-l-26": {
+      "id": "b-70-provider-capabilities-for-per-provider-field-l-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For per-provider field-level notes (YAML syntax, caveats), see the\n"
+        },
+        {
+          "insert": "AI Assistants guide",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "label": "AI Assistants guide"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    }
+  }
+}

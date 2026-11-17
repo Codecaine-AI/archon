@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-30-telegram",
+  "title": "Telegram",
+  "root": "b-30-telegram-root-27",
+  "blocks": {
+    "b-30-telegram-root-27": {
+      "id": "b-30-telegram-root-27",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user",
+          "operator"
+        ],
+        "category": "adapters",
+        "description": "Connect Archon to Telegram using the Bot API for mobile and desktop access.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/telegram.md"
+      },
+      "children": [
+        "b-30-telegram-connect-archon-to-telegr-1",
+        "b-30-telegram-deprecated-2",
+        "b-30-telegram-new-identities-are-creat-3",
+        "b-30-telegram-prerequisites-4",
+        "b-30-telegram-archon-server-running-5",
+        "b-30-telegram-a-telegram-account-6",
+        "b-30-telegram-create-telegram-bot-7",
+        "b-30-telegram-message-botfather-htt-8",
+        "b-30-telegram-send-newbot-and-follo-9",
+        "b-30-telegram-copy-the-bot-token-form-10",
+        "b-30-telegram-set-environment-variable-11",
+        "b-30-telegram-ini-12",
+        "b-30-telegram-configure-user-whitelist-13",
+        "b-30-telegram-to-restrict-bot-access-t-14",
+        "b-30-telegram-message-userinfobot-h-15",
+        "b-30-telegram-add-to-environment-16",
+        "b-30-telegram-ini-17",
+        "b-30-telegram-when-set-only-listed-us-18",
+        "b-30-telegram-configure-streaming-mode-19",
+        "b-30-telegram-ini-20",
+        "b-30-telegram-for-streaming-mode-detai-21",
+        "b-30-telegram-project-selection-22",
+        "b-30-telegram-select-a-registered-proj-23",
+        "b-30-telegram-once-scoped-the-assista-24",
+        "b-30-telegram-further-reading-25",
+        "b-30-telegram-configuration-docs-30-26"
+      ]
+    },
+    "b-30-telegram-connect-archon-to-telegr-1": {
+      "id": "b-30-telegram-connect-archon-to-telegr-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Connect Archon to Telegram so you can interact with your AI coding assistant from any Telegram client."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-deprecated-2": {
+      "id": "b-30-telegram-deprecated-2",
+      "type": "callout",
+      "props": {
+        "title": "Deprecated",
+        "tone": "warning"
+      },
+      "text": [
+        {
+          "insert": "The Telegram adapter is deprecated: no Archon maintainer owns it. It stays bundled and keeps working, and no removal is scheduled, but fixes are not guaranteed. The server logs a deprecation notice when it starts the adapter. For a version you control, build and own it as a "
+        },
+        {
+          "insert": "chat plugin",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/80-publishing-plugins.md",
+              "section": "chat-plugins",
+              "label": "chat plugin"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-new-identities-are-creat-3": {
+      "id": "b-30-telegram-new-identities-are-creat-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "New identities are created as members. The operator can designate admins with "
+        },
+        {
+          "insert": "archon user role <id> admin",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "users-and-roles",
+              "label": "`archon user role <id> admin`"
+            }
+          }
+        },
+        {
+          "insert": "; only a run's starter or an admin can act on it. See "
+        },
+        {
+          "insert": "Who can act on a run",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/65-security.md",
+              "section": "who-can-act-on-a-run",
+              "label": "Who can act on a run"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-prerequisites-4": {
+      "id": "b-30-telegram-prerequisites-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Prerequisites"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-archon-server-running-5": {
+      "id": "b-30-telegram-archon-server-running-5",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Archon server running ("
+        },
+        {
+          "insert": "archon serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; see "
+        },
+        {
+          "insert": "Web UI",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/20-adapters/10-web.md",
+              "label": "Web UI"
+            }
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-a-telegram-account-6": {
+      "id": "b-30-telegram-a-telegram-account-6",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Telegram account"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-create-telegram-bot-7": {
+      "id": "b-30-telegram-create-telegram-bot-7",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Create Telegram Bot"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-message-botfather-htt-8": {
+      "id": "b-30-telegram-message-botfather-htt-8",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Message "
+        },
+        {
+          "insert": "@BotFather",
+          "attributes": {
+            "link": "https://t.me/BotFather"
+          }
+        },
+        {
+          "insert": " on Telegram"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-send-newbot-and-follo-9": {
+      "id": "b-30-telegram-send-newbot-and-follo-9",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Send "
+        },
+        {
+          "insert": "/newbot",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and follow the prompts"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-copy-the-bot-token-form-10": {
+      "id": "b-30-telegram-copy-the-bot-token-form-10",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Copy the bot token (format: "
+        },
+        {
+          "insert": "123456789:ABCdefGHIjklMNOpqrsTUVwxyz",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-set-environment-variable-11": {
+      "id": "b-30-telegram-set-environment-variable-11",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Set Environment Variable"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-ini-12": {
+      "id": "b-30-telegram-ini-12",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "TELEGRAM_BOT_TOKEN=123456789:ABCdefGHI..."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-configure-user-whitelist-13": {
+      "id": "b-30-telegram-configure-user-whitelist-13",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure User Whitelist (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-to-restrict-bot-access-t-14": {
+      "id": "b-30-telegram-to-restrict-bot-access-t-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "To restrict bot access to specific users:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-message-userinfobot-h-15": {
+      "id": "b-30-telegram-message-userinfobot-h-15",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Message "
+        },
+        {
+          "insert": "@userinfobot",
+          "attributes": {
+            "link": "https://t.me/userinfobot"
+          }
+        },
+        {
+          "insert": " on Telegram to get your user ID"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-add-to-environment-16": {
+      "id": "b-30-telegram-add-to-environment-16",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Add to environment:"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-ini-17": {
+      "id": "b-30-telegram-ini-17",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "TELEGRAM_ALLOWED_USER_IDS=123456789,987654321"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-when-set-only-listed-us-18": {
+      "id": "b-30-telegram-when-set-only-listed-us-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When set, only listed user IDs can interact with the bot. When empty/unset, the bot responds to all users."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-configure-streaming-mode-19": {
+      "id": "b-30-telegram-configure-streaming-mode-19",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configure Streaming Mode (Optional)"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-ini-20": {
+      "id": "b-30-telegram-ini-20",
+      "type": "code",
+      "props": {
+        "language": "ini"
+      },
+      "text": [
+        {
+          "insert": "TELEGRAM_STREAMING_MODE=stream  # stream (default) | batch"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-for-streaming-mode-detai-21": {
+      "id": "b-30-telegram-for-streaming-mode-detai-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For streaming mode details, see "
+        },
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-project-selection-22": {
+      "id": "b-30-telegram-project-selection-22",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project selection"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-select-a-registered-proj-23": {
+      "id": "b-30-telegram-select-a-registered-proj-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Select a registered project by submitting "
+        },
+        {
+          "insert": "/setproject <name>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in the conversation or thread where you want to work. To register a local directory first, submit "
+        },
+        {
+          "insert": "/register-project [--folder] <name> <path>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", then select it; registration alone does not bind the conversation. Projectless questions still work. Selection applies to that conversation, not every channel."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-once-scoped-the-assista-24": {
+      "id": "b-30-telegram-once-scoped-the-assista-24",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Once scoped, the assistant launches and manages runs through its native tools (Claude, Codex, Pi) or the existing CLI (Copilot/OpenCode). CLI launches are detached and headless, use CLI identity and return a run ID for inspection; they do not deliver progress or results to the originating chat. See "
+        },
+        {
+          "insert": "Deprecated providers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/40-ai-assistants.md",
+              "section": "deprecated-providers",
+              "label": "Deprecated providers"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-further-reading-25": {
+      "id": "b-30-telegram-further-reading-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Further Reading"
+        }
+      ],
+      "children": []
+    },
+    "b-30-telegram-configuration-docs-30-26": {
+      "id": "b-30-telegram-configuration-docs-30-26",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

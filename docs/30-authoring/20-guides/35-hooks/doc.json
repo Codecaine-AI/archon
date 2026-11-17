@@ -1,0 +1,2676 @@
+{
+  "schemaVersion": 1,
+  "id": "30-authoring-20-guides-35-hooks",
+  "title": "Per-Node Hooks",
+  "root": "b-35-hooks-root-80",
+  "blocks": {
+    "b-35-hooks-root-80": {
+      "id": "b-35-hooks-root-80",
+      "type": "paragraph",
+      "props": {
+        "area": "workflows",
+        "audience": [
+          "user"
+        ],
+        "category": "guides",
+        "description": "Attach Claude Agent SDK hooks to individual workflow nodes for tool control, context injection, and input modification.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/guides/hooks.md"
+      },
+      "children": [
+        "b-35-hooks-dag-workflow-nodes-suppo-1",
+        "b-35-hooks-claude-only-other-p-2",
+        "b-35-hooks-these-yaml-hooks-are-one-3",
+        "b-35-hooks-quick-start-4",
+        "b-35-hooks-yaml-5",
+        "b-35-hooks-how-it-works-6",
+        "b-35-hooks-each-hook-matcher-has-th-7",
+        "b-35-hooks-matcher-optional-re-8",
+        "b-35-hooks-response-required-t-9",
+        "b-35-hooks-timeout-optional-se-10",
+        "b-35-hooks-at-runtime-each-yaml-ho-11",
+        "b-35-hooks-code-12",
+        "b-35-hooks-no-custom-dsl-response-13",
+        "b-35-hooks-important-when-usin-14",
+        "b-35-hooks-choosing-where-hook-logi-15",
+        "table-0-4e6301c9",
+        "b-35-hooks-yaml-hooks-are-delibe-17",
+        "b-35-hooks-when-a-hook-has-to-compu-18",
+        "b-35-hooks-native-claude-hooks-and-19",
+        "b-35-hooks-the-node-s-settingsourc-20",
+        "table-1-4e6301c9",
+        "b-35-hooks-cwd-is-the-node-s-wo-22",
+        "b-35-hooks-a-project-hook-that-insp-23",
+        "b-35-hooks-json-24",
+        "b-35-hooks-a-workflow-that-runs-the-25",
+        "b-35-hooks-yaml-26",
+        "b-35-hooks-omitting-settingsources-27",
+        "b-35-hooks-supported-hook-events-28",
+        "table-2-4e6301c9",
+        "b-35-hooks-tool-names-bash-rea-30",
+        "b-35-hooks-response-format-sdk-sy-31",
+        "b-35-hooks-the-response-object-su-32",
+        "table-3-4e6301c9",
+        "b-35-hooks-pretooluse-hookspecific-34",
+        "b-35-hooks-yaml-35",
+        "b-35-hooks-posttooluse-hookspecifi-36",
+        "b-35-hooks-yaml-37",
+        "b-35-hooks-posttoolusefailure-hook-38",
+        "b-35-hooks-yaml-39",
+        "b-35-hooks-elicitation-hookspecifi-40",
+        "b-35-hooks-yaml-41",
+        "b-35-hooks-elicitationresult-hooks-42",
+        "b-35-hooks-yaml-43",
+        "b-35-hooks-examples-44",
+        "b-35-hooks-deny-a-tool-entirely-45",
+        "b-35-hooks-yaml-46",
+        "b-35-hooks-deny-tools-with-a-reason-47",
+        "b-35-hooks-yaml-48",
+        "b-35-hooks-inject-context-before-to-49",
+        "b-35-hooks-note-this-does-not-bloc-50",
+        "b-35-hooks-yaml-51",
+        "b-35-hooks-redirect-file-writes-mo-52",
+        "b-35-hooks-yaml-53",
+        "b-35-hooks-inject-steering-instruct-54",
+        "b-35-hooks-yaml-55",
+        "b-35-hooks-inject-context-after-rea-56",
+        "b-35-hooks-yaml-57",
+        "b-35-hooks-emergency-stop-on-shell-58",
+        "b-35-hooks-yaml-59",
+        "b-35-hooks-multiple-hooks-on-one-no-60",
+        "b-35-hooks-yaml-61",
+        "b-35-hooks-full-workflow-example-62",
+        "b-35-hooks-yaml-63",
+        "b-35-hooks-hooks-vs-allowed-tools-d-64",
+        "table-4-4e6301c9",
+        "b-35-hooks-use-allowed-tools-den-66",
+        "b-35-hooks-hook-events-in-the-run-r-67",
+        "b-35-hooks-when-a-native-claude-hoo-68",
+        "b-35-hooks-yaml-hooks-record-no-69",
+        "b-35-hooks-archon-does-not-record-70",
+        "b-35-hooks-limitations-71",
+        "b-35-hooks-static-responses-only-72",
+        "b-35-hooks-for-input-aware-hook-log-73",
+        "b-35-hooks-claude-only-other-p-74",
+        "b-35-hooks-sdk-reference-75",
+        "b-35-hooks-refer-to-the-anthropic-76",
+        "b-35-hooks-related-77",
+        "b-35-hooks-per-node-mcp-servers-78",
+        "b-35-hooks-per-node-skills-docs-79"
+      ]
+    },
+    "b-35-hooks-dag-workflow-nodes-suppo-1": {
+      "id": "b-35-hooks-dag-workflow-nodes-suppo-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "DAG workflow nodes support a "
+        },
+        {
+          "insert": "hooks",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field that attaches Claude Agent SDK hooks\nto individual nodes. Hooks fire during the node's AI execution and can control\ntool behavior, inject context, modify inputs, and more."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-claude-only-other-p-2": {
+      "id": "b-35-hooks-claude-only-other-p-2",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Claude only",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": other providers warn and ignore "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (see the\n"
+        },
+        {
+          "insert": "capability matrix",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/70-provider-capabilities.md",
+              "label": "capability matrix"
+            }
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-these-yaml-hooks-are-one-3": {
+      "id": "b-35-hooks-these-yaml-hooks-are-one-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "These YAML hooks are one of three places hook-like logic can live. See\n"
+        },
+        {
+          "insert": "Choosing where hook logic lives",
+          "attributes": {
+            "link": "#choosing-where-hook-logic-lives"
+          }
+        },
+        {
+          "insert": " before\nreaching for them."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-quick-start-4": {
+      "id": "b-35-hooks-quick-start-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick Start"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-5": {
+      "id": "b-35-hooks-yaml-5",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: safe-migration\ndescription: Generate SQL with guardrails\nnodes:\n  - id: generate\n    prompt: \"Generate a database migration for $ARGUMENTS\"\n    hooks:\n      PreToolUse:\n        - matcher: \"Bash\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PreToolUse\n              permissionDecision: deny\n              permissionDecisionReason: \"No shell access during SQL generation\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-how-it-works-6": {
+      "id": "b-35-hooks-how-it-works-6",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How It Works"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-each-hook-matcher-has-th-7": {
+      "id": "b-35-hooks-each-hook-matcher-has-th-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each hook matcher has three fields:"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-matcher-optional-re-8": {
+      "id": "b-35-hooks-matcher-optional-re-8",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "matcher",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional): Regex pattern to filter by tool name. Omit to match all tools."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-response-required-t-9": {
+      "id": "b-35-hooks-response-required-t-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (required): The SDK "
+        },
+        {
+          "insert": "SyncHookJSONOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " returned when the hook fires."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-timeout-optional-se-10": {
+      "id": "b-35-hooks-timeout-optional-se-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "timeout",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (optional): Seconds before the hook times out (default: 60)."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-at-runtime-each-yaml-ho-11": {
+      "id": "b-35-hooks-at-runtime-each-yaml-ho-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "At runtime, each YAML hook is wrapped in a trivial callback:"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-code-12": {
+      "id": "b-35-hooks-code-12",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "async () => response"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-no-custom-dsl-response-13": {
+      "id": "b-35-hooks-no-custom-dsl-response-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "No custom DSL: "
+        },
+        {
+          "insert": "response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " IS the SDK type, passed through unchanged."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-important-when-usin-14": {
+      "id": "b-35-hooks-important-when-usin-14",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Important",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": When using "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", you must include a "
+        },
+        {
+          "insert": "hookEventName",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nfield that matches the event key (e.g., "
+        },
+        {
+          "insert": "hookEventName: PreToolUse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inside a\n"
+        },
+        {
+          "insert": "PreToolUse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " hook). This is an SDK requirement: it uses this field to determine\nwhich event-specific fields to process."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-choosing-where-hook-logi-15": {
+      "id": "b-35-hooks-choosing-where-hook-logi-15",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Choosing where hook logic lives"
+        }
+      ],
+      "children": []
+    },
+    "table-0-4e6301c9": {
+      "id": "table-0-4e6301c9",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "You need",
+          "Use",
+          "Owned by"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "A fixed response the workflow author can read in the YAML: deny "
+              },
+              {
+                "insert": "Bash",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", add a reminder after every "
+              },
+              {
+                "insert": "Read",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "YAML "
+              },
+              {
+                "insert": "hooks:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " on the node"
+              }
+            ],
+            "The workflow"
+          ],
+          [
+            [
+              {
+                "insert": "Logic that inspects the hook input at runtime: allow "
+              },
+              {
+                "insert": "git status",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " but block "
+              },
+              {
+                "insert": "git push",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", lint the file a "
+              },
+              {
+                "insert": "Write",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " just touched"
+              }
+            ],
+            [
+              {
+                "insert": "A native Claude hook in "
+              },
+              {
+                "insert": ".claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "~/.claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Claude configuration"
+          ],
+          [
+            "A deterministic step in the workflow: run tests, parse JSON, decide whether a later node runs",
+            [
+              {
+                "insert": "A "
+              },
+              {
+                "insert": "bash:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " or "
+              },
+              {
+                "insert": "script:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " node, gated with "
+              },
+              {
+                "insert": "when:",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " on its output"
+              }
+            ],
+            "The workflow"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-hooks-yaml-hooks-are-delibe-17": {
+      "id": "b-35-hooks-yaml-hooks-are-delibe-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "YAML "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " are deliberately static. Each "
+        },
+        {
+          "insert": "response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is returned unchanged\nevery time its matcher fires, so the engine and anyone reading the workflow can\nsee exactly what the node will do. Workflow YAML has no executable hook types\n("
+        },
+        {
+          "insert": "command:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "http:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "prompt:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "agent:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") by design: computation\nbelongs in a node body, not in the YAML. The\n"
+        },
+        {
+          "insert": "workflow language constitution",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/blob/dev/.archon/workflow-language-constitution.md"
+          }
+        },
+        {
+          "insert": "\nexplains that boundary."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-when-a-hook-has-to-compu-18": {
+      "id": "b-35-hooks-when-a-hook-has-to-compu-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When a hook has to compute something from its input, write it as a native Claude\nhook. Claude Code runs it inside the node's session, and Archon decides which\nsettings files that session reads."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-native-claude-hooks-and-19": {
+      "id": "b-35-hooks-native-claude-hooks-and-19",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Native Claude hooks and "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-the-node-s-settingsourc-20": {
+      "id": "b-35-hooks-the-node-s-settingsourc-20",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The node's "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " controls which Claude settings files load, and so\nwhich native hooks run:"
+        }
+      ],
+      "children": []
+    },
+    "table-1-4e6301c9": {
+      "id": "table-1-4e6301c9",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          [
+            {
+              "insert": "settingSources",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          "Settings file loaded",
+          "Native hooks that run"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "['project', 'user']",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " (default)"
+              }
+            ],
+            [
+              {
+                "insert": "<cwd>/.claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " and "
+              },
+              {
+                "insert": "~/.claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Project and user hooks"
+          ],
+          [
+            [
+              {
+                "insert": "['project']",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "<cwd>/.claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Project hooks only"
+          ],
+          [
+            [
+              {
+                "insert": "['user']",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "~/.claude/settings.json",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "User hooks only"
+          ],
+          [
+            [
+              {
+                "insert": "[]",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Neither",
+            "None"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-hooks-cwd-is-the-node-s-wo-22": {
+      "id": "b-35-hooks-cwd-is-the-node-s-wo-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "<cwd>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is the node's working directory, the run's worktree when it has one, so\nproject hooks come from the checked-out branch. Archon never loads\n"
+        },
+        {
+          "insert": ".claude/settings.local.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " also controls CLAUDE.md, skills,\ncommands, and agents discovery; see\n"
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true,
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "section": "claude-sdk-advanced-options",
+              "label": "`settingSources`"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-a-project-hook-that-insp-23": {
+      "id": "b-35-hooks-a-project-hook-that-insp-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A project hook that inspects every "
+        },
+        {
+          "insert": "Bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " command, in "
+        },
+        {
+          "insert": ".claude/settings.json",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ":"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-json-24": {
+      "id": "b-35-hooks-json-24",
+      "type": "code",
+      "props": {
+        "language": "json"
+      },
+      "text": [
+        {
+          "insert": "{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/.claude/hooks/check-bash.sh\" }\n        ]\n      }\n    ]\n  }\n}"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-a-workflow-that-runs-the-25": {
+      "id": "b-35-hooks-a-workflow-that-runs-the-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow that runs the project hook in one node, keeps the operator's user\nhooks out, and runs another node with no native hooks at all:"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-26": {
+      "id": "b-35-hooks-yaml-26",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: guarded-fix\ndescription: Fix a bug with the project's Bash guard active\nprovider: claude\nnodes:\n  - id: fix\n    prompt: \"Fix the bug described in $ARGUMENTS\"\n    settingSources: ['project']   # project hooks run; ~/.claude hooks do not\n\n  - id: test\n    bash: \"bun run test\"\n    depends_on: [fix]\n\n  - id: summarize\n    prompt: \"Summarize the fix and the test result: $test.output\"\n    depends_on: [test]\n    settingSources: []            # no settings files, so no native hooks\n    hooks:                        # YAML hooks still apply\n      PreToolUse:\n        - matcher: \"Write|Edit\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PreToolUse\n              permissionDecision: deny\n              permissionDecisionReason: \"Summary node is read-only\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-omitting-settingsources-27": {
+      "id": "b-35-hooks-omitting-settingsources-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Omitting "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " inherits "
+        },
+        {
+          "insert": "assistants.claude.settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " from\n"
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and then the "
+        },
+        {
+          "insert": "['project', 'user']",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " default. YAML "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nrun whatever "
+        },
+        {
+          "insert": "settingSources",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " says, alongside any native hooks that load. See\n"
+        },
+        {
+          "insert": "Claude Code hooks",
+          "attributes": {
+            "link": "https://docs.anthropic.com/en/docs/claude-code/hooks"
+          }
+        },
+        {
+          "insert": " for the\nnative hook format."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-supported-hook-events-28": {
+      "id": "b-35-hooks-supported-hook-events-28",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Supported Hook Events"
+        }
+      ],
+      "children": []
+    },
+    "table-2-4e6301c9": {
+      "id": "table-2-4e6301c9",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Event",
+          "Fires When",
+          "Matcher Filters On"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "PreToolUse",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Before a tool executes",
+            [
+              {
+                "insert": "Tool name (e.g. "
+              },
+              {
+                "insert": "Bash",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "Write",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "Read",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "PostToolUse",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "After a tool succeeds",
+            "Tool name"
+          ],
+          [
+            [
+              {
+                "insert": "PostToolUseFailure",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "After a tool fails",
+            "Tool name"
+          ],
+          [
+            [
+              {
+                "insert": "Notification",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "System notification",
+            "Notification type"
+          ],
+          [
+            [
+              {
+                "insert": "Stop",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Agent stops",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "SubagentStart",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Subagent spawned",
+            "Agent type"
+          ],
+          [
+            [
+              {
+                "insert": "SubagentStop",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Subagent finishes",
+            "Agent type"
+          ],
+          [
+            [
+              {
+                "insert": "PreCompact",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Before context compaction",
+            [
+              {
+                "insert": "Trigger ("
+              },
+              {
+                "insert": "manual",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "auto",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "SessionStart",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Session begins",
+            [
+              {
+                "insert": "Source ("
+              },
+              {
+                "insert": "startup",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "resume",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "clear",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "compact",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "SessionEnd",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Session ends",
+            "Exit reason"
+          ],
+          [
+            [
+              {
+                "insert": "UserPromptSubmit",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "User prompt submitted",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "PermissionRequest",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Permission prompt would appear",
+            "Tool name"
+          ],
+          [
+            [
+              {
+                "insert": "Setup",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "SDK initialization",
+            [
+              {
+                "insert": "Trigger ("
+              },
+              {
+                "insert": "init",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "maintenance",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "TeammateIdle",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Agent teammate goes idle",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "TaskCompleted",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Background task finishes",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "Elicitation",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "MCP server requests user input",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "ElicitationResult",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Elicitation response received",
+            "N/A"
+          ],
+          [
+            [
+              {
+                "insert": "ConfigChange",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Settings/config file changed",
+            [
+              {
+                "insert": "Source ("
+              },
+              {
+                "insert": "user_settings",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "project_settings",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/etc.)"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "WorktreeCreate",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Git worktree created",
+            "Worktree name"
+          ],
+          [
+            [
+              {
+                "insert": "WorktreeRemove",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Git worktree removed",
+            "Worktree path"
+          ],
+          [
+            [
+              {
+                "insert": "InstructionsLoaded",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "CLAUDE.md/instructions loaded",
+            [
+              {
+                "insert": "Memory type ("
+              },
+              {
+                "insert": "User",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "Project",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "Local",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": "/"
+              },
+              {
+                "insert": "Managed",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-hooks-tool-names-bash-rea-30": {
+      "id": "b-35-hooks-tool-names-bash-rea-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Tool names: "
+        },
+        {
+          "insert": "Bash",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "Read",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "Write",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "Edit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "Glob",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "Grep",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "WebFetch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\n"
+        },
+        {
+          "insert": "Agent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", plus MCP tools as "
+        },
+        {
+          "insert": "mcp__<server>__<action>",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-response-format-sdk-sy-31": {
+      "id": "b-35-hooks-response-format-sdk-sy-31",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Response Format (SDK "
+        },
+        {
+          "insert": "SyncHookJSONOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-the-response-object-su-32": {
+      "id": "b-35-hooks-the-response-object-su-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The "
+        },
+        {
+          "insert": "response",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " object supports these fields:"
+        }
+      ],
+      "children": []
+    },
+    "table-3-4e6301c9": {
+      "id": "table-3-4e6301c9",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Field",
+          "Type",
+          "Effect"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "hookSpecificOutput",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "object",
+            "Event-specific response (see below)"
+          ],
+          [
+            [
+              {
+                "insert": "systemMessage",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Inject a message visible to the model"
+          ],
+          [
+            [
+              {
+                "insert": "continue",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "boolean",
+            [
+              {
+                "insert": "false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " stops the agent"
+              }
+            ]
+          ],
+          [
+            [
+              {
+                "insert": "decision",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "'approve'",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " / "
+              },
+              {
+                "insert": "'block'",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Top-level approve/block"
+          ],
+          [
+            [
+              {
+                "insert": "stopReason",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "string",
+            "Reason when stopping"
+          ],
+          [
+            [
+              {
+                "insert": "suppressOutput",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "boolean",
+            "Suppress output emission"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-hooks-pretooluse-hookspecific-34": {
+      "id": "b-35-hooks-pretooluse-hookspecific-34",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "PreToolUse "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-35": {
+      "id": "b-35-hooks-yaml-35",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hookSpecificOutput:\n  hookEventName: PreToolUse\n  permissionDecision: deny | allow | ask  # Control whether tool runs\n  permissionDecisionReason: \"...\"         # Why (shown in logs)\n  updatedInput:                           # Modify tool arguments\n    file_path: \"/sandbox/output.ts\"\n  additionalContext: \"...\"                # Text injected into model context"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-posttooluse-hookspecifi-36": {
+      "id": "b-35-hooks-posttooluse-hookspecifi-36",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "PostToolUse "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-37": {
+      "id": "b-35-hooks-yaml-37",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hookSpecificOutput:\n  hookEventName: PostToolUse\n  additionalContext: \"...\"         # Text injected after tool result\n  updatedMCPToolOutput: ...        # Override what model sees from tool"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-posttoolusefailure-hook-38": {
+      "id": "b-35-hooks-posttoolusefailure-hook-38",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "PostToolUseFailure "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-39": {
+      "id": "b-35-hooks-yaml-39",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hookSpecificOutput:\n  hookEventName: PostToolUseFailure\n  additionalContext: \"...\"         # Context after tool failure"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-elicitation-hookspecifi-40": {
+      "id": "b-35-hooks-elicitation-hookspecifi-40",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Elicitation "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-41": {
+      "id": "b-35-hooks-yaml-41",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hookSpecificOutput:\n  hookEventName: Elicitation\n  action: accept | decline | cancel  # Respond to MCP elicitation\n  content: { ... }                   # Form field values"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-elicitationresult-hooks-42": {
+      "id": "b-35-hooks-elicitationresult-hooks-42",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "ElicitationResult "
+        },
+        {
+          "insert": "hookSpecificOutput",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-43": {
+      "id": "b-35-hooks-yaml-43",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hookSpecificOutput:\n  hookEventName: ElicitationResult\n  action: accept | decline | cancel  # Override elicitation result\n  content: { ... }                   # Modified response values"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-examples-44": {
+      "id": "b-35-hooks-examples-44",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Examples"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-deny-a-tool-entirely-45": {
+      "id": "b-35-hooks-deny-a-tool-entirely-45",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Deny a tool entirely"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-46": {
+      "id": "b-35-hooks-yaml-46",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Bash\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          permissionDecision: deny\n          permissionDecisionReason: \"Shell access not allowed in this node\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-deny-tools-with-a-reason-47": {
+      "id": "b-35-hooks-deny-tools-with-a-reason-47",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Deny tools with a reason message"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-48": {
+      "id": "b-35-hooks-yaml-48",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Write|Edit\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          permissionDecision: deny\n          permissionDecisionReason: \"Only read operations are allowed — do not modify files\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-inject-context-before-to-49": {
+      "id": "b-35-hooks-inject-context-before-to-49",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inject context before tool use (without blocking)"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-note-this-does-not-bloc-50": {
+      "id": "b-35-hooks-note-this-does-not-bloc-50",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Note: this does NOT block the tool (it adds guidance the model sees before the tool runs)."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-51": {
+      "id": "b-35-hooks-yaml-51",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Write|Edit\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          additionalContext: \"Only write to files in the src/ directory\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-redirect-file-writes-mo-52": {
+      "id": "b-35-hooks-redirect-file-writes-mo-52",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Redirect file writes (modify tool input)"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-53": {
+      "id": "b-35-hooks-yaml-53",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Write\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          permissionDecision: allow\n          updatedInput:\n            file_path: \"/sandbox/output.ts\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-inject-steering-instruct-54": {
+      "id": "b-35-hooks-inject-steering-instruct-54",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inject steering instructions after every tool call"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-55": {
+      "id": "b-35-hooks-yaml-55",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PostToolUse:\n    - response:\n        systemMessage: \"Check: is this output relevant to the task? If not, stop and explain why.\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-inject-context-after-rea-56": {
+      "id": "b-35-hooks-inject-context-after-rea-56",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Inject context after reading files"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-57": {
+      "id": "b-35-hooks-yaml-57",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PostToolUse:\n    - matcher: \"Read\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PostToolUse\n          additionalContext: \"You just read a file. Do NOT modify it — analysis only.\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-emergency-stop-on-shell-58": {
+      "id": "b-35-hooks-emergency-stop-on-shell-58",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Emergency stop on shell access"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-59": {
+      "id": "b-35-hooks-yaml-59",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Bash\"\n      response:\n        continue: false\n        stopReason: \"Emergency halt — shell access attempted\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-multiple-hooks-on-one-no-60": {
+      "id": "b-35-hooks-multiple-hooks-on-one-no-60",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Multiple hooks on one node"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-61": {
+      "id": "b-35-hooks-yaml-61",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "hooks:\n  PreToolUse:\n    - matcher: \"Bash\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          permissionDecision: deny\n          permissionDecisionReason: \"No shell\"\n    - matcher: \"Write|Edit\"\n      response:\n        hookSpecificOutput:\n          hookEventName: PreToolUse\n          additionalContext: \"Only write to files in src/\"\n  PostToolUse:\n    - response:\n        systemMessage: \"Verify output before continuing\""
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-full-workflow-example-62": {
+      "id": "b-35-hooks-full-workflow-example-62",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "Full workflow example"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-63": {
+      "id": "b-35-hooks-yaml-63",
+      "type": "code",
+      "props": {
+        "language": "yaml"
+      },
+      "text": [
+        {
+          "insert": "name: safe-code-review\ndescription: Review code with guardrails\nnodes:\n  - id: fetch-diff\n    bash: \"git diff main...HEAD\"\n\n  - id: review\n    prompt: \"Review this diff for bugs and security issues: $fetch-diff.output\"\n    depends_on: [fetch-diff]\n    hooks:\n      PreToolUse:\n        - matcher: \"Bash\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PreToolUse\n              permissionDecision: deny\n              permissionDecisionReason: \"Code review should not execute commands\"\n        - matcher: \"Write|Edit\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PreToolUse\n              permissionDecision: deny\n              permissionDecisionReason: \"Code review is read-only\"\n      PostToolUse:\n        - matcher: \"Read\"\n          response:\n            hookSpecificOutput:\n              hookEventName: PostToolUse\n              additionalContext: \"Focus on security issues in this file\"\n\n  - id: summarize\n    prompt: \"Summarize the review findings from $review.output\"\n    depends_on: [review]\n    allowed_tools: []"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-hooks-vs-allowed-tools-d-64": {
+      "id": "b-35-hooks-hooks-vs-allowed-tools-d-64",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Hooks vs allowed"
+        },
+        {
+          "insert": "tools/denied",
+          "attributes": {
+            "italic": true
+          }
+        },
+        {
+          "insert": "tools"
+        }
+      ],
+      "children": []
+    },
+    "table-4-4e6301c9": {
+      "id": "table-4-4e6301c9",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Feature",
+          [
+            {
+              "insert": "allowed_tools",
+              "attributes": {
+                "code": true
+              }
+            },
+            {
+              "insert": "/"
+            },
+            {
+              "insert": "denied_tools",
+              "attributes": {
+                "code": true
+              }
+            }
+          ],
+          [
+            {
+              "insert": "hooks",
+              "attributes": {
+                "code": true
+              }
+            }
+          ]
+        ],
+        "rows": [
+          [
+            "Block a tool entirely",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Inject context",
+            "No",
+            [
+              {
+                "insert": "Yes ("
+              },
+              {
+                "insert": "additionalContext",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "systemMessage",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "Modify tool input",
+            "No",
+            [
+              {
+                "insert": "Yes ("
+              },
+              {
+                "insert": "updatedInput",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "Override tool output",
+            "No",
+            [
+              {
+                "insert": "Yes ("
+              },
+              {
+                "insert": "updatedMCPToolOutput",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "Stop the agent",
+            "No",
+            [
+              {
+                "insert": "Yes ("
+              },
+              {
+                "insert": "continue: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ],
+          [
+            "React after tool use",
+            "No",
+            [
+              {
+                "insert": "Yes ("
+              },
+              {
+                "insert": "PostToolUse",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ")"
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-35-hooks-use-allowed-tools-den-66": {
+      "id": "b-35-hooks-use-allowed-tools-den-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Use "
+        },
+        {
+          "insert": "allowed_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "/"
+        },
+        {
+          "insert": "denied_tools",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for simple include/exclude. Use "
+        },
+        {
+          "insert": "hooks",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when you\nneed context injection, input modification, or post-tool-use reactions."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-hook-events-in-the-run-r-67": {
+      "id": "b-35-hooks-hook-events-in-the-run-r-67",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Hook events in the run record"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-when-a-native-claude-hoo-68": {
+      "id": "b-35-hooks-when-a-native-claude-hoo-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When a native Claude hook runs (a "
+        },
+        {
+          "insert": "command",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "http",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or MCP-tool hook from a\nsettings file), Archon records a "
+        },
+        {
+          "insert": "hook",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " provider event when it starts and another\nwhen it ends. The end event carries the hook's name, the event that fired it\n(such as "
+        },
+        {
+          "insert": "PreToolUse",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), a status of "
+        },
+        {
+          "insert": "succeeded",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or "
+        },
+        {
+          "insert": "cancelled",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the\nexit code when there is one. Like other provider events, they are saved with the\nnode, streamed live, served by "
+        },
+        {
+          "insert": "GET /api/workflows/runs/{runId}/provider-events",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ",\nand written by "
+        },
+        {
+          "insert": "archon workflow logs",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", whose "
+        },
+        {
+          "insert": "--format text",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " view prints only\nfailed and cancelled hooks. The console's run stream shows each hook event beside\ntool calls, with its name, triggering event, status, and exit code when present.\nHook events remain visible when tool calls or system messages are hidden, and\nfollow the selected node filter."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-yaml-hooks-record-no-69": {
+      "id": "b-35-hooks-yaml-hooks-record-no-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "YAML "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " record no "
+        },
+        {
+          "insert": "hook",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " events. They are in-process SDK callbacks, and the\nClaude Agent SDK emits lifecycle events only for hooks it executes itself."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-archon-does-not-record-70": {
+      "id": "b-35-hooks-archon-does-not-record-70",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Archon does not record "
+        },
+        {
+          "insert": "hook_progress",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " output, which Claude emits only for async\nnative hooks."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-limitations-71": {
+      "id": "b-35-hooks-limitations-71",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Limitations"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-static-responses-only-72": {
+      "id": "b-35-hooks-static-responses-only-72",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Static responses only in YAML",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": hooks return the same response every time."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-for-input-aware-hook-log-73": {
+      "id": "b-35-hooks-for-input-aware-hook-log-73",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For input-aware hook logic, use a "
+        },
+        {
+          "insert": "native Claude hook",
+          "attributes": {
+            "link": "#native-claude-hooks-and-settingsources"
+          }
+        },
+        {
+          "insert": ".\nFor workflow logic, use a "
+        },
+        {
+          "insert": "bash:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "script:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " node and gate downstream nodes with "
+        },
+        {
+          "insert": "when:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-claude-only-other-p-74": {
+      "id": "b-35-hooks-claude-only-other-p-74",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Claude only",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": other providers warn and ignore "
+        },
+        {
+          "insert": "hooks:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-sdk-reference-75": {
+      "id": "b-35-hooks-sdk-reference-75",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "SDK Reference"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-refer-to-the-anthropic-76": {
+      "id": "b-35-hooks-refer-to-the-anthropic-76",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Refer to the "
+        },
+        {
+          "insert": "Anthropic Claude Agent SDK documentation",
+          "attributes": {
+            "link": "https://docs.anthropic.com/en/docs/claude-code/sdk"
+          }
+        },
+        {
+          "insert": " for the authoritative "
+        },
+        {
+          "insert": "SyncHookJSONOutput",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " type, hook event reference, and matcher patterns."
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-related-77": {
+      "id": "b-35-hooks-related-77",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Related"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-per-node-mcp-servers-78": {
+      "id": "b-35-hooks-per-node-mcp-servers-78",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node MCP Servers",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/40-mcp-servers.md",
+              "label": "Per-Node MCP Servers"
+            }
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "mcp:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for external tool access"
+        }
+      ],
+      "children": []
+    },
+    "b-35-hooks-per-node-skills-docs-79": {
+      "id": "b-35-hooks-per-node-skills-docs-79",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Per-Node Skills",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/45-skills.md",
+              "label": "Per-Node Skills"
+            }
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "skills:",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " field for domain knowledge injection"
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 1,
+  "id": "10-system-design-20-adapters-10-web",
+  "title": "Web UI",
+  "root": "b-10-web-root-42",
+  "blocks": {
+    "b-10-web-root-42": {
+      "id": "b-10-web-root-42",
+      "type": "paragraph",
+      "props": {
+        "area": "adapters",
+        "audience": [
+          "user"
+        ],
+        "category": "adapters",
+        "description": "Built-in console for operating Archon from a browser.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/adapters/web.md"
+      },
+      "children": [
+        "b-10-web-the-web-ui-is-archon-s-b-1",
+        "b-10-web-start-the-console-2",
+        "b-10-web-for-local-development-s-3",
+        "b-10-web-bash-4",
+        "b-10-web-the-console-is-available-5",
+        "b-10-web-you-can-also-run-them-se-6",
+        "b-10-web-bash-7",
+        "b-10-web-for-a-production-build-8",
+        "b-10-web-bash-9",
+        "b-10-web-the-backend-binds-to-0-10",
+        "b-10-web-bash-11",
+        "b-10-web-authentication-12",
+        "b-10-web-authentication-is-option-13",
+        "b-10-web-console-navigation-14",
+        "b-10-web-the-project-rail-is-the-15",
+        "b-10-web-runs-at-console-s-16",
+        "b-10-web-project-opens-its-scoped-17",
+        "b-10-web-chat-at-console-p-18",
+        "b-10-web-that-project-19",
+        "b-10-web-metrics-at-console-20",
+        "b-10-web-recorded-across-projects-21",
+        "b-10-web-settings-at-consol-22",
+        "b-10-web-aliases-provider-creden-23",
+        "b-10-web-workflow-builder-at-24",
+        "b-10-web-authoring-surface-selec-25",
+        "b-10-web-register-a-project-with-26",
+        "b-10-web-workflows-and-runs-27",
+        "b-10-web-choose-a-workflow-from-a-28",
+        "b-10-web-a-run-can-be-opened-from-29",
+        "b-10-web-turn-on-alerts-in-se-30",
+        "b-10-web-old-settings-workflow-l-31",
+        "b-10-web-project-chat-32",
+        "b-10-web-project-chat-streams-ass-33",
+        "b-10-web-attachments-are-limited-34",
+        "b-10-web-experimental-workflow-bu-35",
+        "b-10-web-the-builder-is-retained-36",
+        "b-10-web-further-reading-37",
+        "b-10-web-quickstart-docs-30-au-38",
+        "b-10-web-configuration-docs-30-39",
+        "b-10-web-workflow-language-doc-40",
+        "b-10-web-api-reference-docs-10-41"
+      ]
+    },
+    "b-10-web-the-web-ui-is-archon-s-b-1": {
+      "id": "b-10-web-the-web-ui-is-archon-s-b-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The Web UI is Archon's built-in management console. It uses Archon's public API\nand does not require a separate hosted service."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-start-the-console-2": {
+      "id": "b-10-web-start-the-console-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Start the console"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-for-local-development-s-3": {
+      "id": "b-10-web-for-local-development-s-3",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For local development, start the API server and Vite frontend together:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-bash-4": {
+      "id": "b-10-web-bash-4",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run dev"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-the-console-is-available-5": {
+      "id": "b-10-web-the-console-is-available-5",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The console is available at "
+        },
+        {
+          "insert": "http://localhost:5173",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; the API server listens on\n"
+        },
+        {
+          "insert": "http://localhost:3090",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-you-can-also-run-them-se-6": {
+      "id": "b-10-web-you-can-also-run-them-se-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "You can also run them separately:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-bash-7": {
+      "id": "b-10-web-bash-7",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run dev:server\nbun run dev:web"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-for-a-production-build-8": {
+      "id": "b-10-web-for-a-production-build-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "For a production build, the API server serves the compiled console on port 3090:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-bash-9": {
+      "id": "b-10-web-bash-9",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run build\nbun run start"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-the-backend-binds-to-0-10": {
+      "id": "b-10-web-the-backend-binds-to-0-10",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The backend binds to "
+        },
+        {
+          "insert": "0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " by default. The Vite development server binds to\nlocalhost; pass "
+        },
+        {
+          "insert": "--host 0.0.0.0",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " only when you intentionally want to expose it:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-bash-11": {
+      "id": "b-10-web-bash-11",
+      "type": "code",
+      "props": {
+        "language": "bash"
+      },
+      "text": [
+        {
+          "insert": "bun run dev:web -- --host 0.0.0.0"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-authentication-12": {
+      "id": "b-10-web-authentication-12",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Authentication"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-authentication-is-option-13": {
+      "id": "b-10-web-authentication-is-option-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Authentication is optional. A solo installation with Web authentication disabled\nopens the console directly. When authentication is enabled, the same console\nrequires a session and provides sign-in, signup when allowed by server policy,\nand sign-out."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-console-navigation-14": {
+      "id": "b-10-web-console-navigation-14",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Console navigation"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-the-project-rail-is-the-15": {
+      "id": "b-10-web-the-project-rail-is-the-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The project rail is the main navigation surface:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-runs-at-console-s-16": {
+      "id": "b-10-web-runs-at-console-s-16",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Runs",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "/console",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows runs across projects. Selecting a"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-project-opens-its-scoped-17": {
+      "id": "b-10-web-project-opens-its-scoped-17",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "project opens its scoped runs at "
+        },
+        {
+          "insert": "/console/p/:projectId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-chat-at-console-p-18": {
+      "id": "b-10-web-chat-at-console-p-18",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Chat",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "/console/p/:projectId/chat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " opens the operator conversation for"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-that-project-19": {
+      "id": "b-10-web-that-project-19",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "that project."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-metrics-at-console-20": {
+      "id": "b-10-web-metrics-at-console-20",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Metrics",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "/console/metrics",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " shows the "
+        },
+        {
+          "insert": "metrics",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/20-guides/75-metrics.md",
+              "label": "metrics"
+            }
+          }
+        },
+        {
+          "insert": " workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-recorded-across-projects-21": {
+      "id": "b-10-web-recorded-across-projects-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "recorded across projects; a project's Metrics tab at\n"
+        },
+        {
+          "insert": "/console/p/:projectId/metrics",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " scopes them to that project."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-settings-at-consol-22": {
+      "id": "b-10-web-settings-at-consol-22",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Settings",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "/console/settings",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " manages assistant defaults, model tiers,"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-aliases-provider-creden-23": {
+      "id": "b-10-web-aliases-provider-creden-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "aliases, provider credentials, system status, GitHub identity, and alerts."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-workflow-builder-at-24": {
+      "id": "b-10-web-workflow-builder-at-24",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflow builder",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "/console/builder",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " opens the experimental visual"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-authoring-surface-selec-25": {
+      "id": "b-10-web-authoring-surface-selec-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "authoring surface. Select a project before opening or creating a workflow."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-register-a-project-with-26": {
+      "id": "b-10-web-register-a-project-with-26",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Register a project with the add button in the rail. Remote Git URLs are cloned;\nlocal paths are registered in place. Removing a project removes its registration,\nnot its files."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-workflows-and-runs-27": {
+      "id": "b-10-web-workflows-and-runs-27",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Workflows and runs"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-choose-a-workflow-from-a-28": {
+      "id": "b-10-web-choose-a-workflow-from-a-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Choose a workflow from a project's run or chat view, supply its inputs, and\nlaunch it. The console follows execution through live events and exposes the\ngovernance actions that apply to the current state, including approval, rejection,\nresume, cancel, and abandon."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-a-run-can-be-opened-from-29": {
+      "id": "b-10-web-a-run-can-be-opened-from-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A run can be opened from a project at\n"
+        },
+        {
+          "insert": "/console/p/:projectId/r/:runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or directly by ID at\n"
+        },
+        {
+          "insert": "/console/r/:runId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Direct links also work for runs that have no registered\nproject. Run details include the event log and artifacts; a graph is shown when\nthe run has the project context needed to load its workflow definition."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-turn-on-alerts-in-se-30": {
+      "id": "b-10-web-turn-on-alerts-in-se-30",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Turn on "
+        },
+        {
+          "insert": "Alerts",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in Settings to hear a sound, and see a browser notification\nwhere the browser allows it, when a run stops at an approval gate or an\nattention wait, or when it completes, fails, or is cancelled. The setting\nis saved in the current browser and is off by default. Runs that were already\nwaiting or finished when the console loaded do not alert. Settings shows when\nthe browser blocks the sound or notifications."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-old-settings-workflow-l-31": {
+      "id": "b-10-web-old-settings-workflow-l-31",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Old settings, workflow-list, workflow-builder, and run bookmarks redirect to the\nclosest console route. Old chat and other retired pages land on the console\noverview because the conversation browser is no longer shipped."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-project-chat-32": {
+      "id": "b-10-web-project-chat-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Project chat"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-project-chat-streams-ass-33": {
+      "id": "b-10-web-project-chat-streams-ass-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Project chat streams assistant text and tool activity. When Web authentication\nis enabled, the console requests the signed-in user's project conversation and\nsends the active identity with each turn. On a solo installation, chat works\nwithout a user identity."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-attachments-are-limited-34": {
+      "id": "b-10-web-attachments-are-limited-34",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Attachments are limited to five files of at most 10 MB each. The first message in\na new conversation cannot include attachments; create the conversation with a\ntext message, then attach files on the next turn."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-experimental-workflow-bu-35": {
+      "id": "b-10-web-experimental-workflow-bu-35",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Experimental workflow builder"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-the-builder-is-retained-36": {
+      "id": "b-10-web-the-builder-is-retained-36",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The builder is retained as a bounded experiment inside the console. Use its\ncanvas, inspector, validation, and YAML preview to draft new workflows with\nprompt, command, bash, script, loop, approval, wait, and cancel nodes. Editing an\nexisting workflow and relying on a load/edit/save round trip is not supported\nuntil "
+        },
+        {
+          "insert": "#3378",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/pull/3378"
+          }
+        },
+        {
+          "insert": " and\n"
+        },
+        {
+          "insert": "#3379",
+          "attributes": {
+            "link": "https://github.com/coleam00/Archon/pull/3379"
+          }
+        },
+        {
+          "insert": " land. Edit existing\nworkflows as YAML. The builder also does not represent include directives, loop\ngroups, or workflow sub-run nodes. Workflow YAML remains the authoritative\nartifact."
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-further-reading-37": {
+      "id": "b-10-web-further-reading-37",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Further reading"
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-quickstart-docs-30-au-38": {
+      "id": "b-10-web-quickstart-docs-30-au-38",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-configuration-docs-30-39": {
+      "id": "b-10-web-configuration-docs-30-39",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/35-configuration.md",
+              "label": "Configuration"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-workflow-language-doc-40": {
+      "id": "b-10-web-workflow-language-doc-40",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Workflow language",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/35-workflow-language.md",
+              "label": "Workflow language"
+            }
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-10-web-api-reference-docs-10-41": {
+      "id": "b-10-web-api-reference-docs-10-41",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "API Reference",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/50-api.md",
+              "label": "API Reference"
+            }
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}

@@ -1,0 +1,930 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing-10-new-developer-guide",
+  "title": "New Developer Guide",
+  "root": "b-10-new-developer-guide-root-67",
+  "blocks": {
+    "b-10-new-developer-guide-root-67": {
+      "id": "b-10-new-developer-guide-root-67",
+      "type": "paragraph",
+      "props": {
+        "audience": [
+          "developer"
+        ],
+        "category": "contributing",
+        "description": "Codebase orientation for new Archon developers: architecture overview, workflows, platforms, and first steps.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/new-developer-guide.md"
+      },
+      "children": [
+        "b-10-new-developer-guide-tl-dr-archon-lets-y-1",
+        "b-10-new-developer-guide-divider-2",
+        "b-10-new-developer-guide-the-problem-we-solve-3",
+        "b-10-new-developer-guide-code-4",
+        "b-10-new-developer-guide-divider-5",
+        "b-10-new-developer-guide-core-concept-message-6",
+        "b-10-new-developer-guide-code-7",
+        "b-10-new-developer-guide-divider-8",
+        "b-10-new-developer-guide-the-four-ways-to-use-arc-9",
+        "b-10-new-developer-guide-1-command-line-local-e-10",
+        "b-10-new-developer-guide-run-workflows-directly-f-11",
+        "b-10-new-developer-guide-code-12",
+        "b-10-new-developer-guide-good-for-running-wo-13",
+        "b-10-new-developer-guide-2-direct-chat-simple-q-14",
+        "b-10-new-developer-guide-just-talk-to-the-ai-like-15",
+        "b-10-new-developer-guide-code-16",
+        "b-10-new-developer-guide-3-slash-commands-speci-17",
+        "b-10-new-developer-guide-deterministic-commands-t-18",
+        "b-10-new-developer-guide-code-19",
+        "b-10-new-developer-guide-4-workflows-multi-step-20",
+        "b-10-new-developer-guide-this-is-where-archon-shi-21",
+        "b-10-new-developer-guide-code-22",
+        "b-10-new-developer-guide-divider-23",
+        "b-10-new-developer-guide-how-workflows-work-the-24",
+        "b-10-new-developer-guide-a-workflow-is-a-yaml-fil-25",
+        "b-10-new-developer-guide-code-26",
+        "b-10-new-developer-guide-divider-27",
+        "b-10-new-developer-guide-the-router-how-archon-p-28",
+        "b-10-new-developer-guide-when-you-send-a-message-29",
+        "b-10-new-developer-guide-code-30",
+        "b-10-new-developer-guide-divider-31",
+        "b-10-new-developer-guide-available-workflows-32",
+        "b-10-new-developer-guide-the-table-below-lists-th-33",
+        "b-10-new-developer-guide-code-34",
+        "b-10-new-developer-guide-divider-35",
+        "b-10-new-developer-guide-parallel-agents-the-pr-36",
+        "b-10-new-developer-guide-a-quick-route-agent-pick-37",
+        "b-10-new-developer-guide-code-38",
+        "b-10-new-developer-guide-review-never-edits-code-39",
+        "b-10-new-developer-guide-divider-40",
+        "b-10-new-developer-guide-platform-integration-41",
+        "b-10-new-developer-guide-code-42",
+        "b-10-new-developer-guide-divider-43",
+        "b-10-new-developer-guide-batch-mode-assembles-the-44",
+        "b-10-new-developer-guide-isolation-git-worktrees-45",
+        "b-10-new-developer-guide-each-conversation-gets-i-46",
+        "b-10-new-developer-guide-code-47",
+        "b-10-new-developer-guide-divider-48",
+        "b-10-new-developer-guide-configuration-hierarchy-49",
+        "b-10-new-developer-guide-code-50",
+        "b-10-new-developer-guide-divider-51",
+        "b-10-new-developer-guide-directory-structure-52",
+        "b-10-new-developer-guide-code-53",
+        "b-10-new-developer-guide-divider-54",
+        "b-10-new-developer-guide-quick-reference-common-55",
+        "b-10-new-developer-guide-code-56",
+        "b-10-new-developer-guide-divider-57",
+        "b-10-new-developer-guide-summary-58",
+        "b-10-new-developer-guide-code-59",
+        "b-10-new-developer-guide-divider-60",
+        "b-10-new-developer-guide-next-steps-61",
+        "b-10-new-developer-guide-read-quickstart-62",
+        "b-10-new-developer-guide-explore-archon-wo-63",
+        "b-10-new-developer-guide-customize-archon-64",
+        "b-10-new-developer-guide-configure-archon-65",
+        "b-10-new-developer-guide-welcome-to-remote-agenti-66"
+      ]
+    },
+    "b-10-new-developer-guide-tl-dr-archon-lets-y-1": {
+      "id": "b-10-new-developer-guide-tl-dr-archon-lets-y-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "TL;DR",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": Archon lets you control AI coding assistants (Claude Code, Codex) from your phone via Telegram, Slack, Discord, or GitHub. Think of it as a remote control for AI pair programming."
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-2": {
+      "id": "b-10-new-developer-guide-divider-2",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-the-problem-we-solve-3": {
+      "id": "b-10-new-developer-guide-the-problem-we-solve-3",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The Problem We Solve"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-4": {
+      "id": "b-10-new-developer-guide-code-4",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────┐\n│                        WITHOUT ARCHON                               │\n│                                                                     │\n│   You're on the train, phone in hand...                            │\n│                                                                     │\n│   ┌──────────┐     ❌ Can't SSH      ┌──────────────────┐          │\n│   │  Phone   │ ──────────────────────│  Dev Machine     │          │\n│   │          │     ❌ No terminal    │  (Claude Code)   │          │\n│   └──────────┘     ❌ No IDE         └──────────────────┘          │\n│                                                                     │\n│   \"I wish I could just message Claude to fix that bug...\"          │\n└─────────────────────────────────────────────────────────────────────┘\n\n┌─────────────────────────────────────────────────────────────────────┐\n│                         WITH ARCHON                                 │\n│                                                                     │\n│   ┌──────────┐                       ┌──────────────────┐          │\n│   │  Phone   │ ─────Telegram────────▶│  Archon Server   │          │\n│   │          │     \"fix issue #42\"   │                  │          │\n│   └──────────┘                       │  ┌────────────┐  │          │\n│        │                             │  │Claude Code │  │          │\n│        │                             │  │   SDK      │  │          │\n│        │                             │  └─────┬──────┘  │          │\n│        │                             │        │         │          │\n│        │                             │  ┌─────▼──────┐  │          │\n│        │◀────\"PR created #127\"───────│  │ Git Repo   │  │          │\n│        │                             │  │ (worktree) │  │          │\n│                                      │  └────────────┘  │          │\n│                                      └──────────────────┘          │\n│                                                                     │\n│   You just fixed a bug from your phone.                            │\n└─────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-5": {
+      "id": "b-10-new-developer-guide-divider-5",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-core-concept-message-6": {
+      "id": "b-10-new-developer-guide-core-concept-message-6",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Core Concept: Message → AI → Code → Response"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-7": {
+      "id": "b-10-new-developer-guide-code-7",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌──────────────────────────────────────────────────────────────────────────┐\n│                                                                          │\n│   USER                    ARCHON                         CODEBASE        │\n│                                                                          │\n│   ┌─────────┐            ┌─────────────────┐            ┌──────────┐    │\n│   │Telegram │            │                 │            │          │    │\n│   │  Slack  │───Message─▶│   Orchestrator  │───Claude──▶│ Git Repo │    │\n│   │ Discord │            │                 │   Code     │          │    │\n│   │ GitHub  │◀──Response─│   (routes to    │◀──────────│ (files)  │    │\n│   └─────────┘            │    AI client)   │            └──────────┘    │\n│                          └─────────────────┘                             │\n│                                                                          │\n│   That's it. You message, AI works on code, you get results.            │\n│                                                                          │\n└──────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-8": {
+      "id": "b-10-new-developer-guide-divider-8",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-the-four-ways-to-use-arc-9": {
+      "id": "b-10-new-developer-guide-the-four-ways-to-use-arc-9",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The Four Ways to Use Archon"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-1-command-line-local-e-10": {
+      "id": "b-10-new-developer-guide-1-command-line-local-e-10",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "1. Command Line (Local Execution)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-run-workflows-directly-f-11": {
+      "id": "b-10-new-developer-guide-run-workflows-directly-f-11",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Run workflows directly from your terminal without needing the server:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-12": {
+      "id": "b-10-new-developer-guide-code-12",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ TERMINAL                                                        │\n├─────────────────────────────────────────────────────────────────┤\n│                                                                 │\n│ $ bun run cli workflow list                                     │\n│                                                                 │\n│ Available workflows in .archon/workflows/:                     │\n│   - archon-ship                  Issue to reviewed PR           │\n│   - archon-investigate           Prove a root cause             │\n│   - archon-review                Parallel PR review             │\n│                                                                 │\n│ $ bun run cli workflow run archon-investigate \"What does the    │\n│   orchestrator do?\"                                             │\n│                                                                 │\n│ 🔧 READ                                                         │\n│ Reading: packages/core/src/orchestrator/orchestrator.ts                │\n│                                                                 │\n│ The orchestrator is the main entry point that routes incoming  │\n│ messages. It checks if it's a slash command, loads conversation│\n│ context from the database, and routes to the appropriate AI     │\n│ client for processing...                                        │\n│                                                                 │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-good-for-running-wo-13": {
+      "id": "b-10-new-developer-guide-good-for-running-wo-13",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Good for:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Running workflows locally, testing, automation scripts, CI/CD"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-2-direct-chat-simple-q-14": {
+      "id": "b-10-new-developer-guide-2-direct-chat-simple-q-14",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "2. Direct Chat (Simple Questions)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-just-talk-to-the-ai-like-15": {
+      "id": "b-10-new-developer-guide-just-talk-to-the-ai-like-15",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Just talk to the AI like you would in Claude Code terminal:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-16": {
+      "id": "b-10-new-developer-guide-code-16",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ TELEGRAM CHAT                                                   │\n├─────────────────────────────────────────────────────────────────┤\n│                                                                 │\n│ You: What does the handleMessage function do?                   │\n│                                                                 │\n│ Archon: Looking at packages/core/src/orchestrator/orchestrator.ts...          │\n│                                                                 │\n│         The handleMessage function is the main entry point      │\n│         that routes incoming messages. It:                      │\n│         1. Checks if it's a slash command                       │\n│         2. Loads conversation context from database             │\n│         3. Routes to AI client for processing                   │\n│         4. Streams responses back to platform                   │\n│                                                                 │\n│         See: packages/core/src/orchestrator/orchestrator.ts            │\n│                                                                 │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-3-slash-commands-speci-17": {
+      "id": "b-10-new-developer-guide-3-slash-commands-speci-17",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "3. Slash Commands (Specific Operations)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-deterministic-commands-t-18": {
+      "id": "b-10-new-developer-guide-deterministic-commands-t-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Deterministic commands that don't involve AI:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-19": {
+      "id": "b-10-new-developer-guide-code-19",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ SLASH COMMANDS                                                  │\n├─────────────────────────────────────────────────────────────────┤\n│                                                                 │\n│ /clone https://github.com/user/repo    Clone a repository      │\n│ /status                                 Show current state      │\n│ /repos                                  List available repos    │\n│ /setcwd /path/to/dir                   Change working dir      │\n│ /reset                                  Clear AI session        │\n│ /help                                   Show all commands       │\n│                                                                 │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-4-workflows-multi-step-20": {
+      "id": "b-10-new-developer-guide-4-workflows-multi-step-20",
+      "type": "heading",
+      "props": {
+        "level": 3
+      },
+      "text": [
+        {
+          "insert": "4. Workflows (Multi-Step Automation)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-this-is-where-archon-shi-21": {
+      "id": "b-10-new-developer-guide-this-is-where-archon-shi-21",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "This is where Archon shines - automated multi-step AI workflows:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-22": {
+      "id": "b-10-new-developer-guide-code-22",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ GITHUB ISSUE #42                                                │\n├─────────────────────────────────────────────────────────────────┤\n│                                                                 │\n│ Title: Login button doesn't work on mobile                      │\n│                                                                 │\n│ ─────────────────────────────────────────────────────────────── │\n│                                                                 │\n│ @user commented:                                                │\n│   @archon fix this issue                                        │\n│                                                                 │\n│ ─────────────────────────────────────────────────────────────── │\n│                                                                 │\n│ @archon commented:                                              │\n│   🔍 Investigation Complete                                     │\n│                                                                 │\n│   Root Cause: Touch event handler missing on mobile             │\n│   File: packages/server/src/components/LoginButton.tsx:45                       │\n│   Fix: Add onTouchEnd handler alongside onClick                 │\n│                                                                 │\n│   Creating PR...                                                │\n│                                                                 │\n│ ─────────────────────────────────────────────────────────────── │\n│                                                                 │\n│ @archon commented:                                              │\n│   ✅ Fix implemented: PR #127                                   │\n│   - Added touch event handling                                  │\n│   - Added mobile viewport tests                                 │\n│   - All tests passing                                           │\n│                                                                 │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-23": {
+      "id": "b-10-new-developer-guide-divider-23",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-how-workflows-work-the-24": {
+      "id": "b-10-new-developer-guide-how-workflows-work-the-24",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "How Workflows Work (The Magic)"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-a-workflow-is-a-yaml-fil-25": {
+      "id": "b-10-new-developer-guide-a-workflow-is-a-yaml-fil-25",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A workflow is a YAML file that chains AI prompts together:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-26": {
+      "id": "b-10-new-developer-guide-code-26",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   .archon/workflows/fix-github-issue.yaml                              │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ name: fix-github-issue                                          │  │\n│   │ description: Investigate and fix a GitHub issue                 │  │\n│   │                                                                 │  │\n│   │ nodes:                                                          │  │\n│   │   - id: investigate                                             │  │\n│   │     command: investigate-issue    ◀── Node 1: Research         │  │\n│   │   - id: implement                                               │  │\n│   │     command: implement-issue      ◀── Node 2: Fix              │  │\n│   │     depends_on: [investigate]                                   │  │\n│   │     context: fresh                                              │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n│                              │                                          │\n│                              ▼                                          │\n│                                                                         │\n│   EXECUTION FLOW:                                                       │\n│                                                                         │\n│   ┌──────────────────┐      ┌──────────────────┐      ┌────────────┐  │\n│   │  investigate-    │      │   implement-     │      │            │  │\n│   │  issue.md        │─────▶│   issue.md       │─────▶│  PR #127   │  │\n│   │                  │      │                  │      │            │  │\n│   │  - Read issue    │      │  - Read artifact │      │  Created!  │  │\n│   │  - Explore code  │      │  - Make changes  │      │            │  │\n│   │  - Find root     │      │  - Run tests     │      │            │  │\n│   │    cause         │      │  - Commit        │      │            │  │\n│   │  - Save artifact │      │  - Create PR     │      │            │  │\n│   └──────────────────┘      └──────────────────┘      └────────────┘  │\n│                                                                         │\n│   Each \"command\" is a markdown file with AI instructions.              │\n│   The workflow executor runs nodes in dependency order.                │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-27": {
+      "id": "b-10-new-developer-guide-divider-27",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-the-router-how-archon-p-28": {
+      "id": "b-10-new-developer-guide-the-router-how-archon-p-28",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "The Router: How Archon Picks Workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-when-you-send-a-message-29": {
+      "id": "b-10-new-developer-guide-when-you-send-a-message-29",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When you send a message, an AI \"router\" decides what to do:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-30": {
+      "id": "b-10-new-developer-guide-code-30",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   USER MESSAGE                           ROUTER DECISION                │\n│                                                                         │\n│   \"fix this issue\"          ───────▶     archon-ship                   │\n│   \"review this PR\"          ───────▶     archon-review                 │\n│   \"what does X do?\"         ───────▶     answered directly, no workflow│\n│   \"update sharp\"            ───────▶     archon-upkeep                 │\n│                                                                         │\n├─────────────────────────────────────────────────────────────────────────┤\n│                                                                         │\n│   HOW IT WORKS:                                                         │\n│                                                                         │\n│   ┌──────────┐     ┌─────────────────────────────────────┐             │\n│   │ Message  │────▶│ Router AI reads workflow descriptions│             │\n│   │          │     │ and picks the best match             │             │\n│   └──────────┘     └──────────────────┬──────────────────┘             │\n│                                       │                                 │\n│                                       ▼                                 │\n│                    ┌─────────────────────────────────────┐             │\n│                    │ invoke_workflow: archon-ship        │             │\n│                    └─────────────────────────────────────┘             │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-31": {
+      "id": "b-10-new-developer-guide-divider-31",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-available-workflows-32": {
+      "id": "b-10-new-developer-guide-available-workflows-32",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Available Workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-the-table-below-lists-th-33": {
+      "id": "b-10-new-developer-guide-the-table-below-lists-th-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The table below lists the key workflows in the bundled "
+        },
+        {
+          "insert": "sdlc",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " pack. All bundled workflows are prefixed with "
+        },
+        {
+          "insert": "archon-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Run "
+        },
+        {
+          "insert": "bun run cli workflow list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " to see the full current list."
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-34": {
+      "id": "b-10-new-developer-guide-code-34",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   WORKFLOW                              TRIGGER PHRASES    WHAT IT DOES │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ archon-ship               \"fix this issue\"        Triage +       │  │\n│   │                           \"implement #42\"         deliver a PR   │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ archon-review             \"review this PR\"        Parallel       │  │\n│   │                           \"is this ready\"         review lenses  │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ archon-deliver            \"deliver this plan\"     Implement +    │  │\n│   │                           \"take this to a PR\"     PR + review    │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ archon-upkeep             \"update sharp\"          One dependency │  │\n│   │                           \"bump X to latest\"      bump + PR      │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-35": {
+      "id": "b-10-new-developer-guide-divider-35",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-parallel-agents-the-pr-36": {
+      "id": "b-10-new-developer-guide-parallel-agents-the-pr-36",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Parallel Agents: The PR Review Example"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-a-quick-route-agent-pick-37": {
+      "id": "b-10-new-developer-guide-a-quick-route-agent-pick-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A quick route agent picks which specialist lenses the change earns, and "
+        },
+        {
+          "insert": "archon-review",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " runs them in fresh sessions as shown below. The code lens uses the configured "
+        },
+        {
+          "insert": "large",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " model tier."
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-38": {
+      "id": "b-10-new-developer-guide-code-38",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   USER: \"review this PR\"                                               │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ Step 1: scope + route          Resolve the PR, its diff, the    │  │\n│   │                                contract, and which lenses run   │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ Step 2: PARALLEL LENSES (each in a fresh session)               │  │\n│   │                                                                 │  │\n│   │   ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │  │\n│   │   │ code         │  │ seams        │  │ ux           │         │  │\n│   │   │              │  │              │  │ (when a UI   │         │  │\n│   │   │ Bugs,        │  │ Contracts    │  │  changes)    │         │  │\n│   │   │ correctness  │  │ that drift   │  │ Clear, honest│         │  │\n│   │   └──────────────┘  └──────────────┘  └──────────────┘         │  │\n│   │                                                                 │  │\n│   │   ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │  │\n│   │   │ tests        │  │ errors       │  │ docs         │         │  │\n│   │   │              │  │              │  │ (when docs   │         │  │\n│   │   │ Missing      │  │ Visibility & │  │  change)     │         │  │\n│   │   │ coverage     │  │ containment  │  │ Stale docs   │         │  │\n│   │   └──────────────┘  └──────────────┘  └──────────────┘         │  │\n│   │                                                                 │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ Step 3: synthesize             Combine findings into one verdict│  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ Step 4: publish                Post one review comment on the PR│  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-review-never-edits-code-39": {
+      "id": "b-10-new-developer-guide-review-never-edits-code-39",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Review never edits code. Fixing findings belongs to "
+        },
+        {
+          "insert": "archon-implement",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", or to "
+        },
+        {
+          "insert": "archon-deliver",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which runs review and corrections in a loop."
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-40": {
+      "id": "b-10-new-developer-guide-divider-40",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-platform-integration-41": {
+      "id": "b-10-new-developer-guide-platform-integration-41",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Platform Integration"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-42": {
+      "id": "b-10-new-developer-guide-code-42",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   CLI                               HOW IT WORKS                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   ┌──────────────────┐              - Direct command execution         │\n│   │  Terminal        │              - Real-time streaming to stdout    │\n│   │                  │              - No server needed                 │\n│   │  bun run cli     │              - Good for local workflows         │\n│   │  workflow run    │              - Perfect for CI/CD                │\n│   └──────────────────┘                                                  │\n│                                                                         │\n├─────────────────────────────────────────────────────────────────────────┤\n│                                                                         │\n│   TELEGRAM                          HOW IT WORKS                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   ┌──────────────────┐              - Bot polls for messages           │\n│   │  @archon_bot     │              - Real-time streaming (default)    │\n│   │                  │              - DM the bot directly              │\n│   │  \"fix issue #42\" │              - Good for mobile use              │\n│   └──────────────────┘                                                  │\n│                                                                         │\n├─────────────────────────────────────────────────────────────────────────┤\n│                                                                         │\n│   SLACK                             HOW IT WORKS                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   ┌──────────────────┐              - Socket Mode (no webhooks)        │\n│   │  #dev-channel    │              - @mention in threads              │\n│   │                  │              - DM the bot                       │\n│   │  @archon review  │              - Good for team visibility         │\n│   │  this PR         │                                                  │\n│   └──────────────────┘                                                  │\n│                                                                         │\n├─────────────────────────────────────────────────────────────────────────┤\n│                                                                         │\n│   DISCORD                           HOW IT WORKS                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   ┌──────────────────┐              - WebSocket connection             │\n│   │  #coding-help    │              - @mention to activate             │\n│   │                  │              - Thread support                   │\n│   │  @Archon what    │              - Good for communities             │\n│   │  does this do?   │                                                  │\n│   └──────────────────┘                                                  │\n│                                                                         │\n├─────────────────────────────────────────────────────────────────────────┤\n│                                                                         │\n│   GITHUB                            HOW IT WORKS                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   ┌──────────────────┐              - Webhook on issues/PRs            │\n│   │  Issue #42       │              - @archon in comments              │\n│   │                  │              - Batch mode (assembled reply)     │\n│   │  @archon fix     │              - Auto-creates PRs                 │\n│   │  this issue      │              - Good for automation              │\n│   └──────────────────┘                                                  │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-43": {
+      "id": "b-10-new-developer-guide-divider-43",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-batch-mode-assembles-the-44": {
+      "id": "b-10-new-developer-guide-batch-mode-assembles-the-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Batch mode assembles the reply before delivery. Adapters may split long replies into multiple messages or comments."
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-isolation-git-worktrees-45": {
+      "id": "b-10-new-developer-guide-isolation-git-worktrees-45",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Isolation: Git Worktrees"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-each-conversation-gets-i-46": {
+      "id": "b-10-new-developer-guide-each-conversation-gets-i-46",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Each conversation gets its own isolated copy of the repo:"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-47": {
+      "id": "b-10-new-developer-guide-code-47",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   ~/.archon/workspaces/owner/repo/worktrees/                           │\n│   │                                                                     │\n│   ├── issue-42/              ◀── Conversation about issue #42         │\n│   │   └── (full repo)            Working on fix for mobile bug         │\n│   │                                                                     │\n│   ├── pr-127/                ◀── Conversation about PR #127           │\n│   │   └── (full repo)            Reviewing code changes                │\n│   │                                                                     │\n│   └── task-dark-mode/        ◀── Manual feature work                  │\n│       └── (full repo)            Adding dark mode feature              │\n│                                                                         │\n│   WHY WORKTREES?                                                        │\n│   ─────────────────────────────────────────────────────────────────    │\n│   - Multiple conversations can work simultaneously                     │\n│   - No branch conflicts between parallel work                          │\n│   - Each gets isolated file changes                                    │\n│   - Cleaned up when issue/PR closes                                    │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-48": {
+      "id": "b-10-new-developer-guide-divider-48",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-configuration-hierarchy-49": {
+      "id": "b-10-new-developer-guide-configuration-hierarchy-49",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Configuration Hierarchy"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-50": {
+      "id": "b-10-new-developer-guide-code-50",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   CONFIGURATION LAYERS (later overrides earlier)                       │\n│                                                                         │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ 1. DEFAULTS (hardcoded)                                         │  │\n│   │    assistant: claude                                            │  │\n│   │    streaming.telegram: stream                                   │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ 2. GLOBAL CONFIG (~/.archon/config.yaml)                        │  │\n│   │    botName: MyBot                                               │  │\n│   │    defaultAssistant: claude                                     │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ 3. REPO CONFIG (.archon/config.yaml)                            │  │\n│   │    assistant: codex          # This repo prefers Codex          │  │\n│   │    commands:                                                    │  │\n│   │      folder: .claude/commands/custom                            │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                              │                                          │\n│                              ▼                                          │\n│   ┌─────────────────────────────────────────────────────────────────┐  │\n│   │ 4. ENVIRONMENT VARIABLES (highest priority)                     │  │\n│   │    TELEGRAM_STREAMING_MODE=batch                                │  │\n│   │    DEFAULT_AI_ASSISTANT=claude                                  │  │\n│   └─────────────────────────────────────────────────────────────────┘  │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-51": {
+      "id": "b-10-new-developer-guide-divider-51",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-directory-structure-52": {
+      "id": "b-10-new-developer-guide-directory-structure-52",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Directory Structure"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-53": {
+      "id": "b-10-new-developer-guide-code-53",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   YOUR REPO                         ARCHON SERVER                       │\n│                                                                         │\n│   my-app/                           ~/.archon/                          │\n│   ├── .archon/                      ├── config.yaml      (global cfg)  │\n│   │   ├── config.yaml               ├── workspaces/      (cloned repos)│\n│   │   ├── commands/                 │   └── user/repo/                 │\n│   │   │   ├── investigate-issue.md  │       ├── source/    (clone)      │\n│   │   │   ├── implement-issue.md   │       └── worktrees/ (isolation)  │\n│   │   │   └── assist.md            │           ├── issue-42/           │\n│   │   ├── workflows/               │           └── pr-127/             │\n│   │   │   ├── fix-github-issue.yaml                                    │\n│   │   │   └── assist.yaml                                              │\n│   │   └── artifacts/                                                   │\n│   │       └── issues/                                                  │\n│   │           └── issue-42.md                                          │\n│   ├── packages/                                                             │\n│   └── ...                                                              │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-54": {
+      "id": "b-10-new-developer-guide-divider-54",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-quick-reference-common-55": {
+      "id": "b-10-new-developer-guide-quick-reference-common-55",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Quick Reference: Common Interactions"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-56": {
+      "id": "b-10-new-developer-guide-code-56",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   WHAT YOU WANT                     WHAT TO SAY (Platform/CLI)          │\n│                                                                         │\n│   Run workflow locally              bun run cli workflow run <name>     │\n│   List CLI workflows                bun run cli workflow list           │\n│   Fix a GitHub issue                \"@archon fix this issue\"            │\n│   Review a PR                       \"@archon review this PR\"            │\n│   Ask a question                    \"What does handleMessage do?\"       │\n│   Resolve conflicts                 \"@archon resolve the conflicts\"     │\n│   See current state                 \"/status\"                           │\n│   Clone a repo                      \"/clone https://github.com/u/r\"     │\n│   Switch repos                      \"/repos\" then pick one              │\n│   List available workflows          \"/workflow list\"                    │\n│   Reload workflow definitions       \"/workflow reload\"                  │\n│   Approve paused workflow           \"/workflow approve <id> [comment]\"  │\n│   Reject paused workflow           \"/workflow reject <id> [reason]\"   │\n│   Cancel stuck workflow             \"/workflow cancel\"                  │\n│   Start fresh                       \"/reset\"                            │\n│   Get help                          \"/help\"                             │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-57": {
+      "id": "b-10-new-developer-guide-divider-57",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-summary-58": {
+      "id": "b-10-new-developer-guide-summary-58",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Summary"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-code-59": {
+      "id": "b-10-new-developer-guide-code-59",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────────────┐\n│                                                                         │\n│   ARCHON = Remote Control for AI Coding Assistants                     │\n│                                                                         │\n│   ┌────────────────────────────────────────────────────────────────┐   │\n│   │                                                                │   │\n│   │   Phone/Slack/GitHub ──▶ Archon Server ──▶ AI (Claude/Codex)  │   │\n│   │                              │                    │            │   │\n│   │                              ▼                    ▼            │   │\n│   │                         Workflows           Git Worktrees      │   │\n│   │                        (automation)         (isolation)        │   │\n│   │                                                                │   │\n│   └────────────────────────────────────────────────────────────────┘   │\n│                                                                         │\n│   KEY CAPABILITIES:                                                    │\n│   ─────────────────                                                    │\n│   ✓ Message from anywhere (phone, tablet, desktop)                    │\n│   ✓ Automated multi-step workflows                                    │\n│   ✓ Parallel AI agents for complex tasks                              │\n│   ✓ Isolated environments per conversation                            │\n│   ✓ Custom prompts versioned in Git                                   │\n│   ✓ GitHub integration (issues/PRs/comments)                          │\n│                                                                         │\n│   WHEN TO USE:                                                         │\n│   ─────────────                                                        │\n│   ✓ You want to fix bugs from your phone                              │\n│   ✓ You want automated PR reviews                                     │\n│   ✓ You want GitHub issue automation                                  │\n│   ✓ You want parallel development without conflicts                   │\n│   ✓ You want custom AI workflows for your team                        │\n│                                                                         │\n└─────────────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-divider-60": {
+      "id": "b-10-new-developer-guide-divider-60",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-10-new-developer-guide-next-steps-61": {
+      "id": "b-10-new-developer-guide-next-steps-61",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Next Steps"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-read-quickstart-62": {
+      "id": "b-10-new-developer-guide-read-quickstart-62",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Read",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": "Quickstart",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/30-authoring/10-getting-started/25-quick-start.md",
+              "label": "Quickstart"
+            }
+          }
+        },
+        {
+          "insert": " - Set up your first instance"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-explore-archon-wo-63": {
+      "id": "b-10-new-developer-guide-explore-archon-wo-63",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Explore",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": ".archon/workflows/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - See example workflows"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-customize-archon-64": {
+      "id": "b-10-new-developer-guide-customize-archon-64",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Customize",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": ".archon/commands/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Create your own prompts"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-configure-archon-65": {
+      "id": "b-10-new-developer-guide-configure-archon-65",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Configure",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": ": "
+        },
+        {
+          "insert": ".archon/config.yaml",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " - Tweak settings"
+        }
+      ],
+      "children": []
+    },
+    "b-10-new-developer-guide-welcome-to-remote-agenti-66": {
+      "id": "b-10-new-developer-guide-welcome-to-remote-agenti-66",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Welcome to remote agentic coding!"
+        }
+      ],
+      "children": []
+    }
+  }
+}

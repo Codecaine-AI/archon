@@ -1,0 +1,2177 @@
+{
+  "schemaVersion": 1,
+  "id": "20-implementation-10-contributing-20-cli-internals",
+  "title": "CLI Internals",
+  "root": "b-20-cli-internals-root-81",
+  "blocks": {
+    "b-20-cli-internals-root-81": {
+      "id": "b-20-cli-internals-root-81",
+      "type": "paragraph",
+      "props": {
+        "area": "cli",
+        "audience": [
+          "developer"
+        ],
+        "category": "contributing",
+        "description": "Technical reference for the Archon CLI package: entry point flow, command routing, worktree logic, and adapter details.",
+        "generated_by": "scripts/codecaine/import-upstream-docs.ts",
+        "status": "current",
+        "upstream_commit": "e783f20057c0b439373a55a997c834e05d9e062c",
+        "upstream_path": "packages/docs-web/src/content/docs/contributing/cli-internals.md"
+      },
+      "children": [
+        "b-20-cli-internals-technical-reference-for-1",
+        "b-20-cli-internals-package-structure-2",
+        "b-20-cli-internals-code-3",
+        "b-20-cli-internals-entry-point-flow-4",
+        "b-20-cli-internals-code-5",
+        "b-20-cli-internals-code-packages-cli-6",
+        "b-20-cli-internals-repository-env-normally-7",
+        "b-20-cli-internals-project-resolution-8",
+        "b-20-cli-internals-workflow-run-folder-9",
+        "b-20-cli-internals-a-registered-folder-and-10",
+        "b-20-cli-internals-a-git-repository-nested-11",
+        "b-20-cli-internals-unregistered-non-git-exe-12",
+        "b-20-cli-internals-file-only-dry-runs-and-f-13",
+        "b-20-cli-internals-version-help-setu-14",
+        "b-20-cli-internals-divider-15",
+        "b-20-cli-internals-workflow-list-flow-16",
+        "b-20-cli-internals-code-17",
+        "b-20-cli-internals-code-packages-cli-18",
+        "b-20-cli-internals-divider-19",
+        "b-20-cli-internals-workflow-run-flow-20",
+        "b-20-cli-internals-code-21",
+        "b-20-cli-internals-code-workflowrunco-22",
+        "b-20-cli-internals-worktree-provider-23",
+        "b-20-cli-internals-divider-24",
+        "b-20-cli-internals-workflow-event-emit-fl-25",
+        "b-20-cli-internals-code-26",
+        "b-20-cli-internals-code-packages-cli-27",
+        "b-20-cli-internals-contract-the-shared-28",
+        "b-20-cli-internals-divider-29",
+        "b-20-cli-internals-isolation-list-flow-30",
+        "b-20-cli-internals-text-31",
+        "b-20-cli-internals-code-packages-cli-32",
+        "b-20-cli-internals-the-container-listing-ma-33",
+        "b-20-cli-internals-divider-34",
+        "b-20-cli-internals-isolation-cleanup-flow-35",
+        "b-20-cli-internals-text-36",
+        "b-20-cli-internals-code-isolationclea-37",
+        "b-20-cli-internals-divider-38",
+        "b-20-cli-internals-isolation-cleanup-mer-39",
+        "b-20-cli-internals-code-40",
+        "b-20-cli-internals-completion-and-merged-cl-41",
+        "b-20-cli-internals-signals-are-evaluated-in-42",
+        "b-20-cli-internals-a-multi-commit-squash-me-43",
+        "b-20-cli-internals-code-packages-core-44",
+        "b-20-cli-internals-divider-45",
+        "b-20-cli-internals-cli-adapter-46",
+        "b-20-cli-internals-implements-iplatformada-47",
+        "b-20-cli-internals-code-48",
+        "b-20-cli-internals-code-packages-cli-49",
+        "b-20-cli-internals-divider-50",
+        "b-20-cli-internals-key-dependencies-51",
+        "table-0-6b4a9816",
+        "b-20-cli-internals-divider-53",
+        "b-20-cli-internals-conversation-id-format-54",
+        "b-20-cli-internals-cli-conversations-use-id-55",
+        "b-20-cli-internals-the-random-suffix-contai-56",
+        "b-20-cli-internals-generated-at-packages-57",
+        "b-20-cli-internals-divider-58",
+        "b-20-cli-internals-worktree-reuse-logic-59",
+        "b-20-cli-internals-when-branch-is-provi-60",
+        "b-20-cli-internals-lookup-isolationdb-61",
+        "b-20-cli-internals-health-check-provi-62",
+        "b-20-cli-internals-branch-verification-63",
+        "b-20-cli-internals-head-naming-the-request-64",
+        "b-20-cli-internals-reuse-if-found-hea-65",
+        "b-20-cli-internals-create-if-not-found-66",
+        "b-20-cli-internals-selection-to-the-provide-67",
+        "b-20-cli-internals-worktrees-stored-at-68",
+        "b-20-cli-internals-code-provisionwork-69",
+        "b-20-cli-internals-divider-70",
+        "b-20-cli-internals-exit-codes-71",
+        "table-1-6b4a9816",
+        "b-20-cli-internals-non-detached-json-resum-73",
+        "b-20-cli-internals-divider-74",
+        "b-20-cli-internals-database-connection-75",
+        "b-20-cli-internals-connection-opened-on-fir-76",
+        "b-20-cli-internals-always-closed-in-finall-77",
+        "b-20-cli-internals-default-sqlite-at-78",
+        "b-20-cli-internals-optional-postgresql-79",
+        "b-20-cli-internals-code-packages-cli-80"
+      ]
+    },
+    "b-20-cli-internals-technical-reference-for-1": {
+      "id": "b-20-cli-internals-technical-reference-for-1",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Technical reference for understanding CLI internals."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-package-structure-2": {
+      "id": "b-20-cli-internals-package-structure-2",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Package Structure"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-3": {
+      "id": "b-20-cli-internals-code-3",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "packages/cli/\n├── src/\n│   ├── cli.ts              # Entry point, argument parsing, routing\n│   ├── commands/\n│   │   ├── workflow.ts     # workflow route module: re-exports every subcommand; reset-sessions/cleanup/event\n│   │   ├── workflow-control.ts # workflow resume/abandon/cancel/answer/approve/reject/respond (delegate to @archon/core/operations)\n│   │   ├── workflow-query.ts # workflow list/test/status/get/runs/logs/wait\n│   │   ├── workflow-run-*.ts # workflow run: select, admit, launch, execute\n│   │   ├── isolation.ts    # isolation list/cleanup (list/merged-cleanup delegate to @archon/core/operations)\n│   │   ├── setup.ts        # setup command implementation\n│   │   ├── chat.ts         # chat command implementation\n│   │   ├── validate.ts     # validate command implementation\n│   │   └── version.ts      # version command\n│   └── adapters/\n│       └── cli-adapter.ts  # IPlatformAdapter for stdout\n└── package.json            # Defines \"archon\" binary"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-entry-point-flow-4": {
+      "id": "b-20-cli-internals-entry-point-flow-4",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Entry Point Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-5": {
+      "id": "b-20-cli-internals-code-5",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ archon <command> [subcommand] [options] [arguments]             │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ strip-cwd-env-boot  (first import, side-effect)                 │\n│   stripCwdEnv(): deletes Bun-auto-loaded <cwd>/.env* keys from  │\n│   process.env + CLAUDE_CODE_* session markers. Emits            │\n│   [archon] stripped N keys from <cwd> (...) when N > 0.         │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ loadCliEnv(cwd) — wraps loadArchonEnv with identity protection  │\n│   1. ~/.archon/.env        (home scope)                         │\n│   2. <cwd>/.archon/.env    (repo scope, exceptions below)       │\n│   Emits one [archon] loaded N keys from <path> line per file    │\n│   when N > 0 and ARCHON_VERBOSE_BOOT=1 or LOG_LEVEL=debug/trace.│\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ cli.ts  Parse arguments                                         │\n│                 --cwd, --branch, --no-worktree, --help          │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ cli.ts  Project resolution                                      │\n│                 Honor folder selection and registered folders;  │\n│                 otherwise resolve the nearest Git checkout      │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ cli.ts  Route to command handler                                │\n│                 switch(command) → workflow | isolation | version│\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ cli.ts  Exit with code, always closeDatabase()                  │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-6": {
+      "id": "b-20-cli-internals-code-packages-cli-6",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/cli.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-repository-env-normally-7": {
+      "id": "b-20-cli-internals-repository-env-normally-7",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Repository env normally overrides home env. The CLI preserves the user-scope "
+        },
+        {
+          "insert": "GH_CONFIG_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (including its absence), so repository env cannot redirect the stored gh login. Inside a workflow, inherited GitHub identity values take precedence over both env files, including empty values that disable host credentials. See "
+        },
+        {
+          "insert": "forge plugin configuration",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/75-forge.md",
+              "section": "plugin-configuration",
+              "label": "forge plugin configuration"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-project-resolution-8": {
+      "id": "b-20-cli-internals-project-resolution-8",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Project resolution:",
+          "attributes": {
+            "bold": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-workflow-run-folder-9": {
+      "id": "b-20-cli-internals-workflow-run-folder-9",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "workflow run --folder",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " uses the supplied canonical directory, even inside Git, and explicitly registers it as a folder project."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-a-registered-folder-and-10": {
+      "id": "b-20-cli-internals-a-registered-folder-and-10",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A registered folder and its ordinary descendants resolve to the folder directory. Archon runs folder workflows in place without managing a worktree, branch or PR."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-a-git-repository-nested-11": {
+      "id": "b-20-cli-internals-a-git-repository-nested-11",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "A Git repository nested inside a registered folder retains its own repository identity. Other Git paths resolve to the nearest repository root, preserving linked-checkout ownership."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-unregistered-non-git-exe-12": {
+      "id": "b-20-cli-internals-unregistered-non-git-exe-12",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Unregistered non-Git execution requires folder registration; first-use CLI execution uses "
+        },
+        {
+          "insert": "workflow run --folder",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". Without registration or that flag, execution exits with code 1."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-file-only-dry-runs-and-f-13": {
+      "id": "b-20-cli-internals-file-only-dry-runs-and-f-13",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "File-only dry runs and fixture tests can inspect local files without registration. On a readable registry they honor folder ownership; if lookup fails they use the proven Git root or supplied directory. "
+        },
+        {
+          "insert": "workflow list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "validate",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " retain their Git-root fallback when the registry cannot open."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-version-help-setu-14": {
+      "id": "b-20-cli-internals-version-help-setu-14",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "version",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "help",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "setup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "chat",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " bypass project resolution."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-15": {
+      "id": "b-20-cli-internals-divider-15",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-workflow-list-flow-16": {
+      "id": "b-20-cli-internals-workflow-list-flow-16",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "workflow list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-17": {
+      "id": "b-20-cli-internals-code-17",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌──────────────────────────────────────────────────────────────────┐\n│ archon workflow list [name] [--full] [--json]                    │\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n                               ▼\n┌──────────────────────────────────────────────────────────────────┐\n│ workflow-query.ts  workflowListCommand(cwd, { name, full, json })│\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n                               ▼\n┌──────────────────────────────────────────────────────────────────┐\n│ @archon/workflows/workflow-discovery                              │\n│ discoverWorkflowsWithConfig(cwd, loadConfig, providerRegistry)    │\n│ - Loads bundled defaults                                         │\n│ - Searches .archon/workflows/ recursively                        │\n│ - Merges (repo overrides defaults by name)                       │\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n                               ▼\n┌──────────────────────────────────────────────────────────────────┐\n│ Optional name resolution; project errors remain in the result    │\n│ full=false: bounded description + structured truncation state    │\n│ full=true: exact authored description                            │\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n               ┌───────────────┴───────────────┐\n               │ json=true                     │ json=false\n               ▼                               ▼\n┌──────────────────────────┐   ┌───────────────────────────────────┐\n│ JSON output to stdout    │   │ Human-readable list to stdout     │\n│ descriptionTruncated     │   │ shortened descriptions carry     │\n│ { workflows, errors }    │   │ the ` [truncated]` marker         │\n└──────────────────────────┘   └───────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-18": {
+      "id": "b-20-cli-internals-code-packages-cli-18",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/commands/workflow-query.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-19": {
+      "id": "b-20-cli-internals-divider-19",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-workflow-run-flow-20": {
+      "id": "b-20-cli-internals-workflow-run-flow-20",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "workflow run",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-21": {
+      "id": "b-20-cli-internals-code-21",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ archon workflow run <name> [message] [--branch X] [--detach] …  │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ selectRunWorkflow()                                             │\n│ - Locate the run a continuation resumes                         │\n│ - Capture the workflow source, then discover from the capture   │\n│ - Find the workflow by name (error lists available)             │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ admitRunExecution()   (--dry-run stops before this)             │\n│ - Flag, worktree policy, input and capability gates             │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                    ┌─────────────┴─────────────┐\n                    │                           │\n                --detach                    (default)\n                    │                           │\n                    ▼                           ▼\n┌───────────────────────────┐   ┌───────────────────────────────────┐\n│ launchDetachedOwnedRun()  │   │ prepareForegroundLaunch()         │\n│ Pre-flight, write the run │   │ Destination, project, adoption    │\n│ row, fork the child       │   │ lane, --resume binding, AI config │\n└───────────────────────────┘   └───────────────┬───────────────────┘\n                                                │\n                                                ▼\n                                ┌───────────────────────────────────┐\n                                │ provisionWorkspace()              │\n                                │ Folder seam, reused --branch      │\n                                │ worktree, or a new worktree       │\n                                └───────────────┬───────────────────┘\n                                                │\n                                                ▼\n                                ┌───────────────────────────────────┐\n                                │ executeOwnedRun()                 │\n                                │ Signal guard, progress, engine    │\n                                │ submit or resume, wait, teardown, │\n                                │ result                            │\n                                └───────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-workflowrunco-22": {
+      "id": "b-20-cli-internals-code-workflowrunco-22",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "workflowRunCommand",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "packages/cli/src/commands/workflow-run-owned.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which owns the captured source and the durable-wait loop. The phases live in "
+        },
+        {
+          "insert": "workflow-run-admission.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "workflow-run-launch.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and "
+        },
+        {
+          "insert": "workflow-run-execution.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " beside it."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-worktree-provider-23": {
+      "id": "b-20-cli-internals-worktree-provider-23",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Worktree Provider:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/isolation/src/providers/worktree.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-24": {
+      "id": "b-20-cli-internals-divider-24",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-workflow-event-emit-fl-25": {
+      "id": "b-20-cli-internals-workflow-event-emit-fl-25",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "workflow event emit",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-26": {
+      "id": "b-20-cli-internals-code-26",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌──────────────────────────────────────────────────────────────────┐\n│ archon workflow event emit --run-id <run-id> --type <type> [...] │\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n                               ▼\n┌──────────────────────────────────────────────────────────────────┐\n│ cli.ts  Validate --run-id, --type (required)                     │\n│         Validate --type against WORKFLOW_EVENT_TYPES              │\n│         Parse --data as JSON (warn + skip if invalid)            │\n└──────────────────────────────┬───────────────────────────────────┘\n                               │\n                               ▼\n┌──────────────────────────────────────────────────────────────────┐\n│ workflow.ts  workflowEventEmitCommand(..., cwd)                   │\n│              Resolve an unambiguous run-id prefix                 │\n│              Node state: persistWorkflowEvent(...)               │\n│              Observability: createWorkflowEvent(...)             │\n│              Run-ID resolution may fail                           │\n└──────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-27": {
+      "id": "b-20-cli-internals-code-packages-cli-27",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/cli.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (case 'event'), "
+        },
+        {
+          "insert": "packages/cli/src/commands/workflow.ts:workflowEventEmitCommand",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-contract-the-shared-28": {
+      "id": "b-20-cli-internals-contract-the-shared-28",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Contract:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " The shared "
+        },
+        {
+          "insert": "isNodeStateEventType",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " predicate routes node-state events through\n"
+        },
+        {
+          "insert": "persistWorkflowEvent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which propagates storage failures. The CLI prints "
+        },
+        {
+          "insert": "Event persisted",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\nonly after that write succeeds. Other events use "
+        },
+        {
+          "insert": "createWorkflowEvent",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " and retain best-effort\npersistence: "
+        },
+        {
+          "insert": "Event submitted (best-effort)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " does not guarantee storage. Run-ID resolution\ncan fail before either write."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-29": {
+      "id": "b-20-cli-internals-divider-29",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-isolation-list-flow-30": {
+      "id": "b-20-cli-internals-isolation-list-flow-30",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "isolation list",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-text-31": {
+      "id": "b-20-cli-internals-text-31",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "archon isolation list → isolationListCommand()\n  │\n  ├─ @archon/core listEnvironments()\n  │    ├─ isolationDb.listAllActiveWithCodebase()\n  │    ├─ For each codebase: isolationDb.listByCodebaseWithAge()\n  │    │    └─ Reconcile missing worktrees, preserving live-run ownership\n  │    └─ Return environments grouped by codebase and reconciliation totals\n  │\n  ├─ Print worktree details and totals (return early if no codebases)\n  │\n  ├─ @archon/core listContainerEnvironments()\n  │    ├─ isolationDb.listActiveContainerEnvironments()\n  │    ├─ getRunByIsolationEnvId() for each container\n  │    │    └─ Return matched run or null; throw on query/status errors\n  │    └─ Build summaries; catch lookup errors and set runStatus: lookup-failed\n  │\n  └─ Print container details and totals: run status, no run (orphan),\n     or run lookup failed"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-32": {
+      "id": "b-20-cli-internals-code-packages-cli-32",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/commands/isolation.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "isolationListCommand",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "),\n"
+        },
+        {
+          "insert": "packages/core/src/operations/isolation-operations.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n("
+        },
+        {
+          "insert": "listEnvironments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), "
+        },
+        {
+          "insert": "packages/core/src/services/cleanup/containers.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n("
+        },
+        {
+          "insert": "listContainerEnvironments",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "), "
+        },
+        {
+          "insert": "packages/core/src/db/workflow-run-reads.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "\n("
+        },
+        {
+          "insert": "getRunByIsolationEnvId",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-the-container-listing-ma-33": {
+      "id": "b-20-cli-internals-the-container-listing-ma-33",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The container listing matches "
+        },
+        {
+          "insert": "metadata.isolation_env_id",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; no match does not\nestablish that cleanup can remove the container. Cleanup checks wider live\nownership. A failed lookup is logged and displayed as "
+        },
+        {
+          "insert": "run lookup failed",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-34": {
+      "id": "b-20-cli-internals-divider-34",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-isolation-cleanup-flow-35": {
+      "id": "b-20-cli-internals-isolation-cleanup-flow-35",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "isolation cleanup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-text-36": {
+      "id": "b-20-cli-internals-text-36",
+      "type": "code",
+      "props": {
+        "language": "text"
+      },
+      "text": [
+        {
+          "insert": "archon isolation cleanup [days] (default: 7)\n  │\n  ├─ Reconcile missing worktrees (preserve container rows)\n  │\n  ├─ findStaleEnvironments(days)\n  │    └─ Filter provider = 'worktree'\n  │         └─ For each stale worktree:\n  │              ├─ Skip environments owned by resumable runs\n  │              ├─ Skip any with a commit on no remote (getCleanupRunLock)\n  │              └─ provider.destroy(path, options)\n  │                   └─ Mark destroyed only after complete removal\n  │\n  └─ cleanupContainerEnvironments(days), even when no worktrees are stale\n       ├─ Skip containers owned by resumable runs\n       └─ Container backend removes container and volume\n            └─ Mark destroyed only after successful removal"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-isolationclea-37": {
+      "id": "b-20-cli-internals-code-isolationclea-37",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "isolationCleanupCommand",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "packages/cli/src/commands/isolation.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-38": {
+      "id": "b-20-cli-internals-divider-38",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-isolation-cleanup-mer-39": {
+      "id": "b-20-cli-internals-isolation-cleanup-mer-39",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "isolation cleanup --merged",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " Flow"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-40": {
+      "id": "b-20-cli-internals-code-40",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ archon isolation cleanup --merged [--include-closed]            │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ isolation.ts  isolationCleanupMergedCommand({ includeClosed })  │\n│ For each codebase → cleanupMergedWorktrees(codebaseId, path)    │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │\n                     For each active environment\n                                  │\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ judgeBranchForRemoval() — three-signal union                    │\n│  localBranchExists()     gate: (a) and (b) need the local ref   │\n│  (a) isBranchMerged()    git ancestry (fast-forward/merge)      │\n│  (b) isPatchEquivalent() git cherry  (1-commit squash-merge)    │\n│  (c) getPrState()        gh CLI      (MERGED/CLOSED/OPEN/NONE/  │\n│                                      UNAVAILABLE)               │\n│                                                                 │\n│  any git signal          → 'merged' if the worktree HEAD        │\n│                            also passes `git cherry <base> HEAD` │\n│  MERGED                  → 'merged' if the worktree HEAD        │\n│                            and the branch ref (where each       │\n│                            exists) are at or behind the PR head │\n│  CLOSED                  → 'pr-closed' the same way, only if    │\n│                            includeClosed                        │\n│  OPEN                    → 'open-pr', always kept               │\n│  UNAVAILABLE             → 'pr-unavailable', kept and reported  │\n│  NONE and ref present    → 'unmerged', not reclaimed            │\n│  NONE and ref gone       → 'unjudgeable', kept and reported     │\n└─────────────────────────────────┬───────────────────────────────┘\n                                  │ 'merged' or 'pr-closed'\n                                  ▼\n┌─────────────────────────────────────────────────────────────────┐\n│ Guard checks: no uncommitted changes, no run lock (checkRemoval │\n│ → getCleanupRunLock; a failed run's lock is released by the     │\n│ verdict, running/pending/paused runs always lock)               │\n│ provider.destroy() → remove worktree and local branch           │\n│ → commit registration retirement; retain remote branch         │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-completion-and-merged-cl-41": {
+      "id": "b-20-cli-internals-completion-and-merged-cl-41",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Completion and merged cleanup retain remote branches, including with force,\nbecause registration ownership cannot be proved after retirement. Retention is\nlogged as a warning and displayed in both completion and merged-cleanup reports.\nEnable GitHub's "
+        },
+        {
+          "insert": "Automatically delete head branches",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " setting for\nmerged pull requests, or follow "
+        },
+        {
+          "insert": "manual remote branch recovery",
+          "attributes": {
+            "reference": {
+              "kind": "doc",
+              "path": "docs/10-system-design/10-reference/20-cli.md",
+              "section": "recovering-remote-branch-cleanup",
+              "label": "manual remote branch recovery"
+            }
+          }
+        },
+        {
+          "insert": "."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-signals-are-evaluated-in-42": {
+      "id": "b-20-cli-internals-signals-are-evaluated-in-42",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Signals are evaluated in order: the first positive match short-circuits to avoid\nunnecessary "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " API calls. The "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " CLI is a soft dependency: when it is not installed or\nthe remote is not GitHub, only git signals are used ("
+        },
+        {
+          "insert": "NONE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). When "
+        },
+        {
+          "insert": "gh",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is there but fails\n(auth, rate limit, unreadable output) the result is "
+        },
+        {
+          "insert": "UNAVAILABLE",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and the environment is\nkept and reported rather than passed to the staleness sweep."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-a-multi-commit-squash-me-43": {
+      "id": "b-20-cli-internals-a-multi-commit-squash-me-43",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "A multi-commit squash merge is invisible to both git signals, so PR state is the only\none that sees it. Both git signals also need the local branch ref: once it is gone, the\nPR is the only judge, and a branch with no PR is reported as unverifiable instead of\nfailing the check. A MERGED or CLOSED PR only covers the commits it carried. Run\nbranch names are reused, and removal deletes both the worktree and the branch, so each\nlocal tip that still exists, the worktree's HEAD and the branch ref, must be the PR's head\ncommit or an ancestor of it ("
+        },
+        {
+          "insert": "isRevCoveredBy",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). A detached HEAD or a reused branch with\ncommits past the PR head is unmerged work. The same holds when git proves the merge: the worktree's\nHEAD must also pass "
+        },
+        {
+          "insert": "git cherry <base> HEAD",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which answers for both git signals (an\nancestor of the base lists nothing, a squash-merged commit lists as "
+        },
+        {
+          "insert": "-",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "). A HEAD it\ncannot answer for is reported as a failed merge check. A PR head pushed from elsewhere and never fetched here is\nfetched by SHA from the branch's remote first; if that fetch fails, the check fails and\nthe worktree is kept, with the fetch error in the reason. The scheduled sweep ("
+        },
+        {
+          "insert": "runScheduledCleanup",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ") makes the same call, so\nboth paths agree on what counts as merged."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-core-44": {
+      "id": "b-20-cli-internals-code-packages-core-44",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/core/src/services/cleanup/",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "judgeBranchForRemoval()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "merge-verdict.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "cleanupMergedWorktrees()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "merged-sweep.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "getCleanupRunLock()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "run-lock.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": "; "
+        },
+        {
+          "insert": "runScheduledCleanup()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "packages/core/src/services/cleanup-service.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\n"
+        },
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/isolation/src/pr-state.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "getPrState()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")\n"
+        },
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/git/src/branch.ts",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " ("
+        },
+        {
+          "insert": "isPatchEquivalent()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "localBranchExists()",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ")"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-45": {
+      "id": "b-20-cli-internals-divider-45",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-cli-adapter-46": {
+      "id": "b-20-cli-internals-cli-adapter-46",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "CLI Adapter"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-implements-iplatformada-47": {
+      "id": "b-20-cli-internals-implements-iplatformada-47",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Implements "
+        },
+        {
+          "insert": "IPlatformAdapter",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " for terminal output."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-48": {
+      "id": "b-20-cli-internals-code-48",
+      "type": "code",
+      "props": {},
+      "text": [
+        {
+          "insert": "┌─────────────────────────────────────────────────────────────────┐\n│ CLIAdapter                                                      │\n├─────────────────────────────────────────────────────────────────┤\n│ sendMessage(convId, msg) → Output to stdout                     │\n│ getStreamingMode()       → 'batch'                              │\n│ getPlatformType()        → 'cli'                                │\n│ ensureThread()           → passthrough                          │\n│ start() / stop()         → no-op                                │\n└─────────────────────────────────────────────────────────────────┘"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-49": {
+      "id": "b-20-cli-internals-code-packages-cli-49",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/adapters/cli-adapter.ts:13-47",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-50": {
+      "id": "b-20-cli-internals-divider-50",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-key-dependencies-51": {
+      "id": "b-20-cli-internals-key-dependencies-51",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Key Dependencies"
+        }
+      ],
+      "children": []
+    },
+    "table-0-6b4a9816": {
+      "id": "table-0-6b4a9816",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Function",
+          "Package",
+          "Location",
+          "Purpose"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "discoverWorkflowsWithConfig(cwd, loadConfig, providerRegistry)",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/workflows/workflow-discovery",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "workflows/src/workflow-discovery.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Find and parse workflow YAML"
+          ],
+          [
+            [
+              {
+                "insert": "executeWorkflow(...)",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/workflows/executor",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "workflows/src/executor.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Run workflow steps"
+          ],
+          [
+            [
+              {
+                "insert": "getIsolationProvider()",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/isolation",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "isolation/src/factory.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Get WorktreeProvider singleton"
+          ],
+          [
+            [
+              {
+                "insert": "conversationDb.*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/core",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "core/src/db/conversations.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Conversation CRUD"
+          ],
+          [
+            [
+              {
+                "insert": "codebaseDb.*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/core",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "core/src/db/codebases.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Codebase CRUD"
+          ],
+          [
+            [
+              {
+                "insert": "isolationDb.*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/core",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "core/src/db/isolation-environments.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Worktree tracking"
+          ],
+          [
+            [
+              {
+                "insert": "git.*",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/git",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "packages/git/src/",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Git operations"
+          ],
+          [
+            [
+              {
+                "insert": "closeDatabase()",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "@archon/core",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            [
+              {
+                "insert": "core/src/db/connection.ts",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "Clean shutdown"
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-cli-internals-divider-53": {
+      "id": "b-20-cli-internals-divider-53",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-conversation-id-format-54": {
+      "id": "b-20-cli-internals-conversation-id-format-54",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Conversation ID Format"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-cli-conversations-use-id-55": {
+      "id": "b-20-cli-internals-cli-conversations-use-id-55",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "CLI conversations use ID format: "
+        },
+        {
+          "insert": "cli-{timestamp}-{random}",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-the-random-suffix-contai-56": {
+      "id": "b-20-cli-internals-the-random-suffix-contai-56",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The random suffix contains 16 cryptographically random bytes encoded as 32 hex characters."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-generated-at-packages-57": {
+      "id": "b-20-cli-internals-generated-at-packages-57",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Generated at: "
+        },
+        {
+          "insert": "packages/cli/src/utils/conversation-id.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-58": {
+      "id": "b-20-cli-internals-divider-58",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-worktree-reuse-logic-59": {
+      "id": "b-20-cli-internals-worktree-reuse-logic-59",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Worktree Reuse Logic"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-when-branch-is-provi-60": {
+      "id": "b-20-cli-internals-when-branch-is-provi-60",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "When "
+        },
+        {
+          "insert": "--branch",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is provided:"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-lookup-isolationdb-61": {
+      "id": "b-20-cli-internals-lookup-isolationdb-61",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Lookup:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "isolationDb.findActiveByWorkflow(codebaseId, 'task', branchName)",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-health-check-provi-62": {
+      "id": "b-20-cli-internals-health-check-provi-62",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Health check:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "provider.healthCheck(path)",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " on existing"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-branch-verification-63": {
+      "id": "b-20-cli-internals-branch-verification-63",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Branch verification:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " Read the current local branch. Refuse a different branch or detached"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-head-naming-the-request-64": {
+      "id": "b-20-cli-internals-head-naming-the-request-64",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "HEAD, naming the requested branch, actual branch, and path without changing the checkout."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-reuse-if-found-hea-65": {
+      "id": "b-20-cli-internals-reuse-if-found-hea-65",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Reuse:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " If found, healthy, and on the requested branch (warns if "
+        },
+        {
+          "insert": "--from",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " was specified but not applied)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-create-if-not-found-66": {
+      "id": "b-20-cli-internals-create-if-not-found-66",
+      "type": "list-item",
+      "props": {
+        "ordered": true
+      },
+      "text": [
+        {
+          "insert": "Create:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " If not found or unhealthy -- passes a "
+        },
+        {
+          "insert": "taskBranch: { kind: 'new', fromBranch }",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-selection-to-the-provide-67": {
+      "id": "b-20-cli-internals-selection-to-the-provide-67",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "selection to the provider when "
+        },
+        {
+          "insert": "--from",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is specified. Adoption instead passes\n"
+        },
+        {
+          "insert": "taskBranch: { kind: 'existing', branch }",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", which checks out that exact local branch\nwithout creating a child branch or syncing it to a remote."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-worktrees-stored-at-68": {
+      "id": "b-20-cli-internals-worktrees-stored-at-68",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Worktrees stored at: "
+        },
+        {
+          "insert": "~/.archon/workspaces/<owner>/<repo>/worktrees/<branch-slug>/",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-provisionwork-69": {
+      "id": "b-20-cli-internals-code-provisionwork-69",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "provisionWorktree",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " in "
+        },
+        {
+          "insert": "packages/cli/src/commands/workflow-run-launch.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-70": {
+      "id": "b-20-cli-internals-divider-70",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-exit-codes-71": {
+      "id": "b-20-cli-internals-exit-codes-71",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Exit Codes"
+        }
+      ],
+      "children": []
+    },
+    "table-1-6b4a9816": {
+      "id": "table-1-6b4a9816",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "Code",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "0",
+            "Success, except for the JSON control refusals noted below."
+          ],
+          [
+            "1",
+            [
+              {
+                "insert": "Error. Answer commands ("
+              },
+              {
+                "insert": "answer",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "respond",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "approve",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ", "
+              },
+              {
+                "insert": "reject",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": ") and "
+              },
+              {
+                "insert": "resume --detach",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " also return 1 on refusal. Human-mode diagnostics go to stderr; JSON refusals emit "
+              },
+              {
+                "insert": "ok: false",
+                "attributes": {
+                  "code": true
+                }
+              },
+              {
+                "insert": " with the reason on stdout."
+              }
+            ]
+          ]
+        ]
+      },
+      "children": []
+    },
+    "b-20-cli-internals-non-detached-json-resum-73": {
+      "id": "b-20-cli-internals-non-detached-json-resum-73",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Non-detached JSON "
+        },
+        {
+          "insert": "resume",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", "
+        },
+        {
+          "insert": "abandon",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ", and "
+        },
+        {
+          "insert": "cancel",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " can return 0 with "
+        },
+        {
+          "insert": "ok: false",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ".\nCheck "
+        },
+        {
+          "insert": "ok",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " when consuming those acknowledgments."
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-divider-74": {
+      "id": "b-20-cli-internals-divider-74",
+      "type": "divider",
+      "props": {},
+      "children": []
+    },
+    "b-20-cli-internals-database-connection-75": {
+      "id": "b-20-cli-internals-database-connection-75",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "Database Connection"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-connection-opened-on-fir-76": {
+      "id": "b-20-cli-internals-connection-opened-on-fir-76",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Connection opened on first database call"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-always-closed-in-finall-77": {
+      "id": "b-20-cli-internals-always-closed-in-finall-77",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Always closed in "
+        },
+        {
+          "insert": "finally",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " block after command completes"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-default-sqlite-at-78": {
+      "id": "b-20-cli-internals-default-sqlite-at-78",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Default: SQLite",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " at "
+        },
+        {
+          "insert": "~/.archon/archon.db",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " (zero setup, auto-initialized)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-optional-postgresql-79": {
+      "id": "b-20-cli-internals-optional-postgresql-79",
+      "type": "list-item",
+      "props": {
+        "ordered": false
+      },
+      "text": [
+        {
+          "insert": "Optional: PostgreSQL",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " when "
+        },
+        {
+          "insert": "DATABASE_URL",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " is set (for cloud/advanced deployments)"
+        }
+      ],
+      "children": []
+    },
+    "b-20-cli-internals-code-packages-cli-80": {
+      "id": "b-20-cli-internals-code-packages-cli-80",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "Code:",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " "
+        },
+        {
+          "insert": "packages/cli/src/cli.ts",
+          "attributes": {
+            "code": true
+          }
+        }
+      ],
+      "children": []
+    }
+  }
+}
