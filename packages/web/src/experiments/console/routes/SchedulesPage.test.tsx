@@ -75,6 +75,19 @@ describe('SchedulesPage', () => {
     expect(html).toContain('Sunday 10:00');
   });
 
+  test('the next run of an interval job reads as an estimate, and a calendar time does not', () => {
+    const interval = renderPage(
+      list([job({ schedule: { intervalSeconds: 3600, runAtLoad: false } })])
+    );
+    const calendar = renderPage(
+      list([job({ schedule: { calendar: [{ hour: 4, minute: 0 }], runAtLoad: false } })])
+    );
+
+    expect(interval).toContain('>about<');
+    expect(interval).toContain('launchd counts from the load of the job');
+    expect(calendar).not.toContain('>about<');
+  });
+
   test('the last run shows its status pill and duration', () => {
     const html = renderPage(
       list([

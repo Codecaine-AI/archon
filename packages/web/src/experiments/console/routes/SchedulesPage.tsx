@@ -77,10 +77,20 @@ function LastRun({ run }: { run: ValidScheduledJob['lastRun'] }): ReactElement {
   );
 }
 
+const INTERVAL_ESTIMATE =
+  'An estimate. It counts from the start of the last run, and launchd counts from the load of the job.';
+
 function NextRun({ job }: { job: ValidScheduledJob }): ReactElement {
   if (job.nextFireAt !== null) {
+    // launchd counts an interval from the load of the job, which Archon does not record, so the
+    // time of an interval job is an estimate from its last run. A calendar time is exact.
+    const estimate = 'intervalSeconds' in job.schedule;
     return (
-      <span className="font-mono text-[12px] tabular-nums text-text-secondary">
+      <span
+        className="font-mono text-[12px] tabular-nums text-text-secondary"
+        title={estimate ? INTERVAL_ESTIMATE : undefined}
+      >
+        {estimate ? <span className="mr-1 font-sans text-text-tertiary">about</span> : null}
         {formatLocalTime(job.nextFireAt)}
         <span className="ml-2 whitespace-nowrap text-text-tertiary">
           {timeUntil(job.nextFireAt)}
@@ -219,7 +229,8 @@ export function ScheduledJobsBody({
     <div className="flex flex-col gap-3">
       <p className="text-[12px] text-text-tertiary">
         Times are in your local time ({browserZone}). Calendar schedules run in the server&apos;s
-        time zone ({data.timeZone}).
+        time zone ({data.timeZone}). The next run of an interval job is an estimate from its last
+        run.
       </p>
       <div className="flex flex-col overflow-hidden rounded-[12px] border border-border bg-surface">
         <ColumnHeaders />

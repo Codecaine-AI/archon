@@ -32,7 +32,7 @@ const validTriggerBindingSchema = z.object({
   }),
   nextFireAt: z.string().nullable().openapi({
     description:
-      "The next fire time, computed from the schedule in the server's local time zone. Null when no schedule is installed, or for an interval binding with no run to count from.",
+      "The next fire time, computed from the schedule in the server's local time zone. For a calendar binding it is exact. For an interval binding it is an estimate: the start of the last run plus whole intervals, while launchd counts from the load of the job. Null when no schedule is installed, or for an interval binding with no run to count from.",
   }),
 });
 
