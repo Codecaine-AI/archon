@@ -14,7 +14,7 @@ import { join, resolve } from 'node:path';
 import type { JsonValue } from '@archon/workflows/output-ref';
 import { getRunArtifactsDirForRoot } from '@archon/paths';
 import { removeTempTree } from '@archon/paths/test-utils';
-import { timerTriggerConfigSchema } from './trigger';
+import { timerTriggerConfigSchema } from '@archon/core/workflows/timer-bindings';
 import { standardWebhooksSourceConfigSchema } from '@archon/adapters/sources/standard-webhooks/source-plugin';
 import {
   isTerminalRunStatus,

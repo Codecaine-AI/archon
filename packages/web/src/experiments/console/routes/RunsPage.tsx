@@ -293,10 +293,13 @@ export function RunsPage(): ReactElement {
   const [searchParams] = useSearchParams();
   const demoMode = searchParams.get('demo') === '1';
 
+  // `?q=` opens the feed already searched, across every status: the Scheduled jobs page
+  // links a job to its runs this way.
+  const linkedQuery = searchParams.get('q') ?? '';
   // Default to `running` — where the user's attention belongs. Completed is a
   // retrospective view, not the first thing to see.
-  const [filter, setFilter] = useState<Filter>('running');
-  const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState<Filter>(linkedQuery === '' ? 'running' : 'all');
+  const [query, setQuery] = useState(linkedQuery);
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   const { data, loading, error } = useEntity<FeedData>(K.runs(scope), () =>

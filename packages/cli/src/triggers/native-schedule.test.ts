@@ -11,7 +11,7 @@ import {
   renderMacosLaunchAgent,
   type NativeScheduleConfig,
 } from './native-schedule';
-import { timerTriggerConfigSchema } from '../commands/trigger';
+import { timerTriggerConfigSchema } from '@archon/core/workflows/timer-bindings';
 
 const execFileAsync = promisify(execFile);
 const tempRoots: string[] = [];

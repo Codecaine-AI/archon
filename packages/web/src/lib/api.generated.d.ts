@@ -3288,6 +3288,54 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/trigger-bindings': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * List the scheduled jobs (timer bindings) of this install
+     * @description Every `<bindingId>.json` file in the bindings folder, with its schedule, whether its LaunchAgent is installed, the newest run it started and its next fire time. A file that fails validation is listed with the reason. Read-only.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['TriggerBindingsResponse'];
+          };
+        };
+        /** @description Server error */
+        500: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Error'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/metrics': {
     parameters: {
       query?: never;
@@ -7928,6 +7976,60 @@ export interface components {
       runId: string;
       stepName: string;
     };
+    TriggerBindingsResponse: {
+      /** @description The server's IANA time zone. */
+      timeZone: string;
+      generatedAt: string;
+      bindings: components['schemas']['TriggerBinding'][];
+    };
+    TriggerBinding:
+      | {
+          file: string;
+          /** @enum {string} */
+          status: 'valid';
+          bindingId: string;
+          workflowName: string;
+          /** @description The launch folder (binding.launch.cwd). */
+          cwd: string;
+          hostId: string;
+          schedule: components['schemas']['TimerSchedule'];
+          /** @description Whether the binding's LaunchAgent plist exists; null when this host cannot tell (see scheduleError). */
+          scheduleInstalled: boolean | null;
+          scheduleError?: string;
+          lastRun: components['schemas']['TriggerBindingLastRun'];
+          /** @description The next fire time, computed from the schedule in the server's local time zone. Null when no schedule is installed, or for an interval binding with no run to count from. */
+          nextFireAt: string | null;
+        }
+      | {
+          file: string;
+          /** @enum {string} */
+          status: 'invalid';
+          reason: string;
+        };
+    TimerSchedule:
+      | {
+          intervalSeconds: number;
+          runAtLoad: boolean;
+        }
+      | {
+          calendar: {
+            minute: number;
+            hour: number;
+            weekday?: number;
+            day?: number;
+          }[];
+          runAtLoad: boolean;
+        };
+    /** @description The newest run a resource start began for this binding. */
+    TriggerBindingLastRun: {
+      runId: string;
+      status: components['schemas']['WorkflowRunStatus'];
+      outcome: components['schemas']['WorkflowRunOutcome'];
+      startedAt: string;
+      completedAt: string | null;
+    } | null;
+    /** @enum {string} */
+    WorkflowRunStatus: 'pending' | 'running' | 'completed' | 'failed' | 'cancelled' | 'paused';
     MetricsReport: {
       window: {
         since: string;

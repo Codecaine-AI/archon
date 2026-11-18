@@ -24,9 +24,9 @@ type ApiMessage = z.infer<typeof messageSchema>;
 type ApiWorkflowRun = z.infer<typeof workflowRunSchema>;
 type ApiDashboardWorkflowRun = z.infer<typeof dashboardWorkflowRunSchema>;
 
-function toISOString(val: Date | string): string;
-function toISOString(val: Date | string | null | undefined): string | null;
-function toISOString(val: Date | string | null | undefined): string | null {
+export function toISOString(val: Date | string): string;
+export function toISOString(val: Date | string | null | undefined): string | null;
+export function toISOString(val: Date | string | null | undefined): string | null {
   if (val === null || val === undefined) return null;
   if (typeof val === 'string') return val;
   try {

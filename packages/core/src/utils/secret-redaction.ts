@@ -1,11 +1,12 @@
-import { sanitizeCredentials } from '@archon/core/utils/credential-sanitizer';
+import { sanitizeCredentials } from './credential-sanitizer';
 import {
   collectCredentialValues,
   redactCredentialValues,
 } from '@archon/paths/credential-redaction';
 
 /**
- * Two redactions for text an agent reads from this server.
+ * Two redactions for text read back out of this install: the trigger MCP server's tool
+ * results and the console's binding list apply the same rule.
  *
  * - `exact` replaces only this process's real credential values: the values of
  *   secret-named env keys and `DATABASE_URL`.
@@ -81,6 +82,14 @@ function redactValue(
  * errors, log tails) and any field or subtree a tool adds later without listing it.
  */
 export function redactedJson(value: unknown, structuralPaths: readonly StructuralPath[]): string {
+  return JSON.stringify(redactedValue(value, structuralPaths), null, 2);
+}
+
+/**
+ * `value` with every string redacted by the same rule as `redactedJson`. A `Date` becomes
+ * its ISO string, so pass a value without dates to keep its type truthful.
+ */
+export function redactedValue<T>(value: T, structuralPaths: readonly StructuralPath[]): T {
   const structural = new Set(structuralPaths.map(path => pathKey(pathSegments(path))));
-  return JSON.stringify(redactValue(value, [], structural, secretRedactor()), null, 2);
+  return redactValue(value, [], structural, secretRedactor()) as T;
 }

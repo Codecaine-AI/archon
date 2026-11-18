@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState, type ReactElement } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router';
-import { ChartLine, Settings, PenTool, type LucideIcon } from 'lucide-react';
+import { CalendarClock, ChartLine, Settings, PenTool, type LucideIcon } from 'lucide-react';
 import { SessionMenu } from '@/components/auth/SessionMenu';
 import { ProjectRow } from './ProjectRow';
 import { EnvVarsDialog } from './EnvVarsDialog';
@@ -298,6 +298,7 @@ export function ProjectRail({ onAddProject }: ProjectRailProps): ReactElement {
           ) : null}
           <span>All projects</span>
         </button>
+        <RailNavLink to="/console/schedules" icon={CalendarClock} label="Scheduled jobs" />
       </div>
 
       {/* Grouped project list */}

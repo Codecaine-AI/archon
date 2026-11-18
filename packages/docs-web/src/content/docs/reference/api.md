@@ -325,6 +325,7 @@ Only user-defined workflows can be deleted. Bundled defaults cannot be removed.
 | POST | `/api/workflows/runs/{runId}/answer` | Answer a paused attention wait in its declared form, naming the exact occurrence |
 | POST | `/api/workflows/runs/{runId}/signal` | Signal an external event wait; use `occurrence` for an exact match |
 | DELETE | `/api/workflows/runs/{runId}` | Delete a terminal run and its events |
+| GET | `/api/trigger-bindings` | Read-only list of the scheduled jobs (timer binding files): each valid binding's schedule, `scheduleInstalled`, `lastRun` and `nextFireAt`, and each invalid file's name and reason. Strings are redacted as the trigger MCP server redacts them. See [workflow triggers](/guides/workflow-triggers/#see-scheduled-jobs-in-the-console) |
 
 For `/signal`, send `{ "event": "checks.complete", "occurrence": "<metadata.wait.pauseId>", "payload": { "conclusion": "success" } }`. The occurrence identifies the exact wait, including when deadlines repeat. The legacy `resumeAt` selector remains accepted and is required when `occurrence` is omitted; it cannot distinguish two occurrences with the same event and deadline. If both selectors are supplied, both must match. Waits persisted without a `pauseId` can still be signaled using `resumeAt`.
 

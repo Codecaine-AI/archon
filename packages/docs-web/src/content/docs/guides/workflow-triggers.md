@@ -195,6 +195,21 @@ The installed LaunchAgent runs in the current user's GUI login domain. The user 
 
 For plain schedules, use the trigger workflow to read the current source state when it runs. To report identified items from an external system, use the [polling recipe](#poll-a-system-that-cannot-send-webhooks). Do not depend on one invocation for every wall-clock interval.
 
+## See scheduled jobs in the console
+
+The console page `/console/schedules` lists every binding file of the install. Open it with **Scheduled jobs** under **All projects** in the left rail. The page reads the bindings folder that `archon mcp serve` reads by default, `ARCHON_TRIGGER_BINDINGS_DIR` or `<ARCHON_HOME>/triggers`. It is read-only, so you fire, change, and remove a binding with the CLI or the MCP tools.
+
+The row of a valid binding shows the binding ID, the workflow and launch folder, the schedule in words, the last run, the next run, and a state. The row of an invalid file shows the file name and the reason. The last run is the newest run whose metadata names the binding. Select a valid row to open the runs page, searched for the binding's workflow name. The page refreshes every 60 seconds, on window focus, and when a run changes.
+
+| State | Means |
+| --- | --- |
+| `scheduled` | The binding's LaunchAgent plist exists, so launchd fires the job. |
+| `no schedule` | The binding file exists, but no LaunchAgent fires it. Run `archon trigger schedule install` to schedule it. |
+| `unknown` | The server cannot check for a LaunchAgent, for example because it does not run on macOS. Hover the pill for the reason. |
+| `invalid` | The file is not valid JSON, fails the schema, is a symbolic link or not a regular file, or names another `bindingId` than its file name. |
+
+The server computes the next run in its own time zone, and the page shows it in the browser's time zone. A calendar job takes its earliest entry. An interval job counts from the start of its last run, so an interval job with no run shows no next run. The next run is an estimate, for the reasons in [macOS scheduling limits](#macos-scheduling-limits).
+
 ## Manage bindings from another machine
 
 `archon mcp serve` serves the trigger tools over MCP on stdio. A coding agent on another machine starts it over SSH, so SSH is the authentication and no port opens.

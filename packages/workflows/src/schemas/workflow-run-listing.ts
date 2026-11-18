@@ -33,6 +33,8 @@ export const listDashboardRunsOptionsSchema = z.object({
   parentRunIds: z.array(z.string()).optional(),
   excludeLeafStatuses: z.array(workflowRunStatusSchema).optional(),
   search: z.string().optional(),
+  /** Only runs a resource start began for this binding (`metadata.resource_start.bindingId`). */
+  resourceStartBindingId: z.string().optional(),
   after: z.string().optional(),
   before: z.string().optional(),
   limit: z.number().optional(),

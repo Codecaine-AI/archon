@@ -1,12 +1,13 @@
 import { execFile } from 'node:child_process';
 import { constants } from 'node:fs';
 import { access, link, mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
-import { homedir } from 'node:os';
 import { isAbsolute, join } from 'node:path';
 import { promisify } from 'node:util';
+import {
+  macosLaunchAgentsDirectory,
+  macosTriggerJobLabel as jobLabel,
+} from '@archon/core/workflows/timer-bindings';
 import { type TimerCalendar, timerCalendarSchema } from '@archon/workflows/schemas/resource-start';
-
-export const MACOS_TRIGGER_JOB_LABEL_PREFIX = 'com.archon.trigger.';
 
 export interface NativeScheduleConfig {
   id: string;
@@ -34,7 +35,6 @@ export interface NativeScheduleOptions {
 }
 
 const execFileAsync = promisify(execFile);
-const OWNED_ID = /^[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?$/;
 
 function escapeXml(value: string): string {
   return value
@@ -43,15 +43,6 @@ function escapeXml(value: string): string {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;');
-}
-
-function jobLabel(id: string): string {
-  if (!OWNED_ID.test(id)) {
-    throw new Error(
-      'Native schedule id must start and end with a letter or digit and contain only letters, digits, dots, underscores, or hyphens'
-    );
-  }
-  return `${MACOS_TRIGGER_JOB_LABEL_PREFIX}${id}`;
 }
 
 function assertAbsolute(name: string, value: string): void {
@@ -158,19 +149,14 @@ function resolveRuntime(options: NativeScheduleOptions): {
   domain: string;
   runCommand: NonNullable<NativeScheduleOptions['runCommand']>;
 } {
-  if ((options.platform ?? process.platform) !== 'darwin') {
-    throw new Error(
-      'Native schedule installation is supported only on macOS. Use the documented long-lived systemd or Task Scheduler host recipe on this host.'
-    );
-  }
-
+  const directory = macosLaunchAgentsDirectory(options);
   const uid = options.uid ?? process.getuid?.();
   if (uid === undefined) {
     throw new Error('Cannot determine the macOS user launchd domain');
   }
 
   return {
-    directory: options.launchAgentsDirectory ?? join(homedir(), 'Library', 'LaunchAgents'),
+    directory,
     domain: `gui/${String(uid)}`,
     runCommand:
       options.runCommand ??
@@ -300,21 +286,6 @@ export async function removeMacosNativeSchedule(
   await runtime.runCommand('/bin/launchctl', ['bootout', runtime.domain, path]);
   await unlink(path);
   return true;
-}
-
-/** Whether the LaunchAgent plist of schedule `id` exists. */
-export async function macosNativeScheduleInstalled(
-  id: string,
-  options: NativeScheduleOptions = {}
-): Promise<boolean> {
-  const runtime = resolveRuntime(options);
-  try {
-    await access(join(runtime.directory, `${jobLabel(id)}.plist`), constants.F_OK);
-    return true;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false;
-    throw error;
-  }
 }
 
 /**

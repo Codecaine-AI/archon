@@ -19,7 +19,7 @@ import {
 } from '@archon/workflows/schemas/pack-bindings';
 import type { WorkflowSource } from '@archon/workflows/schemas/workflow';
 import { writeJsonLine } from '../utils/stdout';
-import { timerTriggerConfigSchema } from './trigger';
+import { timerTriggerConfigSchema } from '@archon/core/workflows/timer-bindings';
 import { loadWorkflows } from './workflow-list';
 
 export interface PackBindingsOptions {

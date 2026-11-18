@@ -11,7 +11,7 @@ import { defaultPlatformPolicies } from '@archon/adapters/platform-policies';
 import { setPlatformPolicies } from '@archon/core/platforms/registry';
 import { removeTempTree } from '@archon/paths/test-utils';
 import { packCommand, type PackBindingsOptions } from './pack';
-import { timerTriggerConfigSchema } from './trigger';
+import { timerTriggerConfigSchema } from '@archon/core/workflows/timer-bindings';
 
 const DECLARATION = `bindings:
   sweep:

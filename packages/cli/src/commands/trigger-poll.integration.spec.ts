@@ -17,7 +17,8 @@ import {
   createInMemoryWorkflowHostStore,
 } from '../test-support/workflow-store';
 import { registerFolder } from '@archon/core/handlers/clone';
-import { triggerCommand, type timerTriggerConfigSchema } from './trigger';
+import type { timerTriggerConfigSchema } from '@archon/core/workflows/timer-bindings';
+import { triggerCommand } from './trigger';
 import type { z } from '@hono/zod-openapi';
 
 // Poll-style `trigger fire` behavior, run in-process: an external poller re-runs `fire`, and

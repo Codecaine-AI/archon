@@ -5,7 +5,8 @@ name remains in place to avoid a mechanical move while the builder is changing.
 
 ## Routes
 
-- `/console` → all runs
+- `/console` → all runs; `?q=<text>` opens it searched, across every status
+- `/console/schedules` → scheduled jobs (timer bindings) with their last and next run
 - `/console/metrics` → overview cards declared by packs, over `?window=7d|30d|90d`
 - `/console/metrics/details` → one row per metric, with calibration boxes
 - `/console/settings` → assistant, provider, system, and identity settings
