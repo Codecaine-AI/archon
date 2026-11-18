@@ -10,7 +10,12 @@ const cliPath = resolve(import.meta.dir, '..', 'cli.ts');
 interface JsonRpcResponse {
   jsonrpc: string;
   id: number;
-  result?: { tools?: { name: string }[]; content?: { text: string }[]; isError?: boolean };
+  result?: {
+    instructions?: string;
+    tools?: { name: string }[];
+    content?: { text: string }[];
+    isError?: boolean;
+  };
   error?: unknown;
 }
 
@@ -79,6 +84,10 @@ describe('archon mcp serve', () => {
     const frames = lines.map(line => JSON.parse(line) as JsonRpcResponse);
     expect(frames.every(frame => frame.jsonrpc === '2.0')).toBe(true);
     expect(frames.map(frame => frame.id)).toEqual([1, 2, 3]);
+    // A harness that shows its agent only this text still gets the rule for the write tools.
+    expect(frames[0]?.result?.instructions).toContain(
+      'before you fire, change or remove a binding'
+    );
     expect(frames[1]?.result?.tools?.map(tool => tool.name).sort()).toEqual([
       'fire_binding',
       'get_run',
