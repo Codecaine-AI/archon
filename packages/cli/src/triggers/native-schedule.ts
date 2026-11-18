@@ -181,13 +181,20 @@ function resolveRuntime(options: NativeScheduleOptions): {
 }
 
 /** The installed job differs from the one rendered now, often because PATH changed. */
+export class NativeScheduleConflictError extends Error {
+  constructor(readonly path: string) {
+    super(
+      `Refusing to replace an existing native schedule with different configuration: ${path}. ` +
+        "The job records the installing shell's PATH, so a different PATH or an upgrade changes it. " +
+        'Remove it (`archon trigger schedule remove`, or `archon workflow wake schedule remove` for the wake schedule), ' +
+        'then install it again from the shell whose PATH the job should use.'
+    );
+    this.name = 'NativeScheduleConflictError';
+  }
+}
+
 function differentConfiguration(path: string): Error {
-  return new Error(
-    `Refusing to replace an existing native schedule with different configuration: ${path}. ` +
-      "The job records the installing shell's PATH, so a different PATH or an upgrade changes it. " +
-      'Remove it (`archon trigger schedule remove`, or `archon workflow wake schedule remove` for the wake schedule), ' +
-      'then install it again from the shell whose PATH the job should use.'
-  );
+  return new NativeScheduleConflictError(path);
 }
 
 async function writeOwnedConfiguration(path: string, contents: string): Promise<boolean> {
@@ -223,12 +230,20 @@ export async function installMacosNativeSchedule(
   options: NativeScheduleOptions = {}
 ): Promise<string> {
   const rendered = renderMacosLaunchAgent(config);
-  const runtime = resolveRuntime(options);
+  return await installPlist(rendered.label, rendered.plist, resolveRuntime(options));
+}
+
+/** Write the job's plist when it is absent and bootstrap it; an identical plist is only checked. */
+async function installPlist(
+  label: string,
+  plist: string,
+  runtime: ReturnType<typeof resolveRuntime>
+): Promise<string> {
   await mkdir(runtime.directory, { recursive: true, mode: 0o700 });
-  const path = join(runtime.directory, `${rendered.label}.plist`);
-  const created = await writeOwnedConfiguration(path, rendered.plist);
+  const path = join(runtime.directory, `${label}.plist`);
+  const created = await writeOwnedConfiguration(path, plist);
   if (!created) {
-    await runtime.runCommand('/bin/launchctl', ['print', `${runtime.domain}/${rendered.label}`]);
+    await runtime.runCommand('/bin/launchctl', ['print', `${runtime.domain}/${label}`]);
     return path;
   }
 
@@ -239,6 +254,33 @@ export async function installMacosNativeSchedule(
     throw error;
   }
   return path;
+}
+
+/** The installed plist of schedule `id`, byte for byte, or null when none is installed. */
+export async function readMacosNativeSchedulePlist(
+  id: string,
+  options: NativeScheduleOptions = {}
+): Promise<string | null> {
+  const runtime = resolveRuntime(options);
+  try {
+    return await readFile(join(runtime.directory, `${jobLabel(id)}.plist`), 'utf8');
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+/**
+ * Put back a plist that `readMacosNativeSchedulePlist` read, byte for byte, and bootstrap
+ * it. It keeps the PATH and program arguments of the shell that first installed the job,
+ * which the process restoring it may not share.
+ */
+export async function restoreMacosNativeSchedulePlist(
+  id: string,
+  plist: string,
+  options: NativeScheduleOptions = {}
+): Promise<string> {
+  return await installPlist(jobLabel(id), plist, resolveRuntime(options));
 }
 
 export async function removeMacosNativeSchedule(
@@ -258,4 +300,40 @@ export async function removeMacosNativeSchedule(
   await runtime.runCommand('/bin/launchctl', ['bootout', runtime.domain, path]);
   await unlink(path);
   return true;
+}
+
+/** Whether the LaunchAgent plist of schedule `id` exists. */
+export async function macosNativeScheduleInstalled(
+  id: string,
+  options: NativeScheduleOptions = {}
+): Promise<boolean> {
+  const runtime = resolveRuntime(options);
+  try {
+    await access(join(runtime.directory, `${jobLabel(id)}.plist`), constants.F_OK);
+    return true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false;
+    throw error;
+  }
+}
+
+/**
+ * Refuse when this user's launchd GUI domain is missing. Every install and remove targets
+ * `gui/<uid>`, which exists only while the user has a login session on the Mac; a process
+ * started over SSH with no one logged in finds no such domain. The check reads launchctl's
+ * exit status, not its text.
+ */
+export async function assertMacosLaunchdSession(
+  options: NativeScheduleOptions = {}
+): Promise<void> {
+  const runtime = resolveRuntime(options);
+  try {
+    await runtime.runCommand('/bin/launchctl', ['print', runtime.domain]);
+  } catch (error) {
+    throw new Error(
+      `The launchd GUI domain ${runtime.domain} is not available, so no schedule can be installed or removed. ` +
+        'It exists only while this user is logged in to the Mac. Log in at the Mac (or through Screen Sharing), then try again.',
+      { cause: error }
+    );
+  }
 }

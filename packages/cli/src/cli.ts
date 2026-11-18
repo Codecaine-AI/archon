@@ -317,7 +317,7 @@ async function assertFileStoreIfNeeded({
   const wakeSchedule =
     command === 'workflow' && subcommand === 'wake' && positionals[2] === 'schedule';
   if (
-    (command === 'workflow' || command === 'trigger') &&
+    (command === 'workflow' || command === 'trigger' || command === 'mcp') &&
     !wakeSchedule &&
     !(await usesDatabaseStore())
   ) {
@@ -397,6 +397,7 @@ const NO_GIT_COMMANDS = [
   'state',
   'metrics',
   'trigger',
+  'mcp',
   'version',
   'help',
   'setup',
@@ -487,6 +488,8 @@ async function dispatchGatedCommand(ctx: CliRouteContext): Promise<number> {
       return await routes.runMetrics(ctx);
     case 'trigger':
       return await routes.runTrigger(ctx);
+    case 'mcp':
+      return await routes.runMcp(ctx);
     case 'version':
       return await routes.runVersion();
     case 'help':

@@ -105,6 +105,8 @@ export const cliArgOptions: CliArgOptions = {
   'delivery-id': { type: 'string' },
   inputs: { type: 'string' },
   owner: { type: 'string' },
+  // `archon mcp serve`: the folder of `<bindingId>.json` binding files.
+  'bindings-dir': { type: 'string' },
   // `archon pack bindings`: the operator's choices a pack's binding declaration lacks.
   repo: { type: 'string' },
   'run-as': { type: 'string' },

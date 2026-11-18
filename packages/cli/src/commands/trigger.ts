@@ -34,7 +34,12 @@ import {
   DETACHED_RUN_OWNER_ENV,
 } from '../utils/detached-run-control';
 import { registerOwnedRunTermination } from '../utils/owned-run-termination';
-import { installMacosNativeSchedule, removeMacosNativeSchedule } from '../triggers/native-schedule';
+import {
+  installMacosNativeSchedule,
+  type NativeScheduleOptions,
+  removeMacosNativeSchedule,
+} from '../triggers/native-schedule';
+import type { StartReceiptInspection } from '@archon/workflows/resource-start-store';
 import { resolveCliUserId } from './auth';
 import { readCallingNode } from '../utils/calling-node';
 import { requestedBy } from '../utils/requested-by';
@@ -51,10 +56,11 @@ export const timerTriggerConfigSchema = z
   })
   .strict();
 
-async function loadTimerConfig(path: string): Promise<z.infer<typeof timerTriggerConfigSchema>> {
-  const value = timerTriggerConfigSchema.safeParse(
-    JSON.parse(await readFile(path, 'utf8')) as unknown
-  );
+export type TimerTriggerConfig = z.infer<typeof timerTriggerConfigSchema>;
+
+/** A timer binding document, or the error naming the fields that fail the schema. */
+export function parseTimerConfig(document: unknown): TimerTriggerConfig {
+  const value = timerTriggerConfigSchema.safeParse(document);
   if (!value.success)
     throw new Error(
       `Invalid timer configuration fields: ${value.error.issues.map(issue => issue.path.join('.')).join(', ')}`
@@ -64,9 +70,13 @@ async function loadTimerConfig(path: string): Promise<z.infer<typeof timerTrigge
   return value.data;
 }
 
-async function assertKnownRunAsUser(
+export async function loadTimerConfig(path: string): Promise<TimerTriggerConfig> {
+  return parseTimerConfig(JSON.parse(await readFile(path, 'utf8')) as unknown);
+}
+
+export async function assertKnownRunAsUser(
   host: WorkflowHost,
-  config: z.infer<typeof timerTriggerConfigSchema>
+  config: TimerTriggerConfig
 ): Promise<void> {
   if (!(await host.records.users.getUserById(config.binding.runAsUserId)))
     throw new Error('Trigger binding names an unknown run-as user.');
@@ -146,7 +156,7 @@ type TriggerOptions = {
   inputs?: string;
 };
 
-type TriggerDispatch = (requestId: string, hostId: string) => Promise<void>;
+export type TriggerDispatch = (requestId: string, hostId: string) => Promise<void>;
 
 async function triggerWhoami(host: WorkflowHost): Promise<void> {
   const cliId = resolveCliUserId();
@@ -189,6 +199,25 @@ async function triggerFire(
   env: NodeJS.ProcessEnv
 ): Promise<void> {
   if (!options.config) throw new Error('Usage: archon trigger fire --config <timer-binding.json>');
+  await writeJsonLine(
+    await fireTimerBinding(host, options.config, dispatch, env, {
+      deliveryId: options.deliveryId,
+      inputs: options.inputs,
+    })
+  );
+}
+
+/**
+ * Accept one start of the timer binding at `configPath` and drain its host, as
+ * `archon trigger fire` does. Returns the retained receipt with each binding's disposition.
+ */
+export async function fireTimerBinding(
+  host: WorkflowHost,
+  configPath: string,
+  dispatch: TriggerDispatch,
+  env: NodeJS.ProcessEnv,
+  options: Pick<TriggerOptions, 'deliveryId' | 'inputs'> = {}
+): Promise<StartReceiptInspection | null> {
   if (options.deliveryId !== undefined && options.deliveryId.length === 0)
     throw new Error('--delivery-id must not be empty.');
   let eventInputs: z.infer<typeof resourceStartBindingIntentSchema>['eventInputs'];
@@ -204,7 +233,7 @@ async function triggerFire(
       );
     }
   }
-  const config = await loadTimerConfig(options.config);
+  const config = await loadTimerConfig(configPath);
   const sourceActor = await requestingSourceActor(host, env);
   // A redelivery keeps the binding snapshot of its first acceptance, so today's users
   // must not turn a recorded delivery into a failure; the store answers replay or
@@ -245,7 +274,7 @@ async function triggerFire(
       throw error;
     });
   await drainReceipt(host, receipt.receiptId, dispatch);
-  await writeJsonLine(await host.deps.store.getStartReceipt(receipt.receiptId));
+  return await host.deps.store.getStartReceipt(receipt.receiptId);
 }
 
 async function drainReceipt(
@@ -423,6 +452,46 @@ async function withdrawTrigger(host: WorkflowHost, args: string[]): Promise<void
   await writeJsonLine({ requestId: args[0], withdrawn: true });
 }
 
+/**
+ * The schedule's own id: one install, one source and one binding name one LaunchAgent, so
+ * the same binding file reinstalls onto the job it replaced.
+ */
+export function timerScheduleId(config: TimerTriggerConfig): string {
+  return createHash('sha256')
+    .update(JSON.stringify([getArchonHome(), config.sourceInstanceId, config.binding.bindingId]))
+    .digest('hex');
+}
+
+/** Install the LaunchAgent that runs `trigger fire --config <configPath>` on the binding's schedule. */
+export async function installTimerSchedule(
+  host: WorkflowHost,
+  config: TimerTriggerConfig,
+  configPath: string,
+  nativeOptions?: NativeScheduleOptions
+): Promise<string> {
+  await assertKnownRunAsUser(host, config);
+  const [executable, ...prefix] = cliProgramArguments();
+  return await installMacosNativeSchedule(
+    {
+      id: timerScheduleId(config),
+      programArguments: [executable, ...prefix, 'trigger', 'fire', '--config', resolve(configPath)],
+      workingDirectory: config.binding.launch.cwd,
+      archonHome: getArchonHome(),
+      path: process.env.PATH ?? '',
+      schedule: config.schedule,
+    },
+    nativeOptions
+  );
+}
+
+/** Remove the binding's LaunchAgent; false when none is installed. */
+export function removeTimerSchedule(
+  config: TimerTriggerConfig,
+  nativeOptions?: NativeScheduleOptions
+): Promise<boolean> {
+  return removeMacosNativeSchedule(timerScheduleId(config), nativeOptions);
+}
+
 async function scheduleTrigger(
   host: WorkflowHost,
   args: string[],
@@ -433,29 +502,8 @@ async function scheduleTrigger(
       'Usage: archon trigger schedule <install|remove> --config <timer-binding.json>'
     );
   const config = await loadTimerConfig(options.config);
-  if (args[0] !== 'remove') await assertKnownRunAsUser(host, config);
-  const scheduleId = createHash('sha256')
-    .update(JSON.stringify([getArchonHome(), config.sourceInstanceId, config.binding.bindingId]))
-    .digest('hex');
-  if (args[0] === 'remove') await removeMacosNativeSchedule(scheduleId);
-  else {
-    const [executable, ...prefix] = cliProgramArguments();
-    await installMacosNativeSchedule({
-      id: scheduleId,
-      programArguments: [
-        executable,
-        ...prefix,
-        'trigger',
-        'fire',
-        '--config',
-        resolve(options.config),
-      ],
-      workingDirectory: config.binding.launch.cwd,
-      archonHome: getArchonHome(),
-      path: process.env.PATH ?? '',
-      schedule: config.schedule,
-    });
-  }
+  if (args[0] === 'remove') await removeTimerSchedule(config);
+  else await installTimerSchedule(host, config, options.config);
   await writeJsonLine({ bindingId: config.binding.bindingId, schedule: args[0] });
 }
 

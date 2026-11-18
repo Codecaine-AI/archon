@@ -142,7 +142,7 @@ export async function workflowTestCommand(
   return 0;
 }
 
-function workflowLoadErrorsJson(errors: readonly WorkflowLoadError[]) {
+export function workflowLoadErrorsJson(errors: readonly WorkflowLoadError[]) {
   return errors.map(e => ({ filename: e.filename, error: e.error, errorType: e.errorType }));
 }
 
@@ -194,7 +194,7 @@ function selectWorkflowEntries(
   return workflowEntries;
 }
 
-function workflowJsonEntry(
+export function workflowJsonEntry(
   { workflow: w, parseWarnings, declared }: WorkflowWithSource,
   full: boolean
 ): WorkflowJsonEntry {

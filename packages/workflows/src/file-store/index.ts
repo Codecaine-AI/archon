@@ -7,3 +7,4 @@ export {
   type TransactionView,
 } from './transaction-view';
 export { isConversationResetTarget } from './transaction-reads';
+export { FileStoreLockHeldError, withFileStoreLock } from './lock';

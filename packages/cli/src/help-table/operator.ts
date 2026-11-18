@@ -26,6 +26,18 @@ export const operatorHelp: HelpGroup = {
       description: 'Start configured workflows and inspect durable resource admission',
     },
     {
+      command: 'mcp',
+      subcommand: 'serve',
+      spec: 'mcp serve',
+      description: 'Serve trigger binding and run tools over MCP on stdio, for an agent over SSH',
+      scopedFlags: [
+        {
+          spec: '--bindings-dir <dir>',
+          description: 'The folder of <bindingId>.json files (or ARCHON_TRIGGER_BINDINGS_DIR)',
+        },
+      ],
+    },
+    {
       command: 'pack',
       subcommand: 'bindings',
       spec: 'pack bindings <pack>',
