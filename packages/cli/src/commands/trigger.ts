@@ -4,7 +4,7 @@ import { cliProgramArguments } from '../utils/cli-program-arguments';
 import { createHash, randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { mkdir, open, readFile, rm } from 'node:fs/promises';
-import { isAbsolute, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { z } from '@hono/zod-openapi';
 import { getArchonHome } from '@archon/paths';
 import {
@@ -23,8 +23,12 @@ import {
   resourceStartBindingIntentSchema,
   RUN_SOURCE_ACTOR,
   type SourceReceiptInput,
-  timerCalendarSchema,
 } from '@archon/workflows/schemas/resource-start';
+import {
+  parseTimerConfig,
+  timerScheduleId,
+  type TimerTriggerConfig,
+} from '@archon/core/workflows/timer-bindings';
 import { readWorkflowSourceState } from '@archon/workflows/schemas/workflow-run';
 import { FileStoreUnsupportedError } from '@archon/workflows/file-store';
 import { CLIAdapter } from '../adapters/cli-adapter';
@@ -43,32 +47,6 @@ import type { StartReceiptInspection } from '@archon/workflows/resource-start-st
 import { resolveCliUserId } from './auth';
 import { readCallingNode } from '../utils/calling-node';
 import { requestedBy } from '../utils/requested-by';
-
-export const timerTriggerConfigSchema = z
-  .object({
-    version: z.literal(1),
-    sourceInstanceId: z.string().min(1),
-    binding: resourceStartBindingIntentSchema.omit({ eventInputs: true }),
-    schedule: z.union([
-      z.object({ intervalSeconds: z.number().int().positive(), runAtLoad: z.boolean() }).strict(),
-      z.object({ calendar: timerCalendarSchema, runAtLoad: z.boolean() }).strict(),
-    ]),
-  })
-  .strict();
-
-export type TimerTriggerConfig = z.infer<typeof timerTriggerConfigSchema>;
-
-/** A timer binding document, or the error naming the fields that fail the schema. */
-export function parseTimerConfig(document: unknown): TimerTriggerConfig {
-  const value = timerTriggerConfigSchema.safeParse(document);
-  if (!value.success)
-    throw new Error(
-      `Invalid timer configuration fields: ${value.error.issues.map(issue => issue.path.join('.')).join(', ')}`
-    );
-  if (!isAbsolute(value.data.binding.launch.cwd))
-    throw new Error('Trigger execution cwd must be absolute.');
-  return value.data;
-}
 
 export async function loadTimerConfig(path: string): Promise<TimerTriggerConfig> {
   return parseTimerConfig(JSON.parse(await readFile(path, 'utf8')) as unknown);
@@ -450,16 +428,6 @@ async function withdrawTrigger(host: WorkflowHost, args: string[]): Promise<void
       'Request withdrawn, but its source record is unreadable; inspect storage before cleanup.'
     );
   await writeJsonLine({ requestId: args[0], withdrawn: true });
-}
-
-/**
- * The schedule's own id: one install, one source and one binding name one LaunchAgent, so
- * the same binding file reinstalls onto the job it replaced.
- */
-export function timerScheduleId(config: TimerTriggerConfig): string {
-  return createHash('sha256')
-    .update(JSON.stringify([getArchonHome(), config.sourceInstanceId, config.binding.bindingId]))
-    .digest('hex');
 }
 
 /** Install the LaunchAgent that runs `trigger fire --config <configPath>` on the binding's schedule. */

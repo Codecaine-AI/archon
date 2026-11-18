@@ -2244,10 +2244,7 @@
       "registerProviders",
       "usesDatabaseStore"
     ],
-    "packages/cli/src/triggers/native-schedule.ts": [
-      "MACOS_TRIGGER_JOB_LABEL_PREFIX",
-      "renderMacosLaunchAgent"
-    ],
+    "packages/cli/src/triggers/native-schedule.ts": ["renderMacosLaunchAgent"],
     "packages/cli/src/utils/stdout.ts": ["writeJsonLine", "writeStderr"],
     "packages/core/src/config/config-loader.ts": [
       "clearConfigCache",

@@ -13,7 +13,8 @@ import { loadWorkflows, type WorkflowJsonEntry } from '../commands/workflow-list
 import { workflowJsonEntry, workflowLoadErrorsJson } from '../commands/workflow-query';
 import { buildRunNodes, listRunEvents } from '../commands/workflow-node-summaries';
 import { resolveRunTranscriptPath } from '../commands/workflow-shared';
-import { listBindings, type TriggerToolContext } from './trigger-bindings';
+import { listBindings } from '@archon/core/workflows/timer-bindings';
+import type { TriggerToolContext } from './trigger-bindings';
 
 export type FolderWorkflows =
   | {

@@ -57,7 +57,6 @@ const unusedNativeSchedule = async (): Promise<never> => {
 mock.module('../triggers/native-schedule', () => ({
   installMacosNativeSchedule: install,
   removeMacosNativeSchedule: remove,
-  macosNativeScheduleInstalled: unusedNativeSchedule,
   assertMacosLaunchdSession: unusedNativeSchedule,
   readMacosNativeSchedulePlist: unusedNativeSchedule,
   restoreMacosNativeSchedulePlist: unusedNativeSchedule,

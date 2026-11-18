@@ -8,6 +8,7 @@ import { KeymapHelp } from './components/KeymapHelp';
 import { BuilderConnected } from './builder/BuilderConnected';
 import { RunsPage } from './routes/RunsPage';
 import { RunDetailPage } from './routes/RunDetailPage';
+import { SchedulesPage } from './routes/SchedulesPage';
 import { MetricsPage } from './routes/metrics/MetricsPage';
 import { ChatPage } from './routes/ChatPage';
 import { PreviewPage } from './routes/PreviewPage';
@@ -107,6 +108,7 @@ export function ConsoleApp(): ReactElement {
         <main className="flex min-w-0 flex-1 flex-col">
           <Routes>
             <Route index element={<RunsPage />} />
+            <Route path="schedules" element={<SchedulesPage />} />
             <Route path="metrics" element={<MetricsPage />} />
             <Route path="metrics/details" element={<MetricsPage view="details" />} />
             <Route path="settings" element={<SettingsPage />} />

@@ -21,7 +21,8 @@ import type { WorkflowHost } from '@archon/core/workflows/host-store';
 import { setPlatformPolicies } from '@archon/core/platforms/registry';
 import { defaultPlatformPolicies } from '@archon/adapters/platform-policies';
 import { createTriggerMcpServer } from './trigger-mcp-server';
-import type { listBindings, removeBinding, setBinding } from './trigger-bindings';
+import type { listBindings } from '@archon/core/workflows/timer-bindings';
+import type { removeBinding, setBinding } from './trigger-bindings';
 import type { getRun, listRuns, listWorkflows } from './trigger-runs';
 
 const roots = trackTempRoots();

@@ -76,6 +76,11 @@
         "b-60-workflow-triggers-the-installed-launchagen-46",
         "b-60-workflow-triggers-startinterval-behavior-47",
         "b-60-workflow-triggers-for-plain-schedules-use-48",
+        "b-60-workflow-triggers-console-jobs-heading",
+        "b-60-workflow-triggers-console-jobs-lead",
+        "b-60-workflow-triggers-console-jobs-row",
+        "b-60-workflow-triggers-console-jobs-states",
+        "b-60-workflow-triggers-console-jobs-next",
         "b384e4aa-bfbd-4201-a876-8f2079b464af",
         "b-60-workflow-triggers-mcp-1",
         "b-60-workflow-triggers-mcp-2",
@@ -1425,6 +1430,173 @@
         },
         {
           "insert": ". Do not depend on one invocation for every wall-clock interval."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-console-jobs-heading": {
+      "id": "b-60-workflow-triggers-console-jobs-heading",
+      "type": "heading",
+      "props": {
+        "level": 2
+      },
+      "text": [
+        {
+          "insert": "See Scheduled Jobs in the Console"
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-console-jobs-lead": {
+      "id": "b-60-workflow-triggers-console-jobs-lead",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The console page "
+        },
+        {
+          "insert": "/console/schedules",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " lists every binding file of the install. Open it with "
+        },
+        {
+          "insert": "Scheduled jobs",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " under "
+        },
+        {
+          "insert": "All projects",
+          "attributes": {
+            "bold": true
+          }
+        },
+        {
+          "insert": " in the left rail. The page reads the bindings folder that "
+        },
+        {
+          "insert": "archon mcp serve",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " reads by default, "
+        },
+        {
+          "insert": "ARCHON_TRIGGER_BINDINGS_DIR",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": " or "
+        },
+        {
+          "insert": "<ARCHON_HOME>/triggers",
+          "attributes": {
+            "code": true
+          }
+        },
+        {
+          "insert": ". It is read-only, so you fire, change, and remove a binding with the CLI or the MCP tools."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-console-jobs-row": {
+      "id": "b-60-workflow-triggers-console-jobs-row",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The row of a valid binding shows the binding ID, the workflow and launch folder, the schedule in words, the last run, the next run, and a state. The row of an invalid file shows the file name and the reason. The last run is the newest run whose metadata names the binding. Select a valid row to open the runs page, searched for the binding's workflow name. The page refreshes every 60 seconds, on window focus, and when a run changes."
+        }
+      ],
+      "children": []
+    },
+    "b-60-workflow-triggers-console-jobs-states": {
+      "id": "b-60-workflow-triggers-console-jobs-states",
+      "type": "structured-table",
+      "props": {
+        "columns": [
+          "State",
+          "Means"
+        ],
+        "rows": [
+          [
+            [
+              {
+                "insert": "scheduled",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The binding's LaunchAgent plist exists, so launchd fires the job."
+          ],
+          [
+            [
+              {
+                "insert": "no schedule",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The binding file exists, but no LaunchAgent fires it. Run archon trigger schedule install to schedule it."
+          ],
+          [
+            [
+              {
+                "insert": "unknown",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The server cannot check for a LaunchAgent, for example because it does not run on macOS. Hover the pill for the reason."
+          ],
+          [
+            [
+              {
+                "insert": "invalid",
+                "attributes": {
+                  "code": true
+                }
+              }
+            ],
+            "The file is not valid JSON, fails the schema, is a symbolic link or not a regular file, or names another bindingId than its file name."
+          ]
+        ],
+        "title": "States on the Scheduled jobs page"
+      },
+      "children": []
+    },
+    "b-60-workflow-triggers-console-jobs-next": {
+      "id": "b-60-workflow-triggers-console-jobs-next",
+      "type": "paragraph",
+      "props": {},
+      "text": [
+        {
+          "insert": "The server computes the next run in its own time zone, and the page shows it in the browser's time zone. A calendar job takes its earliest entry. An interval job counts from the start of its last run, so an interval job with no run shows no next run. The next run is an estimate, for the reasons in "
+        },
+        {
+          "insert": "macOS scheduling limits",
+          "attributes": {
+            "link": "#macos-scheduling-limits"
+          }
+        },
+        {
+          "insert": "."
         }
       ],
       "children": []

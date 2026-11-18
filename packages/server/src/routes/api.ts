@@ -7,6 +7,7 @@ import {
   createSqlWorkflowOperations,
 } from '@archon/core/workflows/sql-host';
 import { createWorkflowStore } from '@archon/core/workflows/store-adapter';
+import { defaultTriggerBindingsDir } from '@archon/core/workflows/timer-bindings';
 import * as codebaseDb from '@archon/core/db/codebases';
 import type { WebAdapter } from '../adapters/web';
 import { dagNodeSseEventSchema } from '../adapters/web/workflow-event.schemas';
@@ -29,6 +30,7 @@ import { registerProviderRoutes } from './api.providers';
 import { registerAttentionStreamRoute, registerRunAttentionRoutes } from './api.run-attention';
 import { registerRunCleanupRoutes, registerRunControlRoutes } from './api.run-control';
 import { registerRunGateRoutes } from './api.run-gates';
+import { registerTriggerBindingsRoute } from './api.trigger-bindings';
 import { registerUserAiPrefsRoutes } from './api.user-ai-prefs';
 import { registerWebPushRoutes } from './api.web-push';
 import { registerWorkflowRunLaunchRoute } from './api.workflow-run-launch';
@@ -114,6 +116,10 @@ export function registerApiRoutes(
   registerRunGateRoutes(app, operations);
   registerRunCleanupRoutes(app, operations);
   registerWorkflowRunReadRoutes(app);
+  registerTriggerBindingsRoute(app, {
+    store: createWorkflowStore(),
+    bindingsDir: () => defaultTriggerBindingsDir(),
+  });
   registerMetricsRoute(app, createWorkflowStore());
   registerMetricViewsRoute(app, {
     codebaseCwd: async id => (await codebaseDb.getCodebase(id))?.default_cwd ?? null,

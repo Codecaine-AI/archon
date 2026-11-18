@@ -14,16 +14,20 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { BUNDLED_VERSION } from '@archon/paths';
+import { listBindings } from '@archon/core/workflows/timer-bindings';
 import {
   BindingScheduleError,
   fireBinding,
-  listBindings,
   removeBinding,
   setBinding,
   type TriggerToolContext,
 } from './trigger-bindings';
 import { getRun, listRuns, listWorkflows } from './trigger-runs';
-import { redactedJson, redactSecrets, type StructuralPath } from './redact';
+import {
+  redactedJson,
+  redactSecrets,
+  type StructuralPath,
+} from '@archon/core/utils/secret-redaction';
 
 /** A successful result: every string in it is redacted before it is serialized. */
 function toolResult(value: unknown, structural: readonly StructuralPath[]): CallToolResult {

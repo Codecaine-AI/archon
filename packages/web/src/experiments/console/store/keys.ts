@@ -19,6 +19,8 @@ export const K = {
   runsAttention: 'runs:attention' as const,
   runs: (scope: Scope): string => `runs:${scopeKey(scope)}`,
   run: (id: string): string => `run:${id}`,
+  // Under `runs:` so the dashboard SSE's `invalidate('runs')` refreshes the last runs too.
+  scheduledJobs: 'runs:scheduled-jobs' as const,
   metrics: (scope: Scope, since: string): string => `metrics:${scopeKey(scope)}:${since}`,
   metricViews: (scope: Scope): string => `metric-views:${scopeKey(scope)}`,
   messages: (conversationId: string): string => `messages:${conversationId}`,

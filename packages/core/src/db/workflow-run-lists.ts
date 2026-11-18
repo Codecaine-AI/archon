@@ -4,6 +4,7 @@
  * Re-exported from the `./workflows` entry.
  */
 import type { AttentionRead } from '@archon/workflows/schemas/attention-degraded';
+import { RESOURCE_START_METADATA_KEY } from '@archon/workflows/schemas/resource-start';
 import type { WorkflowRun, WorkflowRunStatus } from '@archon/workflows/schemas/workflow-run';
 import {
   isAttentionQueueRow,
@@ -107,6 +108,12 @@ function buildDashboardWhereClauses(
     values.push(pattern, pattern);
     whereClauses.push(
       `(r.workflow_name LIKE $${String(values.length - 1)} OR r.user_message LIKE $${String(values.length)})`
+    );
+  }
+  if (options?.resourceStartBindingId) {
+    values.push(options.resourceStartBindingId);
+    whereClauses.push(
+      `${getDialect().jsonText('r.metadata', `${RESOURCE_START_METADATA_KEY}.bindingId`)} = $${String(values.length)}`
     );
   }
   if (options?.after) {

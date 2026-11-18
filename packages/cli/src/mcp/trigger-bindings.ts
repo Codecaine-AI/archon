@@ -4,26 +4,28 @@
  * convention of the operator, so every tool here takes it from the server's context.
  */
 import { randomUUID } from 'node:crypto';
-import { constants } from 'node:fs';
-import { mkdir, open, readdir, rename, unlink, writeFile } from 'node:fs/promises';
+import { mkdir, rename, unlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { WorkflowHost } from '@archon/core/workflows/host-store';
 import type { StartBindingInspection } from '@archon/workflows/resource-start-store';
 import { FileStoreLockHeldError, withFileStoreLock } from '@archon/workflows/file-store';
 import {
+  bindingFilePath,
+  macosNativeScheduleInstalled,
+  readBinding,
+  timerScheduleId,
+  validateBindingDocument,
+  type TimerTriggerConfig,
+} from '@archon/core/workflows/timer-bindings';
+import {
   assertKnownRunAsUser,
   fireTimerBinding,
   installTimerSchedule,
-  parseTimerConfig,
   removeTimerSchedule,
-  timerScheduleId,
-  timerTriggerConfigSchema,
-  type TimerTriggerConfig,
   type TriggerDispatch,
 } from '../commands/trigger';
 import {
   assertMacosLaunchdSession,
-  macosNativeScheduleInstalled,
   NativeScheduleConflictError,
   type NativeScheduleOptions,
   readMacosNativeSchedulePlist,
@@ -40,72 +42,6 @@ export interface TriggerToolContext {
   env: NodeJS.ProcessEnv;
   /** launchd seams; tests replace the launchctl call and the LaunchAgents folder. */
   nativeSchedule?: NativeScheduleOptions;
-}
-
-/** A plain file-name slug: no separators and no leading dot, so it cannot leave the folder. */
-const BINDING_ID = /^[A-Za-z0-9_-][A-Za-z0-9._-]*$/;
-
-export function bindingFilePath(bindingsDir: string, bindingId: string): string {
-  if (!BINDING_ID.test(bindingId))
-    throw new Error(
-      `Binding id '${bindingId}' is not a plain slug: use letters, digits, '-', '_' and '.', and do not start with '.'.`
-    );
-  return join(bindingsDir, `${bindingId}.json`);
-}
-
-/** Every schema issue with its field and message, for an agent to fix the document. */
-function validateBindingDocument(document: unknown): TimerTriggerConfig {
-  const parsed = timerTriggerConfigSchema.safeParse(document);
-  if (!parsed.success)
-    throw new Error(
-      `The binding document fails the schema: ${parsed.error.issues
-        .map(issue => `${issue.path.join('.') || '(document)'}: ${issue.message}`)
-        .join('; ')}`
-    );
-  return parseTimerConfig(parsed.data);
-}
-
-type ReadBinding =
-  | { kind: 'missing' }
-  | { kind: 'invalid'; reason: string }
-  | { kind: 'valid'; config: TimerTriggerConfig };
-
-/**
- * The file's text, read without following a symbolic link: a link could make one id act
- * on another binding's document and schedule. Null when the file does not exist.
- */
-async function readBindingText(path: string): Promise<string | null> {
-  let file;
-  try {
-    file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
-  } catch (error) {
-    const { code } = error as NodeJS.ErrnoException;
-    if (code === 'ENOENT') return null;
-    if (code === 'ELOOP') throw new Error('The binding file is a symbolic link.');
-    throw error;
-  }
-  try {
-    if (!(await file.stat()).isFile()) throw new Error('The binding file is not a regular file.');
-    return await file.readFile('utf8');
-  } finally {
-    await file.close();
-  }
-}
-
-/** The binding at `path`, valid only when it is a plain file whose bindingId is `bindingId`. */
-async function readBinding(path: string, bindingId: string): Promise<ReadBinding> {
-  try {
-    const text = await readBindingText(path);
-    if (text === null) return { kind: 'missing' };
-    const config = validateBindingDocument(JSON.parse(text) as unknown);
-    if (config.binding.bindingId !== bindingId)
-      throw new Error(
-        `Its binding.bindingId '${config.binding.bindingId}' differs from its file name '${bindingId}.json'.`
-      );
-    return { kind: 'valid', config };
-  } catch (error) {
-    return { kind: 'invalid', reason: error instanceof Error ? error.message : String(error) };
-  }
 }
 
 /** How long a tool waits for another call on the same binding before it refuses. */
@@ -187,71 +123,6 @@ async function scheduleInstalled(
   options: NativeScheduleOptions | undefined
 ): Promise<boolean> {
   return await macosNativeScheduleInstalled(timerScheduleId(config), options);
-}
-
-export type ListedBinding =
-  | {
-      file: string;
-      status: 'valid';
-      bindingId: string;
-      workflowName: string;
-      cwd: string;
-      hostId: string;
-      schedule: TimerTriggerConfig['schedule'];
-      scheduleInstalled: boolean | null;
-      scheduleError?: string;
-    }
-  | { file: string; status: 'invalid'; reason: string };
-
-async function listedBinding(
-  context: TriggerToolContext,
-  file: string
-): Promise<ListedBinding | undefined> {
-  const read = await readBinding(join(context.bindingsDir, file), file.slice(0, -'.json'.length));
-  if (read.kind === 'missing') return undefined;
-  if (read.kind === 'invalid') return { file, status: 'invalid', reason: read.reason };
-  const { config } = read;
-  let installed: boolean | null = null;
-  let scheduleError: string | undefined;
-  try {
-    installed = await scheduleInstalled(config, context.nativeSchedule);
-  } catch (error) {
-    scheduleError = error instanceof Error ? error.message : String(error);
-  }
-  return {
-    file,
-    status: 'valid',
-    bindingId: config.binding.bindingId,
-    workflowName: config.binding.launch.workflowName,
-    cwd: config.binding.launch.cwd,
-    hostId: config.binding.hostId,
-    schedule: config.schedule,
-    scheduleInstalled: installed,
-    ...(scheduleError === undefined ? {} : { scheduleError }),
-  };
-}
-
-/**
- * Every `*.json` file in the bindings folder. A file that fails the schema, is a symbolic
- * link, or names another bindingId than its file name is listed as invalid with the reason.
- */
-export async function listBindings(
-  context: TriggerToolContext
-): Promise<{ bindingsDir: string; bindings: ListedBinding[] }> {
-  let files: string[];
-  try {
-    files = (await readdir(context.bindingsDir)).filter(name => name.endsWith('.json')).sort();
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT')
-      return { bindingsDir: context.bindingsDir, bindings: [] };
-    throw error;
-  }
-  const bindings: ListedBinding[] = [];
-  for (const file of files) {
-    const entry = await listedBinding(context, file);
-    if (entry) bindings.push(entry);
-  }
-  return { bindingsDir: context.bindingsDir, bindings };
 }
 
 /** The valid binding at `<bindingId>.json`, or an error that says why there is none. */

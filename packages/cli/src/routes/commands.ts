@@ -3,8 +3,8 @@
  * module and return the exit code. Command modules load lazily so CLI startup
  * stays cheap.
  */
-import { join, resolve } from 'path';
-import { BUNDLED_VERSION, getArchonHome, getPluginsPath } from '@archon/paths';
+import { resolve } from 'path';
+import { BUNDLED_VERSION, getPluginsPath } from '@archon/paths';
 import { attachmentUsage, isAttachmentVerb, publicAttachmentEntries } from '../attachment-commands';
 import { type CliRouteContext, fail, printUsageFor } from './context';
 import { loadRoute, usesDatabaseStore } from './route-loader';
@@ -196,12 +196,12 @@ export async function runMcp({
   const { spawnAdmitted } = await import('../commands/trigger');
   const { createCliWorkflowHost } = await import('../utils/workflow-host');
   const host = await createCliWorkflowHost(true);
+  const { defaultTriggerBindingsDir } = await import('@archon/core/workflows/timer-bindings');
   const flag = values['bindings-dir'];
-  const configured =
-    typeof flag === 'string' && flag.length > 0 ? flag : process.env.ARCHON_TRIGGER_BINDINGS_DIR;
   await serveTriggerMcp({
     host,
-    bindingsDir: resolve(configured || join(getArchonHome(), 'triggers')),
+    bindingsDir:
+      typeof flag === 'string' && flag.length > 0 ? resolve(flag) : defaultTriggerBindingsDir(),
     dispatch: (requestId, hostId) => spawnAdmitted(host, requestId, hostId),
     env: process.env,
   });
