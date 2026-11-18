@@ -228,10 +228,22 @@ async function callTool(
   }
 }
 
+/**
+ * The usage rules a client puts in front of its agent when it connects. Some harnesses read
+ * only this text and no operator-written note, so the rules for the write tools live here.
+ */
+export const TRIGGER_MCP_INSTRUCTIONS = [
+  'This server reads and edits the scheduled triggers (bindings) of one Archon install.',
+  'Read tools: list_workflows, list_runs, get_run and list_bindings.',
+  'fire_binding, set_binding and remove_binding change real scheduled jobs on that install.',
+  'Get the go-ahead of the operator before you fire, change or remove a binding that you did not create.',
+  'A workflow file never ships through this server. It ships through a pull request to its repo.',
+].join('\n');
+
 export function createTriggerMcpServer(context: TriggerToolContext): Server {
   const server = new Server(
     { name: 'archon-triggers', version: BUNDLED_VERSION },
-    { capabilities: { tools: {} } }
+    { capabilities: { tools: {} }, instructions: TRIGGER_MCP_INSTRUCTIONS }
   );
   server.setRequestHandler(ListToolsRequestSchema, () => ({
     tools: TRIGGER_TOOLS.map(listedTool),
