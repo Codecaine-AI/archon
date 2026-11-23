@@ -117,6 +117,19 @@ export function readResourceStartReceiptId(
  */
 export const RUN_SOURCE_ACTOR = 'archon-run';
 
+/**
+ * `sourceActor.source` of a receipt that `archon trigger fire` accepted outside a run from a
+ * process with a T3 Code thread: `id` is that thread. The started run's row is stamped with
+ * it, so the run joins the thread that asked for it, not the thread of whatever process
+ * later drains or executes it.
+ */
+export const T3_THREAD_SOURCE_ACTOR = 't3-thread';
+
+/** The T3 Code thread that requested a start, or undefined when the source was not one. */
+export function requestingThread(actor: SourceReceiptInput['sourceActor']): string | undefined {
+  return actor?.source === T3_THREAD_SOURCE_ACTOR ? actor.id : undefined;
+}
+
 /** The run and node that requested a start, or null when the source was not a run. */
 export function requestingRun(
   actor: SourceReceiptInput['sourceActor']

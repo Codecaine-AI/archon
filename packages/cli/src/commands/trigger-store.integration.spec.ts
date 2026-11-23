@@ -33,7 +33,7 @@ import {
   createInMemoryWorkflowHostStore,
 } from '../test-support/workflow-store';
 import { registerFolder } from '@archon/core/handlers/clone';
-import { triggerCommand } from './trigger';
+import { admittedRunEnv, triggerCommand } from './trigger';
 import { workflowGetCommand } from './workflow-query';
 import { createFileWorkflowHost } from '@archon/core/workflows/file-host';
 
@@ -1247,6 +1247,7 @@ test('a fire from inside a run records that run, and the started run and its req
   const requester = await host.deps.store.createWorkflowRun({
     workflow_name: 'requester',
     user_message: '',
+    metadata: { t3_thread_id: 'thread-of-requester' },
   });
   const node = (runId: string): NodeJS.ProcessEnv => ({
     WORKFLOW_ID: runId,
@@ -1291,6 +1292,10 @@ test('a fire from inside a run records that run, and the started run and its req
     const disposition = stored?.bindings[0]?.disposition;
     if (disposition?.status !== 'admitted') throw new Error('Expected the start to be admitted');
 
+    // The started run joins the requesting run's thread, from that run's own stamp.
+    const started = await host.deps.store.getWorkflowRun(disposition.runId);
+    expect(started?.metadata.t3_thread_id).toBe('thread-of-requester');
+
     const origin = { runId: requester.id, nodePath: 'follow-up' };
     output.length = 0;
     await triggerCommand(host, 'inspect', [disposition.requestId], {});
@@ -1303,6 +1308,98 @@ test('a fire from inside a run records that run, and the started run and its req
     });
   } finally {
     stdout.mockRestore();
+    restore();
+  }
+});
+
+test('a queued start keeps the thread that fired it, never the thread of the process that drains it', async () => {
+  const { host, configPath, restore } = await fireFixture();
+  const savedThread = process.env.T3CODE_THREAD_ID;
+  const stdout = spyOn(process.stdout, 'write').mockImplementation(((
+    _chunk: unknown,
+    callback?: () => void
+  ) => {
+    callback?.();
+    return true;
+  }) as typeof process.stdout.write);
+  const seen = new Set<string>();
+  /** Fires once with `env` and returns the receipt that fire wrote. */
+  const fire = async (env: NodeJS.ProcessEnv): Promise<{ id: string }> => {
+    await triggerCommand(host, 'fire', [], { config: configPath }, { dispatch: noDispatch, env });
+    const [receipt] = (await host.deps.store.listStartReceipts(10)).filter(r => !seen.has(r.id));
+    if (!receipt) throw new Error('Expected a new receipt');
+    seen.add(receipt.id);
+    return receipt;
+  };
+  const runOf = async (receiptId: string) => {
+    const disposition = (await host.deps.store.getStartReceipt(receiptId))?.bindings[0]
+      ?.disposition;
+    if (!disposition || disposition.status === 'skipped') throw new Error('Expected a run');
+    // A request and the run it starts share one id.
+    return await host.deps.store.getWorkflowRun(disposition.requestId);
+  };
+  try {
+    // Every fire and the drain run in a process of thread A, as a drain from thread A does.
+    process.env.T3CODE_THREAD_ID = 'thread-a';
+    const holder = await fire({ T3CODE_THREAD_ID: 'thread-b' }); // takes the only slot
+    const cron = await fire({}); // the LaunchAgent sets no thread
+    const threadC = await fire({ T3CODE_THREAD_ID: 'thread-c' });
+    const unsafe = await fire({ T3CODE_THREAD_ID: 'a\r\nX-Evil: 1' });
+    const queued = await Promise.all(
+      [cron, threadC, unsafe].map(
+        async r => (await host.deps.store.getStartReceipt(r.id))?.bindings[0]?.disposition?.status
+      )
+    );
+    expect(queued).toEqual(['queued', 'queued', 'queued']);
+    expect((await host.deps.store.getStartReceipt(threadC.id))?.sourceActor).toEqual({
+      source: 't3-thread',
+      id: 'thread-c',
+    });
+    expect((await host.deps.store.getStartReceipt(cron.id))?.sourceActor).toBeNull();
+    expect((await host.deps.store.getStartReceipt(unsafe.id))?.sourceActor).toBeNull();
+
+    const held = await runOf(holder.id);
+    if (!held) throw new Error('Expected the holder run');
+    // The slot takes one run at a time: each drain from thread A admits the next queued
+    // start once the run before it ends, and its detached executor would run it.
+    const dispatched: string[] = [];
+    const finished = new Set<string>();
+    const finish = async (runId: string): Promise<void> => {
+      finished.add(runId);
+      await host.deps.store.claimPendingWorkflowRun(runId);
+      await host.deps.store.completeWorkflowRun(runId, { duration_ms: 1 });
+    };
+    await finish(held.id);
+    for (let round = 0; round < 3; round++) {
+      await triggerCommand(
+        host,
+        'drain',
+        [],
+        { host: 'host' },
+        { dispatch: async requestId => void dispatched.push(requestId), env: process.env }
+      );
+      for (const runId of dispatched.filter(id => !finished.has(id))) await finish(runId);
+    }
+
+    expect(held.metadata.t3_thread_id).toBe('thread-b');
+    expect((await runOf(cron.id))?.metadata).not.toHaveProperty('t3_thread_id');
+    expect((await runOf(threadC.id))?.metadata.t3_thread_id).toBe('thread-c');
+    expect((await runOf(unsafe.id))?.metadata).not.toHaveProperty('t3_thread_id');
+    // The drains from thread A admitted all 3 queued starts.
+    const runIds = await Promise.all(
+      [cron, threadC, unsafe].map(async r => (await runOf(r.id))?.id)
+    );
+    expect(runIds).not.toContain(undefined);
+    expect(dispatched as (string | undefined)[]).toEqual(runIds);
+    // The detached executor of a drained run never inherits the drain's thread.
+    expect(admittedRunEnv({ T3CODE_THREAD_ID: 'thread-a', PATH: '/bin' })).not.toHaveProperty(
+      'T3CODE_THREAD_ID'
+    );
+    expect(admittedRunEnv({ PATH: '/bin' }).PATH).toBe('/bin');
+  } finally {
+    stdout.mockRestore();
+    if (savedThread === undefined) delete process.env.T3CODE_THREAD_ID;
+    else process.env.T3CODE_THREAD_ID = savedThread;
     restore();
   }
 });

@@ -21,7 +21,7 @@ import {
   makeWorkflowRun,
 } from '../../test-utils';
 import { executeDagWorkflow } from '../../../dag-executor';
-import type { DagNode, ExecNode } from '../../../schemas';
+import type { DagNode, ExecNode, WorkflowRun } from '../../../schemas';
 import { bashInvocation } from '../../../bash-invocation';
 import { CONTAINER_MARKER_PROBE } from '../../../checkout-observation';
 
@@ -700,7 +700,8 @@ describe('executeDagWorkflow -- env var injection', () => {
 
     async function runIdentityEnv(
       node: TestWorkflowDefinition['nodes'][number],
-      envVars: Record<string, string>
+      envVars: Record<string, string>,
+      run: Partial<WorkflowRun> = {}
     ): Promise<{ env: Record<string, string>; execution: Record<string, unknown> }> {
       const store = createMockStore();
       await executeDagWorkflow(
@@ -709,7 +710,7 @@ describe('executeDagWorkflow -- env var injection', () => {
           platform: createMockPlatform(),
           cwd: testDir,
           workflow: { name: 'dag-identity', nodes: [node] },
-          workflowRun: makeWorkflowRun('identity-run'),
+          workflowRun: makeWorkflowRun('identity-run', run),
           config: { ...minimalConfig, envVars },
         })
       );
@@ -727,6 +728,7 @@ describe('executeDagWorkflow -- env var injection', () => {
         'ARCHON_CLI_COMMAND',
         'ARCHON_NODE_EXECUTION',
         'PACK_DIR',
+        'T3CODE_THREAD_ID',
         'TRACE_ATTEMPT',
         'TRACE_ENGINE',
         'TRACE_INVOCATION',
@@ -762,6 +764,58 @@ describe('executeDagWorkflow -- env var injection', () => {
       expect(lines?.[0]).toBe('X-Team: core');
       expect(lines).toContain('X-Trace-Run: identity-run');
       expect(lines).not.toContain('X-Trace-Run: project-run');
+    });
+
+    it("a prompt: or loop node's parent is its run's stamp, never project env or this process's env", async () => {
+      const saved = process.env.T3CODE_THREAD_ID;
+      const stale = {
+        T3CODE_THREAD_ID: 'thread-old',
+        ANTHROPIC_CUSTOM_HEADERS: 'X-Trace-Parent: thread-old\nX-Team: core',
+      };
+      const nodes = [
+        { id: 'notes', kind: 'agent', source: { kind: 'inline', prompt: 'Keep notes.' } },
+        {
+          id: 'iterate',
+          kind: 'loop',
+          loop: { prompt: 'Work.', until: 'COMPLETE', max_iterations: 1, fresh_context: false },
+        },
+      ] as const;
+      // This process belongs to thread A: a drain, an executor or a resume from thread A.
+      process.env.T3CODE_THREAD_ID = 'thread-a';
+      try {
+        for (const stamp of ['thread-b', undefined]) {
+          for (const node of nodes) {
+            mockSendQueryDag.mockClear();
+            if (node.kind === 'loop')
+              mockSendQueryDag.mockImplementationOnce(async function* () {
+                yield { type: 'result', sessionId: 's', text: '<promise>COMPLETE</promise>' };
+              });
+            const { env } = await runIdentityEnv(node, stale, {
+              metadata: stamp === undefined ? {} : { t3_thread_id: stamp },
+            });
+            expect(env.T3CODE_THREAD_ID).toBe(stamp ?? '');
+            expect(
+              env.ANTHROPIC_CUSTOM_HEADERS?.split('\n').filter(l => /x-trace-parent/i.test(l))
+            ).toEqual(stamp === undefined ? [] : [`X-Trace-Parent: ${stamp}`]);
+            expect(env.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
+          }
+        }
+      } finally {
+        if (saved === undefined) delete process.env.T3CODE_THREAD_ID;
+        else process.env.T3CODE_THREAD_ID = saved;
+      }
+    });
+
+    it('a prompt: node of a workflow: child run sends no parent: the child joins the thread through its parent run', async () => {
+      const { env } = await runIdentityEnv(
+        { id: 'notes', kind: 'agent', source: { kind: 'inline', prompt: 'Keep notes.' } },
+        {},
+        { parent_run_id: 'parent-run', metadata: { t3_thread_id: 'thread-a' } }
+      );
+      expect(env.T3CODE_THREAD_ID).toBe('');
+      expect(
+        env.ANTHROPIC_CUSTOM_HEADERS?.split('\n').filter(l => /x-trace-parent/i.test(l))
+      ).toEqual([]);
     });
 
     it("a loop node's iterations carry the loop's run and node", async () => {

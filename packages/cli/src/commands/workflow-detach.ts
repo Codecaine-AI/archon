@@ -23,6 +23,7 @@ import {
   CONTINUATION_METADATA_KEY,
   CONTINUATION_MODES,
   SUBRUN_METADATA_KEYS,
+  startingThreadMetadata,
   type WorkflowRun,
 } from '@archon/workflows/schemas/workflow-run';
 import { writeJsonLine } from '../utils/stdout';
@@ -566,6 +567,7 @@ async function claimDetachedRun(launch: DetachedLaunch): Promise<DetachedRunClai
         ...(continuationDeclaration
           ? { [CONTINUATION_METADATA_KEY]: continuationDeclaration.stamp }
           : {}),
+        ...startingThreadMetadata(),
       },
       ...(continuationDeclaration ? { adopted_from_run_id: continuationDeclaration.runId } : {}),
     });

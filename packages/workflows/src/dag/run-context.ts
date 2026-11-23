@@ -4,6 +4,7 @@ import type { InteractionAdmission } from '../interaction-admission';
 import { newNodeInvocation, startNodeExecution } from '../node-execution';
 import { observeCheckout } from '../checkout-observation';
 import { buildAiNodeEnvironment } from '../exec-environment';
+import { readT3ThreadId } from '../schemas/run-metadata';
 import type { NodeExecutionResult } from '../node-record-serialization';
 import type { NodeExecutionRecord, NodeInvocation } from '../schemas/node-execution';
 import type { CheckoutObservation } from '../schemas/checkout-observation';
@@ -323,7 +324,13 @@ export function aiNodeEnvironment(
   return buildAiNodeEnvironment(
     execution,
     host ? process.env.ARCHON_CLI_COMMAND : undefined,
-    configEnv?.ANTHROPIC_CUSTOM_HEADERS ?? (host ? process.env.ANTHROPIC_CUSTOM_HEADERS : undefined)
+    configEnv?.ANTHROPIC_CUSTOM_HEADERS ??
+      (host ? process.env.ANTHROPIC_CUSTOM_HEADERS : undefined),
+    // The thread is the one stamped on this run's row when its starter created or queued
+    // it, so a process that drains, executes or resumes the run never lends it its own
+    // thread. A `workflow:` child run sends none: it joins the thread through its parent
+    // run. A T3CODE_THREAD_ID in configEnv or in this process's env is never read.
+    ctx.workflowRun.parent_run_id === null ? readT3ThreadId(ctx.workflowRun.metadata) : undefined
   );
 }
 

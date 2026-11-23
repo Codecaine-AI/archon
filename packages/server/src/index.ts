@@ -149,6 +149,9 @@ export interface ServerOptions {
 }
 
 export async function startServer(opts: ServerOptions = {}): Promise<void> {
+  // The server outlives the T3 Code thread that may have started it, so that thread is
+  // never the parent of a run the server executes: no run row or node env may carry it.
+  delete process.env.T3CODE_THREAD_ID;
   await assertSqlStore();
   // Every host bash and script node leads its own process group, so a run's cancel ends
   // that run's node trees, and each node's watcher ends its tree if the server dies.

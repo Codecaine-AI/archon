@@ -1,4 +1,5 @@
 import type { NodeExecutionMetadata } from './schemas/node-execution';
+import { safeThreadId } from './schemas/run-metadata';
 import { USER_CONTROLLED_VARIABLES } from './user-controlled-variables';
 import { currentPackDir } from './workflow-variables';
 import { packDirOrThrow, type PackDirScope } from './pack-dir';
@@ -91,14 +92,17 @@ function nodeExecutionEnvValue(execution: NodeExecutionIdentity): string {
 export function buildAiNodeEnvironment(
   execution: NodeExecutionIdentity,
   cliCommand: string | undefined,
-  parentCustomHeaders: string | undefined
+  parentCustomHeaders: string | undefined,
+  traceParent: string | undefined
 ): Record<string, string> {
   // Trace contract tags: Claude Code sends ANTHROPIC_CUSTOM_HEADERS, and the
-  // Codex provider's env_http_headers reads the TRACE_* variables. All 6 variables are always
-  // set, so none is inherited from Archon's own environment: outside a loop TRACE_LOOP_PATH
-  // is '' and Codex sends no header for it. The node's configured custom headers (project
-  // env, else the host's) stay, except any X-Trace-* line, which this node's values replace.
-  const tags = traceTags(execution);
+  // Codex provider's env_http_headers reads the TRACE_* variables and T3CODE_THREAD_ID.
+  // All 7 variables are always set, so none is inherited from Archon's own environment:
+  // outside a loop TRACE_LOOP_PATH is '' and Codex sends no header for it, and with no
+  // thread T3CODE_THREAD_ID is '' and no X-Trace-Parent goes out. The node's configured
+  // custom headers (project env, else the host's) stay, except any X-Trace-* line, which
+  // this node's values replace: a stored X-Trace-Parent never reaches another thread's child.
+  const tags = traceTags(execution, safeThreadId(traceParent));
   const kept = (parentCustomHeaders ?? '')
     .split('\n')
     .filter(line => line.trim() !== '' && !/^\s*x-trace-/i.test(line));
@@ -116,9 +120,13 @@ export function buildAiNodeEnvironment(
   };
 }
 
-/** The trace tags of one AI node attempt. Outside a loop the loop path value is ''. */
+/**
+ * The trace tags of one AI node attempt. Outside a loop the loop path value is ''. The
+ * parent is the T3 Code thread that started the run's process, '' when it has none.
+ */
 function traceTags(
-  execution: NodeExecutionIdentity
+  execution: NodeExecutionIdentity,
+  traceParent: string | undefined
 ): { header: string; variable: string; value: string }[] {
   const loopPath = execution.invocation.loopPath
     .map(entry => `${entry.groupId}:${entry.iteration}`)
@@ -130,6 +138,7 @@ function traceTags(
     { header: 'X-Trace-Invocation', variable: 'TRACE_INVOCATION', value: execution.invocation.id },
     { header: 'X-Trace-Attempt', variable: 'TRACE_ATTEMPT', value: execution.attempt.id },
     { header: 'X-Trace-Loop-Path', variable: 'TRACE_LOOP_PATH', value: loopPath },
+    { header: 'X-Trace-Parent', variable: 'T3CODE_THREAD_ID', value: traceParent ?? '' },
   ];
 }
 

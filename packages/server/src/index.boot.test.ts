@@ -377,6 +377,7 @@ const envKeys = [
   'SLACK_BOT_TOKEN',
   'TELEGRAM_BOT_TOKEN',
   'WEB_UI_DEV',
+  'T3CODE_THREAD_ID',
 ] as const;
 const originalEnv = new Map(envKeys.map(key => [key, process.env[key]]));
 const processEvents = ['SIGINT', 'SIGTERM', 'unhandledRejection', 'uncaughtException'] as const;
@@ -407,6 +408,23 @@ afterAll(async () => {
       }
     }
   }
+});
+
+describe('server thread', () => {
+  test('the server drops the T3 Code thread that started it, so no run it executes inherits that thread', async () => {
+    process.env.T3CODE_THREAD_ID = 'thread-that-started-the-server';
+    const serveSpy = spyOn(Bun, 'serve').mockImplementation((() => ({
+      port: 43210,
+    })) as unknown as typeof Bun.serve);
+    try {
+      const { startServer } = await import('./index');
+      await startServer({ port: 12345, skipPlatformAdapters: true });
+      expect(process.env.T3CODE_THREAD_ID).toBeUndefined();
+    } finally {
+      serveSpy.mockRestore();
+      delete process.env.T3CODE_THREAD_ID;
+    }
+  });
 });
 
 describe('server conversation admission configuration', () => {

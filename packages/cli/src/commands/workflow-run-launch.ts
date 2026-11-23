@@ -29,6 +29,7 @@ import { WORKFLOW_RUN_CONFIG_METADATA_KEY } from '@archon/workflows/run-config';
 import {
   CONTINUATION_METADATA_KEY,
   SUBRUN_METADATA_KEYS,
+  startingThreadMetadata,
   type OwnedWorktree,
   type WorkflowRun,
 } from '@archon/workflows/schemas/workflow-run';
@@ -715,6 +716,7 @@ function createSetupRun(
         ? { [SUBRUN_METADATA_KEYS.inputs]: admission.resolvedInputs }
         : {}),
       ...(declaration ? { [CONTINUATION_METADATA_KEY]: declaration.stamp } : {}),
+      ...startingThreadMetadata(),
     },
     ...(declaration ? { adopted_from_run_id: declaration.runId } : {}),
   });

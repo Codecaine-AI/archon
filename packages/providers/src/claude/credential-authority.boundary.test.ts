@@ -90,6 +90,22 @@ test('delivered credential drops custom headers except trace tag lines', () => {
   });
   expect(env.ANTHROPIC_CUSTOM_HEADERS).toBe('X-Trace-Run: run-1');
 });
+test('the parent tag line and its thread id reach the Claude child, with or without a delivered credential', () => {
+  const nodeEnv = {
+    ANTHROPIC_CUSTOM_HEADERS:
+      'Authorization: Bearer host\nX-Trace-Run: run-1\nX-Trace-Parent: thread-a',
+    T3CODE_THREAD_ID: 'thread-a',
+  };
+  const delivered = buildRequestSubprocessEnv({
+    env: { ...nodeEnv, ANTHROPIC_API_KEY: 'user-credential' },
+    userCredentialEnvKeys: ['ANTHROPIC_API_KEY'],
+  });
+  expect(delivered.ANTHROPIC_CUSTOM_HEADERS).toBe('X-Trace-Run: run-1\nX-Trace-Parent: thread-a');
+  expect(delivered.T3CODE_THREAD_ID).toBe('thread-a');
+  const native = buildRequestSubprocessEnv({ env: nodeEnv });
+  expect(native.ANTHROPIC_CUSTOM_HEADERS).toBe(nodeEnv.ANTHROPIC_CUSTOM_HEADERS);
+  expect(native.T3CODE_THREAD_ID).toBe('thread-a');
+});
 test('unrelated protection keeps native credential precedence', () => {
   const env = buildRequestSubprocessEnv({
     env: { ANTHROPIC_API_KEY: 'native-key', CLAUDE_CODE_OAUTH_TOKEN: 'native-token' },

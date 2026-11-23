@@ -1,4 +1,4 @@
-import { ISOLATION_ENV_ID_METADATA_KEY } from './schemas/run-metadata';
+import { ISOLATION_ENV_ID_METADATA_KEY, startingThreadMetadata } from './schemas/run-metadata';
 import { isWorkflowExecutionInterruption } from './execution-interruption';
 import { executionClaim } from './store';
 import { formatDuration } from '@archon/paths/duration';
@@ -185,6 +185,7 @@ async function createWorkflowRunRow(
           ? { [CONTINUATION_METADATA_KEY]: { mode: continuationMode ?? CONTINUATION_MODES.adopt } }
           : {}),
         ...freshInvocationMetadata(opts, dispatch),
+        ...startingThreadMetadata(),
         [EXECUTION_OWNER_METADATA_KEY]: executionOwner,
       },
       ...(adoptedFromRunId ? { adopted_from_run_id: adoptedFromRunId } : {}),
