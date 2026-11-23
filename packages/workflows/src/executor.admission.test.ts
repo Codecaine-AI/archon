@@ -476,6 +476,23 @@ describe('run row stamps', () => {
     }
   );
 
+  it('stamps the T3 Code thread of this process on a run it creates, and none without one', async () => {
+    const saved = process.env.T3CODE_THREAD_ID;
+    try {
+      for (const value of ['thread-a', undefined]) {
+        if (value === undefined) delete process.env.T3CODE_THREAD_ID;
+        else process.env.T3CODE_THREAD_ID = value;
+        const store = makeStore();
+        await startWorkflow({ store });
+        const [row] = mocked(store.createWorkflowRun).mock.calls[0] ?? [];
+        expect(row?.metadata?.t3_thread_id).toBe(value);
+      }
+    } finally {
+      if (saved === undefined) delete process.env.T3CODE_THREAD_ID;
+      else process.env.T3CODE_THREAD_ID = saved;
+    }
+  });
+
   describe('execution owner record (#2325)', () => {
     const uid = process.getuid?.();
     const owner = {

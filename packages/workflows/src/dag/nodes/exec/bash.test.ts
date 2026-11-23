@@ -727,6 +727,7 @@ describe('executeDagWorkflow -- env var injection', () => {
         'ARCHON_CLI_COMMAND',
         'ARCHON_NODE_EXECUTION',
         'PACK_DIR',
+        'T3CODE_THREAD_ID',
         'TRACE_ATTEMPT',
         'TRACE_ENGINE',
         'TRACE_INVOCATION',
@@ -762,6 +763,44 @@ describe('executeDagWorkflow -- env var injection', () => {
       expect(lines?.[0]).toBe('X-Team: core');
       expect(lines).toContain('X-Trace-Run: identity-run');
       expect(lines).not.toContain('X-Trace-Run: project-run');
+    });
+
+    it("a stale parent in project env never reaches a prompt: or loop node: the parent is this process's thread", async () => {
+      const saved = process.env.T3CODE_THREAD_ID;
+      const stale = {
+        T3CODE_THREAD_ID: 'thread-old',
+        ANTHROPIC_CUSTOM_HEADERS: 'X-Trace-Parent: thread-old\nX-Team: core',
+      };
+      const nodes = [
+        { id: 'notes', kind: 'agent', source: { kind: 'inline', prompt: 'Keep notes.' } },
+        {
+          id: 'iterate',
+          kind: 'loop',
+          loop: { prompt: 'Work.', until: 'COMPLETE', max_iterations: 1, fresh_context: false },
+        },
+      ] as const;
+      try {
+        for (const current of ['thread-b', undefined]) {
+          if (current === undefined) delete process.env.T3CODE_THREAD_ID;
+          else process.env.T3CODE_THREAD_ID = current;
+          for (const node of nodes) {
+            mockSendQueryDag.mockClear();
+            if (node.kind === 'loop')
+              mockSendQueryDag.mockImplementationOnce(async function* () {
+                yield { type: 'result', sessionId: 's', text: '<promise>COMPLETE</promise>' };
+              });
+            const { env } = await runIdentityEnv(node, stale);
+            expect(env.T3CODE_THREAD_ID).toBe(current ?? '');
+            expect(
+              env.ANTHROPIC_CUSTOM_HEADERS?.split('\n').filter(l => /x-trace-parent/i.test(l))
+            ).toEqual(current === undefined ? [] : [`X-Trace-Parent: ${current}`]);
+            expect(env.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
+          }
+        }
+      } finally {
+        if (saved === undefined) delete process.env.T3CODE_THREAD_ID;
+        else process.env.T3CODE_THREAD_ID = saved;
+      }
     });
 
     it("a loop node's iterations carry the loop's run and node", async () => {

@@ -92,11 +92,11 @@ export function buildRequestSubprocessEnv(
   const env = buildProviderSubprocessEnv(requestOptions);
   const delivered = deliveredClaudeCredential(requestOptions);
   if (delivered) {
-    // The 6 trace tag lines carry no credential, so they survive the scrub of custom headers.
+    // The 7 trace tag lines carry no credential, so they survive the scrub of custom headers.
     const traceHeaders = (env.ANTHROPIC_CUSTOM_HEADERS ?? '')
       .split('\n')
       .filter(line =>
-        /^\s*x-trace-(engine|run|node-path|invocation|attempt|loop-path)\s*:/i.test(line)
+        /^\s*x-trace-(engine|run|node-path|invocation|attempt|loop-path|parent)\s*:/i.test(line)
       )
       .join('\n');
     for (const key of [

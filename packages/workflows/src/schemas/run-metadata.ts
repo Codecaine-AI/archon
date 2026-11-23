@@ -251,6 +251,38 @@ export function readExecutionOwner(
     : { host, pid };
 }
 
+/**
+ * Key of the T3 Code thread whose agent started the run, from `T3CODE_THREAD_ID` in the
+ * env of the process that created the row. A report for trace views: each AI node reads
+ * the parent tag from its own process env through `startingThreadId`, never from here.
+ */
+export const T3_THREAD_METADATA_KEY = 't3_thread_id';
+
+/**
+ * The T3 Code thread that started this process, or undefined when `T3CODE_THREAD_ID` is
+ * unset, blank, or holds anything but visible ASCII (it becomes an HTTP header value).
+ */
+export function startingThreadId(
+  env: Record<string, string | undefined> = process.env
+): string | undefined {
+  const value = env.T3CODE_THREAD_ID?.trim();
+  return value && /^[\x21-\x7e]+$/.test(value) ? value : undefined;
+}
+
+/** The thread stamp for a new run row: empty when this process has no thread. */
+export function startingThreadMetadata(
+  env: Record<string, string | undefined> = process.env
+): Record<string, string> {
+  const threadId = startingThreadId(env);
+  return threadId === undefined ? {} : { [T3_THREAD_METADATA_KEY]: threadId };
+}
+
+/** Typed view of the thread stamp; undefined on a run no thread started. */
+export function readT3ThreadId(metadata: Record<string, unknown> | undefined): string | undefined {
+  const raw = metadata?.[T3_THREAD_METADATA_KEY];
+  return typeof raw === 'string' && raw.length > 0 ? raw : undefined;
+}
+
 /** Typed view of the run-lifecycle keys on a run's metadata; undefined when unset. */
 export function readIdentityUnresolved(
   metadata: Record<string, unknown> | undefined

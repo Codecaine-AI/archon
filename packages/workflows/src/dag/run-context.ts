@@ -4,6 +4,7 @@ import type { InteractionAdmission } from '../interaction-admission';
 import { newNodeInvocation, startNodeExecution } from '../node-execution';
 import { observeCheckout } from '../checkout-observation';
 import { buildAiNodeEnvironment } from '../exec-environment';
+import { startingThreadId } from '../schemas/run-metadata';
 import type { NodeExecutionResult } from '../node-record-serialization';
 import type { NodeExecutionRecord, NodeInvocation } from '../schemas/node-execution';
 import type { CheckoutObservation } from '../schemas/checkout-observation';
@@ -323,7 +324,11 @@ export function aiNodeEnvironment(
   return buildAiNodeEnvironment(
     execution,
     host ? process.env.ARCHON_CLI_COMMAND : undefined,
-    configEnv?.ANTHROPIC_CUSTOM_HEADERS ?? (host ? process.env.ANTHROPIC_CUSTOM_HEADERS : undefined)
+    configEnv?.ANTHROPIC_CUSTOM_HEADERS ??
+      (host ? process.env.ANTHROPIC_CUSTOM_HEADERS : undefined),
+    // The thread comes from this process's own env, the one that started or resumed the
+    // run, in a container too. A T3CODE_THREAD_ID in configEnv is never read.
+    startingThreadId()
   );
 }
 

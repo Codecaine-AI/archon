@@ -2,6 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { join } from 'path';
 import { buildProviderSubprocessEnv } from '@archon/provider-contract';
 import { buildAiNodeEnvironment, type NodeExecutionIdentity } from './exec-environment';
+import { startingThreadId, startingThreadMetadata } from './schemas/run-metadata';
 import { runWithPackDir } from './workflow-variables';
 
 const execution = (
@@ -20,6 +21,7 @@ describe('buildAiNodeEnvironment trace tags', () => {
         { groupId: 'outer', iteration: 1 },
         { groupId: 'review-loop', iteration: 2 },
       ]),
+      undefined,
       undefined,
       undefined
     );
@@ -47,7 +49,8 @@ describe('buildAiNodeEnvironment trace tags', () => {
     const env = buildAiNodeEnvironment(
       execution([]),
       undefined,
-      'X-Team: core\nx-trace-run: stale'
+      'X-Team: core\nx-trace-run: stale',
+      undefined
     );
     expect(env.TRACE_LOOP_PATH).toBe('');
     expect(env.ANTHROPIC_CUSTOM_HEADERS?.split('\n')).toEqual([
@@ -65,7 +68,7 @@ describe('buildAiNodeEnvironment trace tags', () => {
     process.env.TRACE_LOOP_PATH = 'old-loop:9';
     try {
       const child = buildProviderSubprocessEnv({
-        env: buildAiNodeEnvironment(execution([]), undefined, undefined),
+        env: buildAiNodeEnvironment(execution([]), undefined, undefined, undefined),
       });
       expect(child.TRACE_LOOP_PATH).toBe('');
     } finally {
@@ -78,11 +81,70 @@ describe('buildAiNodeEnvironment trace tags', () => {
     const env = buildAiNodeEnvironment(
       execution([]),
       undefined,
-      'X-Trace-Loop-Path: old-loop:9\nX-Team: core'
+      'X-Trace-Loop-Path: old-loop:9\nX-Team: core',
+      undefined
     );
     expect(env.ANTHROPIC_CUSTOM_HEADERS).not.toContain('Loop-Path');
     expect(env.ANTHROPIC_CUSTOM_HEADERS).not.toContain('old-loop');
     expect(env.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
+  });
+});
+
+describe('buildAiNodeEnvironment X-Trace-Parent', () => {
+  test('the thread that started the run reaches Claude as a header and Codex as T3CODE_THREAD_ID', () => {
+    const child = buildProviderSubprocessEnv({
+      env: buildAiNodeEnvironment(execution([]), undefined, 'X-Team: core', 'thread-a'),
+    });
+    expect(child.T3CODE_THREAD_ID).toBe('thread-a');
+    expect(child.ANTHROPIC_CUSTOM_HEADERS?.split('\n')).toContain('X-Trace-Parent: thread-a');
+    expect(child.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
+  });
+
+  test("a stale parent in the node env or in Archon's own env never reaches another thread's child", () => {
+    const saved = process.env.T3CODE_THREAD_ID;
+    process.env.T3CODE_THREAD_ID = 'thread-old';
+    try {
+      // The stored node env holds an old thread in both places a child could read it.
+      const nodeEnv = {
+        T3CODE_THREAD_ID: 'thread-old',
+        ANTHROPIC_CUSTOM_HEADERS: 'X-Trace-Parent: thread-old\nX-Team: core',
+      };
+      for (const [current, header] of [
+        ['thread-b', ['X-Trace-Parent: thread-b']],
+        [undefined, []],
+      ] as const) {
+        const child = buildProviderSubprocessEnv({
+          env: {
+            ...nodeEnv,
+            ...buildAiNodeEnvironment(
+              execution([]),
+              undefined,
+              nodeEnv.ANTHROPIC_CUSTOM_HEADERS,
+              current
+            ),
+          },
+        });
+        expect(child.T3CODE_THREAD_ID).toBe(current ?? '');
+        expect(
+          child.ANTHROPIC_CUSTOM_HEADERS?.split('\n').filter(l => /x-trace-parent/i.test(l))
+        ).toEqual([...header]);
+      }
+    } finally {
+      if (saved === undefined) delete process.env.T3CODE_THREAD_ID;
+      else process.env.T3CODE_THREAD_ID = saved;
+    }
+  });
+});
+
+describe('startingThreadId', () => {
+  test('a set thread id is the parent, and an unset, blank or header-breaking one is none', () => {
+    expect(startingThreadId({ T3CODE_THREAD_ID: ' thread-a ' })).toBe('thread-a');
+    for (const value of [undefined, '', '   ', 'a\r\nX-Evil: 1', 'a b'])
+      expect(startingThreadId({ T3CODE_THREAD_ID: value })).toBeUndefined();
+    expect(startingThreadMetadata({})).toEqual({});
+    expect(startingThreadMetadata({ T3CODE_THREAD_ID: 'thread-a' })).toEqual({
+      t3_thread_id: 'thread-a',
+    });
   });
 });
 
@@ -94,7 +156,7 @@ describe('buildAiNodeEnvironment PACK_DIR', () => {
 
   test('an AI node of the intake fixture pack gets the pack root', async () => {
     const env = await runWithPackDir({ kind: 'dir', dir: intakePackRoot }, async () =>
-      buildAiNodeEnvironment(execution([]), undefined, undefined)
+      buildAiNodeEnvironment(execution([]), undefined, undefined, undefined)
     );
     expect(env.PACK_DIR).toBe(intakePackRoot);
     expect(env.PACK_DIR?.endsWith('/.archon/workflows/intake')).toBe(true);
@@ -102,7 +164,7 @@ describe('buildAiNodeEnvironment PACK_DIR', () => {
 
   test('an AI node outside a pack gets an empty PACK_DIR', async () => {
     const env = await runWithPackDir({ kind: 'none' }, async () =>
-      buildAiNodeEnvironment(execution([]), undefined, undefined)
+      buildAiNodeEnvironment(execution([]), undefined, undefined, undefined)
     );
     expect(env.PACK_DIR).toBe('');
   });
