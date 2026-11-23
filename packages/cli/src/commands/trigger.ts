@@ -22,6 +22,7 @@ import { SourceReceiptDigestConflictError } from '@archon/workflows/resource-sta
 import {
   resourceStartBindingIntentSchema,
   RUN_SOURCE_ACTOR,
+  T3_THREAD_SOURCE_ACTOR,
   type SourceReceiptInput,
 } from '@archon/workflows/schemas/resource-start';
 import {
@@ -29,7 +30,7 @@ import {
   timerScheduleId,
   type TimerTriggerConfig,
 } from '@archon/core/workflows/timer-bindings';
-import { readWorkflowSourceState } from '@archon/workflows/schemas/workflow-run';
+import { readWorkflowSourceState, startingThreadId } from '@archon/workflows/schemas/workflow-run';
 import { FileStoreUnsupportedError } from '@archon/workflows/file-store';
 import { CLIAdapter } from '../adapters/cli-adapter';
 import { writeJsonLine } from '../utils/stdout';
@@ -60,6 +61,16 @@ export async function assertKnownRunAsUser(
     throw new Error('Trigger binding names an unknown run-as user.');
 }
 
+/**
+ * The env of a detached `trigger execute`. The drain that spawns it may run in thread A
+ * while the run was fired by cron or thread B, so this process's T3CODE_THREAD_ID never
+ * reaches it: the run's thread is the stamp on its own row.
+ */
+export function admittedRunEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const { T3CODE_THREAD_ID: _drainingThread, ...rest } = env;
+  return { ...rest, ARCHON_HOME: getArchonHome(), [DETACHED_RUN_OWNER_ENV]: '1' };
+}
+
 /** Hand one admitted request to a detached `trigger execute` process with its own log. */
 export async function spawnAdmitted(
   host: WorkflowHost,
@@ -81,7 +92,7 @@ export async function spawnAdmitted(
         detached: true,
         stdio: ['ignore', log.fd, log.fd],
         windowsHide: true,
-        env: { ...process.env, ARCHON_HOME: getArchonHome(), [DETACHED_RUN_OWNER_ENV]: '1' },
+        env: admittedRunEnv(process.env),
       }
     );
     await new Promise<void>((resolveSpawn, reject) => {
@@ -155,13 +166,17 @@ async function triggerList(host: WorkflowHost, options: TriggerOptions): Promise
 
 /**
  * A fire from inside a workflow node records that run and node as the receipt's source
- * actor, so the started run and an operator can follow the chain. Outside a run: none.
+ * actor, so the started run and an operator can follow the chain. Outside a run, a fire
+ * from a T3 Code thread records that thread, and the started run joins it. Else: none.
  */
 async function requestingSourceActor(
   host: WorkflowHost,
   env: NodeJS.ProcessEnv
 ): Promise<SourceReceiptInput['sourceActor']> {
-  if (!env.WORKFLOW_ID) return null;
+  if (!env.WORKFLOW_ID) {
+    const thread = startingThreadId(env);
+    return thread === undefined ? null : { source: T3_THREAD_SOURCE_ACTOR, id: thread };
+  }
   const caller = readCallingNode(env.WORKFLOW_ID, env);
   if (!(await host.deps.store.getWorkflowRun(caller.runId)))
     throw new Error(

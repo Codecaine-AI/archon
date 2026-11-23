@@ -1,4 +1,8 @@
-import { ISOLATION_ENV_ID_METADATA_KEY, startingThreadMetadata } from './schemas/run-metadata';
+import {
+  ISOLATION_ENV_ID_METADATA_KEY,
+  readT3ThreadId,
+  threadMetadata,
+} from './schemas/run-metadata';
 import { isWorkflowExecutionInterruption } from './execution-interruption';
 import { existsSync } from 'fs';
 import type { ChildIsolationResolver, ChildIsolationResult } from './child-isolation';
@@ -589,7 +593,7 @@ async function createChildRun(launch: ChildLaunch, plan: ChildRunPlan): Promise<
 }
 
 function childRunMetadata(
-  { nodeId, childIndex, itemHash }: RunChildWorkflowArgs,
+  { nodeId, childIndex, itemHash, parentRun }: RunChildWorkflowArgs,
   { prepared, inputs, placement }: ChildRunPlan
 ): Record<string, unknown> {
   return {
@@ -607,8 +611,9 @@ function childRunMetadata(
     // under it and rewrites the row's inputs with the result, which a cold resume reads.
     ...(inputs !== undefined ? runInputsMetadata(inputs) : {}),
     ...(placement.isolationEnv ? childIsolationMetadata(placement.isolationEnv) : {}),
-    // The child runs in its parent's process, so it reports the parent's thread.
-    ...startingThreadMetadata(),
+    // A report only: the child reports its parent run's thread, but its AI nodes send no
+    // parent tag, because the child joins that thread through its parent run.
+    ...threadMetadata(readT3ThreadId(parentRun.metadata)),
   };
 }
 

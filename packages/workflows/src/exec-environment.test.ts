@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { join } from 'path';
 import { buildProviderSubprocessEnv } from '@archon/provider-contract';
 import { buildAiNodeEnvironment, type NodeExecutionIdentity } from './exec-environment';
-import { startingThreadId, startingThreadMetadata } from './schemas/run-metadata';
+import { readT3ThreadId, startingThreadId, startingThreadMetadata } from './schemas/run-metadata';
 import { runWithPackDir } from './workflow-variables';
 
 const execution = (
@@ -100,6 +100,16 @@ describe('buildAiNodeEnvironment X-Trace-Parent', () => {
     expect(child.ANTHROPIC_CUSTOM_HEADERS?.split('\n')[0]).toBe('X-Team: core');
   });
 
+  test('an unsafe parent never reaches a header or a Codex child, even when a caller passes one', () => {
+    for (const unsafe of ['a\r\nX-Evil: 1', 'th"read', ' ']) {
+      const child = buildProviderSubprocessEnv({
+        env: buildAiNodeEnvironment(execution([]), undefined, 'X-Team: core', unsafe),
+      });
+      expect(child.T3CODE_THREAD_ID).toBe('');
+      expect(child.ANTHROPIC_CUSTOM_HEADERS).not.toMatch(/x-trace-parent|x-evil/i);
+    }
+  });
+
   test("a stale parent in the node env or in Archon's own env never reaches another thread's child", () => {
     const saved = process.env.T3CODE_THREAD_ID;
     process.env.T3CODE_THREAD_ID = 'thread-old';
@@ -137,10 +147,19 @@ describe('buildAiNodeEnvironment X-Trace-Parent', () => {
 });
 
 describe('startingThreadId', () => {
-  test('a set thread id is the parent, and an unset, blank or header-breaking one is none', () => {
+  test('a set thread id is the parent, and an unset, blank or unsafe one is none', () => {
     expect(startingThreadId({ T3CODE_THREAD_ID: ' thread-a ' })).toBe('thread-a');
-    for (const value of [undefined, '', '   ', 'a\r\nX-Evil: 1', 'a b'])
+    for (const real of [
+      'mcp:e0068795-e892-4644-bebd-bfa95e80dac9',
+      'thread:delegated-task:command%3Amcp%3A1c50%3Adelegate-task%3A4430',
+    ]) {
+      expect(startingThreadId({ T3CODE_THREAD_ID: real })).toBe(real);
+      expect(readT3ThreadId({ t3_thread_id: real })).toBe(real);
+    }
+    for (const value of [undefined, '', '   ', 'a\r\nX-Evil: 1', 'a b', 'th"read', "th'read"]) {
       expect(startingThreadId({ T3CODE_THREAD_ID: value })).toBeUndefined();
+      expect(readT3ThreadId({ t3_thread_id: value })).toBeUndefined();
+    }
     expect(startingThreadMetadata({})).toEqual({});
     expect(startingThreadMetadata({ T3CODE_THREAD_ID: 'thread-a' })).toEqual({
       t3_thread_id: 'thread-a',

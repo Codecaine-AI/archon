@@ -1,4 +1,5 @@
 import type { NodeExecutionMetadata } from './schemas/node-execution';
+import { safeThreadId } from './schemas/run-metadata';
 import { USER_CONTROLLED_VARIABLES } from './user-controlled-variables';
 import { currentPackDir } from './workflow-variables';
 import { packDirOrThrow, type PackDirScope } from './pack-dir';
@@ -101,7 +102,7 @@ export function buildAiNodeEnvironment(
   // thread T3CODE_THREAD_ID is '' and no X-Trace-Parent goes out. The node's configured
   // custom headers (project env, else the host's) stay, except any X-Trace-* line, which
   // this node's values replace: a stored X-Trace-Parent never reaches another thread's child.
-  const tags = traceTags(execution, traceParent);
+  const tags = traceTags(execution, safeThreadId(traceParent));
   const kept = (parentCustomHeaders ?? '')
     .split('\n')
     .filter(line => line.trim() !== '' && !/^\s*x-trace-/i.test(line));

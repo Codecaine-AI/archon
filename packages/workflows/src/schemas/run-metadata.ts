@@ -252,21 +252,35 @@ export function readExecutionOwner(
 }
 
 /**
- * Key of the T3 Code thread whose agent started the run, from `T3CODE_THREAD_ID` in the
- * env of the process that created the row. A report for trace views: each AI node reads
- * the parent tag from its own process env through `startingThreadId`, never from here.
+ * Key of the T3 Code thread whose agent started the run. The process that creates the row
+ * writes it from its own `T3CODE_THREAD_ID`; a trigger start writes the thread its receipt
+ * recorded. Each AI node of a top-level run reads its parent tag from here, so a process
+ * that drains, executes or resumes the run never lends it its own thread.
  */
 export const T3_THREAD_METADATA_KEY = 't3_thread_id';
 
 /**
+ * The characters a T3 Code thread id holds, such as `mcp:e0068795-…` or
+ * `thread:delegated-task:command%3Amcp%3A…`. No space, quote or line break: the id becomes
+ * an HTTP header value.
+ */
+const THREAD_ID_PATTERN = /^[A-Za-z0-9:._%+-]+$/;
+
+/** `value` trimmed when it is a T3 Code thread id; undefined when it is blank or unsafe. */
+export function safeThreadId(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.trim();
+  return trimmed !== '' && THREAD_ID_PATTERN.test(trimmed) ? trimmed : undefined;
+}
+
+/**
  * The T3 Code thread that started this process, or undefined when `T3CODE_THREAD_ID` is
- * unset, blank, or holds anything but visible ASCII (it becomes an HTTP header value).
+ * unset, blank, or holds a character a thread id never does.
  */
 export function startingThreadId(
   env: Record<string, string | undefined> = process.env
 ): string | undefined {
-  const value = env.T3CODE_THREAD_ID?.trim();
-  return value && /^[\x21-\x7e]+$/.test(value) ? value : undefined;
+  return safeThreadId(env.T3CODE_THREAD_ID);
 }
 
 /** The thread stamp for a new run row: empty when this process has no thread. */
@@ -277,10 +291,15 @@ export function startingThreadMetadata(
   return threadId === undefined ? {} : { [T3_THREAD_METADATA_KEY]: threadId };
 }
 
-/** Typed view of the thread stamp; undefined on a run no thread started. */
+/** The thread stamp for a run row, from a thread id another record carried. */
+export function threadMetadata(threadId: string | undefined): Record<string, string> {
+  const safe = safeThreadId(threadId);
+  return safe === undefined ? {} : { [T3_THREAD_METADATA_KEY]: safe };
+}
+
+/** Typed view of the thread stamp; undefined on a run no thread started, or an unsafe stamp. */
 export function readT3ThreadId(metadata: Record<string, unknown> | undefined): string | undefined {
-  const raw = metadata?.[T3_THREAD_METADATA_KEY];
-  return typeof raw === 'string' && raw.length > 0 ? raw : undefined;
+  return safeThreadId(metadata?.[T3_THREAD_METADATA_KEY]);
 }
 
 /** Typed view of the run-lifecycle keys on a run's metadata; undefined when unset. */

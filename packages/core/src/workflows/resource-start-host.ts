@@ -42,6 +42,8 @@ import {
 import {
   RESOURCE_START_METADATA_KEY,
   readResourceStartReceiptId,
+  requestingRun,
+  requestingThread,
   ADMISSION_CHECKOUT_GUARD_METADATA_KEY,
   type PreparedWorkflowLaunch,
   type ResourceStartBindingIntent,
@@ -54,7 +56,9 @@ import {
   type WorkflowExecutionResult,
 } from '@archon/workflows/schemas/workflow';
 import {
+  readT3ThreadId,
   SUBRUN_METADATA_KEYS,
+  threadMetadata,
   WORKFLOW_SOURCE_METADATA_KEY,
 } from '@archon/workflows/schemas/workflow-run';
 import {
@@ -218,14 +222,34 @@ function authoredInputsMetadata(inputs: Record<string, JsonValue>): Record<strin
   };
 }
 
+/**
+ * The T3 Code thread whose request this start is: the thread a fire recorded on the
+ * receipt, or for a fire from inside a run, that run's own thread stamp. Never this
+ * process's env: a drain from thread A also prepares bindings that cron or thread B fired.
+ */
+async function requestingThreadId(
+  host: WorkflowHost,
+  receiptId: string
+): Promise<string | undefined> {
+  const actor = (await host.deps.store.getStartReceipt(receiptId))?.sourceActor ?? null;
+  const thread = requestingThread(actor);
+  if (thread !== undefined) return thread;
+  const run = requestingRun(actor);
+  return run
+    ? readT3ThreadId((await host.deps.store.getWorkflowRun(run.runId))?.metadata)
+    : undefined;
+}
+
 function bindingRunMetadata(
   workflow: ResolvedWorkflow,
   sourceRecord: JsonValue,
   origin: ResourceStartRunMetadata,
   inputs: Record<string, JsonValue>,
-  preparedAi: PreparedRunAiConfiguration
+  preparedAi: PreparedRunAiConfiguration,
+  threadId: string | undefined
 ): Record<string, JsonValue> {
   return {
+    ...threadMetadata(threadId),
     [RUN_AI_CONFIGURATION_METADATA_KEY]: preparedAi.aiConfigurationSnapshot,
     [WORKFLOW_SOURCE_METADATA_KEY]: sourceRecord,
     [RESOURCE_START_METADATA_KEY]: { ...origin },
@@ -295,7 +319,8 @@ async function prepareBinding(
           preparedWorkflowSourceRecord(source),
           origin,
           inputs,
-          preparedAi
+          preparedAi,
+          await requestingThreadId(host, identity.receiptId)
         ),
         ...(isolation.kind === 'in-place' ? { working_path: cwd } : {}),
       },
